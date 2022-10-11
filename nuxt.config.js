@@ -2,8 +2,9 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  /* Configuración de SEO Global | Luis Reyes */
   head: {
-    titleTemplate: '%s - Aryy-Medico',
+    titleTemplate: '%s | Aryy',
     title: 'Aryy-Medico',
     htmlAttrs: {
       lang: 'en',
@@ -11,7 +12,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Encuentra un especialista médico en tu ciudad! Consulta opiniones de pacientes, pregunta a los expertos en salud y agenda cita ahora por Internet.' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -50,7 +51,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false, /* Desabilitamos el modo dark, posteriomente se realiza la configuración | Luis Reyes */
       themes: {
         dark: {
           primary: colors.blue.darken2,
