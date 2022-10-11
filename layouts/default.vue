@@ -7,7 +7,7 @@
       </v-avatar  >
       <v-list class="list-item">
         <!-- renderizado de lista del SideBar | Luis Reyes -->
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
+        <v-list-item  v-for="(item, i) in items" :key="i" :to="item.to" router exact>
           <v-list-item-action>
             <!--pintamos el objeto img en el SideBar | Luis Reyes-->
             <img :src="item.url" alt="">
@@ -57,12 +57,12 @@ export default {
         {
           url: require("@/assets/icons/icon_calendario.svg"),
           title: 'Calendario',
-          to: '/calendar',
+          to: '/calendario/calendario',
         },
         {
           url: require("@/assets/icons/icon_paciente.svg"),
           title: 'Pacientes',
-          to: '/pacientes',
+          to: '/pacientes/lista',
         },
         {
           url: require("@/assets/icons/icon_mensaje.svg"),
@@ -127,6 +127,9 @@ export default {
 .img{
   width: 30%;
 }
+
+
+
 /*renderizado de lista | Luis Reyes */
 .list-item {
   margin-top: 1em;
@@ -135,8 +138,17 @@ export default {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   color: #999999;
-  
 }
+.v-list-item:hover {
+  background: #7900ff;
+  color: azure;
+}
+.item-active {
+  background-color: #7900ff;
+  color: white !important;
+}
+
+
 /*contenedor div => icono | Luis Reyes */
 .container-icon {
   margin-top: 3em;
@@ -145,7 +157,4 @@ export default {
 .btn-sidebar {
   background-color: #f4edff;
 }
-
-
-
 </style>
