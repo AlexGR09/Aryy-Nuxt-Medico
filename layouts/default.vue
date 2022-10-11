@@ -62,7 +62,7 @@ export default {
         {
           url: require("@/assets/icons/icon_paciente.svg"),
           title: 'Pacientes',
-          to: '/pacientes',
+          to: '/patient/patientView'
         },
         {
           url: require("@/assets/icons/icon_mensaje.svg"),
@@ -145,7 +145,9 @@ export default {
 .btn-sidebar {
   background-color: #f4edff;
 }
-
-
+/*color de fondo en las vistas con tema claro | Genesis */
+.theme--light.v-application {
+  background-color: var(--v-background-base, #f4edff) !important;
+}
 
 </style>

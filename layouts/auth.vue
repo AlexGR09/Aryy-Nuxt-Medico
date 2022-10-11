@@ -1,3 +1,4 @@
+<!-- Layout para el login | Genesis -->
 <template>
     <div>
         <nuxt />

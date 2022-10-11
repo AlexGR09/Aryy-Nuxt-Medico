@@ -60,6 +60,7 @@
     export default {
       name: "registerForm",
       data: () => ({
+    /*     Reglas para el input de contraseña | Genesis */
         show1: false,
       rules: {
         min: v => v.length >= 8 || 'Debe contener mínimo 8 carácteres',

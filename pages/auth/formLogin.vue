@@ -109,6 +109,7 @@
     }
   </script>
   <style>
+  /*estilos para tipos de letra | Genesis*/
   h1{
     font-family: "MontserratBold";
     font-size: 1.3rem;
@@ -126,6 +127,30 @@
       font-size: 15px;
       font-family: 'Montserrat', sans-serif;
     }
+    a.accede{
+      font-size: 15px;
+      font-family: 'MontserratBold';
+    }
+    r{
+      text-transform: unset !important;
+      font-family: MontserratMedium;
+      color: #7900ff;
+    }
+    .textfield{
+      box-shadow: 0 0 10pt 2pt #f4edff;
+      height: 50px;
+      font-size: .9rem;
+      font-family: Montserrat;
+    }
+    .v-messages__message {
+      font-size: 12px;
+  }
+  .tabs{
+    color: #7900ff;
+    text-transform: unset !important;
+    font-family: Montserrat;
+  }
+    /*degradado icono de google | Genesis */
     .fa-google {
     background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
     -webkit-background-clip: text;
@@ -133,6 +158,7 @@
     color: transparent;
     -webkit-text-fill-color: transparent;
   }
+  /*estilos botones | Genesis */
   .btn {
       text-transform: unset !important;
       font-family: Montserrat;
@@ -144,35 +170,13 @@
       border: thin solid #CCCCCC;
       color: white !important;
   }
-  .textfield{
-      box-shadow: 0 0 10pt 2pt #f4edff;
-      height: 50px;
-      font-size: .9rem;
-      font-family: Montserrat;
-    }
-  .v-messages__message {
-    font-size: 12px;
-}
-  a.accede{
-    font-size: 15px;
-    font-family: 'MontserratBold';
-  }
-  .tabs{
-    color: #7900ff;
-    text-transform: unset !important;
-    font-family: Montserrat;
-  }
-  r{
-    text-transform: unset !important;
-    font-family: MontserratMedium;
-    color: #7900ff;
-  }
   .color{
     text-transform: unset !important;
     font-family: MontserratMedium;
     background-color: #ea4335;
     fill:#ea4335;
   }
+  /*Margenes generales | Genesis */
   .margen{
     margin: 34px;
   }
