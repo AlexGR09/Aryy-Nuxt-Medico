@@ -3,24 +3,20 @@
       <div class="row justify-content-md-center">
         <div class="col">
           <br>
-            <v-col md="12" align="center" justify="center">
+            <v-col xs="12" sm="12" md="12" lg="12" mg="12" align="center" justify="center">
               <v-card rounded class="margen">
                   <v-card-title>
-                      <v-row justify="end" class="select mb-n16 marginneg"><v-col md="2" class="select mb-5" >
-                          <v-select outlined flat class="select mb-n16 marginneg"  hide-details dense background-color="#f4edff" :items="keys" placeholder="Ordenar por"></v-select>
+                      <v-row justify="end" class="select mb-n16"><v-col xs="2" sm="2" md="2" lg="2" mg="2" class="select mb-5" >
+                          <v-select outlined flat class="select mb-n16"  hide-details dense background-color="#f4edff" :items="keys" placeholder="Ordenar por"></v-select>
                       </v-col></v-row>
                   </v-card-title>
-    <!--               se llena la tabla con los datos del axios y encabezados con script | Genesis -->
+                  <!-- se llena la tabla con los datos del axios y encabezados con script | Genesis -->
                   <v-data-table class="pa-5 mt-n5"
                       :headers="headers"
                       :items="characters"
                       sort-by="name"
                       :footer-props="{
                           showFirstLastPage: true,
-                          firstIcon: 'mdi-arrow-collapse-left',
-                          lastIcon: 'mdi-arrow-collapse-right',
-                          prevIcon: 'mdi-minus',
-                          nextIcon: 'mdi-plus',
                           'items-per-page-text':'Pacientes por página'
                       }"
                   >
@@ -28,15 +24,18 @@
                       <a>Crear cita</a>
                   </template>
                   <template v-slot:[`item.actions`]="{ item }">
-                      <v-btn class="ml-2" icon small>
+                    <!-- agrupar botones en una sola fila  | Genesis -->
+                    <v-btn-toggle borderless class="botones">
+                      <v-btn class="iconos" icon>
                          <v-img :src="require('@/assets/icons/icon_verpaciente.svg')" max-width="23"></v-img>
                       </v-btn>
-                      <v-btn class="ml-2" icon small>
+                      <v-btn class="iconos" icon>
                        <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
                       </v-btn>
-                      <v-btn   @click="deleteItem(item)" class="ml-2" icon small>
+                      <v-btn class="iconos"   @click="deleteItem(item)" icon >
                          <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="23"></v-img>
                       </v-btn>
+                    </v-btn-toggle>
                   </template>
                 </v-data-table>
               </v-card>
@@ -66,12 +65,11 @@
             align: 'start',
             filterable: false,
             value: 'name',
-            width:"250",
           },
-          { text: 'TELÉFONO', value: 'species',width:"200", align: 'start' },
-          { text: 'ÚLTIMA VISITA', value: 'gender',width:"150", align: 'start' },
-          { text: 'SIGUIENTE VISITA', value: 'create', sortable: false, width:"150", align: 'start'  },
-          { text: '', value: 'actions', sortable: false,width:"200", align: 'start' },
+          { text: 'TELÉFONO', value: 'species', align: 'start' },
+          { text: 'ÚLTIMA VISITA', value: 'gender', align: 'start' },
+          { text: 'SIGUIENTE VISITA', value: 'create', sortable: false, align: 'start'  },
+          { text: '', value: 'actions', sortable: false, align: 'start' },
           { text: '', value: '', sortable: false, align: 'start'},
         ],
           /* Opciones para el select de sort by | Genesis */
@@ -105,6 +103,7 @@
   }
   </script>
   <style>
+/*   estilos para llenado de tabla | Genesis */
       th{
           font-family: Montserrat;
       }
@@ -116,15 +115,20 @@
           font-family: MontserratBold;
           font-size: 15px;
       }
-      .boton{
-          color: #9966ff;
-      }
       .select{
           font-family: MontserratMedium;
           font-size: 15px;
       }
-      .marginneg{
-        margin-bottom: -32px;
+      /*   estilos para botones | Genesis */
+      .boton{
+          color: #9966ff;
       }
+      .botones{
+        background: transparent !important;
+      }
+      .iconos{
+        margin-left: -10px;
+      }
+      
   </style>
   
