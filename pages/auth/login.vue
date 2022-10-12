@@ -27,3 +27,11 @@ import formLogin from './formLogin.vue'
     }), 
   }
 </script>
+<style>
+/* estilos para cubrir completamente la pantalla del video | Genesis */
+.video{
+  width: 100%;
+  margin-left: -55px;
+  margin-bottom: -50px;
+}
+</style>
