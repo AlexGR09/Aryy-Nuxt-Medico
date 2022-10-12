@@ -3,23 +3,22 @@
         <v-col>
             <v-sheet height="64">
                 <v-toolbar flat>
-
+                    <v-spacer></v-spacer>
                     <v-btn fab text small color="grey darken-2" @click="prev">
-                        <v-icon small>mdi-chevron-left</v-icon>
+                        <v-icon small>mdi-arrow-left-drop-circle</v-icon>
                     </v-btn>
                     <v-toolbar-title v-if="$refs.calendar">
                         {{ $refs.calendar.title }}
                     </v-toolbar-title>
                     <v-btn fab text small color="grey darken-2" @click="next">
-                        <v-icon small>mdi-chevron-right</v-icon>
+                        <v-icon small>mdi-arrow-right-drop-circle</v-icon>
                     </v-btn>
-
                     <v-spacer></v-spacer>
-
                 </v-toolbar>
             </v-sheet>
             <v-sheet height="600">
-                <v-calendar ref="calendar" v-model="focus" :events="events" :type="type"  :citas="citas" :event-overlap-mode="mode" :event-color="getEventColor" @change="getEvents">
+                <v-calendar ref="calendar" v-model="focus" :events="events" :type="type" :citas="citas"
+                    :event-overlap-mode="mode" :event-color="getEventColor" @change="getEvents">
                 </v-calendar>
                 <v-menu v-model="selectedOpen" :close-on-content-click="false" :activator="selectedElement" offset-x>
                     <v-card color="grey lighten-4" min-width="350px" flat>
@@ -67,7 +66,7 @@ export default {
         selectedOpen: false,
         events: [],
         colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-    names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
+        names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
     }),
     mounted() {
         this.$refs.calendar.checkChange()
@@ -143,15 +142,13 @@ v-calendar-weekly__head {
     color: black;
 }
 
-/*  .col{
-    width: 100%;
-    padding: 10vh;
 
-
-} 
- */
 v-row {
     border-radius: 30px;
+}
+
+.col{
+    padding: 10vh;
 }
 
 v-event-summary {
@@ -164,5 +161,6 @@ v-event-summary {
 }
 
 .theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
-  background-color: #cccccc;}
+    background-color: #cccccc;
+}
 </style>
