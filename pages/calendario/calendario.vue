@@ -29,7 +29,9 @@ export default {
  -->
 
 <template>
-  <v-calendar></v-calendar>
+  <v-calendar>
+    
+  </v-calendar>
  
 </template>
   

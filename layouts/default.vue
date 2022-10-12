@@ -62,7 +62,7 @@ export default {
                 {
                     url: require("@/assets/icons/icon_calendario.svg"),
                     title: "Calendario",
-                    to: "/calendario/calendario",
+                    to: "/calendario/month",
                 },
                 {
                     url: require("@/assets/icons/icon_paciente.svg"),

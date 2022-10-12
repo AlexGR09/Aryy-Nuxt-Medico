@@ -25,7 +25,7 @@ export default {
     return {
       description: '404 Not Found | Aryy en Construcción',
       pageNotFound: 'Página no encontrada',
-      otherError: 'An error occurred',
+      otherError: 'Error :(',
     }
   },
   head() {
