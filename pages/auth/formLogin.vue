@@ -3,7 +3,7 @@
     <div class="margen ">
       <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img>
       <h1>Especialistas, medicinas y <br /> análisis clínicos en un solo lugar</h1>
-      <p>Haz una cita, cotiza tus medicamentos y análisis clínicos o lleva control de tu tratamiento con ayuda de aryy.</p>
+      <p>Haz una cita, cotiza tus medicamentos y análisis <br /> clínicos o lleva control de tu tratamiento con <br /> ayuda de aryy.</p>
       <!-- ---- Sección de vista iniciar/registrar | Genesis ---- -->
             <v-tabs
             class="tabs"
@@ -29,15 +29,16 @@
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
               ></v-text-field>
-                  <v-btn class="margen4 btnn" color="#7900ff" block height="50">
+                  <v-btn class="margen4 btnn" color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
                   <br />
                   <p class="accede">O accede usando</p>
-                  <v-btn outlined class="btn" width="100%" height="50"><v-img :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
+                  <div class="margen4"></div>
+                  <v-btn outlined class="btn" height="50"><v-img :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
                     Iniciar sesión con Facebook
                   </v-btn>
-                  <v-btn class="margen4 btn" outlined width="100%" height="50">
+                  <v-btn class="margen4 btn" outlined height="50">
                     <v-img :src="require('@/assets/icons/icon_google.svg')" max-width="30"></v-img>
                     Iniciar sesión con Google
                   </v-btn>
@@ -48,10 +49,9 @@
           <!--  ----Tab de registro |Génesis---- -->
           <v-tab-item>
             <v-card flat>
-            <v-col
-          md="11"
-          >
-          <v-text-field placeholder="Ingresa un usuario" class="textfield"  rounded></v-text-field>
+              <v-card-text >
+              <v-col xs="11" sm="11" md="11">
+          <v-text-field justify-right placeholder="Usuario o telefono" rounded height="25" class="textfield"></v-text-field>
             <br />
             <v-text-field placeholder="Ingresa un correo" class="textfield" rounded ></v-text-field>
             <br />
@@ -69,22 +69,23 @@
               hint="Debe contener mínimo 8 carácteres"
               @click:append="show1 = !show1"
             ></v-text-field>
-            <v-btn class="margen4 btnn" block color="#7900ff" height="50">
+            <v-btn class="margen4 btnn" color="#7900ff" height="50">
                   Registrarme
             </v-btn>
             <br /> 
             <v-row>
-            <v-col xs="1" sm="5" md="6">
+            <v-col xs="1" sm="5" md="5" lg="4">
               <p class="accede">O registrate usando</p>
               </v-col>
-              <v-col xs="1" sm="2" md="3">
+              <v-col xs="1" sm="2" md="3" lg="3">
               <a class="accede">Google</a>
               </v-col>
-              <v-col xs="1" sm="3" md="3">
+              <v-col xs="1" sm="3" md="3" lg="4">
               <a class="accede">Facebook</a>
               </v-col>
             </v-row>
             </v-col>
+          </v-card-text>
           </v-card>
           </v-tab-item>
         </v-tabs-items>
@@ -112,7 +113,7 @@
   /*estilos para tipos de letra | Genesis*/
   h1{
     font-family: "MontserratBold";
-    font-size: 1.3rem;
+    font-size: 155%;
     margin-top: -30px;
     margin-bottom: 10px;
     color: #4f565f;
@@ -128,6 +129,7 @@
       font-family: 'Montserrat', sans-serif;
     }
     a.accede{
+      margin-top: 16px;
       font-size: 15px;
       font-family: 'MontserratBold';
     }
@@ -139,16 +141,19 @@
     .textfield{
       box-shadow: 0 0 10pt 2pt #f4edff;
       height: 50px;
+      width: 85%;
+      margin-left: -20px;
       font-size: .9rem;
       font-family: Montserrat;
     }
     .v-messages__message {
       font-size: 12px;
+      color: #4285f4;
   }
   .tabs{
     color: #7900ff;
     text-transform: unset !important;
-    font-family: Montserrat;
+    font-family: MontserratMedium;
   }
     /*degradado icono de google | Genesis */
     .fa-google {
@@ -163,12 +168,17 @@
       text-transform: unset !important;
       font-family: Montserrat;
       border: thin solid #CCCCCC;
+      margin-left: -15px;
+      width: 85%;
   }
   .btnn {
       text-transform: unset !important;
       font-family: Montserrat;
       border: thin solid #CCCCCC;
       color: white !important;
+      margin-left: -15px;
+      width: 85%;
+      margin-bottom: 16px;
   }
   .color{
     text-transform: unset !important;
