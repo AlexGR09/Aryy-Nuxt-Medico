@@ -5,13 +5,13 @@
                 <v-toolbar flat>
                     <v-spacer></v-spacer>
                     <v-btn fab text small color="grey darken-2" @click="prev">
-                        <v-icon small>mdi-arrow-left-drop-circle</v-icon>
+                        <v-icon class="v-icon">mdi-arrow-left-drop-circle</v-icon>
                     </v-btn>
                     <v-toolbar-title v-if="$refs.calendar">
                         {{ $refs.calendar.title }}
                     </v-toolbar-title>
                     <v-btn fab text small color="grey darken-2" @click="next">
-                        <v-icon small>mdi-arrow-right-drop-circle</v-icon>
+                        <v-icon>mdi-arrow-right-drop-circle</v-icon>
                     </v-btn>
                     <v-spacer></v-spacer>
                 </v-toolbar>
@@ -162,5 +162,8 @@ v-event-summary {
 
 .theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
     background-color: #cccccc;
+}
+.v-icon{
+    background: #9966ff;
 }
 </style>
