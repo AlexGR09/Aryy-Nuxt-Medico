@@ -1,7 +1,7 @@
 <!--Maquetación de componentes al Dashboard | Luis Reyes-->
 <template>
     <div class="container">
-        <Navbar color="transparents"></Navbar>
+
         <v-row class="row">
             <v-col cols="12" md="4">
                 <h4>CITAS</h4>
@@ -29,10 +29,8 @@
     </div>
 </template>
 <script>
-import DashboardCitas from '~/components/dashboard/DashboardCitas.vue';
-import Navbar from '~/layouts/navbar.vue';
+
 export default {
     name: "IndexPage",
-    components: { DashboardCitas, Navbar }
 }
 </script>

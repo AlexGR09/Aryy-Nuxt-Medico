@@ -1,5 +1,26 @@
 <template>
   <v-row class="ma-4">
+    <v-app-bar :clipped-left="clipped" fixed app>
+            <v-menu bottom right>
+                <template v-slot:activator="{ on }">
+                    <v-btn outlined v-on="on">
+                        <span>{{ typeToLabel[type] }}</span>
+                        <v-icon right>mdi-menu-down</v-icon>
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item @click="type = 'day'" to="/calendario/dayView">
+                        <v-list-item-title>Día</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="type = 'week'">
+                        <v-list-item-title>Semana</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="type = 'month'" to="/calendario/month">
+                        <v-list-item-title>Mes</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
+        </v-app-bar>
     <v-col>
       <v-card flat class="rounded-lg pa-1">
         <v-sheet height="64">
@@ -59,6 +80,13 @@ export default {
   data: () => ({
     value: '',
     moment,
+    focus: "",
+        type: "day",
+    typeToLabel: {
+            month: "Mes",
+            week: "Semana",
+            day: "Día",
+        },
     ready: false,
     events: [
         {

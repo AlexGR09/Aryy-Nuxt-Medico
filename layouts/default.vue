@@ -26,9 +26,9 @@
     </v-navigation-drawer>
     
     <!-- código de NavBar | Luis Reyes-->
-   <!--  <v-app-bar :clipped-left="clipped" fixed app> 
+<v-app-bar :clipped-left="clipped" fixed app> 
     
-      </v-app-bar> -->
+      </v-app-bar>
     <!-- pintamos los componetes | Luis Reyes-->
 
     <v-main>
