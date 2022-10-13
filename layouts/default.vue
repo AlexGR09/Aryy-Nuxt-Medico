@@ -25,8 +25,6 @@
       </v-list>
     </v-navigation-drawer>
     
-
-
     <!-- código de NavBar | Luis Reyes-->
     <v-app-bar :clipped-left="clipped" fixed app> </v-app-bar>
     <!-- pintamos los componetes | Luis Reyes-->
@@ -188,4 +186,11 @@ v-navigation-drawer{
   width: 150px; */
 }
 
+div .theme--light.v-calendar .v-event-timed {
+  font-family: MontserratMedium;
+  font-size: 15px;
+  border-radius: 1em/5em;
+  margin-top: 2px;
+  margin-bottom: 2px;
+} 
 </style>
