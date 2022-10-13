@@ -28,8 +28,11 @@
 
 
     <!-- código de NavBar | Luis Reyes-->
-    <v-app-bar :clipped-left="clipped" fixed app> </v-app-bar>
+   <!--  <v-app-bar :clipped-left="clipped" fixed app> 
+    
+      </v-app-bar> -->
     <!-- pintamos los componetes | Luis Reyes-->
+
     <v-main>
       <v-container>
         <!-- componente que utiliza para mostrar los componentes de las páginas | Luis Reyes-->
@@ -171,7 +174,12 @@ export default {
 =======
 /*color de fondo en las vistas con tema claro | Genesis */
 .theme--light.v-application {
-  background-color: var(--v-background-base, #f4edff) !important;
+ /*  background-color: var(--v-background-base, #f4edff) !important; */
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(50deg, rgba(255, 255, 255, 1) 35%, rgba(244, 237, 255, 1) 90%);
+  background: -webkit-linear-gradient(50deg, rgba(255, 255, 255, 1) 35%, rgba(244, 237, 255, 1) 90%);
+  background: linear-gradient(50deg, rgba(255, 255, 255, 1) 35%, rgba(244, 237, 255, 1) 90%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#f4edff", GradientType=1);
 } 
 
 v-navigation-drawer{

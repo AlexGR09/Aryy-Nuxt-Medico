@@ -4,9 +4,7 @@
       <v-navigation-drawer absolute v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
         <h1>dasd</h1>
       </v-navigation-drawer>
-      
     </v-app>
-    
   </template>
   
   <script>
@@ -108,8 +106,6 @@
   .img{
     width: 30%;
   }
-  
-  
   
   /*renderizado de lista | Luis Reyes */
   .list-item {

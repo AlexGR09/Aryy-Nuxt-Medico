@@ -7,7 +7,7 @@ export default {
     titleTemplate: '%s | Aryy',
     title: 'Aryy-Medico',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'mx-es',
     },
     meta: [
       { charset: 'utf-8' },
