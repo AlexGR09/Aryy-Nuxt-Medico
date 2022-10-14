@@ -30,7 +30,7 @@
                   {
                       url: require("@/assets/icons/icon_paciente.svg"),
                       title: "Pacientes",
-                      to: "/pacientes/lista",
+                      to: "/patients/list",
                   },
                   /* =======
                             to: '/patient/patientView'

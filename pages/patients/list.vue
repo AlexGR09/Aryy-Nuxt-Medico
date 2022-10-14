@@ -1,5 +1,65 @@
 <template>
-    <div class="container">
+  <div class="container">
+    <!-- componentes para el app bar | Genesis -->
+    <v-app-bar app color="white" :clipped-left="clipped" height="100">
+      <h3>{{ $options.name}}</h3>
+      <v-spacer></v-spacer>
+      <!-- barra de busqueda | Genesis -->
+      <v-toolbar
+        flat
+        class="vtoolbar mr-5"
+        dense
+      >
+        <v-text-field
+          reverse
+          class="search"
+          color="#f2f2f2"
+          dense
+          outlined
+          placeholder="Buscar paciente "
+          hide-details
+          prepend-inner-icon="mdi-magnify"
+        ></v-text-field>
+      </v-toolbar>
+      <!-- boton para cargar archivo | Genesis -->
+      <v-btn 
+        outlined
+        class="boton mr-4"
+        :loading="isSelecting" 
+        @click="handleFileImport"
+      >
+        <span>Importar pacientes</span>
+        <v-icon>mdi-file-plus-outline</v-icon>
+      </v-btn> 
+      <input 
+        ref="uploader" 
+        class="d-none" 
+        type="file" 
+        @change="onFileChanged"
+      > 
+       <!-- boton para agregar pacientes | Genesis -->
+        <v-btn 
+          color="#7900ff"
+          class="ml-2 mr-2 boton white--text"
+        >
+          <span>Agregar paciente</span>
+          <v-icon>mdi-account-plus-outline</v-icon>
+          <h1></h1>
+        </v-btn>
+         <!-- iconos para notificacion, ajustes y cuenta | Genesis -->
+        <v-btn class="ml-4" icon small>
+            <v-img :src="require('@/assets/icons/icon_settings.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="ml-4" icon small>
+            <v-img :src="require('@/assets/icons/icon_notificationpatient.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="ml-5 mr-7" fab  color="#7900ff">
+            <v-icon large color="#fff">
+                mdi-account
+            </v-icon>
+        </v-btn>
+    </v-app-bar>
+     <!-- tabla de pacientes | Genesis -->
       <div class="row justify-content-md-center">
         <div class="col">
           <br>
@@ -49,7 +109,7 @@
   <script>
   import axios from 'axios'
   export default {
-      name: 'ProfileView',
+      name: 'Pacientes',
       layout: 'patientView',
       components: 
       {
@@ -87,6 +147,25 @@
   
       },
       methods: {
+        handleFileImport() {
+                this.isSelecting = true;
+
+                // After obtaining the focus when closing the FilePicker, return the button state to normal
+                window.addEventListener('focus', () => {
+                    this.isSelecting = false
+                }, { once: true });
+                
+                // Trigger click on the FileInput
+                this.$refs.uploader.click();
+            },
+            onFileChanged(e) {
+                this.selectedFile = e.target.files[0];
+
+                // Do whatever you need with the file, liek reading it with FileReader
+            },
+        chooseFiles() {
+        document.getElementById("fileUpload").click()
+    },
           getTodos() {
               console.log('peticion GET');
               axios.get('https://rickandmortyapi.com/api/character')
@@ -103,9 +182,14 @@
   }
   </script>
   <style>
+  
 /*   estilos para llenado de tabla | Genesis */
       th{
           font-family: Montserrat;
+      }
+      h3{
+        padding-left: 3rem;
+        font-size: 1.4rem;
       }
       tbody{
           font-family: 'MontserratMedium';
@@ -115,6 +199,15 @@
           font-family: MontserratBold;
           font-size: 15px;
       }
+      span{
+    font-size: 1rem;
+    font-family: MontserratMedium;
+    align-items: start;
+    text-transform: lowercase;
+  }
+  span::first-letter {
+ text-transform: uppercase;
+}
       .select{
           font-family: MontserratMedium;
           font-size: 15px;
@@ -129,6 +222,18 @@
       .iconos{
         margin-left: -10px;
       }
-      
+  /* estilos para barra de busqueda | Genesis */
+  .vtoolbar{
+    border: thin solid #cccccc;
+    height: 30px;
+    width: 6rem;
+  }
+  .search{
+    font-family: Montserrat;
+  }
+  .v-input__icon--prepend-inner .v-icon { 
+    color: #cccccc;
+  }
+
   </style>
   
