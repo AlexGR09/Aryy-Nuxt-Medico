@@ -20,8 +20,12 @@
                     <v-list-item @click="type = 'day'" to="/calendario/dayView">
                         <v-list-item-title>Día</v-list-item-title>
                     </v-list-item>
-                    <v-list-item @click="type = 'week'">
-                        <v-list-item-title>Semana</v-list-item-title>
+                    <v-list-item 
+                        @click="type = 'week'"
+                    >
+                        <v-list-item-title>
+                            Semana
+                        </v-list-item-title>
                     </v-list-item>
                     <v-list-item @click="type = 'month'" to="/calendario/month">
                         <v-list-item-title>Mes</v-list-item-title>
@@ -60,7 +64,7 @@
                         <v-toolbar :color="selectedEvent.color" dark>
                             <v-btn icon>
                                 <v-icon>mdi-pencil</v-icon>
-                            </v-btn>
+                            </v-btn>  
                             <v-spacer></v-spacer>
                             <v-btn icon>
                                 <v-icon>mdi-heart</v-icon>

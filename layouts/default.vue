@@ -26,9 +26,9 @@
     </v-navigation-drawer>
     
     <!-- código de NavBar | Luis Reyes-->
-<v-app-bar :clipped-left="clipped" fixed app> 
+<!-- <v-app-bar :clipped-left="clipped" fixed app> 
     
-      </v-app-bar>
+      </v-app-bar> -->
     <!-- pintamos los componetes | Luis Reyes-->
 
     <v-main>
@@ -139,8 +139,6 @@ export default {
   width: 30%;
 }
 
-
-
 /*renderizado de lista | Luis Reyes */
 .list-item {
   margin-top: 1em;
@@ -158,8 +156,7 @@ export default {
   background-color: #7900ff;
   color: white !important;
 }
-
-
+s
 /*contenedor div => icono | Luis Reyes */
 .container-icon {
   margin-top: 3em;

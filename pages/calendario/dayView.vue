@@ -1,10 +1,18 @@
 <template>
   <v-row class="ma-4">
     <v-app-bar :clipped-left="clipped" fixed app>
-            <v-menu bottom right>
+            <v-spacer></v-spacer>
+            <v-btn depressed color="primary">
+                Este mes
+            </v-btn>
+            <v-spacer />
+            <v-autocomplete v-model="select" :loading="loading" :items="items" :search-input.sync="search" cache-items
+                class="mx-2" flat hide-no-data hide-details label="Buscar cita" solo-inverted>
+            </v-autocomplete>
+            <v-menu bottom left color="#5a09ff">
                 <template v-slot:activator="{ on }">
                     <v-btn outlined v-on="on">
-                        <span>{{ typeToLabel[type] }}</span>
+                        <span background="#5a09ff">{{ typeToLabel[type] }}</span>
                         <v-icon right>mdi-menu-down</v-icon>
                     </v-btn>
                 </template>
