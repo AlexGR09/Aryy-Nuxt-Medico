@@ -1,17 +1,34 @@
 <template>
     <v-row>
-        <v-app-bar :clipped-left="clipped" fixed app>
-            <v-spacer></v-spacer>
-            <v-btn depressed color="primary">
-                Este mes
+        <v-app-bar height="100" :clipped-left="clipped" fixed app>
+            <v-btn class="list mr-4" 
+              outlined
+              color="grey darken-2"
+              @click="setToday"
+            >
+             <span>Este mes</span> 
             </v-btn>
             <v-spacer />
-            <v-autocomplete v-model="select" :loading="loading" :items="items" :search-input.sync="search" cache-items
-                class="mx-2" flat hide-no-data hide-details label="Buscar cita" solo-inverted>
-            </v-autocomplete>
-            <v-menu bottom left color="#5a09ff">
+            <v-toolbar
+        flat
+        color="transparent"
+        class="vtoolbar mr-5"
+        dense
+      >
+        <v-text-field
+          reverse
+          class="search"
+          color="#f2f2f2"
+          dense
+          outlined
+          placeholder="Buscar cita "
+          hide-details
+          prepend-inner-icon="mdi-magnify"
+        ></v-text-field>
+      </v-toolbar>
+            <v-menu bottom left >
                 <template v-slot:activator="{ on }">
-                    <v-btn outlined v-on="on">
+                    <v-btn class="list white--text mr-5 ml-n5"  outlined v-on="on">
                         <span background="#5a09ff">{{ typeToLabel[type] }}</span>
                         <v-icon right>mdi-menu-down</v-icon>
                     </v-btn>
@@ -32,6 +49,17 @@
                     </v-list-item>
                 </v-list>
             </v-menu>
+            <v-btn class="ml-4" icon small>
+            <v-img :src="require('@/assets/icons/icon_settings.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="ml-4" icon small>
+            <v-img :src="require('@/assets/icons/icon_notificationpatient.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="ml-5 mr-7" fab  color="#7900ff">
+            <v-icon large color="#fff">
+                mdi-account
+            </v-icon>
+        </v-btn>
         </v-app-bar>
         <v-spacer />
         <v-col>
@@ -129,6 +157,7 @@ export default {
         next() {
             this.$refs.calendar.next();
         },
+        
         updateRange({ start, end }) {
             const events = [];
             const min = new Date(`${start.date}T00:00:00`);
@@ -223,5 +252,32 @@ v-col {
     margin-top: 2rem;
     margin-left: 2vh;
     margin-right: 2vh;
+}
+.list{
+    margin-left: 2rem;
+    width: 7rem;
+    background: #7900ff;
+  }
+  /* estilos para barra de busqueda | Genesis */
+  .vtoolbar{
+    border: thin solid #cccccc;
+    height: 30px;
+    width: 2rem;
+  }
+  .search{
+    font-family: Montserrat;
+  }
+  .v-input__icon--prepend-inner .v-icon { 
+    color: #cccccc;
+  }
+  span{
+    font-size: 1rem;
+    font-family: MontserratMedium;
+    align-items: start;
+    color: white;
+    text-transform: lowercase;
+  }
+  span::first-letter {
+ text-transform: uppercase;
 }
 </style>

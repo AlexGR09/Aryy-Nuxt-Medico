@@ -24,6 +24,8 @@
         </div>
       </v-list>
     </v-navigation-drawer>
+   
+    
     
     <!-- código de NavBar | Luis Reyes-->
 <!-- <v-app-bar :clipped-left="clipped" fixed app> 
@@ -68,7 +70,7 @@ export default {
                 {
                     url: require("@/assets/icons/icon_paciente.svg"),
                     title: "Pacientes",
-                    to: "/pacientes/lista",
+                    to: "/patients/list",
                 },
                 /* =======
                           to: '/patient/patientView'
@@ -195,7 +197,5 @@ div .theme--light.v-calendar .v-event-timed {
   font-family: MontserratMedium;
   font-size: 15px;
   border-radius: 1em/5em;
-  margin-top: 2px;
-  margin-bottom: 2px;
 } 
 </style>

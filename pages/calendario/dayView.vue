@@ -1,5 +1,6 @@
 <template>
   <v-row class="ma-4">
+<<<<<<< HEAD
     <v-app-bar :clipped-left="clipped" fixed app>
             <v-spacer></v-spacer>
             <v-btn depressed color="primary">
@@ -13,10 +14,44 @@
                 <template v-slot:activator="{ on }">
                     <v-btn outlined v-on="on">
                         <span background="#5a09ff">{{ typeToLabel[type] }}</span>
+=======
+    <v-app-bar height="100" :clipped-left="clipped" fixed app>
+     <!--  boton para ir al dia actual | Genesis -->
+     <v-btn class="list mr-4" 
+              outlined
+              color="grey darken-2"
+              @click="setToday"
+            >
+             <span>Hoy</span> 
+            </v-btn> 
+      <v-spacer></v-spacer>
+   <!--    bara de busqueda | Genesis -->
+      <v-toolbar
+        flat
+        color="transparent"
+        class="vtoolbar mr-5"
+        dense
+      >
+        <v-text-field
+          reverse
+          class="search"
+          color="#f2f2f2"
+          dense
+          outlined
+          placeholder="Buscar cita "
+          hide-details
+          prepend-inner-icon="mdi-magnify"
+        ></v-text-field>
+      </v-toolbar>
+            <v-menu  bottom right>
+                <template  v-slot:activator="{ on }">
+                    <v-btn class="list white--text mr-5 ml-n5" outlined v-on="on">
+                        <span text-align="start">{{ typeToLabel[type] }}</span>
+>>>>>>> c315868c9bfcfe31e2b4c1fa394285ad32f94c97
                         <v-icon right>mdi-menu-down</v-icon>
                     </v-btn>
                 </template>
-                <v-list>
+                <v-list >
                     <v-list-item @click="type = 'day'" to="/calendario/dayView">
                         <v-list-item-title>Día</v-list-item-title>
                     </v-list-item>
@@ -28,19 +63,28 @@
                     </v-list-item>
                 </v-list>
             </v-menu>
+             <!-- iconos para notificacion, ajustes y cuenta | Genesis -->
+        <v-btn class="ml-4" icon small>
+            <v-img :src="require('@/assets/icons/icon_settings.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="ml-4" icon small>
+            <v-img :src="require('@/assets/icons/icon_notificationpatient.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="ml-5 mr-7" fab  color="#7900ff">
+            <v-icon large color="#fff">
+                mdi-account
+            </v-icon>
+        </v-btn>
         </v-app-bar>
     <v-col>
-      <v-card flat class="rounded-lg pa-1">
-        <v-sheet height="64">
+      <v-card  class="rounded-lg pa-1 elevation-2 ">
+        <v-sheet height="70">
                 <v-toolbar flat>
                     <v-spacer></v-spacer>
                     <v-btn fab text small color="grey darken-2" @click="prev">
                         <v-icon color="#9966ff" class="v-icon">mdi-arrow-left-drop-circle</v-icon>
                     </v-btn>
-                    <v-toolbar-title>
-                       <!--  {{ $refs.calendar.day }} --> <h3>{{moment().format('LL')}}</h3>
-
-                    </v-toolbar-title>
+                    <v-toolbar-title class="v-calendar-title">{{ title }}</v-toolbar-title>
                     <v-btn fab text small color="grey darken-2" @click="next">
                         <v-icon color="#9966ff" class="v-icon">mdi-arrow-right-drop-circle</v-icon>
                     </v-btn>
@@ -52,8 +96,8 @@
           first-time="07"
           hide-header
           locale="mx-es"
-          :weekday-format="getFormattedDate"
-          :short-weekdays="false"
+          :now="today"
+          class="v-calendar calendario"
           :short-intervals="false"
           interval-width="80px"
           ref="calendar"
@@ -62,6 +106,8 @@
           type="day"
           interval-minutes="30"
           :events="events"
+          :interval-style="intervalFormar"
+          @change="updateRange"
         >
           <template v-slot:day-body="{ date, week }">
             <div
@@ -72,8 +118,8 @@
           </template>
          
           <template  v-slot:event="{event}">
-            <div :style="{'border-radius': '1em/5em','background-color':event.color,color:'white','font-size':'14px',margin:'2px'}" class=" pl-3">{{ event.intervalo }}</div>
-            <div :style="{'border-radius': '1em/5em','background-color':event.color,color:'white','font-size':'17px'}" class=" pl-3">{{ event.name }}</div>
+            <div :style="{'border-radius': '1em/5em','background-color':event.color,color:'white','font-size':'11px',margin:'2px'}" class=" pl-3">{{ event.intervalo }}</div>
+            <div :style="{'border-radius': '1em/5em','background-color':event.color,color:'white','font-size':'15px'}" class=" pl-3">{{ event.name }}</div>
         </template>
         </v-calendar>
       </v-sheet>
@@ -89,7 +135,10 @@ export default {
     value: '',
     moment,
     focus: "",
-        type: "day",
+    type: "day",
+    selectedEvent: {},
+        selectedElement: null,
+        selectedOpen: false,
     typeToLabel: {
             month: "Mes",
             week: "Semana",
@@ -99,32 +148,32 @@ export default {
     events: [
         {
           name: 'Fulanito Detal',
-          start: '2022-10-13T10:00:00',
+          start: '2022-10-14T10:00:00',
           intervalo: '10:00 - 10:30',
-          end: '2022-10-13T10:30:00',
+          end: '2022-10-14T10:30:00',
           timed: true,
           color: '#9966ff',
         },
         {
           name: 'Zutanito Filipondio',
           intervalo: '10:30 - 11:00',
-          start: '2022-10-13T10:30:00',
-          end: '2022-10-13T11:00:00',
+          start: '2022-10-14T10:30:00',
+          end: '2022-10-14T11:00:00',
           timed: true,
           color: '#3333ff',
         },
         {
           name: 'Merengano Taltipo',
-          start: '2022-10-13T11:00:00',
-          end: '2022-10-13T11:30:00',
+          start: '2022-10-14T11:00:00',
+          end: '2022-10-14T11:30:00',
           intervalo: '11:00 - 11:30',
           timed: true,
           color: '#9966ff',
         },
         {
           name: 'Perengago Gilberto',
-          start: '2022-10-13T11:30:00',
-          end: '2022-10-13T12:00:00',
+          start: '2022-10-14T11:30:00',
+          end: '2022-10-14T12:00:00',
           intervalo: '11:30 - 12:00',
           timed: true,
           color: '#9966ff',
@@ -147,10 +196,36 @@ export default {
     this.$refs.calendar.checkChange()
   },
   methods: {
-    getFormattedDate(date) {
+    viewDay({ date }) {
+            this.focus = date
+            this.type = 'day'
+        },
+  /*   getFormattedDate(date) {
       moment.locale('es');
-             return moment(date).format("LL")
-             
+             return moment(date).format("LL")  
+    }, */
+/*     mostrar el dia del mes en el header de calendario | Genesis */
+    updateRange({ start, end }) {
+      this.start = start;
+      this.end = end;
+      const yr = this.start.year;
+      const mn = this.start.month;
+      const dy = this.start.day;
+      const mNames = [
+       "Enero",
+       "Febrero",
+       "Marzo",
+       "Abril",
+       "Mayo",
+       "Junio",
+       "Julio",
+       "Agosto",
+       "Septiembre",
+       "Octubre",
+       "Noviembre",
+       "Diciembre",
+     ];
+  this.title =  [dy-1] +" de "+ mNames[mn-1] + " de " + yr;
     },
 /*    currentDate() {
        const current = new Date();
@@ -168,10 +243,6 @@ export default {
                               end: this.end,
                              color: this.color})
             }, */
-    viewDay({ date }) {
-            this.focus = date
-            this.type = 'day'
-        },
     getCurrentTime () {
       return this.cal ? this.cal.times.now.hour * 60 + this.cal.times.now.minute : 0
     },
@@ -184,20 +255,16 @@ export default {
     updateTime () {
       setInterval(() => this.cal.updateTimes(), 60 * 1000)
     },
-  },
-  viewDay({ date }) {
-            this.focus = date
-            this.type = 'day'
-        },
-        setToday() {
-            this.focus = ''
-        },
-        prev() {
-            this.$refs.calendar.prev()
-        },
-        next() {
-            this.$refs.calendar.next()
-        },
+    prev() {
+      this.$refs.calendar.prev()
+    },
+    next() {
+        this.$refs.calendar.next()
+    },
+    setToday() {
+        this.focus = ''
+    },
+  },   
 }
   
 </script> 
@@ -205,7 +272,6 @@ export default {
 <style lang="scss">
 /* estilos de puntero de hora actual  | Genesis */
 .v-current-time {
-  
   height: 2px;
   background-color: #5eb9ff;
   position: absolute;
@@ -226,5 +292,45 @@ export default {
 }
 h4{
     font-family: Montserrat;
+  }
+  span{
+    font-size: 1rem;
+    font-family: MontserratMedium;
+    align-items: start;
+    color: white;
+    text-transform: lowercase;
+  }
+  span::first-letter {
+ text-transform: uppercase;
+}
+  .v-calendar{
+    font-family: Montserrat;
+    
+  }
+  .v-calendar-title{
+    font-family: MontserratBold;
+    font-size: 1.2rem;
+  }
+  .calendario{
+    border: thin solid transparent;
+    font-family: Montserrat;
+    margin-left: -5px;
+  }
+  .list{
+    margin-left: 2rem;
+    width: 7rem;
+    background: #7900ff;
+  }
+  /* estilos para barra de busqueda | Genesis */
+  .vtoolbar{
+    border: thin solid #cccccc;
+    height: 30px;
+    width: 2rem;
+  }
+  .search{
+    font-family: Montserrat;
+  }
+  .v-input__icon--prepend-inner .v-icon { 
+    color: #cccccc;
   }
 </style>
