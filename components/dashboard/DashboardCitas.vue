@@ -3,7 +3,7 @@
     <div>
         <h3 class="title-card">CITAS</h3>
         <!--diseño de cards | Luis Reyes-->
-        <v-card loading outlined elevation="8" class="v-card rounded-xl" >
+        <v-card loading outlined  class="v-card-citas rounded-xl" >
             <v-row class="ma-0 pa-0">
                 <v-col cols="8">
                     <v-card-title class="v-card-title text-no-wrap pt-1 ps-2">{{title}}</v-card-title>
@@ -42,6 +42,12 @@ export default{
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 /* titulo H3| Luis Reyes */
+
+.v-card-citas{
+    box-shadow: 10px 10px 5px -2px rgba(94,185,255,0.2);
+-webkit-box-shadow: 10px 10px 5px -2px rgba(94,185,255,0.2);
+-moz-box-shadow: 10px 10px 5px -2px rgba(94,185,255,0.2);
+}
 .title-card {
     margin: 1rem;
     font-family: 'MontserratMedium';

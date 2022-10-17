@@ -8,7 +8,6 @@
         hide-delimiter-background
         show-arrows-on-hover
         class="rounded-xl v-carousel"
-        elevation="8"
       >
         <v-carousel-item v-for="(slide, i) in slides" :key="i">
           <v-sheet :color="colors[i]" height="100%">
@@ -16,12 +15,22 @@
               <div class="title-marketing">
                 {{ slide.title }}
               </div>
-              <div class="subtitle">
-                <v-list-item-title class="v-list-item-title">{{
-                  slide.subtitle
-                }}</v-list-item-title>
+              <!-- barra de progreso | Luis Reyes -->
+              <div class="text-center">
+                <v-progress-circular
+                  :rotate="-90"
+                  :size="180"
+                  :width="15"
+                  :value="value"
+                  color="primary"
+                >
+                  <div>
+                    <p class="progress_number"><strong>{{ value }}%</strong> completado</p>
+                  <!--   <p class="progress_text">completado</p> -->
+                  </div>
+                </v-progress-circular>
               </div>
-              <img class="icon-marketing" :src="slide.url" alt="">
+
               <div class="subtitle">
                 <v-list-item-title class="v-list-item-title">{{
                   slide.description
@@ -35,30 +44,36 @@
   </v-row>
   <!--   </v-card> -->
 </template>
-<script>
+  <script>
 export default {
   data() {
     return {
+      interval: {},
+      value: 0,
+      complete: 'completado',
       colors: ['white'],
       slides: [
         {
-          title: 'marketing',
-          subtitle: 'Todavía no has hecho ninguna campaña',
-          url: require('@/assets/icons/icon_cards_marketing.svg'),
-          description: 'Realiza tu primera campaña aqui',
-        },
-        {
-          title: 'sitio web',
-          subtitle: 'Todavía no has hecho ninguna campaña',
-          url: require('@/assets/icons/icon_cards_marketing.svg'),
-          description: 'Realiza tu primera campaña aqui',
+          title: 'asistente',
+          description: 'Revisa detalles de capacitación aqui',
         },
       ],
     }
   },
+  beforeDestroy() {
+    clearInterval(this.interval)
+  },
+  mounted() {
+    this.interval = setInterval(() => {
+      if (this.value === 100) {
+        return (this.value = 0)
+      }
+      this.value += 10
+    }, 1000)
+  },
 }
 </script>
-<style>
+  <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 
 .title-marketing {
@@ -77,10 +92,10 @@ export default {
 }
 
 /* SLIDER */
-.v-carousel{
-    box-shadow: 10px 10px 5px -2px rgba(94,185,255,0.2);
--webkit-box-shadow: 10px 10px 5px -2px rgba(94,185,255,0.2);
--moz-box-shadow: 10px 10px 5px -2px rgba(94,185,255,0.2);
+.v-carousel {
+  box-shadow: 10px 10px 5px -2px rgba(94, 185, 255, 0.2);
+  -webkit-box-shadow: 10px 10px 5px -2px rgba(94, 185, 255, 0.2);
+  -moz-box-shadow: 10px 10px 5px -2px rgba(94, 185, 255, 0.2);
 }
 .title-marketing {
   font-family: 'MontserratMedium';
@@ -96,8 +111,21 @@ export default {
   font-size: 18px;
   text-align: center;
 }
-.icon-marketing{
-    width: 100px;
+.icon-marketing {
+  width: 100px;
   height: 100px;
+}
+/*Barra de progreso circular | Luis Reyes */
+.v-progress-circular {
+  margin: 1rem;
+}
+
+.progress_number {
+  font-family: 'MontserratMedium';
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #999999;
+  white-space: pre-wrap;
+
 }
 </style> 

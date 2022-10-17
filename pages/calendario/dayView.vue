@@ -1,6 +1,5 @@
 <template>
   <v-row class="ma-4">
-<<<<<<< HEAD
     <v-app-bar :clipped-left="clipped" fixed app>
             <v-spacer></v-spacer>
             <v-btn depressed color="primary">
@@ -14,40 +13,6 @@
                 <template v-slot:activator="{ on }">
                     <v-btn outlined v-on="on">
                         <span background="#5a09ff">{{ typeToLabel[type] }}</span>
-=======
-    <v-app-bar height="100" :clipped-left="clipped" fixed app>
-     <!--  boton para ir al dia actual | Genesis -->
-     <v-btn class="list mr-4" 
-              outlined
-              color="grey darken-2"
-              @click="setToday"
-            >
-             <span>Hoy</span> 
-            </v-btn> 
-      <v-spacer></v-spacer>
-   <!--    bara de busqueda | Genesis -->
-      <v-toolbar
-        flat
-        color="transparent"
-        class="vtoolbar mr-5"
-        dense
-      >
-        <v-text-field
-          reverse
-          class="search"
-          color="#f2f2f2"
-          dense
-          outlined
-          placeholder="Buscar cita "
-          hide-details
-          prepend-inner-icon="mdi-magnify"
-        ></v-text-field>
-      </v-toolbar>
-            <v-menu  bottom right>
-                <template  v-slot:activator="{ on }">
-                    <v-btn class="list white--text mr-5 ml-n5" outlined v-on="on">
-                        <span text-align="start">{{ typeToLabel[type] }}</span>
->>>>>>> c315868c9bfcfe31e2b4c1fa394285ad32f94c97
                         <v-icon right>mdi-menu-down</v-icon>
                     </v-btn>
                 </template>

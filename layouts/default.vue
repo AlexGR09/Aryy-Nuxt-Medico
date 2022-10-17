@@ -14,7 +14,7 @@
           </v-list-item-action>
           <v-list-item-content>
             <!--pintamos el objeto titulo en el SideBar | Luis Reyes-->
-            <v-list-item-title class="v-list-item-title">{{ item.title }}</v-list-item-title>
+            <v-list-item-title class="v-list-item-titlee">{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <div class="container-icon">
@@ -145,7 +145,7 @@ export default {
 .list-item {
   margin-top: 1em;
 }
-.v-list-item-title {
+.v-list-item-titlee {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   color: #999999;

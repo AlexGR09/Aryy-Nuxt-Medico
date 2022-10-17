@@ -1,22 +1,21 @@
 <!-- maquetación | Luis Reyes-->
 <template>
     <div class="container">
-        <Navbar color="transparent"></Navbar>
+        <!-- <Navbar color="transparent"></Navbar> -->
         <v-list-item-title class="title-name mb-1"> Bienvenido, Dr {{name}}</v-list-item-title>
-        <v-card-subtitle class="subtitle d-flex align-center mt-2 pb-2 ps-2">Tiene {{appointment }} <strong> citas </strong> el día de hoy</v-card-subtitle>
-        <v-row class="row">
-
-
+        <v-card-subtitle class="subtitle d-flex align-center mt-2 pb-2 ps-2">Tiene {{ appointment }} <strong> citas </strong> el día de hoy</v-card-subtitle>
+        
+        <v-row class="row ">
             <v-col cols="12" md="4">
                 <DashboardCitas />
             </v-col>
             <v-col cols="12" md="8">
-                <v-row class="match-height">
+                <v-row >
                     <v-col cols="12" sm="4">
                         <DashboardMarketing />
                     </v-col>
                     <v-col cols="12" sm="4">
-                        <DashboardAsistente />
+                        <DashboardAssistant/>
                     </v-col>
                 </v-row>
             </v-col>
@@ -24,17 +23,19 @@
                 <DashboardMensajes />
             </v-col>
             <v-col cols="12" md="8">
-                <!-- <DashboardNoticias /> -->
+                 <DashboardNoticias /> 
             </v-col>
         </v-row>
     </div>
 </template>
+
 <script>
-import Navbar from '~/layouts/navbar.vue';
+
+import DashboardAssistant from '~/components/dashboard/DashboardAssistant.vue';
 
 export default {
     name: "IndexPage",
-    components: { Navbar},
+    components: {  DashboardAssistant },
     data(){
         return{
             name:"Armando Bronca Segura",
@@ -59,4 +60,10 @@ export default {
     font-size: 15px;
     color: #4f565f;
 }
+
+.caja{
+    text-align: center;
+}
+
+
 </style>
