@@ -154,6 +154,7 @@ export default {
   background: #7900ff;
   color: azure;
 }
+
 .item-active {
   background-color: #7900ff;
   color: white !important;

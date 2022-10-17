@@ -8,7 +8,7 @@
         class="video"
       ></video>
     </v-col>
-    <v-col xs="12" sm="12" md="5" lg="5" mg="5">
+    <v-col class="fondo" xs="12" sm="12" md="5" lg="5" mg="5">
       <form-login />
     </v-col>
   </v-row>
@@ -32,5 +32,9 @@ import formLogin from './formLogin.vue'
 .video{
   width: 95%;
   margin-bottom: -50px;
+}
+.fondo{
+  color: white;
+  background: white;
 }
 </style>

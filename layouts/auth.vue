@@ -1,8 +1,8 @@
 <!-- Layout para el login | Genesis -->
 <template>
-    <div>
+     <v-app>
         <nuxt />
-    </div>
+</v-app>
 </template>
 <style>
 </style>
