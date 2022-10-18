@@ -4,43 +4,36 @@
       <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img>
       <h1>Especialistas, medicinas y <br /> análisis clínicos en un solo lugar</h1>
       <p>Haz una cita, cotiza tus medicamentos y análisis <br /> clínicos o lleva control de tu tratamiento con <br /> ayuda de aryy.</p>
-      
-      <!-- ---- Sección de vista iniciar/registrar | Genesis ---- -->
-            <v-tabs
-            class="tabs"
-            color="#7900ff"
-              v-model="tabs"
-            >
-              <v-tab class="tabs" >
-                Iniciar sesión
-              </v-tab >
+      <!-- ---- Sección de vista iniciar sesión y registrar| Genesis ---- -->
+            <v-tabs class="tabs" color="#7900ff" v-model="tabs">
+              <v-tab class="tabs">Iniciar sesión</v-tab >
               <v-tab class="tabs">
+             <!--    menu para mostrar el tipo de registro segun tipo de usuario | Genesis -->
                 <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn text
-            class="tabs gray--text"
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            Registrarse
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item
-            v-for="(item, i) in items" :key="i" :to="item.to" 
-          >
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn 
+                      text
+                      large
+                      class="tabs boton gray--text"
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      Registrarse
+                    </v-btn>
+                  </template>
+                  <v-list class="listitem">
+                    <!-- recibir contenido de la lista desde script | Genesis -->
+                    <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
               </v-tab>
             </v-tabs>
         <v-tabs-items v-model="tabs">
          <!--  ----Iniciar sesión |Génesis---- -->
          <v-tab-item >
-  
-            <v-col xs="11" sm="11" md="11">
+            <v-col xs="11" sm="11" md="11" lg="">
             <v-card flat>
               <v-card-text >
                 <v-text-field justify-right placeholder="Usuario o telefono" rounded height="25" class="textfield"></v-text-field>
@@ -53,7 +46,7 @@
                   <v-btn class="margen4 btnnn" color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
-                  <br />
+                  <br/> <br/>
                   <p class="accede">O accede usando</p>
                   <div class="margen4"></div>
                   <v-btn outlined class="btn" height="50"><v-img :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
@@ -67,62 +60,6 @@
             </v-card>
           </v-col>
           </v-tab-item>
-          <!--  ----Tab de registro |Génesis---- -->
-          <v-tab-item>
-            <v-card flat>
-              <h2>Crea tu perfil gratuito como especialista</h2>
-              <a><h3><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3></a>
-              <v-card-text >
-              
-                <v-row> 
-                <v-col xs="8" sm="8" md="9">
-                  <p class="label">Ciudad*</p>
-                    <v-autocomplete justify-right placeholder="Selecciona una ciudad" rounded height="25" class="textfield"></v-autocomplete>
-                  </v-col>
-                  </v-row>
-                <v-row> 
-                  <v-col md="4"><p class="label">Teléfono*</p><v-autocomplete width="15px" :items="codigos" justify-right placeholder="Código país" rounded height="25" class="textfield"></v-autocomplete></v-col>
-                  <v-col md="7">
-                  <v-text-field placeholder="Número de teléfono (10 dígitos)" class="textfield label" rounded ></v-text-field>
-                  </v-col></v-row>
-                  <v-input class="hint" hint="Éste número se utilizará para verificación del usuario (no aparecerá en su perfil)" persistent-hint>
-                        </v-input>
-                        <v-row>
-        <v-col xs="8" sm="9" md="9"><br/>
-          <p class="label">Correo electrónico*</p>
-          <v-text-field justify-right placeholder="Escriba su email" rounded height="25" class="textfield"></v-text-field>
-            <br />
-            <p class="label">Contraseña*</p>
-            <v-text-field
-              placeholder="Establece tu contraseña" rounded class="textfield"    hint="Debe contener al menos 8 carácteres"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="show1 ? 'text' : 'password'"
-              @click:append="show1 = !show1"
-            ></v-text-field>
-            <br /> 
-            
-            <v-text-field
-              placeholder="Confirma tu contraseña" class="textfield" rounded name="input-10-1"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="show1 ? 'text' : 'password'"
-              hint="Debe contener mínimo 8 carácteres"
-              @click:append="show1 = !show1"
-            ></v-text-field>
-            <br/>
-            <p class="label">Cédula*</p>
-          <v-text-field justify-right placeholder="Número de cédula" rounded height="25" class="textfield"></v-text-field>
-          <v-checkbox checked v-model="checkOne" color="#b380ff" on-icon="mdi-checkbox-blank"><template v-slot:label>
-            <p class="checkbox">He leído y acepto los <b>Términos y Condiciones de uso.</b></p>
-        </template> </v-checkbox>
-            <v-btn class=" btnn" color="#7900ff" height="50">
-                  Registrarme
-            </v-btn>
-            <br /> 
-            </v-col>
-          </v-row>
-          </v-card-text>
-          </v-card>
-          </v-tab-item>
         </v-tabs-items>
     </div>
   </v-card>
@@ -132,19 +69,14 @@
       name: "formLogin",
       layout: "auth",
       data: () => ({
+        tabs: 2,
         items: [
-      { title: 'Especialista', to: '' },
+      { title: 'Especialista', to: 'register' },
       { title: 'Paciente' },
     ],
-        checkbox: false,
-        codigos: ['+52'],
-        tabs: null,
        /*  Reglas para el input de contraseña | Genesis */
         show1: false,
         hasVisiblePassword: false,
-        rules: {
-        min: v => v.length >= 8 || 'Debe contener mínimo 8 carácteres',
-      },
       }),
       myFunction: function () {		
 		if(this.enableDisable){
@@ -210,6 +142,15 @@
       font-family: MontserratMedium;
       color: #7900ff;
     }
+/*     estilos para elementos vuetify | Genesis */
+    .boton{
+    width: 155px;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .listitem{
+    font-family: Montserrat;
+  }
     .hint{
       margin-top: -15px;
       font-family: Montserrat;
