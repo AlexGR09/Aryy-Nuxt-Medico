@@ -5,7 +5,7 @@ export default {
   /* Configuración de SEO Global | Luis Reyes */
   head: {
     titleTemplate: '%s | Aryy',
-    title: 'Aryy-Medico',
+    title: 'Sitio oficial',
     htmlAttrs: {
       lang: 'mx-es',
     },
@@ -17,6 +17,9 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+
+  
+
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [  "~assets/fonts/font.css",],
@@ -65,7 +68,6 @@ export default {
       },
     },
   },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }

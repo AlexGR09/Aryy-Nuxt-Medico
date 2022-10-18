@@ -37,12 +37,8 @@
                     <v-list-item @click="type = 'day'" to="/calendario/dayView">
                         <v-list-item-title>Día</v-list-item-title>
                     </v-list-item>
-                    <v-list-item 
-                        @click="type = 'week'"
-                    >
-                        <v-list-item-title>
-                            Semana
-                        </v-list-item-title>
+                    <v-list-item @click="type = 'week'" to="/calendario/week">
+                        <v-list-item-title>Semana</v-list-item-title>
                     </v-list-item>
                     <v-list-item @click="type = 'month'" to="/calendario/month">
                         <v-list-item-title>Mes</v-list-item-title>
@@ -122,6 +118,16 @@
 
 
 export default {
+    head:{
+        title:'Calendario',
+        meta:[
+            {
+                hid: 'description',
+                name:'description',
+                content:'home page descripcion'
+            }
+        ]
+    },
     data: () => ({
         focus: "",
         type: "month",
@@ -137,6 +143,9 @@ export default {
         colors: ["blue", "indigo", "deep-purple", "cyan", "green", "orange", "grey darken-1"],
         names: ["Meeting", "Holiday", "PTO", "Travel", "Event", "Birthday", "Conference", "Party"],
     }),
+
+   
+    
     mounted() {
         this.$refs.calendar.checkChange();
     },

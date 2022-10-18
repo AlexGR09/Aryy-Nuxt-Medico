@@ -38,14 +38,14 @@
                     <v-list-item @click="type = 'day'" to="/calendario/dayView">
                         <v-list-item-title>Día</v-list-item-title>
                     </v-list-item>
-                    <v-list-item @click="type = 'week'">
-                        <v-list-item-title>Semana</v-list-item-title>
-                    </v-list-item>
+                    <!--pintanajod efr | Luid TYRD
+                      R
+                       ,-->
                     <v-list-item @click="type = 'month'" to="/calendario/month">
                         <v-list-item-title>Mes</v-list-item-title>
                     </v-list-item>
                 </v-list>
-            </v-menu>
+            </v-menu>S
              <!-- iconos para notificacion, ajustes y cuenta | Genesis -->
         <v-btn class="ml-4" icon small>
             <v-img :src="require('@/assets/icons/icon_settings.svg')" max-width="23"></v-img>
