@@ -115,7 +115,6 @@
       {
       },
       data() {
-  
           return {
               characters: [],
               headers: [

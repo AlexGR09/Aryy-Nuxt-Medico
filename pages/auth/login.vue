@@ -31,7 +31,7 @@ import formLogin from './formLogin.vue'
 /* estilos para cubrir completamente la pantalla del video | Genesis */
 .video{
   width: 95%;
-  margin-bottom: -50px;
+  margin-bottom: -350px;
 }
 .fondo{
   color: white;
