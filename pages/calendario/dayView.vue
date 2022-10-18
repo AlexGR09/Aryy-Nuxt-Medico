@@ -1,20 +1,5 @@
 <template>
   <v-row class="ma-4">
-<<<<<<< HEAD
-    <v-app-bar :clipped-left="clipped" fixed app>
-            <v-spacer></v-spacer>
-            <v-btn depressed color="primary">
-                Este mes
-            </v-btn>
-            <v-spacer />
-            <v-autocomplete v-model="select" :loading="loading" :items="items" :search-input.sync="search" cache-items
-                class="mx-2" flat hide-no-data hide-details label="Buscar cita" solo-inverted>
-            </v-autocomplete>
-            <v-menu bottom left color="#5a09ff">
-                <template v-slot:activator="{ on }">
-                    <v-btn outlined v-on="on">
-                        <span background="#5a09ff">{{ typeToLabel[type] }}</span>
-=======
     <v-app-bar height="100" :clipped-left="clipped" fixed app>
      <!--  boton para ir al dia actual | Genesis -->
      <v-btn class="list mr-4" 
@@ -46,7 +31,6 @@
                 <template  v-slot:activator="{ on }">
                     <v-btn class="list white--text mr-5 ml-n5" outlined v-on="on">
                         <span text-align="start">{{ typeToLabel[type] }}</span>
->>>>>>> a472d16e6c1dd57ceb390297edc47ae496c7aad5
                         <v-icon right>mdi-menu-down</v-icon>
                     </v-btn>
                 </template>

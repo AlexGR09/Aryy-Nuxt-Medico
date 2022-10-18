@@ -15,7 +15,25 @@
                 Iniciar sesión
               </v-tab >
               <v-tab class="tabs">
-                Registrarse
+                <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text
+            class="tabs gray--text"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Registrarse
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, i) in items" :key="i" :to="item.to" 
+          >
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
               </v-tab>
             </v-tabs>
         <v-tabs-items v-model="tabs">
@@ -114,6 +132,10 @@
       name: "formLogin",
       layout: "auth",
       data: () => ({
+        items: [
+      { title: 'Especialista', to: '' },
+      { title: 'Paciente' },
+    ],
         checkbox: false,
         codigos: ['+52'],
         tabs: null,
