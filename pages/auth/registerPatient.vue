@@ -1,4 +1,4 @@
-  <template>
+<template>
     <v-card flat>
       <div class="margen ">
         <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img>
