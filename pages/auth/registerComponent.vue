@@ -110,8 +110,7 @@ import CountriesCodes from '~/components/CountriesCodes.json';
         layout: "auth",
         data: () => ({
           tabs: 1,
-          Countries: CountriesCodes
-          ,
+          Countries: CountriesCodes,
           items: [
         { title: 'Especialista', to: 'register' },
         { title: 'Paciente' },

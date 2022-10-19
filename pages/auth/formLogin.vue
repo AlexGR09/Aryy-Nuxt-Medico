@@ -1,6 +1,6 @@
 <template>
   <v-card flat>
-    <div class="margen ">
+    <div class="margen mt-16 ">
       <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img>
       <h1>Especialistas, medicinas y <br /> análisis clínicos en un solo lugar</h1>
       <p>Haz una cita, cotiza tus medicamentos y análisis <br /> clínicos o lleva control de tu tratamiento con <br /> ayuda de aryy.</p>
@@ -33,7 +33,7 @@
         <v-tabs-items v-model="tabs">
          <!--  ----Iniciar sesión |Génesis---- -->
          <v-tab-item >
-            <v-col xs="11" sm="11" md="11" lg="">
+            <v-col xs="11" sm="11" md="11" lg="11" xl="11">
             <v-card flat>
               <v-card-text >
                 <v-text-field justify-right placeholder="Usuario o telefono" rounded height="25" class="textfield"></v-text-field>

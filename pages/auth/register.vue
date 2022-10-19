@@ -30,7 +30,9 @@
   <style>
   /* estilos para cubrir completamente la pantalla del video | Genesis */
   .video{
-    width: 95%;
+    margin-bottom: -50px;
+    width: 110%;
+    margin-left: -150px;
   }
   .fondo{
     color: white;

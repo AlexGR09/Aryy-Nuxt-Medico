@@ -8,7 +8,7 @@
         class="video"
       ></video>
     </v-col>
-    <v-col class="fondo" xs="12" sm="12" md="5" lg="5" mg="5">
+    <v-col class="fondo mt-4 " xs="12" sm="12" md="5" lg="5" mg="5">
       <form-login />
     </v-col>
   </v-row>
@@ -30,8 +30,7 @@ import formLogin from './formLogin.vue'
 <style>
 /* estilos para cubrir completamente la pantalla del video | Genesis */
 .video{
-  width: 95%;
-  margin-bottom: -350px;
+  width: 105%;
 }
 .fondo{
   color: white;
