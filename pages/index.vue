@@ -16,14 +16,14 @@
                 <DashboardCitas />
             </v-col>
             <v-col cols="12" md="8">
-                <v-row >
+<!--                 <v-row >
                     <v-col cols="12" md1="4">
                         <DashboardMarketing />
                     </v-col>
                     <v-col cols="12" md="4">
                         <DashboardAssistant/>
                     </v-col>
-                </v-row>
+                </v-row> -->
             </v-col>
 <!--             <v-col cols="12" sm="6" md="4">
                 <DashboardMensajes />
