@@ -9,16 +9,16 @@
         ></video>
       </v-col>
       <v-col class="fondo" xs="12" sm="12" md="5" lg="5" mg="5">
-        <register-component />
+        <patient-component />
       </v-col>
     </v-row>
   </template>
   <script>
-  import registerComponent from './registerComponent.vue'
+  import patientComponent from './patientComponent.vue'
     export default {
       name: "LoginRA",
       components: {
-        registerComponent,
+        patientComponent,
       },
       layout: "auth",
       data: () => ({
@@ -30,7 +30,9 @@
   <style>
   /* estilos para cubrir completamente la pantalla del video | Genesis */
   .video{
-    width: 95%;
+    margin-bottom: -50px;
+    width: 110%;
+    margin-left: -150px;
   }
   .fondo{
     color: white;

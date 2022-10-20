@@ -1,6 +1,6 @@
 <template>
   <v-card flat>
-    <div class="margen ">
+    <div class="margen mt-16 ">
       <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img>
       <h1>Especialistas, medicinas y <br /> análisis clínicos en un solo lugar</h1>
       <p>Haz una cita, cotiza tus medicamentos y análisis <br /> clínicos o lleva control de tu tratamiento con <br /> ayuda de aryy.</p>
@@ -33,29 +33,34 @@
         <v-tabs-items v-model="tabs">
          <!--  ----Iniciar sesión |Génesis---- -->
          <v-tab-item >
-            <v-col xs="11" sm="11" md="11" lg="">
+            <v-col xs="11" sm="11" md="11" lg="11" xl="10">
             <v-card flat>
               <v-card-text >
-                <v-text-field justify-right placeholder="Usuario o telefono" rounded height="25" class="textfield"></v-text-field>
+                <v-text-field justify-right placeholder="Correo electrónico" outlined color="#b380ff"  class="textfield"></v-text-field>
                 <br />
-                <v-text-field height="25" rounded  class="textfield" placeholder="Contraseña"
+                <v-text-field height="25"  outlined class="textfield" color="#b380ff" placeholder="Contraseña"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
               ></v-text-field>
-                  <v-btn class="margen4 btnnn" color="#7900ff" height="50">
+              <br />
+                  <v-btn class="btnnn"  color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
                   <br/> <br/>
-                  <p class="accede">O accede usando</p>
-                  <div class="margen4"></div>
-                  <v-btn outlined class="btn" height="50"><v-img :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
+                  <p class="accede mb-5">O accede usando</p>
+    
+                  <v-btn outlined class="btn" height="50"><v-img class=" mr-5" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
                     Iniciar sesión con Facebook
                   </v-btn>
                   <v-btn class="margen4 btn" outlined height="50">
-                    <v-img :src="require('@/assets/icons/icon_google.svg')" max-width="30"></v-img>
+                    <v-img class=" mr-10" :src="require('@/assets/icons/icon_google.svg')" max-width="30"></v-img>
                     Iniciar sesión con Google
-                  </v-btn>
+                  </v-btn> 
+                <!--    <div class="split-btn">
+        <v-btn rounded color="primary" dark class="main-btn">Rounded Button</v-btn>
+        <v-btn  v-on="on" rounded color="primary" dark class="actions-btn"><v-icon left>mdi-menu-down</v-icon></v-btn>
+          </div> -->
               </v-card-text>
             </v-card>
           </v-col>
@@ -71,8 +76,8 @@
       data: () => ({
         tabs: 2,
         items: [
-      { title: 'Especialista', to: 'register' },
-      { title: 'Paciente' },
+      { title: 'Especialista', to: 'register/register' },
+      { title: 'Paciente', to: 'register/registerComponents/registerPatient'  },
     ],
        /*  Reglas para el input de contraseña | Genesis */
         show1: false,
@@ -88,6 +93,21 @@
     }
   </script>
   <style>
+    .split-btn{
+    display: inline-block;
+  }
+  .main-btn{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-right: 2px !important;
+  }
+  .actions-btn{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0 !important;
+    min-width: 35px !important;
+    margin-left: -3.5px;
+  }
   /*estilos para tipos de letra | Genesis*/
   h1{
     font-family: "MontserratBold";
@@ -156,10 +176,8 @@
       font-family: Montserrat;
     }
     .textfield{
-      box-shadow: 0 0 10pt 2pt #f4edff;
       height: 50px;
       width: 85%;
-      margin-left: -8px;
       font-size: .9rem;
       font-family: Montserrat;
     }
@@ -192,7 +210,6 @@
       text-transform: unset !important;
       font-family: Montserrat;
       border: thin solid #CCCCCC;
-      
       width: 85%;
   }
   .btnn {
@@ -223,4 +240,9 @@
   .margen4{
     margin-top: 16px;
   }
+  .textfield input::placeholder {
+  color: #999999 !important;
+  opacity: 1;
+}
+
   </style>

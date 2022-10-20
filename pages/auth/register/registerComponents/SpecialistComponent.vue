@@ -40,42 +40,48 @@
             <v-tab-item>
               <v-card flat>
                 <h2>Crea tu perfil gratuito como especialista</h2>
-                <a href="login"><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3></a>
+                <router-link
+                          style="text-decoration: none;
+                          color: inherit;"
+                          to="/auth/login"
+                          ><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
+                        </router-link>
+              <!--   <a href="/login"><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3></a> -->
                 <v-card-text >
                 
                   <v-row> 
-                  <v-col xs="8" sm="8" md="9">
+                  <v-col xs="8" sm="9" md="9" lg="12" xl="9">
                     <p class="label">Ciudad*</p>
-                      <v-autocomplete justify-right placeholder="Selecciona una ciudad" rounded height="25" class="textfield"></v-autocomplete>
+                      <v-autocomplete outlined justify-right placeholder="Selecciona una ciudad" color="#b380ff" height="25" class="textfield"></v-autocomplete>
                     </v-col>
                     </v-row>
                   <v-row> 
-                    <v-col  md="4"><p class="label">Teléfono*</p> 
-                      <v-autocomplete width="15px" :items="Countries" justify-right placeholder="Código país" rounded height="25" class="textfield"> </v-autocomplete> 
+                    <v-col  xs="5" sm="5" md="5" lg="4" xl="4"><p class="label">Teléfono*</p> 
+                      <v-autocomplete outlined  :items="Countries" justify-right placeholder="Código país" color="#b380ff" height="25" > </v-autocomplete> 
                <!--        <li v-for="Country in Countries" :key="Country.name">
          {{Country.dial_code}}
        </li>  -->
                     </v-col>
-                    <v-col md="7">
-                    <v-text-field placeholder="Número de teléfono (10 dígitos)" class="textfield label" rounded ></v-text-field>
-                    </v-col></v-row>
-                    <v-input class="hint" hint="Éste número se utilizará para verificación del usuario (no aparecerá en su perfil)" persistent-hint>
-                    </v-input>
+                    <v-col xs="6" sm="6" md="7" lg="7" xl="6">
+                    <v-text-field outlined placeholder="Número de teléfono (10 dígitos)" class="textfield mt-9 " color="#b380ff" ></v-text-field>
+                    </v-col>
+                    <v-input class="hint mt-n11 ml-2" hint="Éste número se utilizará para verificación del usuario (no aparecerá en su perfil)" persistent-hint>
+                    </v-input></v-row>
                     <v-row>
-                      <v-col xs="8" sm="9" md="9"><br/>
-                        <p class="label">Correo electrónico*</p>
-                        <v-text-field justify-right placeholder="Escriba su email" rounded height="25" class="textfield"></v-text-field>
+                      <v-col xs="8" sm="9" md="9" lg="12" xl="9"><br/>
+                        <p class="label mt-n9">Correo electrónico*</p>
+                        <v-text-field outlined justify-right placeholder="Escriba su email" color="#b380ff" height="25" class="textfield"></v-text-field>
                           <br />
                           <p class="label">Contraseña*</p>
-                          <v-text-field
-                            placeholder="Establece tu contraseña" rounded class="textfield"    hint="Debe contener al menos 8 carácteres"
+                          <v-text-field outlined
+                            placeholder="Establece tu contraseña" color="#b380ff" class="textfield"    hint="Debe contener al menos 8 carácteres"
                             :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                             :type="show1 ? 'text' : 'password'"
                             @click:append="show1 = !show1"
                           ></v-text-field>
                           <br /> 
-                          <v-text-field
-                            placeholder="Confirma tu contraseña" class="textfield" rounded name="input-10-1"
+                          <v-text-field outlined
+                            placeholder="Confirma tu contraseña" class="textfield" color="#b380ff" name="input-10-1"
                             :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                             :type="show1 ? 'text' : 'password'"
                             hint="Debe contener mínimo 8 carácteres"
@@ -83,7 +89,7 @@
                           ></v-text-field>
                           <br/>
                           <p class="label">Cédula*</p>
-                          <v-text-field justify-right placeholder="Número de cédula" rounded height="25" class="textfield"></v-text-field>
+                          <v-text-field outlined justify-right placeholder="Número de cédula" color="#b380ff" height="25" class="textfield"></v-text-field>
                           <v-checkbox checked v-model="checkOne" color="#b380ff" on-icon="mdi-checkbox-blank">
                             <template v-slot:label>
                               <p class="checkbox">He leído y acepto los <b>Términos y Condiciones de uso.</b></p>
@@ -104,16 +110,16 @@
 </template>
 <script>
 import CountriesCodes from '~/components/CountriesCodes.json';
+
       export default {
         name: "formLogin",
         layout: "auth",
         data: () => ({
           tabs: 1,
-          Countries: CountriesCodes
-          ,
+          Countries: CountriesCodes,
           items: [
-        { title: 'Especialista', to: 'register' },
-        { title: 'Paciente' },
+          { title: 'Especialista' },
+      { title: 'Paciente', to: '/auth/register/registerComponents/registerPatient'  },
       ],
           checkbox: false,
          /*  Reglas para el input de contraseña | Genesis */
@@ -205,16 +211,11 @@ import CountriesCodes from '~/components/CountriesCodes.json';
         font-family: Montserrat;
       }
       .textfield{
-        box-shadow: 0 0 10pt 2pt #f4edff;
         height: 50px;
         width: 85%;
-        margin-left: -8px;
         font-size: .9rem;
         font-family: Montserrat;
-      }
-      .label{
-        margin-top: 35px;
-        margin-left: -40px;
+      
       }
       .v-messages__message {
         font-size: 11px;
