@@ -9,16 +9,16 @@
         ></video>
       </v-col>
       <v-col class="fondo" xs="12" sm="12" md="5" lg="5" mg="5">
-        <register-component />
+        <specialist-component />
       </v-col>
     </v-row>
   </template>
   <script>
-  import registerComponent from './registerComponents/registerComponent.vue'
+  import specialistComponent from './registerComponents/specialistComponent.vue'
     export default {
       name: "LoginRA",
       components: {
-        registerComponent,
+        specialistComponent,
       },
       layout: "auth",
       data: () => ({

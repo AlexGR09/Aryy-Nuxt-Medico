@@ -36,14 +36,14 @@
             <v-col xs="11" sm="11" md="11" lg="11" xl="11">
             <v-card flat>
               <v-card-text >
-                <v-text-field justify-right placeholder="Usuario o telefono" rounded height="25" class="textfield"></v-text-field>
+                <v-text-field justify-right placeholder="Correo electrónico" outlined color="#b380ff"  class="textfield"></v-text-field>
                 <br />
-                <v-text-field height="25" rounded  class="textfield" placeholder="Contraseña"
+                <v-text-field height="25"  outlined class="textfield" color="#b380ff" placeholder="Contraseña"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
               ></v-text-field>
-                  <v-btn class="margen4 btnnn" color="#7900ff" height="50">
+                  <v-btn class="margen4 btnnn"  color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
                   <br/> <br/>
@@ -72,7 +72,7 @@
         tabs: 2,
         items: [
       { title: 'Especialista', to: 'register/register' },
-      { title: 'Paciente' },
+      { title: 'Paciente', to: 'register/registerComponents/registerPatient'  },
     ],
        /*  Reglas para el input de contraseña | Genesis */
         show1: false,
@@ -156,10 +156,8 @@
       font-family: Montserrat;
     }
     .textfield{
-      box-shadow: 0 0 10pt 2pt #f4edff;
       height: 50px;
       width: 85%;
-      margin-left: -8px;
       font-size: .9rem;
       font-family: Montserrat;
     }
@@ -192,7 +190,6 @@
       text-transform: unset !important;
       font-family: Montserrat;
       border: thin solid #CCCCCC;
-      
       width: 85%;
   }
   .btnn {
@@ -223,4 +220,9 @@
   .margen4{
     margin-top: 16px;
   }
+  .textfield input::placeholder {
+  color: #999999 !important;
+  opacity: 1;
+}
+
   </style>
