@@ -71,7 +71,7 @@
       data: () => ({
         tabs: 2,
         items: [
-      { title: 'Especialista', to: 'register' },
+      { title: 'Especialista', to: 'register/register' },
       { title: 'Paciente' },
     ],
        /*  Reglas para el input de contraseña | Genesis */

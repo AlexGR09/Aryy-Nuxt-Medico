@@ -14,7 +14,7 @@
     </v-row>
   </template>
   <script>
-  import registerComponent from './registerComponent.vue'
+  import registerComponent from './registerComponents/registerComponent.vue'
     export default {
       name: "LoginRA",
       components: {
