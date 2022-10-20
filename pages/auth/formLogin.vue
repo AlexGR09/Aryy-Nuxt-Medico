@@ -33,7 +33,7 @@
         <v-tabs-items v-model="tabs">
          <!--  ----Iniciar sesión |Génesis---- -->
          <v-tab-item >
-            <v-col xs="11" sm="11" md="11" lg="11" xl="11">
+            <v-col xs="11" sm="11" md="11" lg="11" xl="10">
             <v-card flat>
               <v-card-text >
                 <v-text-field justify-right placeholder="Correo electrónico" outlined color="#b380ff"  class="textfield"></v-text-field>
@@ -43,19 +43,24 @@
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
               ></v-text-field>
-                  <v-btn class="margen4 btnnn"  color="#7900ff" height="50">
+              <br />
+                  <v-btn class="btnnn"  color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
                   <br/> <br/>
-                  <p class="accede">O accede usando</p>
-                  <div class="margen4"></div>
-                  <v-btn outlined class="btn" height="50"><v-img :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
+                  <p class="accede mb-5">O accede usando</p>
+    
+                  <v-btn outlined class="btn" height="50"><v-img class=" mr-5" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
                     Iniciar sesión con Facebook
                   </v-btn>
                   <v-btn class="margen4 btn" outlined height="50">
-                    <v-img :src="require('@/assets/icons/icon_google.svg')" max-width="30"></v-img>
+                    <v-img class=" mr-10" :src="require('@/assets/icons/icon_google.svg')" max-width="30"></v-img>
                     Iniciar sesión con Google
-                  </v-btn>
+                  </v-btn> 
+                <!--    <div class="split-btn">
+        <v-btn rounded color="primary" dark class="main-btn">Rounded Button</v-btn>
+        <v-btn  v-on="on" rounded color="primary" dark class="actions-btn"><v-icon left>mdi-menu-down</v-icon></v-btn>
+          </div> -->
               </v-card-text>
             </v-card>
           </v-col>
@@ -88,6 +93,21 @@
     }
   </script>
   <style>
+    .split-btn{
+    display: inline-block;
+  }
+  .main-btn{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-right: 2px !important;
+  }
+  .actions-btn{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0 !important;
+    min-width: 35px !important;
+    margin-left: -3.5px;
+  }
   /*estilos para tipos de letra | Genesis*/
   h1{
     font-family: "MontserratBold";
