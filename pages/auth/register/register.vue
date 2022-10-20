@@ -2,13 +2,25 @@
     <v-row class="fondo">
       <!-- división de la pantalla en video y componente para el tab de registro | Genesis -->
       <v-col xs="12" sm="12" md="6" lg="7" mg="7" >
+      <div class="d-flex flex-column justify-space-between align-end">
         <video
           id="video-player" playsinline loop autoplay
           :src="require('@/assets/videos/introprueba.mp4')"
-          class="video"
+          class="mb-n16"
+        :aspect-ratio="16/9"
+        width="1300px"
+        height="1400px"
         ></video>
-      </v-col>
-      <v-col class="fondo" xs="12" sm="12" md="5" lg="5" mg="5">
+    <!--   <v-img
+      class="mb-n16"
+        :aspect-ratio="16/9"
+        width="1600px"
+        height="1200px"
+        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+      ></v-img> -->
+    </div>
+    </v-col>
+    <v-col class="fondo ml-n16" xs="12" sm="12" md="5" lg="5" mg="5">
         <specialist-component />
       </v-col>
     </v-row>
@@ -35,6 +47,7 @@
     margin-left: -150px;
   }
   .fondo{
+    height: 1410px;
     color: white;
     background: white;
   }
