@@ -9,22 +9,28 @@
             <v-col cols="12" md="4">
                 <DashboardCitas />
             </v-col>
+            <v-col cols="12" md="4">
+                <DashboardCitas />
+            </v-col>
+            <v-col cols="12" md="4">
+                <DashboardCitas />
+            </v-col>
             <v-col cols="12" md="8">
                 <v-row >
-                    <v-col cols="12" sm="4">
+                    <v-col cols="12" md1="4">
                         <DashboardMarketing />
                     </v-col>
-                    <v-col cols="12" sm="4">
+                    <v-col cols="12" md="4">
                         <DashboardAssistant/>
                     </v-col>
                 </v-row>
             </v-col>
-            <v-col cols="12" sm="6" md="4">
+<!--             <v-col cols="12" sm="6" md="4">
                 <DashboardMensajes />
             </v-col>
             <v-col cols="12" md="8">
                  <DashboardNoticias /> 
-            </v-col>
+            </v-col> -->
         </v-row>
     </div>
 </template>

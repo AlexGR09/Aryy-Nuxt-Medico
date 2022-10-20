@@ -1,40 +1,57 @@
 <template>
-  <v-row class="fondo">
-    <!-- división de la pantalla en video y componente de login | Genesis -->
-    <v-col xs="12" sm="12" md="6" lg="7" mg="7" >
-      <video
-        id="video-player" playsinline loop autoplay
-        :src="require('@/assets/videos/introprueba.mp4')"
-        class="video"
-      ></video>
-    </v-col>
-    <v-col class="fondo" xs="12" sm="12" md="5" lg="5" mg="5">
-      <form-login />
-    </v-col>
-  </v-row>
+    <v-row no-gutters>
+      <v-col cols="12" sm="6" md="8">
+          <video
+        
+            playsinline
+            loop
+            autoplay
+            :src="require('@/assets/videos/introprueba.mp4')"
+          ></video>
+       
+      </v-col>
+      <v-col cols="6" md="4">
+        <v-card class="pa-2" outlined tile> .col-6 .col-md-4 </v-card>
+      </v-col>
+    </v-row>
+
 </template>
 <script>
-import formLogin from './formLogin.vue'
-  export default {
-    name: "LoginR",
-    components: {
-      formLogin,
-    },
-    layout: "auth",
-    data: () => ({
-      cld: null,
-      player: null,
-    }), 
-  }
+/* import formLogin from './formLogin.vue' */
+export default {
+  name: 'LoginR',
+  components: {},
+  layout: 'auth',
+  data: () => ({
+    cld: null,
+    player: null,
+  }),
+}
 </script>
+
+
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 /* estilos para cubrir completamente la pantalla del video | Genesis */
-.video{
+/* .video{
   width: 95%;
   margin-bottom: -350px;
-}
-.fondo{
-  color: white;
-  background: white;
+} */
+/* .fondo{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: normal;
+  align-content: normal;
+} */
+
+
+
+
+@media screen and (max-width: 1200px) {
+  .video-login{
+    display: none;
+  }
 }
 </style>

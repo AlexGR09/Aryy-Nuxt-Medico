@@ -1,77 +1,62 @@
-<!--Maquetación de Cards de Mensajes | Luis Reyes-->
 <template>
-    <div>
-        <h3 class="title-card">CITAS</h3>
-        <!--diseño de cards | Luis Reyes-->
-        <v-card loading outlined  class="v-card-citas rounded-xl" >
-            <v-row class="ma-0 pa-0">
-                <v-col cols="8">
-                    <v-card-title class="v-card-title text-no-wrap pt-1 ps-2">{{title}}</v-card-title>
-                    <v-card-title class="v-card-subtitle text-no-wrap ps-2">{{name}}</v-card-title>
-                    <v-card-subtitle class="d-flex align-center mt-2 pb-2 ps-2">
-                        <div>
-                            <p class="v-card-text">{{date}}</p>
-                            <p class="v-card-text">{{time}}</p>
-                        </div>
-                    </v-card-subtitle>
-                </v-col>
-                <v-col  class="col-4" cols="4">
-                    <v-img contain height="108" max-width="123" 
-                        :src="require('@/assets/icons/icon_appointments.svg')">
-                    </v-img>
-                </v-col>
-            </v-row>
-        </v-card>
-    </div>
+  <v-card
+    class="mx-auto"
+    color="#26c6da"
+    dark
+    max-height="230"
+    max-width="500"
+  >
+    <v-card-title>
+      <v-icon
+        large
+        left
+      >
+        mdi-twitter
+      </v-icon>
+      <span class="text-h6 font-weight-light">Twitter</span>
+    </v-card-title>
+
+    <v-card-text class="text-h5 font-weight-bold">
+      "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
+    </v-card-text>
+
+    <v-card-actions>
+      <v-list-item class="grow">
+        <v-list-item-avatar color="grey darken-3">
+          <v-img
+            class="elevation-6"
+            alt=""
+            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+          ></v-img>
+        </v-list-item-avatar>
+
+        <v-list-item-content>
+          <v-list-item-title>Evan You</v-list-item-title>
+        </v-list-item-content>
+
+        <v-row
+          align="center"
+          justify="end"
+        >
+          <v-icon class="mr-1">
+            mdi-heart
+          </v-icon>
+          <span class="subheading mr-2">256</span>
+          <span class="mr-1">·</span>
+          <v-icon class="mr-1">
+            mdi-share-variant
+          </v-icon>
+          <span class="subheading">45</span>
+        </v-row>
+      </v-list-item>
+    </v-card-actions>
+  </v-card>
 </template>
+
 <script>
-export default{
-    data(){
-        return{
-            title:"CITA PROXIMA",
-            name:"Fulanito Detal",
-            date: "05/ Diciembre / 2022",
-            time:"10:00 HRS",  
-        }
-    }
-
-}
+  export default {
+    data: () => ({
+      //
+    }),
+  }
 </script>
-<style>
-/*importamos fuentes | Luis Reyes */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-/* titulo H3| Luis Reyes */
-
-.v-card-citas{
-    box-shadow: 10px 10px 5px -2px rgba(94,185,255,0.2);
--webkit-box-shadow: 10px 10px 5px -2px rgba(94,185,255,0.2);
--moz-box-shadow: 10px 10px 5px -2px rgba(94,185,255,0.2);
-}
-.title-card {
-    margin: 1rem;
-    font-family: 'MontserratMedium';
-    color: #4f565f;
-}
-.v-card-title{
-    margin-top: 2em;
-    font-family: 'MontserratMedium';
-    font-size: 15px;
-    color: #4f565f;
-}
-.v-card-subtitle{
-    font-family: 'MontserratBold';
-    font-size: 30px;
-    color: #a563fe;
-}
-.v-card-text{
-    font-family: 'MontserratBold';
-    color: #4f565f;
-    font-size: 15px;
-}
-.col-4{
-    margin-top: 8vh;
-}
-</style> 
-
-

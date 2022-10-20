@@ -77,7 +77,7 @@
         <v-sheet height="400">
           <v-calendar
             ref="calendar"
-            locale="mx-es"
+            
             :now="today"
             :value="today"
             :events="events"
