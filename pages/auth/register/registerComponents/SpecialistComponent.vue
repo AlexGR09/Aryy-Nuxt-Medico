@@ -1,105 +1,67 @@
-  <template>
-    <v-card flat>
-      <div class="margen ">
-        <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img>
-        <h1>Especialistas, medicinas y <br /> análisis clínicos en un solo lugar</h1>
-        <p>Haz una cita, cotiza tus medicamentos y análisis <br /> clínicos o lleva control de tu tratamiento con <br /> ayuda de aryy.</p>
-        <!-- ---- Sección de vista iniciar/registrar | Genesis ---- -->
-          <v-tabs
-            class="tabs"
-            color="#7900ff"
-            v-model="tabs"
-          >
-            <v-tab to="/auth/login" id="1" class="tabs">Iniciar sesión</v-tab >
-            <v-tab id="2" class="tabs">
-                <v-menu offset-y>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-on="on" v-bin="attrs" large text class="tabs boton gray--text">
-                  <span class="tabs">Registrarse</span>
-                  <v-icon>mdi-menu-down</v-icon>
-                </v-btn>
-                  </template> 
-                  <v-list class="listitem">
-                    <v-list-item
-                      v-for="(item, i) in items" :key="i" :to="item.to" 
-                    >
-                      <v-list-item-title>{{ item.title }}</v-list-item-title>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
-              </v-tab>
-            </v-tabs>
-            <v-tabs-items v-model="tabs">
-           <v-tab-item > <!--  ----Iniciar sesión |Génesis---- --> </v-tab-item>
-            <!--  ----Tab de registro |Génesis---- -->
-            <v-tab-item>
-              <v-card flat>
-                <h2>Crea tu perfil gratuito como especialista</h2>
-                <router-link
-                          style="text-decoration: none;
-                          color: inherit;"
-                          to="/auth/login"
-                          ><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
-                        </router-link>
-              <!--   <a href="/login"><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3></a> -->
-                <v-card-text >
-                
-                  <v-row> 
-                  <v-col xs="8" sm="9" md="9" lg="12" xl="9">
-                    <p class="label">Ciudad*</p>
-                      <v-autocomplete outlined justify-right placeholder="Selecciona una ciudad" color="#b380ff" height="25" class="textfield"></v-autocomplete>
-                    </v-col>
-                    </v-row>
-                  <v-row> 
-                    <v-col  xs="5" sm="5" md="5" lg="4" xl="4"><p class="label">Teléfono*</p> 
-                      <v-autocomplete outlined  :items="Countries" justify-right placeholder="Código país" color="#b380ff" height="25" > </v-autocomplete> 
-               <!--        <li v-for="Country in Countries" :key="Country.name">
-         {{Country.dial_code}}
-       </li>  -->
-                    </v-col>
-                    <v-col xs="6" sm="6" md="7" lg="7" xl="6">
-                    <v-text-field outlined placeholder="Número de teléfono (10 dígitos)" class="textfield mt-9 " color="#b380ff" ></v-text-field>
-                    </v-col>
-                    <v-input class="hint mt-n11 ml-2" hint="Éste número se utilizará para verificación del usuario (no aparecerá en su perfil)" persistent-hint>
-                    </v-input></v-row>
-                    <v-row>
-                      <v-col xs="8" sm="9" md="9" lg="12" xl="9"><br/>
-                        <p class="label mt-n9">Correo electrónico*</p>
-                        <v-text-field outlined justify-right placeholder="Escriba su email" color="#b380ff" height="25" class="textfield"></v-text-field>
-                          <br />
-                          <p class="label">Contraseña*</p>
-                          <v-text-field outlined
-                            placeholder="Establece tu contraseña" color="#b380ff" class="textfield"    hint="Debe contener al menos 8 carácteres"
-                            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                            :type="show1 ? 'text' : 'password'"
-                            @click:append="show1 = !show1"
-                          ></v-text-field>
-                          <br /> 
-                          <v-text-field outlined
-                            placeholder="Confirma tu contraseña" class="textfield" color="#b380ff" name="input-10-1"
-                            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                            :type="show1 ? 'text' : 'password'"
-                            hint="Debe contener mínimo 8 carácteres"
-                            @click:append="show1 = !show1"
-                          ></v-text-field>
-                          <br/>
-                          <p class="label">Cédula*</p>
-                          <v-text-field outlined justify-right placeholder="Número de cédula" color="#b380ff" height="25" class="textfield"></v-text-field>
-                          <v-checkbox checked v-model="checkOne" color="#b380ff" on-icon="mdi-checkbox-blank">
-                            <template v-slot:label>
-                              <p class="checkbox">He leído y acepto los <b>Términos y Condiciones de uso.</b></p>
-                            </template> 
-                          </v-checkbox>
-                          <v-btn class=" btnn" color="#7900ff" height="50">
-                                Registrarme
-                          </v-btn>
-                          <br /> 
-                    </v-col>
-                  </v-row>
-                </v-card-text>
-              </v-card>
+<template>
+  <v-card flat>
+    <div class="margen mt-16">
+      <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img>
+      <h1>Especialistas, medicinas y <br /> análisis clínicos en un solo lugar</h1>
+      <p>Haz una cita, cotiza tus medicamentos y análisis <br /> clínicos o lleva control de tu tratamiento con <br /> ayuda de aryy.</p>
+      <!-- ---- Sección de vista iniciar/registrar | Genesis ---- -->
+        <v-tabs class="tabs" color="#7900ff" v-model="tabs">
+          <v-tab to="/auth/login" id="1" class="tabs">Iniciar sesión</v-tab >
+          <v-tab id="2" class="tabs">
+              <v-menu offset-y>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn v-on="on" v-bin="attrs" large text class="tabs boton gray--text">
+                <span class="tabs">Registrarse</span>
+                <v-icon>mdi-menu-down</v-icon>
+              </v-btn>
+                </template> 
+                <v-list class="listitem">
+                  <v-list-item
+                    v-for="(item, i) in items" :key="i" :to="item.to" 
+                  >
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-tab>
+          </v-tabs>
+          <v-tabs-items v-model="tabs">
+          <v-tab-item > <!--  ----Iniciar sesión |Génesis---- --> </v-tab-item>
+          <!--  ----Tab de registro |Génesis---- -->
+          <v-tab-item>
+            <v-card flat>
+              <v-card-text >
+                <v-row> 
+                  <v-col xs="11" sm="11" md="11" lg="11" xl="7">
+                    <v-text-field outlined
+                      placeholder="Nombre (s)"
+                      class="textfield"
+                      color="#b380ff"
+                    ></v-text-field>
+                    <br />
+                    <v-text-field outlined
+                      placeholder="Apellido paterno"
+                      class="textfield"
+                      color="#b380ff"
+                    ></v-text-field>
+                    <br />
+                    <v-text-field outlined
+                      placeholder="Apellido materno"
+                      class="textfield"
+                      color="#b380ff"
+                    ></v-text-field>
+                    <br />
+                    <v-autocomplete  class="textfield" outlined placeholder="Selecciona una especialidad"></v-autocomplete>
+                    <br />
+                    <v-btn class="btnn" href="/auth/register/registerComponents/specialistRegister" color="#7900ff" height="50"> Registrarme</v-btn>
+                    <br /> <br /> 
+                  </v-col>
+                </v-row>
+              
+              </v-card-text>
+            </v-card>
           </v-tab-item>
-      </v-tabs-items>
+        </v-tabs-items>
     </div>
   </v-card>
 </template>
@@ -210,10 +172,9 @@ import CountriesCodes from '~/components/CountriesCodes.json';
       }
       .textfield{
         height: 50px;
-        width: 85%;
+        width: 100%;
         font-size: .9rem;
-        font-family: Montserrat;
-      
+        font-family: Montserrat;      
       }
       .v-messages__message {
         font-size: 11px;
@@ -240,23 +201,21 @@ import CountriesCodes from '~/components/CountriesCodes.json';
         text-transform: unset !important;
         font-family: Montserrat;
         border: thin solid #CCCCCC;
-        
-        width: 85%;
+        width: 100%;
     }
     .btnn {
-        margin-left: 15%;
         text-transform: unset !important;
         font-family: Montserrat;
         border: thin solid #CCCCCC;
         color: white !important;
-        width: 65%;
+        width: 100%;
     }
     .btnnn {
         text-transform: unset !important;
         font-family: Montserrat;
         border: thin solid #CCCCCC;
         color: white !important;
-        width: 85%;
+        width: 100%;
     }/* 
     .prueb{
       width: 100%;

@@ -1,7 +1,7 @@
 <template>
-    <v-row class="fondo">
-      <!-- división de la pantalla en video y componente para el tab de registro | Genesis -->
-      <v-col xs="12" sm="12" md="6" lg="7" mg="7" >
+   <v-row class="fondo">
+    <!-- división de la pantalla en video y componente de login | Genesis -->
+    <v-col xs="12" sm="12" md="6" lg="7" mg="7" >
       <div class="d-flex flex-column justify-space-between align-end">
         <video
           id="video-player" playsinline loop autoplay
@@ -9,21 +9,14 @@
           class="mb-n16"
         :aspect-ratio="16/9"
         width="1300px"
-        height="1400px"
-        ></video>
-    <!--   <v-img
-      class="mb-n16"
-        :aspect-ratio="16/9"
-        width="1600px"
         height="1200px"
-        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-      ></v-img> -->
+        ></video>
     </div>
     </v-col>
-    <v-col class="fondo ml-n16" xs="12" sm="12" md="5" lg="5" mg="5">
-        <specialist-component />
-      </v-col>
-    </v-row>
+    <v-col class="fondo ml-n6" xs="12" sm="12" md="5" lg="5" mg="5">
+      <specialist-component />
+    </v-col>
+  </v-row>
   </template>
   <script>
   import specialistComponent from './registerComponents/specialistComponent.vue'
@@ -35,19 +28,20 @@
       layout: "auth",
       data: () => ({
         cld: null,
+        width: 200,
         player: null,
       }), 
     }
   </script>
   <style>
   /* estilos para cubrir completamente la pantalla del video | Genesis */
-  .video{
-    margin-bottom: -50px;
-    width: 110%;
-    margin-left: -150px;
+  @media screen and (max-width: 960px ) {
+  #video-player{
+    display: none;
   }
+}
   .fondo{
-    height: 1410px;
+    height: 1210px;
     color: white;
     background: white;
   }

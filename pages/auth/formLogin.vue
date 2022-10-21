@@ -28,24 +28,22 @@
         <v-tabs-items v-model="tabs">
          <!--  ----Iniciar sesión |Génesis---- -->
          <v-tab-item >
-            <v-col xs="11" sm="11" md="11" lg="11" xl="10">
+            <v-col xs="11" sm="11" md="11" lg="11" xl="7">
             <v-card flat>
               <v-card-text >
+                <v-row> 
                 <v-text-field justify-right placeholder="Correo electrónico" outlined color="#b380ff"  class="textfield mb-8"></v-text-field>
                 <v-text-field height="25"  outlined class="textfield mb-8" color="#b380ff" placeholder="Contraseña"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
                 hint="Respeta mayúsculas y minúsculas"
-               
-                
               ></v-text-field>
-             
                   <v-btn class="btnnn"  color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
-                  <br/> <br/>
-                  <p class="accede mb-5">O accede usando</p>
+                  
+                  <p class="accede mt-5 mb-5">O accede usando</p>
     
                   <v-btn outlined class="btn" color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
                     Iniciar sesión con Facebook
@@ -54,7 +52,7 @@
                     <v-img class=" mr-8" :src="require('@/assets/icons/icon_google.svg')" max-width="30"></v-img>
                     Iniciar sesión con Google
                   </v-btn> 
-                  
+                  </v-row>
               </v-card-text>
             </v-card>
           </v-col>
@@ -177,7 +175,7 @@
     }
     .textfield{
       height: 50px;
-      width: 85%;
+      width: 100%;
       font-size: .9rem;
       font-family: Montserrat;
     }
@@ -211,7 +209,7 @@
       text-transform: unset !important;
       font-family: Montserrat;
       border: thin solid #CCCCCC;
-      width: 85%;
+      width: 100%;
   }
   .btnn {
       margin-left: 15%;
@@ -219,14 +217,14 @@
       font-family: Montserrat;
       border: thin solid #CCCCCC;
       color: white !important;
-      width: 65%;
+      width: 100%;
   }
   .btnnn {
       text-transform: unset !important;
       font-family: Montserrat;
       border: thin solid #CCCCCC;
       color: white !important;
-      width: 85%;
+      width: 100%;
   }
   .color{
     text-transform: unset !important;

@@ -36,7 +36,6 @@ import formLogin from './formLogin.vue'
 
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 /* estilos para cubrir completamente la pantalla del video | Genesis */
 @media screen and (max-width: 960px ) {
   #video-player{
