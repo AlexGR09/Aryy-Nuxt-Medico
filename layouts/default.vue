@@ -3,16 +3,16 @@
     <!--código de lista de elementos del SideBar | Luis Reyes-->
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
       <v-avatar class="icon-logo">
-        <img src="@/assets/logotipos/ISOTIPO_ARYY.svg" alt="logo Aryy">
+        <img class="img-logo" src="@/assets/logotipos/ISOLOGO_ARYY.svg" alt="logo Aryy">
       </v-avatar  >
-      <v-list class="list-item">
+      <v-list class="list-item" active-class="bg-active">
         <!-- renderizado de lista del SideBar | Luis Reyes -->
         <v-list-item  v-for="(item, i) in items" :key="i" :to="item.to" router exact>
-          <v-list-item-action>
+          <v-list-item-action  active-class="bg-active" >
             <!--pintamos el objeto img en el SideBar | Luis Reyes-->
-            <img :src="item.url" alt="">
+            <img class="icons" :src="item.url" alt="">
           </v-list-item-action>
-          <v-list-item-content>
+          <v-list-item-content  active-class="bg-active">
             <!--pintamos el objeto titulo en el SideBar | Luis Reyes-->
             <v-list-item-title class="v-list-item-titlee">{{ item.title }}</v-list-item-title>
           </v-list-item-content>
@@ -26,11 +26,10 @@
     </v-navigation-drawer>
    
     
-    
     <!-- código de NavBar | Luis Reyes-->
-<!-- <v-app-bar :clipped-left="clipped" fixed app> 
+ <v-app-bar :clipped-left="clipped" fixed app> 
     
-      </v-app-bar> -->
+      </v-app-bar>
     <!-- pintamos los componetes | Luis Reyes-->
 
     <v-main>
@@ -39,9 +38,6 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer :absolute="!fixed" app>
-      <span> Aryy en construcción | &copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
   </v-app>
   
 </template>
@@ -51,7 +47,10 @@
 export default {
     name: "DefaultLayout",
     data() {
+      
         return {
+          activeColor: '#7900ff',
+         
             clipped: false,
             drawer: false,
             fixed: false,
@@ -72,47 +71,43 @@ export default {
                     title: "Pacientes",
                     to: "/patients/list",
                 },
-                /* =======
-                          to: '/patient/patientView'
-                >>>>>>> 381e908a9a8cdf4a36e1abeb7da88d5030f1702f
-                        }, */
                 {
-                    url: require("@/assets/icons/icon_mensaje.svg"),
+                    url: require("@/assets/icons/MessageIcon.svg"),
                     title: "Mensajes",
                     to: "/mensajes",
                 },
                 {
-                    url: require("@/assets/icons/icon_finanzas.svg"),
+                    url: require("@/assets/icons/FinanceIcon.svg"),
                     title: "Finanzas",
                     to: "/finanzas",
                 },
                 {
-                    url: require("@/assets/icons/icon_estadisticas.svg"),
+                    url: require("@/assets/icons/StatisticsIcon.svg"),
                     title: "Estadísticas",
                     to: "/estadisticas",
                 },
                 {
-                    url: require("@/assets/icons/icon_marketing.svg"),
+                    url: require("@/assets/icons/MarketingIcon.svg"),
                     title: "Marketing",
                     to: "/marketing",
                 },
                 {
-                    url: require("@/assets/icons/icon_noticias.svg"),
+                    url: require("@/assets/icons/NewIcon.svg"),
                     title: "Noticias",
                     to: "/noticias",
                 },
                 {
-                    url: require("@/assets/icons/icon_compra.svg"),
+                    url: require("@/assets/icons/ShoppingIcon.svg"),
                     title: "Compras",
                     to: "/compras",
                 },
                 {
-                    url: require("@/assets/icons/icon_asistente.svg"),
+                    url: require("@/assets/icons/AssistantIcon.svg"),
                     title: "Asistente",
                     to: "/asistente",
                 },
                 {
-                    url: require("@/assets/icons/icon_ajustes.svg"),
+                    url: require("@/assets/icons/SettingsIcon.svg"),
                     title: "Ajustes",
                     to: "/ajustes",
                 },
@@ -136,7 +131,9 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 40vh;
 }
+
 .img{
   width: 30%;
 }
@@ -148,11 +145,14 @@ export default {
 .v-list-item-titlee {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
-  color: #999999;
+  color: #7900ff;
+}
+.v-list-item-titlee:hover {
+
+  color: #ffffff;
 }
 .v-list-item:hover {
   background: #7900ff;
-  color: azure;
 }
 
 .item-active {
@@ -198,5 +198,17 @@ div .theme--light.v-calendar .v-event-timed {
   font-family: MontserratMedium;
   font-size: 15px;
   border-radius: 1em/5em;
-} 
+}
+
+
+
+.bg-active{
+  background: #7900ff;
+  color: white !important;
+  fill: white !important;
+}
+img:hover{
+  color: white !important;
+  fill: white !important;
+}
 </style>

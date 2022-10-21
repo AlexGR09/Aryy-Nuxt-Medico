@@ -9,12 +9,13 @@
             <v-col cols="12" md="4">
                 <DashboardCitas />
             </v-col>
-            <v-col cols="12" md="4">
+<!--             <v-col cols="12" md="4">
                 <DashboardCitas />
             </v-col>
             <v-col cols="12" md="4">
                 <DashboardCitas />
-            </v-col>
+            </v-col> -->
+
             <v-col cols="12" md="8">
 <!--                 <v-row >
                     <v-col cols="12" md1="4">
@@ -37,11 +38,12 @@
 
 <script>
 
-import DashboardAssistant from '~/components/dashboard/DashboardAssistant.vue';
+
 
 export default {
+
     name: "IndexPage",
-    components: {  DashboardAssistant },
+    components: {  },
     data(){
         return{
             name:"Armando Bronca Segura",
