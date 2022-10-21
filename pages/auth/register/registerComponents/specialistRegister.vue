@@ -27,10 +27,12 @@
                     </v-row>
                   <v-row> 
                     <v-col  xs="3" sm="3" md="3" lg="3" xl="2"><p class="label">Teléfono*</p> 
-                      <v-autocomplete outlined  :items="Countries" justify-right placeholder="Código país" color="#b380ff" height="25" > </v-autocomplete> 
-               <!--        <li v-for="Country in Countries" :key="Country.name">
-         {{Country.dial_code}}
-       </li>  -->
+                      <!-- <v-autocomplete outlined  :items="Countries" justify-right placeholder="Código país" color="#b380ff" height="25" > </v-autocomplete>  -->
+                      <losMasVendidos
+      v-for="destacados in LosDestacados"
+      :key="destacados.id"
+      :SeccionProductos="destacados"
+    />
                     </v-col>
                     <v-col xs="6" sm="5" md="6" lg="7" xl="6">
                     <v-text-field outlined placeholder="Número de teléfono (10 dígitos)" class="textfield mt-9 " color="#b380ff" ></v-text-field>
@@ -80,12 +82,12 @@
       </div>
 </template>
 <script>
+import { productosDestacados } from "@/assets/productos.js"
 /* import CountriesCodes from '~/assets/CountriesCodes.js'; */
 export default {
     name: "formLogin",
     layout: "auth",
-    data: () => ({}),
-    code: codigosPaises,
+    data: () => ({   LosDestacados : productosDestacados}),
     components: {  }
 }
 </script>
