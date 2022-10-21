@@ -7,11 +7,11 @@
         no-gutters
         style="flex-wrap: nowrap;"
       >
-        <v-col cols="3" md="3" lg="3" xl="4" class="flex-grow-0 flex-shrink-0"></v-col>
-        <v-col cols="1" style="min-width: 100px; max-width: 100%;" class="flex-grow-1 flex-shrink-0">
+        <v-col cols="3" sm="1" md="3" lg="3" xl="4" class="flex-grow-0 flex-shrink-0"></v-col>
+        <v-col cols="1" xs="12" sm="12" md="3" lg="3" xl="4" style="min-width: 100px; max-width: 100%;" class="flex-grow-1 flex-shrink-0">
             <h2>Crea tu perfil gratuito como especialista</h2>
                 <router-link
-                          style="text-decoration: none;
+                          style="text-decoration: none
                           color: inherit;"
                           to="/auth/login"
                           ><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
@@ -20,25 +20,25 @@
                 <v-card-text >
                 
                   <v-row> 
-                  <v-col xs="8" sm="9" md="9" lg="7" xl="7">
+                  <v-col xs="12" sm="7" md="7" lg="8" xl="5">
                     <p class="label">Ciudad*</p>
                       <v-autocomplete outlined justify-right placeholder="Selecciona una ciudad" color="#b380ff" height="25" class="textfield"></v-autocomplete>
                     </v-col>
                     </v-row>
                   <v-row> 
-                    <v-col  xs="5" sm="5" md="5" lg="4" xl="3"><p class="label">Teléfono*</p> 
+                    <v-col  xs="3" sm="3" md="3" lg="3" xl="2"><p class="label">Teléfono*</p> 
                       <v-autocomplete outlined  :items="Countries" justify-right placeholder="Código país" color="#b380ff" height="25" > </v-autocomplete> 
                <!--        <li v-for="Country in Countries" :key="Country.name">
          {{Country.dial_code}}
        </li>  -->
                     </v-col>
-                    <v-col xs="6" sm="6" md="7" lg="7" xl="6">
+                    <v-col xs="6" sm="5" md="6" lg="7" xl="6">
                     <v-text-field outlined placeholder="Número de teléfono (10 dígitos)" class="textfield mt-9 " color="#b380ff" ></v-text-field>
                     </v-col>
                     <v-input class="hint mt-n11 ml-2" hint="Éste número se utilizará para verificación del usuario (no aparecerá en su perfil)" persistent-hint>
                     </v-input></v-row>
                     <v-row>
-                      <v-col xs="8" sm="9" md="9" lg="12" xl="7"><br/>
+                      <v-col xs="8" sm="7" md="9" lg="7" xl="5"><br/>
                         <p class="label mt-n9">Correo electrónico*</p>
                         <v-text-field outlined justify-right placeholder="Escriba su email" color="#b380ff" height="25" class="textfield"></v-text-field>
                           <br />
@@ -58,6 +58,7 @@
                             @click:append="show1 = !show1"
                           ></v-text-field>
                           <br/>
+                          <codes-country />
                           <p class="label">Cédula*</p>
                           <v-text-field outlined justify-right placeholder="Número de cédula" color="#b380ff" height="25" class="textfield"></v-text-field>
                           <v-checkbox checked v-model="checkOne" color="#b380ff" on-icon="mdi-checkbox-blank">
@@ -69,22 +70,24 @@
                                 Registrarme
                           </v-btn>
                           <br /> 
+                         
                     </v-col>
                   </v-row>
                 </v-card-text>
         </v-col>
-        <v-col cols="3" style="min-width: 100px;" class="flex-grow-0 flex-shrink-1" ></v-col>
+        <v-col cols="3" sm="1" style="min-width: 100px;" class="flex-grow-0 flex-shrink-1" ></v-col>
       </v-row>
       </div>
 </template>
 <script>
+/* import CountriesCodes from '~/assets/CountriesCodes.js'; */
 export default {
-      name: "formLogin",
-      layout: "auth",
-      data: () => ({
-      }),
-     
-    }
+    name: "formLogin",
+    layout: "auth",
+    data: () => ({}),
+    code: codigosPaises,
+    components: {  }
+}
 </script>
 <style>
 .template{
