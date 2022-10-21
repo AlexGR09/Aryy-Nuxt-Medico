@@ -10,21 +10,16 @@
               <v-tab class="tabs">
              <!--    menu para mostrar el tipo de registro segun tipo de usuario | Genesis -->
                 <v-menu offset-y>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn 
-                      text
-                      large
-                      class="tabs boton gray--text"
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                      Registrarse
-                    </v-btn>
-                  </template>
+                   <template v-slot:activator="{ on, attrs }">
+                    <v-btn v-on="on" v-bin="attrs" large text class="tabs boton gray--text">
+                  <span>Registrarse</span>
+                  <v-icon>mdi-menu-down</v-icon>
+                </v-btn>
+                  </template> 
                   <v-list class="listitem">
                     <!-- recibir contenido de la lista desde script | Genesis -->
                     <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
-                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                      <v-list-item-title><p class="item">{{ item.title }}</p></v-list-item-title>
                     </v-list-item>
                   </v-list>
                 </v-menu>
@@ -36,31 +31,30 @@
             <v-col xs="11" sm="11" md="11" lg="11" xl="10">
             <v-card flat>
               <v-card-text >
-                <v-text-field justify-right placeholder="Correo electrónico" outlined color="#b380ff"  class="textfield"></v-text-field>
-                <br />
-                <v-text-field height="25"  outlined class="textfield" color="#b380ff" placeholder="Contraseña"
+                <v-text-field justify-right placeholder="Correo electrónico" outlined color="#b380ff"  class="textfield mb-8"></v-text-field>
+                <v-text-field height="25"  outlined class="textfield mb-8" color="#b380ff" placeholder="Contraseña"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
+                hint="Respeta mayúsculas y minúsculas"
+               
+                
               ></v-text-field>
-              <br />
+             
                   <v-btn class="btnnn"  color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
                   <br/> <br/>
                   <p class="accede mb-5">O accede usando</p>
     
-                  <v-btn outlined class="btn" height="50"><v-img class=" mr-5" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
+                  <v-btn outlined class="btn" color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
                     Iniciar sesión con Facebook
                   </v-btn>
-                  <v-btn class="margen4 btn" outlined height="50">
-                    <v-img class=" mr-10" :src="require('@/assets/icons/icon_google.svg')" max-width="30"></v-img>
+                  <v-btn class="margen4 btn"  color="#999999" outlined height="50">
+                    <v-img class=" mr-8" :src="require('@/assets/icons/icon_google.svg')" max-width="30"></v-img>
                     Iniciar sesión con Google
                   </v-btn> 
-                <!--    <div class="split-btn">
-        <v-btn rounded color="primary" dark class="main-btn">Rounded Button</v-btn>
-        <v-btn  v-on="on" rounded color="primary" dark class="actions-btn"><v-icon left>mdi-menu-down</v-icon></v-btn>
-          </div> -->
+                  
               </v-card-text>
             </v-card>
           </v-col>
@@ -76,8 +70,11 @@
       data: () => ({
         tabs: 2,
         items: [
-      { title: 'Especialista', to: 'register/register' },
-      { title: 'Paciente', to: 'register/registerComponents/registerPatient'  },
+        { title: 'COMO PACIENTE', to: 'register/registerComponents/registerPatient'  },
+      { title: 'COMO ESPECIALISTA', to: 'register/register' },
+      { title: 'COMO LABORATORIO', to: 'register/register' },
+      { title: 'COMO FARMACIA', to: 'register/register' },
+     
     ],
        /*  Reglas para el input de contraseña | Genesis */
         show1: false,
@@ -129,6 +126,9 @@
     font-size: 105%;
     margin-bottom: 10px;
     color: #9966ff;
+  }
+  p.item{
+    font-family: MontserratMedium;
   }
   p{
     font-family: "MontserratLight";
@@ -186,8 +186,9 @@
       margin-left: -40px;
     }
     .v-messages__message {
-      font-size: 11px;
+      font-size: 10.5px;
       color: #7900ff;
+      
   }
   .checkbox{
     margin-top: 15px;

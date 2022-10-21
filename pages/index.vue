@@ -37,11 +37,11 @@
 
 <script>
 
-import DashboardAssistant from '~/components/dashboard/DashboardAssistant.vue';
+/* import DashboardAssistant from '~/components/dashboard/DashboardAssistant.vue'; */
 
 export default {
     name: "IndexPage",
-    components: {  DashboardAssistant },
+/*     components: {  DashboardAssistant }, */
     data(){
         return{
             name:"Armando Bronca Segura",

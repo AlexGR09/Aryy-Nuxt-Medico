@@ -14,16 +14,11 @@
             <v-tab id="2" class="tabs">
                 <v-menu offset-y>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn text
-                      class="tabs prueb"
-                      dark
-                      block
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                      <p class="registro">Registrarse</p>
-                    </v-btn>
-                  </template>
+                    <v-btn v-on="on" v-bin="attrs" large text class="tabs boton gray--text">
+                  <span class="tabs">Registrarse</span>
+                  <v-icon>mdi-menu-down</v-icon>
+                </v-btn>
+                  </template> 
                   <v-list class="listitem">
                     <v-list-item
                       v-for="(item, i) in items" :key="i" :to="item.to" 
@@ -121,8 +116,10 @@ import CountriesCodes from '~/components/CountriesCodes.json';
           tabs: 1,
           Countries: CountriesCodes,
           items: [
-            { title: 'Especialista', to: '/auth/register/register' },
-            { title: 'Paciente', },
+          { title: 'COMO PACIENTE', to: ''  },
+      { title: 'COMO ESPECIALISTA', to: '/auth/register/register'  },
+      { title: 'COMO LABORATORIO', to: '' },
+      { title: 'COMO FARMACIA', to: '' },
           ],
            /*  Reglas para el input de contraseña | Genesis */
           rules: {
