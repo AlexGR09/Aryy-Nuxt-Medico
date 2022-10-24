@@ -45,7 +45,7 @@
                         <v-list-item-title>Mes</v-list-item-title>
                     </v-list-item>
                 </v-list>
-            </v-menu>S
+            </v-menu>
              <!-- iconos para notificacion, ajustes y cuenta | Genesis -->
         <v-btn class="ml-4" icon small>
             <v-img :src="require('@/assets/icons/icon_settings.svg')" max-width="23"></v-img>

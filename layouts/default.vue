@@ -170,7 +170,7 @@ s
 }
 /* <<<<<<< HEAD
 =======
-/*color de fondo en las vistas con tema claro | Genesis */
+/*color de fondo en las vistas con tema claro */
 .theme--light.v-application {
  /*  background-color: var(--v-background-base, #f4edff) !important; */
   background: rgb(255, 255, 255);

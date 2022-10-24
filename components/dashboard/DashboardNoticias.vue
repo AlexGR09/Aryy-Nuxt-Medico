@@ -20,6 +20,26 @@
             </v-sheet>
           </v-carousel-item>
         </v-carousel>
+
+        <v-table
+          class="roudend-ls mx-4 success--text text--darken-2"
+          elevation="8"
+        >
+        <v-card-actions>
+          <v-tab-transition>
+            <v-banner>
+              <th>{{slide.title}}</th>
+              <th>{{slide.subtitle}}</th>
+              <th>
+                <tr>
+                  
+                </tr>
+              </th>
+            </v-banner>
+          </v-tab-transition>
+        </v-card-actions>
+
+        </v-table>
         <v-list two-line>
           <v-list-item>
             <v-list-item-avatar>
@@ -53,6 +73,16 @@ export default {
           url: require('@/assets/icons/imagen.jpg'),
           description: 'Realiza tu primera campaña aqui',
         },
+        {
+          title:'diseño grafico',
+          subtitle: 'equipo de diseño graficoo en la vida',
+          descrition: 'Realiza tu primera campaña'
+        },
+        {
+          title: 'Redaccion',
+          subtitle: 'equipo de redaccion SooOooOo',
+          description:'Realiza tu primera campaña'
+        }
       ],
     }
   },

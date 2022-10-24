@@ -1,57 +1,64 @@
- <template>
-  <v-card 
-    class="mx-auto rounded-xl" 
-    color="#fff" 
-    dark 
-    max-width="500"
-    >
-    <v-card-text class="v-card-text">
-      <span class="span-title">{{title}}</span>
-    </v-card-text>
-    <v-card-title class="v-card-title text-h5 ">
-      {{name}}
-    </v-card-title>
-    <v-card-subtitle class="v-card-subtitle">
-        {{date}} <br>
-        {{time}} HRS
-      </v-card-subtitle>
+<template>
+  <v-card class="greeting-card rounded-xl">
+    <v-row class="ma-0 pa-0">
+      <v-col cols="8">
+        <v-card-text class="text-no-wrap ">
+          CITA PRÓXIMA
+        </v-card-text>
+        <v-card-title class="text-no-wrap ">
+          Fulanito Detal
+        </v-card-title>
+        <v-card-subtitle class="d-flex align-center">
+          5 / Diciembre / 2022
+        </v-card-subtitle>
+        <v-card-text class="d-flex align-center">
+          10: 00 HRS
+        </v-card-text>
+
+      </v-col>
+      <v-col cols="4">
+        <img
+          contain
+          height="100"
+          max-width="100"
+          class="greeting-card-trophy"
+          src="@/assets/icons/icon_appointments.svg"
+        >
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
 <script>
-export default {
-  name: 'DashboardCitas',
-  data: () => ({
-    //
-    title:'cita proxima',
-    name: 'Fulanito detal',
-    date:'05/ Diciembre /2022',
-    time:'10:00'
-  }),
-}
+
 </script>
 
-<style>
-/* importamos fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
-
-.v-card-text{
-  font-family: 'MontserratBold';
-  font-size: 20px;
+<style lang="scss" scoped>
+.greeting-card {
+  position: relative;
+  .greeting-card-bg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .greeting-card-trophy {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+  }
 }
-.span-title{
-  color: #4f565f;
-  text-transform: uppercase;
+// rtl
+.v-application {
+  &.v-application--is-rtl {
+    .greeting-card-bg {
+      right: initial;
+      left: 0;
+      transform: rotateY(180deg);
+    }
+    .greeting-card-trophy {
+      left: 2%;
+      right: initial;
+    }
+  }
 }
-
-.v-card-title{
-  font-family: 'MontserratMedium';
-  color:#9966ff;
-}
-
-v-card-subtitle{
-  font-family: 'MontserratMedium';
-  color: #4f565f;
-}
-</style> 
-
+</style>

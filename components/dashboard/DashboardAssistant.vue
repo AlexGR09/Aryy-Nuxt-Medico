@@ -1,62 +1,81 @@
 <template>
   <v-card
-    class="mx-auto"
-    color="#26c6da"
-    dark
-    max-height="230"
-    max-width="500"
+  class="v-card-cita rounded-xl"
+  max-width="500"
+>
+<v-carousel
+  cycle
+  height="225"
+  hide-delimiter-background
+>
+  <v-carousel-item
+    v-for="(slide, i) in slides"
+    :key="i"
   >
-    <v-card-title>
-      <v-icon
-        large
-        left
+    <v-sheet
+      :color="colors[i]"
+      height="100%"
+    >
+      <v-row
+        class="fill-height"
+        align="center"
+        justify="center"
       >
-        mdi-twitter
-      </v-icon>
-      <span class="text-h6 font-weight-light">Twitter</span>
-    </v-card-title>
-
-    <v-card-text class="text-h5 font-weight-bold">
-      "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-    </v-card-text>
-
-    <v-card-actions>
-      <v-list-item class="grow">
-        <v-list-item-avatar color="grey darken-3">
-          <v-img
-            class="elevation-6"
-            alt=""
-            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-          ></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-content>
-          <v-list-item-title>Evan You</v-list-item-title>
-        </v-list-item-content>
-
-        <v-row
-          align="center"
-          justify="end"
-        >
-          <v-icon class="mr-1">
-            mdi-heart
-          </v-icon>
-          <span class="subheading mr-2">256</span>
-          <span class="mr-1">·</span>
-          <v-icon class="mr-1">
-            mdi-share-variant
-          </v-icon>
-          <span class="subheading">45</span>
-        </v-row>
-      </v-list-item>
-    </v-card-actions>
-  </v-card>
+        <div class="container-slider">
+          {{ slide.title }}
+        </div>
+      </v-row>
+    </v-sheet>
+  </v-carousel-item>
+</v-carousel>
+</v-card>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      //
-    }),
-  }
+export default {
+  data () {
+    return {
+      colors: [
+        'white',
+      ],
+      slides: [
+      {
+        title: 'Asistente 1',
+        url: require('@/assets/icons/icon_cards_marketing.svg'),
+        description: 'Revisa detalles de capacitación',
+      },
+      {
+        title: 'Asistente 2',
+        subtitle: 'Todavía no has hecho ninguna campaña',
+        url: require('@/assets/icons/icon_cards_marketing.svg'),
+        description: 'Revisa detalles de capacitación',
+      }
+      ],
+    }
+  },
+}
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+.container-slider{
+font-family: 'MontserratBold';
+color: #4f565f;
+text-transform: uppercase;
+font-size: 20px;
+}
+
+.title-slide{
+font-family: 'MontserratMedium';
+white-space: nowrap;
+font-size: 15px;
+color: #cccccc;
+}
+
+.img-slide{
+width: 50%;
+height: 100px;
+object-fit: cover;
+object-position: bottom;
+}
+</style>
