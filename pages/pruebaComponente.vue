@@ -1,7 +1,7 @@
 <template>
   <div>
     <Cabecera />
-    <losMasVendidos
+    <codes-country
       v-for="destacados in LosDestacados"
       :key="destacados.id"
       :SeccionProductos="destacados"
@@ -11,7 +11,9 @@
 
 <script>
 import { productosDestacados } from "@/assets/productos.js"
+import codesCountry from '~/components/codesCountry.vue'
 export default {
+  components: { codesCountry },
   data(){
     return {
       LosDestacados : productosDestacados

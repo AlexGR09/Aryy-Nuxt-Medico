@@ -107,14 +107,14 @@
   </v-card>
 </template>
 <script>
-import CountriesCodes from '~/components/CountriesCodes.json';
+/* import CountriesCodes from '~/components/CountriesCodes.json'; */
 
       export default {
         name: "formLogin",
         layout: "auth",
         data: () => ({
           tabs: 1,
-          Countries: CountriesCodes,
+/*           Countries: CountriesCodes, */
           items: [
           { title: 'COMO PACIENTE', to: ''  },
       { title: 'COMO ESPECIALISTA', to: '/auth/register/register'  },

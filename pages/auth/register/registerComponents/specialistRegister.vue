@@ -1,253 +1,251 @@
 <template>
-    <div class="template">
-      <div class="container ml-2"  align="center" justify="end">
+  <div class="fondo">
+    <div class="container ml-2"  align="center" justify="end">
         <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" class="mb-n5" max-width="150"></v-img>
-      </div>
-      <v-row
-        no-gutters
-        style="flex-wrap: nowrap;"
+        <v-row>
+          <v-col cols="3" sm="1" md="2" lg="1" xl="2" class="flex-grow-0 flex-shrink-0"></v-col>
+        <v-col xs="1" sm="8" md="8" lg="8" xl="8">
+  <v-stepper class="elevation-0" width="1000px" alt-labels  v-model="e1">
+    <v-stepper-header class="elevation-0"  >
+      <v-stepper-step color="#7900ff"
+        :complete="e1 > 1"
+        step="1"
       >
-        <v-col cols="3" sm="1" md="3" lg="3" xl="4" class="flex-grow-0 flex-shrink-0"></v-col>
-        <v-col cols="1" xs="12" sm="12" md="3" lg="3" xl="4" style="min-width: 100px; max-width: 100%;" class="flex-grow-1 flex-shrink-0">
-            <h2>Crea tu perfil gratuito como especialista</h2>
-                <router-link
-                          style="text-decoration: none
-                          color: inherit;"
-                          to="/auth/login"
-                          ><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
-                        </router-link>
-              <!--   <a href="/login"><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3></a> -->
-                <v-card-text >
-                
-                  <v-row> 
-                  <v-col xs="12" sm="7" md="7" lg="8" xl="5">
-                    <p class="label">Ciudad*</p>
-                      <v-autocomplete outlined justify-right placeholder="Selecciona una ciudad" color="#b380ff" height="25" class="textfield"></v-autocomplete>
-                    </v-col>
-                    </v-row>
-                  <v-row> 
-                    <v-col  xs="3" sm="3" md="3" lg="3" xl="2"><p class="label">Teléfono*</p> 
-                      <!-- <v-autocomplete outlined  :items="Countries" justify-right placeholder="Código país" color="#b380ff" height="25" > </v-autocomplete>  -->
-                      <losMasVendidos
-      v-for="destacados in LosDestacados"
-      :key="destacados.id"
-      :SeccionProductos="destacados"
-    />
-                    </v-col>
-                    <v-col xs="6" sm="5" md="6" lg="7" xl="6">
-                    <v-text-field outlined placeholder="Número de teléfono (10 dígitos)" class="textfield mt-9 " color="#b380ff" ></v-text-field>
-                    </v-col>
-                    <v-input class="hint mt-n11 ml-2" hint="Éste número se utilizará para verificación del usuario (no aparecerá en su perfil)" persistent-hint>
-                    </v-input></v-row>
-                    <v-row>
-                      <v-col xs="8" sm="7" md="9" lg="7" xl="5"><br/>
-                        <p class="label mt-n9">Correo electrónico*</p>
-                        <v-text-field outlined justify-right placeholder="Escriba su email" color="#b380ff" height="25" class="textfield"></v-text-field>
-                          <br />
-                          <p class="label">Contraseña*</p>
-                          <v-text-field outlined
-                            placeholder="Establece tu contraseña" color="#b380ff" class="textfield mb-7"    hint="Debe contener al menos 8 carácteres"
-                            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                            :type="show1 ? 'text' : 'password'"
-                            @click:append="show1 = !show1"
-                          ></v-text-field>
-                         
-                          <v-text-field outlined
-                            placeholder="Confirma tu contraseña" class="textfield" color="#b380ff" name="input-10-1"
-                            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                            :type="show1 ? 'text' : 'password'"
-                            hint="Debe contener mínimo 8 carácteres"
-                            @click:append="show1 = !show1"
-                          ></v-text-field>
-                          <br/>
-                          <codes-country />
-                          <p class="label">Cédula*</p>
-                          <v-text-field outlined justify-right placeholder="Número de cédula" color="#b380ff" height="25" class="textfield"></v-text-field>
-                          <v-checkbox checked v-model="checkOne" color="#b380ff" on-icon="mdi-checkbox-blank">
-                            <template v-slot:label>
-                              <p class="checkbox">He leído y acepto los <b>Términos y Condiciones de uso.</b></p>
-                            </template> 
-                          </v-checkbox>
-                          <v-btn class=" btnn" color="#7900ff" height="50">
-                                Registrarme
-                          </v-btn>
-                          <br /> 
-                         
-                    </v-col>
-                  </v-row>
-                </v-card-text>
-        </v-col>
-        <v-col cols="3" sm="1" style="min-width: 100px;" class="flex-grow-0 flex-shrink-1" ></v-col>
-      </v-row>
+        Verificación
+      </v-stepper-step>
+
+      <v-divider></v-divider>
+
+      <v-stepper-step color="#7900ff"
+        :complete="e1 > 2"
+        step="2"
+      >
+      Formulario <p class="ml-3">registro</p>
+      </v-stepper-step>
+
+      <v-divider></v-divider>
+
+      <v-stepper-step color="#7900ff" step="3">
+        Perfil
+      </v-stepper-step>
+    </v-stepper-header>
+    <!-- contenido de seccion verificación | Genesis -->
+    <v-stepper-items color="red" >
+      <v-stepper-content  step="1">     
+        <h2  align="center"
+          justify="end">Crea tu perfil gratuito como especialista</h2>
+        <p class="code">Ingresa el código que recibiste vía WhatsApp o SMS al número que <br/> nos proporcionaste con anterioridad. </p>
+        <div  align="">
+          <v-col xl="7">
+          <router-link
+            style="text-decoration: none
+            color: inherit;"
+            to="/auth/login"
+            ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
+          </router-link>
+          <p align="left" class="mb-1 label">Celular</p>
+          <v-text-field outlined
+            prepend-inner-icon="mdi-flag"
+            placeholder="+51 XXX XXX XXXX"
+            class="textfield"
+            color="#b380ff"
+          ></v-text-field>
+          <p align="left" class="mb-1 label">Código de verificación</p>
+          <v-text-field outlined
+            placeholder="Verifica tu código"
+            class="textfield"
+            color="#b380ff"
+          ></v-text-field>
+          <div align="right">
+          <v-btn class="btn mt-n11 " text color="#9966ff" @click="e1 = 2">Reenviar código</v-btn>
+          <br /><br />
+        <v-btn width="30%" large class="white--text btn mt-n4"
+          color="#7900FF"
+          @click="e1 = 2"
+        >
+          Siguiente
+        </v-btn>
       </div>
+      </v-col>
+      </div>
+      </v-stepper-content>
+    <!-- contenido de seccion formulario registro  | Genesis -->
+      <v-stepper-content step="2">
+        <h2  align="center"
+          justify="end">Crea tu perfil gratuito como especialista</h2>
+        <div  align="">
+          <v-col xl="7">
+            <router-link
+            style="text-decoration: none
+            color: inherit;"
+            to="/auth/login"
+            ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
+          </router-link>
+          <p align="left" class="mb-1 label">Ciudad*</p>
+          <v-autocomplete outlined
+            placeholder="Selecciona una ciudad"
+            class="textfield"
+            color="#b380ff"
+            :items="ciudad"
+          ></v-autocomplete>
+          <p align="left" class="mb-1 label">Cédula C1</p>
+          <v-text-field outlined
+            placeholder="Número de cédula"
+            class="textfield"
+            color="#b380ff"
+          ></v-text-field>
+          <p align="left" class="mb-1 label">Especialidad*</p>
+          <v-autocomplete  outlined :items="especialidades"
+            placeholder="Selecciona una especialidad"
+            class="textfield"
+            color="#b380ff"
+          ></v-autocomplete>
+          <div align="right">
+            <v-checkbox class="mt-n3" v-model="checkbox">
+        <template v-slot:label>
+          <div >
+            He leído y aceptado los Terminos y Condiciones de uso de aryy.
+          </div>
+        </template>
+      </v-checkbox>
+        <v-btn block large class="white--text btn"
+          color="#7900FF"
+          @click="e1 = 3"
+        >
+          Siguiente
+        </v-btn>
+      </div>
+      </v-col>
+      </div>
+      </v-stepper-content>
+    <!-- contenido de seccion Perfil | Genesis -->
+      <v-stepper-content step="3">
+        <h2  align="center"
+          justify="end">Crea tu perfil gratuito como especialista</h2>
+        <div  align="">
+          <v-col xl="7">
+            <router-link
+            style="text-decoration: none
+            color: inherit;"
+            to="/auth/login"
+            ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
+          </router-link>
+          <p align="left" class="mb-1 label">Nombre (s)*</p>
+          <v-text-field outlined placeholder="Escriba su nombre" class="textfield" color="#b380ff" ></v-text-field>
+          <v-text-field outlined placeholder="Apellido (s)" class="textfield" color="#b380ff" ></v-text-field>
+          <p align="left" class="mb-1 mt-n2 label">Fecha de nacimiento*</p>
+          <!-- calendario para seleccionar fecha de nacimiento  | Genesis -->
+          <v-dialog  ref="dialog"  v-model="menu2" :return-value.sync="date" width="290px">
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field class="textfield" color="#b380ff" 
+              v-model="date"
+              outlined
+              placeholder="Fecha de nacimiento*"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+          color="#9966ff"
+          locale="MX-ES"
+            v-model="date"
+            
+          >
+            <v-spacer></v-spacer>
+            <v-btn
+              text
+              color="#b380ff"
+              @click="modal = false"
+            >
+              Cancel
+            </v-btn>
+            <v-btn
+              text
+              color="#b380ff"
+              @click="$refs.dialog.save(date)"
+            >
+              OK
+            </v-btn>
+          </v-date-picker>
+        </v-dialog>
+        <p align="left" class="mb-1 mt-n2 label">Consultorio*</p>
+          <v-text-field outlined
+            placeholder="Nombre del consultorio o clínica"
+            class="textfield"
+            color="#b380ff"
+          ></v-text-field>
+          <p align="left" class="mb-1 mt-n2 label">Dirección*</p>
+          <v-autocomplete  outlined :items="especialidades"
+            placeholder="Dirección de consultorio o clínica"
+            class="textfield"
+            color="#b380ff"
+          ></v-autocomplete>
+          <p align="left" class="mb-1 mt-n2 label">Tipo de establecimiento*</p>
+          <v-text-field outlined
+            placeholder="Selecciona un tipo de establecimiento"
+            class="textfield"
+            color="#b380ff"
+          ></v-text-field>
+         
+        <v-btn block large class="white--text btn"
+          color="#7900FF"
+          href="/"
+        >
+          Registrarme
+        </v-btn>
+      </v-col>
+      </div>
+
+      </v-stepper-content>
+    </v-stepper-items>
+  </v-stepper>
+</v-col> 
+<v-col cols="3" sm="1" md="2" lg="2" xl="2"  class="flex-grow-0 flex-shrink-1" ></v-col>
+</v-row>
+</div>
+</div>
 </template>
+
 <script>
-import { productosDestacados } from "@/assets/productos.js"
-/* import CountriesCodes from '~/assets/CountriesCodes.js'; */
-export default {
-    name: "formLogin",
+  export default {
     layout: "auth",
-    data: () => ({   LosDestacados : productosDestacados}),
-    components: {  }
-}
+    data () {
+      return {
+        date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+        especialidades: ['Acupuntura', 'Alergología', 'Anatomopatología', 'Anestesiología', 'Angiología', 'Audiología', 'Cardiología', 'Cardiología Pediátrica', 'Cirugía Cardiovascular y Torácica', 'Cirugía de la Mano', 'Cirugía Estética y Cosmética', 'Cirugía General', 'Cirugía Maxilofacial', 'Cirugía Oncológica', 'Cirugía Pediátrica', 'Cirugía Plástica', 'Dermatología', 'Dermatología Pediátrica', 'Diabetología', 'Endocrinología', 'Endoscopía', 'Enfermería', 'Fisioterapia', 'Gastroenterología', 'Gastroenterología Pediátrica', 'Genética', 'Geriatría', 'Ginecología Oncológica', 'Ginecología y Obstetricia', 'Hematología', 'Hematología Pediátrica', 'Homeopatía', 'Infectología', 'Infectología Pediátrica', 'Inmunología', 'Laboratorios Análisis Clínicos', 'Logopedia', 'Terapia Complementaria', 'Medicina Crítica y Terapia Intensiva', 'Medicina del Deporte', 'Medicina del Trabajo', 'Medicina Estética', 'Medicina Familiar', 'Medicina General', 'Medicina Integrada', 'Medicina Interna', 'Medicina Nuclear', 'Naturismo', 'Nefrología', 'Nefrología pediátrica', 'Neonatología', 'Neumología', 'Neumología pediátrica', 'Neurocirugía', 'Neurofisiología', 'Neurología', 'Neurología pediátrica', 'Nutrición', 'Nutriología clínica', 'Obesidad y delgadez', 'Odontología', 'Oftalmología', 'Oftalmología pediátrica', 'Oncología', 'Oncología pediátrica', 'Optometrismo', 'Ortopedia', 'Ortopedia infantil', 'Otorrinolaringología', 'Patología clínica', 'Pediatría', 'Podiatría', 'Podología', 'Proctología', 'Psicoanálisis', 'Psicología', 'Psicopedagogía', 'Psiquiatría', 'Psiquiatría infantil', 'Quiropráctica', 'Radiología', 'Radioterapia', 'Rehabilitación y Medicina física', 'Reumatología', 'Sexología', 'Algología', 'Traumatología y Ortopedia', 'Urgenciología', 'Urología', 'Reumatología pediátrica', 'Urología pediátrica', 'Cirugía Torácica', 'Radiooncología', 'Epidemiología', 'Odontología pediátrica', 'Cirugía Bariátrica', 'Foniatría', 'Otorrinolaringología pediátrica', 'Patología bucal', 'Alergología Pediátrica', 'Alergología e Inmunología', 'Bariatría', 'Coloproctología', 'Gastroenterología Endoscópica', 'Radiología Intervencionista', 'Spa'],
+        e1: 1,
+      }
+    },
+  }
 </script>
 <style>
-.template{
-    background: white;
+.fondo{
+  height: 100%;
+  color: white;
+  background: white;
 }
-    .split-btn{
-    display: inline-block;
-  }
-  .main-btn{
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    padding-right: 2px !important;
-  }
-  .actions-btn{
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    padding: 0 !important;
-    min-width: 35px !important;
-    margin-left: -3.5px;
-  }
-  /*estilos para tipos de letra | Genesis*/
-  h1{
-    font-family: "MontserratBold";
-    font-size: 155%;
-    margin-top: -30px;
-    margin-bottom: 10px;
-    color: #4f565f;
-  }
-  h2{
-    font-family: "MontserratBold";
-    font-size: 155%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color: #4f565f;
-  }
-  h3{
-    font-family: "MontserratLight";
-    margin-top: 10px;
-    font-size: 105%;
-    margin-bottom: 10px;
-    color: #9966ff;
-  }
-  p.item{
-    font-family: MontserratMedium;
-  }
-  p{
-    font-family: "MontserratLight";
-    color: #999999;
-    font-size: 16px;
-  }
-  p.accede{
-      font-size: 15px;
-      font-family: 'Montserrat', sans-serif;
-    }
-    p.label{
-      font-family: "MontserratLight";
-    color: #999999;
-    font-size: 120%;
-    margin-top: -1px;
-    margin-left: 1px;
-    margin-bottom: 15px;
-    }
-    a.accede{
-      margin-top: 16px;
-      font-size: 15px;
-      font-family: 'MontserratBold';
-    }
-    p.checkbox{
-      font-family: Montserrat;
-      font-size: 11px;
-      color: black;
-    }
-    r{
-      text-transform: unset !important;
-      font-family: MontserratMedium;
-      color: #7900ff;
-    }
-/*     estilos para elementos vuetify | Genesis */
-    .boton{
-    width: 155px;
-    margin-left: -15px;
-    margin-right: -15px;
-  }
-  .listitem{
-    font-family: Montserrat;
-  }
-    .hint{
-      margin-top: -15px;
-      font-family: Montserrat;
-    }
-    .textfield{
-      height: 50px;
-      width: 100%;
-      font-size: .9rem;
-      font-family: Montserrat;
-    }
-    .label{
-      margin-top: 35px;
-      margin-left: -40px;
-    }
-    .v-messages__message {
-      font-size: 10.5px;
-      color: #7900ff;
-      
-  }
-  .checkbox{
-    margin-top: 15px;
-  }
-  .tabs{
-    color: #7900ff;
-    text-transform: unset !important;
-    font-family: MontserratMedium;
-  }
-    /*degradado icono de google | Genesis */
-    .fa-google {
-    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-  }
-  /*estilos botones | Genesis */
-  .btn {
-      text-transform: unset !important;
-      font-family: Montserrat;
-      border: thin solid #CCCCCC;
-      width: 100%;
-  }
-  .btnn {
-      text-transform: unset !important;
-      font-family: Montserrat;
-      border: thin solid #CCCCCC;
-      color: white !important;
-      width: 100%;
-  }
-  .btnnn {
-      text-transform: unset !important;
-      font-family: Montserrat;
-      border: thin solid #CCCCCC;
-      color: white !important;
-      width: 100%;
-  }
-  .color{
-    text-transform: unset !important;
-    font-family: MontserratMedium;
-    background-color: #ea4335;
-    fill:#ea4335;
-  }
-  /*Margenes generales | Genesis */
-  .margen{
-    margin: 34px;
-  }
-  .margen4{
-    margin-top: 16px;
-  }
-  .textfield input::placeholder {
-  color: #999999 !important;
-  opacity: 1;
+h2{
+  color: #4f565f;
+  font-family: MontserratBold;
 }
-
+h3{
+   font-family: "MontserratLight";
+      margin-top: 10px;
+      font-size: 100%;
+      margin-bottom: 10px;
+      color: #9966ff;
+}
+p.code{
+  font-family: MontserratMedium;
+  color: #4f565f;
+}
+.label{
+  color: #999999;
+  font-family: Montserrat;
+}
+.btn{
+  font-family: MontserratMedium;
+  text-transform: unset !important;
+}
 </style>
