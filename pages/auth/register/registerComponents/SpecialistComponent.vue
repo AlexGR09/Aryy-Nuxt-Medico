@@ -34,22 +34,33 @@
                 <v-row> 
                   <v-col xs="11" sm="11" md="11" lg="11" xl="7">
                     <v-text-field outlined
-                      placeholder="Nombre (s)"
+                      placeholder="Correo electrónico"
                       class="textfield"
                       color="#b380ff"
                     ></v-text-field>
                     <br />
-                    <v-text-field outlined
-                      placeholder="Apellido paterno"
+                    <v-text-field height="25"  outlined class="textfield mb-8" color="#b380ff" placeholder="Establece tu contraseña"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show1 ? 'text' : 'password'"
+                @click:append="show1 = !show1"
+                hint="Debe contener al menos 8 carácteres"
+              ></v-text-field>
+              <v-row>
+              <v-col lg="5">
+                    <v-autocomplete outlined
+                      placeholder="Código país"
                       class="textfield"
                       color="#b380ff"
-                    ></v-text-field>
-                    <br />
-                    <v-text-field outlined
-                      placeholder="Apellido materno"
+                    ></v-autocomplete>
+                  </v-col>
+                  <v-col lg="7">
+                    <v-autocomplete outlined
+                      placeholder="Número de teléfono (10 dígitos)"
                       class="textfield"
                       color="#b380ff"
-                    ></v-text-field>
+                    ></v-autocomplete>
+                  </v-col>
+                </v-row>
                     <br />
                     <v-autocomplete  class="textfield" outlined placeholder="Selecciona una especialidad"></v-autocomplete>
                     <br />

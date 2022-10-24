@@ -1,10 +1,11 @@
 <template>
   <div class="fondo">
     <div class="container ml-2"  align="center" justify="end">
-        <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" class="mb-n5" max-width="150"></v-img>
+       
         <v-row>
           <v-col cols="3" sm="1" md="2" lg="1" xl="2" class="flex-grow-0 flex-shrink-0"></v-col>
-        <v-col xs="1" sm="8" md="8" lg="8" xl="8">
+        <v-col xs="1" sm="8" md="8" lg="1" xl="9">
+          <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" class="mb-n5" max-width="150"></v-img>
   <v-stepper class="elevation-0" width="1000px" alt-labels  v-model="e1">
     <v-stepper-header class="elevation-0"  >
       <v-stepper-step color="#7900ff"
@@ -201,7 +202,7 @@
     </v-stepper-items>
   </v-stepper>
 </v-col> 
-<v-col cols="3" sm="1" md="2" lg="2" xl="2"  class="flex-grow-0 flex-shrink-1" ></v-col>
+<v-col cols="3" sm="1" md="2" lg="1" xl="1"  class="flex-grow-0 flex-shrink-1" ></v-col>
 </v-row>
 </div>
 </div>
