@@ -38,7 +38,7 @@
                 <router-link
                           style="text-decoration: none;
                           color: inherit;"
-                          to="/auth/login"
+                          to="/auth/register/register"
                           ><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como especialista</h3>
                         </router-link>
               <!--   <a href="/login"><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3></a> -->
@@ -107,14 +107,14 @@
   </v-card>
 </template>
 <script>
-import CountriesCodes from '~/components/CountriesCodes.json';
+/* import CountriesCodes from '~/components/CountriesCodes.json'; */
 
       export default {
         name: "formLogin",
         layout: "auth",
         data: () => ({
           tabs: 1,
-          Countries: CountriesCodes,
+/*           Countries: CountriesCodes, */
           items: [
           { title: 'COMO PACIENTE', to: ''  },
       { title: 'COMO ESPECIALISTA', to: '/auth/register/register'  },
