@@ -40,7 +40,7 @@
           <router-link
             style="text-decoration: none
             color: inherit;"
-            to="/auth/login"
+             to="/auth/register/registerComponents/registerPatient"
             ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
           </router-link>
           <p align="left" class="mb-1 label">Celular</p>
@@ -78,7 +78,7 @@
             <router-link
             style="text-decoration: none
             color: inherit;"
-            to="/auth/login"
+               to="/auth/register/registerComponents/registerPatient"
             ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
           </router-link>
           <p align="left" class="mb-1 label">Ciudad*</p>
@@ -127,7 +127,7 @@
             <router-link
             style="text-decoration: none
             color: inherit;"
-            to="/auth/login"
+               to="/auth/register/registerComponents/registerPatient"
             ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
           </router-link>
           <p align="left" class="mb-1 label">Nombre (s)*</p>

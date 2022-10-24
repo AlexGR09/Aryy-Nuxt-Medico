@@ -38,7 +38,7 @@
                 <router-link
                           style="text-decoration: none;
                           color: inherit;"
-                          to="/auth/login"
+                          to="/auth/register/register"
                           ><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como especialista</h3>
                         </router-link>
               <!--   <a href="/login"><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3></a> -->
