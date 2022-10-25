@@ -82,6 +82,18 @@
                to="/auth/register/registerComponents/registerPatient"
             ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
           </router-link>
+          <p align="left" class="mb-1 label">Especialidad*</p>
+          <v-autocomplete  outlined :items="especialidades"
+            placeholder="Selecciona una especialidad"
+            class="textfield"
+            color="#b380ff"
+          ></v-autocomplete>
+          <p align="left" class="mb-1 label">Estado*</p>
+          <v-autocomplete  outlined :items="especialidades"
+            placeholder="Selecciona un Estado"
+            class="textfield"
+            color="#b380ff"
+          ></v-autocomplete>
           <p align="left" class="mb-1 label">Ciudad*</p>
           <v-autocomplete outlined
             placeholder="Selecciona una ciudad"
@@ -95,14 +107,8 @@
             class="textfield"
             color="#b380ff"
           ></v-text-field>
-          <p align="left" class="mb-1 label">Especialidad*</p>
-          <v-autocomplete  outlined :items="especialidades"
-            placeholder="Selecciona una especialidad"
-            class="textfield"
-            color="#b380ff"
-          ></v-autocomplete>
           <div align="right">
-            <v-checkbox class="mt-n3" v-model="checkbox">
+            <v-checkbox class="mt-n3" v-model="check">
         <template v-slot:label>
           <div >
             He leído y aceptado los Terminos y Condiciones de uso de aryy.
@@ -112,6 +118,7 @@
         <v-btn block large class="white--text btn"
           color="#7900FF"
           @click="e1 = 3"
+          :disabled="!check"
         >
           Siguiente
         </v-btn>
@@ -182,13 +189,6 @@
             class="textfield"
             color="#b380ff"
           ></v-autocomplete>
-          <p align="left" class="mb-1 mt-n2 label">Tipo de establecimiento*</p>
-          <v-text-field outlined
-            placeholder="Selecciona un tipo de establecimiento"
-            class="textfield"
-            color="#b380ff"
-          ></v-text-field>
-         
         <v-btn block large class="white--text btn"
           color="#7900FF"
           href="/"
@@ -213,6 +213,7 @@
     layout: "auth",
     data () {
       return {
+        check: "",
         date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
         especialidades: ['Acupuntura', 'Alergología', 'Anatomopatología', 'Anestesiología', 'Angiología', 'Audiología', 'Cardiología', 'Cardiología Pediátrica', 'Cirugía Cardiovascular y Torácica', 'Cirugía de la Mano', 'Cirugía Estética y Cosmética', 'Cirugía General', 'Cirugía Maxilofacial', 'Cirugía Oncológica', 'Cirugía Pediátrica', 'Cirugía Plástica', 'Dermatología', 'Dermatología Pediátrica', 'Diabetología', 'Endocrinología', 'Endoscopía', 'Enfermería', 'Fisioterapia', 'Gastroenterología', 'Gastroenterología Pediátrica', 'Genética', 'Geriatría', 'Ginecología Oncológica', 'Ginecología y Obstetricia', 'Hematología', 'Hematología Pediátrica', 'Homeopatía', 'Infectología', 'Infectología Pediátrica', 'Inmunología', 'Laboratorios Análisis Clínicos', 'Logopedia', 'Terapia Complementaria', 'Medicina Crítica y Terapia Intensiva', 'Medicina del Deporte', 'Medicina del Trabajo', 'Medicina Estética', 'Medicina Familiar', 'Medicina General', 'Medicina Integrada', 'Medicina Interna', 'Medicina Nuclear', 'Naturismo', 'Nefrología', 'Nefrología pediátrica', 'Neonatología', 'Neumología', 'Neumología pediátrica', 'Neurocirugía', 'Neurofisiología', 'Neurología', 'Neurología pediátrica', 'Nutrición', 'Nutriología clínica', 'Obesidad y delgadez', 'Odontología', 'Oftalmología', 'Oftalmología pediátrica', 'Oncología', 'Oncología pediátrica', 'Optometrismo', 'Ortopedia', 'Ortopedia infantil', 'Otorrinolaringología', 'Patología clínica', 'Pediatría', 'Podiatría', 'Podología', 'Proctología', 'Psicoanálisis', 'Psicología', 'Psicopedagogía', 'Psiquiatría', 'Psiquiatría infantil', 'Quiropráctica', 'Radiología', 'Radioterapia', 'Rehabilitación y Medicina física', 'Reumatología', 'Sexología', 'Algología', 'Traumatología y Ortopedia', 'Urgenciología', 'Urología', 'Reumatología pediátrica', 'Urología pediátrica', 'Cirugía Torácica', 'Radiooncología', 'Epidemiología', 'Odontología pediátrica', 'Cirugía Bariátrica', 'Foniatría', 'Otorrinolaringología pediátrica', 'Patología bucal', 'Alergología Pediátrica', 'Alergología e Inmunología', 'Bariatría', 'Coloproctología', 'Gastroenterología Endoscópica', 'Radiología Intervencionista', 'Spa'],
         e1: 1,
