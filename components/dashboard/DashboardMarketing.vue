@@ -66,13 +66,10 @@
   text-transform: uppercase;
   font-size: 20px;
 }
-
 .title-slide{
   font-family: 'MontserratMedium';
   white-space: nowrap;
   font-size: 18px;
   color: #cccccc;
 }
-
-
 </style>

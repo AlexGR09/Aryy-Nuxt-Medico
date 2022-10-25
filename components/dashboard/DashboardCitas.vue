@@ -14,7 +14,7 @@
         <v-card-text class="d-flex align-center">
           10: 00 HRS
         </v-card-text>
-
+        <v-card-subtitle></v-card-subtitle>
       </v-col>
       <v-col cols="4">
         <img
@@ -30,6 +30,14 @@
 </template>
 
 <script>
+export default{
+  data(){
+    return{
+
+    }
+  },
+
+};
 
 </script>
 

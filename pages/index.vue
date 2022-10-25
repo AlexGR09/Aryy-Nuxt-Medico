@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import DashboardAssistant from "~/components/dashboard/DashboardAssistant.vue"
 
-export default
-  components: { DashboardAssistant },{
+
+export default{
+
     data(){
         return{
 
