@@ -1,7 +1,12 @@
 export const productosDestacados = [
   {
-    prefijos: [+54, +55, +56, +57, +58],
-    paises: ["argentina", "brasil", "chile", "colombia", "venezuela"]
-  }
-  
+    id: 1,
+    code: ["a","aa"],
+    codigo: "+52",
+  },
+  {
+    id: 2,
+    code: ["b","bb"],
+    codigo: "+44",
+  },
 ]

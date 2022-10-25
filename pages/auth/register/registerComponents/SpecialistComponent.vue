@@ -32,40 +32,56 @@
             <v-card flat>
               <v-card-text >
                 <v-row> 
-                  <v-col xs="11" sm="11" md="11" lg="11" xl="7">
+                  <v-col xs="11" sm="11" md="11" lg="11" xl="9">
+                    <v-row>
+                    <v-col xs="11" sm="11" md="11" lg="11" xl="10">
                     <v-text-field outlined
                       placeholder="Correo electrónico"
-                      class="textfield"
+                      class="textfield mb-2"
                       color="#b380ff"
                     ></v-text-field>
                     <br />
-                    <v-text-field height="25"  outlined class="textfield mb-8" color="#b380ff" placeholder="Establece tu contraseña"
+                    <v-text-field height="25"  outlined class="textfield mb-2" color="#b380ff" placeholder="Establece tu contraseña"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
                 hint="Debe contener al menos 8 carácteres"
-              ></v-text-field>
-              <v-row>
-              <v-col lg="5">
-                    <v-autocomplete outlined
-                      placeholder="Código país"
-                      class="textfield"
-                      color="#b380ff"
-                    ></v-autocomplete>
-                  </v-col>
-                  <v-col lg="7">
-                    <v-autocomplete outlined
-                      placeholder="Número de teléfono (10 dígitos)"
-                      class="textfield"
-                      color="#b380ff"
-                    ></v-autocomplete>
-                  </v-col>
-                </v-row>
+              ></v-text-field>  
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col lg="5">
+              <v-autocomplete outlined
+                placeholder="Código país"
+                class="textfield"
+                color="#b380ff"
+              ></v-autocomplete>
+            </v-col>
+            <v-col lg="7">
+              <v-autocomplete outlined
+                placeholder="Número de teléfono (10 dígitos)"
+                class="textfield"
+                color="#b380ff"
+              ></v-autocomplete>
+            </v-col>
+          </v-row>
                     <br />
-                    <v-autocomplete  class="textfield" outlined placeholder="Selecciona una especialidad"></v-autocomplete>
-                    <br />
-                    <v-btn class="btnn" href="/auth/register/registerComponents/specialistRegister" color="#7900ff" height="50"> Registrarme</v-btn>
-                    <br /> <br /> 
+                    <v-row>
+                   <v-col xs="11" sm="11" md="11" lg="11" xl="10">
+                    <v-btn class="btnn" href="/auth/register/registerComponents/specialistRegister" color="#7900ff" block height="50"> Registrarme</v-btn>
+                  
+                    <p class="accede mt-5 mb-5">O registrate usando</p>
+    
+    <v-btn outlined class="btn" color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
+      Registrarse con Facebook
+    </v-btn>
+    <v-btn class="margen4 btn"  color="#999999" outlined height="50">
+      <v-img class=" mr-8" :src="require('@/assets/icons/icon_google.svg')" max-width="30"></v-img>
+      Registrarse con Google
+    </v-btn> 
+  </v-col>
+</v-row>
+<br/>
                   </v-col>
                 </v-row>
               
@@ -87,10 +103,9 @@
      /*      Countries: CountriesCodes, */
           items: [
           { title: 'COMO PACIENTE',  to: '/auth/register/registerComponents/registerPatient'   },
-      { title: 'COMO ESPECIALISTA', to: 'register/register' },
-      { title: 'COMO LABORATORIO', to: 'register/register' },
-      { title: 'COMO FARMACIA', to: 'register/register' },
-      { title: 'Paciente', to: '/auth/register/registerComponents/registerPatient'  },
+      { title: 'COMO ESPECIALISTA', to: '' },
+      { title: 'COMO LABORATORIO', to: '/auth/register/register' },
+      { title: 'COMO FARMACIA', to: '/auth/register/register' },
       ],
           checkbox: false,
          /*  Reglas para el input de contraseña | Genesis */
@@ -219,6 +234,7 @@
         font-family: Montserrat;
         border: thin solid #CCCCCC;
         margin-left: 1px;
+        left: 0;
         color: white !important;
         width: 100%;
     }

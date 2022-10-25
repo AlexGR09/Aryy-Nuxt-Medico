@@ -1,24 +1,23 @@
 <template>
-  <div>
-    <Cabecera />
-    <codes-country
-      v-for="destacados in LosDestacados"
-      :key="destacados.id"
-      :SeccionProductos="destacados"
-    />
+  <div> 
+    <div v-for="destacados in LosDestacados"
+    :key="destacados.id">
+    <p>{{destacados.id}}</p>
+    <v-autocomplete placeholder="codigo" :items="destacados.id"></v-autocomplete> 
+  </div>
   </div>
 </template>
 
 <script>
 import { productosDestacados } from "@/assets/productos.js"
-import codesCountry from '~/components/codesCountry.vue'
 export default {
-  components: { codesCountry },
   data(){
     return {
-      LosDestacados : productosDestacados
+      LosDestacados : productosDestacados,
     }
-  }
+  },
+  
+  name: "losMasVendidos",
 }
 </script>
 

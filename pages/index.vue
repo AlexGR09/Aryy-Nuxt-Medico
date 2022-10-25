@@ -25,8 +25,8 @@
 <script>
 import DashboardAssistant from "~/components/dashboard/DashboardAssistant.vue"
 
-export default
-  components: { DashboardAssistant },{
+export default{
+  components: { DashboardAssistant },
     data(){
         return{
 
