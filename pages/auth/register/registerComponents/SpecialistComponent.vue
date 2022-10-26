@@ -41,12 +41,13 @@
                       color="#b380ff"
                     ></v-text-field>
                     <br />
-                    <v-text-field height="25"  outlined class="textfield mb-2" color="#b380ff" placeholder="Establece tu contraseña"
+                    <v-text-field height="25"  @click="alert = !alert" outlined class="textfield mb-2" color="#b380ff" placeholder="Establece tu contraseña"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
-                hint="Debe contener al menos 8 carácteres"
+                hint="Debe contener al menos 8 dígitos alfanuméricos"
               ></v-text-field>  
+           <!--    <v-alert class="hint" color="transparent" :value="alert" icon="mdi-information" transition="scale-transition" >Debe contener al menos 8 dígitos alfanuméricos</v-alert> -->
             </v-col>
           </v-row>
           <v-row>
@@ -107,6 +108,7 @@
     VueTelInputVuetify, */
   },
         data: () => ({
+          alert: false,
           dataShare: '',
           tabs: 1,
      /*      Countries: CountriesCodes, */
@@ -134,6 +136,7 @@
       }
     </script>
     <style lang="scss">
+    
     .vti__flag {
   margin-right: 8px;
 }
@@ -163,6 +166,7 @@
     }
   }
 }
+
     /*estilos para tipos de letra | Genesis*/
     a{
       text-decoration: none !important;
@@ -243,6 +247,12 @@
       .v-messages__message {
         font-size: 11px;
         color: #7900ff;
+    }
+    .hint{
+      margin-bottom: -35px;
+        font-size: 11px;
+        color: #7900ff;
+        
     }
     .checkbox{
       margin-top: 15px;
