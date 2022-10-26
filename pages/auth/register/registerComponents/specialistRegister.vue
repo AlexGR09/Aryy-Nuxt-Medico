@@ -1,11 +1,10 @@
 <template>
   <div class="fondo">
-    <div class="container ml-2"  align="center" justify="end">
-       
+    <div   align="center" justify="end">
         <v-row>
-          <v-col cols="3" sm="1" md="2" lg="1" xl="2" class="flex-grow-0 flex-shrink-0"></v-col>
-        <v-col xs="1" sm="8" md="8" lg="1" xl="9">
-          <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" class="mb-n5" max-width="150"></v-img>
+          <v-col cols="3" sm="1" md="1" lg="1" xl="1" class="flex-grow-0 flex-shrink-0"></v-col>
+        <v-col xs="1" sm="8" md="10" lg="10" xl="10">
+          <v-img  :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" class="mb-n5" max-width="150" min-width="150"></v-img>
   <v-stepper class="elevation-0" width="1000px" alt-labels  v-model="e1">
     <v-stepper-header class="elevation-0"  >
       <v-stepper-step color="#7900ff"
@@ -37,7 +36,7 @@
           justify="end">Crea tu perfil gratuito como especialista</h2>
         <p class="code">Ingresa el código que recibiste vía WhatsApp o SMS al número que <br/> nos proporcionaste con anterioridad. </p>
         <div  align="">
-          <v-col xl="7">
+          <v-col xs="11" sm="8" md="8" lg="7" xl="7">
           <router-link
             style="text-decoration: none
             color: inherit;"
@@ -46,7 +45,8 @@
           </router-link>
           <p align="left" class="mb-1 label">Celular</p>
       <!--     etiqueta para el label de code country | Genesis -->
-          <vue-tel-input-vuetify class="textfield" color="#b380ff" placeholder="+51 XXX XXX XXXX" label="" outlined ></vue-tel-input-vuetify>
+      
+      <code-country/>
           <p align="left" class="mb-1 label">Código de verificación</p>
           <v-text-field outlined
             placeholder="Verifica tu código"
@@ -81,32 +81,32 @@
           <p align="left" class="mb-1 label">Especialidad*</p>
           <v-autocomplete  outlined :items="especialidades"
             placeholder="Selecciona una especialidad"
-            class="textfield"
+            class="textfield mb-n3"
             color="#b380ff"
           ></v-autocomplete>
           <p align="left" class="mb-1 label">Estado*</p>
           <v-autocomplete  outlined :items="especialidades"
             placeholder="Selecciona un Estado"
-            class="textfield"
+            class="textfield  mb-n3"
             color="#b380ff"
           ></v-autocomplete>
           <p align="left" class="mb-1 label">Ciudad*</p>
           <v-autocomplete outlined
             placeholder="Selecciona una ciudad"
-            class="textfield"
+            class="textfield mb-n3"
             color="#b380ff"
             :items="ciudad"
           ></v-autocomplete>
-          <p align="left" class="mb-1 label">Cédula C1</p>
+          <p align="left" class="mb-1 label">Cédula C1*</p>
           <v-text-field outlined
             placeholder="Número de cédula"
-            class="textfield"
+            class="textfield  mb-n3"
             color="#b380ff"
           ></v-text-field>
           <div align="right">
             <v-checkbox class="mt-n3" v-model="check">
         <template v-slot:label>
-          <div >
+          <div class="terms">
             He leído y aceptado los Terminos y Condiciones de uso de aryy.
           </div>
         </template>
@@ -135,7 +135,7 @@
             ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
           </router-link>
           <p align="left" class="mb-1 label">Nombre (s)*</p>
-          <v-text-field outlined placeholder="Escriba su nombre" class="textfield" color="#b380ff" ></v-text-field>
+          <v-text-field outlined placeholder="Escriba su nombre" class="textfield mb-n3" color="#b380ff" ></v-text-field>
           <v-text-field outlined placeholder="Apellido (s)" class="textfield" color="#b380ff" ></v-text-field>
           <p align="left" class="mb-1 mt-n2 label">Fecha de nacimiento*</p>
           <!-- calendario para seleccionar fecha de nacimiento  | Genesis -->
@@ -205,20 +205,41 @@
 </template>
 
 <script>
-import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.vue"
-  export default {
+/* import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.vue"
+ */  export default {
+    props:["msg"],
     layout: "auth",
     components: {
-    VueTelInputVuetify,
+      /* 
+    VueTelInputVuetify, */
   },
     data () {
       return {
+        father:"",
+        phone: {
+        number: "",
+        valid: false,
+        country: undefined
+      },
         check: "",
         date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
         especialidades: ['Acupuntura', 'Alergología', 'Anatomopatología', 'Anestesiología', 'Angiología', 'Audiología', 'Cardiología', 'Cardiología Pediátrica', 'Cirugía Cardiovascular y Torácica', 'Cirugía de la Mano', 'Cirugía Estética y Cosmética', 'Cirugía General', 'Cirugía Maxilofacial', 'Cirugía Oncológica', 'Cirugía Pediátrica', 'Cirugía Plástica', 'Dermatología', 'Dermatología Pediátrica', 'Diabetología', 'Endocrinología', 'Endoscopía', 'Enfermería', 'Fisioterapia', 'Gastroenterología', 'Gastroenterología Pediátrica', 'Genética', 'Geriatría', 'Ginecología Oncológica', 'Ginecología y Obstetricia', 'Hematología', 'Hematología Pediátrica', 'Homeopatía', 'Infectología', 'Infectología Pediátrica', 'Inmunología', 'Laboratorios Análisis Clínicos', 'Logopedia', 'Terapia Complementaria', 'Medicina Crítica y Terapia Intensiva', 'Medicina del Deporte', 'Medicina del Trabajo', 'Medicina Estética', 'Medicina Familiar', 'Medicina General', 'Medicina Integrada', 'Medicina Interna', 'Medicina Nuclear', 'Naturismo', 'Nefrología', 'Nefrología pediátrica', 'Neonatología', 'Neumología', 'Neumología pediátrica', 'Neurocirugía', 'Neurofisiología', 'Neurología', 'Neurología pediátrica', 'Nutrición', 'Nutriología clínica', 'Obesidad y delgadez', 'Odontología', 'Oftalmología', 'Oftalmología pediátrica', 'Oncología', 'Oncología pediátrica', 'Optometrismo', 'Ortopedia', 'Ortopedia infantil', 'Otorrinolaringología', 'Patología clínica', 'Pediatría', 'Podiatría', 'Podología', 'Proctología', 'Psicoanálisis', 'Psicología', 'Psicopedagogía', 'Psiquiatría', 'Psiquiatría infantil', 'Quiropráctica', 'Radiología', 'Radioterapia', 'Rehabilitación y Medicina física', 'Reumatología', 'Sexología', 'Algología', 'Traumatología y Ortopedia', 'Urgenciología', 'Urología', 'Reumatología pediátrica', 'Urología pediátrica', 'Cirugía Torácica', 'Radiooncología', 'Epidemiología', 'Odontología pediátrica', 'Cirugía Bariátrica', 'Foniatría', 'Otorrinolaringología pediátrica', 'Patología bucal', 'Alergología Pediátrica', 'Alergología e Inmunología', 'Bariatría', 'Coloproctología', 'Gastroenterología Endoscópica', 'Radiología Intervencionista', 'Spa'],
         e1: 1,
       }
     },
+    watch:{
+      father:function(){
+        this.$emit("father",this.father)
+      }
+    },
+/*     //Metodo para guardar datos de country code | Genesis */
+methods: {
+    onInput(formattedNumber, { number, valid, country }) {
+      this.phone.number = number.international;
+      this.phone.valid = valid;
+      this.phone.country = country && country.name;
+    }
+  }
   }
 </script>
 <style lang="scss">
@@ -253,7 +274,10 @@ import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.
   }
 }
 
-
+.terms{
+  font-family: MontserratMedium;
+  font-size: 80%;
+}
 
 .fondo{
   height: 100%;

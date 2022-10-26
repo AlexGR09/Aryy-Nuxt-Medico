@@ -50,12 +50,13 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col lg="5">
+            <v-col lg="4">
               <v-autocomplete outlined
-                placeholder="Código país"
+                placeholder="Código pais"
                 class="textfield"
                 color="#b380ff"
               ></v-autocomplete>
+
             </v-col>
             <v-col lg="7">
               <v-autocomplete outlined
@@ -93,12 +94,20 @@
   </v-card>
 </template>
 <script>
-/* import CountriesCodes from '~/components/CountriesCodes.json'; */
+/* import CodeCountry from '~/components/codeCountry.vue'; */
+/* import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.vue" */
+
 
       export default {
         name: "formLogin",
         layout: "auth",
+        components: 
+               {
+               /* 
+    VueTelInputVuetify, */
+  },
         data: () => ({
+          dataShare: '',
           tabs: 1,
      /*      Countries: CountriesCodes, */
           items: [
@@ -124,7 +133,36 @@
       }   
       }
     </script>
-    <style>
+    <style lang="scss">
+    .vti__flag {
+  margin-right: 8px;
+}
+.vue-tel-input-vuetify {
+  display: flex;
+  align-items: center;
+  .country-code {
+    width: 6 0px;
+  }
+  li.last-preferred {
+    border-bottom: 1px solid #cacaca;
+  }
+  .v-text-field {
+    .v-select__selections {
+      position: relative;
+      .vti__flag {
+        position: absolute;
+        margin-left: 18px;
+      }
+    }
+    &--outlined {
+      .v-select__selections {
+        .vti__flag {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
     /*estilos para tipos de letra | Genesis*/
     a{
       text-decoration: none !important;
