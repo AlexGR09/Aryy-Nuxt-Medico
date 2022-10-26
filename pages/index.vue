@@ -24,14 +24,8 @@
 
 <script>
 
-<<<<<<< HEAD
-
 export default{
-
-=======
-export default{
-  components: { DashboardAssistant },
->>>>>>> 9243e055a4e276cef5f9b74a1393d93e08d204d4
+  components: { },
     data(){
         return{
 

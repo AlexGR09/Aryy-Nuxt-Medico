@@ -1,16 +1,21 @@
 <template>
   <div> 
-    <div v-for="destacados in LosDestacados"
+   <!--  <div v-for="destacados in LosDestacados"
     :key="destacados.id">
     <p>{{destacados.id}}</p>
     <v-autocomplete placeholder="codigo" :items="destacados.id"></v-autocomplete> 
-  </div>
+  </div> -->
+  <vue-tel-input-vuetify filled locale="MX-ES"></vue-tel-input-vuetify>
   </div>
 </template>
 
 <script>
+import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.vue"
 import { productosDestacados } from "@/assets/productos.js"
 export default {
+  components: {
+    VueTelInputVuetify,
+  },
   data(){
     return {
       LosDestacados : productosDestacados,
@@ -21,8 +26,38 @@ export default {
 }
 </script>
 
-<style>
-.container {
+<style lang="scss">
+.vti__flag {
+  margin-right: 8px;
+}
+.vue-tel-input-vuetify {
+  display: flex;
+  align-items: center;
+  .country-code {
+    width: 75px;
+  }
+  li.last-preferred {
+    border-bottom: 1px solid #cacaca;
+  }
+  .v-text-field {
+    .v-select__selections {
+      position: relative;
+      .vti__flag {
+        position: absolute;
+        margin-left: 18px;
+      }
+    }
+    &--outlined {
+      .v-select__selections {
+        .vti__flag {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
+</style>
+/* .container {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -59,5 +94,5 @@ export default {
 
 .links {
   padding-top: 15px;
-}
+} */
 </style>

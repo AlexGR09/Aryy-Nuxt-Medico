@@ -45,12 +45,8 @@
             ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
           </router-link>
           <p align="left" class="mb-1 label">Celular</p>
-          <v-text-field outlined
-            prepend-inner-icon="mdi-flag"
-            placeholder="+51 XXX XXX XXXX"
-            class="textfield"
-            color="#b380ff"
-          ></v-text-field>
+      <!--     etiqueta para el label de code country | Genesis -->
+          <vue-tel-input-vuetify class="textfield" color="#b380ff" placeholder="+51 XXX XXX XXXX" label="" outlined ></vue-tel-input-vuetify>
           <p align="left" class="mb-1 label">Código de verificación</p>
           <v-text-field outlined
             placeholder="Verifica tu código"
@@ -209,8 +205,12 @@
 </template>
 
 <script>
+import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.vue"
   export default {
     layout: "auth",
+    components: {
+    VueTelInputVuetify,
+  },
     data () {
       return {
         check: "",
@@ -221,7 +221,40 @@
     },
   }
 </script>
-<style>
+<style lang="scss">
+/* estilos para el codeCountry | Genesis */
+.vti__flag {
+  margin-right: 8px;
+}
+.vue-tel-input-vuetify {
+  display: flex;
+  align-items: center;
+  .country-code {
+    width: 45px;
+  }
+  li.last-preferred {
+    border-bottom: 1px solid #cacaca;
+  }
+  .v-text-field {
+    .v-select__selections {
+      position: relative;
+      .vti__flag {
+        position: absolute;
+        margin-left: 18px;
+      }
+    }
+    &--outlined {
+      .v-select__selections {
+        .vti__flag {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
+
+
+
 .fondo{
   height: 100%;
   color: white;
