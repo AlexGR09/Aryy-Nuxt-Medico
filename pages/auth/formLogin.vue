@@ -129,7 +129,7 @@
     font-family: MontserratMedium;
   }
   p{
-    font-family: "MontserratLight";
+    font-family: "MontserratMedium";
     color: #999999;
     font-size: 16px;
   }
