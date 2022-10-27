@@ -41,23 +41,21 @@
                       color="#b380ff"
                     ></v-text-field>
                     <br />
-                    <v-text-field height="25"  @click="alert = !alert" outlined class="textfield mb-2" color="#b380ff" placeholder="Establece tu contraseña"
+                    <v-text-field height="25"  outlined class="textfield mb-2" color="#b380ff" placeholder="Establece tu contraseña"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
-                hint="Debe contener al menos 8 dígitos alfanuméricos"
+                hint="Debe contener al menos 8 carácteres"
               ></v-text-field>  
-           <!--    <v-alert class="hint" color="transparent" :value="alert" icon="mdi-information" transition="scale-transition" >Debe contener al menos 8 dígitos alfanuméricos</v-alert> -->
             </v-col>
           </v-row>
           <v-row>
-            <v-col lg="4">
+            <v-col lg="5">
               <v-autocomplete outlined
-                placeholder="Código pais"
+                placeholder="Código país"
                 class="textfield"
                 color="#b380ff"
               ></v-autocomplete>
-
             </v-col>
             <v-col lg="7">
               <v-autocomplete outlined
@@ -95,21 +93,12 @@
   </v-card>
 </template>
 <script>
-/* import CodeCountry from '~/components/codeCountry.vue'; */
-/* import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.vue" */
-
+/* import CountriesCodes from '~/components/CountriesCodes.json'; */
 
       export default {
         name: "formLogin",
         layout: "auth",
-        components: 
-               {
-               /* 
-    VueTelInputVuetify, */
-  },
         data: () => ({
-          alert: false,
-          dataShare: '',
           tabs: 1,
      /*      Countries: CountriesCodes, */
           items: [
@@ -135,38 +124,7 @@
       }   
       }
     </script>
-    <style lang="scss">
-    
-    .vti__flag {
-  margin-right: 8px;
-}
-.vue-tel-input-vuetify {
-  display: flex;
-  align-items: center;
-  .country-code {
-    width: 6 0px;
-  }
-  li.last-preferred {
-    border-bottom: 1px solid #cacaca;
-  }
-  .v-text-field {
-    .v-select__selections {
-      position: relative;
-      .vti__flag {
-        position: absolute;
-        margin-left: 18px;
-      }
-    }
-    &--outlined {
-      .v-select__selections {
-        .vti__flag {
-          margin-left: auto;
-        }
-      }
-    }
-  }
-}
-
+    <style>
     /*estilos para tipos de letra | Genesis*/
     a{
       text-decoration: none !important;
@@ -247,12 +205,6 @@
       .v-messages__message {
         font-size: 11px;
         color: #7900ff;
-    }
-    .hint{
-      margin-bottom: -35px;
-        font-size: 11px;
-        color: #7900ff;
-        
     }
     .checkbox{
       margin-top: 15px;
