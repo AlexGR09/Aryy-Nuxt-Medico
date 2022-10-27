@@ -193,7 +193,7 @@
       color: #9966ff;
     }
     p{
-      font-family: "MontserratMedium";
+      font-family: "MontserratLight";
       color: #999999;
       font-size: 16px;
     }
