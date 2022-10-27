@@ -1,5 +1,7 @@
 <template>
     <v-row>
+        <v-card color="#f2f2f2" class="mx-auto">   <date-picker/></v-card>
+     
         <v-app-bar height="100" :clipped-left="clipped" fixed app>
             <v-btn class="list mr-4" 
               outlined
@@ -21,7 +23,7 @@
           color="#f2f2f2"
           dense
           outlined
-          placeholder="Buscar cita "
+          placeholder="Buscar cita"
           hide-details
           prepend-inner-icon="mdi-magnify"
         ></v-text-field>
