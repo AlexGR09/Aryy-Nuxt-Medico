@@ -24,14 +24,8 @@
 
 <script>
 
-<<<<<<< HEAD
-
-export default{
-
-=======
 export default{
   components: { },
->>>>>>> e731e7b9a57b417bc66b1716ca9d26480ce88981
     data(){
         return{
 
