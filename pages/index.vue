@@ -24,9 +24,14 @@
 
 <script>
 
+<<<<<<< HEAD
 
 export default{
 
+=======
+export default{
+  components: { },
+>>>>>>> 2faa2035e1896ac186141f1ee89d6040e740bc99
     data(){
         return{
 
