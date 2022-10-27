@@ -1,11 +1,11 @@
 <template>
   <div class="fondo">
-    <div class="container ml-2"  align="center" justify="end">
+    <div align="center" justify="end">
        
         <v-row>
-          <v-col cols="3" sm="1" md="2" lg="1" xl="2" class="flex-grow-0 flex-shrink-0"></v-col>
-        <v-col xs="1" sm="8" md="8" lg="1" xl="9">
-          <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" class="mb-n5" max-width="150"></v-img>
+          <v-col cols="3" sm="1" md="1" lg="1" xl="1" class="flex-grow-0 flex-shrink-0"></v-col>
+        <v-col xs="1" sm="8" md="10" lg="10" xl="10">
+          <v-img  :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" class="mb-n5" max-width="150" min-width="150"></v-img>
   <v-stepper class="elevation-0" width="1000px" alt-labels  v-model="e1">
     <v-stepper-header class="elevation-0"  >
       <v-stepper-step color="#7900ff"
@@ -37,7 +37,7 @@
           justify="end">Crea tu perfil gratuito como especialista</h2>
         <p class="code">Ingresa el código que recibiste vía WhatsApp o SMS al número que <br/> nos proporcionaste con anterioridad. </p>
         <div  align="">
-          <v-col xl="7">
+          <v-col xs="11" sm="8" md="8" lg="7" xl="7">
           <router-link
             style="text-decoration: none
             color: inherit;"
@@ -45,12 +45,13 @@
             ><h3 align="left" class="a mb-13"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3>
           </router-link>
           <p align="left" class="mb-1 label">Celular</p>
-          <v-text-field outlined
+         <!--  <v-text-field outlined
             prepend-inner-icon="mdi-flag"
             placeholder="+51 XXX XXX XXXX"
             class="textfield"
             color="#b380ff"
-          ></v-text-field>
+          ></v-text-field> -->
+          <code-country/>
           <p align="left" class="mb-1 label">Código de verificación</p>
           <v-text-field outlined
             placeholder="Verifica tu código"
@@ -75,7 +76,7 @@
         <h2  align="center"
           justify="end">Crea tu perfil gratuito como especialista</h2>
         <div  align="">
-          <v-col xl="7">
+          <v-col xs="11" sm="8" md="8" lg="7" xl="7">
             <router-link
             style="text-decoration: none
             color: inherit;"
@@ -85,26 +86,26 @@
           <p align="left" class="mb-1 label">Especialidad*</p>
           <v-autocomplete  outlined :items="especialidades"
             placeholder="Selecciona una especialidad"
-            class="textfield"
+            class="textfield mb-n3"
             color="#b380ff"
           ></v-autocomplete>
           <p align="left" class="mb-1 label">Estado*</p>
           <v-autocomplete  outlined :items="especialidades"
             placeholder="Selecciona un Estado"
-            class="textfield"
+            class="textfield mb-n3"
             color="#b380ff"
           ></v-autocomplete>
           <p align="left" class="mb-1 label">Ciudad*</p>
           <v-autocomplete outlined
             placeholder="Selecciona una ciudad"
-            class="textfield"
+            class="textfield mb-n3"
             color="#b380ff"
             :items="ciudad"
           ></v-autocomplete>
           <p align="left" class="mb-1 label">Cédula C1</p>
           <v-text-field outlined
             placeholder="Número de cédula"
-            class="textfield"
+            class="textfield mb-n3"
             color="#b380ff"
           ></v-text-field>
           <div align="right">
@@ -131,7 +132,7 @@
         <h2  align="center"
           justify="end">Crea tu perfil gratuito como especialista</h2>
         <div  align="">
-          <v-col xl="7">
+          <v-col xs="11" sm="8" md="8" lg="7" xl="7">
             <router-link
             style="text-decoration: none
             color: inherit;"
