@@ -1,5 +1,7 @@
 <template>
 <v-row>
+
+    <v-card-text>hola a los nuevos cambios</v-card-text>
     <v-col
         cols="12"
         md="4"
@@ -24,14 +26,14 @@
 
 <script>
 
-<<<<<<< HEAD
 
-export default{
 
-=======
+
+
+
 export default{
   components: { },
->>>>>>> 2faa2035e1896ac186141f1ee89d6040e740bc99
+
     data(){
         return{
 
