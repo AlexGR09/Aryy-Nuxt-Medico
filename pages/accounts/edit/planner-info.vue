@@ -1,7 +1,6 @@
 <template>
     <div><v-row>
-        <v-col md="1" lg="3" xl="2">
-            <v-card flat max-width="155">
+            <v-card flat>
     <v-list class="list-item" active-class="bgactive">
         <v-list-item-group
           v-model="selectedItem"
@@ -20,15 +19,12 @@
         </v-list-item-group>
       </v-list>
     </v-card>
-        </v-col>
         <v-col md="10" lg="9" xl="10">
                 
-  <v-card flat
-    class="pa-3 ml-n16 mt-2"
-  >
-    <v-card-subtitle class="pa-3 ml-n16 mt-n2 mb-n10"><H1 class="mb-5">CONSULTORIOS</H1></v-card-subtitle>
+  <v-card flat class="pa-3   mt-2">
+    <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">CONSULTORIOS</H1></v-card-subtitle>
     <v-card-text 
-    class="pa-3 ml-n16"
+    class="pa-3 "
     ><v-row><v-col>
       <v-list flat>
       </v-list></v-col></v-row>
@@ -41,7 +37,7 @@
       <v-col md="6" cols="12">
     <span>Teléfono para citas*</span>
       <v-text-field class="textfield" placeholder="XXX XXX XXXX" outlined></v-text-field>
-      <v-btn  class="btn ml-n5 mt-3"  text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro número</v-btn>
+      <v-btn  class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro número</v-btn>
       </v-col>
       <v-col md="6" cols="12">
     <span>Extensión</span>
@@ -70,7 +66,7 @@
       <v-col md="4" cols="12">
     <span>Número exterior*</span>
       <v-text-field class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
-      <v-btn  class="btn ml-n5 mt-3"  text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro consultorio</v-btn>
+      <v-btn  class="btn ml-n5 mt-3"  color="#9966ff"   text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro consultorio</v-btn>
       </v-col>
       <v-col md="4" cols="12">
     <span>Número interior</span>
@@ -152,7 +148,7 @@
     }
   H1{
     font-family: MontserratBold;
-    font-size: 150%;
+    font-size: 120%;
   }  
   span{
     font-family: Montserrat;

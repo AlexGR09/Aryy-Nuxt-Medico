@@ -39,7 +39,7 @@
                 @click:append="show1 = !show1"
                 hint="Respeta mayúsculas y minúsculas"
               ></v-text-field>
-                  <v-btn class="btnnn"  color="#7900ff" height="50">
+                  <v-btn class="btnnn" href="/"  color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
                   
