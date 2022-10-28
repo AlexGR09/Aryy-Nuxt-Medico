@@ -76,6 +76,7 @@
     <span>Referencias*</span>
       <v-text-field  class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
       </v-col>
+      <PaymentMethods />
     </v-row>
     <v-btn height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
     <v-btn  height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
@@ -87,7 +88,11 @@
 </div>
 </template>
 <script>
+import PaymentMethods from './PaymentComponents/paymentMethods.vue';
   export default {
+    components: {
+    PaymentMethods
+},
     data () {
       return {
         selectedItem: 1,

@@ -27,7 +27,7 @@
       <v-row>
     <v-col md="6" cols="12">
       <span>Consultorio*</span>
-        <v-autocomplete class="textfield" placeholder="Seleccione el consultorio" outlined></v-autocomplete>
+        <v-autocomplete append-icon="mdi-chevron-down" class="textfield" placeholder="Seleccione el consultorio" outlined></v-autocomplete>
     </v-col>    <v-col md="6" cols="12"></v-col>
     <v-col md="6" cols="12">
       <h1 class="mt-4 mb-4">TIPO DE HORARIO</h1>
@@ -37,7 +37,7 @@
     <v-col md="6" cols="12">
       <h1 class="mt-4 mb-4">HORARIOS DE CONSULTA</h1>
                     <v-btn-toggle borderless class="botones mb-n5 mt-n4">
-                      <v-checkbox class="checkbox" label="Lun"></v-checkbox>   <v-checkbox class="ml-8 checkbox" label="Mar"></v-checkbox>   <v-checkbox class="ml-8 checkbox" label="Mie"></v-checkbox>   <v-checkbox class="ml-8 checkbox" label="Jue"></v-checkbox>   <v-checkbox class="ml-8 checkbox" label="Vie"></v-checkbox>   <v-checkbox class="ml-8 checkbox" label="Sab"></v-checkbox>   <v-checkbox class="ml-8 checkbox" label="Dom"></v-checkbox>
+                      <v-checkbox v-model="lun" class="checkbox" color="#7900ff" label="Lun"></v-checkbox><v-checkbox v-model="mar" class="ml-8 checkbox" color="#7900ff" label="Mar"></v-checkbox><v-checkbox color="#7900ff" v-model="mie" class="ml-8 checkbox" label="Mie"></v-checkbox> <v-checkbox v-model="jue" color="#7900ff" class="ml-8 checkbox" label="Jue"></v-checkbox> <v-checkbox color="#7900ff" v-model="vie" class="ml-8 checkbox" label="Vie"></v-checkbox><v-checkbox v-model="sab" color="#7900ff" class="ml-8 checkbox" label="Sab"></v-checkbox><v-checkbox v-model="dom" color="#7900ff" class="ml-8 checkbox" label="Dom"></v-checkbox>
                     </v-btn-toggle>
     </v-col>    <v-col md="6" cols="12"></v-col>
     <v-col md="6" cols="12">
@@ -187,7 +187,7 @@
   font-family: Montserrat;
 }
 .text{
-  font-family: MontserratBold;
+  font-family: MontserratMedium;
   color: black;
 }
 .bgactive{
