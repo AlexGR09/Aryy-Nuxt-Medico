@@ -90,7 +90,7 @@
             </v-btn>
           </v-col>
     </v-row>
-    <BR/>
+    <BR/><BR/>
     <v-btn height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
     <v-btn  height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
             </v-card-text>

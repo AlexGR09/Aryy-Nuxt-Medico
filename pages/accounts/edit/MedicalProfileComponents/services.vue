@@ -29,8 +29,41 @@
   <v-card flat height="800px" class="pa-3 mt-2">
     <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">SERVICIOS</H1></v-card-subtitle>
     <v-card-text class="pa-3 ">
-  
-    </v-card-text>
+      <v-row>
+      <v-col xl="6">
+      <v-text-field  class="textfield mb-5" placeholder="Consulta de primera vez" outlined></v-text-field>
+      <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
+      <v-text-field  class="textfield mb-5" placeholder="Escribe un servicio médico" outlined></v-text-field>
+    </v-col>
+   <v-col xl="3">
+    <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
+    <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
+   </v-col> 
+   <v-col xl="1"></v-col>
+   <v-col xl="1">
+    <v-btn-toggle borderless class="botones">
+                      <v-btn class="iconos " icon>
+                       <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
+                      </v-btn>
+                      <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+                         <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="23"></v-img>
+                      </v-btn>
+                    </v-btn-toggle>
+                    
+   </v-col>
+  </v-row> 
+  <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5 mb-4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro servicio</v-btn>
+
+<v-row>
+  <v-col xl="6">
+    <span>Idiomas*</span>
+    <v-text-field  class="textfield mb-5" placeholder="Español" outlined></v-text-field>
+    <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro idioma</v-btn>
+    </v-col>
+</v-row>
+<v-btn height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
+    <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+  </v-card-text>
    </v-card>
         </v-col>
     </v-row>
@@ -100,8 +133,9 @@
       font-family: Montserrat;
     }
   H1{
-    font-family: MontserratBold;
+    font-family: MontserratMedium;
     font-size: 120%;
+    color: #4f565f;
   }  
   span{
     font-family: Montserrat;
