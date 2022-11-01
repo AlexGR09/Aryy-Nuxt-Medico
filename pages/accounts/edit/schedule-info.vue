@@ -239,8 +239,9 @@
       font-family: Montserrat;
     }
   H1{
-    font-family: MontserratBold;
+    font-family: MontserratMedium;
     font-size: 120%;
+    color: #4f565f;
   }  
   span{
     font-family: Montserrat;
