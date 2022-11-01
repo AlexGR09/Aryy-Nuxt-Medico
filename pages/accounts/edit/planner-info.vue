@@ -11,7 +11,7 @@
             <v-list-item-title  class="titlee" >CONSULTORIOS</v-list-item-title>
           </v-list-item-content >
         </v-list-item>
-        <v-list-item to="/accounts/edit/schedule-info">
+        <v-list-item to="/accounts/edit/plannerComponents/schedule-info">
           <v-list-item-content active-class="bgactive">
             <v-list-item-title  class="titlee">HORARIOS</v-list-item-title>
           </v-list-item-content>
@@ -51,7 +51,7 @@
 </div>
 </template>
 <script>
-import NewFacility from './newFacility.vue'
+import NewFacility from './plannerComponents/newFacility.vue'
 export default {
   components: {
     NewFacility
