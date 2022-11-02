@@ -199,13 +199,7 @@ div .theme--light.v-calendar .v-event-timed {
   font-size: 15px;
 }
 
-.theme--light.v-divider {
-    border-color: transparent;
-}
 
-.theme--light.v-calendar {
-    
-}
 
 
 .bg-active{

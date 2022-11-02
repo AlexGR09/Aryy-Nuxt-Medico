@@ -35,22 +35,23 @@
         <!-- Calendario vista dia |Genesis -->
         <v-col>
           <v-card>
-      <v-sheet height="64">
+      <v-sheet height="84">
        
         <v-toolbar
           flat 
         >
-          <v-btn  
+          <v-btn
           width="150px"
             outlined
             color="white"
-            class="mr-4 today "
+            class="mr-4 today mt-7 "
             @click="setToday"
           >
             <l class="today">hoy</l>
           </v-btn>
-          <v-divider  light inset></v-divider>
+          <v-spacer></v-spacer>
           <v-btn
+          class="mt-7 ml-10"
             fab
             text
             small
@@ -61,10 +62,11 @@
               mdi-chevron-left
             </v-icon>
           </v-btn>
-          <v-toolbar-title class="calendar" v-if="$refs.calendar">
+          <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
             {{ $refs.calendar.title }}
           </v-toolbar-title>
           <v-btn
+          class="mt-7"
             fab
             text
             small
@@ -79,7 +81,7 @@
           <v-spacer></v-spacer>
           <v-menu  bottom left >
                 <template v-slot:activator="{ on }">
-                    <v-btn width="150px"  class="list white--text mr-5 ml-n5"  outlined v-on="on">
+                    <v-btn  width="150px"  class="list white--text mr-5 ml-n5 mt-7"  outlined v-on="on">
                         <span background="#5a09ff">{{ typeToLabel[type] }}</span>
                         <v-icon right>mdi-menu-down</v-icon>
                     </v-btn>
@@ -101,6 +103,7 @@
       </v-sheet>
       <v-sheet height="700">
         <v-calendar
+          class="calend "
           interval-height="80px"
           interval-count="48"
           locale="mx-es"
@@ -124,48 +127,68 @@
             ></div>
           </template>
       </v-calendar>
-        <v-menu
+        <v-dialog
+        width="640px"
           v-model="selectedOpen"
           :close-on-content-click="false"
           :activator="selectedElement"
           offset-x
         >
           <v-card
-            color="grey lighten-4"
+            color="white"
             min-width="350px"
             flat
           >
-            <v-toolbar
-              :color="selectedEvent.color"
-              dark
-            >
-              <v-btn icon>
-                <v-icon>mdi-pencil</v-icon>
-              </v-btn>
-              <div  v-html="selectedEvent.name"></div>
-              <v-toolbar-title></v-toolbar-title>
-              <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-            </v-toolbar>
             <v-card-text>
-              <span v-html="selectedEvent.details"></span>
+              <br/>
+              <v-row>
+                <v-col>
+              <h1 class="eventName" v-html="selectedEvent.name"></h1> 
+                <p class="eventPhone  mt-5 mb-n1">No. 123</p>
+                <p class="eventPhone"  v-html="selectedEvent.phone"></p>
+              </v-col>
+              <v-col xl="4"><v-btn large color="#999999" outlined>
+                  <l class="titleAction">Reagendar cita</l>
+                  </v-btn> 
+                  <v-btn large width="192px" class="mt-2 mb-3" color="red" outlined>
+                  <l class="titleAction2" color="red">cancelar cita</l>
+                  </v-btn> </v-col>
+                
+                  
+                </v-row>
+                <v-divider></v-divider>
+                  
+              <div class="mt-5">
+              <p class="infor"><v-icon color="#9966ff">mdi-calendar</v-icon>sfsfs</p>
+              <p class="infor"><v-icon color="#9966ff">mdi-account</v-icon>Paciente nuevo</p>
+              <p class="infor"><v-icon color="#9966ff">mdi-map-marker-circle</v-icon>Consultorio Principal</p>
+            </div>
             </v-card-text>
+            
             <v-card-actions>
+              
               <v-btn
-                text
-                color="secondary"
+              class="eventAction"
+                outlined
+                color="green"
+                @click="selectedOpen = false"
+              ><v-icon>mdi-eye</v-icon>
+                <l class="eventAction ml-3">ASISTIÓ</l>
+              </v-btn>
+              <v-btn
+              class="eventAction"
+                outlined
+                color="red"
                 @click="selectedOpen = false"
               >
-                Cancel
+                <v-icon>mdi-eye-off</v-icon>
+                <l class="eventAction ml-3">NO ASISTIÓ</l>
               </v-btn>
+           
             </v-card-actions>
+            <br/>
           </v-card>
-        </v-menu>
+        </v-dialog>
       </v-sheet>
     </v-card>
     </v-col>
@@ -191,6 +214,7 @@
       events: [
         {
           name: 'Fulanito Detal',
+          phone: '9615897456',
           start: '2022-11-02T10:00:00',
           intervalo: '10:00 - 10:30',
           end: '2022-11-02T10:30:00',
@@ -199,6 +223,7 @@
         },
         {
           name: 'Zutanito Filipondio',
+          phone: '9611115823',
           intervalo: '10:30 - 11:00',
           start: '2022-11-02T10:30:00',
           end: '2022-11-02T11:00:00',
@@ -207,6 +232,7 @@
         },
         {
           name: 'Merengano Taltipo',
+          phone: '9610218998',
           start: '2022-11-02T11:00:00',
           end: '2022-11-02T11:30:00',
           intervalo: '11:00 - 11:30',
@@ -215,6 +241,7 @@
         },
         {
           name: 'Perengago Gilberto',
+          phone: '9610277896',
           start: '2022-11-02T11:30:00',
           end: '2022-11-02T12:00:00',
           intervalo: '11:30 - 12:00',
@@ -332,6 +359,16 @@
     margin-left: -6.5px;
   }
 }
+h1.eventName{
+  font-size: 250%;
+  color: #7900ff;
+  font-family: Montserrat;
+}
+p.eventPhone{
+  font-size: 120%;
+  color: gray;
+  font-family: Montserrat;
+}
 h4{
     font-family: Montserrat;
   }
@@ -344,6 +381,11 @@ h4{
   }
   span::first-letter {
  text-transform: uppercase;
+}
+.calend{
+  box-shadow: 10px 10px 5px 0px rgba(234,223,252,0.75);
+-webkit-box-shadow: 10px 10px 5px 0px rgba(234,223,252,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(234,223,252,0.75);
 }
   .v-calendar{
     font-family: Montserrat;
@@ -366,6 +408,10 @@ h4{
   .calendar{
     text-transform: capitalize;
   }
+  .eventAction{
+    color: black;
+    text-transform: capitalize;
+  }
   .list{
     margin-left: 2rem;
     width: 7rem;
@@ -384,5 +430,18 @@ h4{
   .v-input__icon--prepend-inner .v-icon { 
     color: #cccccc;
   }
-
+  p.infor{
+    font-family: MontserratBold;
+    font-size: 110%;
+  }
+  .titleAction{
+    text-transform: uppercase;
+    font-size: 90%;
+    color: gray;
+  }
+  .titleAction2{
+    text-transform: uppercase;
+    font-size: 90%;
+    color: red;
+  }
 </style>
