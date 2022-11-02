@@ -27,9 +27,9 @@
    
     
     <!-- código de NavBar | Luis Reyes-->
- <v-app-bar :clipped-left="clipped" fixed app> 
+<!--  <v-app-bar :clipped-left="clipped" fixed app> 
     
-      </v-app-bar>
+      </v-app-bar> -->
     <!-- pintamos los componetes | Luis Reyes-->
 
     <v-main>
@@ -195,11 +195,17 @@ v-navigation-drawer{
 }
 
 div .theme--light.v-calendar .v-event-timed {
-  font-family: MontserratMedium;
+  font-family: Montserrat;
   font-size: 15px;
-  border-radius: 1em/5em;
 }
 
+.theme--light.v-divider {
+    border-color: transparent;
+}
+
+.theme--light.v-calendar {
+    
+}
 
 
 .bg-active{
