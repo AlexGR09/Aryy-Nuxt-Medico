@@ -5,7 +5,7 @@
         <menu-med/>
       </v-card>
       <v-col md="10" lg="9" xl="10">          
-        <v-card  class="pa-3 mt-2">
+        <v-card flat class="pa-3 mt-2">
           <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">FORMACIÓN ACADÉMICA</H1></v-card-subtitle>
             <v-card-text class="pa-3 mt-5 ">
               <v-row>

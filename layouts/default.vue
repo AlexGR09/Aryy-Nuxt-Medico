@@ -1,5 +1,37 @@
 <template>
   <v-app dark>
+    <v-app-bar flat color="transparent" height="100" :clipped-left="clipped" fixed app>
+     <!--  boton para ir al dia actual | Genesis -->
+      <v-spacer></v-spacer>
+   <!--    bara de busqueda | Genesis -->
+      <v-toolbar
+      max-width="350px"
+        flat
+        color="transparent"
+        class="vtoolbar mr-n4"
+        
+      >
+        <v-text-field
+          reverse
+          class="search mt-6"
+          color="grey"
+          background-color="white"
+          outlined
+          placeholder="Búsqueda   "
+          prepend-inner-icon="mdi-magnify"
+        ></v-text-field>
+      </v-toolbar>
+             <!-- iconos para notificacion, ajustes y cuenta | Genesis -->
+        <v-btn class="ml-4" icon small>
+            <v-img :src="require('@/assets/icons/icon_notification.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="ml-4" icon small>
+            <v-img :src="require('@/assets/icons/icon_ajustes.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="ml-5 mr-7" fab   color="#7900ff">
+          <v-img max-width="70px" :src="require('@/assets/avatares/AVATARES_DR1.png')" ></v-img>
+        </v-btn>
+        </v-app-bar>
     <!--código de lista de elementos del SideBar | Luis Reyes-->
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
       <v-avatar class="icon-logo">

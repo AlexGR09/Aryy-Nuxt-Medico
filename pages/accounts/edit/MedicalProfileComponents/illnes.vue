@@ -8,8 +8,28 @@
   <v-card flat height="800px" class="pa-3 mt-2">
     <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">ENFERMEDADES QUE TRATA</H1></v-card-subtitle>
     <v-card-text class="pa-3 ">
-
-   
+      <v-row>
+        <v-col xl="6">
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Infecciones urinarias en adultos"></v-checkbox>
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Sindrome de vejiga dolorosa"></v-checkbox>
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Disfunción eréctil"></v-checkbox>
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Varicocele"></v-checkbox>
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Piedras en los riñones"></v-checkbox>
+        </v-col>
+        <v-col xl="6">
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Incontinencia urinaria de esfuerzos"></v-checkbox>
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Cáncer de testículos"></v-checkbox>
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Eyaculación precoz"></v-checkbox>
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Hiperplasia prostática"></v-checkbox>
+          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Enfermedades de Transmisión sexual (ETS)"></v-checkbox>
+        </v-col>
+</v-row>
+<br/>
+<v-btn  v-bind="attrs" v-on="on" class="btn ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro</v-btn>
+<div class="mt-5">
+  <v-btn height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
+    <v-btn  height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
+</div>
     </v-card-text>
    </v-card>
         </v-col>
@@ -32,7 +52,9 @@
   </script>
   
   <style>
-  
+  .checkbox{
+    font-family: Montserrat;
+  }
   .bgactive{
   background: #7900ff;
   color: white !important;
