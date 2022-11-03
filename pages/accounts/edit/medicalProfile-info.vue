@@ -2,28 +2,7 @@
   <div>
     <v-row>
       <v-card flat>
-        <v-list class="list-item" active-class="bgactive">
-          <v-list-item-group
-            v-model="selectedItem"
-            color="#7900ff"
-          >
-            <v-list-item to="/accounts/edit/medicalProfile-info">
-              <v-list-item-content active-class="bgactive">
-                <v-list-item-title  class="titlee" >FORMACIÓN</v-list-item-title>
-              </v-list-item-content >
-            </v-list-item>
-            <v-list-item to="/accounts/edit/MedicalProfileComponents/services">
-              <v-list-item-content active-class="bgactive">
-                <v-list-item-title  class="titlee">SERVICIOS</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item to="/accounts/edit/MedicalProfileComponents/illnes">
-              <v-list-item-content active-class="bgactive">
-                <v-list-item-title  class="titlee">ENFERMEDADES</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
+        <menu-med/>
       </v-card>
       <v-col md="10" lg="9" xl="10">          
         <v-card  class="pa-3 mt-2">
@@ -121,11 +100,13 @@
 import Vue from 'vue';
 import VueFileAgent from 'vue-file-agent';
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
+import MenuMed from './MedicalProfileComponents/menuMed.vue'
 Vue.use(VueFileAgent);
 Vue.use(VueFileAgentStyles);
   export default {
     components: {
-  },
+    MenuMed
+},
     data () {
       return {
         fileRecords: [],
