@@ -9,30 +9,73 @@
     <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">SERVICIOS</H1></v-card-subtitle>
     <v-card-text class="pa-3 ">
       <v-row>
+       <v-col xl="6">
+        <v-text-field  class="textfield mb-5" placeholder="Consulta de primera vez" outlined></v-text-field>
+       </v-col> 
+       <v-col xl="3">
+        <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
+       </v-col> 
+       <v-col xl="1"></v-col>
+       <v-col xl="1">
+        <v-btn-toggle borderless class="botones">
+        <v-btn class="iconos " icon>
+          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="23"></v-img>
+        </v-btn>
+      </v-btn-toggle>    
+       </v-col>
+       <v-col xl="6">
+        <v-text-field  class="textfield mb-5" placeholder="Consulta de primera vez" outlined></v-text-field>
+       </v-col> 
+       <v-col xl="3">
+        <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
+       </v-col> 
+       <v-col xl="1"></v-col>
+       <v-col xl="1">
+        <v-btn-toggle borderless class="botones">
+        <v-btn class="iconos " icon>
+          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="23"></v-img>
+        </v-btn>
+      </v-btn-toggle>    
+       </v-col>
+       <v-col xl="6">
+        <v-text-field  class="textfield mb-5" placeholder="Escribe un servicio médico" outlined></v-text-field>
+       </v-col>
+       <v-col xl="5">
+        <v-text-field  class="textfield mb-5" placeholder="Agregar precio de servicio" outlined></v-text-field>
+       </v-col>
+      </v-row>
+<!--       <v-row>
       <v-col xl="6">
-      <v-text-field  class="textfield mb-5" placeholder="Consulta de primera vez" outlined></v-text-field>
+     
       <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
-      <v-text-field  class="textfield mb-5" placeholder="Escribe un servicio médico" outlined></v-text-field>
+
     </v-col>
-   <v-col xl="3">
-    <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
+    <v-row>
+      <v-col xl="4">
+   
     <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
    </v-col> 
-   <v-col xl="1"></v-col>
    <v-col xl="1">
-    <v-btn-toggle borderless class="botones">
-                      <v-btn class="iconos " icon>
-                       <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
-                      </v-btn>
-                      <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
-                         <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="23"></v-img>
-                      </v-btn>
-                    </v-btn-toggle>
-                    
-   </v-col>
+    
+      <v-btn-toggle borderless class="botones mt-6">
+        <v-btn class="iconos " icon>
+          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="23"></v-img>
+        </v-btn>
+      </v-btn-toggle>   
+  </v-col>
+    </v-row>
   </v-row> 
   <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5 mb-4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro servicio</v-btn>
-
+ -->
 <v-row>
   <v-col xl="6">
     <span>Idiomas*</span>
