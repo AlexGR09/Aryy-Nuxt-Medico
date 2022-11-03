@@ -12,7 +12,7 @@
               <v-list-item-title  class="titlee" >CONSULTORIOS</v-list-item-title>
             </v-list-item-content >
           </v-list-item>
-          <v-list-item to="/accounts/edit/schedule-info">
+          <v-list-item to="/accounts/edit/plannerComponents/schedule-info">
             <v-list-item-content active-class="bgactive">
               <v-list-item-title  class="titlee">HORARIOS</v-list-item-title>
             </v-list-item-content>
@@ -21,7 +21,7 @@
       </v-list>
     </v-card>
         <v-col md="10" lg="9" xl="10">
-          <v-card flat class="pa-3 mt-2">
+          <v-card  class="pa-3 mt-2">
                   <v-card-subtitle class="pa-3 mb-n5 mt-n2 "><H1 class="mb-5 ">CONFIGURACIÓN DE HORARIOS</H1></v-card-subtitle>
     <v-card-text class="pa-3">
       <v-row>

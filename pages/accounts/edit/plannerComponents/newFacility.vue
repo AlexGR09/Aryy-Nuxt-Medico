@@ -1,61 +1,58 @@
 <template>
     <div>        
-  <v-card height="570px" flat class="pa-7">
-    <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">CONSULTORIOS</H1></v-card-subtitle>
-    <v-card-text 
-    class="pa-3 "
-    ><v-row><v-col>
-      <v-list flat>
-      </v-list></v-col></v-row>
-    <v-row>
-    <v-col md="6" cols="12">
+  <v-card  height="100%" flat class="pa-16 ">
+    <v-card-text class="pa-16 ">
+      <v-row>
+        <v-col md="1" lg="1" xl="1"></v-col>
+        <v-col  md="10" lg="10" xl="10">
+          <v-row>
+    <v-col md="12" cols="12">
     <span>Nombre del consultorio*</span>
-      <v-text-field class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
+      <v-text-field color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
       </v-col>
-      <v-col md="6" cols="12"></v-col>
+    
       <v-col md="6" cols="12">
     <span>Teléfono para citas*</span>
-      <v-text-field class="textfield" placeholder="XXX XXX XXXX" outlined></v-text-field>
+      <v-text-field color="#9966ff" class="textfield" placeholder="XXX XXX XXXX" outlined></v-text-field>
       <v-btn  class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro número</v-btn>
       </v-col>
       <v-col md="6" cols="12">
     <span>Extensión</span>
-      <v-text-field class="textfield"  placeholder="No. Extensión" outlined></v-text-field>
+      <v-text-field color="#9966ff" class="textfield"  placeholder="No. Extensión" outlined></v-text-field>
       </v-col>
       <v-col md="4" cols="12">
     <span>Código postal*</span>
-      <v-text-field  maxlength="5" counter="5" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
+      <v-text-field color="#9966ff" maxlength="5" counter="5" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
       </v-col>
       <v-col md="4" cols="12">
     <span>Estado*</span>
-      <v-text-field class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
+      <v-text-field color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
       </v-col>
       <v-col md="4" cols="12">
     <span>Ciudad o Municipio*</span>
-      <v-text-field class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
+      <v-text-field color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
       </v-col>
       <v-col md="4" cols="12">
     <span>Colonia*</span>
-      <v-autocomplete class="textfield" placeholder="Nombre del consultorio" outlined></v-autocomplete>
+      <v-autocomplete color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-autocomplete>
       </v-col>
       <v-col md="8" cols="12">
     <span>Ubicación*</span>
-      <v-text-field class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
+      <v-text-field color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
       </v-col>
       <v-col md="4" cols="12">
     <span>Número exterior*</span>
-      <v-text-field class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
+      <v-text-field color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
       </v-col>
       <v-col md="4" cols="12">
     <span>Número interior</span>
-      <v-text-field class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
+      <v-text-field color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
       </v-col>
       <v-col md="4" cols="12">
     <span>Referencias*</span>
-      <v-text-field  class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
+      <v-text-field color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
       </v-col>
     </v-row>
-    <br/><br/>
     <v-row>
         <v-col md="6" lg="6" xl="6">
             <H1 class="mb-5">ACCESIBILIDAD</H1>
@@ -70,10 +67,17 @@
             <v-checkbox class="vcheckbox" color="#7900ff" hide-details label="Amigable con la comunidad LGBTQ+"></v-checkbox>
             <v-checkbox class="vcheckbox" color="#7900ff" hide-details label="Espacio seguro para personas transgénero"></v-checkbox>
         </v-col>
+        <div class="mt-10">
+          <v-btn height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
+    <v-btn @click="dialog = false"  height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
+        </div>
+   
     </v-row>
-    <br/><br/>
-    <v-btn height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
-    <v-btn  height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
+        </v-col>
+        <v-col xl="1"></v-col>
+      </v-row>
+
+   
     </v-card-text>
    </v-card>
  
@@ -85,6 +89,7 @@
 },
     data () {
       return {
+        dialog: false,
         selectedItem: 1,
       }
     },

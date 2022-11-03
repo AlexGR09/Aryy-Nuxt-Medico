@@ -338,6 +338,10 @@
   }
 </script>
 
+<style lang="scss" scoped>
+@import '~assets/scss/variables';
+</style>
+
 <style lang="scss">
 /* estilos de puntero de hora actual  | Genesis */
 .v-current-time {

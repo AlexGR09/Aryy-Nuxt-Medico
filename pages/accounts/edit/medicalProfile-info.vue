@@ -32,20 +32,37 @@
               <v-row>
                 <v-col md="6" cols="12">
                   <span>Especialidad*</span>
-                  <v-text-field  class="textfield mb-5" placeholder="Selecciona una especialidad" outlined></v-text-field>
-                  <span >Institución que otorgó la cédula*</span>
-                  <v-text-field  class="textfield mb-14" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
+                  <v-autocomplete color="#9966ff" class="textfield " placeholder="Selecciona una especialidad" outlined></v-autocomplete>
+                 
+                
+                </v-col> 
+                <v-col md="6" cols="12"></v-col>
+                <v-col md="6" cols="12">
                   <span >Subespecialidad (opcional)</span>
-                  <v-autocomplete  class="textfield" placeholder="Añadir" outlined></v-autocomplete>
+                  <v-autocomplete color="#9966ff" class="textfield" placeholder="Añadir" outlined></v-autocomplete>
+                  <v-btn class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra</v-btn>
+                </v-col>
+                <v-col md="6" cols="12">
+                  <span >Subespecialidad (opcional)</span>
+                  <v-autocomplete color="#9966ff" class="textfield" placeholder="Añadir" outlined></v-autocomplete>
                   <v-btn class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra</v-btn>
                 </v-col>
                 <v-col md="6" cols="12">
                     <span >No. de cedula*</span>
-                  <v-text-field  class="textfield mb-5" placeholder="00000000" outlined></v-text-field>
-                  <span >Foto de cedula*</span>
-                  <v-file-input class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
-                    <v-input class="input">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</v-input>
-                </v-col>
+                  <v-text-field  color="#9966ff" class="textfield" placeholder="00000000" outlined></v-text-field> </v-col>
+                  <v-col xl="6">
+                    <span >Institución que otorgó la cédula*</span>
+                  <v-text-field color="#9966ff"  class="textfield" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
+                  </v-col>
+                  <v-col xl="6">
+                    <span >Foto de cedula*</span>
+                  <v-file-input chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
+                    <v-input class="input mb-n4">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</v-input>
+                    <v-btn class="btn ml-n5 mb-n4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra cédula</v-btn>
+                  </v-col>
+                <!-- 
+                 
+                </v-col> -->
                 <v-col xl="12">
                     <span >Sobre mi(opcional)</span>
                     <v-textarea maxlength="400" counter="400" auto-grow placeholder="Escribe una biografía breve sobre ti" outlined class="textfield mb-16"></v-textarea> 
@@ -56,11 +73,11 @@
     <v-btn  height="50px" class="restore ml-3 mt-16" color="#999999" outlined large>Restaurar todo</v-btn>
     <H1 class="mb-5 mt-8">CERTIFICADOS</H1>
     <VueFileAgent :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
-    <H1 class="mb-5 mt-8">RECETA MÉDICA*</H1>
+<!--     <H1 class="mb-5 mt-8">RECETA MÉDICA*</H1>
     <v-row>
       <v-col xl="6"> <span>Logotipo propio</span> <v-file-input class="textfield" placeholder="Añadir archivo" outlined></v-file-input >   <v-input class="input">Formatos permitidos: PDF, JPG O PNG. Tamaño máximo de archivo 5 MB.</v-input></v-col>    
       <v-col xl="6">  <span>Grupo médico (opcional)</span><v-file-input class="textfield" placeholder="Añadir archivo" outlined></v-file-input >   <v-input class="input">Formatos permitidos: PDF, JPG O PNG. Tamaño máximo de archivo 5 MB.</v-input></v-col>
-    </v-row>
+    </v-row> -->
     <H1 class="mb-5 mt-8">REDES SOCIALES</H1>
     <v-row>
         <v-col xl="4">
@@ -118,7 +135,8 @@ Vue.use(VueFileAgentStyles);
     },
   }
   </script>
-  
+
+
   <style>
   .v-input__icon--prepend .v-icon { 
     color: #9966ff;
