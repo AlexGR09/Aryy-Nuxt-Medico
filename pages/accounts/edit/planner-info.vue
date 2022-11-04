@@ -1,55 +1,12 @@
 <template>
   <div><v-row>
-          <v-card flat>
-  <v-list dense class="list-item" active-class="bgactive">
-      <v-list-item-group
-        v-model="selectedItem"
-        color="#7900ff"
-      >
-        <v-list-item to="/accounts/edit/planner-info">
-          <v-list-item-content active-class="bgactive">
-            <v-list-item-title  class="titlee" >CONSULTORIOS</v-list-item-title>
-          </v-list-item-content >
-        </v-list-item>
-        <v-list-item to="/accounts/edit/plannerComponents/schedule-info">
-          <v-list-item-content active-class="bgactive">
-            <v-list-item-title  class="titlee">HORARIOS</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-  </v-card>
+        <menu-planner/>
       <v-col md="10" lg="9" xl="10">
-     
 <v-card flat height="800px" class="pa-3 mt-2">
-  
-  <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
+  <v-card-subtitle class="pa-3  mt-n2 mb-n16"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
   <v-card-text class="pa-3 ">
- <!--   <v-col md="6" cols="12">
-    <br/>
-  <p>Todavía no tienes consultorios registrados</p>
-    </v-col>  -->
-    <v-card outlined>
-      <v-row>
-        <v-col xl="1"><v-img class="ml-5 mt-2" :src="require('@/assets/icons/icon_inicio.svg')" width="35px"></v-img></v-col>
-        <v-col xl="3"><p class="mt-4">Consultorio principal</p></v-col>
-        <v-col xl="4"><p class="mt-4">2972 Westheimer RD. Santa Ana, Illinois 85486</p></v-col>
-        <v-col xl="2"></v-col>
-        <v-col>
-          <v-btn-toggle borderless class="botones">
-        <v-btn v-model="check" class="iconos " icon>
-          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="25"></v-img>
-        </v-btn>
-        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
-            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="25"></v-img>
-        </v-btn>
-        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
-            <v-img :src="require('@/assets/icons/icon_verpaciente.svg')" max-width="25"></v-img>
-        </v-btn>
-      </v-btn-toggle>    
-        </v-col>
-      </v-row>
-    </v-card>
+    <!-- card para mostrar datos de consultorio | Genesis -->
+    <facility-card/>
     <v-col md="6" cols="12"></v-col>
   
   <v-row>
@@ -57,10 +14,7 @@
         <v-dialog  fullscreen  overlay-color="white"
          transition="dialog-top-transition" v-model="dialog">
         <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
-        <!--  <v-btn
-            dark icon color="black"
-            @click="dialog = false" 
-          >
+        <!--  <v-btn dark icon color="black" @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn> --> 
           <v-row>
@@ -73,23 +27,23 @@
             <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5 mt-n3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agrega un consultorio</v-btn>
           </template>
            <new-facility class="mt-16"/>
-           
         </v-dialog>
       </v-col>
     </v-row>
- 
   </v-card-text>
  </v-card>
       </v-col>
   </v-row>
-
 </div>
 </template>
 <script>
+import FacilityCard from './plannerComponents/facilityCard.vue'
+import MenuPlanner from './plannerComponents/menuPlanner.vue'
 import NewFacility from './plannerComponents/newFacility.vue'
 export default {
   components: {
-    NewFacility
+    NewFacility, FacilityCard,
+    MenuPlanner 
 },
   data () {
     return {

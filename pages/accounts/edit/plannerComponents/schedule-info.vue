@@ -1,25 +1,6 @@
 <template>
     <div><v-row>
-            <v-card flat max-width="155"
-    >
-    <v-list dense class="list-item" active-class="bgactive">
-        <v-list-item-group
-          v-model="selectedItem"
-          color="#7900ff"
-        >
-          <v-list-item to="/accounts/edit/planner-info">
-            <v-list-item-content active-class="bgactive">
-              <v-list-item-title  class="titlee" >CONSULTORIOS</v-list-item-title>
-            </v-list-item-content >
-          </v-list-item>
-          <v-list-item to="/accounts/edit/plannerComponents/schedule-info">
-            <v-list-item-content active-class="bgactive">
-              <v-list-item-title  class="titlee">HORARIOS</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-card>
+          <menu-planner/>
         <v-col md="10" lg="9" xl="10">
           <v-card  class="pa-3 mt-2">
                   <v-card-subtitle class="pa-3 mb-n5 mt-n2 "><H1 class="mb-5 ">CONFIGURACIÓN DE HORARIOS</H1></v-card-subtitle>
@@ -154,7 +135,9 @@
 
 </template>
 <script>
+import menuPlanner from './menuPlanner.vue';
   export default {
+  components: { menuPlanner },
     data () {
       return {
         inputs: [
