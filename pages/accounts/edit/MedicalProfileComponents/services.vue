@@ -6,19 +6,38 @@
         <v-col md="10" lg="9" xl="10">
                 
   <v-card flat height="800px" class="pa-3 mt-2">
-    <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">SERVICIOS</H1></v-card-subtitle>
+    <v-card-subtitle class="pa-3  mt-n2 mb-n5"><H1 class="mb-5">SERVICIOS</H1></v-card-subtitle>
     <v-card-text class="pa-3 ">
       <v-row>
-       <v-col xl="6">
-        <v-text-field  class="textfield mb-5" placeholder="Consulta de primera vez" outlined></v-text-field>
+       <v-col xs="6" md="6" lg="6" xl="6">
+        <v-text-field color="#7900ff" class="textfield mb-5 " value="Consulta de primera vez"  outlined></v-text-field>
        </v-col> 
-       <v-col xl="3">
-        <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
+       <v-col xs="2" md="2" lg="2" xl="1">
+        <v-text-field :disabled="!check" color="#7900ff"  class="textfield mb-5" value="$800" outlined></v-text-field>
        </v-col> 
-       <v-col xl="1"></v-col>
-       <v-col xl="1">
+       <v-col xs="1" md="1" lg="1" xl="1"><v-autocomplete color="#7900ff" :disabled="!check " placeholder="MXN" class="ml-n6" outlined background-color="rgb(242, 242, 242)"></v-autocomplete></v-col>
+       <v-col xs="1" md="1" lg="1" xl="2"></v-col>
+       <v-col xs="1" md="1" lg="1" xl="1">
         <v-btn-toggle borderless class="botones">
-        <v-btn class="iconos " icon>
+        <v-btn v-model="check" class="iconos " icon>
+          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="25"></v-img>
+        </v-btn>
+        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="25"></v-img>
+        </v-btn>
+      </v-btn-toggle>    
+       </v-col>
+       <v-col xs="6" md="6" lg="6" xl="6">
+        <v-text-field color="#7900ff" class="textfield mt-n5" value="Consulta subsecuente" outlined></v-text-field>
+       </v-col> 
+       <v-col xs="2" md="2" lg="2" xl="1">
+        <v-text-field :disabled="!checks" color="#7900ff"  class="textfield mb-5 mt-n5" value="$800" outlined></v-text-field>
+       </v-col> 
+       <v-col xs="1" md="1" lg="1" xl="1"><v-autocomplete color="#7900ff" :disabled="!checks" placeholder="MXN" class="ml-n6 mt-n5" outlined background-color="rgb(242, 242, 242)"></v-autocomplete></v-col>
+       <v-col xs="1" md="1" lg="1" xl="2"></v-col>
+       <v-col xs="1" md="1" lg="1" xl="1">
+        <v-btn-toggle borderless class="botones mt-n5">
+          <v-btn v-model="checks" class="iconos " icon>
           <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
         </v-btn>
         <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
@@ -26,65 +45,26 @@
         </v-btn>
       </v-btn-toggle>    
        </v-col>
-       <v-col xl="6">
-        <v-text-field  class="textfield mb-5" placeholder="Consulta de primera vez" outlined></v-text-field>
-       </v-col> 
-       <v-col xl="3">
-        <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
-       </v-col> 
-       <v-col xl="1"></v-col>
-       <v-col xl="1">
-        <v-btn-toggle borderless class="botones">
-        <v-btn class="iconos " icon>
-          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
-        </v-btn>
-        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
-            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="23"></v-img>
-        </v-btn>
-      </v-btn-toggle>    
+       <v-col xs="6" md="6" lg="6" xl="6">
+        <v-text-field color="#7900ff" class="textfield mt-n5 " placeholder="Escribe un servicio médico" outlined></v-text-field>
        </v-col>
-       <v-col xl="6">
-        <v-text-field  class="textfield mb-5" placeholder="Escribe un servicio médico" outlined></v-text-field>
-       </v-col>
-       <v-col xl="5">
-        <v-text-field  class="textfield mb-5" placeholder="Agregar precio de servicio" outlined></v-text-field>
-       </v-col>
+       <v-col xs="4" md="4" lg="4" xl="4">
+        <v-text-field color="#7900ff"  class="textfield mt-n5" placeholder="Agregar precio de servicio" outlined></v-text-field>
+      </v-col> 
+      <v-col xs="1" md="1" lg="1" xl="1"><v-autocomplete value="MXN" placeholder="MXN" class="ml-n6 mt-n5" outlined background-color="rgb(242, 242, 242)"></v-autocomplete></v-col>
       </v-row>
-<!--       <v-row>
-      <v-col xl="6">
-     
-      <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
-
-    </v-col>
-    <v-row>
-      <v-col xl="4">
-   
-    <v-text-field  class="textfield mb-5" placeholder="Consulta de seguimiento" outlined></v-text-field>
-   </v-col> 
-   <v-col xl="1">
-    
-      <v-btn-toggle borderless class="botones mt-6">
-        <v-btn class="iconos " icon>
-          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
-        </v-btn>
-        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
-            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="23"></v-img>
-        </v-btn>
-      </v-btn-toggle>   
-  </v-col>
-    </v-row>
-  </v-row> 
-  <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5 mb-4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro servicio</v-btn>
- -->
 <v-row>
-  <v-col xl="6">
-    <span>Idiomas*</span>
-    <v-text-field  class="textfield mb-5" placeholder="Español" outlined></v-text-field>
+  <v-col xs="6" md="6" lg="6" xl="6">
+    <p class="cedu mt-n5 mb-1">Idiomas*</p>
+    <v-text-field color="#7900ff" class="textfield mb-5" placeholder="Español" outlined></v-text-field>
     <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro idioma</v-btn>
     </v-col>
 </v-row>
-<v-btn height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
-    <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+<v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
+      <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+      <v-overlay :value="overlay">
+        <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
+      </v-overlay>  
   </v-card-text>
    </v-card>
         </v-col>
@@ -100,14 +80,28 @@
 },
     data () {
       return {
+        overlay: false,
+        check: "",
+        checks: "",
         selectedItem: 1,
       }
     },
+    watch: {
+    overlay (val) {
+      val && setTimeout(() => {
+        this.overlay = false
+      }, 3000)
+    },
+  },
   }
   </script>
   
   <style>
-  
+    p.cedu{
+    font-family: Montserrat;
+    font-size: 120%;
+  }
+
   .bgactive{
   background: #7900ff;
   color: white !important;

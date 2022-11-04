@@ -1,7 +1,7 @@
 <template>
   <div><v-row>
           <v-card flat>
-  <v-list class="list-item" active-class="bgactive">
+  <v-list dense class="list-item" active-class="bgactive">
       <v-list-item-group
         v-model="selectedItem"
         color="#7900ff"
@@ -23,15 +23,35 @@
      
 <v-card flat height="800px" class="pa-3 mt-2">
   
-  <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">CONSULTORIOS</H1></v-card-subtitle>
+  <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
   <v-card-text class="pa-3 ">
-  <v-row>
-  <v-col md="6" cols="12">
+ <!--   <v-col md="6" cols="12">
     <br/>
   <p>Todavía no tienes consultorios registrados</p>
-    </v-col>
+    </v-col>  -->
+    <v-card outlined>
+      <v-row>
+        <v-col xl="1"><v-img class="ml-5 mt-2" :src="require('@/assets/icons/icon_inicio.svg')" width="35px"></v-img></v-col>
+        <v-col xl="3"><p class="mt-4">Consultorio principal</p></v-col>
+        <v-col xl="4"><p class="mt-4">2972 Westheimer RD. Santa Ana, Illinois 85486</p></v-col>
+        <v-col xl="2"></v-col>
+        <v-col>
+          <v-btn-toggle borderless class="botones">
+        <v-btn v-model="check" class="iconos " icon>
+          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="25"></v-img>
+        </v-btn>
+        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="25"></v-img>
+        </v-btn>
+        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+            <v-img :src="require('@/assets/icons/icon_verpaciente.svg')" max-width="25"></v-img>
+        </v-btn>
+      </v-btn-toggle>    
+        </v-col>
+      </v-row>
+    </v-card>
     <v-col md="6" cols="12"></v-col>
-  </v-row>
+  
   <v-row>
       <v-col cols="auto">
         <v-dialog  fullscreen  overlay-color="white"
@@ -91,7 +111,7 @@ fill: white !important;
 margin-top: 1em;
 }
 .titlee {
-font-family: 'Montserrat', sans-serif;
+font-family: 'MontserratMedium', sans-serif;
 font-size: 13px;
 text-transform: unset !important;
 color: black;

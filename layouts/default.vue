@@ -232,7 +232,19 @@ div .theme--light.v-calendar .v-event-timed {
 }
 
 
+.theme--light.v-divider {
+   color: #f4edff;
+}
 
+.vtoolbar{
+    border: thin solid #cccccc;
+    height: 30px;
+    width: 2rem;
+  }
+  .search{
+    
+    font-family: Montserrat;
+  }
 
 .bg-active{
   background: #7900ff;

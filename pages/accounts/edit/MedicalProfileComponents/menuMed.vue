@@ -1,5 +1,5 @@
 <template>
-        <v-list class="list-item" active-class="bgactive">
+        <v-list dense class="list-item" active-class="bgactive">
           <v-list-item-group
             v-model="selectedItem"
             color="#7900ff"
@@ -11,7 +11,7 @@
             </v-list-item>
             <v-list-item to="/accounts/edit/MedicalProfileComponents/idMed">
               <v-list-item-content active-class="bgactive">
-                <v-list-item-title  class="titlee">ID MED.</v-list-item-title>
+                <v-list-item-title  class="titlee">ID MÉD.</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-list-item to="/accounts/edit/MedicalProfileComponents/services">
@@ -38,3 +38,8 @@ export default {
   },
 }
 </script>
+<style>
+.titlee{
+  font-family: MontserratMedium;
+}
+</style>

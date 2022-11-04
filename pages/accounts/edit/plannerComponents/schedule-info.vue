@@ -2,7 +2,7 @@
     <div><v-row>
             <v-card flat max-width="155"
     >
-    <v-list class="list-item" active-class="bgactive">
+    <v-list dense class="list-item" active-class="bgactive">
         <v-list-item-group
           v-model="selectedItem"
           color="#7900ff"
@@ -199,7 +199,7 @@
   margin-top: 1em;
 }
 .titlee {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MontserratMedium', sans-serif;
   font-size: 15px;
   text-transform: unset !important;
   color: black;

@@ -4,41 +4,39 @@
       <v-card flat>
         <menu-med/>
       </v-card>
-      <v-col md="10" lg="9" xl="10">          
+      <v-col md="10" lg="10" xl="10">          
         <v-card flat class="pa-3 mt-2">
           <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">FORMACIÓN ACADÉMICA</H1></v-card-subtitle>
             <v-card-text class="pa-3 mt-5 ">
               <v-row>
-                <v-col md="6" cols="12">
+                <v-col md="6" lg="6" xl="6" cols="12">
                   <span>Especialidad*</span>
                   <v-autocomplete color="#9966ff" class="textfield " placeholder="Selecciona una especialidad" outlined></v-autocomplete>
-                 
-                
                 </v-col> 
-                <v-col md="6" cols="12"></v-col>
-                <v-col md="6" cols="12">
+                <v-col md="6" lg="6" xl="6" cols="12"></v-col>
+                <v-col md="6" lg="6" xl="6" cols="12">
                   <span >Subespecialidad (opcional)</span>
                   <v-autocomplete color="#9966ff" class="textfield" placeholder="Añadir" outlined></v-autocomplete>
                   <v-btn class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra</v-btn>
                 </v-col>
-                <v-col md="6" cols="12">
+                <v-col md="6" lg="6" xl="6" cols="12">
                   <span >Subespecialidad (opcional)</span>
                   <v-autocomplete color="#9966ff" class="textfield" placeholder="Añadir" outlined></v-autocomplete>
                   <v-btn class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra</v-btn>
                 </v-col>
-                <v-col md="6" cols="12">
-                    <span >No. de cedula*</span>
-                  <v-text-field  color="#9966ff" class="textfield" placeholder="00000000" outlined></v-text-field> </v-col>
-                  <v-col xl="6">
-                    <span >Institución que otorgó la cédula*</span>
-                  <v-text-field color="#9966ff"  class="textfield" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
+                <v-col md="6" lg="6" xl="6" cols="12">
+                    <p class="cedu mt-n4 mb-n1">No. de cedula*</p>
+                  <v-text-field  color="#9966ff" class="textfield mt-1" placeholder="00000000" outlined></v-text-field> </v-col>
+                  <v-col md="6" lg="6" xl="6" cols="12">
+                    <p class="cedu mt-n4 mb-n1">Institución que otorgó la cédula*</p>
+                  <v-text-field color="#9966ff"  class="textfield mt-1" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
                   </v-col>
-                  <v-col xl="6">
-                    <span >Foto de cedula*</span>
+                  <v-col md="6" lg="6" xl="6" cols="12">
+                    <p class="cedu mb-1">Foto de cedula*</p>
                   <v-file-input chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
                     <v-input class="input mb-n4">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</v-input>
                     <v-btn class="btn ml-n5 mb-n4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra cédula</v-btn>
-                  </v-col>
+                  </v-col><v-col md="6" lg="6" xl="6" cols="12"></v-col>
                 <!-- 
                  
                 </v-col> -->
@@ -48,8 +46,11 @@
                 </v-col>
              
                 </v-row>
-                <v-btn height="50px" class="white--text save mt-16" color="#7900ff" large>Guardar cambios</v-btn>
-    <v-btn  height="50px" class="restore ml-3 mt-16" color="#999999" outlined large>Restaurar todo</v-btn>
+                <v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
+      <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+      <v-overlay :value="overlay">
+        <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
+      </v-overlay>
     <H1 class="mb-5 mt-8">CERTIFICADOS</H1>
     <VueFileAgent :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
 <!--     <H1 class="mb-5 mt-8">RECETA MÉDICA*</H1>
@@ -87,9 +88,12 @@
           </v-col>
     </v-row>
     <BR/><BR/>
-    <v-btn height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
-    <v-btn  height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
-            </v-card-text>
+   <v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
+      <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+      <v-overlay :value="overlay">
+        <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
+      </v-overlay>  
+  </v-card-text>
             
         </v-card>
       </v-col>
@@ -109,11 +113,19 @@ Vue.use(VueFileAgentStyles);
 },
     data () {
       return {
+        overlay: false,
         fileRecords: [],
         uploadUrl: 'https://example.com',
         selectedItem: 1,
       }
     },
+    watch: {
+    overlay (val) {
+      val && setTimeout(() => {
+        this.overlay = false
+      }, 3000)
+    },
+  },
   }
   </script>
 
@@ -189,5 +201,9 @@ Vue.use(VueFileAgentStyles);
     font-family: MontserratMedium;
     color: gray;
     font-size: 110%;
+  }
+  p.cedu{
+    font-family: Montserrat;
+    font-size: 120%;
   }
   </style>

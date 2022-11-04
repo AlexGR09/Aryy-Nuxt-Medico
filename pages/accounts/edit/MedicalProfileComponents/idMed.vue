@@ -18,54 +18,55 @@
                   <H1 class="mb-5 mt-5">FOTOGRAFÍAS</H1>
                   <span>Fotografías del especialista</span>
                    <VueFileAgent :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
-                   <v-badge
-                        :value="hover"
-                        color="deep-purple accent-4"
-                        content="9999+"
-                        left
-                        transition="slide-x-transition"
-                    >
-
-                        <v-hover v-model="hover">
-                        <v-input class="input mb-n4"> <v-icon
+                 
+                   <div>
+                    <v-tooltip color="transparent" bottom>
+                      <template v-slot:activator="{ on, attrs }">
+                        <span class="input"
+                          v-bind="attrs"
+                          v-on="on"
+                        ><v-icon
                             color="#9966ff"
                             small
                         >
                         mdi-information
-                        </v-icon>Más información sobre las fotos</v-input>
-                        </v-hover>
-                    </v-badge>
+                        </v-icon>Más información sobre las fotos</span>
+                      </template>
+                      <v-alert shaped color="#7900ff"><p class="alertDi mb-n2 mt-n2">
+                    ∙En su escritorio <br/>   ∙En su consultorio (preferentemente usando bata) <br/>   
+                    ∙Utilizando algún aparato dentro del consultorio <br/>   ∙Realizando algún procedimiento a algun paciente <br/>   ∙De cuerpo completo 
+                    <br/>   ∙Medio cuerpo (preferentemente usando bata) </p>
+                    </v-alert>
+                    </v-tooltip>
+                   </div>
                     <div class="mt-5">
                         <span>Fotografías del especialista</span>
                    <VueFileAgent :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
-                   <v-badge
-                        :value="hover2"
-                        color="deep-purple accent-4"
-                        content="9999+"
-                        left
-                        transition="slide-x-transition"
-                    >
-                    
-                        <v-hover v-model="hover2">
-                        <v-input class="input mb-n4"> <v-icon
+                   <div>
+                    <v-tooltip color="transparent" bottom>
+                      <template v-slot:activator="{ on, attrs }">
+                        <span class="input"
+                          v-bind="attrs"
+                          v-on="on"
+                        ><v-icon
                             color="#9966ff"
                             small
                         >
                         mdi-information
-                        </v-icon>Más información sobre las fotos</v-input>
-                        </v-hover>
-                    </v-badge>
+                        </v-icon>Más información sobre las fotos</span>
+                      </template>
+                      <v-alert shaped color="#7900ff"><p class="alertDi mb-n2 mt-n2">
+                    ∙Del interior de su consultorio <br/>   ∙De la sala de espera o del lobby <br/>   
+                    ∙Fachada exterior del consultorio </p>
+                    </v-alert>
+                    </v-tooltip>
+                   </div>
                     </div>
-                   <!-- <span>Fotografías del establecimiento</span>
-                   <VueFileAgent :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
-                -->
-              
-
-<div>
-    <v-btn height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
-    <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
-</div>
-
+      <v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
+      <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+      <v-overlay :value="overlay">
+        <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
+      </v-overlay>
   </v-card-text>
    </v-card>
         </v-col>
@@ -86,16 +87,36 @@ export default {
 },
   data () {
     return {
+      overlay: false,
+      alert: false,
         hover: false,
         hover2: false,
       selectedItem: 1,
     }
+  },
+  created(){
+    setTimeout(()=>{
+      this.alert=false
+    },5000)
+  },
+  
+  watch: {
+    overlay (val) {
+      val && setTimeout(() => {
+        this.overlay = false
+      }, 3000)
+    },
   },
 }
 </script>
 
 
 <style>
+p.alertDi{
+  font-family: Montserrat;
+  color: white;
+  font-size: .89rem;
+}
 .v-input__icon--prepend .v-icon { 
   color: #9966ff;
 }
