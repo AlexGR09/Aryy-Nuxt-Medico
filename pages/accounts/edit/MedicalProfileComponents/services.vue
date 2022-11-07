@@ -1,11 +1,11 @@
 <template>
-    <div><v-row>
-      <v-card flat>
-        <menu-med/>
-      </v-card>
-        <v-col md="10" lg="9" xl="10">
-                
+  <div><v-row>
+    <v-card flat>
+      <menu-med/>
+    </v-card>
+    <v-col md="10" lg="9" xl="10">
   <v-card flat height="800px" class="pa-3 mt-2">
+    <v-form  ref="form" v-model="valid">
     <v-card-subtitle class="pa-3  mt-n2 mb-n5"><H1 class="mb-5">SERVICIOS</H1></v-card-subtitle>
     <v-card-text class="pa-3 ">
       <v-row>
@@ -61,11 +61,12 @@
     </v-col>
 </v-row>
 <v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
-      <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+      <v-btn @click="reset" height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
       <v-overlay :value="overlay">
         <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
       </v-overlay>  
   </v-card-text>
+  </v-form>
    </v-card>
         </v-col>
     </v-row>
@@ -93,6 +94,11 @@
       }, 3000)
     },
   },
+  methods: {
+      reset () {
+        this.$refs.form.reset()
+      },
+    }
   }
   </script>
   

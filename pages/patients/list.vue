@@ -5,29 +5,13 @@
       <h3>{{ $options.name}}</h3>
       <v-spacer></v-spacer>
       <!-- barra de busqueda | Genesis -->
-      <v-toolbar
-        flat
-        class="vtoolbar mr-5"
-        dense
-      >
-        <v-text-field
-          reverse
-          class="search"
-          color="#f2f2f2"
-          dense
-          outlined
-          placeholder="Buscar paciente "
-          hide-details
-          prepend-inner-icon="mdi-magnify"
+      <v-toolbar flat class="vtoolbar mr-5" dense>
+        <v-text-field reverse class="search" color="#f2f2f2" dense
+          outlined placeholder="Buscar paciente " hide-details prepend-inner-icon="mdi-magnify"
         ></v-text-field>
       </v-toolbar>
       <!-- boton para cargar archivo | Genesis -->
-      <v-btn 
-        outlined
-        class="boton mr-4"
-        :loading="isSelecting" 
-        @click="handleFileImport"
-      >
+      <v-btn outlined class="boton mr-4" :loading="isSelecting" @click="handleFileImport">
         <span>Importar pacientes</span>
         <v-icon>mdi-file-plus-outline</v-icon>
       </v-btn> 
@@ -146,6 +130,11 @@
   
       },
       methods: {
+        deleteItem (item) {
+        this.editedIndex = this.characters.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialogDelete = true
+      },
         handleFileImport() {
                 this.isSelecting = true;
 

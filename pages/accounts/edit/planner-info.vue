@@ -1,6 +1,7 @@
 <template>
   <div><v-row>
         <menu-planner/>
+       
       <v-col md="10" lg="9" xl="10">
 <v-card flat height="800px" class="pa-3 mt-2">
   <v-card-subtitle class="pa-3  mt-n2 mb-n16"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
@@ -43,7 +44,7 @@ import NewFacility from './plannerComponents/newFacility.vue'
 export default {
   components: {
     NewFacility, FacilityCard,
-    MenuPlanner 
+    MenuPlanner,
 },
   data () {
     return {
@@ -51,6 +52,9 @@ export default {
       dialog: false,
     }
   },
+  methods: {
+        
+      },
 }
 </script>
 

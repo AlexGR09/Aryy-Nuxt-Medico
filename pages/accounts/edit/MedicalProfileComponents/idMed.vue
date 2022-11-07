@@ -8,6 +8,7 @@
         <v-card flat height="800px" class="pa-3 mt-2">
           <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">IDENTIDAD MÉDICA</H1></v-card-subtitle>
             <v-card-text class="pa-3 mt-5 ">
+              <v-form ref="form" v-model="valid">
               <v-row>
                 <v-col xl="6">
                   <span>Logotipo propio*</span>
@@ -17,7 +18,7 @@
             </v-row> 
                   <H1 class="mb-5 mt-5">FOTOGRAFÍAS</H1>
                   <span>Fotografías del especialista</span>
-                   <VueFileAgent :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
+                   <VueFileAgent :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="files"></VueFileAgent>
                  
                    <div>
                     <v-tooltip color="transparent" bottom>
@@ -63,10 +64,11 @@
                    </div>
                     </div>
       <v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
-      <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+      <v-btn  @click="reset" height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
       <v-overlay :value="overlay">
         <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
       </v-overlay>
+      </v-form>
   </v-card-text>
    </v-card>
         </v-col>
@@ -89,6 +91,8 @@ export default {
     return {
       overlay: false,
       alert: false,
+      fileRecords: [],
+      uploadUrl: 'https://example.com',
         hover: false,
         hover2: false,
       selectedItem: 1,
@@ -107,6 +111,11 @@ export default {
       }, 3000)
     },
   },
+  methods: {
+      reset () {
+        this.$refs.form.reset()
+      },
+    }
 }
 </script>
 

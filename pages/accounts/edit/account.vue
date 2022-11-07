@@ -24,7 +24,7 @@ import generalInfo from './general-info.vue'
 export default {
   components: { medicalProfileInfo,  PlannerInfo, generalInfo},
   data: () => ({show1: false, tabs: 0,}),
-
+  
 }
 </script>
 <style>

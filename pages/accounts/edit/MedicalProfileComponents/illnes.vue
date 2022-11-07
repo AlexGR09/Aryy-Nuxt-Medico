@@ -4,32 +4,31 @@
         <menu-med/>
       </v-card>
         <v-col md="10" lg="9" xl="10">
-                
   <v-card flat height="800px" class="pa-3 mt-2">
     <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">ENFERMEDADES QUE TRATA</H1></v-card-subtitle>
     <v-card-text class="pa-3 ">
-      <v-row>
-        <v-col xl="6">
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Infecciones urinarias en adultos"></v-checkbox>
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Sindrome de vejiga dolorosa"></v-checkbox>
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Disfunción eréctil"></v-checkbox>
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Varicocele"></v-checkbox>
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Piedras en los riñones"></v-checkbox>
+      <v-form ref="form" v-model="valid">
+      <v-row >
+        <v-col v-for="(prueba, i) in pruebas" :key="i" xl="6">
+          <v-checkbox class="checkbox mb-n6" color="#9966ff" hide-details :label="prueba.name"></v-checkbox> 
         </v-col>
         <v-col xl="6">
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Incontinencia urinaria de esfuerzos"></v-checkbox>
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Cáncer de testículos"></v-checkbox>
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Eyaculación precoz"></v-checkbox>
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Hiperplasia prostática"></v-checkbox>
-          <v-checkbox class="checkbox" color="#9966ff" hide-details label="Enfermedades de Transmisión sexual (ETS)"></v-checkbox>
+        
         </v-col>
 </v-row>
 <br/>
+<v-dialog>
+  
+</v-dialog>
 <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro</v-btn>
 <div class="mt-5">
-  <v-btn height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
-    <v-btn  height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
+  <v-btn  @click="overlay = !overlay" height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
+    <v-btn  @click="reset" height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
+    <v-overlay :value="overlay">
+        <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
+      </v-overlay>  
 </div>
+</v-form>
     </v-card-text>
    </v-card>
         </v-col>
@@ -45,9 +44,36 @@
 },
     data () {
       return {
+        
+        overlay: false,
         selectedItem: 1,
+        pruebas: [
+        {name: 'Infecciones urinarias en adultos'},
+        {name: 'Sindrome de vejiga dolorosa'},
+        {name: 'Disfunción eréctil'},
+        {name: 'Varicocele'},
+        {name: 'Piedras en los riñones'},
+        {name: 'Incontinencia urinaria de esfuerzos'},
+        {name: 'Cáncer de testículos'},
+        {name: 'Eyaculación precoz'},
+        {name: 'Hiperplasia prostática'},
+        {name: 'Enfermedades de Transmisión sexual (ETS)'},
+        
+      ],
       }
     },
+    methods: {
+      reset () {
+        this.$refs.form.reset()
+      },
+    },
+    watch: {
+    overlay (val) {
+      val && setTimeout(() => {
+        this.overlay = false
+      }, 3000)
+    },
+  },
   }
   </script>
   
