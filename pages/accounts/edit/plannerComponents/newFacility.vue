@@ -10,16 +10,117 @@
                 <v-col md="12" cols="12">
                 <span>Nombre del consultorio*</span>
                   <v-text-field prepend-inner-icon="mdi-magnify" v-model="name" color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
-                  </v-col>
+        <v-input class="input mb-n9 mt-4"><v-icon class="mr-3" color="#9966ff" size="15px">mdi-information</v-icon>Realizaremos una búsqueda de tu establecimiento en Google, si no aparece puedes agregarlo desde aqui.</v-input>
+                </v-col>
                   <v-col md="6" cols="12">
                 <span>Teléfono para citas*</span>
-                  <v-text-field v-model="phone" color="#9966ff" class="textfield" placeholder="XXX XXX XXXX" outlined></v-text-field>
-                  <v-btn  class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro número</v-btn>
+                  <v-text-field v-model="phone" color="#9966ff" class="textfield mb-5" placeholder="XXX XXX XXXX" outlined></v-text-field>
+                  <span>Horario para recepción de llamadas*</span>
+                  <div class="form-group  mb-9" v-for="(input,k) in inputs" :key="k">
+                    <v-row>
+                    <p class="text mt-8 ml-6">De</p>
+                    <v-col md="4">
+                      <v-dialog
+                            ref="dialog"
+                            v-model="modal2"
+                            :return-value.sync="time"
+                            persistent
+                            width="290px"
+                          >
+                            <template v-slot:activator="{ on, attrs }">
+                              <v-text-field
+                              outlined
+                              class="textfield"
+                                v-model="time"
+                                placeholder="08:00 AM"
+                                readonly
+                                v-bind="attrs"
+                                v-on="on"
+                              ></v-text-field>
+                            </template>
+                            <v-time-picker
+                              v-if="modal2"
+                              v-model="start"
+                              :max="end"
+                              full-width
+                            >
+                              <v-spacer></v-spacer>
+                              <v-btn
+                                text
+                                color="primary"
+                                @click="modal2 = false"
+                              >
+                                Cancel
+                              </v-btn>
+                              <v-btn
+                                text
+                                color="primary"
+                                @click="$refs.dialog.save(start)"
+                              >
+                                OK
+                              </v-btn>
+                            </v-time-picker>
+                          </v-dialog>
+                        </v-col>
+
+                        
+                    <p class="text mt-8">A</p>
+                    <v-col md="4">
+                      <v-dialog
+                            ref="dialog"
+                            v-model="modal2"
+                            :return-value.sync="time"
+                            persistent
+                            width="290px"
+                          >
+                            <template v-slot:activator="{ on, attrs }">
+                              <v-text-field
+                              outlined
+                              class="textfield"
+                                v-model="time"
+                                placeholder="08:00 PM"
+                                readonly
+                                v-bind="attrs"
+                                v-on="on"
+                              ></v-text-field>
+                            </template>
+                            <v-time-picker
+                              v-if="modal2"
+                              v-model="end"
+                              :min="start"
+                              full-width
+                            >
+                              <v-spacer></v-spacer>
+                              <v-btn
+                                text
+                                color="primary"
+                                @click="modal2 = false"
+                              >
+                                Cancel
+                              </v-btn>
+                              <v-btn
+                                text
+                                color="primary"
+                                @click="$refs.dialog.save(end)"
+                              >
+                                OK
+                              </v-btn>
+                            </v-time-picker>
+                          </v-dialog>
+                        </v-col>  
+                          <v-btn @click="add(k)" v-show="k == inputs.length-1" class="mt-6" icon color="#9966ff">
+                                <v-icon>mdi-plus-circle</v-icon>
+                              </v-btn> 
+    </v-row></div>
+                  <v-btn  class="btn ml-n5 mt-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro número</v-btn>
                   </v-col>
                   <v-col md="6" cols="12">
                 <span>Extensión</span>
                   <v-text-field v-model="extension" color="#9966ff" class="textfield"  placeholder="No. Extensión" outlined></v-text-field>
                   </v-col>
+                 <!--  <span>Horario para recepción de llamadas*</span> -->
+                
+                  
                   <v-col md="4" cols="12">
                 <span>Código postal*</span>
                   <v-text-field v-model="CP" color="#9966ff" maxlength="5" counter="5" class="textfield" placeholder="00000" outlined></v-text-field>
@@ -95,9 +196,17 @@
 },
     data () {
       return {
+        inputs: [
+            {
+                name: ''
+            }
+        ],
         overlay: false,
         dialog: false,
         selectedItem: 1,
+        time: null,
+        menu2: false,
+        modal2: false,
       }
     },
     watch: {
@@ -108,6 +217,15 @@
     },
   },
     methods: {
+      save(start,end) {
+       this.$refs.dialog[0].save(start,end)
+    },
+        add(index) {
+            this.inputs.push({ name: '' });
+        },
+        remove(index) {
+            this.inputs.splice(index, 1);
+        },
       reset () {
         this.$refs.form.reset()
       },
@@ -116,6 +234,10 @@
 </script>
 
 <style>
+.text{
+  font-family: Montserrat;
+  color: grey;
+}
 .vcheckbox{
     font-family: Montserrat;
 }
@@ -178,5 +300,11 @@
   .v-input__icon--prepend-inner .v-icon { 
   color: #999999;
   width: 50px;
+}
+.input{
+  margin-top: 5px;
+  color: #9966ff !important;
+  font-family: MontserratMedium;
+  font-size: 100%;
 }
 </style>

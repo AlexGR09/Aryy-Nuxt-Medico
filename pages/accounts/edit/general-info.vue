@@ -26,9 +26,7 @@
             :hidden="true"
         />
         <v-btn class="mt-5" outlined color="gray">Restaurar foto</v-btn>
-        <p
-            class="text-sm mt-5"
-        >
+        <p class="text-sm mt-5">
             formatos permitidos: JPG o PNG. Tamaño máximo de archivo 2 MB, y 512x512 píxeles.
         </p>
     </div>

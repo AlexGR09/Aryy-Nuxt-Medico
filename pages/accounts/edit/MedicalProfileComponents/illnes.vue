@@ -13,12 +13,10 @@
           <v-checkbox class="checkbox mb-n6" color="#9966ff" hide-details :label="prueba.name"></v-checkbox> 
         </v-col>
         <v-col xl="6">
-        
         </v-col>
 </v-row>
 <br/>
 <v-dialog>
-  
 </v-dialog>
 <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro</v-btn>
 <div class="mt-5">

@@ -130,6 +130,7 @@
   
       },
       methods: {
+        
         deleteItem (item) {
         this.editedIndex = this.characters.indexOf(item)
         this.editedItem = Object.assign({}, item)

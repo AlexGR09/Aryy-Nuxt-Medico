@@ -13,10 +13,10 @@
         <v-btn v-model="check" class="iconos " icon>
           <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="25"></v-img>
         </v-btn>
-        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+        <v-btn class="iconos ml-n3"   @click="deleteItem(i)" icon >
             <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="25"></v-img>
         </v-btn>
-        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+        <v-btn class="iconos ml-n3" icon >
             <v-img :src="require('@/assets/icons/icon_verpaciente.svg')" max-width="25"></v-img>
         </v-btn>
       </v-btn-toggle>    
@@ -49,5 +49,10 @@ export default {
       ],
     }
   },
+  methods: {
+    deleteItem: function(i) {
+  this.consultorios.splice(i, 1);
+}
+    }
 }
 </script>
