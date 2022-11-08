@@ -1,32 +1,15 @@
 <template>
   <v-row class=" mt-n3">
-
-        <!-- Calendario vista dia |Genesis -->
-        <v-col>
-          <v-card>
-      <v-sheet height="84">
-       
-        <v-toolbar
-          flat 
-        >
-          <v-btn
-          width="150px"
-            outlined
-            color="white"
-            class="mr-4 today mt-7 "
-            @click="setToday"
-          >
+    <!-- Calendario vista dia |Genesis -->
+      <v-col>
+        <v-card>
+          <v-sheet height="84">
+        <v-toolbar flat>
+          <v-btn width="150px" outlined color="white" class="mr-4 today mt-7" @click="setToday">
             <l class="today">hoy</l>
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn
-          class="mt-7 ml-10"
-            fab
-            text
-            small
-            color="grey darken-2"
-            @click="prev"
-          >
+          <v-btn class="mt-7 ml-10" fab text small color="grey darken-2" @click="prev">
             <v-icon x-large color="#9966ff">
               mdi-chevron-left
             </v-icon>
@@ -34,19 +17,11 @@
           <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
             {{ $refs.calendar.title }}
           </v-toolbar-title>
-          <v-btn
-          class="mt-7"
-            fab
-            text
-            small
-            color="grey darken-2"
-            @click="next"
-          >
+          <v-btn class="mt-7" fab text small color="grey darken-2" @click="next">
             <v-icon color="#9966ff" x-large >
               mdi-chevron-right
             </v-icon>
           </v-btn>
-       
           <v-spacer></v-spacer>
           <v-menu  bottom left >
                 <template v-slot:activator="{ on }">
@@ -68,53 +43,32 @@
                 </v-list>
             </v-menu>
         </v-toolbar>
-        
       </v-sheet>
       <v-sheet height="700">
-        <v-calendar
-          class="calend "
-          interval-height="80px"
-          interval-count="48"
-          locale="mx-es"
-          ref="calendar"
-          v-model="focus"
-          color="#7900ff"
-          :events="events"
-          :event-color="getEventColor"
-          type="day"
-          interval-width="80px"
-          :short-intervals="false"
+        <v-calendar class="calend" locale="mx-es" ref="calendar" type="day" v-model="focus" color="#7900ff"
+          interval-height="80px" interval-count="48" :short-intervals="false" interval-width="80px"
+          :events="events" :event-color="getEventColor"
           @click:event="showEvent"
           @click:more="viewDay"
           @click:date="viewDay"
         >
         <template v-slot:day-body="{ date, week }">
-            <div
-              class="v-current-time"
+            <div class="v-current-time"
               :class="{ first: date === week[0].date }"
               :style="{ top: nowY }"
             ></div>
           </template>
       </v-calendar>
-        <v-dialog
-        width="640px"
-          v-model="selectedOpen"
-          :close-on-content-click="false"
-          :activator="selectedElement"
-          offset-x
-        >
-          <v-card
-            color="white"
-            min-width="350px"
-            flat
-          >
+        <v-dialog width="640px" v-model="selectedOpen" offset-x
+          :close-on-content-click="false" :activator="selectedElement">
+          <v-card color="white" min-width="350px" flat>
             <v-card-text>
               <br/>
               <v-row>
                 <v-col>
-              <h1 class="eventName" v-html="selectedEvent.name"></h1> 
-                <p class="eventPhone  mt-5 mb-n1">No. 123</p>
-                <p class="eventPhone"  v-html="selectedEvent.phone"></p>
+                <h1 class="eventName" v-html="selectedEvent.name"></h1> 
+                <p class="eventPhone  mt-5">No. 123</p>
+                <p class="eventPhone mt-n3"  v-html="selectedEvent.phone"></p>
               </v-col>
               <v-col xl="4"><v-btn large color="#999999" outlined>
                   <l class="titleAction">Reagendar cita</l>
@@ -122,38 +76,22 @@
                   <v-btn large width="192px" class="mt-2 mb-3" color="red" outlined>
                   <l class="titleAction2" color="red">cancelar cita</l>
                   </v-btn> </v-col>
-                
-                  
                 </v-row>
                 <v-divider></v-divider>
-                  
               <div class="mt-5">
               <p class="infor"><v-icon color="#9966ff">mdi-calendar</v-icon>sfsfs</p>
               <p class="infor"><v-icon color="#9966ff">mdi-account</v-icon>Paciente nuevo</p>
               <p class="infor"><v-icon color="#9966ff">mdi-map-marker-circle</v-icon>Consultorio Principal</p>
             </div>
             </v-card-text>
-            
             <v-card-actions>
-              
-              <v-btn
-              class="eventAction"
-                outlined
-                color="green"
-                @click="selectedOpen = false"
-              ><v-icon>mdi-eye</v-icon>
+              <v-btn class="eventAction" outlined color="green" @click="selectedOpen = false"><v-icon>mdi-eye</v-icon>
                 <l class="eventAction ml-3">ASISTIÓ</l>
               </v-btn>
-              <v-btn
-              class="eventAction"
-                outlined
-                color="red"
-                @click="selectedOpen = false"
-              >
+              <v-btn class="eventAction" outlined color="red" @click="selectedOpen = false">
                 <v-icon>mdi-eye-off</v-icon>
                 <l class="eventAction ml-3">NO ASISTIÓ</l>
               </v-btn>
-           
             </v-card-actions>
             <br/>
           </v-card>
@@ -161,7 +99,6 @@
       </v-sheet>
     </v-card>
     </v-col>
-  
   </v-row>
 </template>
 <script>
@@ -184,9 +121,9 @@
         {
           name: 'Fulanito Detal',
           phone: '9615897456',
-          start: '2022-11-02T10:00:00',
+          start: '2022-11-08T10:00:00',
           intervalo: '10:00 - 10:30',
-          end: '2022-11-02T10:30:00',
+          end: '2022-11-08T10:30:00',
           timed: true,
           color: '#1abc9c',
         },
@@ -194,16 +131,16 @@
           name: 'Zutanito Filipondio',
           phone: '9611115823',
           intervalo: '10:30 - 11:00',
-          start: '2022-11-02T10:30:00',
-          end: '2022-11-02T11:00:00',
+          start: '2022-11-08T10:30:00',
+          end: '2022-11-08T11:00:00',
           timed: true,
           color: '#1abc9c',
         },
         {
           name: 'Merengano Taltipo',
           phone: '9610218998',
-          start: '2022-11-02T11:00:00',
-          end: '2022-11-02T11:30:00',
+          start: '2022-11-08T11:00:00',
+          end: '2022-11-08T11:30:00',
           intervalo: '11:00 - 11:30',
           timed: true,
           color: '#3498db',
@@ -211,8 +148,8 @@
         {
           name: 'Perengago Gilberto',
           phone: '9610277896',
-          start: '2022-11-02T11:30:00',
-          end: '2022-11-02T12:00:00',
+          start: '2022-11-08T11:30:00',
+          end: '2022-11-08T12:00:00',
           intervalo: '11:30 - 12:00',
           timed: true,
           color: '#1abc9c',
@@ -333,7 +270,7 @@
   }
 }
 h1.eventName{
-  font-size: 250%;
+  font-size: 230%;
   color: #7900ff;
   font-family: Montserrat;
 }
