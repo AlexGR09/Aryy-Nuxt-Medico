@@ -1,17 +1,19 @@
 <template>
   <div class="container">
     <!-- componentes para el app bar | Genesis -->
-    <v-app-bar app color="white" :clipped-left="clipped" height="100">
-      <h3>{{ $options.name}}</h3>
-      <v-spacer></v-spacer>
-      <!-- barra de busqueda | Genesis -->
-      <v-toolbar flat class="vtoolbar mr-5" dense>
-        <v-text-field reverse class="search" color="#f2f2f2" dense
-          outlined placeholder="Buscar paciente " hide-details prepend-inner-icon="mdi-magnify"
-        ></v-text-field>
-      </v-toolbar>
-      <!-- boton para cargar archivo | Genesis -->
-      <v-btn outlined class="boton mr-4" :loading="isSelecting" @click="handleFileImport">
+   
+     <!-- tabla de pacientes | Genesis -->
+      <div class="row justify-content-md-center">
+        <div class="col">
+            <v-col xs="12" sm="12" md="12" lg="12" mg="12" align="center" justify="center">
+              <v-toolbar flat>
+                <v-row justify="start" class="select">
+                  <v-col xs="2" sm="2" md="2" lg="2" xl="2" class="select" >
+                          <v-select append-icon="mdi-menu-down" outlined flat class="select "  hide-details dense background-color="#f4edff" color="#7900ff" :items="keys" placeholder="Ordenar por"></v-select>
+                      </v-col>
+                      <v-col xs="2" sm="2" md="2" lg="4" xl="5"></v-col> 
+                    <v-col xs="2" sm="2" md="8" lg="6" xl="5">
+                      <v-btn outlined class="boton mr-4" :loading="isSelecting" @click="handleFileImport">
         <span>Importar pacientes</span>
         <v-icon>mdi-file-plus-outline</v-icon>
       </v-btn> 
@@ -21,8 +23,7 @@
         type="file" 
         @change="onFileChanged"
       > 
-       <!-- boton para agregar pacientes | Genesis -->
-        <v-btn 
+      <v-btn  
           color="#7900ff"
           class="ml-2 mr-2 boton white--text"
         >
@@ -30,32 +31,15 @@
           <v-icon>mdi-account-plus-outline</v-icon>
           <h1></h1>
         </v-btn>
-         <!-- iconos para notificacion, ajustes y cuenta | Genesis -->
-        <v-btn class="ml-4" icon small>
-            <v-img :src="require('@/assets/icons/icon_settings.svg')" max-width="23"></v-img>
-        </v-btn>
-        <v-btn class="ml-4" icon small>
-            <v-img :src="require('@/assets/icons/icon_notificationpatient.svg')" max-width="23"></v-img>
-        </v-btn>
-        <v-btn class="ml-5 mr-7" fab  color="#7900ff">
-            <v-icon large color="#fff">
-                mdi-account
-            </v-icon>
-        </v-btn>
-    </v-app-bar>
-     <!-- tabla de pacientes | Genesis -->
-      <div class="row justify-content-md-center">
-        <div class="col">
-          <br>
-            <v-col xs="12" sm="12" md="12" lg="12" mg="12" align="center" justify="center">
-              <v-card rounded class="margen">
+                    </v-col>
+                    </v-row>
+              </v-toolbar>
+              <v-card flat rounded class="margen">
                   <v-card-title>
-                      <v-row justify="end" class="select mb-n16"><v-col xs="2" sm="2" md="2" lg="2" mg="2" class="select mb-5" >
-                          <v-select outlined flat class="select mb-n16"  hide-details dense background-color="#f4edff" :items="keys" placeholder="Ordenar por"></v-select>
-                      </v-col></v-row>
+                      
                   </v-card-title>
                   <!-- se llena la tabla con los datos del axios y encabezados con script | Genesis -->
-                  <v-data-table class="pa-5 mt-n5"
+                  <v-data-table class="pa-5 mt-n5" hide-default-header
                       :headers="headers"
                       :items="characters"
                       sort-by="name"
@@ -64,6 +48,16 @@
                           'items-per-page-text':'Pacientes por página'
                       }"
                   >
+                  
+    <template v-slot:header="{ props: { headers } }">
+        <thead>
+          <tr>
+            <th v-for="h in headers" :class="h.class"  :key="h">
+              <p class="thead">{{h.text}}</p>
+            </th>
+          </tr>
+        </thead>
+    </template>
                   <template v-slot:[`item.create`]>
                       <a>Crear cita</a>
                   </template>
@@ -104,14 +98,14 @@
               headers: [
                 /* encabezados para la tabla y estilos | Genesis */
           {
-            text: 'NOMBRE Y APELLIDOS',
+            text: 'Nombre completo',
             align: 'start',
             filterable: false,
             value: 'name',
           },
-          { text: 'TELÉFONO', value: 'species', align: 'start' },
-          { text: 'ÚLTIMA VISITA', value: 'gender', align: 'start' },
-          { text: 'SIGUIENTE VISITA', value: 'create', sortable: false, align: 'start'  },
+          { text: 'Teléfono', value: 'species', align: 'start' },
+          { text: 'Última visita', value: 'gender', align: 'start' },
+          { text: 'Próxima visita', value: 'create', sortable: false, align: 'start'  },
           { text: '', value: 'actions', sortable: false, align: 'start' },
           { text: '', value: '', sortable: false, align: 'start'},
         ],
@@ -171,7 +165,11 @@
   }
   </script>
   <style>
-  
+.thead{
+  font-family: Montserrat;
+  color: #999999;
+  font-size: .85rem;
+}
 /*   estilos para llenado de tabla | Genesis */
       th{
           font-family: Montserrat;
@@ -187,9 +185,10 @@
           color: #9966ff !important;
           font-family: MontserratBold;
           font-size: 15px;
+          margin-left: -2px;
       }
       span{
-    font-size: 1rem;
+    font-size: .9rem;
     font-family: MontserratMedium;
     align-items: start;
     text-transform: lowercase;
@@ -201,6 +200,10 @@
           font-family: MontserratMedium;
           font-size: 15px;
       }
+      .select input::placeholder {
+  color: #7900ff !important;
+  opacity: 1;
+}
       /*   estilos para botones | Genesis */
       .boton{
           color: #9966ff;
@@ -222,6 +225,10 @@
   }
   .v-input__icon--prepend-inner .v-icon { 
     color: #cccccc;
+  }
+  .v-input__icon--append .v-icon { 
+    color: #7900ff;
+    font-size: 52px;
   }
 
   </style>

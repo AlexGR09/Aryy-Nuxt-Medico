@@ -12,7 +12,7 @@
               <v-row>
                 <v-col md="6" lg="6" xl="6" cols="12">
                   <span>Especialidad*</span>
-                  <v-autocomplete v-model="specialty" color="#9966ff" class="textfield " placeholder="Selecciona una especialidad" outlined></v-autocomplete>
+                  <v-autocomplete append-icon="mdi-account" v-model="specialty" color="#9966ff" class="textfield " placeholder="Selecciona una especialidad" outlined></v-autocomplete>
                 </v-col> 
                 <v-col md="6" lg="6" xl="6" cols="12"></v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
