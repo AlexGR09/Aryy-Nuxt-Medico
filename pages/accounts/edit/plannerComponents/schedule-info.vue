@@ -1,13 +1,13 @@
 <template>
     <v-row>
-        <v-col md="10" lg="9" xl="10">
+        <v-col md="12" lg="11" xl="10">
           <v-card flat class="pa-3 mt-2">
                   <v-card-subtitle class="pa-3 mb-n5 mt-n2 "><H1 class="mb-5 ">CONFIGURACIÓN DE HORARIOS</H1></v-card-subtitle>
     <v-card-text class="pa-3">
       <v-row>
     <v-col md="7" lg="6" xl="6" cols="12">
       <span>Consultorio*</span>
-        <v-autocomplete append-icon="mdi-chevron-down" class="textfield" placeholder="Seleccione el consultorio" outlined></v-autocomplete>
+        <v-autocomplete class="textfield" placeholder="Seleccione el consultorio" outlined></v-autocomplete>
     </v-col>    <v-col md="5" lg="6" xl="6" cols="12"></v-col>
     <v-col md="7" lg="6" xl="6" cols="12">
       <h1 class="mt-4 mb-4">TIPO DE HORARIO</h1>

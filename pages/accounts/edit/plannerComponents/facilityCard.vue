@@ -1,6 +1,7 @@
    <!-- card para mostrar datos de consultorio | Genesis -->
 <template>
   <div>
+    <span v-if="!consultorios[0]">Todavía no tienes consultorios registrados.</span>
     <v-sheet class="mb-5" v-for="(consultorio, i) in consultorios" :key="i" outlined color="grey" rounded >
     <v-card  outlined color="white">
       <v-row> 
@@ -56,3 +57,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+span{
+  font-family: MontserratMedium;
+  color: #999999;
+}
+</style>

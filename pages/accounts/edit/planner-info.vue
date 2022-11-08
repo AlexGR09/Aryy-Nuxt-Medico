@@ -1,41 +1,38 @@
 <template>
-  <div><v-row> 
-       
-   
-        <v-col md="10" lg="9" xl="10">
-<v-card flat height="800px" class="pa-3 mt-2">
-  <v-card-subtitle class="pa-3  mt-n2 mb-n16"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
-  <v-card-text class="pa-3 ">
-    <!-- card para mostrar datos de consultorio | Genesis -->
-    <facility-card/>
-    <v-col md="6" cols="12"></v-col>
-  
-  <v-row>
-      <v-col cols="auto">
-        <v-dialog  fullscreen  overlay-color="white"
-         transition="dialog-top-transition" v-model="dialog">
-        <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
-        <!--  <v-btn dark icon color="black" @click="dialog = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn> --> 
+  <div>
+    <v-row> 
+      <v-col md="12" lg="11" xl="10">
+        <v-card flat height="800px" class="pa-3 mt-2">
+          <v-card-subtitle class="pa-3  mt-n2 mb-n16"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
+          <v-card-text class="pa-3 ">
+            <!-- card para mostrar datos de consultorio | Genesis -->
+            <facility-card/>
+            <v-col md="6" cols="12"></v-col>
+          
           <v-row>
-            <v-col md="5" lg="5" xl="5"></v-col>
-            <v-col md="4" lg="4" xl="4"> <v-img  :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img><p class="mt-n7 prueba">Consultorios</p></v-col>
-            <v-col ms="3" lg="3" xl="3"></v-col>
-          </v-row>
-    </v-app-bar>
-          <template  v-slot:activator="{ on, attrs }">
-            <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5 mt-n3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agrega un consultorio</v-btn>
-          </template>
-           <new-facility class="mt-16 ml-10"/>
-        </v-dialog>
+              <v-col cols="auto">
+                <v-dialog  fullscreen  overlay-color="white"
+                transition="dialog-top-transition" v-model="dialog">
+                <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
+                <!--  <v-btn dark icon color="black" @click="dialog = false">
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn> --> 
+                  <v-row>
+                    <v-col md="5" lg="5" xl="5"></v-col>
+                    <v-col md="4" lg="4" xl="4"> <v-img  :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img><p class="mt-n7 prueba">Consultorios</p></v-col>
+                    <v-col ms="3" lg="3" xl="3"></v-col>
+                  </v-row>
+                  </v-app-bar>
+                  <template  v-slot:activator="{ on, attrs }">
+                    <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5 mt-n3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agrega un consultorio</v-btn>
+                  </template>
+                  <new-facility class="mt-16 ml-10"/>
+                </v-dialog>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
       </v-col>
-    </v-row>
-  </v-card-text>
- </v-card>
-      </v-col>
-   
-    
   </v-row>
 </div>
 </template>

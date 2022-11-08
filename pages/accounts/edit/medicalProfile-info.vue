@@ -12,7 +12,7 @@
               <v-row>
                 <v-col md="6" lg="6" xl="6" cols="12">
                   <span>Especialidad*</span>
-                  <v-autocomplete append-icon="mdi-account" v-model="specialty" color="#9966ff" class="textfield " placeholder="Selecciona una especialidad" outlined></v-autocomplete>
+                  <v-autocomplete v-model="specialty" color="#9966ff" class="textfield " placeholder="Selecciona una especialidad" outlined></v-autocomplete>
                 </v-col> 
                 <v-col md="6" lg="6" xl="6" cols="12"></v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
@@ -35,7 +35,7 @@
                   <v-col md="6" lg="6" xl="6" cols="12">
                     <p class="cedu mb-1">Foto de cedula*</p>
                   <v-file-input v-model="fileIden" chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
-                    <v-input class="input mb-n4">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</v-input>
+                    <v-input class="input mt-3 mb-n4">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</v-input>
                     <v-btn class="btn ml-n5 mb-n4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra cédula</v-btn>
                   </v-col><v-col md="6" lg="6" xl="6" cols="12"></v-col>
                 <!-- 
@@ -201,6 +201,7 @@ Vue.use(VueFileAgentStyles);
     color: #4f565f;
   }  
   span{
+    color: #999999;
     font-family: Montserrat;
     font-size: 120%;
   }
@@ -212,5 +213,10 @@ Vue.use(VueFileAgentStyles);
   p.cedu{
     font-family: Montserrat;
     font-size: 120%;
+    color: #999999;
+  }
+  .v-input__icon--append .v-icon { 
+    font-size: 50px;
+    color: #999999;
   }
   </style>

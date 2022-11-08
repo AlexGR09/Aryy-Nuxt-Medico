@@ -108,15 +108,15 @@
             class="textfield mb-n3"
             color="#b380ff"
           ></v-text-field>
-          <div align="right">
-            <v-checkbox class="mt-n3" v-model="check">
+          <div class="mt-n7" align="right">
+            <v-checkbox color="#7900ff" class="mt-n3" v-model="check">
         <template v-slot:label>
-          <div >
-            He leído y aceptado los Terminos y Condiciones de uso de aryy.
+          <div  >
+           <p class="terms mt-4">He leído y aceptado los Terminos y Condiciones de uso de aryy.</p> 
           </div>
         </template>
       </v-checkbox>
-        <v-btn block large class="white--text btn"
+        <v-btn block large class="white--text btn mt-n3"
           color="#7900FF"
           @click="e1 = 3"
           :disabled="!check"
@@ -243,6 +243,11 @@ p.code{
   font-family: MontserratMedium;
   color: #4f565f;
 }
+p.terms{
+  color: #4f565f;
+  font-family: MontserratMedium;
+  font-size: 90%;
+}
 .label{
   color: #999999;
   font-family: Montserrat;
@@ -251,4 +256,13 @@ p.code{
   font-family: MontserratMedium;
   text-transform: unset !important;
 }
+.textfield{
+        margin-left: -8px;
+        font-size: .9rem;
+        font-family: Montserrat;
+      }
+      .v-input__icon--append .v-icon { 
+    font-size: 52px;
+    color: #999999;
+  }
 </style>
