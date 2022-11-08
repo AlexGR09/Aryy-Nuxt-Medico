@@ -1,8 +1,8 @@
 <template>
-  <div><v-row>
-        <menu-planner/>
+  <div><v-row> 
        
-      <v-col md="10" lg="9" xl="10">
+   
+        <v-col md="10" lg="9" xl="10">
 <v-card flat height="800px" class="pa-3 mt-2">
   <v-card-subtitle class="pa-3  mt-n2 mb-n16"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
   <v-card-text class="pa-3 ">
@@ -27,24 +27,25 @@
           <template  v-slot:activator="{ on, attrs }">
             <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5 mt-n3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agrega un consultorio</v-btn>
           </template>
-           <new-facility class="mt-16"/>
+           <new-facility class="mt-16 ml-10"/>
         </v-dialog>
       </v-col>
     </v-row>
   </v-card-text>
  </v-card>
       </v-col>
+   
+    
   </v-row>
 </div>
 </template>
 <script>
+
 import FacilityCard from './plannerComponents/facilityCard.vue'
-import MenuPlanner from './plannerComponents/menuPlanner.vue'
 import NewFacility from './plannerComponents/newFacility.vue'
 export default {
   components: {
     NewFacility, FacilityCard,
-    MenuPlanner,
 },
   data () {
     return {

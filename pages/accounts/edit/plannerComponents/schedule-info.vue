@@ -1,20 +1,19 @@
 <template>
-    <div><v-row>
-          <menu-planner/>
+    <v-row>
         <v-col md="10" lg="9" xl="10">
-          <v-card  class="pa-3 mt-2">
+          <v-card flat class="pa-3 mt-2">
                   <v-card-subtitle class="pa-3 mb-n5 mt-n2 "><H1 class="mb-5 ">CONFIGURACIÓN DE HORARIOS</H1></v-card-subtitle>
     <v-card-text class="pa-3">
       <v-row>
-    <v-col md="6" cols="12">
+    <v-col md="7" lg="6" xl="6" cols="12">
       <span>Consultorio*</span>
         <v-autocomplete append-icon="mdi-chevron-down" class="textfield" placeholder="Seleccione el consultorio" outlined></v-autocomplete>
-    </v-col>    <v-col md="6" cols="12"></v-col>
-    <v-col md="6" cols="12">
+    </v-col>    <v-col md="5" lg="6" xl="6" cols="12"></v-col>
+    <v-col md="7" lg="6" xl="6" cols="12">
       <h1 class="mt-4 mb-4">TIPO DE HORARIO</h1>
         <v-autocomplete class="textfield" placeholder="Permanente" outlined></v-autocomplete>
     </v-col>  
-    <v-col md="6" cols="12"></v-col>
+    <v-col md="5" cols="12"></v-col>
     <v-col md="6" cols="12">
       <h1 class="mt-4 mb-4">HORARIOS DE CONSULTA</h1>
                     <v-btn-toggle borderless class="botones mb-n5 mt-n4">
@@ -34,7 +33,7 @@
         width="300px"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-text-field outlined
+          <v-text-field outlined class="textfield"
             v-model="time"
             placeholder="08:00 AM"
             readonly
@@ -77,7 +76,7 @@
         width="300px"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-text-field outlined
+          <v-text-field outlined class="textfield"
             v-model="time"
             placeholder="08:00 PM"
             readonly
@@ -113,31 +112,31 @@
           </v-btn> 
     </v-row></div></v-col>
   </v-row>
-  <v-row>
-    <v-col md="4" cols="12">
-      <h1 class="mb-4 mt-n4">DURACIÓN DE LA CONSULTA</h1>
+  <v-row class="mt-5">
+    <v-col md="6" lg="5" xl="4" cols="12">
+      <h1 class="">DURACIÓN DE LA CONSULTA</h1>
         <v-text-field class="textfield" placeholder="XX" outlined></v-text-field>
-        
-    </v-col> <p class="text mt-13 "> minutos</p> <v-col md="6" cols="12"></v-col>
-  <v-col md="4" cols="12">
-      <h1 class="mt-4 mb-4">TIEMPO PARA MOSTRAR AGENDA</h1>
+    </v-col><v-col md="2" lg="2" xl="2"> <p class="text mt-9 ml-n4"> minutos</p> </v-col><v-col md="6" cols="12"></v-col>
+  </v-row> 
+  <v-row>
+    <v-col md="6" lg="5" xl="4" cols="12">
+      <h1 class=" mb-4">TIEMPO PARA MOSTRAR AGENDA</h1>
         <v-autocomplete class="textfield mb-10" placeholder="4 semanas" outlined></v-autocomplete>
     </v-col>
   </v-row>
+
+  
   <v-btn height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
     <v-btn  height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
   </v-card-text>
                 </v-card>
         </v-col>
     </v-row>
-    
-</div>
 
 </template>
 <script>
-import menuPlanner from './menuPlanner.vue';
   export default {
-  components: { menuPlanner },
+  components: {  },
     data () {
       return {
         inputs: [

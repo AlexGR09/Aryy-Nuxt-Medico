@@ -1,7 +1,7 @@
 <template>
   <div class="shad">
     <v-card flat>
-      <v-tabs v-model="tabs"  color="#7900ff" grow>
+      <v-tabs v-model="tabs" color="#7900ff" grow>
         <v-tab class="tab">Perfil personal</v-tab>
         <v-tab class="tab">Perfil médico</v-tab>
         <v-tab class="tab">Agenda</v-tab>
@@ -9,8 +9,8 @@
      <v-divider></v-divider> 
       <v-tabs-items v-model="tabs">
         <v-tab-item><general-info/></v-tab-item>
-      <v-tab-item><medical-profile-info/></v-tab-item>
-      <v-tab-item><planner-info/></v-tab-item>
+      <v-tab-item><menu-med/></v-tab-item>
+      <v-tab-item><menu-planner/></v-tab-item>
       </v-tabs-items>
      
     </v-card>   
@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import medicalProfileInfo from './medicalProfile-info.vue'
-import PlannerInfo from './planner-info.vue'
+import menuPlanner from './plannerComponents/menuPlanner.vue'
 import generalInfo from './general-info.vue'
+import MenuMed from './MedicalProfileComponents/menuMed.vue'
 export default {
-  components: { medicalProfileInfo,  PlannerInfo, generalInfo},
+  components: { menuPlanner, generalInfo, MenuMed},
   data: () => ({show1: false, tabs: 0,}),
   
 }

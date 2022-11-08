@@ -28,7 +28,7 @@
                             width="290px"
                           >
                             <template v-slot:activator="{ on, attrs }">
-                              <v-text-field
+                              <v-text-field color="#7900ff"
                               outlined
                               class="textfield"
                                 v-model="time"
@@ -38,7 +38,7 @@
                                 v-on="on"
                               ></v-text-field>
                             </template>
-                            <v-time-picker
+                            <v-time-picker color="#7900ff"
                               v-if="modal2"
                               v-model="start"
                               :max="end"
@@ -47,14 +47,14 @@
                               <v-spacer></v-spacer>
                               <v-btn
                                 text
-                                color="primary"
+                                color="#7900ff"
                                 @click="modal2 = false"
                               >
                                 Cancel
                               </v-btn>
                               <v-btn
                                 text
-                                color="primary"
+                                color="#7900ff"
                                 @click="$refs.dialog.save(start)"
                               >
                                 OK
@@ -74,7 +74,7 @@
                             width="290px"
                           >
                             <template v-slot:activator="{ on, attrs }">
-                              <v-text-field
+                              <v-text-field color="#7900ff"
                               outlined
                               class="textfield"
                                 v-model="time"
@@ -84,7 +84,7 @@
                                 v-on="on"
                               ></v-text-field>
                             </template>
-                            <v-time-picker
+                            <v-time-picker color="#7900ff"
                               v-if="modal2"
                               v-model="end"
                               :min="start"
@@ -93,14 +93,14 @@
                               <v-spacer></v-spacer>
                               <v-btn
                                 text
-                                color="primary"
+                                color="#7900ff"
                                 @click="modal2 = false"
                               >
                                 Cancel
                               </v-btn>
                               <v-btn
                                 text
-                                color="primary"
+                                color="#7900ff"
                                 @click="$refs.dialog.save(end)"
                               >
                                 OK
@@ -174,7 +174,7 @@
                   <v-checkbox v-model="trans" class="vcheckbox" color="#7900ff" hide-details label="Sanitario unisex"></v-checkbox>
                   <v-checkbox v-model="trans" class="vcheckbox" color="#7900ff" hide-details label="Wi-Fi"></v-checkbox>
               </v-col>
-              <div class="mt-5">
+              <div class="mt-5 mb-n15">
                 <v-btn  @click="overlay = !overlay" height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
           <v-btn @click="reset"  height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
           <v-overlay :value="overlay">

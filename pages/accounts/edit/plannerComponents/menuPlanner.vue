@@ -1,24 +1,29 @@
 <template>
-        <v-card flat>
-  <v-list dense class="list-item" active-class="bgactive">
-      <v-list-item-group v-model="selectedItem" color="#7900ff">
-        <v-list-item to="/accounts/edit/planner-info">
-          <v-list-item-content active-class="bgactive">
-            <v-list-item-title  class="titlee" >CONSULTORIOS</v-list-item-title>
-          </v-list-item-content >
-        </v-list-item>
-        <v-list-item to="/accounts/edit/plannerComponents/schedule-info">
-          <v-list-item-content active-class="bgactive">
-            <v-list-item-title  class="titlee">HORARIOS</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
+        <v-card left flat>
+    <v-tabs class="list-item mt-8" active-class="bgactive" hide-slider  color="#7900ff" height="70px" vertical>
+      <v-tab class="proband">
+        CONSULTORIOS
+      </v-tab>
+      <v-tab class="proband">
+        HORARIOS
+      </v-tab>
+
+      <v-tab-item transition="fade-transition">
+        <planner-info class="mt-n8"/>
+      </v-tab-item>
+      <v-tab-item transition="fade-transition">
+<schedule-info class="mt-n8"/>
+      </v-tab-item>
+    </v-tabs> 
   </v-card>
 </template>
 
 <script>
+import plannerInfo from '../planner-info.vue'
+import ScheduleInfo from './schedule-info.vue'
+
 export default {
+  components: { plannerInfo,ScheduleInfo },
   data () {
     return {
       selectedItem: 1,
@@ -26,4 +31,10 @@ export default {
   },
 }
 </script>
+<style>
+.proband{
+  align-items: start;
+  flex-direction: column;
+}
+</style>
 
