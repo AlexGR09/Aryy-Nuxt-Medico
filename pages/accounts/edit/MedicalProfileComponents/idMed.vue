@@ -2,10 +2,9 @@
   <div>
     <v-row>
       <v-card flat>
-        <menu-med/>
       </v-card>
       <v-col md="10" lg="9" xl="10">
-        <v-card flat height="800px" class="pa-3 mt-2">
+        <v-card flat height="100%" class="pa-3 mt-2">
           <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">IDENTIDAD MÉDICA</H1></v-card-subtitle>
             <v-card-text class="pa-3 mt-5 ">
               <v-form ref="form" v-model="valid">
@@ -80,12 +79,10 @@
 import Vue from 'vue';
 import VueFileAgent from 'vue-file-agent';
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
-import MenuMed from './menuMed.vue'
 Vue.use(VueFileAgent);
 Vue.use(VueFileAgentStyles);
 export default {
   components: {
-    MenuMed
 },
   data () {
     return {

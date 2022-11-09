@@ -61,30 +61,30 @@
     </v-row> -->
     <H1 class="mb-5 mt-8">REDES SOCIALES</H1>
     <v-row>
-        <v-col xl="4">
+      <v-col xs="9" sm="9" md="12" lg="6" xl="4">
           <span >Facebook</span>
-            <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
+            <v-btn outlined class="btn " block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
               Vincula tu cuenta de Facebook
             </v-btn>
           </v-col>
             
         
-        <v-col xl="4">
+        <v-col xs="12" sm="12" md="12" lg="6" xl="4">
           <span >Instagram</span>
             <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_insta.svg')" max-width="28"></v-img>
               Vincula tu cuenta de Instagram
             </v-btn>
         </v-col>
-        <v-col xl="4">
-          <span >TikTok</span>
+        <v-col xs="12" sm="12" md="12" lg="6" xl="4">
+          <span>TikTok</span>
             <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_tiktok.svg')" max-width="28"></v-img>
                 Vincula tu cuenta de TikTok
             </v-btn>
         </v-col>
-        <v-col xl="4">
-            <span>Sitio Web</span>
-            <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_internet.svg')"  max-width="28"></v-img>
-              Ingresa tu sitio web
+        <v-col xs="12" sm="12" md="12" lg="6" xl="4">
+               <span>Sitio Web</span>
+            <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_internet.svg')"  max-width="25"></v-img>
+              <l>Ingresa tu sitio web</l>
             </v-btn>
           </v-col>
     </v-row>

@@ -1,36 +1,20 @@
 <template>
   <v-app dark>
-    <v-app-bar flat color="transparent" height="100" :clipped-left="clipped" fixed app>
-     <!--  boton para ir al dia actual | Genesis -->
+    <v-app-bar flat color="transparent" height="100" :clipped-left="clipped" fixed absolute app>
       <v-spacer></v-spacer>
-   <!--    bara de busqueda | Genesis -->
-      <v-toolbar
-      max-width="350px"
-        flat
-        color="transparent"
-        class="vtoolbar mr-n4"
-        
-      >
-        <v-text-field
-          reverse
-          class="search mt-6"
-          color="grey"
-          background-color="white"
-          outlined
-          placeholder="Búsqueda   "
-          prepend-inner-icon="mdi-magnify"
-        ></v-text-field>
-      </v-toolbar>
-             <!-- iconos para notificacion, ajustes y cuenta | Genesis -->
+             <!-- iconos para notificacion y cuenta | Genesis -->
         <v-btn class="ml-4" icon small>
             <v-img :src="require('@/assets/icons/icon_notification.svg')" max-width="23"></v-img>
         </v-btn>
-        <v-btn class="ml-4" icon small>
-            <v-img :src="require('@/assets/icons/icon_ajustes.svg')" max-width="23"></v-img>
-        </v-btn>
-        <v-btn class="ml-5 mr-7" fab   color="#7900ff">
-          <v-img max-width="70px" :src="require('@/assets/avatares/AVATARES_DR1.png')" ></v-img>
-        </v-btn>
+     <!--    <v-chip  class="mr-n9 ml-2" style=" background: rgb(179,128,255);
+            background: linear-gradient(0deg, rgba(179,128,255,1) 2%, rgba(121,0,255,1) 48%, rgba(81,1,204,1) 98%);">
+        <p class="white--text mr-4 mt-4" style="font-size: .9rem">214 pts</p>
+      </v-chip> -->
+        <v-btn class="ml-5 mr-7" fab href="/accounts/edit/account/"  color="#7900ff">
+        <v-avatar class="avata" size="56">
+        <img
+          src="https://doctorslist.info/wp-content/uploads/2022/08/10-Best-Doctors-in-Bangladesh-1.png">
+      </v-avatar></v-btn>
         </v-app-bar>
     <!--código de lista de elementos del SideBar | Luis Reyes-->
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
@@ -156,8 +140,13 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-/*logos | Luis Reyes*/
+.avata{
+  border: 2px solid #7900ff;
+                  border-radius:50%;
+                  height: 56px;
+                  width: 56px;
+}
+/* /logos | Luis Reyes/ */
 .icon-logo{
   margin: 1em;
   display: block;

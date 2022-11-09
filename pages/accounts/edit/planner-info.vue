@@ -26,7 +26,7 @@
                   <template  v-slot:activator="{ on, attrs }">
                     <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5 mt-n3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agrega un consultorio</v-btn>
                   </template>
-                  <new-facility class="mt-16 ml-10"/>
+                  <new-facility class="mt-16 ml-13"/>
                 </v-dialog>
               </v-col>
             </v-row>

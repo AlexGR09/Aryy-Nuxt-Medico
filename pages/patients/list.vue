@@ -6,31 +6,36 @@
       <div class="row justify-content-md-center">
         <div class="col">
             <v-col xs="12" sm="12" md="12" lg="12" mg="12" align="center" justify="center">
-              <v-toolbar flat>
-                <v-row justify="start" class="select">
-                  <v-col xs="2" sm="2" md="2" lg="2" xl="2" class="select" >
-                          <v-select append-icon="mdi-menu-down" outlined flat class="select "  hide-details dense background-color="#f4edff" color="#7900ff" :items="keys" placeholder="Ordenar por"></v-select>
+              <v-toolbar rounded flat>
+                <v-row justify="start" class="select mt-8">
+                  <v-col xs="2" sm="2" md="2" lg="2" xl="3" class="select" >
+                    <v-toolbar width="100%" flat color="transparent" class="vtoolbar">
+                      <v-text-field reverse class="search" color="grey" dense background-color="white" outlined label="Búsqueda   " prepend-inner-icon="mdi-magnify"></v-text-field>
+                    </v-toolbar>
                       </v-col>
-                      <v-col xs="2" sm="2" md="2" lg="4" xl="5"></v-col> 
-                    <v-col xs="2" sm="2" md="8" lg="6" xl="5">
+                      <v-col xs="2" sm="2" md="2" lg="3" xl="2">
+                        <v-select append-icon="mdi-menu-down" outlined flat class="select " hide-details dense background-color="#f4edff" color="#7900ff" :items="keys" placeholder="Ordenar por"></v-select>
+                      </v-col> 
+                      <v-col xl="3"></v-col>
+                    <v-col xs="2" sm="2" md="8" lg="7" xl="4">
                       <v-btn outlined class="boton mr-4" :loading="isSelecting" @click="handleFileImport">
-        <span>Importar pacientes</span>
-        <v-icon>mdi-file-plus-outline</v-icon>
-      </v-btn> 
-      <input 
-        ref="uploader" 
-        class="d-none" 
-        type="file" 
-        @change="onFileChanged"
-      > 
-      <v-btn  
-          color="#7900ff"
-          class="ml-2 mr-2 boton white--text"
-        >
-          <span>Agregar paciente</span>
-          <v-icon>mdi-account-plus-outline</v-icon>
-          <h1></h1>
-        </v-btn>
+                    <span>Importar pacientes</span>
+                    <v-icon>mdi-file-plus-outline</v-icon>
+                  </v-btn> 
+                  <input 
+                    ref="uploader" 
+                    class="d-none" 
+                    type="file" 
+                    @change="onFileChanged"
+                  > 
+                  <v-btn  
+                      color="#7900ff"
+                      class="ml-2 mr-2 boton white--text"
+                    >
+                      <span>Agregar paciente</span>
+                      <v-icon>mdi-account-plus-outline</v-icon>
+                      <h1></h1>
+                    </v-btn>
                     </v-col>
                     </v-row>
               </v-toolbar>
@@ -48,19 +53,20 @@
                           'items-per-page-text':'Pacientes por página'
                       }"
                   >
-                  
-    <template v-slot:header="{ props: { headers } }">
-        <thead>
-          <tr>
-            <th v-for="h in headers" :class="h.class"  :key="h">
-              <p class="thead">{{h.text}}</p>
-            </th>
-          </tr>
-        </thead>
-    </template>
+               <!--    template personalizado para mostrar los headers de la tabla | Genesis -->
+                <template v-slot:header="{ props: { headers } }">
+                    <thead>
+                      <tr>
+                        <th v-for="h in headers" :class="h.class"  :key="h">
+                          <p class="thead">{{h.text}}</p>
+                        </th>
+                      </tr>
+                    </thead>
+                </template>
                   <template v-slot:[`item.create`]>
                       <a>Crear cita</a>
                   </template>
+                  template personalizado para mostrar las acciones de la tabla | Genesis
                   <template v-slot:[`item.actions`]="{ item }">
                     <!-- agrupar botones en una sola fila  | Genesis -->
                     <v-btn-toggle borderless class="botones">
@@ -165,6 +171,17 @@
   }
   </script>
   <style>
+  
+.vtoolbar{
+    border: thin solid #cccccc;
+    height: 30px;
+    width: 2rem;
+  }
+  .search{
+    
+    font-family: Montserrat;
+  }
+
 .thead{
   font-family: Montserrat;
   color: #999999;
