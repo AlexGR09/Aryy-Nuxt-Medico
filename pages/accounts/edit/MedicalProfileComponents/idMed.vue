@@ -11,7 +11,7 @@
               <v-row>
                 <v-col xl="6">
                   <span>Logotipo propio*</span>
-                  <v-file-input chips color="#9966ff" class="textfield" placeholder="Adjunta tu logotipo" outlined></v-file-input >
+                  <v-file-input  accept=".JPG, .PNG" chips color="#9966ff" class="textfield" placeholder="Adjunta tu logotipo" outlined></v-file-input >
                   <v-input class="input mb-n4">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 5 MB</v-input>
                 </v-col>
             </v-row> 
@@ -85,6 +85,7 @@ export default {
   components: {
 },
   data () {
+    
     return {
       overlay: false,
       alert: false,
