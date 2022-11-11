@@ -12,11 +12,12 @@
                   <v-text-field prepend-inner-icon="mdi-magnify" v-model="name" color="#9966ff" class="textfield" placeholder="Nombre del consultorio" outlined></v-text-field>
         <v-input class="input mb-n9 mt-4"><v-icon class="mr-3" color="#9966ff" size="15px">mdi-information</v-icon>Realizaremos una búsqueda de tu establecimiento en Google, si no aparece puedes agregarlo desde aqui.</v-input>
                 </v-col>
+                <v-row class="inputArea ml-1 mt-1" v-for="input in inputt" :key="input.id">
                   <v-col md="6" cols="12">
-                <span>Teléfono para citas*</span>
+                <span :for="input.id">Teléfono para citas*</span>
                   <v-text-field v-model="phone" color="#9966ff" class="textfield mb-5" placeholder="XXX XXX XXXX" outlined></v-text-field>
-                  <span>Horario para recepción de llamadas*</span>
-                  <div class="form-group  mb-9" v-for="(input,k) in inputs" :key="k">
+                  <span :for="input.id">Horario para recepción de llamadas*</span>
+                  <div class="form-group  mb-9">
                     <v-row>
                     <p class="text mt-8 ml-6">De</p>
                     <v-col md="4">
@@ -56,14 +57,15 @@
                             <v-icon>mdi-plus-circle</v-icon>
                           </v-btn> 
                   </v-row></div>
-                  <v-btn  class="btn ml-n5 mt-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro número</v-btn>
+                  <v-btn @click="addInput"  class="btn ml-n5 mt-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro número</v-btn>
                   </v-col>
                   <v-col md="6" cols="12">
-                <span>Extensión</span>
+                <span :for="input.id">Extensión</span>
                   <v-text-field v-model="extension" color="#9966ff" class="textfield"  placeholder="No. Extensión" outlined></v-text-field>
                   </v-col>
-                 <!--  <span>Horario para recepción de llamadas*</span> -->
-                  <v-col md="4" cols="12">
+                </v-row>
+                 <v-row class="ml-1">
+                 <v-col md="4" cols="12">
                 <span>Código postal*</span>
                   <v-text-field v-model="CP" color="#9966ff" maxlength="5" counter="5" class="textfield" placeholder="00000" outlined></v-text-field>
                   </v-col>
@@ -124,6 +126,7 @@
       </v-overlay>
       </div>
     </v-row>
+  </v-row> 
         </v-col>
         <v-col xl="1"></v-col>
       </v-form>
@@ -138,6 +141,11 @@
 },
     data () {
       return {
+        inputt: [{
+      id: 'fruit0',
+      label: 'Enter Fruit Name',
+      value: '',
+    }],
         inputs: [
             {
                 name: ''
@@ -159,6 +167,13 @@
     },
   },
     methods: {
+      addInput() {
+      this.inputt.push({
+        id: `fruit${++this.counter}`,
+        label: 'Enter Fruit Name',
+        value: '',
+      });
+    },
       save(start,end) {
        this.$refs.dialog[0].save(start,end)
     },
