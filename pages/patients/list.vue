@@ -7,7 +7,7 @@
               <v-toolbar height="150%" rounded flat>
               <v-row justify="space-between">
                 <v-col  md="2" lg="2" xl="2">
-                  <v-btn width="100%"  color="#7900ff" class="mr-2 mb-3 boton white--text"><span class="textbtn" >Editar expediente</span></v-btn>
+                  <v-btn width="100%"  color="#7900ff" class="mr-2 mb-3 boton black--text"><span class="textbtn white--text" >Editar expediente</span></v-btn>
                   <v-select full-width append-icon="mdi-menu-down" outlined flat class="select " hide-details dense background-color="#f4edff" color="#7900ff" :items="keys" placeholder="Ordenar por"></v-select>        
                   
                 </v-col>
@@ -19,7 +19,7 @@
                     <v-row justify="center mt-12 ml-16">
                       <v-col class="ml-16"  xs="1" sm="1" md="5" lg="10" xl="4">
                   <v-btn outlined class="textbtn ml-16" :loading="isSelecting" @click="handleFileImport">
-                    <span class="textbtn" >Importar pacientes</span>
+                    <span class="textbtn black--text" >Importar pacientes</span>
                     <v-icon class="ml-3" size="calc(.7rem + .3vw)">mdi-file-plus-outline</v-icon>
                   </v-btn> 
                   <input 
@@ -33,7 +33,7 @@
                   
                 <v-col class="mr-10" md="1" lg="2" xl="2">
                   <v-btn block outlined class="textbtn mb-3" :loading="isSelecting" @click="handleFileImport">
-                    <span class="textbtn" >Agregar paciente</span>
+                    <span class="textbtn black--text" >Agregar paciente</span>
                     <v-icon class="ml-3" size="calc(.7rem + .3vw)">mdi-file-plus-outline</v-icon>
                   </v-btn> 
                   <input 
@@ -43,7 +43,7 @@
                     @change="onFileChanged"
                   > 
                   <v-btn block outlined class="textbtn" :loading="isSelecting" @click="handleFileImport">
-                    <span class="textbtn" >Exportar pacientes </span>
+                    <span class="textbtn black--text" >Exportar pacientes </span>
                     <v-icon  size="calc(.7rem + .3vw)">mdi-file-plus-outline</v-icon>
                   </v-btn> 
                   <input 
@@ -87,7 +87,7 @@
                   <template v-slot:[`item.gender`]>
                     <v-row class="ml-n16">
                     <v-col xl="4"> 
-                      <v-chip class="chipgreen  green--text" style="background:#e9f7ee"><l class="chip ml-3">ASISTIÓ</l></v-chip>
+                      <v-chip class="chipgreen  green--text" style="background:#e9f7ee"><l class="chip ml-1">ASISTIÓ</l></v-chip>
                       <!-- <v-chip class="chipred red--text" style="background:#fdeeec"><l class="chip">CANCELADA</l></v-chip>
                       <v-chip class="chipgrey grey--text" style="background:#f5f5f5"><l class="chip">N/A</l></v-chip> -->
                     </v-col>
@@ -138,7 +138,7 @@
             value: 'name',
           },
           { text: 'Teléfono', value: 'species', align: 'start', width: '300px'},
-          { text: '       Última cita', value: 'gender', align: 'start',   },
+          { text: 'Última cita', value: 'gender', align: 'start',   },
           { text: 'Próxima visita', value: 'create', sortable: false, align: 'center',   },
           { text: '', value: 'actions', sortable: false, align: 'start' },
           { text: '', value: '', sortable: false, align: 'start',},

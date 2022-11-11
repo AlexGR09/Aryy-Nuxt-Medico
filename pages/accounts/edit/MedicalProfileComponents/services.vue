@@ -53,15 +53,22 @@
       </v-col> 
       <v-col xs="1" md="1" lg="1" xl="1"><v-autocomplete value="MXN" placeholder="MXN" class="ml-n6 mt-n5" outlined background-color="rgb(242, 242, 242)"></v-autocomplete></v-col>
       </v-row>
-<v-row>
+<v-row class="inputArea" v-for="input in inputs" :key="input.id">
   <v-col xs="6" md="6" lg="6" xl="6">
     <p class="cedu mt-n5 mb-1">Idiomas*</p>
     <v-text-field color="#7900ff" class="textfield mb-5" placeholder="Español" outlined></v-text-field>
-    <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro idioma</v-btn>
     </v-col>
 </v-row>
-<v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
-      <v-btn @click="reset" height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+
+<v-row>
+  <v-col xs="6" md="6" lg="6" xl="6">
+    <v-btn @click="addInput" v-bind="attrs" v-on="on" class="btn mt-n14 ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro idioma</v-btn>
+    </v-col>
+</v-row>
+
+
+<v-btn  @click="overlay = !overlay" height="50px" class="white--text save" color="#7900ff" large>Guardar cambios</v-btn>
+      <v-btn @click="reset" height="50px" class="restore ml-3" color="#999999" outlined large>Restaurar todo</v-btn>
       <v-overlay :value="overlay">
         <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
       </v-overlay>  
@@ -81,6 +88,12 @@
 },
     data () {
       return {
+        counter: 0,
+    inputs: [{
+      id: 'fruit0',
+      label: 'Enter Fruit Name',
+      value: '',
+    }],
         overlay: false,
         check: "",
         checks: "",
@@ -95,6 +108,13 @@
     },
   },
   methods: {
+    addInput() {
+      this.inputs.push({
+        id: `fruit${++this.counter}`,
+        label: 'Enter Fruit Name',
+        value: '',
+      });
+    },
       reset () {
         this.$refs.form.reset()
       },
