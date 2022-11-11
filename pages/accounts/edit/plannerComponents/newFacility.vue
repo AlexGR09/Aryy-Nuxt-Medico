@@ -21,37 +21,85 @@
                     <v-row>
                     <p class="text mt-8 ml-6">De</p>
                     <v-col md="4">
-                      <v-dialog ref="dialog" v-model="modal2" :return-value.sync="time" persistent width="290px">
-                            <template v-slot:activator="{ on, attrs }">
-                              <v-text-field color="#7900ff" outlined class="textfield" v-model="time" placeholder="08:00 AM" readonly v-bind="attrs" v-on="on" ></v-text-field>
-                            </template>
-                            <v-time-picker color="#7900ff"  v-if="modal2" v-model="start" :max="end" full-width>
-                              <v-spacer></v-spacer>
-                              <v-btn text color="#7900ff" @click="modal2 = false">
-                                Cancel
-                              </v-btn>
-                              <v-btn text color="#7900ff" @click="$refs.dialog.save(start)">
-                                OK
-                              </v-btn>
-                            </v-time-picker>
-                          </v-dialog>
+                      <v-dialog
+        ref="dialog"
+        v-model="modal"
+        :return-value.sync="date"
+        persistent
+        width="290px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="date"
+            label="Picker in dialog"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="date"
+          scrollable
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="modal = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.dialog.save(date)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-dialog>
                         </v-col>
                     <p class="text mt-8">A</p>
                     <v-col md="4">
-                      <v-dialog ref="dialog" v-model="modal2" :return-value.sync="time" persistent width="290px" >
-                            <template v-slot:activator="{ on, attrs }">
-                              <v-text-field color="#7900ff" outlined class="textfield" v-model="time" placeholder="08:00 PM" readonly v-bind="attrs" v-on="on"></v-text-field>
-                            </template>
-                            <v-time-picker color="#7900ff" v-if="modal2" v-model="end" :min="start" full-width>
-                              <v-spacer></v-spacer>
-                              <v-btn text color="#7900ff" @click="modal2 = false" >
-                                Cancel
-                              </v-btn>
-                              <v-btn text color="#7900ff"  @click="$refs.dialog.save(end)">
-                                OK
-                              </v-btn>
-                            </v-time-picker>
-                          </v-dialog>
+                      <v-dialog
+        ref="dialog"
+        v-model="modal2"
+        :return-value.sync="date"
+        persistent
+        width="290px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="date2"
+            label="Picker in dialog"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="date"
+          scrollable
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="modal2 = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.dialog.save(date)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-dialog>
                         </v-col>  
                           <v-btn @click="add(k)" v-show="k == inputs.length-1" class="mt-6" icon color="#9966ff">
                             <v-icon>mdi-plus-circle</v-icon>
@@ -157,6 +205,10 @@
         time: null,
         menu2: false,
         modal2: false,
+        modal: false,
+        date2: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+        date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      menu: false,
       }
     },
     watch: {

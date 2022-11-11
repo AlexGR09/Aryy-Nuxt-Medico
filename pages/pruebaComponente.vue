@@ -5,6 +5,7 @@
     <v-text-field outlined :id="input.id" v-model="input.value"></v-text-field>
   </div>
   <button @click="addInput">Add input</button>
+  <maps/>
 </div>
 
 </template>
@@ -13,9 +14,11 @@
 import Vue from 'vue';
 import VueFileAgent from 'vue-file-agent';
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
+import maps from '~/components/maps.vue';
 Vue.use(VueFileAgent);
 Vue.use(VueFileAgentStyles);
   export default {
+  components: { maps },
     data: () => ({
       counter: 0,
     inputs: [{
