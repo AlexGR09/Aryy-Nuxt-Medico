@@ -21,13 +21,33 @@
 </template>
 
 <script>
+import axios from 'axios'
 import menuPlanner from './plannerComponents/menuPlanner.vue'
 import generalInfo from './general-info.vue'
 import MenuMed from './MedicalProfileComponents/menuMed.vue'
+
 export default {
-  components: { menuPlanner, generalInfo, MenuMed},
-  data: () => ({show1: false, tabs: 0,}),
   
+  components: { menuPlanner, generalInfo, MenuMed},
+  data () {
+   
+    return {
+      show1: false, tabs: 0,
+    }
+  },
+  methods: {
+    getApi() {
+              console.log('peticion GET');
+              axios.get('searchphy')
+                .then(res => {console.log(res)})
+                .catch(e => {console.log(e);})
+          },
+  },
+  mounted() {
+          console.log('verificando');
+          this.getApi();
+  
+      },
 }
 </script>
 <style>

@@ -117,6 +117,7 @@ import MenuMed from './MedicalProfileComponents/menuMed.vue'
 Vue.use(VueFileAgent);
 Vue.use(VueFileAgentStyles);
   export default {
+    name: "medicalProfile",
     components: {
     MenuMed
 },

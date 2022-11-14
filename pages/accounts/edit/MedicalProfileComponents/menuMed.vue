@@ -33,6 +33,7 @@ import IdMed from './idMed.vue'
 import Illnes from './illnes.vue'
 import Services from './services.vue'
 export default {
+  name: "menuMed",
   components: { medicalProfileInfo, IdMed, Services, Illnes },
 
   data () {
