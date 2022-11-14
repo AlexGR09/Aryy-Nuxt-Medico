@@ -85,25 +85,13 @@
   </div>
   </template>
   <script>
-/*   import axios from 'axios' */
   import MenuMed from './menuMed.vue'
-  
   export default {
     components: {
     MenuMed
 },
     data () {
-      this.$axios
-  .get("/api/")
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
       return {
-        
         counter: 0,
     inputs: [{}],
     services: [{}],
@@ -120,23 +108,9 @@
       }, 3000)
     },
   },
-  mounted () {
-      console.log('verificando')
-      this.getApi()
-    },
+  
   methods: {
-  /*  getApi(){
-    console.log('peticion GET')
-        axios.get('https://app.aryymd.com/api/login')
-          .then(res => {
-            console.log(res)
-            this.characters = res.data.data
-            this.characters = res.data.data
-          })
-          .catch(e => {
-            console.log(e)
-          })
-      }, */
+
     addInput() {
       this.inputs.push({
         id: `fruit${++this.counter}`,
