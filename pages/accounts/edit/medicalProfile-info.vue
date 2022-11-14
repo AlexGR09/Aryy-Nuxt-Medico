@@ -30,14 +30,14 @@
                   
                 <v-col md="6" lg="6" xl="6" cols="12">
                     <p :for="input.id" class="cedu  mb-n1">No. de cedula*</p>
-                  <v-text-field :id="input.id" v-model="input.value" color="#9966ff" class="textfield mt-1" placeholder="00000000" outlined></v-text-field> </v-col>
+                  <v-text-field :id="input.id" v-model="cedula" color="#9966ff" class="textfield mt-1" placeholder="00000000" outlined></v-text-field> </v-col>
                   <v-col md="6" lg="6" xl="6" cols="12">
                     <p :for="input.id" class="cedu  mb-n1">Institución que otorgó la cédula*</p>
-                  <v-text-field :id="input.id" v-model="input.value" color="#9966ff"  class="textfield mt-1" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
+                  <v-text-field :id="input.id" v-model="insti" color="#9966ff"  class="textfield mt-1" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
                   </v-col>
                   <v-col md="6" lg="6" xl="6" cols="12">
                     <p :for="input.id" class="cedu mb-1">Foto de cedula*</p>
-                  <v-file-input :id="input.id" v-model="input.value" chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
+                  <v-file-input :id="input.id" v-model="photo" chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
                     <v-input class="input mt-3 mb-n4">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</v-input>
                     
                   </v-col><v-col md="6" lg="6" xl="6" cols="12"></v-col>
