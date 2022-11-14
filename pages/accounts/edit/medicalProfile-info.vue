@@ -37,7 +37,7 @@
                   </v-col>
                   <v-col md="6" lg="6" xl="6" cols="12">
                     <p :for="input.id" class="cedu mb-1">Foto de cedula*</p>
-                  <v-file-input :id="input.id" v-model="photo" chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
+                  <v-file-input  accept=".png, .jpg" :id="input.id" v-model="photo" chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
                     <v-input class="input mt-3 mb-n4">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</v-input>
                     
                   </v-col><v-col md="6" lg="6" xl="6" cols="12"></v-col>
@@ -141,6 +141,7 @@ Vue.use(VueFileAgentStyles);
     },
   },
   methods: {
+    
     addInput() {
       this.inputs.push({
         id: `fruit${++this.counter}`,

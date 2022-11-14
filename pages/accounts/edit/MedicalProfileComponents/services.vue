@@ -45,14 +45,18 @@
         </v-btn>
       </v-btn-toggle>    
        </v-col>
+      </v-row>
+       <v-row v-for="service in services" :key="service.id">
        <v-col xs="6" md="6" lg="6" xl="6">
         <v-text-field color="#7900ff" class="textfield mt-n5 " placeholder="Escribe un servicio médico" outlined></v-text-field>
+<!--         <v-btn @click="addService" v-bind="attrs" v-on="on" class="btn mt-3 ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro servicio</v-btn> -->
        </v-col>
        <v-col xs="4" md="4" lg="4" xl="4">
         <v-text-field color="#7900ff"  class="textfield mt-n5" placeholder="Agregar precio de servicio" outlined></v-text-field>
       </v-col> 
       <v-col xs="1" md="1" lg="1" xl="1"><v-autocomplete value="MXN" placeholder="MXN" class="ml-n6 mt-n5" outlined background-color="rgb(242, 242, 242)"></v-autocomplete></v-col>
       </v-row>
+      <v-btn @click="addService" v-bind="attrs" v-on="on" class="btn mt-n7 mb-6 ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro servicio</v-btn>
 <v-row class="inputArea" v-for="input in inputs" :key="input.id">
   <v-col xs="6" md="6" lg="6" xl="6">
     <p class="cedu mt-n5 mb-1">Idiomas*</p>
@@ -81,7 +85,9 @@
   </div>
   </template>
   <script>
+  import axios from 'axios'
   import MenuMed from './menuMed.vue'
+  
   export default {
     components: {
     MenuMed
@@ -89,11 +95,8 @@
     data () {
       return {
         counter: 0,
-    inputs: [{
-      id: 'fruit0',
-      label: 'Enter Fruit Name',
-      value: '',
-    }],
+    inputs: [{}],
+    services: [{}],
         overlay: false,
         check: "",
         checks: "",
@@ -107,9 +110,33 @@
       }, 3000)
     },
   },
+  mounted () {
+      console.log('verificando')
+      this.getApi()
+    },
   methods: {
+    getApi () {
+        console.log('peticion GET')
+        
+        axios.get('https://app.aryymd.com/')
+          .then(res => {
+            console.log(res)
+            this.objects = res.data.data
+            this.objects = res.data.data
+          })
+          .catch(e => {
+            console.log(e)
+          })
+      },
     addInput() {
       this.inputs.push({
+        id: `fruit${++this.counter}`,
+        label: 'Enter Fruit Name',
+        value: '',
+      });
+    },
+    addService() {
+      this.services.push({
         id: `fruit${++this.counter}`,
         label: 'Enter Fruit Name',
         value: '',

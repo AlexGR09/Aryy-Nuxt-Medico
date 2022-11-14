@@ -25,7 +25,7 @@
                   <input 
                     ref="uploader" 
                     class="d-none" 
-                    accept=".xlsx"
+                    accept=".xls"
                     type="file" 
                     @change="onFileChanged"
                   > 
