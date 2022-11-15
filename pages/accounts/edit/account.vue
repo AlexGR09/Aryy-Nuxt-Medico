@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+/* import axios from 'axios' */
 import menuPlanner from './plannerComponents/menuPlanner.vue'
 import generalInfo from './general-info.vue'
 import MenuMed from './MedicalProfileComponents/menuMed.vue'
@@ -34,7 +34,7 @@ export default {
     return {
       show1: false, tabs: 0,
     }
-  },
+  },/* 
   methods: {
     getApi() {
               console.log('peticion GET');
@@ -47,7 +47,7 @@ export default {
           console.log('verificando');
           this.getApi();
   
-      },
+      }, */
 }
 </script>
 <style>
