@@ -2,7 +2,7 @@
 <v-row>
 
     <v-card-text>hola a los nuevos cambios</v-card-text>
-    <p  v-for="(restaurant, index) in restaurants" :key="index">{{restaurant.name}}</p>
+   <!--  <p  v-for="(restaurant, index) in restaurants" :key="index">{{restaurant.name}}</p> -->
     <v-col
         cols="12"
         md="4"
