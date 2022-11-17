@@ -49,8 +49,8 @@
           <v-col xs="11" sm="11" md="11" lg="11" xl="7">
             <v-card flat>
               <v-card-text>
-                <v-row>
-                  <div class="subscribe" v-if="is_subscribe">
+                <v-row >
+                  <v-col class="ml-n3" xl="12">
                     <v-text-field
                       v-model="email"
                       justify-right
@@ -68,9 +68,10 @@
                       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                       :type="show1 ? 'text' : 'password'"
                       @click:append="show1 = !show1"
-                      hint="Respeta mayúsculas y minúsculas"
                     ></v-text-field>
-                  </div>
+                    <a href="/" class="input">¿Olvidaste tu contraseña?</a>
+                  </v-col>
+                  
                   <v-btn
                     class="btnnn"
                     color="#7900ff"
@@ -209,6 +210,12 @@ p.label {
   margin-top: -1px;
   margin-left: 1px;
   margin-bottom: 15px;
+}
+.input {
+  text-decoration: none !important;
+  color: #9966ff !important;
+  font-family: MontserratMedium;
+  font-size: 100%;
 }
 a.accede {
   margin-top: 16px;

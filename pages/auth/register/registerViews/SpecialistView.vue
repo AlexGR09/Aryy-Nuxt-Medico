@@ -58,6 +58,7 @@
                       ></v-text-field>
                       <br />
                       <v-text-field
+                        v-model="password"
                         height="25"
                         outlined
                         class="textfield mb-2"
@@ -66,21 +67,20 @@
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password'"
                         @click:append="show1 = !show1"
-                        v-model="password"
-                        hint="Debe contener al menos 8 carácteres"
                       ></v-text-field>
-                      <p>{{ error }}</p>
+                      <p class="hint"> {{ error }}</p>
                       <v-text-field
+                      v-model="password2"
                         height="25"
                         outlined
                         class="textfield mt-8 mb-2"
                         color="#b380ff"
                         placeholder="Confirma tu contraseña"
-                        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                        :type="show1 ? 'text' : 'password'"
-                        @click:append="show1 = !show1"
-                        hint="Debe contener al menos 8 carácteres"
+                        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                        :type="show2 ? 'text' : 'password'"
+                        @click:append="show2 = !show2"
                       ></v-text-field>
+                      <p class="hint"> {{ msg }}</p>
                     </v-col>
                   </v-row>
                   <v-row>
@@ -155,9 +155,22 @@
 export default {
   name: 'formLogin',
   layout: 'auth',
-  data: () => ({
+  data () {
+    return{
+    error: '',
+    msg: '',
     tabs: 1,
-    /*      Countries: CountriesCodes, */
+    email: '',
+    password: '',
+    password2: '',
+    checkbox: false,
+    /*  Reglas para el input de contraseña | Genesis */
+    show1: false,
+    show2: false,
+    hasVisiblePassword: false,
+    rules: {
+      min: (v) => v.length >= 8 || 'Debe contener mínimo 8 carácteres',
+    },
     items: [
       {
         title: 'COMO PACIENTE',
@@ -167,23 +180,25 @@ export default {
       { title: 'COMO LABORATORIO', to: '/auth/register/register' },
       { title: 'COMO FARMACIA', to: '/auth/register/register' },
     ],
-    checkbox: false,
-    /*  Reglas para el input de contraseña | Genesis */
-    show1: false,
-    hasVisiblePassword: false,
-    rules: {
-      min: (v) => v.length >= 8 || 'Debe contener mínimo 8 carácteres',
-    },
-  }),
-  /*   watch: {
+    }
+  
+  },
+     watch: {
           password(){
-            if(this.password.length > 5){
+            if(this.password.length < 5){
               this.error = "Debe contener al menos 8 carácteres"
             }else {
               this.error = ''
             }
+          },
+          password2(){
+            if(this.password === this.password2){
+              this.msg = ""
+            }else {
+              this.msg = "Las contraseñas no coinciden"
+            }
           }
-        }, */
+        }, 
   myFunction: function () {
     if (this.enableDisable) {
       this.enableDisable = false
@@ -274,6 +289,12 @@ r {
 .v-messages__message {
   font-size: 11px;
   color: #7900ff;
+}
+p.hint{
+  font-size: 13px;
+  color: #7900ff;
+  margin-top: 5px;
+  margin-bottom: -3px;
 }
 .checkbox {
   margin-top: 15px;
