@@ -112,7 +112,6 @@
   </v-card>
 </template>
   <script>
-import api from '~/services/api'
 export default {
   name: 'formLogin',
   layout: 'auth',
@@ -133,15 +132,6 @@ export default {
   }),
 
   methods: {
-    async subscribe() {
-      const payload = {
-        email: this.email,
-      }
-      const response = await api.postSubscribeUser(payload)
-      if (response.status === 201) {
-        this.is_subscribe = true
-      }
-    },
   },
 
   myFunction: function () {
