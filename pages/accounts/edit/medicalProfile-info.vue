@@ -2,221 +2,376 @@
   <div>
     <v-row>
       <v-card flat>
-        <menu-med/>
+        <menu-med />
       </v-card>
-      <v-col md="10" lg="10" xl="10">          
+      <v-col md="10" lg="10" xl="10">
         <v-card flat class="pa-3 mt-2">
-          <v-card-subtitle class="pa-3  mt-n2 mb-n10"><H1 class="mb-5">FORMACIÓN ACADÉMICA</H1></v-card-subtitle>
-        <v-form ref="form" v-model="valid">
-            <v-card-text class="pa-3 mt-5 ">
+          <v-card-subtitle class="pa-3 mt-n2 mb-n10"
+            ><H1 class="mb-5">FORMACIÓN ACADÉMICA</H1></v-card-subtitle
+          >
+          <v-form ref="form" v-model="valid">
+            <v-card-text class="pa-3 mt-5">
               <v-row>
                 <v-col md="6" lg="6" xl="6" cols="12">
                   <span>Especialidad*</span>
-                  <v-autocomplete v-model="specialty" color="#9966ff" class="textfield " placeholder="Selecciona una especialidad" outlined></v-autocomplete>
-                </v-col> 
+                  <v-autocomplete
+                    v-model="specialty"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined
+                  ></v-autocomplete>
+                </v-col>
                 <v-col md="6" lg="6" xl="6" cols="12"></v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
-                  <span >Subespecialidad (opcional)</span>
-                  <v-autocomplete v-model="subspecialty" color="#9966ff" class="textfield" placeholder="Añadir" outlined></v-autocomplete>
-                  <v-btn class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra</v-btn>
+                  <span>Subespecialidad (opcional)</span>
+                  <v-autocomplete
+                    v-model="subspecialty"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="Añadir"
+                    outlined
+                  ></v-autocomplete>
+                  <v-btn class="btn ml-n5 mt-3" color="#9966ff" text
+                    ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir
+                    otra</v-btn
+                  >
                 </v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
-                  <span >Subespecialidad (opcional)</span>
-                  <v-autocomplete v-model="subespeciality2" color="#9966ff" class="textfield" placeholder="Añadir" outlined></v-autocomplete>
-                  <v-btn class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra</v-btn>
+                  <span>Subespecialidad (opcional)</span>
+                  <v-autocomplete
+                    v-model="subespeciality2"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="Añadir"
+                    outlined
+                  ></v-autocomplete>
+                  <v-btn class="btn ml-n5 mt-3" color="#9966ff" text
+                    ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir
+                    otra</v-btn
+                  >
                 </v-col>
-                <v-col md="6" lg="6" xl="6" cols="12">
-                    <p class="cedu mt-n4 mb-n1">No. de cedula*</p>
-                  <v-text-field v-model="identification" color="#9966ff" class="textfield mt-1" placeholder="00000000" outlined></v-text-field> </v-col>
+                <!-- <<<<<<<<<<<<<<<< -->
+                <v-row
+                  class="inputArea ml-0"
+                  v-for="input in inputs"
+                  :key="input.id"
+                >
                   <v-col md="6" lg="6" xl="6" cols="12">
-                    <p class="cedu mt-n4 mb-n1">Institución que otorgó la cédula*</p>
-                  <v-text-field v-model="institution" color="#9966ff"  class="textfield mt-1" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
+                    <p :for="input.id" class="cedu mb-n1">No. de cedula*</p>
+                    <v-text-field
+                      :id="input.id"
+                      v-model="cedula"
+                      color="#9966ff"
+                      class="textfield mt-1"
+                      placeholder="00000000"
+                      outlined
+                    ></v-text-field>
                   </v-col>
                   <v-col md="6" lg="6" xl="6" cols="12">
-                    <p class="cedu mb-1">Foto de cedula*</p>
-                  <v-file-input v-model="fileIden" chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
-                    <v-input class="input mt-3 mb-n4">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</v-input>
-                    <v-btn class="btn ml-n5 mb-n4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra cédula</v-btn>
-                  </v-col><v-col md="6" lg="6" xl="6" cols="12"></v-col>
-                <!-- 
-                 
-                </v-col> -->
-                <v-col xl="12">
-                    <span >Sobre mi(opcional)</span>
-                    <v-textarea color="#9966ff" v-model="aboutme" maxlength="400" counter="400" auto-grow placeholder="Escribe una biografía breve sobre ti" outlined class="textfield mb-16"></v-textarea> 
-                </v-col>
-             
+                    <p :for="input.id" class="cedu mb-n1">
+                      Institución que otorgó la cédula*
+                    </p>
+                    <v-text-field
+                      :id="input.id"
+                      v-model="insti"
+                      color="#9966ff"
+                      class="textfield mt-1"
+                      placeholder="Escribe el nombre de la institución"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+                  <v-col md="6" lg="6" xl="6" cols="12">
+                    <p :for="input.id" class="cedu mb-1">Foto de cedula*</p>
+                    <v-file-input
+                      accept=".png, .jpg"
+                      :id="input.id"
+                      v-model="photo"
+                      chips
+                      color="#9966ff"
+                      class="textfield"
+                      placeholder="Añadir archivo"
+                      outlined
+                    ></v-file-input>
+                    <v-input class="input mt-3 mb-n4"
+                      >Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2
+                      MB</v-input
+                    > </v-col
+                  ><v-col md="6" lg="6" xl="6" cols="12"></v-col>
                 </v-row>
-                <v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
-      <v-btn  height="50px" @click="reset" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
-      <v-overlay :value="overlay">
-        <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
-      </v-overlay>
-    <H1 class="mb-5 mt-8">CERTIFICADOS</H1>
-    <VueFileAgent  :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
-<!--     <H1 class="mb-5 mt-8">RECETA MÉDICA*</H1>
+                <v-col md="6" lg="6" xl="6" cols="12">
+                  <v-btn
+                    @click="addInput"
+                    class="btn ml-n5 mb-n4"
+                    color="#9966ff"
+                    text
+                    ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra
+                    cédula</v-btn
+                  >
+                </v-col>
+
+                <v-col class="mt-3" xl="12">
+                  <span>Sobre mi(opcional)</span>
+                  <v-textarea
+                    color="#9966ff"
+                    v-model="aboutme"
+                    maxlength="400"
+                    counter="400"
+                    auto-grow
+                    placeholder="Escribe una biografía breve sobre ti"
+                    outlined
+                    class="textfield mb-16"
+                  ></v-textarea>
+                </v-col>
+              </v-row>
+              <v-btn
+                @click="overlay = !overlay"
+                height="50px"
+                class="white--text save mt-7"
+                color="#7900ff"
+                large
+                >Guardar cambios</v-btn
+              >
+              <v-btn
+                height="50px"
+                @click="reset"
+                class="restore ml-3 mt-7"
+                color="#999999"
+                outlined
+                large
+                >Restaurar todo</v-btn
+              >
+              <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+              <H1 class="mb-5 mt-8">CERTIFICADOS</H1>
+              <VueFileAgent
+                :multiple="true"
+                :deletable="true"
+                :helpText="'Selecciona o arrastra tus archivos aquí'"
+                :uploadUrl="uploadUrl"
+                v-model="fileRecords"
+              ></VueFileAgent>
+              <!--     <H1 class="mb-5 mt-8">RECETA MÉDICA*</H1>
     <v-row>
       <v-col xl="6"> <span>Logotipo propio</span> <v-file-input class="textfield" placeholder="Añadir archivo" outlined></v-file-input >   <v-input class="input">Formatos permitidos: PDF, JPG O PNG. Tamaño máximo de archivo 5 MB.</v-input></v-col>    
       <v-col xl="6">  <span>Grupo médico (opcional)</span><v-file-input class="textfield" placeholder="Añadir archivo" outlined></v-file-input >   <v-input class="input">Formatos permitidos: PDF, JPG O PNG. Tamaño máximo de archivo 5 MB.</v-input></v-col>
     </v-row> -->
-    <H1 class="mb-5 mt-8">REDES SOCIALES</H1>
-    <v-row>
-      <v-col xs="9" sm="9" md="12" lg="6" xl="4">
-          <span >Facebook</span>
-            <v-btn outlined class="btn " block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
-              Vincula tu cuenta de Facebook
-            </v-btn>
-          </v-col>
-            
-        
-        <v-col xs="12" sm="12" md="12" lg="6" xl="4">
-          <span >Instagram</span>
-            <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_insta.svg')" max-width="28"></v-img>
-              Vincula tu cuenta de Instagram
-            </v-btn>
-        </v-col>
-        <v-col xs="12" sm="12" md="12" lg="6" xl="4">
-          <span>TikTok</span>
-            <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_tiktok.svg')" max-width="28"></v-img>
-                Vincula tu cuenta de TikTok
-            </v-btn>
-        </v-col>
-        <v-col xs="12" sm="12" md="12" lg="6" xl="4">
-               <span>Sitio Web</span>
-            <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_internet.svg')"  max-width="25"></v-img>
-              <l>Ingresa tu sitio web</l>
-            </v-btn>
-          </v-col>
-    </v-row>
-    <BR/><BR/>
-   <v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
-      <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
-      <v-overlay :value="overlay">
-        <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
-      </v-overlay> 
-    
-  </v-card-text>
-</v-form> 
+              <H1 class="mb-5 mt-8">REDES SOCIALES</H1>
+              <v-row>
+                <v-col xs="9" sm="9" md="12" lg="6" xl="4">
+                  <span>Facebook</span>
+                  <v-btn outlined class="btn" block color="#999999" height="50"
+                    ><v-img
+                      class="mr-3"
+                      :src="require('@/assets/icons/icon_facebook.svg')"
+                      max-width="35"
+                    ></v-img>
+                    Vincula tu cuenta de Facebook
+                  </v-btn>
+                </v-col>
+
+                <v-col xs="12" sm="12" md="12" lg="6" xl="4">
+                  <span>Instagram</span>
+                  <v-btn outlined class="btn" block color="#999999" height="50"
+                    ><v-img
+                      class="mr-3"
+                      :src="require('@/assets/icons/icon_insta.svg')"
+                      max-width="28"
+                    ></v-img>
+                    Vincula tu cuenta de Instagram
+                  </v-btn>
+                </v-col>
+                <v-col xs="12" sm="12" md="12" lg="6" xl="4">
+                  <span>TikTok</span>
+                  <v-btn outlined class="btn" block color="#999999" height="50"
+                    ><v-img
+                      class="mr-3"
+                      :src="require('@/assets/icons/icon_tiktok.svg')"
+                      max-width="28"
+                    ></v-img>
+                    Vincula tu cuenta de TikTok
+                  </v-btn>
+                </v-col>
+                <v-col xs="12" sm="12" md="12" lg="6" xl="4">
+                  <span>Sitio Web</span>
+                  <v-btn outlined class="btn" block color="#999999" height="50"
+                    ><v-img
+                      class="mr-3"
+                      :src="require('@/assets/icons/icon_internet.svg')"
+                      max-width="25"
+                    ></v-img>
+                    <l>Ingresa tu sitio web</l>
+                  </v-btn>
+                </v-col>
+              </v-row>
+              <BR /><BR />
+              <v-btn
+                @click="overlay = !overlay"
+                height="50px"
+                class="white--text save mt-7"
+                color="#7900ff"
+                large
+                >Guardar cambios</v-btn
+              >
+              <v-btn
+                height="50px"
+                class="restore ml-3 mt-7"
+                color="#999999"
+                outlined
+                large
+                >Restaurar todo</v-btn
+              >
+              <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+            </v-card-text>
+          </v-form>
         </v-card>
       </v-col>
     </v-row>
   </div>
 </template>
   <script>
-import Vue from 'vue';
-import VueFileAgent from 'vue-file-agent';
-import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
+import Vue from 'vue'
+import VueFileAgent from 'vue-file-agent'
+import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css'
 import MenuMed from './MedicalProfileComponents/menuMed.vue'
-Vue.use(VueFileAgent);
-Vue.use(VueFileAgentStyles);
-  export default {
-    components: {
-    MenuMed
-},
-    data () {
-      return {
-        overlay: false,
-        fileRecords: [],
-        uploadUrl: 'https://example.com',
-        selectedItem: 1,
-      }
-    },
-    watch: {
-    overlay (val) {
-      val && setTimeout(() => {
-        this.overlay = false
-      }, 3000)
+Vue.use(VueFileAgent)
+Vue.use(VueFileAgentStyles)
+export default {
+  name: 'medicalProfile',
+  components: {
+    MenuMed,
+  },
+  data() {
+    return {
+      inputs: [
+        {
+          id: 'fruit0',
+          label: 'Enter Fruit Name',
+          value: '',
+        },
+      ],
+      overlay: false,
+      fileRecords: [],
+      uploadUrl: 'https://example.com',
+      selectedItem: 1,
+    }
+  },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 3000)
     },
   },
   methods: {
-      reset () {
-        this.$refs.form.reset()
-      },
-    }
-  }
-  </script>
+    addInput() {
+      this.inputs.push({
+        id: `fruit${++this.counter}`,
+        label: 'Enter Fruit Name',
+        value: '',
+      })
+    },
+    reset() {
+      this.$refs.form.reset()
+    },
+  },
+}
+</script>
 
 
   <style>
-  .v-input__icon--prepend .v-icon { 
-    color: #9966ff;
-  }
-  .input{
-    margin-top: 5px;
-    color: #9966ff !important;
-    font-family: MontserratMedium;
-    font-size: 100%;
-  }
-  .bgactive{
+.v-input__icon--prepend .v-icon {
+  color: #9966ff;
+}
+.input {
+  margin-top: 5px;
+  color: #9966ff !important;
+  font-family: MontserratMedium;
+  font-size: 100%;
+}
+.bgactive {
   background: #7900ff;
   color: white !important;
   fill: white !important;
-  }
-  .list-item {
+}
+.list-item {
   margin-top: 1em;
-  }
-  .titlee {
+}
+.titlee {
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   text-transform: unset !important;
   color: black;
-  }
-  .titlee:hover {
-  
+}
+.titlee:hover {
   color: #ffffff;
-  }
-  .v-list-item:hover {
+}
+.v-list-item:hover {
   background: #7900ff;
-  }
-  
-  .item-active {
+}
+
+.item-active {
   background-color: #7900ff;
   color: white !important;
-  }
-  a{
-      text-decoration: none !important;
-    }
-  .save{
-    font-family: Montserrat;
-    text-transform: unset !important;
-  }
-  .restore{
-    font-family: Montserrat;
-    text-transform: unset !important;
-  }
-  .btn{
-    font-family: Montserrat;
-    text-transform: unset !important;
-    color: #9966ff;
-  }
-  .textfield{
-      height: 50px;
-      width: 100%;
-      font-size: .9rem;
-      font-family: Montserrat;
-    }
-  h1{
-    font-family: MontserratMedium;
-    font-size: 120%;
-    color: #4f565f;
-  }  
-  span{
-    color: #999999;
-    font-family: Montserrat;
-    font-size: 120%;
-  }
-  p{
-    font-family: MontserratMedium;
-    color: gray;
-    font-size: 110%;
-  }
-  p.cedu{
-    font-family: Montserrat;
-    font-size: 120%;
-    color: #999999;
-  }
-  .v-input__icon--append .v-icon { 
-    font-size: 50px;
-    color: #999999;
-  }
-  </style>
+}
+a {
+  text-decoration: none !important;
+}
+.save {
+  font-family: Montserrat;
+  text-transform: unset !important;
+}
+.restore {
+  font-family: Montserrat;
+  text-transform: unset !important;
+}
+.btn {
+  font-family: Montserrat;
+  text-transform: unset !important;
+  color: #9966ff;
+}
+.textfield {
+  height: 50px;
+  width: 100%;
+  font-size: 0.9rem;
+  font-family: Montserrat;
+}
+h1 {
+  font-family: MontserratMedium;
+  font-size: 120%;
+  color: #4f565f;
+}
+span {
+  color: #999999;
+  font-family: Montserrat;
+  font-size: 120%;
+}
+p {
+  font-family: MontserratMedium;
+  color: gray;
+  font-size: 110%;
+}
+p.cedu {
+  font-family: Montserrat;
+  font-size: 120%;
+  color: #999999;
+}
+.v-input__icon--append .v-icon {
+  font-size: 50px;
+  color: #999999;
+}
+</style>

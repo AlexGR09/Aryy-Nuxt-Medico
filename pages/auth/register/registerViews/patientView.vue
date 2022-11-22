@@ -1,6 +1,6 @@
 <template>
   <v-card flat>
-    <div class="margen mt-16">
+    <div class="margen">
       <v-img
         :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
         max-width="150"
@@ -14,129 +14,135 @@
         clínicos o lleva control de tu tratamiento con <br />
         ayuda de aryy.
       </p>
-      <!-- ---- Sección de vista iniciar sesión y registrar| Genesis ---- -->
+      <!-- ---- Sección de vista iniciar/registrar | Genesis ---- -->
       <v-tabs class="tabs" color="#7900ff" v-model="tabs">
-        <v-tab class="tabs">Iniciar sesión</v-tab>
-        <v-tab class="tabs">
-          <!--    menu para mostrar el tipo de registro segun tipo de usuario | Genesis -->
+        <v-tab to="/auth/login" id="1" class="tabs">Iniciar sesión</v-tab>
+        <v-tab id="2" class="tabs">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 v-on="on"
-                v-bind="attrs"
+                v-bin="attrs"
                 large
                 text
                 class="tabs boton gray--text"
               >
-                <span>Registrarse</span>
+                <span class="tabs">Registrarse</span>
                 <v-icon>mdi-menu-down</v-icon>
               </v-btn>
             </template>
             <v-list class="listitem">
-              <!-- recibir contenido de la lista desde script | Genesis -->
               <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
-                <v-list-item-title
-                  ><p class="item">{{ item.title }}</p></v-list-item-title
-                >
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
         </v-tab>
       </v-tabs>
       <v-tabs-items v-model="tabs">
-        <!--  ----Iniciar sesión |Génesis---- -->
+        <v-tab-item> <!--  ----Iniciar sesión |Génesis---- --> </v-tab-item>
+        <!--  ----Tab de registro |Génesis---- -->
         <v-tab-item>
-          <v-col xs="11" sm="11" md="11" lg="11" xl="7">
-            <v-card flat>
-              <v-card-text>
-                <v-row>
-                  <!-- CAMPO DE INICAIR SESION | LUIS REYES -->
+          <v-card flat>
+            <h2>Crea tu perfil gratuito como paciente</h2>
+            <router-link
+              style="text-decoration: none; color: inherit"
+              to="/auth/register/register"
+              ><h3 class="a">
+                <v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como
+                especialista
+              </h3>
+            </router-link>
+            <!--   <a href="/login"><h3 class="a"><v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente</h3></a> -->
+            <v-card-text>
+              <v-row>
+                <v-col xs="11" sm="11" md="11">
                   <v-text-field
-                    v-model="email"
-                    justify-right
-                    placeholder="Correo electrónico"
                     outlined
+                    placeholder="Ingresa un usuario"
+                    class="textfield"
                     color="#b380ff"
-                    class="textfield mb-8"
                   ></v-text-field>
-                  <!-- CAMPO DE CONTRASEÑA | LUIS REYES  -->
+                  <br />
                   <v-text-field
-                    v-model="password"
-                    height="25"
                     outlined
-                    class="textfield mb-8"
+                    placeholder="Ingresa un correo"
+                    class="textfield"
                     color="#b380ff"
-                    placeholder="Contraseña"
+                  ></v-text-field>
+                  <br />
+                  <v-text-field
+                    outlined
+                    placeholder="Ingresa una contraseña"
+                    color="#b380ff"
+                    class="textfield"
                     :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="show1 ? 'text' : 'password'"
+                    hint="Debe contener al menos 8 carácteres"
                     @click:append="show1 = !show1"
-                    hint="Respeta mayúsculas y minúsculas"
                   ></v-text-field>
-                  <v-btn 
-                  v-on:click="login"
-                  class="btnnn" color="#7900ff" height="50">
-                    Iniciar sesión
-                  </v-btn>
-
-                  <p class="accede mt-5 mb-5">O accede usando</p>
-
-                  <v-btn outlined class="btn" color="#999999" height="50"
-                    ><v-img
-                      class="mr-3"
-                      :src="require('@/assets/icons/icon_facebook.svg')"
-                      max-width="35"
-                    ></v-img>
-                    Iniciar sesión con Facebook
-                  </v-btn>
-                  <v-btn
-                    class="margen4 btn"
-                    color="#999999"
+                  <br />
+                  <v-text-field
                     outlined
-                    height="50"
+                    placeholder="Confirma tu contraseña"
+                    class="textfield"
+                    color="#b380ff"
+                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="show1 ? 'text' : 'password'"
+                    name="input-10-1"
+                    hint="Debe contener mínimo 8 carácteres"
+                    @click:append="show1 = !show1"
                   >
-                    <v-img
-                      class="mr-8"
-                      :src="require('@/assets/icons/icon_google.svg')"
-                      max-width="30"
-                    ></v-img>
-                    Iniciar sesión con Google
+                  </v-text-field>
+                  <br />
+                  <v-btn class="btnn" color="#7900ff" height="50">
+                    Registrarme
                   </v-btn>
-                </v-row>
-              </v-card-text>
-            </v-card>
-          </v-col>
+                  <br />
+                  <br />
+                  <v-row>
+                    <v-col xs="1" sm="3" md="5">
+                      <p class="accede">O registrate usando</p>
+                    </v-col>
+                    <v-col xs="1" sm="2" md="3">
+                      <a class="accede">Google</a>
+                    </v-col>
+                    <v-col xs="1" sm="2" md="3">
+                      <a class="accede">Facebook</a>
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
         </v-tab-item>
       </v-tabs-items>
     </div>
   </v-card>
 </template>
 <script>
+/* import CountriesCodes from '~/components/CountriesCodes.json'; */
+
 export default {
   name: 'formLogin',
   layout: 'auth',
-  /* Correcciones | Luis Reyes  */
-  data() {
-    return {
-      email: "",
-      password: "",
-      tabs: 2,
-      items: [
-      {
-        title: 'COMO PACIENTE',
-        to: 'register/registerComponents/registerPatient',
-      },
-      { title: 'COMO ESPECIALISTA', to: 'register/register' },
-      { title: 'COMO LABORATORIO', to: 'register/register' },
-      { title: 'COMO FARMACIA', to: 'register/register' },
-      
+  data: () => ({
+    tabs: 1,
+    /*           Countries: CountriesCodes, */
+    items: [
+      { title: 'COMO PACIENTE', to: '' },
+      { title: 'COMO ESPECIALISTA', to: '/auth/register/register' },
+      { title: 'COMO LABORATORIO', to: '' },
+      { title: 'COMO FARMACIA', to: '' },
     ],
-    /* contraseña visibilidad */
+    /*  Reglas para el input de contraseña | Genesis */
+    rules: {
+      min: (v) => v.length >= 8 || 'Debe contener mínimo 8 carácteres',
+    },
+    checkbox: false,
     show1: false,
     hasVisiblePassword: false,
-      
-    }
-  },
-
+  }),
   myFunction: function () {
     if (this.enableDisable) {
       this.enableDisable = false
@@ -144,38 +150,13 @@ export default {
       this.enableDisable = true
     }
   },
-
-  methods: {
-    login() {
-      this.$axios
-        .post('/api/v1/login', {
-          email: this.email,
-          password: this.password,
-        })
-        .then((response) => {
-          console.log(response.data.data)
-        })
-    },
-  },
 }
 </script>
-  <style>
-.split-btn {
-  display: inline-block;
-}
-.main-btn {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-right: 2px !important;
-}
-.actions-btn {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  padding: 0 !important;
-  min-width: 35px !important;
-  margin-left: -3.5px;
-}
+    <style>
 /*estilos para tipos de letra | Genesis*/
+a {
+  text-decoration: none !important;
+}
 h1 {
   font-family: 'MontserratBold';
   font-size: 155%;
@@ -197,9 +178,6 @@ h3 {
   margin-bottom: 10px;
   color: #9966ff;
 }
-p.item {
-  font-family: MontserratMedium;
-}
 p {
   font-family: 'MontserratMedium';
   color: #999999;
@@ -217,10 +195,18 @@ p.label {
   margin-left: 1px;
   margin-bottom: 15px;
 }
+p.registro {
+  color: #7900ff;
+  text-transform: unset !important;
+  font-family: MontserratMedium;
+  margin-top: 15%;
+  font-size: 100%;
+}
 a.accede {
   margin-top: 16px;
   font-size: 15px;
   font-family: 'MontserratBold';
+  color: black;
 }
 p.checkbox {
   font-family: Montserrat;
@@ -232,12 +218,6 @@ r {
   font-family: MontserratMedium;
   color: #7900ff;
 }
-/*     estilos para elementos vuetify | Genesis */
-.boton {
-  width: 155px;
-  margin-left: -15px;
-  margin-right: -15px;
-}
 .listitem {
   font-family: Montserrat;
 }
@@ -247,7 +227,8 @@ r {
 }
 .textfield {
   height: 50px;
-  width: 100%;
+  width: 85%;
+  margin-left: -8px;
   font-size: 0.9rem;
   font-family: Montserrat;
 }
@@ -256,7 +237,7 @@ r {
   margin-left: -40px;
 }
 .v-messages__message {
-  font-size: 10.5px;
+  font-size: 11px;
   color: #7900ff;
 }
 .checkbox {
@@ -287,23 +268,27 @@ r {
   text-transform: unset !important;
   font-family: Montserrat;
   border: thin solid #cccccc;
-  width: 100%;
+
+  width: 85%;
 }
 .btnn {
-  margin-left: 15%;
+  margin-left: 10%;
   text-transform: unset !important;
   font-family: Montserrat;
   border: thin solid #cccccc;
   color: white !important;
-  width: 100%;
+  width: 65%;
 }
 .btnnn {
   text-transform: unset !important;
   font-family: Montserrat;
   border: thin solid #cccccc;
   color: white !important;
-  width: 100%;
-}
+  width: 85%;
+} /* 
+    .prueb{
+      width: 100%;
+    } */
 .color {
   text-transform: unset !important;
   font-family: MontserratMedium;
@@ -316,9 +301,5 @@ r {
 }
 .margen4 {
   margin-top: 16px;
-}
-.textfield input::placeholder {
-  color: #999999 !important;
-  opacity: 1;
 }
 </style>

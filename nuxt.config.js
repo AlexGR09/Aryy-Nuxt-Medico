@@ -1,6 +1,8 @@
+require('dotenv').config()
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  
   // Global page headers: https://go.nuxtjs.dev/config-head
   /* Configuración de SEO Global | Luis Reyes */
   head: {
@@ -39,6 +41,7 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxtjs/style-resources',
+    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
