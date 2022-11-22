@@ -57,6 +57,14 @@
                         class="textfield mb-2"
                         color="#b380ff"
                       ></v-text-field>
+                      <v-alert 
+                      dense
+                      v-model="errormail"
+                      outlined
+                     type="error"
+                      >
+                       {{errormail}}
+                      </v-alert>
                       <br />
                       <!-- CONTRASEÑA 1 -->
                       <v-text-field
@@ -114,9 +122,8 @@
                   <v-row>
                     <v-col xs="11" sm="11" md="11" lg="11" xl="10">
                       <v-btn
-                      v-on:click="register"
+                        v-on:click="register"
                         class="btnn"
-                       
                         color="#7900ff"
                         block
                         height="50"
@@ -168,11 +175,12 @@ export default {
 
   data() {
     return {
-      email: 'luis@prueba.com',
-      password: '123456789',
-      password_confirmation: '123456789',
-      code: '43',
-      phone: 9611136512,
+      email: '',
+      password: '',
+      password_confirmation: '',
+      code: '',
+      phone: '',
+      errormail: '',
       tabs: 1,
       /*  Countries: CountriesCodes  */
       items: [
@@ -202,7 +210,13 @@ export default {
           phone_number: this.phone,
         })
         .then((response) => {
+  
           console.log(response.data.data)
+        })
+        .catch((error) => {
+        /*   alert(error.response.data.errors.email) */
+          this.errormail = ""
+          this.errormail=error.response.data.errors.email[0]
         })
     },
   },
