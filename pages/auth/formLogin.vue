@@ -155,12 +155,19 @@ export default {
         })
         .then((response) => {
           console.log(response.data.data)
+     
         })
+        this.$axios.defaults.headers.common['Authorization'] = 'Bearer' + response.data;
+        this.$route.push('/');
+        /* https://docs.hektorprofe.net/academia/javascript/cliente-nuxt/ */
     },
   },
 }
 </script>
-  <style>
+
+
+
+<style>
 .split-btn {
   display: inline-block;
 }
