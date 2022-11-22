@@ -14,16 +14,16 @@
     </div>
     </v-col>
     <v-col class="fondo ml-n6" xs="12" sm="12" md="7" lg="5" mg="5">
-      <specialist-view />
+      <specialist-component />
     </v-col>
   </v-row>
   </template>
   <script>
-  import specialistView from './registerViews/specialistView.vue'
+  import specialistComponent from './registerComponents/specialistComponent.vue'
     export default {
       name: "LoginRA",
       components: {
-        specialistView,
+        specialistComponent,
       },
       layout: "auth",
       data: () => ({

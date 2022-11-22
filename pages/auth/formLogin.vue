@@ -9,6 +9,7 @@
         Especialistas, medicinas y <br />
         análisis clínicos en un solo lugar
       </h1>
+      <h2>ss</h2>
       <p>
         Haz una cita, cotiza tus medicamentos y análisis <br />
         clínicos o lleva control de tu tratamiento con <br />
@@ -23,7 +24,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 v-on="on"
-                v-bind="attrs"
+                v-bin="attrs"
                 large
                 text
                 class="tabs boton gray--text"
