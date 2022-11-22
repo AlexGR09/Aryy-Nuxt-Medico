@@ -66,6 +66,7 @@ fill: white !important;
 .list-item {
 margin-top: 1em;
 }
+
 .titlee {
 font-family: 'MontserratMedium', sans-serif;
 font-size: 13px;
@@ -121,7 +122,7 @@ p{
 }
 p.prueba{
   font-family: MontserratSemiBold;
-  color: $grey;
+
   font-size: 1.5rem;
 }
 </style>
