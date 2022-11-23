@@ -6,10 +6,10 @@
         <v-btn class="ml-4" icon small>
             <v-img :src="require('@/assets/icons/icon_notification.svg')" max-width="23"></v-img>
         </v-btn>
-        <v-chip  class="mr-n9 ml-2" style=" background: rgb(179,128,255);
+     <!--    <v-chip  class="mr-n9 ml-2" style=" background: rgb(179,128,255);
             background: linear-gradient(0deg, rgba(179,128,255,1) 2%, rgba(121,0,255,1) 48%, rgba(81,1,204,1) 98%);">
         <p class="white--text mr-4 mt-4" style="font-size: .9rem">214 pts</p>
-      </v-chip> 
+      </v-chip> -->
         <v-btn class="ml-5 mr-7" fab href="/accounts/edit/account/"  color="#7900ff">
         <v-avatar class="avata" size="56">
         <img

@@ -49,6 +49,7 @@
                 <v-col xs="11" sm="11" md="11" lg="11" xl="9">
                   <v-row>
                     <v-col xs="11" sm="11" md="11" lg="11" xl="10">
+                      <!-- CORREO ELECTRONICO -->
                       <v-text-field
                         v-model="email"
                         outlined
@@ -56,7 +57,11 @@
                         class="textfield mb-2"
                         color="#b380ff"
                       ></v-text-field>
+                      <v-alert dense v-model="errormail" outlined type="error">
+                        {{ errormail }}
+                      </v-alert>
                       <br />
+                      <!-- CONTRASEÑA 1 -->
                       <v-text-field
                         v-model="password"
                         height="25"
@@ -67,46 +72,61 @@
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password'"
                         @click:append="show1 = !show1"
+                        hint="Debe contener al menos 8 carácteres"
                       ></v-text-field>
-                      <p class="hint"> {{ error }}</p>
+                      <v-alert dense v-model="password_error" outlined type="error">
+                        {{ password_error }}
+                      </v-alert>
+
+                      <!-- CONTRASEÑA 2 -->
+                      <br />
                       <v-text-field
-                      v-model="password_confirmation"
+                        v-model="password_confirmation"
                         height="25"
                         outlined
-                        class="textfield mt-8 mb-2"
+                        class="textfield mb-2"
                         color="#b380ff"
-                        placeholder="Confirma tu contraseña"
-                        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-                        :type="show2 ? 'text' : 'password'"
-                        @click:append="show2 = !show2"
+                        placeholder="Confirmar contraseña"
+                        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                        :type="show1 ? 'text' : 'password2'"
+                        @click:append="show1 = !show1"
+                        hint="Debe contener al menos 8 carácteres"
                       ></v-text-field>
-                      <p class="hint"> {{ msg }}</p>
                     </v-col>
                   </v-row>
                   <v-row>
                     <v-col lg="5">
+                      <!-- CODIGO DE PAIS -->
                       <v-text-field
-                      v-model="code"
+                        v-model="code"
                         outlined
-                        placeholder="Código país"
-                        class="textfield"
+                        placeholder="codigo pais"
                         color="#b380ff"
-                      ></v-text-field>
+                      >
+                      </v-text-field>
+                      <v-alert dense v-model="code_error" outlined type="error">
+                        {{ errormail }}
+                      </v-alert>
                     </v-col>
                     <v-col lg="7">
+                      <!-- NUMERO DE TELEFONO -->
                       <v-text-field
                         v-model="phone"
                         outlined
-                        placeholder="Número de teléfono (10 dígitos)"
-                        class="textfield"
+                        placeholder="numero de telefono"
                         color="#b380ff"
-                      ></v-text-field>
+                      >
+                      </v-text-field>
+                      <v-alert dense v-model="phone_error" outlined type="error">
+                        {{ errormail }}
+                      </v-alert>
                     </v-col>
                   </v-row>
                   <br />
                   <v-row>
                     <v-col xs="11" sm="11" md="11" lg="11" xl="10">
                       <v-btn
+                        v-on:click="register"
                         class="btnn"
                         color="#7900ff"
                         block
@@ -156,66 +176,58 @@
 export default {
   name: 'formLogin',
   layout: 'auth',
-  data () {
-    return{
-    email: '',
-    password: '',
-    password_confirmation: '',
-    code: '',
-    phone: '',
-    error: '',
-    msg: '',
-    tabs: 1,
-    checkbox: false,
-    /*  Reglas para el input de contraseña | Genesis */
-    show1: false,
-    show2: false,
-    hasVisiblePassword: false,
-    rules: {
-      min: (v) => v.length >= 8 || 'Debe contener mínimo 8 carácteres',
-    },
-    items: [
-      {
-        title: 'COMO PACIENTE',
-        to: '/auth/register/registerViews/registerPatient',
-      },
-      { title: 'COMO ESPECIALISTA', to: '' },
-      { title: 'COMO LABORATORIO', to: '/auth/register/register' },
-      { title: 'COMO FARMACIA', to: '/auth/register/register' },
-    ],
+
+  data() {
+    return {
+      email: '',
+      password: '',
+      password_confirmation: '',
+      code: '',
+      phone: '',
+      errormail: '',
+      tabs: 1,
+      /*  Countries: CountriesCodes  */
+      items: [
+        {
+          title: 'COMO PACIENTE',
+          to: '/auth/register/registerComponents/registerPatient',
+        },
+        { title: 'COMO ESPECIALISTA', to: '' },
+        { title: 'COMO LABORATORIO', to: '/auth/register/register' },
+        { title: 'COMO FARMACIA', to: '/auth/register/register' },
+      ],
+      checkbox: false,
+      /*  Reglas para el input de contraseña | Genesis */
+      show1: false,
+      hasVisiblePassword: false,
     }
-    
   },
+
   methods: {
-    register(){
-      this.$axios.post('api/v1/register', {
+    register() {
+      this.$axios
+        .post('/api/v1/register', {
           email: this.email,
           password: this.password,
           password_confirmation: this.password_confirmation,
           country_code: this.code,
           phone_number: this.phone,
-        }).then((response) => {
-          console.log(response.data.data);
         })
-    }
-  },
-     watch: {
-          password(){
-            if(this.password.length < 5){
-              this.error = "Debe contener al menos 8 carácteres"
-            }else {
-              this.error = ''
-            }
-          },
-          password_confirmation(){
-            if(this.password === this.password_confirmation){
-              this.msg = ""
-            }else {
-              this.msg = "Las contraseñas no coinciden"
-            }
-          }
-        }, 
+        .then((response) => {
+          console.log(response.data.data)
+        })
+        .catch((error) => {
+          /*   alert(error.response.data.errors.email) */
+          this.errormail = ''
+          this.errormail = error.response.data.errors.email[0]
 
+          this.password_error=""
+          this.password_error = error.response.data.errors.password[0]
+
+
+        })
+    },
+  },
   myFunction: function () {
     if (this.enableDisable) {
       this.enableDisable = false
@@ -225,7 +237,9 @@ export default {
   },
 }
 </script>
-    <style>
+
+
+<style>
 /*estilos para tipos de letra | Genesis*/
 a {
   text-decoration: none !important;
@@ -306,12 +320,6 @@ r {
 .v-messages__message {
   font-size: 11px;
   color: #7900ff;
-}
-p.hint{
-  font-size: 13px;
-  color: #7900ff;
-  margin-top: 5px;
-  margin-bottom: -3px;
 }
 .checkbox {
   margin-top: 15px;

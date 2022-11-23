@@ -9,6 +9,7 @@
         Especialistas, medicinas y <br />
         análisis clínicos en un solo lugar
       </h1>
+      <h2>ss</h2>
       <p>
         Haz una cita, cotiza tus medicamentos y análisis <br />
         clínicos o lleva control de tu tratamiento con <br />
@@ -23,7 +24,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 v-on="on"
-                v-bind="attrs"
+                v-bin="attrs"
                 large
                 text
                 class="tabs boton gray--text"
@@ -49,38 +50,37 @@
           <v-col xs="11" sm="11" md="11" lg="11" xl="7">
             <v-card flat>
               <v-card-text>
-                <v-row >
-                  <v-col class="ml-n3" xl="12">
-                    <v-text-field
-                      v-model="email"
-                      justify-right
-                      placeholder="Correo electrónico"
-                      outlined
-                      color="#b380ff"
-                      class="textfield mb-8"
-                    ></v-text-field>
-                    <v-text-field
-                      height="25"
-                      outlined
-                      class="textfield mb-8"
-                      color="#b380ff"
-                      placeholder="Contraseña"
-                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                      :type="show1 ? 'text' : 'password'"
-                      @click:append="show1 = !show1"
-                    ></v-text-field>
-                    <a href="/" class="input">¿Olvidaste tu contraseña?</a>
-                  </v-col>
-                  
-                  <v-btn
-                    class="btnnn"
-                    color="#7900ff"
-                    height="50"
-                    @click="subscribe"
-                  >
+                <v-row>
+                  <!-- CAMPO DE INICAIR SESION | LUIS REYES -->
+                  <v-text-field
+                    v-model="email"
+                    justify-right
+                    placeholder="Correo electrónico"
+                    outlined
+                    color="#b380ff"
+                    class="textfield mb-8"
+                  ></v-text-field>
+                  <!-- CAMPO DE CONTRASEÑA | LUIS REYES  -->
+                  <v-text-field
+                    v-model="password"
+                    height="25"
+                    outlined
+                    class="textfield mb-8"
+                    color="#b380ff"
+                    placeholder="Contraseña"
+                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="show1 ? 'text' : 'password'"
+                    @click:append="show1 = !show1"
+                    hint="Respeta mayúsculas y minúsculas"
+                  ></v-text-field>
+                  <v-btn 
+                  v-on:click="login"
+                  class="btnnn" color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
+
                   <p class="accede mt-5 mb-5">O accede usando</p>
+
                   <v-btn outlined class="btn" color="#999999" height="50"
                     ><v-img
                       class="mr-3"
@@ -111,27 +111,31 @@
     </div>
   </v-card>
 </template>
-  <script>
+<script>
 export default {
   name: 'formLogin',
   layout: 'auth',
-  data: () => ({
-    email: '',
-    password: '',
-    is_subscribe: true,
-    tabs: 2,
-    items: [
-      { title: 'COMO PACIENTE', to: 'register/registerViews/registerPatient' },
+  /* Correcciones | Luis Reyes  */
+  data() {
+    return {
+      email: "",
+      password: "",
+      tabs: 2,
+      items: [
+      {
+        title: 'COMO PACIENTE',
+        to: 'register/registerComponents/registerPatient',
+      },
       { title: 'COMO ESPECIALISTA', to: 'register/register' },
       { title: 'COMO LABORATORIO', to: 'register/register' },
       { title: 'COMO FARMACIA', to: 'register/register' },
+      
     ],
-    /*  Reglas para el input de contraseña | Genesis */
+    /* contraseña visibilidad */
     show1: false,
     hasVisiblePassword: false,
-  }),
-
-  methods: {
+      
+    }
   },
 
   myFunction: function () {
@@ -141,9 +145,29 @@ export default {
       this.enableDisable = true
     }
   },
+
+  methods: {
+    login() {
+      this.$axios
+        .post('/api/v1/login', {
+          email: this.email,
+          password: this.password,
+        })
+        .then((response) => {
+          console.log(response.data.data)
+     
+        })
+        this.$axios.defaults.headers.common['Authorization'] = 'Bearer' + response.data;
+        this.$route.push('/');
+        /* https://docs.hektorprofe.net/academia/javascript/cliente-nuxt/ */
+    },
+  },
 }
 </script>
-  <style>
+
+
+
+<style>
 .split-btn {
   display: inline-block;
 }
@@ -200,12 +224,6 @@ p.label {
   margin-top: -1px;
   margin-left: 1px;
   margin-bottom: 15px;
-}
-.input {
-  text-decoration: none !important;
-  color: #9966ff !important;
-  font-family: MontserratMedium;
-  font-size: 100%;
 }
 a.accede {
   margin-top: 16px;

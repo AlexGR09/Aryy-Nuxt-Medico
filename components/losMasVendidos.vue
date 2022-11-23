@@ -2,21 +2,21 @@
   <section class="p-5 bg-white">
     <div class="container-lg">
       <!-- <label>{{ SeccionProductos.codigo }}</label> -->
-<!--    <v-autocomplete placeholder="codigo" :items="SeccionProductos.codigo"></v-autocomplete> -->
+   <v-autocomplete placeholder="codigo" :items="SeccionProductos.codigo"></v-autocomplete>
     </div>
   </section>
 </template>
 
 <script>
-/* import { productosDestacados } from "@/assets/productos.js" */
+import { productosDestacados } from "@/assets/productos.js"
 export default {
   data() {
         return {
-/*           LosDestacados : productosDestacados */
+          LosDestacados : productosDestacados
         }},
 
-/*   name: "losMasVendidos",
-  props: ['SeccionProductos'] */
+  name: "losMasVendidos",
+  props: ['SeccionProductos']
 }
 </script>
 

@@ -1,316 +1,173 @@
 <template>
-  <div>
-    <v-row>
-      <v-card flat>
-        <menu-med />
-      </v-card>
-      <v-col md="10" lg="9" xl="10">
-        <v-card flat height="800px" class="pa-3 mt-2">
-          <v-form ref="form" v-model="valid">
-            <v-card-subtitle class="pa-3 mt-n2 mb-n5"
-              ><H1 class="mb-5">SERVICIOS</H1></v-card-subtitle
-            >
-            <v-card-text class="pa-3">
-              <v-row>
-                <v-col xs="6" md="6" lg="6" xl="6">
-                  <v-text-field
-                    color="#7900ff"
-                    class="textfield mb-5"
-                    value="Consulta de primera vez"
-                    outlined
-                  ></v-text-field>
-                </v-col>
-                <v-col xs="2" md="2" lg="2" xl="1">
-                  <v-text-field
-                    :disabled="!check"
-                    color="#7900ff"
-                    class="textfield mb-5"
-                    value="$800"
-                    outlined
-                  ></v-text-field>
-                </v-col>
-                <v-col xs="1" md="1" lg="1" xl="1"
-                  ><v-autocomplete
-                    color="#7900ff"
-                    :disabled="!check"
-                    placeholder="MXN"
-                    class="ml-n6"
-                    outlined
-                    background-color="rgb(242, 242, 242)"
-                  ></v-autocomplete
-                ></v-col>
-                <v-col xs="1" md="1" lg="1" xl="2"></v-col>
-                <v-col xs="1" md="1" lg="1" xl="1">
-                  <v-btn-toggle borderless class="botones">
-                    <v-btn v-model="check" class="iconos" icon>
-                      <v-img
-                        :src="require('@/assets/icons/icon_editpaciente.svg')"
-                        max-width="25"
-                      ></v-img>
-                    </v-btn>
-                    <v-btn class="iconos ml-n3" @click="deleteItem(item)" icon>
-                      <v-img
-                        :src="require('@/assets/icons/icon_borrarpaciente.svg')"
-                        max-width="25"
-                      ></v-img>
-                    </v-btn>
-                  </v-btn-toggle>
-                </v-col>
-                <v-col xs="6" md="6" lg="6" xl="6">
-                  <v-text-field
-                    color="#7900ff"
-                    class="textfield mt-n5"
-                    value="Consulta subsecuente"
-                    outlined
-                  ></v-text-field>
-                </v-col>
-                <v-col xs="2" md="2" lg="2" xl="1">
-                  <v-text-field
-                    :disabled="!checks"
-                    color="#7900ff"
-                    class="textfield mb-5 mt-n5"
-                    value="$800"
-                    outlined
-                  ></v-text-field>
-                </v-col>
-                <v-col xs="1" md="1" lg="1" xl="1"
-                  ><v-autocomplete
-                    color="#7900ff"
-                    :disabled="!checks"
-                    placeholder="MXN"
-                    class="ml-n6 mt-n5"
-                    outlined
-                    background-color="rgb(242, 242, 242)"
-                  ></v-autocomplete
-                ></v-col>
-                <v-col xs="1" md="1" lg="1" xl="2"></v-col>
-                <v-col xs="1" md="1" lg="1" xl="1">
-                  <v-btn-toggle borderless class="botones mt-n5">
-                    <v-btn v-model="checks" class="iconos" icon>
-                      <v-img
-                        :src="require('@/assets/icons/icon_editpaciente.svg')"
-                        max-width="23"
-                      ></v-img>
-                    </v-btn>
-                    <v-btn class="iconos ml-n3" @click="deleteItem(item)" icon>
-                      <v-img
-                        :src="require('@/assets/icons/icon_borrarpaciente.svg')"
-                        max-width="23"
-                      ></v-img>
-                    </v-btn>
-                  </v-btn-toggle>
-                </v-col>
-              </v-row>
-              <v-row v-for="service in services" :key="service.id">
-                <v-col xs="6" md="6" lg="6" xl="6">
-                  <v-text-field
-                    color="#7900ff"
-                    class="textfield mt-n5"
-                    placeholder="Escribe un servicio médico"
-                    outlined
-                  ></v-text-field>
-                  <!--         <v-btn @click="addService" v-bind="attrs" v-on="on" class="btn mt-3 ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro servicio</v-btn> -->
-                </v-col>
-                <v-col xs="4" md="4" lg="4" xl="4">
-                  <v-text-field
-                    color="#7900ff"
-                    class="textfield mt-n5"
-                    placeholder="Agregar precio de servicio"
-                    outlined
-                  ></v-text-field>
-                </v-col>
-                <v-col xs="1" md="1" lg="1" xl="1"
-                  ><v-autocomplete
-                    value="MXN"
-                    placeholder="MXN"
-                    class="ml-n6 mt-n5"
-                    outlined
-                    background-color="rgb(242, 242, 242)"
-                  ></v-autocomplete
-                ></v-col>
-              </v-row>
-              <v-btn
-                @click="addService"
-                v-bind="attrs"
-                v-on="on"
-                class="btn mt-n7 mb-6 ml-n5"
-                color="#9966ff"
-                text
-                ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro
-                servicio</v-btn
-              >
-              <v-row class="inputArea" v-for="input in inputs" :key="input.id">
-                <v-col xs="6" md="6" lg="6" xl="6">
-                  <p class="cedu mt-n5 mb-1">Idiomas*</p>
-                  <v-text-field
-                    color="#7900ff"
-                    class="textfield mb-5"
-                    placeholder="Español"
-                    outlined
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-
-              <v-row>
-                <v-col xs="6" md="6" lg="6" xl="6">
-                  <v-btn
-                    @click="addInput"
-                    v-bind="attrs"
-                    v-on="on"
-                    class="btn mt-n14 ml-n5"
-                    color="#9966ff"
-                    text
-                    ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro
-                    idioma</v-btn
-                  >
-                </v-col>
-              </v-row>
-
-              <v-btn
-                @click="overlay = !overlay"
-                height="50px"
-                class="white--text save"
-                color="#7900ff"
-                large
-                >Guardar cambios</v-btn
-              >
-              <v-btn
-                @click="reset"
-                height="50px"
-                class="restore ml-3"
-                color="#999999"
-                outlined
-                large
-                >Restaurar todo</v-btn
-              >
-              <v-overlay :value="overlay">
-                <v-alert
-                  class="rounded-xl"
-                  icon="mdi-check-circle"
-                  color="green"
-                  >Datos actualizados correctamente.</v-alert
-                >
-              </v-overlay>
-            </v-card-text>
-          </v-form>
-        </v-card>
-      </v-col>
+  <div><v-row>
+    <v-card flat>
+      <menu-med/>
+    </v-card>
+    <v-col md="10" lg="9" xl="10">
+  <v-card flat height="800px" class="pa-3 mt-2">
+    <v-form  ref="form" v-model="valid">
+    <v-card-subtitle class="pa-3  mt-n2 mb-n5"><H1 class="mb-5">SERVICIOS</H1></v-card-subtitle>
+    <v-card-text class="pa-3 ">
+      <v-row>
+       <v-col xs="6" md="6" lg="6" xl="6">
+        <v-text-field color="#7900ff" class="textfield mb-5 " value="Consulta de primera vez"  outlined></v-text-field>
+       </v-col> 
+       <v-col xs="2" md="2" lg="2" xl="1">
+        <v-text-field :disabled="!check" color="#7900ff"  class="textfield mb-5" value="$800" outlined></v-text-field>
+       </v-col> 
+       <v-col xs="1" md="1" lg="1" xl="1"><v-autocomplete color="#7900ff" :disabled="!check " placeholder="MXN" class="ml-n6" outlined background-color="rgb(242, 242, 242)"></v-autocomplete></v-col>
+       <v-col xs="1" md="1" lg="1" xl="2"></v-col>
+       <v-col xs="1" md="1" lg="1" xl="1">
+        <v-btn-toggle borderless class="botones">
+        <v-btn v-model="check" class="iconos " icon>
+          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="25"></v-img>
+        </v-btn>
+        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="25"></v-img>
+        </v-btn>
+      </v-btn-toggle>    
+       </v-col>
+       <v-col xs="6" md="6" lg="6" xl="6">
+        <v-text-field color="#7900ff" class="textfield mt-n5" value="Consulta subsecuente" outlined></v-text-field>
+       </v-col> 
+       <v-col xs="2" md="2" lg="2" xl="1">
+        <v-text-field :disabled="!checks" color="#7900ff"  class="textfield mb-5 mt-n5" value="$800" outlined></v-text-field>
+       </v-col> 
+       <v-col xs="1" md="1" lg="1" xl="1"><v-autocomplete color="#7900ff" :disabled="!checks" placeholder="MXN" class="ml-n6 mt-n5" outlined background-color="rgb(242, 242, 242)"></v-autocomplete></v-col>
+       <v-col xs="1" md="1" lg="1" xl="2"></v-col>
+       <v-col xs="1" md="1" lg="1" xl="1">
+        <v-btn-toggle borderless class="botones mt-n5">
+          <v-btn v-model="checks" class="iconos " icon>
+          <v-img :src="require('@/assets/icons/icon_editpaciente.svg')" max-width="23"></v-img>
+        </v-btn>
+        <v-btn class="iconos ml-n3"   @click="deleteItem(item)" icon >
+            <v-img :src="require('@/assets/icons/icon_borrarpaciente.svg')" max-width="23"></v-img>
+        </v-btn>
+      </v-btn-toggle>    
+       </v-col>
+       <v-col xs="6" md="6" lg="6" xl="6">
+        <v-text-field color="#7900ff" class="textfield mt-n5 " placeholder="Escribe un servicio médico" outlined></v-text-field>
+       </v-col>
+       <v-col xs="4" md="4" lg="4" xl="4">
+        <v-text-field color="#7900ff"  class="textfield mt-n5" placeholder="Agregar precio de servicio" outlined></v-text-field>
+      </v-col> 
+      <v-col xs="1" md="1" lg="1" xl="1"><v-autocomplete value="MXN" placeholder="MXN" class="ml-n6 mt-n5" outlined background-color="rgb(242, 242, 242)"></v-autocomplete></v-col>
+      </v-row>
+<v-row>
+  <v-col xs="6" md="6" lg="6" xl="6">
+    <p class="cedu mt-n5 mb-1">Idiomas*</p>
+    <v-text-field color="#7900ff" class="textfield mb-5" placeholder="Español" outlined></v-text-field>
+    <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro idioma</v-btn>
+    </v-col>
+</v-row>
+<v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
+      <v-btn @click="reset" height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+      <v-overlay :value="overlay">
+        <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
+      </v-overlay>  
+  </v-card-text>
+  </v-form>
+   </v-card>
+        </v-col>
     </v-row>
+  
   </div>
-</template>
+  </template>
   <script>
-import MenuMed from './menuMed.vue'
-export default {
-  components: {
-    MenuMed,
-  },
-  data() {
-    return {
-      counter: 0,
-      inputs: [{}],
-      services: [{}],
-      overlay: false,
-      check: '',
-      checks: '',
-      selectedItem: 1,
-    }
-  },
-  watch: {
-    overlay(val) {
-      val &&
-        setTimeout(() => {
-          this.overlay = false
-        }, 3000)
+  import MenuMed from './menuMed.vue'
+  export default {
+    components: {
+    MenuMed
+},
+    data () {
+      return {
+        overlay: false,
+        check: "",
+        checks: "",
+        selectedItem: 1,
+      }
+    },
+    watch: {
+    overlay (val) {
+      val && setTimeout(() => {
+        this.overlay = false
+      }, 3000)
     },
   },
-
   methods: {
-    addInput() {
-      this.inputs.push({
-        id: `fruit${++this.counter}`,
-        label: 'Enter Fruit Name',
-        value: '',
-      })
-    },
-    addService() {
-      this.services.push({
-        id: `fruit${++this.counter}`,
-        label: 'Enter Fruit Name',
-        value: '',
-      })
-    },
-    reset() {
-      this.$refs.form.reset()
-    },
-  },
-}
-</script>
+      reset () {
+        this.$refs.form.reset()
+      },
+    }
+  }
+  </script>
   
   <style>
-p.cedu {
-  font-family: Montserrat;
-  font-size: 120%;
-}
+    p.cedu{
+    font-family: Montserrat;
+    font-size: 120%;
+  }
 
-.bgactive {
+  .bgactive{
   background: #7900ff;
   color: white !important;
   fill: white !important;
-}
-.list-item {
+  }
+  .list-item {
   margin-top: 1em;
-}
-.titlee {
+  }
+  .titlee {
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   text-transform: unset !important;
   color: black;
-}
-.titlee:hover {
+  }
+  .titlee:hover {
+  
   color: #ffffff;
-}
-.v-list-item:hover {
+  }
+  .v-list-item:hover {
   background: #7900ff;
-}
-
-.item-active {
+  }
+  
+  .item-active {
   background-color: #7900ff;
   color: white !important;
-}
-a {
-  text-decoration: none !important;
-}
-.save {
-  font-family: Montserrat;
-  text-transform: unset !important;
-}
-.restore {
-  font-family: Montserrat;
-  text-transform: unset !important;
-}
-.btn {
-  font-family: Montserrat;
-  text-transform: unset !important;
-  color: #9966ff;
-}
-.textfield {
-  height: 50px;
-  width: 100%;
-  font-size: 0.9rem;
-  font-family: Montserrat;
-}
-H1 {
-  font-family: MontserratMedium;
-  font-size: 120%;
-  color: #4f565f;
-}
-span {
-  font-family: Montserrat;
-  font-size: 120%;
-}
-p {
-  font-family: MontserratMedium;
-  color: gray;
-  font-size: 110%;
-}
-</style>
+  }
+  a{
+      text-decoration: none !important;
+    }
+  .save{
+    font-family: Montserrat;
+    text-transform: unset !important;
+  }
+  .restore{
+    font-family: Montserrat;
+    text-transform: unset !important;
+  }
+  .btn{
+    font-family: Montserrat;
+    text-transform: unset !important;
+    color: #9966ff;
+  }
+  .textfield{
+      height: 50px;
+      width: 100%;
+      font-size: .9rem;
+      font-family: Montserrat;
+    }
+  H1{
+    font-family: MontserratMedium;
+    font-size: 120%;
+    color: #4f565f;
+  }  
+  span{
+    font-family: Montserrat;
+    font-size: 120%;
+  }
+  p{
+    font-family: MontserratMedium;
+    color: gray;
+    font-size: 110%;
+  }
+  </style>
