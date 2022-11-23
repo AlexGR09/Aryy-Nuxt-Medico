@@ -3,7 +3,10 @@
     <v-app-bar flat color="transparent" height="100" :clipped-left="clipped" fixed absolute app>
       <v-spacer></v-spacer>
              <!-- iconos para notificacion y cuenta | Genesis -->
-        <v-btn class="ml-4" icon small>
+             <v-btn icon v-on:click="logout" class="btnnn" color="black" small >
+                    <v-icon>mdi-account</v-icon>
+                  </v-btn>
+             <v-btn class="ml-4" icon small>
             <v-img :src="require('@/assets/icons/icon_notification.svg')" max-width="23"></v-img>
         </v-btn>
      <!--    <v-chip  class="mr-n9 ml-2" style=" background: rgb(179,128,255);
@@ -38,6 +41,7 @@
             <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
           </v-btn>
         </div>
+        
       </v-list>
     </v-navigation-drawer>
    
@@ -133,6 +137,14 @@ export default {
             rightDrawer: false,
             title: "Vuetify.js",
         };
+       
+    },
+    methods:{
+      /* matar token y redireccionar al login | Genesis */
+         logout () {
+            localStorage.setItem("token",false)
+            this.$router.push('/auth/login');
+    }
     },
 
 }

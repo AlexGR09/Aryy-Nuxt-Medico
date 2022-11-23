@@ -24,11 +24,7 @@ export default{
         return{
         }
     },
-    methods:{
-         logout () {
-            localStorage.setItem("token",false)
-    }
-    },
+   
 };
 
 

@@ -9,7 +9,6 @@
         Especialistas, medicinas y <br />
         análisis clínicos en un solo lugar
       </h1>
-      <h2>ss</h2>
       <p>
         Haz una cita, cotiza tus medicamentos y análisis <br />
         clínicos o lleva control de tu tratamiento con <br />
