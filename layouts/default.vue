@@ -36,6 +36,11 @@
             <v-list-item-title class="v-list-item-titlee">{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item active-class="bg-active" >
+          <v-icon>mdi-account</v-icon>
+           <v-btn class="logout v-list-item-titlee" v-on:click="logout" text>Cerrar sesión</v-btn>
+        </v-list-item>
+        
         <div class="container-icon">
           <v-btn class="btn-sidebar" icon @click.stop="miniVariant = !miniVariant">
             <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
@@ -129,11 +134,6 @@ export default {
                 {
                     url: require("@/assets/icons/SettingsIcon.svg"),
                     title: "Ajustes",
-                    to: "/ajustes",
-                },
-                {
-                    url: require("@/assets/icons/SettingsIcon.svg"),
-                    title: "Cerrar sesión",
                     to: "/ajustes",
                 },
             ],
