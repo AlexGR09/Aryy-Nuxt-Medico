@@ -131,6 +131,11 @@ export default {
                     title: "Ajustes",
                     to: "/ajustes",
                 },
+                {
+                    url: require("@/assets/icons/SettingsIcon.svg"),
+                    title: "Cerrar sesión",
+                    to: "/ajustes",
+                },
             ],
             miniVariant: false,
             right: true,
