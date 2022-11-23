@@ -192,7 +192,6 @@ export default {
       password_confirmation: '',
       code: '',
       phone: '',
-      type_user: '',
       errormail: '',
       tabs: 1,
       error: '',
