@@ -22,7 +22,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 v-on="on"
-                v-bin="attrs"
+                v-bind="attrs"
                 large
                 text
                 class="tabs boton gray--text"
@@ -131,6 +131,7 @@
                         color="#7900ff"
                         block
                         height="50"
+                        @click="register"
                       >
                         Registrarme</v-btn
                       >
@@ -171,7 +172,6 @@
   </v-card>
 </template>
 <script>
-/* import CountriesCodes from '~/components/CountriesCodes.json'; */
 
 export default {
   name: 'formLogin',
