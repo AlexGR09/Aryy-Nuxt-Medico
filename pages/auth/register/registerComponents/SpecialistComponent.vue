@@ -90,8 +90,9 @@
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password2'"
                         @click:append="show1 = !show1"
-                        hint="Debe contener al menos 8 carácteres"
+                        
                       ></v-text-field>
+                      <p class="hint"> {{ msg }}</p>
                     </v-col>
                   </v-row>
                   <v-row>
@@ -183,8 +184,11 @@ export default {
       password_confirmation: '',
       code: '',
       phone: '',
+      type_user: '',
       errormail: '',
       tabs: 1,
+      error: '',
+      msg: '',
       /*  Countries: CountriesCodes  */
       items: [
         {
@@ -201,7 +205,24 @@ export default {
       hasVisiblePassword: false,
     }
   },
-
+  watch: {
+          password(){
+            if(this.password.length > 5){
+            if(this.password.length < 5){
+              this.error = "Debe contener al menos 8 carácteres"
+            }else {
+              this.error = ''
+            }
+          }
+        },
+        password_confirmation(){
+            if(this.password === this.password_confirmation){
+              this.msg = ""
+            }else {
+              this.msg = "Las contraseñas no coinciden"
+            }
+          }
+        },
   methods: {
     register() {
       this.$axios
@@ -211,6 +232,7 @@ export default {
           password_confirmation: this.password_confirmation,
           country_code: this.code,
           phone_number: this.phone,
+          type_user: "Physician"
         })
         .then((response) => {
           console.log(response.data.data)
@@ -268,6 +290,12 @@ p {
   font-family: 'MontserratMedium';
   color: #999999;
   font-size: 16px;
+}
+p.hint{
+  font-size: 12px;
+  color: #7900ff;
+  margin-top: 5px;
+  margin-bottom: -3px;
 }
 p.accede {
   font-size: 15px;
