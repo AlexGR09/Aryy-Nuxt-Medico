@@ -36,10 +36,15 @@
             <v-list-item-title class="v-list-item-titlee">{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item active-class="bg-active" >
-          <v-icon>mdi-account</v-icon>
-           <v-btn class="logout v-list-item-titlee" v-on:click="logout" text>Cerrar sesión</v-btn>
-        </v-list-item>
+        <v-list-item  class="mt-n1"  @click="logout">
+            <v-list-item-icon>
+              <v-icon color="#7900ff">mdi-logout-variant</v-icon>
+            </v-list-item-icon>
+  
+            <v-list-item-content active-class="bg-active">
+              <v-list-item-title class="v-list-item-titlee">Cerrar sesión</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         
         <div class="container-icon">
           <v-btn class="btn-sidebar" icon @click.stop="miniVariant = !miniVariant">
@@ -261,4 +266,8 @@ img:hover{
   color: white !important;
   fill: white !important;
 }
+.logout{
+  text-transform: capitalize;
+}
+
 </style>
