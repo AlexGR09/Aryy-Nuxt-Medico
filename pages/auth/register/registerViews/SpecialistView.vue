@@ -74,7 +74,12 @@
                         @click:append="show1 = !show1"
                         hint="Debe contener al menos 8 carácteres"
                       ></v-text-field>
-                      <v-alert dense v-model="password_error" outlined type="error">
+                      <v-alert
+                        dense
+                        v-model="password_error"
+                        outlined
+                        type="error"
+                      >
                         {{ password_error }}
                       </v-alert>
 
@@ -90,9 +95,8 @@
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password2'"
                         @click:append="show1 = !show1"
-                        
                       ></v-text-field>
-                      <p class="hint"> {{ msg }}</p>
+                      <p class="hint">{{ msg }}</p>
                     </v-col>
                   </v-row>
                   <v-row>
@@ -105,7 +109,7 @@
                         color="#b380ff"
                       >
                       </v-text-field>
-                      <v-alert  dense v-model="code_error" outlined type="error">
+                      <v-alert dense v-model="code_error" outlined type="error">
                         {{ errormail }}
                       </v-alert>
                     </v-col>
@@ -118,7 +122,12 @@
                         color="#b380ff"
                       >
                       </v-text-field>
-                      <v-alert dense v-model="phone_error" outlined type="error">
+                      <v-alert
+                        dense
+                        v-model="phone_error"
+                        outlined
+                        type="error"
+                      >
                         {{ errormail }}
                       </v-alert>
                     </v-col>
@@ -172,7 +181,6 @@
   </v-card>
 </template>
 <script>
-
 export default {
   name: 'formLogin',
   layout: 'auth',
@@ -193,7 +201,7 @@ export default {
       items: [
         {
           title: 'COMO PACIENTE',
-          to: '/auth/register/registerComponents/registerPatient',
+          to: '/auth/register/registerViews/registerPatient',
         },
         { title: 'COMO ESPECIALISTA', to: '' },
         { title: 'COMO LABORATORIO', to: '/auth/register/register' },
@@ -206,23 +214,23 @@ export default {
     }
   },
   watch: {
-          password(){
-            if(this.password.length > 5){
-            if(this.password.length < 5){
-              this.error = "Debe contener al menos 8 carácteres"
-            }else {
-              this.error = ''
-            }
-          }
-        },
-        password_confirmation(){
-            if(this.password === this.password_confirmation){
-              this.msg = ""
-            }else {
-              this.msg = "Las contraseñas no coinciden"
-            }
-          }
-        },
+    password() {
+      if (this.password.length > 5) {
+        if (this.password.length < 5) {
+          this.error = 'Debe contener al menos 8 carácteres'
+        } else {
+          this.error = ''
+        }
+      }
+    },
+    password_confirmation() {
+      if (this.password === this.password_confirmation) {
+        this.msg = ''
+      } else {
+        this.msg = 'Las contraseñas no coinciden'
+      }
+    },
+  },
   methods: {
     register() {
       this.$axios
@@ -232,7 +240,7 @@ export default {
           password_confirmation: this.password_confirmation,
           country_code: this.code,
           phone_number: this.phone,
-          type_user: "Physician"
+          type_user: 'Physician',
         })
         .then((response) => {
           console.log(response.data.data)
@@ -242,10 +250,8 @@ export default {
           this.errormail = ''
           this.errormail = error.response.data.errors.email[0]
 
-          this.password_error=""
+          this.password_error = ''
           this.password_error = error.response.data.errors.password[0]
-
-
         })
     },
   },
@@ -291,7 +297,7 @@ p {
   color: #999999;
   font-size: 16px;
 }
-p.hint{
+p.hint {
   font-size: 12px;
   color: #7900ff;
   margin-top: 5px;
