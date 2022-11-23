@@ -1,4 +1,3 @@
-require('dotenv').config()
 import colors from 'vuetify/es5/util/colors'
 
 export default {
@@ -41,7 +40,6 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxtjs/style-resources',
-    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -57,7 +55,13 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'https://app.aryymd.com/',
+    proxyHeaders: false,
+    credentials: false,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

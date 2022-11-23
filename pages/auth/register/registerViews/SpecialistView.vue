@@ -22,7 +22,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 v-on="on"
-                v-bin="attrs"
+                v-bind="attrs"
                 large
                 text
                 class="tabs boton gray--text"
@@ -50,8 +50,8 @@
                   <v-row>
                     <v-col xs="11" sm="11" md="11" lg="11" xl="10">
                       <v-text-field
-                        outlined
                         v-model="email"
+                        outlined
                         placeholder="Correo electrónico"
                         class="textfield mb-2"
                         color="#b380ff"
@@ -70,7 +70,7 @@
                       ></v-text-field>
                       <p class="hint"> {{ error }}</p>
                       <v-text-field
-                      v-model="password2"
+                      v-model="password_confirmation"
                         height="25"
                         outlined
                         class="textfield mt-8 mb-2"
@@ -85,20 +85,22 @@
                   </v-row>
                   <v-row>
                     <v-col lg="5">
-                      <v-autocomplete
+                      <v-text-field
+                      v-model="code"
                         outlined
                         placeholder="Código país"
                         class="textfield"
                         color="#b380ff"
-                      ></v-autocomplete>
+                      ></v-text-field>
                     </v-col>
                     <v-col lg="7">
-                      <v-autocomplete
+                      <v-text-field
+                        v-model="phone"
                         outlined
                         placeholder="Número de teléfono (10 dígitos)"
                         class="textfield"
                         color="#b380ff"
-                      ></v-autocomplete>
+                      ></v-text-field>
                     </v-col>
                   </v-row>
                   <br />
@@ -106,10 +108,10 @@
                     <v-col xs="11" sm="11" md="11" lg="11" xl="10">
                       <v-btn
                         class="btnn"
-                        href="/auth/register/registerViews/specialistRegister"
                         color="#7900ff"
                         block
                         height="50"
+                        @click="register"
                       >
                         Registrarme</v-btn
                       >
@@ -150,19 +152,20 @@
   </v-card>
 </template>
 <script>
-/* import CountriesCodes from '~/components/CountriesCodes.json'; */
 
 export default {
   name: 'formLogin',
   layout: 'auth',
   data () {
     return{
+    email: '',
+    password: '',
+    password_confirmation: '',
+    code: '',
+    phone: '',
     error: '',
     msg: '',
     tabs: 1,
-    email: '',
-    password: '',
-    password2: '',
     checkbox: false,
     /*  Reglas para el input de contraseña | Genesis */
     show1: false,
@@ -181,7 +184,20 @@ export default {
       { title: 'COMO FARMACIA', to: '/auth/register/register' },
     ],
     }
-  
+    
+  },
+  methods: {
+    register(){
+      this.$axios.post('api/v1/register', {
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.password_confirmation,
+          country_code: this.code,
+          phone_number: this.phone,
+        }).then((response) => {
+          console.log(response.data.data);
+        })
+    }
   },
      watch: {
           password(){
@@ -191,14 +207,15 @@ export default {
               this.error = ''
             }
           },
-          password2(){
-            if(this.password === this.password2){
+          password_confirmation(){
+            if(this.password === this.password_confirmation){
               this.msg = ""
             }else {
               this.msg = "Las contraseñas no coinciden"
             }
           }
         }, 
+
   myFunction: function () {
     if (this.enableDisable) {
       this.enableDisable = false
