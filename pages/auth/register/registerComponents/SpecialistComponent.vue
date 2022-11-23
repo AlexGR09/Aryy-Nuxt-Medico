@@ -104,7 +104,7 @@
                         color="#b380ff"
                       >
                       </v-text-field>
-                      <v-alert dense v-model="code_error" outlined type="error">
+                      <v-alert  dense v-model="code_error" outlined type="error">
                         {{ errormail }}
                       </v-alert>
                     </v-col>
@@ -131,7 +131,6 @@
                         color="#7900ff"
                         block
                         height="50"
-                        @click="register"
                       >
                         Registrarme</v-btn
                       >

@@ -73,11 +73,13 @@
                     @click:append="show1 = !show1"
                     hint="Respeta mayúsculas y minúsculas"
                   ></v-text-field>
+                  <a class="pass">¿Olvidaste tu contraseña?</a>
                   <v-btn 
                   v-on:click="login"
                   class="btnnn" color="#7900ff" height="50">
                     Iniciar sesión
                   </v-btn>
+                 
 
                   <p class="accede mt-5 mb-5">O accede usando</p>
 
@@ -155,12 +157,12 @@ export default {
         })
         .then((response) => {
           console.log(response.data.data)
-     
-        })
-        this.$axios.defaults.headers.common['Authorization'] = 'Bearer' + response.data;
-        this.$route.push('/');
-        /* https://docs.hektorprofe.net/academia/javascript/cliente-nuxt/ */
+          localStorage.setItem("token", response.data.access_token)
+          this.$router.push('/');
+        }) 
+        
     },
+   
   },
 }
 </script>
@@ -204,6 +206,11 @@ h3 {
   font-size: 105%;
   margin-bottom: 10px;
   color: #9966ff;
+}
+a.pass{
+  color: #7900ff;
+  font-family: 'Montserrat';
+  margin-bottom: 15px;
 }
 p.item {
   font-family: MontserratMedium;
