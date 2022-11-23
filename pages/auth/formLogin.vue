@@ -110,6 +110,12 @@
           </v-col>
         </v-tab-item>
       </v-tabs-items>
+      <v-card
+        v-model="access_token"
+      >
+     {{access_token}}
+
+      </v-card>
     </div>
   </v-card>
 </template>
@@ -122,6 +128,7 @@ export default {
     return {
       email: "",
       password: "",
+      access_token: "",
       tabs: 2,
       items: [
       {
@@ -156,17 +163,25 @@ export default {
           password: this.password,
         })
         .then((response) => {
-          console.log(response.data.data)
+          console.log(response.data)
+       
           localStorage.setItem("token", response.data.access_token)
           this.$router.push('/');
-        }) 
-        
+     
+        })
+/*         .then(data => localStorage.setItem("token", access_token))
+        this.access_token=""
+        this.access_token = access_token */
+     
+      /*   this.$axios.defaults.headers.common['Authorization'] = 'Bearer' + response.data;
+        this.$route.push('/');  */
+      
+        /* https://docs.hektorprofe.net/academia/javascript/cliente-nuxt/ */
     },
    
   },
 }
-</script>
-
+</script>4
 
 
 <style>
