@@ -19,7 +19,7 @@
   </v-row>
   </template>
   <script>
-  import specialistComponent from './registerComponents/specialistComponent.vue'
+    import specialistComponent from './registerComponents/specialistComponent.vue';
     export default {
       name: "LoginRA",
       components: {

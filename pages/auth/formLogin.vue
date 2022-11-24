@@ -32,6 +32,7 @@
                 <v-icon>mdi-menu-down</v-icon>
               </v-btn>
             </template>
+
             <v-list class="listitem">
               <!-- recibir contenido de la lista desde script | Genesis -->
               <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
@@ -40,6 +41,7 @@
                 >
               </v-list-item>
             </v-list>
+
           </v-menu>
         </v-tab>
       </v-tabs>
@@ -73,12 +75,14 @@
                     hint="Respeta mayúsculas y minúsculas"
                   ></v-text-field>
                   <a class="pass">¿Olvidaste tu contraseña?</a>
-                  <v-btn 
-                  v-on:click="login"
-                  class="btnnn" color="#7900ff" height="50">
+                  <v-btn
+                    v-on:click="login"
+                    class="btnnn"
+                    color="#7900ff"
+                    height="50"
+                  >
                     Iniciar sesión
                   </v-btn>
-                 
 
                   <p class="accede mt-5 mb-5">O accede usando</p>
 
@@ -109,11 +113,8 @@
           </v-col>
         </v-tab-item>
       </v-tabs-items>
-      <v-card
-        v-model="access_token"
-      >
-     {{access_token}}
-
+      <v-card v-model="access_token">
+        {{ access_token }}
       </v-card>
     </div>
   </v-card>
@@ -125,24 +126,23 @@ export default {
   /* Correcciones | Luis Reyes  */
   data() {
     return {
-      email: "",
-      password: "",
-      access_token: "",
+      email: '',
+      password: '',
+      access_token: '',
       tabs: 2,
       items: [
-      {
-        title: 'COMO PACIENTE',
-        to: 'register/registerComponents/registerPatient',
-      },
-      { title: 'COMO ESPECIALISTA', to: 'register/register' },
-      { title: 'COMO LABORATORIO', to: 'register/register' },
-      { title: 'COMO FARMACIA', to: 'register/register' },
-      
-    ],
-    /* contraseña visibilidad */
-    show1: false,
-    hasVisiblePassword: false,
-      
+        {
+          title: 'COMO PACIENTE',
+          to: 'register/registerComponents/registerPatient',
+        
+        },
+        { title: 'COMO ESPECIALISTA', to: 'register/register' },
+        { title: 'COMO LABORATORIO', to: 'register/register' },
+        { title: 'COMO FARMACIA', to: 'register/register' },
+      ],
+      /* contraseña visibilidad */
+      show1: false,
+      hasVisiblePassword: false,
     }
   },
 
@@ -163,21 +163,20 @@ export default {
         })
         .then((response) => {
           console.log(response.data)
-       
-          localStorage.setItem("token", response.data.access_token)
-          this.$router.push('/');
-     
+
+          localStorage.setItem('token', response.data.access_token)
+          this.$router.push('/')
         })
-/*         .then(data => localStorage.setItem("token", access_token))
+      /*         .then(data => localStorage.setItem("token", access_token))
         this.access_token=""
         this.access_token = access_token */
-     
+
       /*   this.$axios.defaults.headers.common['Authorization'] = 'Bearer' + response.data;
         this.$route.push('/');  */
-      
-        /* https://docs.hektorprofe.net/academia/javascript/cliente-nuxt/ */
+
+      /* https://docs.hektorprofe.net/academia/javascript/cliente-nuxt/ */
     },
-   
+
   },
 }
 </script>4
@@ -221,7 +220,7 @@ h3 {
   margin-bottom: 10px;
   color: #9966ff;
 }
-a.pass{
+a.pass {
   color: #7900ff;
   font-family: 'Montserrat';
   margin-bottom: 15px;
