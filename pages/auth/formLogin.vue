@@ -23,7 +23,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 v-on="on"
-                v-bin="attrs"
+                v-bind="attrs"
                 large
                 text
                 class="tabs boton gray--text"
@@ -160,9 +160,8 @@ export default {
         })
         .then((response) => {
           console.log(response.data)
-
           localStorage.setItem('token', response.data.access_token)
-          this.$router.push('/')
+          this.$router.push({name: "/"})
         })
       /*         .then(data => localStorage.setItem("token", access_token))
         this.access_token=""
@@ -175,7 +174,7 @@ export default {
     },
   },
 }
-</script>4
+</script>
 
 
 <style>
