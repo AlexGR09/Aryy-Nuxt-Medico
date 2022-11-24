@@ -25,23 +25,24 @@
                   <v-autocomplete v-model="subespeciality2" color="#9966ff" class="textfield" placeholder="Añadir" outlined></v-autocomplete>
                   <v-btn class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra</v-btn>
                 </v-col>
+                <v-row class="inputArea ml-0" v-for="input in inputs" :key="input.id">
                 <v-col md="6" lg="6" xl="6" cols="12">
-                    <p class="cedu mt-n4 mb-n1">No. de cedula*</p>
-                  <v-text-field v-model="identification" color="#9966ff" class="textfield mt-1" placeholder="00000000" outlined></v-text-field> </v-col>
+                    <p :for="input.id" class="cedu mt-n4 mb-n1">No. de cedula*</p>
+                  <v-text-field :id="input.id" v-model="identification" color="#9966ff" class="textfield mt-1" placeholder="00000000" outlined></v-text-field> </v-col>
                   <v-col md="6" lg="6" xl="6" cols="12">
-                    <p class="cedu mt-n4 mb-n1">Institución que otorgó la cédula*</p>
-                  <v-text-field v-model="institution" color="#9966ff"  class="textfield mt-1" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
+                    <p :for="input.id" class="cedu mt-n4 mb-n1">Institución que otorgó la cédula*</p>
+                  <v-text-field :id="input.id" v-model="institution" color="#9966ff"  class="textfield mt-1" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
                   </v-col>
                   <v-col md="6" lg="6" xl="6" cols="12">
-                    <p class="cedu mb-1">Foto de cedula*</p>
-                  <v-file-input v-model="fileIden" chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
+                    <p :for="input.id" class="cedu mb-1">Foto de cedula*</p>
+                  <v-file-input :id="input.id" v-model="fileIden" chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
                     <v-input class="input mt-3 mb-n4">Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</v-input>
-                    <v-btn class="btn ml-n5 mb-n4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra cédula</v-btn>
                   </v-col><v-col md="6" lg="6" xl="6" cols="12"></v-col>
-                <!-- 
-                 
-                </v-col> -->
-                <v-col xl="12">
+                </v-row>
+                <v-col md="6" lg="6" xl="6" cols="12">
+                    <v-btn @click="addInput" class="btn ml-n5 mb-n4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra cédula</v-btn>
+                  </v-col>
+                  <v-col class="mt-3" xl="12">
                     <span >Sobre mi(opcional)</span>
                     <v-textarea color="#9966ff" v-model="aboutme" maxlength="400" counter="400" auto-grow placeholder="Escribe una biografía breve sobre ti" outlined class="textfield mb-16"></v-textarea> 
                 </v-col>
@@ -115,6 +116,11 @@ Vue.use(VueFileAgentStyles);
 },
     data () {
       return {
+        inputs: [{
+      id: 'fruit0',
+      label: 'Enter Fruit Name',
+      value: '',
+    }],
         overlay: false,
         fileRecords: [],
         uploadUrl: 'https://example.com',
@@ -132,6 +138,13 @@ Vue.use(VueFileAgentStyles);
       reset () {
         this.$refs.form.reset()
       },
+      addInput() {
+      this.inputs.push({
+        id: `fruit${++this.counter}`,
+        label: 'Enter Fruit Name',
+        value: '',
+      });
+    },
     }
   }
   </script>

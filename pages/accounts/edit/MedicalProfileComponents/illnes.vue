@@ -1,5 +1,6 @@
 <template>
-    <div><v-row>
+    <div>
+      <v-row>
       <v-card flat>
         <menu-med/>
       </v-card>
