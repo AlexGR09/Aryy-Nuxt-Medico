@@ -4,8 +4,6 @@
       <template >
         <v-col >
           <v-card class="pa-2" outlined tile> 
-
-
           </v-card>
         </v-col>
         <v-responsive>

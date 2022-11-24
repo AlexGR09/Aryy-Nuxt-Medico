@@ -3,9 +3,6 @@
     <v-app-bar flat color="transparent" height="100" :clipped-left="clipped" fixed absolute app>
       <v-spacer></v-spacer>
              <!-- iconos para notificacion y cuenta | Genesis -->
-             <v-btn icon v-on:click="logout" class="btnnn" color="black" small >
-                    <v-icon>mdi-account</v-icon>
-                  </v-btn>
              <v-btn class="ml-4" icon small>
             <v-img :src="require('@/assets/icons/icon_notification.svg')" max-width="23"></v-img>
         </v-btn>

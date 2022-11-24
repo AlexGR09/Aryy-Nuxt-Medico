@@ -10,9 +10,9 @@
       <dashboard-assistant />
     </v-col>
     <v-card>
-        <v-cars-text>
+        <v-card-text>
             hola
-        </v-cars-text>
+        </v-card-text>
     </v-card>
   </v-row>
 </template>

@@ -38,8 +38,8 @@
 </template>
 <script>
 
-import FacilityCard from './plannerComponents/facilityCard.vue'
-import NewFacility from './plannerComponents/newFacility.vue'
+import FacilityCard from './plannerViews/facilityCard.vue'
+import NewFacility from './plannerViews/newFacility.vue'
 export default {
   components: {
     NewFacility, FacilityCard,
