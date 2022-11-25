@@ -286,15 +286,11 @@ export default {
   layout: 'auth',
   data() {
     return {
-      selectEspecialidad: {}, 
-      name: "Juan carlos", 
+      specialties: "", 
+      name: "Juan carlos",
       specialty: "16",
-      identification_card: "123456789777",
+      identification_card: "",
       institution: "UNACH",
-      token: "",
-     headers: {
-                "Authorization": 'Bearer ' + "22|MZifOegcWGsE3k1Achkt8trOKVQismsftLxc4e8C"
-            }, 
       check: '',
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
@@ -303,10 +299,12 @@ export default {
     }
   },
   mounted() {
-    if (localStorage.token) {
+   /*  if (localStorage.token) {
       console.log("si pinta")
       this.token = localStorage.getItem("token")
-    }
+    } */
+   /*  this.token = $localStorage.getItem("token") */
+  
     // this.storage();
     // console.log(localStorage.getItem("token"))
     // this.$axios.post('/api/v1/physician',{
@@ -321,18 +319,22 @@ export default {
       this.$axios
       .post('/api/v1/physician', {
           professional_name: this.name,
-          speciality_id: this.specialty,
-          license: this.identification_card,
-          institucion: this.institution
-        
-      }, {headers: this.headers})
+          specialties: [
+            {
+              specialty_id: this.specialty,
+              license: this.identification_card,
+              institution: this.institution
+            }
+          ]
+      }, 
+      { 
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
       .then((response) => {
         console.log(response.data.specialties)
       })
     },
   },
-
-
 }
 </script>
 <style>
