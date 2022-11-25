@@ -32,6 +32,7 @@
                 <v-icon>mdi-menu-down</v-icon>
               </v-btn>
             </template>
+
             <v-list class="listitem">
               <!-- recibir contenido de la lista desde script | Genesis -->
               <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
@@ -40,6 +41,7 @@
                 >
               </v-list-item>
             </v-list>
+
           </v-menu>
         </v-tab>
       </v-tabs>
@@ -160,8 +162,9 @@ export default {
         })
         .then((response) => {
           console.log(response.data)
+
           localStorage.setItem('token', response.data.access_token)
-          this.$router.push({name: "/"})
+          this.$router.push('/')
         })
       /*         .then(data => localStorage.setItem("token", access_token))
         this.access_token=""

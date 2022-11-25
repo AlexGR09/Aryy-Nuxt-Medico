@@ -18,6 +18,8 @@
       <v-tabs class="tabs" color="#7900ff" v-model="tabs">
         <v-tab to="/auth/login" id="1" class="tabs">Iniciar sesión</v-tab>
         <v-tab id="2" class="tabs">
+          
+          <!-- SELECTOR DE TIPO DE USUARIOS -->
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -32,11 +34,18 @@
               </v-btn>
             </template>
             <v-list class="listitem">
-              <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
+<!--               <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item> -->
+              <v-list-item>
+                <v-list-item-title  v-model="paciente">PACIENTE</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title v-on:click="typeUser" v-model="especialista">ESPECIALISTA</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
+          <!-- SELECTOR DE TIPO DE USUARIOS -->
         </v-tab>
       </v-tabs>
       <v-tabs-items v-model="tabs">
@@ -243,17 +252,31 @@ export default {
         })
         .then((response) => {
           console.log(response.data.data)
+          localStorage.setItem('token',response.data.access_token)
+          this.$router.push('/auth/register/registercomponents/specialistregister')
         })
         .catch((error) => {
           /*   alert(error.response.data.errors.email) */
           this.errormail = ''
           this.errormail = error.response.data.errors.email[0]
-
-          this.password_error = ''
+          this.password_error=""
           this.password_error = error.response.data.errors.password[0]
         })
     },
   },
+
+  /* TYPER_USER | LUIS REYES */
+    typeUser(){
+      this.$axios.post('/api/v1/register', {
+        type_user: this.especialista,
+      })
+      .then((response) =>{
+        console.log(response.data.data)
+      
+      })
+
+    },
+
   myFunction: function () {
     if (this.enableDisable) {
       this.enableDisable = false
