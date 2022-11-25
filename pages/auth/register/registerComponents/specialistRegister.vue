@@ -2,76 +2,36 @@
   <div class="fondo">
     <div align="center" justify="end">
       <v-row>
-        <v-col
-          cols="3"
-          sm="1"
-          md="1"
-          lg="1"
-          xl="1"
-          class="flex-grow-0 flex-shrink-0"
-        ></v-col>
+        <v-col cols="3" sm="1" md="1" lg="1" xl="1" class="flex-grow-0 flex-shrink-0"></v-col>
         <v-col xs="1" sm="8" md="10" lg="10" xl="10">
-          <v-img
-            :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
-            class="mb-n5"
-            max-width="150"
-            min-width="150"
-          ></v-img>
+          <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" class="mb-n5" max-width="150" min-width="150"></v-img>
           <v-stepper class="elevation-0" alt-labels v-model="e1">
             <v-stepper-header class="elevation-0">
-              <v-stepper-step color="#7900ff" :complete="e1 > 1" step="1">
-                Verificación
-              </v-stepper-step>
+              <v-stepper-step color="#7900ff" :complete="e1 > 1" step="1">Verificación</v-stepper-step>
               <v-divider></v-divider>
-              <v-stepper-step color="#7900ff" :complete="e1 > 2" step="2">
-                Formulario
-                <p class="ml-3">registro</p>
-              </v-stepper-step>
+              <v-stepper-step color="#7900ff" :complete="e1 > 2" step="2">Formulario<p class="ml-3">registro</p></v-stepper-step>
               <v-divider></v-divider>
               <v-stepper-step color="#7900ff" step="3"> Perfil </v-stepper-step>
             </v-stepper-header>
             <!-- contenido de seccion verificación | Genesis -->
             <v-stepper-items color="red">
               <v-stepper-content step="1">
-                <h2 align="center" justify="end">
-                  Crea tu perfil gratuito como especialista
-                </h2>
-                <p class="code">
-                  Ingresa el código que recibiste vía WhatsApp o SMS al número
-                  que <br />
-                  nos proporcionaste con anterioridad.
-                </p>
+                <h2 align="center" justify="end">Crea tu perfil gratuito como especialista</h2>
+                <p class="code">Ingresa el código que recibiste vía WhatsApp o SMS al número que <br/>nos proporcionaste con anterioridad.</p>
                 <div align="">
                   <v-col xs="11" sm="8" md="8" lg="7" xl="7">
-                    <router-link
-                      style="text-decoration: none
-        color: inherit;"
-                      to="/auth/register/registerComponents/registerPatient"
-                      ><h3 align="left" class="a mb-13">
-                        <v-icon color="#9966ff">mdi-arrow-left</v-icon
-                        >Registrarme como paciente
+                    <router-link style="text-decoration: none color: inherit;" to="/auth/register/registerComponents/registerPatient">
+                      <h3 align="left" class="a mb-13">
+                        <v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente
                       </h3>
                     </router-link>
                     <p align="left" class="mb-1 label">Celular</p>
                     <code-country />
-                    <p align="left" class="mb-1 label">
-                      Código de verificación
-                    </p>
-                    <v-text-field
-                      outlined
-                      placeholder="Verifica tu código"
-                      class="textfield"
-                      color="#b380ff"
-                    ></v-text-field>
+                    <p align="left" class="mb-1 label">Código de verificación</p>
+                    <v-text-field outlined placeholder="Verifica tu código" class="textfield" color="#b380ff"></v-text-field>
                     <div align="right">
-                      <v-btn
-                        class="btn mt-n11"
-                        text
-                        color="#9966ff"
-                        @click="e1 = 2"
-                        >Reenviar código</v-btn
-                      >
-                      <br /><br />
+                      <v-btn class="btn mt-n11" text color="#9966ff" @click="e1 = 2">Reenviar código</v-btn>
+                      <br/><br/>
                       <v-btn
                         width="30%"
                         large
@@ -155,6 +115,7 @@
                       </v-checkbox>
                       <v-btn
                         v-on:click="create"
+                        @click="e1 = 3"
                         block
                         large
                         class="white--text btn mt-n3"
@@ -168,6 +129,7 @@
               </v-stepper-content>
               <!-- 2. FORMULARIO DE REGISTRO -->
 
+              <!-- 3. FORMULARIO DE CONSULTORIO -->
               <!-- contenido de seccion Perfil | Genesis -->
               <v-stepper-content step="3">
                 <h2 align="center" justify="end">
@@ -176,106 +138,57 @@
                 <div align="">
                   <v-col xs="11" sm="8" md="8" lg="7" xl="7">
                     <router-link
-                      style="text-decoration: none
-            color: inherit;"
+                      style="text-decoration: none color: inherit;"
                       to="/auth/register/registerComponents/registerPatient"
                       ><h3 align="left" class="a mb-13">
                         <v-icon color="#9966ff">mdi-arrow-left</v-icon
                         >Registrarme como paciente
                       </h3>
                     </router-link>
-                    <p align="left" class="mb-1 label">Nombre (s)*</p>
-                    <v-text-field
-                      outlined
-                      placeholder="Escriba su nombre"
-                      class="textfield"
-                      color="#b380ff"
-                    ></v-text-field>
-                    <v-text-field
-                      outlined
-                      placeholder="Apellido (s)"
-                      class="textfield"
-                      color="#b380ff"
-                    ></v-text-field>
-                    <p align="left" class="mb-1 mt-n2 label">
-                      Fecha de nacimiento*
-                    </p>
-                    <!-- calendario para seleccionar fecha de nacimiento  | Genesis -->
-                    <v-dialog
-                      ref="dialog"
-                      v-model="menu2"
-                      :return-value.sync="date"
-                      width="290px"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                          class="textfield"
-                          color="#b380ff"
-                          v-model="date"
-                          outlined
-                          placeholder="Fecha de nacimiento*"
-                          readonly
-                          v-bind="attrs"
-                          v-on="on"
-                        ></v-text-field>
-                      </template>
-                      <v-date-picker
-                        color="#9966ff"
-                        locale="MX-ES"
-                        v-model="date"
-                      >
-                        <v-spacer></v-spacer>
-                        <v-btn text color="#b380ff" @click="modal = false">
-                          Cancel
-                        </v-btn>
-                        <v-btn
-                          text
-                          color="#b380ff"
-                          @click="$refs.dialog.save(date)"
-                        >
-                          OK
-                        </v-btn>
-                      </v-date-picker>
-                    </v-dialog>
-                    <p align="left" class="mb-1 mt-n2 label">Consultorio*</p>
-                    <v-text-field
-                      outlined
-                      placeholder="Nombre del consultorio o clínica"
-                      class="textfield"
-                      color="#b380ff"
-                    ></v-text-field>
-                    <p align="left" class="mb-1 mt-n2 label">Dirección*</p>
-                    <v-autocomplete
-                      outlined
-                      :items="especialidades"
-                      placeholder="Dirección de consultorio o clínica"
-                      class="textfield"
-                      color="#b380ff"
-                    ></v-autocomplete>
-                    <v-btn
-                     
-                      block
-                      large
-                      class="white--text btn"
-                      color="#7900FF"
-                      href="/"
-                    >
-                      Registrarme
-                    </v-btn>
+                  <form>
+                    <!-- CAMPO DE CONSULTORIO  -->
+                    <p align="left" class="mb-1 label">Nombre del consultorio</p>
+                    <v-text-field v-model="consultorio" name="nombre" id="nombre" outlined placeholder="Nombre del consultorio" class="textfield" color="#b380ff"></v-text-field>
+                    <!-- CAMPO DE DIRECCION  -->
+                    <p align="left" class="mb-1 mt-n2 label">Direccion*</p>
+                    <v-text-field v-model="direccion" outlined placeholder="Calle panuco" class="textfield" color="#b380ff"></v-text-field>
+                    <!-- NUMERO EXTERIOR Y EXTERIOR    -->
+                    <v-row>
+                      <v-col cols="12" md="4">
+                        <p align="left" class="mb-1 mt-n2 label">N.Exterior*</p>
+                        <v-text-field v-model="numberExt" outlined placeholder="N. Exterior" class="textfield" color="#b380ff"></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="4">
+                        <p align="left" class="mb-1 mt-n2 label">N.Interior*</p>
+                        <v-text-field v-model="numberInt" outlined placeholder="N. Interior" class="textfield" color="#b380ff"></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="4">
+                        <p align="left" class="mb-1 mt-n2 label">C.P.*</p>
+                        <v-text-field v-model="codigoPostal" outlined placeholder="C.P." class="textfield" color="#b380ff"></v-text-field>
+                      </v-col>
+                    </v-row>
+                    <!-- CIUDAD Y ESTADO -->
+                    <v-row>
+                      <v-col cols="12" md="6">
+                        <p align="left" class="mb-1 mt-n2 label">Estado*</p>
+                        <v-text-field outlined placeholder="Estado" class="textfield" color="#b380ff"></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="6">
+                        <p align="left" class="mb-1 mt-n2 label">Ciudad*</p>
+                        <v-text-field outlined placeholder="Ciudad" class="textfield" color="#b380ff"></v-text-field>
+                      </v-col>
+                    </v-row>
+                    <!-- BOTON DE GUARDAR | LUIS REYES -->
+                    <v-btn block large class="white--text btn" color="#7900FF" href="/">Registrarme</v-btn>
+                  </form>
                   </v-col>
                 </div>
               </v-stepper-content>
             </v-stepper-items>
           </v-stepper>
+          <!-- 3. FORMULARIO DE CONSULTORIO -->
         </v-col>
-        <v-col
-          cols="3"
-          sm="1"
-          md="2"
-          lg="1"
-          xl="1"
-          class="flex-grow-0 flex-shrink-1"
-        ></v-col>
+        <v-col cols="3" sm="1" md="2" lg="1" xl="1" class="flex-grow-0 flex-shrink-1"></v-col>
       </v-row>
     </div>
   </div>
@@ -287,32 +200,23 @@ export default {
   data() {
     return {
       specialties: "", 
-      name: "Juan carlos",
+      name: "",
       specialty: "16",
       identification_card: "",
       institution: "UNACH",
+      /* consultorio */
+      consultorio:"",
+      direccion:"",
+      numberExt:"",
+      numberInt:"",
+      codigoPostal:"",
+
       check: '',
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
       e1: 1,
     }
-  },
-  mounted() {
-   /*  if (localStorage.token) {
-      console.log("si pinta")
-      this.token = localStorage.getItem("token")
-    } */
-   /*  this.token = $localStorage.getItem("token") */
-  
-    // this.storage();
-    // console.log(localStorage.getItem("token"))
-    // this.$axios.post('/api/v1/physician',{
-    //   headers:{
-    //     Autorization: "Bearer ${token}",
-    //     token: localStorage.getItem("token")
-    //   }
-    // })
   },
   methods: {
     create() {
@@ -334,9 +238,27 @@ export default {
         console.log(response.data.specialties)
       })
     },
-  },
+
+    /* CONSULTORIO */
+    CreateConsultorio(){
+      this.$axios
+      .post('/api/v1/physician/facility',{
+        facility_name: this.consultorio,
+        location:[
+          {
+            address: this.direccion,
+            number_ext: this.numberExt,
+            number_int: this.numberInt,
+          }
+        ],
+        zip_code: this.codigoPostal,
+      })
+
+    },
+  }, 
 }
 </script>
+
 <style>
 .fondo {
   height: 100%;
