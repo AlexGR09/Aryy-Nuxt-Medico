@@ -24,7 +24,6 @@ import MenuMed from './MedicalProfileViews/menuMed.vue'
 export default {
   components: { menuPlanner, generalInfo, MenuMed },
   data: () => ({ show1: false, tabs: 0 }),
-  middleware: 'auth',
 }
 </script>
 <style>

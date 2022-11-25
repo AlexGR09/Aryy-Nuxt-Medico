@@ -150,6 +150,7 @@
                         color="#7900ff"
                         block
                         height="50"
+                       
                       >
                         Registrarme</v-btn
                       >
@@ -253,7 +254,7 @@ export default {
         .then((response) => {
           console.log(response.data.data)
           localStorage.setItem('token',response.data.access_token)
-          this.$router.push('/auth/register/registercomponents/specialistregister')
+          this.$router.push('/auth/register/registerViews/specialistregister')
         })
         .catch((error) => {
           /*   alert(error.response.data.errors.email) */

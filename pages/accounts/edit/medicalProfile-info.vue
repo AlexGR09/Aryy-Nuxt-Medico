@@ -12,10 +12,20 @@
           <v-form ref="form" v-model="valid">
             <v-card-text class="pa-3 mt-5">
               <v-row>
+                <v-col md="12" lg="12" xl="12" cols="12">
+                  <span>Nombre*</span>
+                  <v-text-field
+                    v-model="professional_name"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined
+                  ></v-text-field>
+                </v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
                   <span>Especialidad*</span>
                   <v-autocomplete
-                    v-model="specialty"
+                    v-model="specialty_id"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Selecciona una especialidad"
@@ -62,7 +72,7 @@
                     </p>
                     <v-text-field
                       :id="input.id"
-                      v-model="identification"
+                      v-model="license"
                       color="#9966ff"
                       class="textfield mt-1"
                       placeholder="00000000"
@@ -113,7 +123,7 @@
                   <span>Sobre mi(opcional)</span>
                   <v-textarea
                     color="#9966ff"
-                    v-model="aboutme"
+                    v-model="biography"
                     maxlength="400"
                     counter="400"
                     auto-grow
@@ -154,7 +164,7 @@
                 :deletable="true"
                 :helpText="'Selecciona o arrastra tus archivos aquí'"
                 :uploadUrl="uploadUrl"
-                v-model="fileRecords"
+                v-model="certificates"
               ></VueFileAgent>
               <!--     <H1 class="mb-5 mt-8">RECETA MÉDICA*</H1>
     <v-row>
@@ -246,6 +256,7 @@ import Vue from 'vue'
 import VueFileAgent from 'vue-file-agent'
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css'
 import MenuMed from './MedicalProfileViews/menuMed.vue'
+
 Vue.use(VueFileAgent)
 Vue.use(VueFileAgentStyles)
 export default {
@@ -254,6 +265,7 @@ export default {
   },
   data() {
     return {
+      name: "",
       inputs: [
         {
           id: 'fruit0',
@@ -286,7 +298,30 @@ export default {
         value: '',
       })
     },
+
+    infoMedical() {
+              console.log('creando petición GET');
+              this.$axios
+              .get('/api/v1/physician',
+              { 
+                headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+              })
+              .then(res => {
+                       console.log(res)
+                       console.log("exito en GET")
+                       this.professional_name = res.data.professional_name
+                  })
+                  .catch(
+                      /* console.log(e); */
+                      console.log("error en GET")
+                  )
+          },
   },
+  mounted() {
+          console.log('verificando');
+          this.infoMedical();
+  
+      },
 }
 </script>
 
