@@ -24,13 +24,13 @@
                 </v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
                   <span>Especialidad*</span>
-                  <v-autocomplete
-                    v-model="specialty_id"
+                  <v-text-field
+                    v-model="specialty"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Selecciona una especialidad"
                     outlined
-                  ></v-autocomplete>
+                  ></v-text-field>
                 </v-col>
                 <v-col md="6" lg="6" xl="6" cols="12"></v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
@@ -265,7 +265,15 @@ export default {
   },
   data() {
     return {
-      name: "",
+      professional_name: "",
+      specialty: "",
+      subspecialty: "",
+      subespeciality2: "",
+      license: "",
+      institution: "",
+      fileIden: "",
+      biography: "",
+      certificates: "",
       inputs: [
         {
           id: 'fruit0',
@@ -309,8 +317,13 @@ export default {
               .then(res => {
                        console.log(res)
                        console.log("exito en GET")
-                       this.professional_name = res.data.professional_name
-                  })
+                       this.professional_name = res.data.data.professional_name
+                       this.specialty = res.data.data.physician_specialties[0].specialty_id
+                       this.license = res.data.data.physician_specialties[0].license
+                       this.institution = res.data.data.physician_specialties[0].institution
+                       this.certificates = res.data.data.certificates
+                       this.biography = res.data.data.biography
+                      })
                   .catch(
                       /* console.log(e); */
                       console.log("error en GET")
