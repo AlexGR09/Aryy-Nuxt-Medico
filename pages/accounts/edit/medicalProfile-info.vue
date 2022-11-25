@@ -7,7 +7,7 @@
       <v-col md="10" lg="10" xl="10">
         <v-card flat class="pa-3 mt-2">
           <v-card-subtitle class="pa-3 mt-n2 mb-n10"
-            ><H1 class="mb-5">FORMACIÓN ACADÉMICA</H1></v-card-subtitle
+            ><H1 class="mb-5">FOTO DE PERFIL</H1></v-card-subtitle
           >
           <v-form ref="form" v-model="valid">
             <v-card-text class="pa-3 mt-5">
@@ -221,6 +221,7 @@
               </v-row>
               <BR /><BR />
               <v-btn
+              v-on:click="postMedicalinfo"
                 @click="overlay = !overlay"
                 height="50px"
                 class="white--text save mt-7"
@@ -265,19 +266,19 @@ export default {
   },
   data() {
     return {
-      professional_name: "",
-      specialty: "",
-      subspecialty: "",
-      subespeciality2: "",
-      license: "",
-      institution: "",
-      fileIden: "",
-      biography: "",
-      certificates: "",
+      professional_name: '',
+      specialty: '',
+      subspecialty: '',
+      subespeciality2: '',
+      license: '',
+      institution: '',
+      fileIden: '',
+      biography: '',
+      certificates: '',
       inputs: [
         {
-          id: 'fruit0',
-          label: 'Enter Fruit Name',
+          id: '',
+          label: '',
           value: '',
         },
       ],
@@ -307,34 +308,54 @@ export default {
       })
     },
 
-    infoMedical() {
-              console.log('creando petición GET');
-              this.$axios
-              .get('/api/v1/physician',
-              { 
-                headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
-              })
-              .then(res => {
-                       console.log(res)
-                       console.log("exito en GET")
-                       this.professional_name = res.data.data.professional_name
-                       this.specialty = res.data.data.physician_specialties[0].specialty_id
-                       this.license = res.data.data.physician_specialties[0].license
-                       this.institution = res.data.data.physician_specialties[0].institution
-                       this.certificates = res.data.data.certificates
-                       this.biography = res.data.data.biography
-                      })
-                  .catch(
-                      /* console.log(e); */
-                      console.log("error en GET")
-                  )
-          },
+    getinfoMedical() {
+      console.log('creando petición GET')
+      this.$axios
+        .get('/api/v1/physician', {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log(res)
+          console.log('exito en GET')
+          this.professional_name = res.data.data.professional_name
+          this.specialty = res.data.data.physician_specialties[0].specialty_id
+          this.license = res.data.data.physician_specialties[0].license
+          this.institution = res.data.data.physician_specialties[0].institution
+          this.certificates = res.data.data.certificates
+          this.biography = res.data.data.biography
+        })
+        .catch(
+          /* console.log(e); */
+          console.log('error en GET')
+        )
+    },
+    postMedicalinfo() {
+      this.$axios
+        .post('/api/v1/physician', {
+          professional_name: this.professional_name,
+          specialty: this.specialty_id,
+          license: this.license,
+          institution: this.institution,
+          certificates: this.certificates,
+          biography: this.biography,
+        })
+        .then((response) => {
+          console.log(response.data.data)
+          localStorage.setItem('token',response.data.access_token)
+        })
+        .catch((error) => {
+          /*   alert(error.response.data.errors.email) */
+          this.errormail = ''
+          this.errormail = error.response.data.errors.email[0]
+          this.password_error=""
+          this.password_error = error.response.data.errors.password[0]
+        })
+    },
   },
   mounted() {
-          console.log('verificando');
-          this.infoMedical();
-  
-      },
+    console.log('verificando')
+    this.getinfoMedical()
+  },
 }
 </script>
 

@@ -1,143 +1,133 @@
 <template>
   <v-card flat class="pa-3 mt-2">
-    <v-card-subtitle>DETALLES DE LA CUENTA</v-card-subtitle>
+    <v-card-subtitle
+      ><H1 class="mb-5">DETALLES DE LA CUENTA</H1></v-card-subtitle
+    >
     <v-card-text class="d-flex">
-      <v-avatar rounded size="80" class="me-6">
+      <v-avatar class="me-6" size="80">
         <v-img v-bind:src="require('@/assets/icons/avatar.png')"></v-img>
       </v-avatar>
       <div>
-        <v-btn color="#9353ff" class="me-3 mt-5">
-          <span>Actualizar foto</span>
-        </v-btn>
-        <input accept=".png, .jpg" :hidden="true" />
-        <v-btn class="mt-5" outlined color="gray">Restaurar foto</v-btn>
+        <v-btn height="50px" class="white--text save" color="#7900ff" large
+          >Actualizar foto</v-btn
+        >
+        <v-btn height="50px" class="restore ml-3" color="#999999" outlined large
+          >Restaurar foto</v-btn
+        >
         <p class="text-sm mt-5">
-          formatos permitidos: JPG o PNG. Tamaño máximo de archivo 2 MB, y
+          Formatos permitidos: JPG o PNG. Tamaño máximo de archivo 2 MB, y
           512x512 píxeles.
         </p>
       </div>
     </v-card-text>
     <!-- formulario | Luis Reyes -->
-
-    <v-card-text>
-      <v-card-subtitle>INFORMACIÓN DEL PERFIL</v-card-subtitle>
-      <v-form class="multi-col-validation mt-6">
-        <v-row>
-          <v-col md="4" cols="12">
-            <span>Nombre(s)*</span>
-            <v-text-field placeholder="Armando" dense outlined></v-text-field>
-          </v-col>
-
-          <v-col md="4" cols="12">
-            <span>Apellido(s)*</span>
-            <v-text-field
-              placeholder="Bronca Segura"
-              dense
-              outlined
-            ></v-text-field>
-          </v-col>
-          <v-col md="4" cols="12">
-            <span>Género</span>
-            <v-select
-              dense
-              outlined
-              v-model="select"
-              :items="items"
-              item-text="state"
-              label="Select"
-              persistent-hint
-              return-object
-              single-line
+    <v-col md="10" lg="10" xl="10">
+      <v-card-text>
+        <v-card-subtitle>
+          <H1 class="ml-n5">INFORMACIÓN DE PERFIL</H1></v-card-subtitle
+        >
+        <v-form class="multi-col-validation mt-6">
+          <v-row>
+            <v-col md="12" lg="12" xl="4" cols="12">
+              <span>Nombre*</span>
+              <v-text-field
+                v-model="name"
+                color="#9966ff"
+                class="textfield"
+                placeholder="Selecciona una especialidad"
+                outlined
+              ></v-text-field>
+            </v-col>
+            <v-col md="6" lg="6" xl="4" cols="12">
+              <span>Apellidos*</span>
+              <v-text-field
+                v-model="lastname"
+                color="#9966ff"
+                class="textfield"
+                placeholder="Selecciona una especialidad"
+                outlined
+              ></v-text-field>
+            </v-col>
+            <v-col md="6" lg="6" xl="4" cols="12">
+              <span>Género</span>
+              <v-autocomplete
+                v-model="gender"
+                color="#9966ff"
+                class="textfield"
+                placeholder="Añadir"
+                outlined
+              ></v-autocomplete>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col md="12" lg="12" xl="4" cols="12">
+              <span>Correo*</span>
+              <v-text-field
+                v-model="email"
+                color="#9966ff"
+                class="textfield"
+                placeholder="Selecciona una especialidad"
+                outlined
+              ></v-text-field>
+            </v-col>
+            <v-col md="6" lg="6" xl="4" cols="12">
+              <span>Teléfono personal*</span>
+              <v-text-field
+                v-model="phoneNumber"
+                color="#9966ff"
+                class="textfield"
+                placeholder="Selecciona una especialidad"
+                outlined
+              ></v-text-field>
+            </v-col>
+            <v-col md="6" lg="6" xl="4" cols="12">
+              <span>Contraseña</span>
+              <v-autocomplete
+                v-model="password"
+                color="#9966ff"
+                class="textfield"
+                placeholder="Añadir"
+                outlined
+              ></v-autocomplete>
+            </v-col>
+            <v-col md="6" lg="6" xl="4" cols="12">
+              <span>Fecha de nacimiento*</span>
+              <v-autocomplete
+                v-model="birthday"
+                color="#9966ff"
+                class="textfield"
+                placeholder="Añadir"
+                outlined
+              ></v-autocomplete>
+            </v-col>
+          </v-row>
+          <v-row class="mt-5 ml-0">
+            <v-btn
+              @click="overlay = !overlay"
+              height="50px"
+              class="white--text save mt-7"
+              color="#7900ff"
+              large
+              >Guardar cambios</v-btn
             >
-            </v-select>
-          </v-col>
-          <v-col md="4" cols="12">
-            <v-text>Correo*</v-text> <br />
-            <v-text-field
-              v-model="email"
-              dense
+            <v-btn
+              height="50px"
+              @click="reset"
+              class="restore ml-3 mt-7"
+              color="#999999"
               outlined
-              :rules="emailRules"
-              placeholder="Armandobs@gmail.com"
-              required
+              large
+              >Restaurar todo</v-btn
             >
-            </v-text-field>
-          </v-col>
-          <v-col md="4" cols="12">
-            <v-text>Teléfono*</v-text> <br />
-            <v-text-field
-              v-model="phoneNumber"
-              dense
-              append-outer-icon="mdi-map-marker"
-              outlined
-              placeholder="+52 xxx xxx xxxx"
-              required
-            >
-              <v-icon slot="append" color="red"> mdi-plus </v-icon>
-            </v-text-field>
-          </v-col>
-          <v-col cols="12">
-            <v-text>Sobre mí</v-text>
-            <v-textarea
-              dense
-              outlined
-              color="teal"
-              placeholder="Escribe arcerca de ti."
-              counter
-              maxlength="1200"
-            >
-            </v-textarea>
-          </v-col>
-
-          <v-col md="4" cols="12">
-            <span>Estado*</span>
-            <v-select
-              dense
-              outlined
-              v-model="select"
-              :items="items"
-              item-text="estado"
-              label="Select"
-              persistent-hint
-              return-object
-              single-line
-            >
-            </v-select>
-          </v-col>
-          <v-col md="4" cols="12">
-            <span>Ciudad o Municipio</span>
-            <v-select
-              dense
-              outlined
-              v-model="select"
-              :items="items"
-              item-text="estado"
-              label="Select"
-              persistent-hint
-              return-object
-              single-line
-            >
-            </v-select>
-          </v-col>
-          <v-col md="4" cols="12">
-            <span>Código postal</span>
-            <v-text-field
-              ref="zip"
-              dense
-              outlined
-              v-model="zip"
-              :rules="[() => !!zip || 'es necesario']"
-              required
-              placeholder="29000"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-btn class="mr-4" color="#9353ff" @click="submit">
-          Guardar Cambios
-        </v-btn>
-        <v-btn @click="clear" outlined color="grey"> Restaurar todo </v-btn>
-      </v-form>
-    </v-card-text>
+            <v-overlay :value="overlay">
+              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
+                >Datos actualizados correctamente.</v-alert
+              >
+            </v-overlay>
+          </v-row>
+        </v-form>
+      </v-card-text>
+    </v-col>
   </v-card>
 </template>
 
@@ -146,18 +136,55 @@
 export default {
   data() {
     return {
+      name: '',
+      lastname: '',
+      gender: '',
+      email: '',
+      phoneNumber: '',
+      password: '',
+      birthday: '',
       select: { state: 'Hombre', estado: 'chiapas' },
+      overlay: false,
       items: [
         { state: 'Hombre', estado: 'Chiapas' },
         { state: 'Mujer', estado: 'Guerrero' },
         { state: 'No binario', estado: 'Puebla' },
       ],
-      email: '',
       emailRules: [
         (v) => !!v || 'E-mail is necesario',
         (v) => /.+@.+/.test(v) || 'E-mail invalido',
       ],
     }
   },
+
+  methods: {
+    getinfoUser() {
+              console.log('creando petición GET');
+              this.$axios
+              .get('/api/v1/physician',
+              { 
+                headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+              })
+              .then(res => {
+                       console.log(res)
+                       console.log("exito en GET")
+                       this.name = res.data.data.user.name
+                       this.lastname = res.data.data.user.lastname
+                       this.gender = res.data.data.user.gender
+                       this.email = res.data.data.user.email
+                       this.phoneNumber = res.data.data.user.phone_number
+                       this.birthday = res.data.data.user.birthday
+                      })
+                  .catch(
+                      /* console.log(e); */
+                      console.log("error en GET")
+                  )
+          },
+  },
+
+  mounted() {
+          console.log('verificando');
+          this.getinfoUser();
+      },
 }
 </script>

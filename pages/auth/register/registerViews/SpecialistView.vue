@@ -250,6 +250,7 @@ export default {
           country_code: this.code,
           phone_number: this.phone,
           type_user: 'Physician',
+          
         })
         .then((response) => {
           console.log(response.data.data)
