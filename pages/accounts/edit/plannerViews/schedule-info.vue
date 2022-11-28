@@ -149,8 +149,176 @@
                     <v-icon>mdi-plus-circle</v-icon>
                   </v-btn>
                 </v-row>
-              </div></v-col
-            >
+              </div> </v-col
+            ><v-col xl="6"></v-col>
+            <v-row class="mt-3 ml-2">
+              <v-col xl="1">
+                <p class="mt-1 weekday">Lun</p>
+                <p class="mt-9 weekday">Mar</p>
+                <p class="mt-8 weekday">Mie</p>
+                <p class="mt-8 weekday">Jue</p>
+                <p class="mt-9 weekday">Vie</p>
+                <p class="mt-9 weekday">Sáb</p>
+              </v-col>
+              <v-col xl="11">
+                <v-col class="ml-n13 mt-n2" xl="5">
+                  <v-chip label v-if="!chipLun">No registrado</v-chip>
+                  <v-chip label v-if="!chipLun2">No registrado</v-chip>
+                  <v-chip
+                    v-if="chipLun"
+                    @click:close="chipLun = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">09:00 AM a 03:00 PM</span></v-chip
+                  >
+                  <v-chip
+                    v-if="chipLun2"
+                    @click:close="chipLun2 = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
+                  >
+                  
+                </v-col>
+                <v-col xl="7"></v-col>
+
+                <v-col class="ml-n13 mt-n6" xl="5">
+                  <v-chip label v-if="!chipMar">No registrado</v-chip>
+                  <v-chip label v-if="!chipMar2">No registrado</v-chip>
+                  <v-chip
+                    v-if="chipMar"
+                    @click:close="chipMar = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">09:00 AM a 03:00 PM</span></v-chip
+                  >
+                  <v-chip
+                    v-if="chipMar2"
+                    @click:close="chipMar2 = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
+                  >
+                  
+                  <v-col xl="7"> </v-col>
+                </v-col>
+
+                <v-col class="ml-n13 mt-n6" xl="5">
+                  <v-chip label v-if="!chipMie">No registrado</v-chip>
+                  <v-chip label v-if="!chipMie2">No registrado</v-chip>
+                  <v-chip
+                    v-if="chipMie"
+                    @click:close="chipMie = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">09:00 AM a 03:00 PM</span></v-chip
+                  >
+                  <v-chip
+                    v-if="chipMie2"
+                    @click:close="chipMie2 = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
+                  >
+             
+                </v-col>
+                <v-col xl="7"></v-col>
+
+                <v-col class="ml-n13 mt-n6" xl="5">
+                  <v-chip label v-if="!chipJue">No registrado</v-chip>
+                  <v-chip label v-if="!chipJue2">No registrado</v-chip> 
+                  <v-chip
+                    v-if="chipJue"
+                    @click:close="chipJue = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">09:00 AM a 03:00 PM</span></v-chip
+                  >
+                  <v-chip
+                    v-if="chipJue2"
+                    @click:close="chipJue2 = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
+                  >
+                 </v-col
+                ><v-col xl="7"></v-col>
+                <v-col class="ml-n13 mt-n6" xl="5">
+                  <v-chip label v-if="!chipVie">No registrado</v-chip>
+                  <v-chip label v-if="!chipVie2">No registrado</v-chip>
+                  <v-chip
+                    v-if="chipVie"
+                    @click:close="chipVie = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">09:00 AM a 03:00 PM</span></v-chip
+                  >
+                  <v-chip
+                    v-if="chipVie2"
+                    @click:close="chipVie2 = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
+                  >
+                   </v-col
+                ><v-col xl="7"></v-col>
+                <v-col class="ml-n13 mt-n6" xl="5">
+                  <v-chip label v-if="!chipSab">No registrado</v-chip>
+                  <v-chip label v-if="!chipSab2">No registrado</v-chip>
+                  <v-chip
+                    v-if="chipSab"
+                    @click:close="chipSab = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">09:00 AM a 03:00 PM</span></v-chip
+                  >
+                  <v-chip
+                    v-if="chipSab2"
+                    @click:close="chipSab2 = false"
+                    close-icon="mdi-close"
+                    style="border: thin solid #7900ff"
+                    color="#f4edff"
+                    label
+                    close
+                    ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
+                  >
+                   </v-col
+                ><v-col xl="7"></v-col>
+              </v-col>
+            </v-row>
           </v-row>
           <v-row class="mt-5">
             <v-col md="6" lg="5" xl="4" cols="12">
@@ -196,6 +364,29 @@ export default {
   components: {},
   data() {
     return {
+      /* valores de los chips de horario | Genesis */
+      chipLun: true,
+      chipMar: true,
+      chipMie: true,
+      chipJue: true,
+      chipVie: true,
+      chipSab: true,
+      chipLun2: true,
+      chipMar2: true,
+      chipMie2: true,
+      chipJue2: true,
+      chipVie2: true,
+      chipSab2: true,
+
+     /*  v-models de los checkbox | Genesis */
+     lun: '',
+     mar: '',
+     mie: '',
+     jue: '',
+     vie: '',
+     sab: '',
+     dom: '',
+
       inputs: [
         {
           name: '',
@@ -222,6 +413,15 @@ export default {
 </script>
 
 <style>
+p.weekday {
+  font-family: MontserratBold;
+  color: black;
+}
+span.hour {
+  font-family: Montserrat;
+  color: #7900ff;
+  font-size: 100%;
+}
 .checkbox {
   font-family: Montserrat;
 }
