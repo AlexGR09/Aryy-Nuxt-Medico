@@ -22,20 +22,36 @@
             ></v-img
           ></v-col>
           <v-col xs="11" sm="11" md="3" lg="3" xl="3"
-            ><p class="mt-4">{{ consultorio.name }}</p></v-col
+            ><p id="facility_name" class="mt-4">{{ consultorio.name }}</p></v-col
           >
           <v-col xs="12" sm="12" md="4" lg="4" xl="4"
-            ><p class="mt-4">{{ consultorio.address }}</p></v-col
+            ><p id="address" class="mt-4">{{ consultorio.address }}</p></v-col
           >
           <v-col xs="1" sm="1" md="1" lg="1" xl="2"></v-col>
           <v-col>
             <v-btn-toggle borderless class="botones mt-1">
-              <v-btn v-model="check" class="iconos" icon>
+              <v-dialog  fullscreen  overlay-color="white"
+                transition="dialog-top-transition" v-model="dialog">
+                <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
+                <!--  <v-btn dark icon color="black" @click="dialog = false">
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn> --> 
+                  <v-row>
+                    <v-col md="5" lg="5" xl="5"></v-col>
+                    <v-col md="4" lg="4" xl="4"> <v-img  :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img><p class="mt-n7 prueba">Consultorios</p></v-col>
+                    <v-col ms="3" lg="3" xl="3"></v-col>
+                  </v-row>
+                  </v-app-bar>
+              <template  v-slot:activator="{ on, attrs }">
+              <v-btn v-bind="attrs" v-on="on" v-model="check" class="iconos" icon>
                 <v-img
                   :src="require('@/assets/icons/icon_editpaciente.svg')"
                   max-width="25"
                 ></v-img>
               </v-btn>
+            </template>
+            <edit-facility class="mt-16 ml-13"/>
+                </v-dialog>
               <v-btn class="iconos ml-n3" @click="deleteItem(i)" icon>
                 <v-img
                   :src="require('@/assets/icons/icon_borrarpaciente.svg')"
@@ -56,7 +72,11 @@
   </div>
 </template>
 <script>
+import editFacility from './editFacility.vue'
 export default {
+  components: {
+    editFacility,
+},
   data() {
     return {
       selectedItem: 1,
@@ -76,10 +96,33 @@ export default {
       ],
     }
   },
+  mounted() {
+    console.log('verificando')
+    this.infoFacility()
+  },
   methods: {
     deleteItem: function (i) {
       this.consultorios.splice(i, 1)
     },
+  /*   metodo get para mostrar datos en card | Genesis */
+    infoFacility() {
+      console.log('creando petición GET')
+      this.$axios
+        .get('/api/v1/physician/facility', {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log(res)
+          console.log('exito en GET')
+          this.facility_name = res.data.data.professional_name
+          this.address = res.data.data.location[0].location_id
+        })
+        .catch(
+          /* console.log(e); */
+          console.log('error en GET')
+        )
+    },
+
   },
 }
 </script>

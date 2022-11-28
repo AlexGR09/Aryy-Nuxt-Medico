@@ -73,84 +73,74 @@
               </v-btn-toggle>
             </v-col>
             <v-col md="6" cols="12"></v-col>
-            <v-col md="6" cols="12">
-              <div class="form-group" v-for="(input, k) in inputs" :key="k">
-                <v-row>
-                  <p class="text mt-8 ml-6">De</p>
-                  <v-col md="4">
-                    <v-dialog
-                      ref="dialog"
-                      v-model="modal2"
-                      :return-value.sync="time"
-                      persistent
-                      width="300px"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                          outlined
-                          class="textfield"
-                          v-model="time"
-                          placeholder="08:00 AM"
-                          readonly
-                          v-bind="attrs"
-                          v-on="on"
-                        ></v-text-field>
-                      </template>
-                      <v-time-picker v-if="modal2" v-model="time" full-width>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="modal2 = false">
-                          Cancel
-                        </v-btn>
-                        <v-btn text color="primary" @click="save(time)">
-                          OK
-                        </v-btn>
-                      </v-time-picker>
-                    </v-dialog>
-                  </v-col>
+            
+            <v-col class="mb-n7" md="11" cols="12">
+              <v-row class="ml-0" >
+      <span class="mt-8">De</span>
+      <v-col cols="11" sm="3" xl="3">
+        <v-dialog
+          ref="dialog"
+          v-model="modal2"
+          :return-value.sync="time"
+          persistent
+          width="290px"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              outlined
+              v-model="time"
+              placeholder="08:00 AM"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-time-picker :max="time2" v-if="modal2" v-model="time" full-width>
+            <v-spacer></v-spacer>
+            <v-btn text color="primary" @click="modal2 = false"> Cancel </v-btn>
+            <v-btn text color="primary" @click="$refs.dialog.save(time)">
+              OK
+            </v-btn>
+          </v-time-picker>
+        </v-dialog>
+      </v-col>
 
-                  <p class="text mt-8">A</p>
-                  <v-col md="4">
-                    <v-dialog
-                      ref="dialog"
-                      v-model="modal2"
-                      :return-value.sync="time"
-                      persistent
-                      width="300px"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                          outlined
-                          class="textfield"
-                          v-model="time"
-                          placeholder="08:00 PM"
-                          readonly
-                          v-bind="attrs"
-                          v-on="on"
-                        ></v-text-field>
-                      </template>
-                      <v-time-picker v-if="modal2" v-model="time" full-width>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="modal2 = false">
-                          Cancel
-                        </v-btn>
-                        <v-btn text color="primary" @click="save(time)">
-                          OK
-                        </v-btn>
-                      </v-time-picker>
-                    </v-dialog>
-                  </v-col>
-                  <v-btn
-                    @click="add(k)"
-                    v-show="k == inputs.length - 1"
-                    class="mt-6"
-                    icon
-                    color="#9966ff"
-                  >
-                    <v-icon>mdi-plus-circle</v-icon>
-                  </v-btn>
-                </v-row>
-              </div> </v-col
-            ><v-col xl="6"></v-col>
+      <span class="mt-8">A</span>
+      <v-col cols="11" sm="3" xl="3">
+        <v-dialog
+          ref="dialog2"
+          v-model="modal"
+          :return-value.sync="time2"
+          persistent
+          width="290px"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              outlined
+              v-model="time2"
+              placeholder="08:00 AM"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-time-picker :end="time" v-if="modal" v-model="time2" full-width>
+            <v-spacer></v-spacer>
+            <v-btn text color="primary" @click="modal = false"> Cancel </v-btn>
+            <v-btn text color="primary" @click="$refs.dialog2.save(time2)">
+              OK
+            </v-btn>
+          </v-time-picker>
+        </v-dialog>
+      </v-col>
+      <v-btn  @click="hour = !hour" class="btn ml-n5 mt-5" color="#9966ff" text
+        ><v-icon class="icon">mdi-plus-circle</v-icon></v-btn
+      >
+    </v-row>
+    <hour-picker v-if="hour"  />
+    </v-col
+            ><v-col xl="1" class=" mt-4"></v-col>
+            
             <v-row class="mt-3 ml-2">
               <v-col xl="1">
                 <p class="mt-1 weekday">Lun</p>
@@ -172,7 +162,7 @@
                     color="#f4edff"
                     label
                     close
-                    ><span class="hour">09:00 AM a 03:00 PM</span></v-chip
+                    ><span  class="hour">09:00 AM a 03:00 PM</span></v-chip
                   >
                   <v-chip
                     v-if="chipLun2"
@@ -360,8 +350,9 @@
   </v-row>
 </template>
 <script>
+import HourPicker from '~/components/hourPicker.vue';
 export default {
-  components: {},
+  components: {HourPicker},
   data() {
     return {
       /* valores de los chips de horario | Genesis */
@@ -392,13 +383,107 @@ export default {
           name: '',
         },
       ],
+      hour: false,
+      visible: false,
       time: null,
       menu2: false,
       modal2: false,
+      time2: null,
+      menu: false,
+      modal: false,
       selectedItem: 1,
     }
   },
   methods: {
+    addInput() {
+      this.inputs.push({
+        id: `fruit${++this.counter}`,
+        label: 'Enter Fruit Name',
+        value: '',
+      });
+    },
+    getFacility() {
+      this.$axios
+        .post('/api/v1/physician/facility', {
+          facility_name: this.facility_name,
+          location: [
+            {
+              address: this.specialty_id,
+              number_ext: this.license,
+              number_int: this.institution,
+              reference: this.certificates,
+            }
+          ],
+          phone_number: this.biography,
+          zip_code: this.biography,
+          schedule: [
+            {
+              day: this.biography,
+              attention_time: this.biography,
+            },
+            {
+              day: this.biography,
+              attention_time: this.biography,
+            },
+          ],
+          type_schedule: this.biography,
+          consultation_length: this.biography,
+          accessibility_and_others: [
+            {
+              accessibility:[
+                {
+                  parking_with_access_to_the_establishment: this.parking,
+                  wheelchair_lift_or_ramp: this.lift,
+                  /* wheelchair_lift_or_ramp: this.ramp, */
+                  toilets_with_wheelchair_access: this.restroom,
+                  rest_area_with_wheelchair_access: this.area,
+                  staff_trained_in_sign_language: this.sign,
+                  braille_signage_for_blind_people: this.braille,
+                }
+              ],
+              usual_audiences:[
+                {
+                  friendly_to_the_lgbtq_community: this.lgbt,
+                  safe_space_for_transgender_people: this.trans,
+                }
+              ],
+              services:[
+                {
+                  toilets: this.toilets,
+                  unisex_toilets: this.unisex,
+                  wifi: this.wifi,
+                }
+              ],
+            }
+          ],
+          /* clues: this.biography,
+          city_id: this.biography, */
+        })
+        .then((response) => {
+          console.log(response.data.data)
+          localStorage.setItem('token',response.data.access_token)
+        })
+        .catch((error) => {
+          /*   alert(error.response.data.errors.email) */
+          this.errormail = ''
+          this.errormail = error.response.data.errors.email[0]
+          this.password_error=""
+          this.password_error = error.response.data.errors.password[0]
+        })
+    },
+    putFacility() {
+      this.$axios
+        .put('/api/v1/physician', {
+         
+        })
+        .then((response) => {
+          console.log(response.data.data)
+          localStorage.setItem('token',response.data.access_token)
+        })
+        .catch( 
+          console.log("error")
+        )
+    },
     save(time) {
       this.$refs.dialog[0].save(time)
     },

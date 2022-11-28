@@ -112,7 +112,6 @@
             >
             <v-btn
               height="50px"
-              @click="reset"
               class="restore ml-3 mt-7"
               color="#999999"
               outlined

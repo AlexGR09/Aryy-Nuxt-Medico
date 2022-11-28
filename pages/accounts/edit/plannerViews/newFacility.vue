@@ -11,7 +11,7 @@
                   <span>Nombre del consultorio*</span>
                   <v-text-field
                     prepend-inner-icon="mdi-magnify"
-                    v-model="name"
+                    v-model="facility_name"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Nombre del consultorio"
@@ -27,7 +27,7 @@
                 <v-col md="6" cols="12">
                   <span>Teléfono para citas*</span>
                   <v-text-field
-                    v-model="phone"
+                    v-model="phone_number"
                     color="#9966ff"
                     class="textfield mb-5"
                     placeholder="XXX XXX XXXX"
@@ -154,7 +154,7 @@
                 <v-col md="4" cols="12">
                   <span>Código postal*</span>
                   <v-text-field
-                    v-model="CP"
+                    v-model="zip_code"
                     color="#9966ff"
                     maxlength="5"
                     counter="5"
@@ -196,7 +196,7 @@
                 <v-col md="8" cols="12">
                   <span>Ubicación*</span>
                   <v-text-field
-                    v-model="ubication"
+                    v-model="address"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Escribe la calle avenida"
@@ -206,7 +206,7 @@
                 <v-col md="4" cols="12">
                   <span>Número exterior*</span>
                   <v-text-field
-                    v-model="nomext"
+                    v-model="number_ext"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Número exterior"
@@ -216,7 +216,7 @@
                 <v-col md="4" cols="12">
                   <span>Número interior</span>
                   <v-text-field
-                    v-model="nomint"
+                    v-model="number_int"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Número interior"
@@ -226,7 +226,7 @@
                 <v-col md="4" cols="12">
                   <span>Referencias*</span>
                   <v-text-field
-                    v-model="references"
+                    v-model="reference"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Escribe referencias de la ubicación"
@@ -245,11 +245,11 @@
                     label="Estacionamiento con acceso al establecimiento"
                   ></v-checkbox>
                   <v-checkbox
-                    v-model="elevator"
+                    v-model="lift"
                     class="vcheckbox"
                     color="#7900ff"
                     hide-details
-                    label="Ascensor o rampa para silla de ruedas"
+                    label="Ascensor con acceso para silla de ruedas"
                   ></v-checkbox>
                   <v-checkbox
                     v-model="ramp"
@@ -305,21 +305,21 @@
                   ></v-checkbox>
                   <H1 class="mb-5 mt-15">SERVICIOS</H1>
                   <v-checkbox
-                    v-model="lgbt"
+                    v-model="toilets"
                     class="vcheckbox"
                     color="#7900ff"
                     hide-details
                     label="Sanitarios"
                   ></v-checkbox>
                   <v-checkbox
-                    v-model="trans"
+                    v-model="unisex"
                     class="vcheckbox"
                     color="#7900ff"
                     hide-details
                     label="Sanitario unisex"
                   ></v-checkbox>
                   <v-checkbox
-                    v-model="trans"
+                    v-model="wifi"
                     class="vcheckbox"
                     color="#7900ff"
                     hide-details
@@ -364,7 +364,6 @@
 </template>
 <script>
 export default {
-  components: {},
   data() {
     return {
       inputs: [
@@ -388,7 +387,81 @@ export default {
         }, 2000)
     },
   },
+  mounted() {
+    console.log('verificando')
+    this.facility()
+  },
   methods: {
+     /*    método post para registrar un consultorio | Genesis */
+     facility() {
+      this.$axios
+        .post('/api/v1/physician/facility', {
+          facility_name: this.facility_name,
+          location: [
+            {
+              address: this.specialty_id,
+              number_ext: this.license,
+              number_int: this.institution,
+              reference: this.certificates,
+            }
+          ],
+          phone_number: this.biography,
+          zip_code: this.biography,
+          schedule: [
+            {
+              day: this.biography,
+              attention_time: this.biography,
+            },
+            {
+              day: this.biography,
+              attention_time: this.biography,
+            },
+          ],
+          type_schedule: this.biography,
+          consultation_length: this.biography,
+          accessibility_and_others: [
+            {
+              accessibility:[
+                {
+                  parking_with_access_to_the_establishment: this.parking,
+                  wheelchair_lift_or_ramp: this.lift,
+                  /* wheelchair_lift_or_ramp: this.ramp, */
+                  toilets_with_wheelchair_access: this.restroom,
+                  rest_area_with_wheelchair_access: this.area,
+                  staff_trained_in_sign_language: this.sign,
+                  braille_signage_for_blind_people: this.braille,
+                }
+              ],
+              usual_audiences:[
+                {
+                  friendly_to_the_lgbtq_community: this.lgbt,
+                  safe_space_for_transgender_people: this.trans,
+                }
+              ],
+              services:[
+                {
+                  toilets: this.toilets,
+                  unisex_toilets: this.unisex,
+                  wifi: this.wifi,
+                }
+              ],
+            }
+          ],
+          /* clues: this.biography,
+          city_id: this.biography, */
+        })
+        .then((response) => {
+          console.log(response.data.data)
+          localStorage.setItem('token',response.data.access_token)
+        })
+        .catch((error) => {
+          /*   alert(error.response.data.errors.email) */
+          this.errormail = ''
+          this.errormail = error.response.data.errors.email[0]
+          this.password_error=""
+          this.password_error = error.response.data.errors.password[0]
+        })
+    },
     save(start, end) {
       this.$refs.dialog[0].save(start, end)
     },
