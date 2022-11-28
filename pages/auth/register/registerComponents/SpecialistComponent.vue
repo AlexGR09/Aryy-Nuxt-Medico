@@ -18,7 +18,6 @@
       <v-tabs class="tabs" color="#7900ff" v-model="tabs">
         <v-tab to="/auth/login" id="1" class="tabs">Iniciar sesión</v-tab>
         <v-tab id="2" class="tabs">
-          
           <!-- SELECTOR DE TIPO DE USUARIOS -->
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -34,14 +33,18 @@
               </v-btn>
             </template>
             <v-list class="listitem">
-<!--               <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
+              <!--               <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item> -->
               <v-list-item>
-                <v-list-item-title  v-model="paciente">PACIENTE</v-list-item-title>
+                <v-list-item-title v-model="paciente"
+                  >PACIENTE</v-list-item-title
+                >
               </v-list-item>
               <v-list-item>
-                <v-list-item-title v-on:click="typeUser" v-model="especialista">ESPECIALISTA</v-list-item-title>
+                <v-list-item-title v-on:click="typeUser" v-model="especialista"
+                  >ESPECIALISTA</v-list-item-title
+                >
               </v-list-item>
             </v-list>
           </v-menu>
@@ -61,18 +64,24 @@
                       <!-- CORREO ELECTRONICO -->
                       <v-text-field
                         v-model="email"
+                        :error-messages="emailErrors"
+                        required
                         outlined
                         placeholder="Correo electrónico"
                         class="textfield mb-2"
                         color="#b380ff"
+                        @input="$v.email.$touch()"
+                        @blur="$v.email.$touch()"
                       ></v-text-field>
-                      <v-alert dense v-model="errormail" outlined type="error">
+                      <!--                       <v-alert dense v-model="errormail" outlined type="error">
                         {{ errormail }}
-                      </v-alert>
+                      </v-alert> -->
                       <br />
                       <!-- CONTRASEÑA 1 -->
                       <v-text-field
                         v-model="password"
+                        :error-messages="passwordErrors"
+                        required
                         height="25"
                         outlined
                         class="textfield mb-2"
@@ -81,11 +90,12 @@
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password'"
                         @click:append="show1 = !show1"
-                        hint="Debe contener al menos 8 carácteres"
-                      ></v-text-field>
-                      <v-alert dense v-model="password_error" outlined type="error">
+                        
+                      >
+                      </v-text-field>
+                      <!--        <v-alert dense v-model="password_error" outlined type="error">
                         {{ password_error }}
-                      </v-alert>
+                      </v-alert> -->
 
                       <!-- CONTRASEÑA 2 -->
                       <br />
@@ -99,9 +109,8 @@
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password2'"
                         @click:append="show1 = !show1"
-                        
                       ></v-text-field>
-                      <p class="hint"> {{ msg }}</p>
+                      <p class="hint">{{ msg }}</p>
                     </v-col>
                   </v-row>
                   <v-row>
@@ -114,9 +123,6 @@
                         color="#b380ff"
                       >
                       </v-text-field>
-                      <v-alert  dense v-model="code_error" outlined type="error">
-                        {{ errormail }}
-                      </v-alert>
                     </v-col>
                     <v-col lg="7">
                       <!-- NUMERO DE TELEFONO -->
@@ -127,9 +133,6 @@
                         color="#b380ff"
                       >
                       </v-text-field>
-                      <v-alert dense v-model="phone_error" outlined type="error">
-                        {{ errormail }}
-                      </v-alert>
                     </v-col>
                   </v-row>
                   <br />
@@ -141,10 +144,8 @@
                         color="#7900ff"
                         block
                         height="50"
+                        >Registrarme</v-btn
                       >
-                        Registrarme</v-btn
-                      >
-
                       <p class="accede mt-5 mb-5">O registrate usando</p>
 
                       <v-btn outlined class="btn" color="#999999" height="50"
@@ -180,11 +181,19 @@
     </div>
   </v-card>
 </template>
-<script>
 
+<script>
+import { validationMixin } from 'vuelidate'
+import { required, maxLength, email, password } from 'vuelidate/lib/validators'
 export default {
+  mixins: [validationMixin],
   name: 'formLogin',
   layout: 'auth',
+
+  validations: {
+    email: { required, email },
+    password: { required, password, maxLength: maxLength(8) },
+  },
 
   data() {
     return {
@@ -201,10 +210,7 @@ export default {
       /*  Countries: CountriesCodes  */
       items: [
         {
-          title: 'COMO PACIENTE',
-          to: '/auth/register/registerComponents/registerPatient',
-          onclick
-        },
+          title: 'COMO PACIENTE',to: '/auth/register/registerComponents/registerPatient'},
         { title: 'COMO ESPECIALISTA', to: '' },
         { title: 'COMO LABORATORIO', to: '/auth/register/register' },
         { title: 'COMO FARMACIA', to: '/auth/register/register' },
@@ -214,6 +220,39 @@ export default {
       show1: false,
       hasVisiblePassword: false,
     }
+  },
+
+  computed: {
+/* 
+    phone () {
+      const errors = []
+      if(!this.$v.phone.$dirty) return errors
+      !this.$.phone.phone && errors.push('agrega correctamente')
+      !this.$.phone.requiered && errors.push('telefono requerido')
+      return errors
+
+    },
+    password2Errors(){
+      const errors =[]
+      if(!this.$v.password_confirmation.$dirty) return errors
+      !this.$v.password_confirmation.password_confirmation && errors.push('no es la misma contraseña')
+      return errors
+
+    },
+    passwordErrors () {
+      const errors = []
+      if(!this.$v.password.$dirty) return errors
+      !this.$v.password.maxLength && errors.push('Debe contener al menos 8 carácteres')
+      !this.$value.password.required && errors.push('contraseña requerida')
+      return errors
+    }, */
+    emailErrors() {
+      const errors = []
+      if (!this.$v.email.$dirty) return errors
+      !this.$v.email.email && errors.push('correo invalido')
+      !this.$v.email.required && errors.push('E-mail es necesario')
+      return errors
+    },
   },
   watch: {
           password(){
@@ -232,7 +271,7 @@ export default {
               this.msg = "Las contraseñas no coinciden"
             }
           }
-        },
+        }, 
   methods: {
     register() {
       this.$axios
@@ -242,44 +281,44 @@ export default {
           password_confirmation: this.password_confirmation,
           country_code: this.code,
           phone_number: this.phone,
-          type_user: "Physician"
+          type_user: 'Physician',
         })
         .then((response) => {
           console.log(response.data.data)
-          localStorage.setItem('token',response.data.access_token)
-          this.$router.push('/auth/register/registercomponents/specialistregister')
+          localStorage.setItem('token', response.data.access_token)
+          this.$router.push(
+            '/auth/register/registercomponents/specialistregister'
+          )
         })
         .catch((error) => {
           /*   alert(error.response.data.errors.email) */
+          this.$v.$touch()
           this.errormail = ''
           this.errormail = error.response.data.errors.email[0]
-          this.password_error=""
+          this.password_error = ''
           this.password_error = error.response.data.errors.password[0]
-
-
         })
     },
   },
 
   /* TYPER_USER | LUIS REYES */
-    typeUser(){
-      this.$axios.post('/api/v1/register', {
+  typeUser() {
+    this.$axios
+      .post('/api/v1/register', {
         type_user: this.especialista,
       })
-      .then((response) =>{
+      .then((response) => {
         console.log(response.data.data)
-      
       })
+  },
 
-    },
-
-  myFunction: function () {
+  /*   myFunction: function () {
     if (this.enableDisable) {
       this.enableDisable = false
     } else {
       this.enableDisable = true
     }
-  },
+  }, */
 }
 </script>
 
@@ -315,7 +354,7 @@ p {
   color: #999999;
   font-size: 16px;
 }
-p.hint{
+p.hint {
   font-size: 12px;
   color: #7900ff;
   margin-top: 5px;
