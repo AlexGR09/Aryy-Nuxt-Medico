@@ -124,7 +124,7 @@
                       >
                       </v-text-field>
                     </v-col>
-                    <v-col lg="7">
+                    <v-col lg="5">
                       <!-- NUMERO DE TELEFONO -->
                       <v-text-field
                         v-model="phone"

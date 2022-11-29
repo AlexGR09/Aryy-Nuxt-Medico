@@ -147,7 +147,7 @@
                     </router-link>
                   <form>
                     <!-- CAMPO DE CONSULTORIO  -->
-                    <p align="left" class="mb-1 label">Nombre del consultorio</p>
+                    <p align="left" class="mb-1 label">Nombre del consultorio*</p>
                     <v-text-field v-model="consultorio" name="nombre" id="nombre" outlined placeholder="Nombre del consultorio" class="textfield" color="#b380ff"></v-text-field>
                     <!-- CAMPO DE DIRECCION  -->
                     <p align="left" class="mb-1 mt-n2 label">Direccion*</p>
@@ -155,11 +155,11 @@
                     <!-- NUMERO EXTERIOR Y EXTERIOR    -->
                     <v-row>
                       <v-col cols="12" md="4">
-                        <p align="left" class="mb-1 mt-n2 label">N.Exterior*</p>
+                        <p align="left" class="mb-1 mt-n2 label">N.Exterior</p>
                         <v-text-field v-model="numberExt" outlined placeholder="N. Exterior" class="textfield" color="#b380ff"></v-text-field>
                       </v-col>
                       <v-col cols="12" md="4">
-                        <p align="left" class="mb-1 mt-n2 label">N.Interior*</p>
+                        <p align="left" class="mb-1 mt-n2 label">N.Interior</p>
                         <v-text-field v-model="numberInt" outlined placeholder="N. Interior" class="textfield" color="#b380ff"></v-text-field>
                       </v-col>
                       <v-col cols="12" md="4">
