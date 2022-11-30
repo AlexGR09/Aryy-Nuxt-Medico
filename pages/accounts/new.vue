@@ -61,7 +61,7 @@ export default{
                 },
 
             ],
-            codigo: [
+            code: [
 
                 {
                     etiqueta: 'v-text-field',
