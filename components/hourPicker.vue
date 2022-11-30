@@ -11,6 +11,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
+            class="textfield mb-4"
               outlined
               v-model="time"
               placeholder="08:00 AM"
@@ -40,6 +41,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
+            class="textfield mb-4"
               outlined
               v-model="time2"
               placeholder="08:00 AM"

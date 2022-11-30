@@ -122,6 +122,16 @@ export default {
           console.log('error en GET')
         )
     },
+    delete(){
+      console.log('creando petición DELETE')
+      this.$axios
+      .delete('/api/v1/physician/facility', {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log("Datos eliminados")
+        })
+    },
 
   },
 }

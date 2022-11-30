@@ -384,9 +384,10 @@
     },
     mounted() {
       console.log('verificando')
-      this.facility()
+      this.getFacility()
     },
     methods: {
+     /*  metodo get para recibir datos de establecimiento | Genesis */
         getFacility() {
               console.log('creando petición GET');
               this.$axios
@@ -397,22 +398,41 @@
               .then(res => {
                        console.log(res)
                        console.log("exito en GET")
-                       this.facility_name = res.data.data.user.name
-                       this.number_ext = res.data.data.user.lastname
-                       this.number_int = res.data.data.user.gender
-                       this.reference = res.data.data.user.email
+                       this.facility_name = res.data.data.user.facility_name
                        this.phone_number = res.data.data.user.phone_number
-                       this.zip_code = res.data.data.user.birthday
+                       this.extension = res.data.data.user.extension
+                       this.zip_code = res.data.data.user.zip_code
+                       this.state = res.data.data.user.state
+                       this.city = res.data.data.user.city
+                       this.suburb = res.data.data.user.suburb
+                       this.address = res.data.data.user.address
+                       this.number_ext = res.data.data.user.number_ext
+                       this.number_int = res.data.data.user.number_int
+                       this.reference = res.data.data.user.reference
+
+                       this.parking = res.data.data.user.parking_with_access_to_the_establishment
+                       this.lift = res.data.data.user.wheelchair_lift_or_ramp
+                       this.restroom = res.data.data.user.toilets_with_wheelchair_access
+                       this.area = res.data.data.user.rest_area_with_wheelchair_access
+                       this.sign = res.data.data.user.staff_trained_in_sign_language
+                       this.braille = res.data.data.user.braille_signage_for_blind_people
+
+                       this.lgbt = res.data.data.user.lgtb_friendly
+                       this.trans = res.data.data.user.safe_space_for_transgender_people
+
+                       this.toilets = res.data.data.user.toilets
+                       this.unisex = res.data.data.user.unisex_toilets
+                       this.wifi = res.data.data.user.wifi
                       })
                   .catch(
                       /* console.log(e); */
                       console.log("error en GET")
                   )
           },
-       /*    método post para registrar un consultorio | Genesis */
+       /*    método put para actualizar los datos de establecimiento | Genesis */
        facility() {
         this.$axios
-          .post('/api/v1/physician/facility', {
+          .put('/api/v1/physician/facility', {
             facility_name: this.facility_name,
             location: [
               {
@@ -451,7 +471,7 @@
                 ],
                 usual_audiences:[
                   {
-                    friendly_to_the_lgbtq_community: this.lgbt,
+                    lgtb_friendly: this.lgbt,
                     safe_space_for_transgender_people: this.trans,
                   }
                 ],
@@ -459,7 +479,7 @@
                   {
                     toilets: this.toilets,
                     unisex_toilets: this.unisex,
-                    wifi: this.wifi,
+                    wifi: this.wifi, 
                   }
                 ],
               }

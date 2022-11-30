@@ -486,7 +486,7 @@ export default {
               ],
               usual_audiences:[
                 {
-                  friendly_to_the_lgbtq_community: this.lgbt,
+                  lgtb_friendly: this.lgbt,
                   safe_space_for_transgender_people: this.trans,
                 }
               ],

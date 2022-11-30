@@ -89,6 +89,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
+              class="textfield mb-3"
               outlined
               v-model="time"
               placeholder="08:00 AM"
@@ -118,6 +119,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
+            class="textfield mb-4"
               outlined
               v-model="time2"
               placeholder="08:00 AM"
@@ -141,10 +143,10 @@
     </v-row>
     <hour-picker v-if="hour"  />
     </v-col
-            ><v-col xl="1" class=" mt-4"></v-col>
+            ><v-col md="1" lg="1" xl="1" class=" mt-4"></v-col>
             
             <v-row class="mt-3 ml-2">
-              <v-col xl="1">
+              <v-col md="1" lg="1" xl="1">
                 <p class="mt-1 weekday">Lun</p>
                 <p class="mt-9 weekday">Mar</p>
                 <p class="mt-8 weekday">Mie</p>
@@ -152,8 +154,8 @@
                 <p class="mt-9 weekday">Vie</p>
                 <p class="mt-9 weekday">Sáb</p>
               </v-col>
-              <v-col xl="11">
-                <v-col class="ml-n13 mt-n2" xl="5">
+              <v-col md="11" lg="11" xl="11">
+                <v-col class="ml-n13 mt-n2"  md="10" lg="10" xl="10">
                   <v-chip label v-if="!chipLun">No registrado</v-chip>
                   <v-chip label v-if="!chipLun2">No registrado</v-chip>
                   <v-chip
@@ -164,7 +166,7 @@
                     color="#f4edff"
                     label
                     close
-                    ><span  class="hour">09:00 AM a 03:00 PM</span></v-chip
+                    ><span class="hour">09:00 AM a 03:00 PM</span></v-chip
                   >
                   <v-chip
                     v-if="chipLun2"
@@ -178,9 +180,9 @@
                   >
                   
                 </v-col>
-                <v-col xl="7"></v-col>
+                <v-col md="7" lg="7" xl="7"></v-col>
 
-                <v-col class="ml-n13 mt-n6" xl="5">
+                <v-col class="ml-n13 mt-n6"  md="10" lg="10" xl="10">
                   <v-chip label v-if="!chipMar">No registrado</v-chip>
                   <v-chip label v-if="!chipMar2">No registrado</v-chip>
                   <v-chip
@@ -203,11 +205,9 @@
                     close
                     ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
                   >
-                  
-                  <v-col xl="7"> </v-col>
-                </v-col>
+                </v-col> <v-col md="7" lg="7" xl="7"></v-col>
 
-                <v-col class="ml-n13 mt-n6" xl="5">
+                <v-col class="ml-n13 mt-n6"  md="10" lg="10" xl="10">
                   <v-chip label v-if="!chipMie">No registrado</v-chip>
                   <v-chip label v-if="!chipMie2">No registrado</v-chip>
                   <v-chip
@@ -232,9 +232,9 @@
                   >
              
                 </v-col>
-                <v-col xl="7"></v-col>
+                <v-col md="7" lg="7" xl="7"></v-col>
 
-                <v-col class="ml-n13 mt-n6" xl="5">
+                <v-col class="ml-n13 mt-n6" md="10" lg="10" xl="10">
                   <v-chip label v-if="!chipJue">No registrado</v-chip>
                   <v-chip label v-if="!chipJue2">No registrado</v-chip> 
                   <v-chip
@@ -258,8 +258,8 @@
                     ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
                   >
                  </v-col
-                ><v-col xl="7"></v-col>
-                <v-col class="ml-n13 mt-n6" xl="5">
+                > <v-col md="7" lg="7" xl="7"></v-col>
+                <v-col class="ml-n13 mt-n6"  md="10" lg="10" xl="10">
                   <v-chip label v-if="!chipVie">No registrado</v-chip>
                   <v-chip label v-if="!chipVie2">No registrado</v-chip>
                   <v-chip
@@ -283,8 +283,8 @@
                     ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
                   >
                    </v-col
-                ><v-col xl="7"></v-col>
-                <v-col class="ml-n13 mt-n6" xl="5">
+                > <v-col md="7" lg="7" xl="7"></v-col>
+                <v-col class="ml-n13 mt-n6"  md="10" lg="10" xl="10">
                   <v-chip label v-if="!chipSab">No registrado</v-chip>
                   <v-chip label v-if="!chipSab2">No registrado</v-chip>
                   <v-chip
@@ -308,7 +308,7 @@
                     ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
                   >
                    </v-col
-                ><v-col xl="7"></v-col>
+                > <v-col md="7" lg="7" xl="7"></v-col>
               </v-col>
             </v-row>
           </v-row>
@@ -447,7 +447,7 @@ export default {
               ],
               usual_audiences:[
                 {
-                  friendly_to_the_lgbtq_community: this.lgbt,
+                  lgtb_friendly: this.lgbt,
                   safe_space_for_transgender_people: this.trans,
                 }
               ],
@@ -502,6 +502,9 @@ export default {
 </script>
 
 <style>
+.chip{
+  font-size: 10%;
+}
 p.weekday {
   font-family: MontserratBold;
   color: black;
