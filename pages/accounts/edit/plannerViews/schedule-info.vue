@@ -10,6 +10,7 @@
             <v-col md="7" lg="6" xl="6" cols="12">
               <span>Consultorio*</span>
               <v-autocomplete
+                v-model="facility_name"
                 class="textfield"
                 placeholder="Seleccione el consultorio"
                 outlined
@@ -19,6 +20,7 @@
             <v-col md="7" lg="6" xl="6" cols="12">
               <h1 class="mt-4 mb-4">TIPO DE HORARIO</h1>
               <v-autocomplete
+              v-model="type_schedule"
                 class="textfield"
                 placeholder="Permanente"
                 outlined
@@ -314,6 +316,7 @@
             <v-col md="6" lg="5" xl="4" cols="12">
               <h1 class="">DURACIÓN DE LA CONSULTA</h1>
               <v-text-field
+                v-model="attention_time"
                 class="textfield"
                 placeholder="XX"
                 outlined
@@ -326,6 +329,7 @@
             <v-col md="6" lg="5" xl="4" cols="12">
               <h1 class="mb-4">TIEMPO PARA MOSTRAR AGENDA</h1>
               <v-autocomplete
+                v-model="consultation_length"
                 class="textfield mb-10"
                 placeholder="4 semanas"
                 outlined
@@ -406,35 +410,35 @@ export default {
       this.$axios
         .post('/api/v1/physician/facility', {
           facility_name: this.facility_name,
-          location: [
+           /* location: [
             {
-              address: this.specialty_id,
-              number_ext: this.license,
-              number_int: this.institution,
-              reference: this.certificates,
+              address: this.address,
+              number_ext: this.number_ext,
+              number_int: this.number_int,
+              reference: this.reference,
             }
-          ],
-          phone_number: this.biography,
-          zip_code: this.biography,
+          ], 
+          phone_number: this.phone_number,
+          zip_code: this.zip_code, */
           schedule: [
             {
-              day: this.biography,
-              attention_time: this.biography,
+              day: this.lun,
+              attention_time: this.attention_time,
             },
             {
-              day: this.biography,
-              attention_time: this.biography,
+              day: this.mar,
+              attention_time: this.modal2,
             },
+            
           ],
-          type_schedule: this.biography,
-          consultation_length: this.biography,
-          accessibility_and_others: [
+           type_schedule: this.type_schedule, 
+           consultation_length: this.consultation_length, 
+        /*   accessibility_and_others: [
             {
               accessibility:[
                 {
                   parking_with_access_to_the_establishment: this.parking,
                   wheelchair_lift_or_ramp: this.lift,
-                  /* wheelchair_lift_or_ramp: this.ramp, */
                   toilets_with_wheelchair_access: this.restroom,
                   rest_area_with_wheelchair_access: this.area,
                   staff_trained_in_sign_language: this.sign,
@@ -456,8 +460,8 @@ export default {
               ],
             }
           ],
-          /* clues: this.biography,
-          city_id: this.biography, */
+           clues: this.biography,
+          city_id: this.biography,  */
         })
         .then((response) => {
           console.log(response.data.data)

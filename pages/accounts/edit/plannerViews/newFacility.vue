@@ -34,6 +34,50 @@
                     outlined
                   ></v-text-field>
                   <span>Horario para recepción de llamadas*</span>
+                  <v-btn-toggle borderless class="botones ">
+                <v-checkbox
+                  v-model="lun"
+                  class="checkbox"
+                  color="#7900ff"
+                  label="Lun"
+                ></v-checkbox
+                ><v-checkbox
+                  v-model="mar"
+                  class="ml-8 checkbox"
+                  color="#7900ff"
+                  label="Mar"
+                ></v-checkbox
+                ><v-checkbox
+                  color="#7900ff"
+                  v-model="mie"
+                  class="ml-8 checkbox"
+                  label="Mie"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="jue"
+                  color="#7900ff"
+                  class="ml-8 checkbox"
+                  label="Jue"
+                ></v-checkbox>
+                <v-checkbox
+                  color="#7900ff"
+                  v-model="vie"
+                  class="ml-8 checkbox"
+                  label="Vie"
+                ></v-checkbox
+                ><v-checkbox
+                  v-model="sab"
+                  color="#7900ff"
+                  class="ml-8 checkbox"
+                  label="Sab"
+                ></v-checkbox
+                ><v-checkbox
+                  v-model="dom"
+                  color="#7900ff"
+                  class="ml-8 checkbox"
+                  label="Dom"
+                ></v-checkbox>
+              </v-btn-toggle>
                   <div
                     class="form-group mb-9"
                     v-for="(input, k) in inputs"
@@ -377,6 +421,13 @@ export default {
       time: null,
       menu2: false,
       modal2: false,
+      lun: '',
+      mar: '',
+      mie: '',
+      jue: '',
+      vie: '',
+      sab: '',
+      dom: '',
     }
   },
   watch: {
@@ -392,33 +443,34 @@ export default {
     this.facility()
   },
   methods: {
-     /*    método post para registrar un consultorio | Genesis */
+     /*    método post para añadir un consultorio | Genesis */
      facility() {
       this.$axios
         .post('/api/v1/physician/facility', {
           facility_name: this.facility_name,
           location: [
             {
-              address: this.specialty_id,
-              number_ext: this.license,
-              number_int: this.institution,
-              reference: this.certificates,
+              address: this.address,
+              number_ext: this.number_ext,
+              number_int: this.number_int,
+              reference: this.reference,
             }
           ],
-          phone_number: this.biography,
-          zip_code: this.biography,
+          phone_number: this.phone_number,
+          zip_code: this.zip_code,
           schedule: [
             {
-              day: this.biography,
-              attention_time: this.biography,
+              day: this.lun,
+              attention_time: this.modal2,
             },
             {
-              day: this.biography,
-              attention_time: this.biography,
+              day: this.mar,
+              attention_time: this.modal2,
             },
+            
           ],
-          type_schedule: this.biography,
-          consultation_length: this.biography,
+         /*  type_schedule: this.biography, */
+         /*  consultation_length: this.biography, */
           accessibility_and_others: [
             {
               accessibility:[
