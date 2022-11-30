@@ -67,7 +67,7 @@
                   :key="input.id"
                 >
                   <v-col md="6" lg="6" xl="6" cols="12">
-                    <p :for="input.id" class="cedu mt-n4 mb-n1">
+                    <p :for="input.id" class="cedu  mb-n1">
                       No. de cedula*
                     </p>
                     <v-text-field
@@ -80,7 +80,7 @@
                     ></v-text-field>
                   </v-col>
                   <v-col md="6" lg="6" xl="6" cols="12">
-                    <p :for="input.id" class="cedu mt-n4 mb-n1">
+                    <p :for="input.id" class="cedu mb-n1">
                       Institución que otorgó la cédula*
                     </p>
                     <v-text-field
@@ -272,7 +272,7 @@ export default {
       subespeciality2: '',
       license: '',
       institution: '',
-      fileIden: '',
+      fileIden: [],
       biography: '',
       certificates: '',
       inputs: [

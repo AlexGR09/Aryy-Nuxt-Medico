@@ -42,13 +42,13 @@
                 <v-col xs="1" md="1" lg="1" xl="2"></v-col>
                 <v-col xs="1" md="1" lg="1" xl="1">
                   <v-btn-toggle borderless class="botones">
-                    <v-btn v-model="check" class="iconos" icon>
+                    <v-btn @click="check=!check" v-model="check" class="iconos" icon>
                       <v-img
                         :src="require('@/assets/icons/icon_editpaciente.svg')"
                         max-width="25"
                       ></v-img>
                     </v-btn>
-                    <v-btn class="iconos ml-n3" @click="deleteItem(item)" icon>
+                    <v-btn class="iconos ml-n3" @click="deleteItem(i)" icon>
                       <v-img
                         :src="require('@/assets/icons/icon_borrarpaciente.svg')"
                         max-width="25"
@@ -184,8 +184,9 @@ export default {
   },
   data() {
     return {
+      textfield: [],
       counter: 0,
-    inputs: [{
+      inputs: [{
       id: 'fruit0',
       label: 'Enter Fruit Name',
       value: '',
@@ -205,6 +206,9 @@ export default {
     },
   },
   methods: {
+    deleteItem: function (i) {
+      this.textfield.splice(i, 1)
+    },
     addInput() {
       this.inputs.push({
         id: `fruit${++this.counter}`,

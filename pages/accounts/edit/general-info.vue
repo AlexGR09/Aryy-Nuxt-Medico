@@ -61,7 +61,7 @@
           </v-row>
           <v-row>
             <v-col md="12" lg="12" xl="4" cols="12">
-              <span>Correo*</span>
+              <span>Correo*</span> 
               <v-text-field
                 v-model="email"
                 color="#9966ff"

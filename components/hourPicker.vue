@@ -11,6 +11,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
+            color="#7900ff"
             class="textfield mb-4"
               outlined
               v-model="time"
@@ -20,7 +21,7 @@
               v-on="on"
             ></v-text-field>
           </template>
-          <v-time-picker :max="time2" v-if="modal2" v-model="time" full-width>
+          <v-time-picker color="#9966ff" :max="time2" v-if="modal2" v-model="time" full-width>
             <v-spacer></v-spacer>
             <v-btn text color="primary" @click="modal2 = false"> Cancel </v-btn>
             <v-btn text color="primary" @click="$refs.dialog.save(time)">
@@ -41,6 +42,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
+            color="#7900ff"
             class="textfield mb-4"
               outlined
               v-model="time2"
@@ -50,7 +52,7 @@
               v-on="on"
             ></v-text-field>
           </template>
-          <v-time-picker :end="time" v-if="modal" v-model="time2" full-width>
+          <v-time-picker color="#9966ff" :end="time" v-if="modal" v-model="time2" full-width>
             <v-spacer></v-spacer>
             <v-btn text color="primary" @click="modal = false"> Cancel </v-btn>
             <v-btn text color="primary" @click="$refs.dialog2.save(time2)">

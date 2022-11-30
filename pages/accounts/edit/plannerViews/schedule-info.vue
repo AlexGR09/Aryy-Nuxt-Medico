@@ -10,6 +10,7 @@
             <v-col md="7" lg="6" xl="6" cols="12">
               <span>Consultorio*</span>
               <v-autocomplete
+              color="#7900ff"
                 v-model="facility_name"
                 class="textfield"
                 placeholder="Seleccione el consultorio"
@@ -20,6 +21,7 @@
             <v-col md="7" lg="6" xl="6" cols="12">
               <h1 class="mt-4 mb-4">TIPO DE HORARIO</h1>
               <v-autocomplete
+              color="#7900ff"
               v-model="type_schedule"
                 class="textfield"
                 placeholder="Permanente"
@@ -89,6 +91,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
+              color="#7900ff"
               class="textfield mb-3"
               outlined
               v-model="time"
@@ -98,7 +101,7 @@
               v-on="on"
             ></v-text-field>
           </template>
-          <v-time-picker :max="time2" v-if="modal2" v-model="time" full-width>
+          <v-time-picker  color="#9966ff" :max="time2" v-if="modal2" v-model="time" full-width>
             <v-spacer></v-spacer>
             <v-btn text color="primary" @click="modal2 = false"> Cancel </v-btn>
             <v-btn text color="primary" @click="$refs.dialog.save(time)">
@@ -119,6 +122,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
+            color="#9966ff"
             class="textfield mb-4"
               outlined
               v-model="time2"
@@ -128,7 +132,7 @@
               v-on="on"
             ></v-text-field>
           </template>
-          <v-time-picker :end="time" v-if="modal" v-model="time2" full-width>
+          <v-time-picker  color="#9966ff" :end="time" v-if="modal" v-model="time2" full-width>
             <v-spacer></v-spacer>
             <v-btn text color="primary" @click="modal = false"> Cancel </v-btn>
             <v-btn text color="primary" @click="$refs.dialog2.save(time2)">
@@ -316,6 +320,7 @@
             <v-col md="6" lg="5" xl="4" cols="12">
               <h1 class="">DURACIÓN DE LA CONSULTA</h1>
               <v-text-field
+                color="#7900ff"
                 v-model="attention_time"
                 class="textfield"
                 placeholder="XX"
@@ -329,6 +334,7 @@
             <v-col md="6" lg="5" xl="4" cols="12">
               <h1 class="mb-4">TIEMPO PARA MOSTRAR AGENDA</h1>
               <v-autocomplete
+                color="#7900ff"
                 v-model="consultation_length"
                 class="textfield mb-10"
                 placeholder="4 semanas"

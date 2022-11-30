@@ -22,10 +22,10 @@
             ></v-img
           ></v-col>
           <v-col xs="11" sm="11" md="3" lg="3" xl="3"
-            ><p id="facility_name" class="mt-4">{{ consultorio.name }}</p></v-col
+            ><p id="facility_name" class="mt-4"><!-- {{ users.facility_name }} --></p></v-col
           >
           <v-col xs="12" sm="12" md="4" lg="4" xl="4"
-            ><p id="address" class="mt-4">{{ consultorio.address }}</p></v-col
+            ><p id="address" class="mt-4"><!-- {{ users.address }} --></p></v-col
           >
           <v-col xs="1" sm="1" md="1" lg="1" xl="2"></v-col>
           <v-col>
@@ -79,20 +79,10 @@ export default {
 },
   data() {
     return {
+      users: [],
       selectedItem: 1,
       consultorios: [
-        {
-          name: 'Consultorio principal',
-          address: '2972 Westheimer RD. Santa Ana, Illinois 85486',
-        },
-        {
-          name: 'Consultorio segundo',
-          address: '192 Westheimer RD. Santa Ana, Illinois 85486',
-        },
-        {
-          name: 'Consultorio tercero',
-          address: '9856 Westheimer RD. Santa Ana, Illinois 85486',
-        },
+        
       ],
     }
   },
@@ -114,6 +104,7 @@ export default {
         .then((res) => {
           console.log(res)
           console.log('exito en GET')
+          this.users = res.data.data.user
           this.facility_name = res.data.data.professional_name
           this.address = res.data.data.location[0].location_id
         })
