@@ -1,11 +1,7 @@
-<template>
+<!-- <template>
     <v-container>
-      
-
         <Webviewer  :path="`${publicPath}webviewer`" url="https://pdftron.s3.amazonaws.com/downloads/pl/webviewer-demo.pdf"/>
-
     </v-container>
-      
 </template>
   
 <script>
@@ -42,4 +38,4 @@ import pdff from '~/components/Webviewer.vue'
   #webviewer{
     height: 100vh;
   }
-  </style> 
+  </style>  -->

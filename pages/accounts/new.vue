@@ -29,7 +29,7 @@ export default{
         return{
             specialist: [
                 {
-                    etiqueta: 'v-text-field',
+                    name: 'v-text-field',
                     placeholder:'Correo electronico',
                     outlined:'false',
                     required: ' required',
@@ -50,7 +50,6 @@ export default{
                     type:'password'
                 },
             ],
-
             number: [
                 {
                     etiqueta: 'v-text-field',
@@ -59,10 +58,8 @@ export default{
                     required: ' required',
                    
                 },
-
             ],
             code: [
-
                 {
                     etiqueta: 'v-text-field',
                     placeholder:'ceular',
@@ -70,8 +67,6 @@ export default{
                     required: ' required',
                    
                 },
-
-                
             ],
             
         }

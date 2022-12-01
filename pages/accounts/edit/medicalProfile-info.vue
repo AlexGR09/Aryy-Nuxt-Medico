@@ -10,28 +10,35 @@
         <v-form ref="form" v-model="valid">
             <v-card-text class="pa-3 mt-5 ">
               <v-row>
+                <!-- ESPECIALIDAD | LUIS REYES -->
                 <v-col md="6" lg="6" xl="6" cols="12">
                   <span>Especialidad*</span>
                   <v-autocomplete v-model="specialty" color="#9966ff" class="textfield " placeholder="Selecciona una especialidad" outlined></v-autocomplete>
                 </v-col> 
                 <v-col md="6" lg="6" xl="6" cols="12"></v-col>
+                <!-- SUB-ESPECIALIDAD | LUIS REYES -->
                 <v-col md="6" lg="6" xl="6" cols="12">
                   <span >Subespecialidad (opcional)</span>
                   <v-autocomplete v-model="subspecialty" color="#9966ff" class="textfield" placeholder="Añadir" outlined></v-autocomplete>
                   <v-btn class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra</v-btn>
                 </v-col>
+                  <!-- SUB-ESPECIALIDAD OPCIONAL | LUIS REYES -->
                 <v-col md="6" lg="6" xl="6" cols="12">
                   <span >Subespecialidad (opcional)</span>
                   <v-autocomplete v-model="subespeciality2" color="#9966ff" class="textfield" placeholder="Añadir" outlined></v-autocomplete>
                   <v-btn class="btn ml-n5 mt-3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra</v-btn>
                 </v-col>
+                  <!-- CEDULA | LUIS REYES -->
                 <v-col md="6" lg="6" xl="6" cols="12">
                     <p class="cedu mt-n4 mb-n1">No. de cedula*</p>
-                  <v-text-field v-model="identification" color="#9966ff" class="textfield mt-1" placeholder="00000000" outlined></v-text-field> </v-col>
+                  <v-text-field v-model="identification" color="#9966ff" class="textfield mt-1" placeholder="00000000" outlined></v-text-field>
+                </v-col>
+                  <!-- INSTITUCIÓN| LUIS REYES -->
                   <v-col md="6" lg="6" xl="6" cols="12">
                     <p class="cedu mt-n4 mb-n1">Institución que otorgó la cédula*</p>
-                  <v-text-field v-model="institution" color="#9966ff"  class="textfield mt-1" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
+                  <v-text-field v-model="institution" color="#9966ff"  c3lass="textfield mt-1" placeholder="Escribe el nombre de la institución" outlined></v-text-field>
                   </v-col>
+                    <!-- FOTO DE CEDULA | LUIS REYES -->
                   <v-col md="6" lg="6" xl="6" cols="12">
                     <p class="cedu mb-1">Foto de cedula*</p>
                   <v-file-input v-model="fileIden" chips color="#9966ff" class="textfield" placeholder="Añadir archivo" outlined></v-file-input >
@@ -39,13 +46,11 @@
                     <v-btn class="btn ml-n5 mb-n4" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra cédula</v-btn>
                   </v-col><v-col md="6" lg="6" xl="6" cols="12"></v-col>
                 <!-- 
-                 
                 </v-col> -->
-                <v-col xl="12">
+                <v-col xl="12">0
                     <span >Sobre mi(opcional)</span>
                     <v-textarea color="#9966ff" v-model="aboutme" maxlength="400" counter="400" auto-grow placeholder="Escribe una biografía breve sobre ti" outlined class="textfield mb-16"></v-textarea> 
                 </v-col>
-             
                 </v-row>
                 <v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
       <v-btn  height="50px" @click="reset" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
@@ -132,7 +137,9 @@ Vue.use(VueFileAgentStyles);
       reset () {
         this.$refs.form.reset()
       },
-    }
+    },
+
+
   }
   </script>
 

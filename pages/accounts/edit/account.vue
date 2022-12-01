@@ -8,24 +8,22 @@
       </v-tabs>
     </v-toolbar>
     <v-card class="mt-2" flat>
-       
-       
       <v-tabs-items v-model="tabs">
-        <v-tab-item><general-info/></v-tab-item>
+        <v-tab-item><menu-personal/></v-tab-item>
       <v-tab-item><menu-med/></v-tab-item>
       <v-tab-item><menu-planner/></v-tab-item>
       </v-tabs-items>
-     
     </v-card>   
   </div>
 </template>
 
 <script>
 import menuPlanner from './plannerComponents/menuPlanner.vue'
-import generalInfo from './general-info.vue'
+
 import MenuMed from './MedicalProfileComponents/menuMed.vue'
+import MenuPersonal from './PersonalProfile/menuPersonal.vue'
 export default {
-  components: { menuPlanner, generalInfo, MenuMed},
+  components: { menuPlanner,  MenuMed, MenuPersonal},
   data: () => ({show1: false, tabs: 0,}),
   
 }

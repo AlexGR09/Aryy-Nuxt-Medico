@@ -9,9 +9,9 @@
             <v-stepper-header class="elevation-0">
               <v-stepper-step color="#7900ff" :complete="e1 > 1" step="1">Verificación</v-stepper-step>
               <v-divider></v-divider>
-              <v-stepper-step color="#7900ff" :complete="e1 > 2" step="2">Formulario<p class="ml-3">registro</p></v-stepper-step>
+              <v-stepper-step color="#7900ff" :complete="e1 > 2" step="2">Registro</v-stepper-step>
               <v-divider></v-divider>
-              <v-stepper-step color="#7900ff" step="3"> Perfil </v-stepper-step>
+              <v-stepper-step color="#7900ff" step="3">Consultorio</v-stepper-step>
             </v-stepper-header>
             <!-- contenido de seccion verificación | Genesis -->
             <v-stepper-items color="red">
@@ -252,6 +252,9 @@ export default {
           }
         ],
         zip_code: this.codigoPostal,
+      },
+      { 
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
       })
 
     },

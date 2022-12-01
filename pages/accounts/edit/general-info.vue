@@ -1,10 +1,13 @@
 <template>
-    <v-card
-        flat
-        class="pa-3 mt-2"
-    >
-    <v-card-subtitle>DETALLES DE LA CUENTA</v-card-subtitle>
-    <v-card-text
+  <div>
+    <v-row>
+      <v-card flat>
+        <menuPersonal/>
+      </v-card>
+      <v-col md="10" lg="10" xl="10">
+        <v-card flat class="pa-3 mt-2">
+          <v-card-subtitle >PERFIL MÉDICO</v-card-subtitle>
+          <v-card-text
         class="d-flex"
     >
     <v-avatar
@@ -164,12 +167,22 @@
         </v-form>
     </v-card-text>
 
-    </v-card>
+        </v-card>
+
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 
 <script>
+import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue'
   export default {
+    components:{
+      menuPersonal
+
+    },
+    
     data () {
       return {
         select: { state: 'Hombre' , estado:"chiapas"},
@@ -187,3 +200,4 @@
     },
   }
 </script>
+
