@@ -28,19 +28,33 @@
                 outlined
               ></v-autocomplete>
             </v-col>
-            <v-col md="5" cols="12"></v-col>
+            <v-col md="5" cols="12"><p>Dias: {{ day }}</p>
+      <p>Horario: De {{ initialhour }} a {{ endhour }} </p>
+      <p>y de {{ initialhour2 }} a {{ endhour2 }} </p>
+     
+  <v-btn class="btn btn-primary btn-sm" @click="addDay">Add Hours</v-btn>
+
+</v-col>
+            
             <v-col md="6" cols="12">
               <h1 class="mt-4 mb-4">HORARIOS DE CONSULTA</h1>
               
               <v-btn-toggle borderless class="botones mb-n5 mt-n4">
-                <v-checkbox
-                v-for="day in days" :key="day.value"
-                  v-model="day.value"
+                <v-checkbox value="Lun"
+                  v-model="day"
                   class="checkbox mr-5"
                   color="#7900ff"
-                  :label="day.name"
+                  label="Lun"
                 ></v-checkbox
                 >
+                <v-checkbox
+                value="Mar"
+                  v-model="day"
+                  class="checkbox mr-5"
+                  color="#7900ff"
+                  label="Mar"
+                ></v-checkbox
+                > 
               </v-btn-toggle>
             </v-col>
             <v-col md="6" cols="12"></v-col>
@@ -55,7 +69,7 @@
       <span class="mt-8">A</span>
       <v-col cols="11" sm="3" xl="3">
         <v-autocomplete v-model="endhour" class="textfield mb-4" color="#9966ff" placeholder="08:00 PM" outlined :items="hours" ></v-autocomplete>
-      </v-col>
+      </v-col> 
       <v-btn  @click="hour = !hour" class="btn ml-n5 mt-5" color="#9966ff" text
         ><v-icon class="icon">mdi-plus-circle</v-icon></v-btn
       >
@@ -288,6 +302,15 @@
 export default {
   data() {
     return {
+      consultation_length: '',
+      facility_name: '',
+      type_schedule: '',
+      initialhour: '',
+      endhour: '',
+      initialhour2: '',
+      endhour2: '',
+      attention_time: '',
+      day: [],
       /* valores de los chips de horario | Genesis */
       chipLun: true,
       chipMar: true,
@@ -343,6 +366,13 @@ export default {
     }
   },
   methods: {
+   addDay(){
+      
+      const days = [this.day + " de " + this.initialhour  + " a " + this.endhour  + " y de  " +this.initialhour2  + " a " + this.endhour2];
+      const text = days.join();
+      console.log(text) 
+
+   },
     addInput() {
       this.inputs.push({
         id: `fruit${++this.counter}`,
