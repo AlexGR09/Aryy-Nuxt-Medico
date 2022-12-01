@@ -21,8 +21,8 @@
             <v-col md="7" lg="6" xl="6" cols="12">
               <h1 class="mt-4 mb-4">TIPO DE HORARIO</h1>
               <v-autocomplete
-              color="#7900ff"
-              v-model="type_schedule"
+                color="#7900ff"
+                v-model="type_schedule"
                 class="textfield"
                 placeholder="Permanente"
                 outlined
@@ -31,49 +31,16 @@
             <v-col md="5" cols="12"></v-col>
             <v-col md="6" cols="12">
               <h1 class="mt-4 mb-4">HORARIOS DE CONSULTA</h1>
+              
               <v-btn-toggle borderless class="botones mb-n5 mt-n4">
                 <v-checkbox
-                  v-model="lun"
-                  class="checkbox"
+                v-for="day in days" :key="day.value"
+                  v-model="day.value"
+                  class="checkbox mr-5"
                   color="#7900ff"
-                  label="Lun"
+                  :label="day.name"
                 ></v-checkbox
-                ><v-checkbox
-                  v-model="mar"
-                  class="ml-8 checkbox"
-                  color="#7900ff"
-                  label="Mar"
-                ></v-checkbox
-                ><v-checkbox
-                  color="#7900ff"
-                  v-model="mie"
-                  class="ml-8 checkbox"
-                  label="Mie"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="jue"
-                  color="#7900ff"
-                  class="ml-8 checkbox"
-                  label="Jue"
-                ></v-checkbox>
-                <v-checkbox
-                  color="#7900ff"
-                  v-model="vie"
-                  class="ml-8 checkbox"
-                  label="Vie"
-                ></v-checkbox
-                ><v-checkbox
-                  v-model="sab"
-                  color="#7900ff"
-                  class="ml-8 checkbox"
-                  label="Sab"
-                ></v-checkbox
-                ><v-checkbox
-                  v-model="dom"
-                  color="#7900ff"
-                  class="ml-8 checkbox"
-                  label="Dom"
-                ></v-checkbox>
+                >
               </v-btn-toggle>
             </v-col>
             <v-col md="6" cols="12"></v-col>
@@ -82,70 +49,28 @@
               <v-row class="ml-0" >
       <span class="mt-8">De</span>
       <v-col cols="11" sm="3" xl="3">
-        <v-dialog
-          ref="dialog"
-          v-model="modal2"
-          :return-value.sync="time"
-          persistent
-          width="290px"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-text-field
-              color="#7900ff"
-              class="textfield mb-3"
-              outlined
-              v-model="time"
-              placeholder="08:00 AM"
-              readonly
-              v-bind="attrs"
-              v-on="on"
-            ></v-text-field>
-          </template>
-          <v-time-picker  color="#9966ff" :max="time2" v-if="modal2" v-model="time" full-width>
-            <v-spacer></v-spacer>
-            <v-btn text color="primary" @click="modal2 = false"> Cancel </v-btn>
-            <v-btn text color="primary" @click="$refs.dialog.save(time)">
-              OK
-            </v-btn>
-          </v-time-picker>
-        </v-dialog>
+        <v-autocomplete  v-model="initialhour" class="textfield mb-4" color="#9966ff" placeholder="08:00 AM" outlined :items="hours" ></v-autocomplete>
       </v-col>
 
       <span class="mt-8">A</span>
       <v-col cols="11" sm="3" xl="3">
-        <v-dialog
-          ref="dialog2"
-          v-model="modal"
-          :return-value.sync="time2"
-          persistent
-          width="290px"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-text-field
-            color="#9966ff"
-            class="textfield mb-4"
-              outlined
-              v-model="time2"
-              placeholder="08:00 AM"
-              readonly
-              v-bind="attrs"
-              v-on="on"
-            ></v-text-field>
-          </template>
-          <v-time-picker  color="#9966ff" :end="time" v-if="modal" v-model="time2" full-width>
-            <v-spacer></v-spacer>
-            <v-btn text color="primary" @click="modal = false"> Cancel </v-btn>
-            <v-btn text color="primary" @click="$refs.dialog2.save(time2)">
-              OK
-            </v-btn>
-          </v-time-picker>
-        </v-dialog>
+        <v-autocomplete v-model="endhour" class="textfield mb-4" color="#9966ff" placeholder="08:00 PM" outlined :items="hours" ></v-autocomplete>
       </v-col>
       <v-btn  @click="hour = !hour" class="btn ml-n5 mt-5" color="#9966ff" text
         ><v-icon class="icon">mdi-plus-circle</v-icon></v-btn
       >
     </v-row>
-    <hour-picker v-if="hour"  />
+    <v-row v-if="hour" class="ml-0 mt-n2">
+      <span class="mt-8">De</span>
+      <v-col cols="11" sm="3" xl="3">
+        <v-autocomplete v-model="initialhour2" class="textfield mb-4" color="#9966ff" placeholder="08:00 AM" outlined :items="hours" ></v-autocomplete>
+      </v-col>
+      <span class="mt-8 ">A</span>
+      <v-col cols="11" sm="3" xl="3">
+        <v-autocomplete v-model="endhour2"  class="textfield mb-4" color="#9966ff" placeholder="08:00 AM" outlined :items="hours" ></v-autocomplete>
+      </v-col>
+    </v-row>
+   
     </v-col
             ><v-col md="1" lg="1" xl="1" class=" mt-4"></v-col>
             
@@ -360,9 +285,7 @@
   </v-row>
 </template>
 <script>
-import HourPicker from '~/components/hourPicker.vue';
 export default {
-  components: {HourPicker},
   data() {
     return {
       /* valores de los chips de horario | Genesis */
@@ -388,6 +311,21 @@ export default {
      sab: '',
      dom: '',
 
+
+     days: [
+      { value: 0, name: 'Lun' },
+      { value: 1, name: 'Mar' },
+      { value: 2, name: 'Mie' },
+      { value: 3, name: 'Jue' },
+      { value: 4, name: 'Vie' },
+      { value: 5, name: 'Sab' },
+      { value: 6, name: 'Dom' },
+    ],
+
+     hours: ['01:00 AM', '01:30 AM','02:00 AM','02:30 AM', '03:00 AM', '03:30 AM','04:00 AM','04:30 AM','05:00 AM', '05:30 AM','06:00 AM','06:30 AM','07:00 AM', '07:30 AM','08:00 AM','08:30 AM',
+     '09:00 AM', '09:30 AM','10:00 AM','10:30 AM','11:00 AM', '11:30 AM','12:00 PM', '12:00 PM',
+     '01:00 PM', '01:30 PM','02:00 PM','02:30 PM', '03:00 PM', '03:30 PM','04:00 PM','04:30 PM','05:00 PM', '05:30 PM','06:00 PM','06:30 PM','07:00 PM', '07:30 PM','08:00 PM','08:30 PM',
+     '09:00 PM', '09:30 PM','10:00 PM','10:30 PM','11:00 PM', '11:30 PM','12:00 AM'],
       inputs: [
         {
           name: '',
