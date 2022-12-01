@@ -33,7 +33,7 @@
       <p>y de {{ initialhour2 }} a {{ endhour2 }} </p>
      
   <v-btn class="btn btn-primary btn-sm" @click="addDay">Add Hours</v-btn>
-
+  <p>{{dias}}</p>
 </v-col>
             
             <v-col md="6" cols="12">
@@ -99,35 +99,35 @@
               </v-col>
               <v-col md="11" lg="11" xl="11">
                 <v-col class="ml-n13 mt-n2"  md="10" lg="10" xl="10">
-                  <v-chip label v-if="!chipLun">No registrado</v-chip>
-                  <v-chip label v-if="!chipLun2">No registrado</v-chip>
+                  <v-chip label v-if="!inicio[0]">No registrado</v-chip>
+                  <v-chip label v-if="!final[0]">No registrado</v-chip>
                   <v-chip
-                    v-if="chipLun"
+                  v-if="inicio[0]"
                     @click:close="chipLun = false"
                     close-icon="mdi-close"
                     style="border: thin solid #7900ff"
                     color="#f4edff"
                     label
                     close
-                    ><span class="hour">09:00 AM a 03:00 PM</span></v-chip
+                    ><span class="hour">{{inicio}}</span></v-chip
                   >
                   <v-chip
-                    v-if="chipLun2"
+                  v-if="final[0]"
                     @click:close="chipLun2 = false"
                     close-icon="mdi-close"
                     style="border: thin solid #7900ff"
                     color="#f4edff"
                     label
                     close
-                    ><span class="hour">04:00 PM a 08:00 PM</span></v-chip
+                    ><span class="hour">{{final}}</span></v-chip
                   >
                   
                 </v-col>
                 <v-col md="7" lg="7" xl="7"></v-col>
 
                 <v-col class="ml-n13 mt-n6"  md="10" lg="10" xl="10">
-                  <v-chip label v-if="!chipMar">No registrado</v-chip>
-                  <v-chip label v-if="!chipMar2">No registrado</v-chip>
+                  <v-chip label v-if="!inicio[0]">No registrado</v-chip>
+                  <v-chip label v-if="!final[0]">No registrado</v-chip>
                   <v-chip
                     v-if="chipMar"
                     @click:close="chipMar = false"
@@ -302,6 +302,9 @@
 export default {
   data() {
     return {
+      dias: [],
+      inicio: [],
+      final: [],
       consultation_length: '',
       facility_name: '',
       type_schedule: '',
@@ -365,12 +368,21 @@ export default {
       selectedItem: 1,
     }
   },
+ 
   methods: {
    addDay(){
       
       const days = [this.day + " de " + this.initialhour  + " a " + this.endhour  + " y de  " +this.initialhour2  + " a " + this.endhour2];
       const text = days.join();
       console.log(text) 
+      this.dias = text
+
+      const initialHour = [ this.initialhour  + " a " + this.endhour ];
+      const endHour = [this.initialhour2  + " a " + this.endhour2 ];
+      const hourInitial = initialHour.join();
+      const hourFinal = endHour.join();
+      this.inicio = hourInitial
+      this.final = hourFinal
 
    },
     addInput() {
