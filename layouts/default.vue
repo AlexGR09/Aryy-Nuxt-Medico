@@ -148,10 +148,11 @@ export default {
     },
     methods:{
       /* matar token y redireccionar al login | Genesis */
-     logout(){
+      logout(){
       localStorage.removeItem('token');
       this.$router.push('/auth/login');
-    }
+      console.log("Cierre de sesión exitoso")
+    }, 
     },
 
 }

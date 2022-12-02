@@ -76,7 +76,7 @@
         :items="hours"
       ></v-autocomplete>
     </v-col>
-    <v-btn
+    <v-btn 
       @click="hour = !hour"
       class="btn ml-n5 mt-5"
       color="#9966ff"
@@ -87,25 +87,25 @@
   <v-row v-if="hour" class="ml-0 mt-n2">
     <span class="mt-8">De</span>
       <v-col cols="11" sm="3" xl="4">
-      <v-autocomplete
+      <v-select
         v-model="initialhour2"
         class="textfield"
         color="#9966ff"
         placeholder="08:00 AM"
         outlined
         :items="hours"
-      ></v-autocomplete>
+      ></v-select>
     </v-col>
     <span class="mt-8">A</span>
       <v-col cols="11" sm="3" xl="4">
-      <v-autocomplete
+      <v-select
         v-model="endhour2"
         class="textfield"
         color="#9966ff"
         placeholder="08:00 AM"
         outlined
         :items="hours"
-      ></v-autocomplete>
+      ></v-select>
     </v-col>
   </v-row> </v-col
 ><v-col md="1" lg="1" xl="1" class="mt-4"></v-col>
@@ -409,6 +409,7 @@ export default {
   },
 
   methods: {
+  
     addDay() {
       const initialHour = [this.initialhour]
       const hourInitial = initialHour.join()
@@ -428,14 +429,15 @@ export default {
       const time2= [this.inicio2 + " a " + this.final2]
       const attentiontime2 = time.join(' ')
       this.attentiontimee = attentiontime2 
-      console.log(this.attentiontimee)
 
       const attentiontime3 = time2.join(' ')
       this.attentiontime4 = attentiontime3
-      console.log(this.attentiontime4)
 
-      
-      const horario = [this.attentiontimee, this.attentiontime4]
+      if(!this.hour){
+        this.attentiontime4=[]
+      } 
+
+      const horario = [this.attentiontimee + this.attentiontime4]
       const horario2 = horario.join()
       this.attentiontime = horario2
       console.log(this.attentiontime)
@@ -499,3 +501,7 @@ export default {
   },
 }
 </script>
+<style>
+.v-list-item--link::before { background-color: #9966ff; }
+
+</style>

@@ -28,7 +28,7 @@
                 outlined
               ></v-autocomplete>
             </v-col>
-<bussines-hour/>
+            <bussines-hour/>
           </v-row>
           <v-row >
             <v-col md="6" lg="5" xl="4" cols="12">
@@ -130,53 +130,10 @@ export default {
       ],
 
       hours: [
-        '01:00 AM',
-        '01:30 AM',
-        '02:00 AM',
-        '02:30 AM',
-        '03:00 AM',
-        '03:30 AM',
-        '04:00 AM',
-        '04:30 AM',
-        '05:00 AM',
-        '05:30 AM',
-        '06:00 AM',
-        '06:30 AM',
-        '07:00 AM',
-        '07:30 AM',
-        '08:00 AM',
-        '08:30 AM',
-        '09:00 AM',
-        '09:30 AM',
-        '10:00 AM',
-        '10:30 AM',
-        '11:00 AM',
-        '11:30 AM',
-        '12:00 PM',
-        '12:00 PM',
-        '01:00 PM',
-        '01:30 PM',
-        '02:00 PM',
-        '02:30 PM',
-        '03:00 PM',
-        '03:30 PM',
-        '04:00 PM',
-        '04:30 PM',
-        '05:00 PM',
-        '05:30 PM',
-        '06:00 PM',
-        '06:30 PM',
-        '07:00 PM',
-        '07:30 PM',
-        '08:00 PM',
-        '08:30 PM',
-        '09:00 PM',
-        '09:30 PM',
-        '10:00 PM',
-        '10:30 PM',
-        '11:00 PM',
-        '11:30 PM',
-        '12:00 AM',
+        '01:00 AM', '01:30 AM', '02:00 AM', '02:30 AM',  '03:00 AM',  '03:30 AM',  '04:00 AM', '04:30 AM', '05:00 AM', '05:30 AM', '06:00 AM', '06:30 AM', '07:00 AM', '07:30 AM', '08:00 AM',
+        '08:30 AM', '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:00 PM', '01:00 PM', '01:30 PM', '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM',
+        '04:00 PM', '04:30 PM', '05:00 PM', '05:30 PM', '06:00 PM', '06:30 PM', '07:00 PM', '07:30 PM', '08:00 PM', '08:30 PM', '09:00 PM', '09:30 PM', '10:00 PM', '10:30 PM', '11:00 PM',
+        '11:30 PM', '12:00 AM',
       ],
       inputs: [
         {
@@ -221,17 +178,7 @@ export default {
     getFacility() {
       this.$axios
         .post('/api/v1/physician/facility', {
-          facility_name: this.facility_name,
-          /* location: [
-            {
-              address: this.address,
-              number_ext: this.number_ext,
-              number_int: this.number_int,
-              reference: this.reference,
-            }
-          ], 
-          phone_number: this.phone_number,
-          zip_code: this.zip_code, */
+          facility_name: this.facility_name,  
           schedule: [
             {
               day: this.lun,
@@ -244,35 +191,6 @@ export default {
           ],
           type_schedule: this.type_schedule,
           consultation_length: this.consultation_length,
-          /*   accessibility_and_others: [
-            {
-              accessibility:[
-                {
-                  parking_with_access_to_the_establishment: this.parking,
-                  wheelchair_lift_or_ramp: this.lift,
-                  toilets_with_wheelchair_access: this.restroom,
-                  rest_area_with_wheelchair_access: this.area,
-                  staff_trained_in_sign_language: this.sign,
-                  braille_signage_for_blind_people: this.braille,
-                }
-              ],
-              usual_audiences:[
-                {
-                  lgtb_friendly: this.lgbt,
-                  safe_space_for_transgender_people: this.trans,
-                }
-              ],
-              services:[
-                {
-                  toilets: this.toilets,
-                  unisex_toilets: this.unisex,
-                  wifi: this.wifi,
-                }
-              ],
-            }
-          ],
-           clues: this.biography,
-          city_id: this.biography,  */
         })
         .then((response) => {
           console.log(response.data.data)
