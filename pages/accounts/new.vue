@@ -1,75 +1,73 @@
 <template>
-    <v-row class="fondo">
-    <!-- división de la pantalla en video y componente de login | Genesis -->
-    <v-col xs="12" sm="12" md="6" lg="7" mg="7" >
-      <div class="d-flex flex-column justify-space-between align-end">
-        <video
-          id="video-player" playsinline loop autoplay
-          :src="require('@/assets/videos/introprueba.mp4')"
-          class="mb-n16"
-        :aspect-ratio="16/9"
-        width="1300px"
-        height="1200px"
-        ></video>
-    </div>
-    </v-col>
-    <v-col class="fondo ml-n6" xs="12" sm="12" md="5" lg="5" mg="5">
-        <form-Login :specialist="specialist" :number="number" :codigo="codigo"/>
-    </v-col>
-  </v-row>
+  <v-container fluid>
+    <p>{{ selected }}</p>
+    <v-checkbox v-model="selected" label="Lunes" value="Lunes"></v-checkbox>
+    <v-checkbox v-model="selected" label="Martes" value="Martes"></v-checkbox>
+    <v-checkbox v-model="selected" label="Martes" value="Miercoles"></v-checkbox>
+    <v-checkbox v-model="selected" label="Martes" value="Jueves"></v-checkbox>
+    <v-checkbox v-model="selected" label="Martes" value="Viernes"></v-checkbox>
 
+    <v-text-field  v-model="hora1" value="12"></v-text-field>
+    <v-text-field  v-model="hora2"></v-text-field>
+    <p>{{time1}}</p>
+    <p>{{time2}}</p>
+  </v-container>
 </template>
 <script>
-import formLogin from '~/components/login/form-Login.vue'
 
-export default{
-  components: { formLogin },
-    layout: "auth",
-    data(){
-        return{
-            specialist: [
-                {
-                    name: 'v-text-field',
-                    placeholder:'Correo electronico',
-                    outlined:'false',
-                    required: ' required',
-                    type:'email',
-                },
-                {
-                    etiqueta: 'v-text-field',
-                    placeholder:'Establece tu contraseña',
-                    outlined:'false',
-                    required: ' required',
-                    type:'password'
-                },
-                {
-                    etiqueta: 'v-text-field',
-                    placeholder:'Confirmar contraseña',
-                    outlined:'false',
-                    required: ' required',
-                    type:'password'
-                },
-            ],
-            number: [
-                {
-                    etiqueta: 'v-text-field',
-                    placeholder:'codigo',
-                    outlined:'false',
-                    required: ' required',
-                   
-                },
-            ],
-            code: [
-                {
-                    etiqueta: 'v-text-field',
-                    placeholder:'ceular',
-                    outlined:'false',
-                    required: ' required',
-                   
-                },
-            ],
-            
-        }
+
+export default {
+
+  layout: 'auth',
+  data() {
+    return {
+      selected: [],
+      time1: [],
+      time2:[],
+      specialist: [
+        {
+          name: 'v-text-field',
+          placeholder: 'Correo electronico',
+          outlined: 'false',
+          required: ' required',
+          type: 'email',
+        },
+        {
+          etiqueta: 'v-text-field',
+          placeholder: 'Establece tu contraseña',
+          outlined: 'false',
+          required: ' required',
+          type: 'password',
+        },
+        {
+          etiqueta: 'v-text-field',
+          placeholder: 'Confirmar contraseña',
+          outlined: 'false',
+          required: ' required',
+          type: 'password',
+        },
+      ],
+      number: [
+        {
+          etiqueta: 'v-text-field',
+          placeholder: 'codigo',
+          outlined: 'false',
+          required: ' required',
+        },
+      ],
+      code: [
+        {
+          etiqueta: 'v-text-field',
+          placeholder: 'ceular',
+          outlined: 'false',
+          required: ' required',
+        },
+      ],
     }
+  },
+
+  methods: {
+    
+  },
 }
 </script>

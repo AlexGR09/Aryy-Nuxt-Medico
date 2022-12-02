@@ -223,8 +223,8 @@ export default {
   },
 
   computed: {
-/* 
-    phone () {
+ 
+   /*  phone () {
       const errors = []
       if(!this.$v.phone.$dirty) return errors
       !this.$.phone.phone && errors.push('agrega correctamente')
@@ -245,7 +245,9 @@ export default {
       !this.$v.password.maxLength && errors.push('Debe contener al menos 8 carácteres')
       !this.$value.password.required && errors.push('contraseña requerida')
       return errors
-    }, */
+    },  */
+
+
     emailErrors() {
       const errors = []
       if (!this.$v.email.$dirty) return errors
@@ -283,6 +285,7 @@ export default {
           phone_number: this.phone,
           type_user: 'Physician',
         })
+
         .then((response) => {
           console.log(response.data.data)
           localStorage.setItem('token', response.data.access_token)
@@ -298,6 +301,12 @@ export default {
           this.password_error = ''
           this.password_error = error.response.data.errors.password[0]
         })
+    },
+
+    /* enviaremos el metodo de custon */
+    FormData(){
+
+
     },
   },
 
