@@ -12,6 +12,34 @@
           class="pa-3  mt-n2 mb-n10">
           <h1 >FORMACIÓN ACADÉMICA</h1>
             
+          <!-- btn editar -->
+          <v-toolbar
+              flat
+              type="success"
+            >
+            <v-icon></v-icon>
+            <v-toolbar-title v-model="status" class="font-weight-light">
+              Su perfil médico está en proceso de verificación, esto puede tomar un par de días.
+            </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="primary"
+              dark
+              fab
+              small
+              @click="isEditing = !isEditing"
+            >
+              <v-icon v-if="isEditing">
+                mdi-close
+              </v-icon>
+              <v-icon v-else>
+                mdi-pencil
+              </v-icon>
+            </v-btn>
+          </v-toolbar>
+
+              <!-- btn editar -->
+
           </v-card-subtitle>
         <v-form ref="form" v-model="valid">
          
@@ -27,6 +55,7 @@
                     placeholder="Selecciona"
                     outlined
                     :items="items"
+                    :disabled="!isEditing"
                   ></v-autocomplete>
                 </v-col>
                 
@@ -37,6 +66,7 @@
                     v-model="name"
                     outlined
                     placeholder="Escribe cómo quieres que aparezca tu nombre"
+                    :disabled="!isEditing"
                   ></v-text-field>
                 </v-col>
                 
@@ -48,6 +78,7 @@
                     v-model="specialty"
                     outlined
                     placeholder="Seleccione una especialidad"
+                    :disabled="!isEditing"
                   ></v-autocomplete>
                 </v-col>
 
@@ -58,6 +89,7 @@
                     v-model="identification_card"
                     outlined
                     placeholder="000000000000"
+                    :disabled="!isEditing"
                   ></v-text-field>
                 </v-col>
 
@@ -68,6 +100,7 @@
                     v-model="institution"
                     outlined
                     placeholder="Escribe el nombre de la institución"
+                    :disabled="!isEditing"
                   ></v-text-field>
                 </v-col>
 
@@ -75,11 +108,8 @@
                 <v-col md="6" cols="12">
                   <span>Foto de cédula*</span>
                   <v-file-input
-                    v-model="photo"
-                    outlined
-                    chips
-                    placeholder="subir fotografia"
-                    color="#9966ff"
+                  outlined
+                  :disabled="!isEditing"
                   ></v-file-input>
                   <p class="input mt-3 mb-n4">Formato permitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</p>
                 </v-col>
@@ -96,73 +126,97 @@
                     placeholder="Escribe una biografía breve sobre ti" 
                     outlined 
                     class="textfield mb-16"
+                    :disabled="!isEditing"
                   ></v-textarea> 
                 </v-col>
               </v-row>
 
 
     <H1 class="mb-5 mt-8">CERTIFICADOS</H1>
-    <VueFileAgent  :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
-
-    <!-- REDES SOCIALES | LUIS REYES -->
-    <h1 >REDES SOCIALES</h1>
-
-
-    
-    
-    <v-row>
-      <v-col md="4" cols="12">
-          <span >Facebook</span>
-          <v-text-field
-            dense
-            placeholder="fb.com/medico"
-            outlined
-           
-          >
-          <template #prepend-inner>
-    
-            <img  src="@/assets/icons/icon_facebook.svg" />
-            <v-icon :src="require('@/assets/icons/icon_facebook.svg')"></v-icon>
-          </template>
-        </v-text-field>
-            <v-btn outlined class="btn " block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_facebook.svg')" max-width="35"></v-img>
-              Vincula tu cuenta de Facebook
-            </v-btn>
-          </v-col>
-            
-        
-        <v-col md="4" cols="12">
-          <span >Instagram</span>
-            <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_insta.svg')" max-width="28"></v-img>
-              Vincula tu cuenta de Instagram
-            </v-btn>
-        </v-col>
-        <v-col md="4" cols="12">
-          <span>TikTok</span>
-            <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_tiktok.svg')" max-width="28"></v-img>
-                Vincula tu cuenta de TikTok
-            </v-btn>
-        </v-col>
-        <v-col xs="12" sm="12" md="12" lg="6" xl="4">
-               <span>Sitio Web</span>
-
-            <v-btn outlined class="btn" block color="#999999" height="50"><v-img class=" mr-3" :src="require('@/assets/icons/icon_internet.svg')"  max-width="25"></v-img>
-              <l>Ingresa tu sitio web</l>
-            </v-btn>
-          </v-col>
-    </v-row>
+    <VueFileAgent :disabled="!isEditing" :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
+   
+                <!-- REDES SOCIALES | LUIS REYES -->
+                <br>
+                <h1 >REDES SOCIALES</h1>
+                <br>
+                <v-row>
+                  <!-- Facebook -->
+                  <v-col md="4" cols="12">
+                      <span >Facebook</span>
+                      <v-text-field
+                        v-model="facebook"
+                        dense
+                        placeholder="fb.com/medico"
+                        outlined
+                        :disabled="!isEditing"
+                      >
+                      <template #prepend-inner3>
+                        <img src="@/assets/icons/icon_facebook.svg" />
+                      </template>
+                    </v-text-field>
+                  </v-col>
+                  
+                  <!-- INSTAGRAM -->
+                  <v-col md="4" cols="12">
+                    <span>Instagram</span>
+                    <v-text-field
+                      v-model="instagram"
+                      dense
+                      outlined
+                      placeholder="instagram.com/medico"
+                      :disabled="!isEditing"
+                    >
+                    <template #prepend-inner>
+                        <img style=" width: 5 vh;" src="@/assets/icons/icon_insta.svg" />
+                    </template>
+                  </v-text-field>
+                  </v-col>
 
 
+                  <!-- TikTok -->
+                  <v-col md="4" cols="12">
+                    <span>Tiktok</span>
+                    <v-text-field
+                      v-model="tiktok"
+                      outlined
+                      dense
+                      placeholder="tiktok.com/medico"
+                    >
+                    <template>
+                      <img style=" width: 5 vh;" src="@/assets/icons/icon_tiktok.svg" />
+                    </template>
+                    </v-text-field>
+                  </v-col>
 
+                  <!-- SITIO WEB -->
+                  <v-col md="4" cols="12">
+                    <span>Sitio web</span>
+                    <v-text-field
+                    v-model="website"
+                    outlined
+                    dense
+                    placeholder="Ingresa tu sitio web"
+                    >
+                  </v-text-field>
+                  </v-col>
+                </v-row>
 
+                <!-- BOTONES -->
 
-
-    <BR/><BR/>
-   <v-btn  @click="overlay = !overlay" height="50px" class="white--text save mt-7" color="#7900ff" large>Guardar cambios</v-btn>
-      <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
-      <v-overlay :value="overlay">
-        <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
-      </v-overlay> 
+                <BR/><BR/>
+                  <v-btn  
+                    @click="overlay = !overlay" 
+                    height="50px" 
+                    class="white--text save mt-7" 
+                    color="#7900ff" 
+                    large
+                    >
+                    Guardar cambios
+                  </v-btn>
+                  <v-btn  height="50px" class="restore ml-3 mt-7" color="#999999" outlined large>Restaurar todo</v-btn>
+                  <v-overlay :value="overlay">
+                    <v-alert class="rounded-xl" icon="mdi-check-circle" color="green">Datos actualizados correctamente.</v-alert>
+                  </v-overlay> 
     
   </v-card-text>
 </v-form> 
@@ -188,7 +242,6 @@
 },
     data () {
       return {
-
         status:"",
         title:"",
         name: "",
@@ -196,6 +249,11 @@
         institution:"",
         photo:"",
         identification_card:"",
+        aboutme: "",
+        facebook:"",
+        instagram:"",
+        tiktok:"",
+        website:"", 
         overlay: false,
         fileRecords: [],
         uploadUrl: 'https://example.com',
@@ -204,18 +262,17 @@
         [
           {title:'Dr.'}
 
-        ]
+        ],
+        isEditing: null,
       }
     },
     watch: {
     overlay (val) {
       val && setTimeout(() => {
         this.overlay = false
-      }, 3000)
+      }, 2000)
     },
   },
-
-
   methods: {
       reset () {
         this.$refs.form.reset()
@@ -233,19 +290,65 @@
         this.name = res.data.data.professional_name
         this.institution = res.data.data.physician_specialties[0].institution
         this.identification_card = res.data.data.physician_specialties[0].license
+        this.status = res.data.message
       })
-      .catch((error) => {
-         alert(error.response.data.errors.email)
-          this.errormail = ''
-          this.errormail = error.response.data.errors.email[0]
-          this.password_error=""
-          this.password_error = error.response.data.errors.password[0] 
-         
+      
+/*           alert(error.response.data.errors.email)
+          this.name = ''
+          this.is_verified = error.response.data.data0]  
           console.log(error.res.data.message)
-        })
+          var data = error.res.data.data;
+          if(data.data == 'is_verified'){
+            this.name = !this.isEditing
+            this.institution= !this.isEditing
+            this.identification_card= !this.isEditing
+            this.status = !this.isEditing
+            else{
+
+              axios.post('{{ route("medcial,saber) }}',formData,  {
+                              headers: { "Content-Type": "multipart/form-data" }
+                      })
+            } */
      
-    } 
+
+   
+
+     
+    },
+
+/*    ACTUALZIR PERFIL
+
+    putMedicalProfile() {
+      this.$axios
+       .put('/api/v1/physician',{
+        professional_name: this.name,
+        social_network:[
+          {
+            facebook: this.facebook,
+            tiktok: this.tiktok,
+            youtube: this.instagram
+          },
+        ],
+        biography: this.aboutme,
+        physician_specialties: [
+          {
+            speciality_id,
+            license,
+            institution,
+            license_photo,
+          }
+        ]
+       },{
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+       })
+    }, */
+
+    save () {
+        this.isEditing = !this.isEditing
+        this.hasSaved = true
+      },
   },
+
   mounted() {
     this.getMedicalProfile()
   },
