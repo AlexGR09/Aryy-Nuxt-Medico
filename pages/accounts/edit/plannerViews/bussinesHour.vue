@@ -54,7 +54,7 @@
 <v-col class="mb-n7 mt-n8" md="11" xl="12" cols="12">
   <v-row class="ml-0">
     <span class="mt-8">De</span>
-    <v-col cols="11" sm="3" xl="4">
+    <v-col cols="11" sm="3" md="4" lg="4" xl="4">
       <v-autocomplete
         v-model="initialhour"
         class="textfield }"
@@ -66,7 +66,7 @@
     </v-col>
 
     <span class="mt-8">A</span>
-    <v-col cols="11" sm="3" xl="4">
+    <v-col cols="11" sm="3" md="4" lg="4" xl="4">
       <v-autocomplete
         v-model="endhour"
         class="textfield"
