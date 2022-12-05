@@ -4,6 +4,7 @@
     <span v-if="!consultorios[0]"
       >Todavía no tienes consultorios registrados.</span
     >
+    
     <v-sheet
       class="mb-5"
       v-for="(consultorio, i) in consultorios"
@@ -98,15 +99,16 @@ export default {
     infoFacility() {
       console.log('creando petición GET')
       this.$axios
-        .get('/api/v1/physician/facility', {
+        .get('/api/v1/facilities', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
           console.log('exito en GET')
+          this.consultorios = res.data.data[0].results
           this.users = res.data.data.user
-          this.facility_name = res.data.data.professional_name
-          this.address = res.data.data.location[0].location_id
+          this.facility_name = res.data.data.name
+          this.address = res.data.data[0].location.addres
         })
         .catch(
           /* console.log(e); */

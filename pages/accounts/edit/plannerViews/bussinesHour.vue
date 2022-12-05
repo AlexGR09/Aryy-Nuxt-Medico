@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-col class="mb-n7" md="11" cols="12">
-      <v-col md="12" cols="12">
-        <h1 class="mt-4 mb-4">HORARIOS DE CONSULTA</h1>
+    
         <v-btn-toggle borderless class="botones mb-n5 mt-n4">
           <v-checkbox
             v-model="lun"
@@ -47,7 +45,6 @@
             label="Dom"
           ></v-checkbox>
         </v-btn-toggle>
-      </v-col>
       <v-col md="6" cols="12"></v-col>
 
       <!--  inputs para agregar los horarios desde un select | Genesis -->
@@ -112,7 +109,7 @@
       <!-- chips para mostrar los horarios seleccionados | Genesis -->
       <v-col>
         <v-row class="mb-n10" v-if="lun">
-          <v-col class="mr-n16" xl="2"> <p class="weekday">Lun</p> </v-col>
+          <v-col class="mr-n16" xl="1"> <p class="weekday">Lun</p> </v-col>
           <v-col xl="12" class="mr-n16">
             <v-chip label v-if="!inicio[0]">No registrado</v-chip>
             <v-chip
@@ -315,11 +312,9 @@
           >
           <v-col xl="5"></v-col>
         </v-row>
-        <v-btn color="#9966ff" class="btnhour ml-n5 mt-3" @click="addDay" text>
-          Agregar horario</v-btn
-        >
+        <!-- <v-btn color="#9966ff" class="btnhour ml-n5" @click="addDay" text>
+          Agregar horario</v-btn> -->
       </v-col>
-    </v-col>
   </div>
 </template>
 <script>
@@ -419,7 +414,7 @@ export default {
 
     getFacility() {
       this.$axios
-        .post('/api/v1/physician/facility', {
+        .post('/api/v1/facilities', {
           schedule: [
             {
               day: this.lun,
@@ -472,6 +467,10 @@ export default {
         .catch(console.log('error'))
     },
   },
+  mounted() {
+          console.log('verificando');
+          this.addDay();
+      },
 }
 </script>
 <style>

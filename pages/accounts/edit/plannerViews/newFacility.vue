@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card height="100%" flat class="pa-16">
-      <v-card-text class="pa-16">
+      <v-card-text class="pa-16 ml-10">
         <v-row class="ml-16">
           <v-form class="ml-16" ref="form" v-model="valid">
             <v-col md="1" lg="1" xl="1"></v-col>
@@ -24,177 +24,38 @@
                     si no aparece puedes agregarlo desde aqui.</v-input
                   >
                 </v-col>
+                <v-row v-for="input in inputs" :key="input.id" class="ml-1 mt-2">
                 <v-col md="6" cols="12">
                   <span>Teléfono para citas*</span>
-                  <v-text-field
+                  <v-text-field :for="input.id"
                     v-model="phone_number"
                     color="#9966ff"
                     class="textfield mb-5"
                     placeholder="XXX XXX XXXX"
                     outlined
                   ></v-text-field>
-                  <span>Horario para recepción de llamadas*</span>
-                  <v-btn-toggle borderless class="botones ">
-                <v-checkbox
-                  v-model="lun"
-                  class="checkbox"
-                  color="#7900ff"
-                  label="Lun"
-                ></v-checkbox
-                ><v-checkbox
-                  v-model="mar"
-                  class="ml-8 checkbox"
-                  color="#7900ff"
-                  label="Mar"
-                ></v-checkbox
-                ><v-checkbox
-                  color="#7900ff"
-                  v-model="mie"
-                  class="ml-8 checkbox"
-                  label="Mie"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="jue"
-                  color="#7900ff"
-                  class="ml-8 checkbox"
-                  label="Jue"
-                ></v-checkbox>
-                <v-checkbox
-                  color="#7900ff"
-                  v-model="vie"
-                  class="ml-8 checkbox"
-                  label="Vie"
-                ></v-checkbox
-                ><v-checkbox
-                  v-model="sab"
-                  color="#7900ff"
-                  class="ml-8 checkbox"
-                  label="Sab"
-                ></v-checkbox
-                ><v-checkbox
-                  v-model="dom"
-                  color="#7900ff"
-                  class="ml-8 checkbox"
-                  label="Dom"
-                ></v-checkbox>
-              </v-btn-toggle>
-                  <div
-                    class="form-group mb-9"
-                    v-for="(input, k) in inputs"
-                    :key="k"
-                  >
-                    <v-row>
-                      <p class="text mt-8 ml-6">De</p>
-                      <v-col md="4">
-                        <v-dialog
-                          ref="dialog"
-                          v-model="modal2"
-                          :return-value.sync="time"
-                          persistent
-                          width="290px"
-                        >
-                          <template v-slot:activator="{ on, attrs }">
-                            <v-text-field
-                              color="#7900ff"
-                              outlined
-                              class="textfield"
-                              v-model="time"
-                              placeholder="08:00 AM"
-                              readonly
-                              v-bind="attrs"
-                              v-on="on"
-                            ></v-text-field>
-                          </template>
-                          <v-time-picker
-                            color="#7900ff"
-                            v-if="modal2"
-                            v-model="start"
-                            :max="end"
-                            full-width
-                          >
-                            <v-spacer></v-spacer>
-                            <v-btn text color="#7900ff" @click="modal2 = false">
-                              Cancel
-                            </v-btn>
-                            <v-btn
-                              text
-                              color="#7900ff"
-                              @click="$refs.dialog.save(start)"
-                            >
-                              OK
-                            </v-btn>
-                          </v-time-picker>
-                        </v-dialog>
-                      </v-col>
-                      <p class="text mt-8">A</p>
-                      <v-col md="4">
-                        <v-dialog
-                          ref="dialog"
-                          v-model="modal2"
-                          :return-value.sync="time"
-                          persistent
-                          width="290px"
-                        >
-                          <template v-slot:activator="{ on, attrs }">
-                            <v-text-field
-                              color="#7900ff"
-                              outlined
-                              class="textfield"
-                              v-model="time"
-                              placeholder="08:00 PM"
-                              readonly
-                              v-bind="attrs"
-                              v-on="on"
-                            ></v-text-field>
-                          </template>
-                          <v-time-picker
-                            color="#7900ff"
-                            v-if="modal2"
-                            v-model="end"
-                            :min="start"
-                            full-width
-                          >
-                            <v-spacer></v-spacer>
-                            <v-btn text color="#7900ff" @click="modal2 = false">
-                              Cancel
-                            </v-btn>
-                            <v-btn
-                              text
-                              color="#7900ff"
-                              @click="$refs.dialog.save(end)"
-                            >
-                              OK
-                            </v-btn>
-                          </v-time-picker>
-                        </v-dialog>
-                      </v-col>
-                      <v-btn
-                        @click="add(k)"
-                        v-show="k == inputs.length - 1"
-                        class="mt-6"
-                        icon
-                        color="#9966ff"
-                      >
-                        <v-icon>mdi-plus-circle</v-icon>
-                      </v-btn>
-                    </v-row>
-                  </div>
-                  <v-btn class="btn ml-n5 mt-n5" color="#9966ff" text
+                  <v-btn @click="addInput" class="btn ml-n5 mt-n5" color="#9966ff" text
                     ><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro
                     número</v-btn
                   >
+                  <v-col class="mb-n7" md="11" cols="12">
+        <p class="mt-4 mb-4 span">Horario para recepción de llamadas*</p>
+            <bussines-hour/>
+            </v-col>
+                  
                 </v-col>
                 <v-col md="6" cols="12">
                   <span>Extensión</span>
-                  <v-text-field
+                  <v-text-field :for="input.id"
                     v-model="extension"
                     color="#9966ff"
                     class="textfield"
                     placeholder="No. Extensión"
                     outlined
                   ></v-text-field>
+                  
                 </v-col>
-                <!--  <span>Horario para recepción de llamadas*</span> -->
+              </v-row>
                 <v-col md="4" cols="12">
                   <span>Código postal*</span>
                   <v-text-field
@@ -229,13 +90,13 @@
                 </v-col>
                 <v-col md="4" cols="12">
                   <span>Colonia*</span>
-                  <v-autocomplete
+                  <v-text-field
                     v-model="suburb"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Selecciona una colonia"
                     outlined
-                  ></v-autocomplete>
+                  ></v-text-field>
                 </v-col>
                 <v-col md="8" cols="12">
                   <span>Ubicación*</span>
@@ -372,6 +233,7 @@
                 </v-col>
                 <div class="mt-5 mb-n15">
                   <v-btn
+                  v-on:click="Savefacility"
                     @click="overlay = !overlay"
                     height="50px"
                     class="white--text save"
@@ -407,9 +269,40 @@
   </div>
 </template>
 <script>
+import bussinesHour from './bussinesHour.vue'
 export default {
+  components:{
+    bussinesHour,
+  },
   data() {
     return {
+      facility_name: '',
+      phone_number: '',
+      extension: '',
+      zip_code: '',
+      state: '',
+      city: '',
+      suburb: '',
+      address: '',
+      number_ext: '',
+      number_int: '',
+      reference: '',
+      parking: false,
+      lift: false,
+      ramp: false,
+      restroom: false,
+      area: false,
+      sign: false,
+      braille: false,
+      lgbt: false,
+      trans: false,
+      toilets: false,
+      unisex: false,
+      wifi: false,
+
+
+
+
       inputs: [
         {
           name: '',
@@ -440,80 +333,103 @@ export default {
   },
   mounted() {
     console.log('verificando')
-    this.facility()
+    this.Savefacility()
   },
   methods: {
      /*    método post para añadir un consultorio | Genesis */
-     facility() {
-      this.$axios
-        .post('/api/v1/physician/facility', {
-          facility_name: this.facility_name,
-          location: [
-            {
-              address: this.address,
-              number_ext: this.number_ext,
-              number_int: this.number_int,
-              reference: this.reference,
-            }
-          ],
-          phone_number: this.phone_number,
-          zip_code: this.zip_code,
-          schedule: [
-            {
-              day: this.lun,
-              attention_time: this.modal2,
-            },
-            {
-              day: this.mar,
-              attention_time: this.modal2,
-            },
-            
-          ],
-         /*  type_schedule: this.biography, */
-         /*  consultation_length: this.biography, */
-          accessibility_and_others: [
-            {
-              accessibility:[
-                {
-                  parking_with_access_to_the_establishment: this.parking,
-                  wheelchair_lift_or_ramp: this.lift,
-                  /* wheelchair_lift_or_ramp: this.ramp, */
-                  toilets_with_wheelchair_access: this.restroom,
-                  rest_area_with_wheelchair_access: this.area,
-                  staff_trained_in_sign_language: this.sign,
-                  braille_signage_for_blind_people: this.braille,
-                }
-              ],
-              usual_audiences:[
-                {
-                  lgtb_friendly: this.lgbt,
-                  safe_space_for_transgender_people: this.trans,
-                }
-              ],
-              services:[
-                {
-                  toilets: this.toilets,
-                  unisex_toilets: this.unisex,
-                  wifi: this.wifi,
-                }
-              ],
-            }
-          ],
-          /* clues: this.biography,
-          city_id: this.biography, */
-        })
-        .then((response) => {
-          console.log(response.data.data)
-          localStorage.setItem('token',response.data.access_token)
-        })
-        .catch((error) => {
-          /*   alert(error.response.data.errors.email) */
-          this.errormail = ''
-          this.errormail = error.response.data.errors.email[0]
-          this.password_error=""
-          this.password_error = error.response.data.errors.password[0]
-        })
-    },
+     Savefacility() {
+    this.$axios
+      .post('/facilities', {
+        name: this.facility_name,
+        location: 
+          {
+            address: this.address,
+            state: this.state,
+            suburb: this.suburb,
+            number_ext: this.number_ext,
+            number_int: this.number_int,
+            reference: this.reference,
+          }
+        ,
+        phone: this.phone_number,
+        extension: this.extension,
+        zipcode: this.zip_code,
+        schedule: [
+          {
+            day: this.lun,
+            attention_time: this.attention_time,
+          },
+          {
+            day: this.mar,
+            attention_time: this.attention_time,
+          },
+          {
+            day: this.mie,
+            attention_time: this.attention_time,
+          },
+          {
+            day: this.jue,
+            attention_time: this.attention_time,
+          },
+          {
+            day: this.vie,
+            attention_time: this.attention_time,
+          },
+          {
+            day: this.sab,
+            attention_time: this.attention_time,
+          },
+          {
+            day: this.dom,
+            attention_time: this.attention_time,
+          },
+          
+        ],
+       type_schedule: this.biography,
+       consultation_length: this.biography,
+        accessibility_and_others: 
+          {
+            accessibility:
+              {
+                parking_with_access_to_the_establishment: this.parking,
+                wheelchair_lift_or_ramp: this.lift,
+                /* wheelchair_lift_or_ramp: this.ramp, */
+                toilets_with_wheelchair_access: this.restroom,
+                rest_area_with_wheelchair_access: this.area,
+                staff_trained_in_sign_language: this.sign,
+                braille_signage_for_blind_people: this.braille,
+              }
+            ,
+            usual_audiences:
+              {
+                lgtb_friendly: this.lgbt,
+                safe_space_for_transgender_people: this.trans,
+              }
+            ,
+            services:
+              {
+                toilets: this.toilets,
+                unisex_toilets: this.unisex,
+                wifi: this.wifi,
+              }
+            ,
+          }
+        ,
+        /* clues: this.biography,
+        city_id: this.biography, */
+      })
+      .then((response) => {
+        console.log(response.data.data)
+        localStorage.setItem('token',response.data.access_token)
+      })
+      .catch((error) => {
+        /*   alert(error.response.data.errors.email) */
+        this.errormail = ''
+        this.errormail = error.response.data.errors.email[0]
+        this.password_error=""
+        this.password_error = error.response.data.errors.password[0]
+      })
+  },
     save(start, end) {
       this.$refs.dialog[0].save(start, end)
     },
@@ -525,6 +441,13 @@ export default {
     },
     reset() {
       this.$refs.form.reset()
+    },
+    addInput() {
+      this.inputs.push({
+        id: `fruit${++this.counter}`,
+        label: 'Enter Fruit Name',
+        value: '',
+      });
     },
   },
 }
@@ -590,6 +513,10 @@ H1 {
   font-size: 120%;
 }
 span {
+  font-family: Montserrat;
+  font-size: 120%;
+}
+p.span {
   font-family: Montserrat;
   font-size: 120%;
 }

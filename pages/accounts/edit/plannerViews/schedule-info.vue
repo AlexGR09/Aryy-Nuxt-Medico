@@ -28,7 +28,10 @@
                 outlined
               ></v-autocomplete>
             </v-col>
+            <v-col class="mb-n7" md="11" cols="12">
+        <h1 class="mt-4 mb-4">HORARIOS DE CONSULTA</h1>
             <bussines-hour/>
+            </v-col>
           </v-row>
           <v-row >
             <v-col md="6" lg="5" xl="4" cols="12">

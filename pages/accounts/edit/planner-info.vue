@@ -26,7 +26,7 @@
                   <template  v-slot:activator="{ on, attrs }">
                     <v-btn  v-bind="attrs" v-on="on" class="btn ml-n5 mt-n3" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agrega un consultorio</v-btn>
                   </template>
-                  <new-facility class="mt-16 ml-13"/>
+                  <new-facility class="mt-16"/>
                 </v-dialog>
               </v-col>
             </v-row>
@@ -46,11 +46,31 @@ export default {
 },
   data () {
     return {
+      facility: [],
       selectedItem: 1,
       dialog: false,
     }
   },
+  
   methods: {
+    infoFacility() {
+      console.log('creando petición GET')
+      this.$axios
+        .get('/facilities', {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log(res)
+          console.log('exito en GET')
+          this.users = res.data.data.user
+          this.facility_name = res.data.data.professional_name
+          this.address = res.data.data.location[0].location_id
+        })
+        .catch(
+          /* console.log(e); */
+          console.log('error en GET')
+        )
+    },
         
       },
 }

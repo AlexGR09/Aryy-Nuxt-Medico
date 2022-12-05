@@ -311,7 +311,7 @@ export default {
     getinfoMedical() {
       console.log('creando petición GET')
       this.$axios
-        .get('/api/v1/physician', {
+        .get('/api/v1/physician/profile', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
