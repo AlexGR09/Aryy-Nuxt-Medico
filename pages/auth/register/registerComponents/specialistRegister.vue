@@ -74,14 +74,14 @@
                     </v-text-field>
                     <!-- CAMPO DE ESPECIALIDAD -->
                     <p align="left" class="mb-1 label">Especialidad*</p>
-                    <v-autocomplete
-                      v-model="specialty"
+                    <v-select
+                      v-model=" specialty"
+                      :options="model"
                       outlined
-                      :items="especialidades"
                       placeholder="Selecciona una especialidad"
                       class="textfield mb-n3"
                       color="#b380ff"
-                    ></v-autocomplete>
+                    ></v-select>
                     <!-- CAMPO DE CÉDULA -->
                     <p align="left" class="mb-1 label">Cédula C1</p>
                     <v-text-field
@@ -145,7 +145,8 @@
                         >Registrarme como paciente
                       </h3>
                     </router-link>
-                  <form>
+                  
+                    <form>
                     <!-- CAMPO DE CONSULTORIO  -->
                     <p align="left" class="mb-1 label">Nombre del consultorio*</p>
                     <v-text-field v-model="consultorio" name="nombre" id="nombre" outlined placeholder="Nombre del consultorio" class="textfield" color="#b380ff"></v-text-field>
@@ -179,7 +180,13 @@
                       </v-col>
                     </v-row>
                     <!-- BOTON DE GUARDAR | LUIS REYES -->
-                    <v-btn block large class="white--text btn" color="#7900FF" href="/">Registrarme</v-btn>
+                    <v-btn 
+                      v-on:click=" CreateConsultorio"
+                      block 
+                      large 
+                      class="white--text btn" 
+                      color="#7900FF"
+                    >Registrarme</v-btn>
                   </form>
                   </v-col>
                 </div>
@@ -201,7 +208,11 @@ export default {
     return {
       specialties: "", 
       name: "",
-      specialty: "16",
+      specialty_get: [{
+          specialty_id: '',
+          name: '',
+      }],
+     
       identification_card: "",
       institution: "UNACH",
       /* consultorio */
@@ -210,6 +221,11 @@ export default {
       numberExt:"",
       numberInt:"",
       codigoPostal:"",
+      specialty: [],
+      model: [{
+        specialty_id:'',
+        name:'',
+      }],
 
       check: '',
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
@@ -221,7 +237,7 @@ export default {
   methods: {
     create() {
       this.$axios
-      .post('/api/v1/physician', {
+      .post('/api/v1/physician/facilities', {
           professional_name: this.name,
           specialties: [
             {
@@ -238,6 +254,41 @@ export default {
         console.log(response.data.specialties)
       })
     },
+
+    /* OBTENER ESPECIALIDADES */
+    getspecialty() {
+      this.$axios
+      .get('/api/v1/catalogue/specialties',{
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(res => {
+        console.log(res)
+        this.specialty_get = res.data.data.name
+        console.log(this.specialty_get)
+
+      })
+      
+
+    },
+
+/*     getMedicalProfile() {
+      this.$axios
+      .get('/api/v1/catalogue/specialties', 
+      {
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(res => {
+        console.log(res)
+        this.status= res.data.data.is_verified
+        this.name = res.data.data.professional_name
+        this.institution = res.data.data.physician_specialties[0].institution
+        this.identification_card = res.data.data.physician_specialties[0].license
+        this.status = res.data.message
+      })
+    },
+ */
+
+
 
     /* CONSULTORIO */
     CreateConsultorio(){
@@ -259,6 +310,10 @@ export default {
 
     },
   }, 
+  mounted() {
+    this.getspecialty()
+  },
+
 }
 </script>
 
