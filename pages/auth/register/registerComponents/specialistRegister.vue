@@ -65,6 +65,7 @@
                     <!-- NOMBRE DEL DOCTOR -->
                     <p align="left" class="mb-1 label">Nombre</p>
                     <v-text-field
+                
                       v-model="name"
                       outlined
                       placeholder="Nombre"
@@ -74,14 +75,24 @@
                     </v-text-field>
                     <!-- CAMPO DE ESPECIALIDAD -->
                     <p align="left" class="mb-1 label">Especialidad*</p>
-                    <v-select
-                      v-model=" specialty"
-                      :options="model"
+                    <!-- <select
+                      multiple
+                      v-model="specialtieslist"
+                      id="specialty"
                       outlined
                       placeholder="Selecciona una especialidad"
-                      class="textfield mb-n3"
-                      color="#b380ff"
-                    ></v-select>
+
+                    > <option v-for="specialty  in specialties " :value="specialty" :key="specialty">{{specialty.name}}</option></select> -->
+                      <v-autocomplete
+                          outlined
+                          :items="items"
+                          v-model="Select"
+                          item-text="name"
+                          item-value="specialty_id"
+                        ></v-autocomplete>
+              
+                    
+
                     <!-- CAMPO DE CÉDULA -->
                     <p align="left" class="mb-1 label">Cédula C1</p>
                     <v-text-field
@@ -206,26 +217,30 @@ export default {
   layout: 'auth',
   data() {
     return {
-      specialties: "", 
-      name: "",
-      specialty_get: [{
-          specialty_id: '',
-          name: '',
-      }],
-     
       identification_card: "",
       institution: "UNACH",
-      /* consultorio */
       consultorio:"",
       direccion:"",
       numberExt:"",
       numberInt:"",
       codigoPostal:"",
-      specialty: [],
-      model: [{
+      // specialty: [""],
+/*       specialties: [{
         specialty_id:'',
         name:'',
-      }],
+      }], */
+      // specialtieslist:{},
+      // specialties:[],
+      dbSelect : '',
+      items : [],
+      // items: {
+      //   'text' : '',
+      //   'value' : ''
+      // },
+      listado: [ 
+         {id: 1, nombre: "ok"},
+         {id: 2, nombre: "bloqueado"},
+      ],
 
       check: '',
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
@@ -263,33 +278,12 @@ export default {
       })
       .then(res => {
         console.log(res)
-        this.specialty_get = res.data.data.name
-        console.log(this.specialty_get)
+        this.items= res.data.data
+  
+        console.log(res.data.data)
 
-      })
-      
-
-    },
-
-/*     getMedicalProfile() {
-      this.$axios
-      .get('/api/v1/catalogue/specialties', 
-      {
-        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
-      })
-      .then(res => {
-        console.log(res)
-        this.status= res.data.data.is_verified
-        this.name = res.data.data.professional_name
-        this.institution = res.data.data.physician_specialties[0].institution
-        this.identification_card = res.data.data.physician_specialties[0].license
-        this.status = res.data.message
       })
     },
- */
-
-
-
     /* CONSULTORIO */
     CreateConsultorio(){
       this.$axios
@@ -300,6 +294,7 @@ export default {
             address: this.direccion,
             number_ext: this.numberExt,
             number_int: this.numberInt,
+           professional_name: this.professional_name
           }
         ],
         zip_code: this.codigoPostal,
@@ -310,54 +305,63 @@ export default {
 
     },
   }, 
+
   mounted() {
     this.getspecialty()
+
+  
   },
 
+  computed:{
+    especialidad(){
+      return Object.values(this.specialty_get)
+
+    }
+  },
 }
 </script>
 
 <style>
-.fondo {
-  height: 100%;
-  color: white;
-  background: white;
-}
-h2 {
-  color: #4f565f;
-  font-family: MontserratBold;
-}
-h3 {
-  font-family: 'MontserratLight';
-  margin-top: 10px;
-  font-size: 100%;
-  margin-bottom: 10px;
-  color: #9966ff;
-}
-p.code {
-  font-family: MontserratMedium;
-  color: #4f565f;
-}
-p.terms {
-  color: #4f565f;
-  font-family: MontserratMedium;
-  font-size: 90%;
-}
-.label {
-  color: #999999;
-  font-family: Montserrat;
-}
-.btn {
-  font-family: MontserratMedium;
-  text-transform: unset !important;
-}
-.textfield {
-  margin-left: -8px;
-  font-size: 0.9rem;
-  font-family: Montserrat;
-}
-.v-input__icon--append .v-icon {
-  font-size: 52px;
-  color: #999999;
-}
+  .fondo {
+    height: 100%;
+    color: white;
+    background: white;
+  }
+  h2 {
+    color: #4f565f;
+    font-family: MontserratBold;
+  }
+  h3 {
+    font-family: 'MontserratLight';
+    margin-top: 10px;
+    font-size: 100%;
+    margin-bottom: 10px;
+    color: #9966ff;
+  }
+  p.code {
+    font-family: MontserratMedium;
+    color: #4f565f;
+  }
+  p.terms {
+    color: #4f565f;
+    font-family: MontserratMedium;
+    font-size: 90%;
+  }
+  .label {
+    color: #999999;
+    font-family: Montserrat;
+  }
+  .btn {
+    font-family: MontserratMedium;
+    text-transform: unset !important;
+  }
+  .textfield {
+    margin-left: -8px;
+    font-size: 0.9rem;
+    font-family: Montserrat;
+  }
+  .v-input__icon--append .v-icon {
+    font-size: 52px;
+    color: #999999;
+  }
 </style>
