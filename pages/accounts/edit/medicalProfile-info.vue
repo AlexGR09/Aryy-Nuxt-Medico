@@ -137,14 +137,30 @@
 
                 <!-- FOTOGRAFUCAS DE CERTIFICADOS | LUIS REYES -->
                   <h1 class="mb-5 mt-8">CERTIFICADOS</h1>
-                  <VueFileAgent 
-                    :disabled="!isEditing" 
-                    :multiple="true" 
-                    :deletable="true" 
-                    :helpText="'Selecciona o arrastra tus archivos aquí'" 
-                    :uploadUrl="uploadUrl" 
-                    v-model="certificates"
+
+
+                  <VueFileAgent
+                    ref="vueFileAgent"
+                    :theme="'grid'"
+                    :multiple="true"
+                    :deletable="true"
+                    :meta="true"
+                    :accept="'image/*'"
+                    :maxSize="'2MB'"
+                    :maxFiles="5"
+                    :helpText="'sube tus certificados'"
+                    :errorText="{
+                      type: 'Tipo de archivo invalido. Solo se permiten imágenes',
+                      size: 'Los archivos no deben exceder los 2 MB de tamaño',
+                    }"
+                    @select="filesSelected($event)"
+                    @beforedelete="onBeforeDelete($event)"
+                    @delete="fileDeleted($event)"
+                    v-model="fileRecords"
                   ></VueFileAgent>
+                  <v-button :disabled="!fileRecordsForUpload.length" @click="uploadFiles()" v-on:click="certified_photos">
+                    subir {{ fileRecordsForUpload.length }} files
+                  </v-button>
    
                 <!-- REDES SOCIALES | LUIS REYES -->
                 <br>
@@ -217,7 +233,7 @@
                 <BR/><BR/>
                   <v-btn  
                     @click="overlay = !overlay" 
-                    v-on:click="certified_photos"
+                    
                     height="50px" 
                     class="white--text save mt-7" 
                     color="#7900ff" 
@@ -249,9 +265,9 @@
   
   
   export default {
-    components: {
-    MenuMed
-},
+        components: {
+        MenuMed
+    },
     data () {
       return {
         /* TITULO | PREFIJO */
@@ -270,16 +286,20 @@
         tiktok:"",
         website:"", 
         overlay: false,
-        fileRecords: [],
-        uploadUrl: 'https://example.com',
+       
+  
         selectedItem: 1,
         isEditing: null,
          /* ESPECIALIDADES */ 
         dbSelect : '',
         items : [],
-        certificates:"",
-   
 
+        fileRecords: [],
+        uploadUrl: 'https://app.aryymd.com/api/v1/physician/educationalbackground/uploadcertificate',
+        uploadHeaders: { 'X-Test-Header': 'vue-file-agent' },
+        fileRecordsForUpload: [], // maintain an upload queue
+   
+ 
 
         
 
@@ -307,16 +327,15 @@
       })
       .then(res => {
         console.log(res)
-        this.status= res.data.data.is_verified
         this.name = res.data.data.professional_name
         this.institution = res.data.data.physician_specialties[0].institution
         this.identification_card = res.data.data.physician_specialties[0].license
         this.status = res.data.message
         this. dbSelect = res.data.data.specialty_id
-        alert(res.data.data.physician_id);
+        alert(res.data.data.is_verified);
       })
       
-/*           alert(error.response.data.errors.email)
+        /*           alert(error.response.data.errors.email)
           this.name = ''
           this.is_verified = error.response.data.data0]  
           console.log(error.res.data.message)
@@ -331,7 +350,8 @@
               axios.post('{{ route("medcial,saber) }}',formData,  {
                               headers: { "Content-Type": "multipart/form-data" }
                       })
-            } */
+            } 
+            */
      
 
    
@@ -393,7 +413,7 @@
     postMedical(){
       const formData = new FormData();
       formData.append('license_photo', this.idPhoto);
-      formData.append('license',this.identification_card)
+      formData.append('license',this.identification_card);
 
       this.$axios
        .post('/api/v1/physician/educationalbackground/uploadlicense', formData,
@@ -410,7 +430,14 @@
     /* FOTOGRAFIAS DE CERTIFICADOS */
     certified_photos(){
       const formData = new FormData();
-      formData.append('certificate_photo', this.certificates.files[0])
+    /*   formData.append('certificate_photo', this.fileRecords[0].files) */
+
+      // Leer archivos seleccionados
+      const files = this.$refs.uploadfiles.files;
+      const totalfiles = this.$refs.uploadfiles.files.length;
+      for (const index = 0; index < totalfiles; index++) {
+      formData.append("certificate_photo[]", fileRecords[index]);
+      }
 
       this.$axios
        .post('/api/v1/physician/educationalbackground/uploadcertificate', formData,
@@ -423,21 +450,46 @@
 
        console.log(formData)
 
+    }, 
+    
+    uploadFiles: function () {
+        // Usando el cargador predeterminado. Puede usar otro cargador en su lugar.
+        this.$refs.vueFileAgent.upload(this.uploadUrl, this.uploadHeaders, this.fileRecordsForUpload);
+        this.fileRecordsForUpload = [];
+      },
+      deleteUploadedFile: function (fileRecord) {
+        // Usando el cargador predeterminado. Puede usar otro cargador en su lugar.
+        this.$refs.vueFileAgent.deleteUpload(this.uploadUrl, this.uploadHeaders, fileRecord);
+      },
+      filesSelected: function (fileRecordsNewlySelected) {
+        const validFileRecords = fileRecordsNewlySelected.filter((fileRecord) => !fileRecord.error);
+        this.fileRecordsForUpload = this.fileRecordsForUpload.concat(validFileRecords);
+      },
+      onBeforeDelete: function (fileRecord) {
+        const i = this.fileRecordsForUpload.indexOf(fileRecord);
+        if (i !== -1) {
+        // 
+          this.fileRecordsForUpload.splice(i, 1);
+          const k = this.fileRecords.indexOf(fileRecord);
+          if (k !== -1) this.fileRecords.splice(k, 1);
+        } 
+      },
+      fileDeleted: function (fileRecord) {
+        const i = this.fileRecordsForUpload.indexOf(fileRecord);
+        if (i !== -1) {
+          this.fileRecordsForUpload.splice(i, 1);
+        } else {
+          this.deleteUploadedFile(fileRecord);
+        }
+      },
     },
 
 
-    /* administratovo */
 
-
-  mounted() {
-    this.getMedicalProfile()
-    this.getspecialty()
-  },
-
-
-
-    
-  }
+    mounted() {
+        this.getMedicalProfile()
+        this.getspecialty()
+      },
 }
   
   </script>

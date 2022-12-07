@@ -323,7 +323,6 @@ export default {
     CreateConsultorio(){
       this.$axios
       .post('/api/v1/facilities',{
-    
         name: this.consultorio,
         location:
           {
@@ -335,10 +334,8 @@ export default {
             number_int: this.number_int,
             reference: this.reference,
           },
-        
         zipcode: this.codigoPostal,
         city_id: this.city_select,
-        
       },
       { 
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
