@@ -366,17 +366,16 @@ export default {
       .then(res => {
         console.log(res)
       })
-    }
+    },
+
+
 
   }, 
-
-
 
   mounted() {
     this.getspecialty()
     this.getstates()
     this.getCity()
-
   
   },
 

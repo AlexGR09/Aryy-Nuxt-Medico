@@ -1,15 +1,9 @@
 <template>
   <v-container>
-    <v-list-item two-line>
-      <v-list-item-content>
-        <v-list-item-title class="text-h5"> Bienvenido, </v-list-item-title>
-        <v-card-title v-model="name"></v-card-title>
-        <v-list-item-text
-          >Tienes <span>4</span>citas el día hoy.</v-list-item-text
-        >
-      </v-list-item-content>
-    </v-list-item>
-    <v-card-text v-model="nameMedical"></v-card-text>
+    <v-text-field v-model="name"></v-text-field>
+    <v-card-title></v-card-title>
+
+   
     <v-row>
       <v-col cols="12" md="4">
         <dashboard-citas />
@@ -28,19 +22,20 @@
 export default {
   data() {
     return {
-      name: ''
+      name: [],
     }
   },
 
   methods: {
     getName () {
       this.$axios
-        .get('/api/v1/physician', {
+        .get('/api/v1/physician/profile', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
-          this.name = res.data.data.professional_name
+          this.data = res.data.data.professional_name
+          alert(res.data.data.professional_name)
         })
     },
   },

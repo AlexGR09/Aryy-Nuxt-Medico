@@ -109,9 +109,12 @@
                 <v-col md="6" cols="12">
                   <span>Foto de cédula*</span>
                   <v-file-input
-                  outlined
-                  :disabled="!isEditing"
+                    v-model="idPhoto"
+                    outlined
+                    chips
+                    :disabled="!isEditing"
                   ></v-file-input>
+             
                   <p class="input mt-3 mb-n4">Formato permitidos: JPG o PNG. Tamaño máximo de archivo 2 MB</p>
                 </v-col>
                 
@@ -132,9 +135,16 @@
                 </v-col>
               </v-row>
 
-
-    <H1 class="mb-5 mt-8">CERTIFICADOS</H1>
-    <VueFileAgent :disabled="!isEditing" :multiple="true" :deletable="true" :helpText="'Selecciona o arrastra tus archivos aquí'" :uploadUrl="uploadUrl" v-model="fileRecords"></VueFileAgent>
+                <!-- FOTOGRAFUCAS DE CERTIFICADOS | LUIS REYES -->
+                  <h1 class="mb-5 mt-8">CERTIFICADOS</h1>
+                  <VueFileAgent 
+                    :disabled="!isEditing" 
+                    :multiple="true" 
+                    :deletable="true" 
+                    :helpText="'Selecciona o arrastra tus archivos aquí'" 
+                    :uploadUrl="uploadUrl" 
+                    v-model="certificates"
+                  ></VueFileAgent>
    
                 <!-- REDES SOCIALES | LUIS REYES -->
                 <br>
@@ -207,6 +217,7 @@
                 <BR/><BR/>
                   <v-btn  
                     @click="overlay = !overlay" 
+                    v-on:click="certified_photos"
                     height="50px" 
                     class="white--text save mt-7" 
                     color="#7900ff" 
@@ -266,6 +277,8 @@
          /* ESPECIALIDADES */ 
         dbSelect : '',
         items : [],
+        certificates:"",
+   
 
 
         
@@ -370,7 +383,51 @@
         console.log(res.data.data)
       })
     },
-  },
+
+
+
+
+
+
+    /* FOTO DE CEDULA | LUIS REYES */
+    postMedical(){
+      const formData = new FormData();
+      formData.append('license_photo', this.idPhoto);
+      formData.append('license',this.identification_card)
+
+      this.$axios
+       .post('/api/v1/physician/educationalbackground/uploadlicense', formData,
+       {
+        headers: {
+          "Authorization": 'Bearer ' + localStorage.getItem("token"),
+           "Content-Type": "multipart/form-data"
+        }
+        
+       })
+       
+    },
+      
+    /* FOTOGRAFIAS DE CERTIFICADOS */
+    certified_photos(){
+      const formData = new FormData();
+      formData.append('certificate_photo', this.certificates.files[0])
+
+      this.$axios
+       .post('/api/v1/physician/educationalbackground/uploadcertificate', formData,
+       {
+        headers:{
+          "Authorization": 'Bearer ' + localStorage.getItem("token"),
+           "Content-Type": "multipart/form-data"
+        }
+       })
+
+       console.log(formData)
+
+    },
+
+
+    /* administratovo */
+
 
   mounted() {
     this.getMedicalProfile()
@@ -381,6 +438,7 @@
 
     
   }
+}
   
   </script>
 
