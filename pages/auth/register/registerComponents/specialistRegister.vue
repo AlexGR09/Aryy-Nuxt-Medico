@@ -140,7 +140,8 @@
               </v-stepper-content>
               <!-- 2. FORMULARIO DE REGISTRO -->
 
-              <!-- 3. FORMULARIO DE CONSULTORIO -->
+  <!-- ------------------------- 3. FORMULARIO DE CONSULTORIO -------------------------------------------------------- -->
+
               <!-- contenido de seccion Perfil | Genesis -->
               <v-stepper-content step="3">
                 <h2 align="center" justify="end">
@@ -158,9 +159,18 @@
                     </router-link>
                   
                     <form>
-                    <!-- CAMPO DE CONSULTORIO  -->
+                    
+                      <!-- CAMPO DE CONSULTORIO  -->
                     <p align="left" class="mb-1 label">Nombre del consultorio*</p>
-                    <v-text-field v-model="consultorio" name="nombre" id="nombre" outlined placeholder="Nombre del consultorio" class="textfield" color="#b380ff"></v-text-field>
+                    <v-text-field 
+                      v-model="consultorio" 
+                      name="nombre" id="nombre" 
+                      outlined 
+                      placeholder="Nombre del consultorio" 
+                      class="textfield" 
+                      color="#b380ff"
+                    ></v-text-field>
+                    
                     <!-- CAMPO DE DIRECCION  -->
                     <p align="left" class="mb-1 mt-n2 label">Direccion*</p>
                     <v-text-field v-model="direccion" outlined placeholder="Calle panuco" class="textfield" color="#b380ff"></v-text-field>
@@ -168,26 +178,40 @@
                     <v-row>
                       <v-col cols="12" md="4">
                         <p align="left" class="mb-1 mt-n2 label">N.Exterior</p>
-                        <v-text-field v-model="numberExt" outlined placeholder="N. Exterior" class="textfield" color="#b380ff"></v-text-field>
+                        <v-text-field v-model="number_ext" outlined placeholder="N. Exterior" class="textfield" color="#b380ff"></v-text-field>
                       </v-col>
                       <v-col cols="12" md="4">
                         <p align="left" class="mb-1 mt-n2 label">N.Interior</p>
-                        <v-text-field v-model="numberInt" outlined placeholder="N. Interior" class="textfield" color="#b380ff"></v-text-field>
+                        <v-text-field v-model="number_int" outlined placeholder="N. Interior" class="textfield" color="#b380ff"></v-text-field>
                       </v-col>
                       <v-col cols="12" md="4">
                         <p align="left" class="mb-1 mt-n2 label">C.P.*</p>
                         <v-text-field v-model="codigoPostal" outlined placeholder="C.P." class="textfield" color="#b380ff"></v-text-field>
                       </v-col>
                     </v-row>
+                    
                     <!-- CIUDAD Y ESTADO -->
                     <v-row>
                       <v-col cols="12" md="6">
                         <p align="left" class="mb-1 mt-n2 label">Estado*</p>
-                        <v-text-field outlined placeholder="Estado" class="textfield" color="#b380ff"></v-text-field>
+                        <v-autocomplete
+                          outlined
+                          placeholder="Selecciona"
+                          :items="states"
+                          v-model="states_select"
+                          item-text="name"
+                          item-value="state_id"
+                          
+                        ></v-autocomplete>
                       </v-col>
                       <v-col cols="12" md="6">
                         <p align="left" class="mb-1 mt-n2 label">Ciudad*</p>
-                        <v-text-field outlined placeholder="Ciudad" class="textfield" color="#b380ff"></v-text-field>
+                        <v-text-field
+                          outlined
+                          placeholder="Selecciona"
+                          v-model="city_select"
+                  
+                        ></v-text-field>
                       </v-col>
                     </v-row>
                     <!-- BOTON DE GUARDAR | LUIS REYES -->
@@ -218,45 +242,54 @@ export default {
   data() {
     return {
       identification_card: "",
-      institution: "UNACH",
+      institution: "",
       consultorio:"",
       direccion:"",
-      numberExt:"",
-      numberInt:"",
+  
       codigoPostal:"",
+      specialty:"",
       // specialty: [""],
 /*       specialties: [{
         specialty_id:'',
         name:'',
       }], */
-      // specialtieslist:{},
-      // specialties:[],
+
+      suburb: "colonia",
+        number_ext: "232",
+        number_int: "D",
+        reference:"edificio color blanco",
+        city_select:"2",
+
       dbSelect : '',
       items : [],
-      // items: {
-      //   'text' : '',
-      //   'value' : ''
-      // },
-      listado: [ 
-         {id: 1, nombre: "ok"},
-         {id: 2, nombre: "bloqueado"},
-      ],
+      
+      /* ESTADOS */
+      states_select: '',
+      states: [],
+
+      /* MUNICIPIOS */
+   
+
+      phone:"9612563178",
+      extension:"2",
+      schedule: "",
+
 
       check: '',
-      date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10),
       e1: 1,
     }
   },
+  
   methods: {
+
+   /* PERFIL MÉDICO */
     create() {
       this.$axios
-      .post('/api/v1/physician/facilities', {
+      .post('/api/v1/physician/profile', {
           professional_name: this.name,
           specialties: [
             {
-              specialty_id: this.specialty,
+              specialty_id: this.Select,
               license: this.identification_card,
               institution: this.institution
             }
@@ -270,6 +303,7 @@ export default {
       })
     },
 
+    
     /* OBTENER ESPECIALIDADES */
     getspecialty() {
       this.$axios
@@ -279,38 +313,73 @@ export default {
       .then(res => {
         console.log(res)
         this.items= res.data.data
-  
         console.log(res.data.data)
 
       })
     },
-    /* CONSULTORIO */
+    
+    
+    /* ENVIAR DATOS DE CONSULTORIO | LUIS REYES */
     CreateConsultorio(){
       this.$axios
-      .post('/api/v1/physician/facility',{
-        facility_name: this.consultorio,
-        location:[
+      .post('/api/v1/facilities',{
+    
+        name: this.consultorio,
+        location:
           {
             address: this.direccion,
-            number_ext: this.numberExt,
-            number_int: this.numberInt,
-           professional_name: this.professional_name
-          }
-        ],
-        zip_code: this.codigoPostal,
+            professional_name: this.professional_name,
+            state: this.states_select,
+            suburb: this.subur,
+            number_ext: this.number_ext,
+            number_int: this.number_int,
+            reference: this.reference,
+          },
+        
+        zipcode: this.codigoPostal,
+        city_id: this.city_select,
+        
       },
       { 
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
       })
-
+    
+    // OBTENER ESTADOS DEL PAIS DE MÉXICO| LUIS REYES
     },
+    getstates() {
+      this.$axios
+      .get('/api/v1/catalogue/states',{
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(response => {
+        console.log(response)
+        this.states= response.data.data
+ 
+      })
+    },
+    // OBTENER MUNICIPIOS | LUIS REYES
+    getCity(){
+      this.$axios
+      .get('/api/v1/catalogue/citiesofstate',{
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(res => {
+        console.log(res)
+      })
+    }
+
   }, 
+
+
 
   mounted() {
     this.getspecialty()
+    this.getstates()
+    this.getCity()
 
   
   },
+
 
   computed:{
     especialidad(){

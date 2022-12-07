@@ -49,14 +49,12 @@
                 <!-- CAMPO TITULO | LUIS REYES -->
                 <v-col  md="2" cols="12">
                   <span>Titulo*</span>
-                  <v-autocomplete
-                    v-model="title" 
-                    class="textfield " 
-                    placeholder="Selecciona"
+                  <v-select
                     outlined
-                    :items="items"
+                    placeholder="Selecciona"
+                    :items="titulo"
                     :disabled="!isEditing"
-                  ></v-autocomplete>
+                  ></v-select>
                 </v-col>
                 
                 <!-- CAMPO NOMBRE DEL MEDICO | LUIS REYES -->
@@ -75,7 +73,10 @@
                 <v-col md="6" cols="12">
                   <span>Especialidad*</span>
                   <v-autocomplete
-                    v-model="specialty"
+                    v-model="dbSelect"
+                    :items="items"
+                    item-text="name"
+                    item-value="specialty_id"
                     outlined
                     placeholder="Seleccione una especialidad"
                     :disabled="!isEditing"
@@ -242,6 +243,9 @@
 },
     data () {
       return {
+        /* TITULO | PREFIJO */
+        titulo: ['Prof.', 'Profa.', 'Dr.', 'Dra.','Lic.', 'Mtro.','Mtra.'],
+        
         status:"",
         title:"",
         name: "",
@@ -258,12 +262,14 @@
         fileRecords: [],
         uploadUrl: 'https://example.com',
         selectedItem: 1,
-        items:
-        [
-          {title:'Dr.'}
-
-        ],
         isEditing: null,
+         /* ESPECIALIDADES */ 
+        dbSelect : '',
+        items : [],
+
+
+        
+
       }
     },
     watch: {
@@ -273,6 +279,8 @@
       }, 2000)
     },
   },
+  
+  
   methods: {
       reset () {
         this.$refs.form.reset()
@@ -280,7 +288,7 @@
 
       getMedicalProfile() {
       this.$axios
-      .get('/api/v1/physician', 
+      .get('/api/v1/physician/profile', 
       {
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
       })
@@ -291,6 +299,8 @@
         this.institution = res.data.data.physician_specialties[0].institution
         this.identification_card = res.data.data.physician_specialties[0].license
         this.status = res.data.message
+        this. dbSelect = res.data.data.specialty_id
+        alert(res.data.data.physician_id);
       })
       
 /*           alert(error.response.data.errors.email)
@@ -347,10 +357,24 @@
         this.isEditing = !this.isEditing
         this.hasSaved = true
       },
+
+          /* OBTENER ESPECIALIDADES */
+    getspecialty() {
+      this.$axios
+      .get('/api/v1/catalogue/specialties',{
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(res => {
+        console.log(res)
+        this.items= res.data.data
+        console.log(res.data.data)
+      })
+    },
   },
 
   mounted() {
     this.getMedicalProfile()
+    this.getspecialty()
   },
 
 
