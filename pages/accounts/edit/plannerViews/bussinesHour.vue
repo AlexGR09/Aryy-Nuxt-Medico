@@ -1,6 +1,5 @@
 <template>
   <div>
-    
         <v-btn-toggle borderless class="botones mb-n5 mt-n4">
           <v-checkbox
             v-model="lun"
@@ -109,7 +108,7 @@
       <!-- chips para mostrar los horarios seleccionados | Genesis -->
       <v-col>
         <v-row class="mb-n10" v-if="lun">
-          <v-col class="mr-n16" xl="1"> <p class="weekday">Lun</p> </v-col>
+          <v-col class="mr-n16" xl="2"> <p class="weekday">Lun</p> </v-col>
           <v-col xl="12" class="mr-n16">
             <v-chip label v-if="!inicio[0]">No registrado</v-chip>
             <v-chip
@@ -312,8 +311,8 @@
           >
           <v-col xl="5"></v-col>
         </v-row>
-        <!-- <v-btn color="#9966ff" class="btnhour ml-n5" @click="addDay" text>
-          Agregar horario</v-btn> -->
+        <v-btn color="#9966ff" class="btnhour ml-n5" @click="addDay" text>
+          Agregar horario</v-btn>
       </v-col>
   </div>
 </template>
@@ -321,6 +320,10 @@
 export default {
   data() {
     return {
+      hourss: [],
+      schedule: '',
+      day: '',
+      attention_time: '',
       dias: [],
       inicio: [],
       final: [],
@@ -331,7 +334,6 @@ export default {
       endhour: '',
       initialhour2: '',
       endhour2: '',
-      attention_time: '',
       /* valores de los chips de horario | Genesis */
       chipLun: true, chipMar: true, chipMie: true, chipJue: true,
       chipVie: true, chipSab: true, chipLun2: true, chipMar2: true,
@@ -379,6 +381,23 @@ export default {
   },
 
   methods: {
+    getHour(){
+    this.$axios
+        .get('api/v1/facilities', {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log(res)
+          console.log('exito en GET')
+          this.hourss = res.data.data
+          this.day = res.data.data[0].schedule[0].day
+          this.attention_time = res.data.data[0].schedule[0].attention_time
+       
+        })
+        .catch(
+          console.log('error en GET')
+        )
+          },
     addDay() {
       const initialHour = [this.initialhour]
       const hourInitial = initialHour.join()
@@ -412,9 +431,9 @@ export default {
       console.log(this.attentiontime)
     },
 
-    getFacility() {
+    postFacility() {
       this.$axios
-        .post('/api/v1/facilities', {
+        .post('api/v1/facilities/full/', {
           schedule: [
             {
               day: this.lun,

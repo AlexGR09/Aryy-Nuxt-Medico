@@ -137,6 +137,13 @@
                     placeholder="Escribe referencias de la ubicación"
                     outlined
                   ></v-text-field>
+                  <v-text-field
+                    v-model="coordinates"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="coordenada"
+                    outlined
+                  ></v-text-field>
                 </v-col>
               </v-row>
               <v-row>
@@ -276,6 +283,8 @@ export default {
   },
   data() {
     return {
+      valid: '',
+
       facility_name: '',
       phone_number: '',
       extension: '',
@@ -299,7 +308,12 @@ export default {
       toilets: false,
       unisex: false,
       wifi: false,
-
+      coordinates: '',
+      horas: '',
+      name: '',
+      day: '',
+      
+  
 
 
 
@@ -333,13 +347,12 @@ export default {
   },
   mounted() {
     console.log('verificando')
-    this.Savefacility()
   },
   methods: {
      /*    método post para añadir un consultorio | Genesis */
      Savefacility() {
     this.$axios
-      .post('/facilities', {
+      .post('api/v1/facilities/full', {
         name: this.facility_name,
         location: 
           {
@@ -351,6 +364,7 @@ export default {
             reference: this.reference,
           }
         ,
+        coordinates: this.coordinates,
         phone: this.phone_number,
         extension: this.extension,
         zipcode: this.zip_code,
@@ -385,15 +399,12 @@ export default {
           },
           
         ],
-       type_schedule: this.biography,
-       consultation_length: this.biography,
         accessibility_and_others: 
           {
             accessibility:
               {
                 parking_with_access_to_the_establishment: this.parking,
                 wheelchair_lift_or_ramp: this.lift,
-                /* wheelchair_lift_or_ramp: this.ramp, */
                 toilets_with_wheelchair_access: this.restroom,
                 rest_area_with_wheelchair_access: this.area,
                 staff_trained_in_sign_language: this.sign,
@@ -415,8 +426,6 @@ export default {
             ,
           }
         ,
-        /* clues: this.biography,
-        city_id: this.biography, */
       })
       .then((response) => {
         console.log(response.data.data)
@@ -424,6 +433,7 @@ export default {
       })
       .catch((error) => {
         /*   alert(error.response.data.errors.email) */
+        console.log(error)
         this.errormail = ''
         this.errormail = error.response.data.errors.email[0]
         this.password_error=""

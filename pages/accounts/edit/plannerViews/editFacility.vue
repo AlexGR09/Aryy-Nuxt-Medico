@@ -11,129 +11,103 @@
                     <span>Nombre del consultorio editar*</span>
                     <v-text-field
                       prepend-inner-icon="mdi-magnify"
-                      v-model="facility_name"
+                      v-model="name"
                       color="#9966ff"
                       class="textfield"
                       placeholder="Nombre del consultorio"
                       outlined
                     ></v-text-field>
-                   
                   </v-col>
                   <v-col md="6" cols="12">
                     <span>Teléfono para citas*</span>
                     <v-text-field
-                      v-model="phone_number"
+                      v-model="phone"
                       color="#9966ff"
                       class="textfield mb-5"
                       placeholder="XXX XXX XXXX"
                       outlined
                     ></v-text-field>
-                    <span>Horario para recepción de llamadas*</span>
+                    <span >Horario para recepción de llamadas*</span>
                     <div
                       class="form-group mb-9"
                       v-for="(input, k) in inputs"
                       :key="k"
                     >
-                      <v-row>
-                        <p class="text mt-8 ml-6">De</p>
-                        <v-col md="4">
-                          <v-dialog
-                            ref="dialog"
-                            v-model="modal2"
-                            :return-value.sync="time"
-                            persistent
-                            width="290px"
-                          >
-                            <template v-slot:activator="{ on, attrs }">
-                              <v-text-field
-                                color="#7900ff"
-                                outlined
-                                class="textfield"
-                                v-model="time"
-                                placeholder="08:00 AM"
-                                readonly
-                                v-bind="attrs"
-                                v-on="on"
-                              ></v-text-field>
-                            </template>
-                            <v-time-picker
-                              color="#7900ff"
-                              v-if="modal2"
-                              v-model="start"
-                              :max="end"
-                              full-width
+                      <v-row class="mt-2 mb-n15">
+                        <v-col xl="12">
+                          <p class="weekday">
+                            {{ lun }}
+                            <v-chip
+                              class="ml-5"
+                              style="border: thin solid #7900ff"
+                              color="#f4edff"
+                              label
+                              >{{ timeLun }}</v-chip
                             >
-                              <v-spacer></v-spacer>
-                              <v-btn text color="#7900ff" @click="modal2 = false">
-                                Cancel
-                              </v-btn>
-                              <v-btn
-                                text
-                                color="#7900ff"
-                                @click="$refs.dialog.save(start)"
-                              >
-                                OK
-                              </v-btn>
-                            </v-time-picker>
-                          </v-dialog>
-                        </v-col>
-                        <p class="text mt-8">A</p>
-                        <v-col md="4">
-                          <v-dialog
-                            ref="dialog"
-                            v-model="modal2"
-                            :return-value.sync="time"
-                            persistent
-                            width="290px"
-                          >
-                            <template v-slot:activator="{ on, attrs }">
-                              <v-text-field
-                                color="#7900ff"
-                                outlined
-                                class="textfield"
-                                v-model="time"
-                                placeholder="08:00 PM"
-                                readonly
-                                v-bind="attrs"
-                                v-on="on"
-                              ></v-text-field>
-                            </template>
-                            <v-time-picker
-                              color="#7900ff"
-                              v-if="modal2"
-                              v-model="end"
-                              :min="start"
-                              full-width
+                          </p>
+                          <p class="weekday" v-if="mar">
+                            {{ mar }}
+                            <v-chip
+                              class="ml-3"
+                              style="border: thin solid #7900ff"
+                              color="#f4edff"
+                              label
+                              >{{ timeMar }}</v-chip
                             >
-                              <v-spacer></v-spacer>
-                              <v-btn text color="#7900ff" @click="modal2 = false">
-                                Cancel
-                              </v-btn>
-                              <v-btn
-                                text
-                                color="#7900ff"
-                                @click="$refs.dialog.save(end)"
-                              >
-                                OK
-                              </v-btn>
-                            </v-time-picker>
-                          </v-dialog>
+                          </p>
+                          <p class="weekday" v-if="mie">
+                            {{ mie }}
+                            <v-chip
+                              style="border: thin solid #7900ff"
+                              color="#f4edff"
+                              label
+                              v-if="mie"
+                              >{{ timeMie }}</v-chip
+                            >
+                          </p>
+                          <p class="weekday" v-if="jue">
+                            {{ jue }}
+                            <v-chip
+                              style="border: thin solid #7900ff"
+                              color="#f4edff"
+                              label
+                              v-if="jue"
+                              >{{ timeJue }}</v-chip
+                            >
+                          </p>
+                          <p class="weekday" v-if="vie">
+                            {{ vie }}
+                            <v-chip
+                              style="border: thin solid #7900ff"
+                              color="#f4edff"
+                              label
+                              v-if="vie"
+                              >{{ timeVie }}</v-chip
+                            >
+                          </p>
+                          <p class="weekday" v-if="sab">
+                            {{ sab }}
+                            <v-chip
+                              style="border: thin solid #7900ff"
+                              color="#f4edff"
+                              label
+                              v-if="sab"
+                              >{{ timeSab }}</v-chip
+                            >
+                          </p>
+                          <p class="weekday" v-if="dom">
+                            {{ dom }}
+                            <v-chip
+                              style="border: thin solid #7900ff"
+                              color="#f4edff"
+                              label
+                              v-if="dom"
+                              >{{ timeDom }}</v-chip
+                            >
+                          </p>
                         </v-col>
-                        <v-btn
-                          @click="add(k)"
-                          v-show="k == inputs.length - 1"
-                          class="mt-6"
-                          icon
-                          color="#9966ff"
-                        >
-                          <v-icon>mdi-plus-circle</v-icon>
-                        </v-btn>
                       </v-row>
                     </div>
-                    <v-btn class="btn ml-n5 mt-n5" color="#9966ff" text
-                      ><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro
-                      número</v-btn
-                    >
                   </v-col>
                   <v-col md="6" cols="12">
                     <span>Extensión</span>
@@ -149,7 +123,7 @@
                   <v-col md="4" cols="12">
                     <span>Código postal*</span>
                     <v-text-field
-                      v-model="zip_code"
+                      v-model="zipcode"
                       color="#9966ff"
                       maxlength="5"
                       counter="5"
@@ -180,13 +154,13 @@
                   </v-col>
                   <v-col md="4" cols="12">
                     <span>Colonia*</span>
-                    <v-autocomplete
+                    <v-text-field
                       v-model="suburb"
                       color="#9966ff"
                       class="textfield"
                       placeholder="Selecciona una colonia"
                       outlined
-                    ></v-autocomplete>
+                    ></v-text-field>
                   </v-col>
                   <v-col md="8" cols="12">
                     <span>Ubicación*</span>
@@ -322,45 +296,96 @@
                     ></v-checkbox>
                   </v-col>
                   <div class="mt-5 mb-n15">
-                    <v-btn
-                      @click="overlay = !overlay"
-                      height="50px"
-                      class="white--text save"
-                      color="#7900ff"
-                      large
-                      >Guardar cambios</v-btn
-                    >
-                    <v-btn
-                      @click="reset"
-                      height="50px"
-                      class="restore ml-3"
-                      color="#999999"
-                      outlined
-                      large
-                      >Restaurar todo</v-btn
-                    >
-                    <v-overlay :value="overlay">
-                      <v-alert
-                        class="rounded-xl"
-                        icon="mdi-check-circle"
-                        color="green"
-                        >Datos actualizados correctamente.</v-alert
-                      >
-                    </v-overlay>
                   </div>
+                  <div class="mt-5 mb-n15">
+                  <v-btn
+                  v-on:click="facility"
+                    @click="overlay = !overlay"
+                    height="50px"
+                    class="white--text save"
+                    color="#7900ff"
+                    large
+                    >Guardar cambios</v-btn
+                  >
+                  <v-btn
+                    @click="reset"
+                    height="50px"
+                    class="restore ml-3"
+                    color="#999999"
+                    outlined
+                    large
+                    >Restaurar todo</v-btn
+                  >
+                  <v-overlay :value="overlay">
+                    <v-alert
+                      class="rounded-xl"
+                      icon="mdi-check-circle"
+                      color="green"
+                      >Datos actualizados correctamente.</v-alert
+                    >
+                  </v-overlay>
+                </div>
                 </v-row>
               </v-col>
               <v-col xl="1"></v-col>
             </v-form>
+            
           </v-row>
         </v-card-text>
       </v-card>
     </div>
   </template>
-  <script>
+    <script>
   export default {
+    components: {
+    },
     data() {
       return {
+        lun: '',
+      mar: '',
+      mie: '',
+      jue: '',
+      vie: '',
+      sab: '',
+      dom: '',
+      timeLun: '',
+      timeMar: '',
+      timeMie: '',
+      timeJue: '',
+      timeVie: '',
+      timeSab: '',
+      timeDom: '',
+      horas: '',
+      name: '',
+      day: '',
+      extension: '',
+      city: '',
+      
+      parking: false,
+      lift: false,
+      ramp: false,
+      restroom: false,
+      area:false,
+      sign: false,
+      braille: false,
+
+      lgbt: false,
+      trans: false,
+      toilets: false,
+
+      unisex: false,
+      wifi: false,
+  
+        attention_time: '',
+        address: '',
+        number_ext: '',
+        number_int: '',
+        state: '',
+        facilities: [],
+        phone: '',
+        zipcode: '',
+        suburb: '',
+        reference: '',
         inputs: [
           {
             name: '',
@@ -385,119 +410,139 @@
     mounted() {
       console.log('verificando')
       this.getFacility()
-    },
+      this.facility()    },
     methods: {
-     /*  metodo get para recibir datos de establecimiento | Genesis */
-        getFacility() {
-              console.log('creando petición GET');
-              this.$axios
-              .get('/api/v1/physician/facility',
-              { 
-                headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
-              })
-              .then(res => {
-                       console.log(res)
-                       console.log("exito en GET")
-                       this.facility_name = res.data.data.user.facility_name
-                       this.phone_number = res.data.data.user.phone_number
-                       this.extension = res.data.data.user.extension
-                       this.zip_code = res.data.data.user.zip_code
-                       this.state = res.data.data.user.state
-                       this.city = res.data.data.user.city
-                       this.suburb = res.data.data.user.suburb
-                       this.address = res.data.data.user.address
-                       this.number_ext = res.data.data.user.number_ext
-                       this.number_int = res.data.data.user.number_int
-                       this.reference = res.data.data.user.reference
-
-                       this.parking = res.data.data.user.parking_with_access_to_the_establishment
-                       this.lift = res.data.data.user.wheelchair_lift_or_ramp
-                       this.restroom = res.data.data.user.toilets_with_wheelchair_access
-                       this.area = res.data.data.user.rest_area_with_wheelchair_access
-                       this.sign = res.data.data.user.staff_trained_in_sign_language
-                       this.braille = res.data.data.user.braille_signage_for_blind_people
-
-                       this.lgbt = res.data.data.user.lgtb_friendly
-                       this.trans = res.data.data.user.safe_space_for_transgender_people
-
-                       this.toilets = res.data.data.user.toilets
-                       this.unisex = res.data.data.user.unisex_toilets
-                       this.wifi = res.data.data.user.wifi
-                      })
-                  .catch(
-                      /* console.log(e); */
-                      console.log("error en GET")
-                  )
-          },
-       /*    método put para actualizar los datos de establecimiento | Genesis */
-       facility() {
+      /*  metodo get para recibir datos de establecimiento | Genesis */
+      getFacility() {
+        console.log('creando petición GET')
         this.$axios
-          .put('/api/v1/physician/facility', {
-            facility_name: this.facility_name,
-            location: [
-              {
-                address: this.specialty_id,
-                number_ext: this.license,
-                number_int: this.institution,
-                reference: this.certificates,
-              }
-            ],
-            phone_number: this.biography,
-            zip_code: this.biography,
-            schedule: [
-              {
-                day: this.biography,
-                attention_time: this.biography,
-              },
-              {
-                day: this.biography,
-                attention_time: this.biography,
-              },
-            ],
-            type_schedule: this.biography,
-            consultation_length: this.biography,
-            accessibility_and_others: [
-              {
-                accessibility:[
-                  {
-                    parking_with_access_to_the_establishment: this.parking,
-                    wheelchair_lift_or_ramp: this.lift,
-                    /* wheelchair_lift_or_ramp: this.ramp, */
-                    toilets_with_wheelchair_access: this.restroom,
-                    rest_area_with_wheelchair_access: this.area,
-                    staff_trained_in_sign_language: this.sign,
-                    braille_signage_for_blind_people: this.braille,
-                  }
-                ],
-                usual_audiences:[
-                  {
-                    lgtb_friendly: this.lgbt,
-                    safe_space_for_transgender_people: this.trans,
-                  }
-                ],
-                services:[
-                  {
-                    toilets: this.toilets,
-                    unisex_toilets: this.unisex,
-                    wifi: this.wifi, 
-                  }
-                ],
-              }
-            ],
-            /* clues: this.biography,
-            city_id: this.biography, */
+          .get('api/v1/facilities', {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
           })
-          .then((response) => {
-            console.log(response.data.data)
-            localStorage.setItem('token',response.data.access_token)
+          .then((res) => {
+            console.log(res)
+            console.log('exito en GET')
+            this.facilities = res.data.data
+            this.consultorios = res.data.data.length
+            this.horas = res.data.data[0].schedule.lenght
+            this.name = res.data.data[0].name
+            this.address = res.data.data[0].location.address
+            this.number_ext = res.data.data[0].location.number_ext
+            this.number_int = res.data.data[0].location.number_int
+            this.state = res.data.data[0].location.state
+            this.suburb = res.data.data[0].location.suburb
+            this.reference = res.data.data[0].location.reference
+            this.phone = res.data.data[0].phone
+            this.zipcode = res.data.data[0].zipcode
+  
+            this.lun = res.data.data[0].schedule[0].day
+            this.timeLun = res.data.data[0].schedule[0].attention_time
+            this.mar = res.data.data[1].schedule[1].day
+            this.timeMar = res.data.data[1].schedule[1].attention_time
+            this.mie = res.data.data[2].schedule[2].day
+            this.timeMie = res.data.data[2].schedule[2].attention_time
+            this.jue = res.data.data[3].schedule[3].day
+            this.timeJue = res.data.data[3].schedule[3].attention_time
+            this.vie = res.data.data[4].schedule[4].day
+            this.timeVie = res.data.data[4].schedule[4].attention_time
+            this.sab = res.data.data[5].schedule[5].day
+            this.timeSab = res.data.data[5].schedule[5].attention_time
+            this.dom = res.data.data[6].schedule[6].day
+            this.timeDom = res.data.data[6].schedule[6].attention_time
+            /*  accesibilidad | Genesis */
+            this.parking =
+              res.data.data[0].accessibility_and_others.accessibility.parking_with_access_to_the_establishment
+            this.lift =
+              res.data.data[0].accessibility_and_others.accessibility.wheelchair_lift_or_ramp
+            this.restroom =
+              res.data.data[0].accessibility_and_others.accessibility.toilets_with_wheelchair_access
+            this.area =
+              res.data.data[0].accessibility_and_others.accessibility.rest_area_with_wheelchair_access
+            this.sign =
+              res.data.data[0].accessibility_and_others.accessibility.staff_trained_in_sign_language
+            this.braille =
+              res.data.data[0].accessibility_and_others.accessibility.braille_signage_for_blind_people
+  
+            /* publico usual | Genesis */
+            this.toilets =
+              res.data.data[0].accessibility_and_others.usual_audiences.toilets
+            this.unisex =
+              res.data.data[0].accessibility_and_others.services.unisex_toilets
+            this.wifi = res.data.data[0].accessibility_and_others.services.wifi
           })
-          .catch((error) => {
-            /*   alert(error.response.data.errors.email) */
-            this.errormail = ''
-            this.errormail = error.response.data.errors.email[0]
-            this.password_error=""
-            this.password_error = error.response.data.errors.password[0]
+  
+          /*  servicios | Genesis */
+  
+          .catch(
+            /* console.log(e); */
+            console.log('error en GET')
+          )
+      },
+      /*    método put para actualizar los datos de establecimiento | Genesis */
+      facility() {
+        console.log('creando petición GET')
+        this.$axios
+          .put('api/v1/facilities', {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
           })
+          .then((res) => {
+            console.log(res)
+            console.log('exito en GET')
+            this.facilities = res.data.data
+            this.consultorios = res.data.data.length
+            this.horas = res.data.data[0].schedule.lenght
+            this.name = res.data.data[0].name
+            this.address = res.data.data[0].location.address
+            this.number_ext = res.data.data[0].location.number_ext
+            this.number_int = res.data.data[0].location.number_int
+            this.state = res.data.data[0].location.state
+            this.suburb = res.data.data[0].location.suburb
+            this.reference = res.data.data[0].location.reference
+            this.phone = res.data.data[0].phone
+            this.zipcode = res.data.data[0].zipcode
+  
+            this.lun = res.data.data[0].schedule[0].day
+            this.timeLun = res.data.data[0].schedule[0].attention_time
+            this.mar = res.data.data[1].schedule[1].day
+            this.timeMar = res.data.data[1].schedule[1].attention_time
+            this.mie = res.data.data[2].schedule[2].day
+            this.timeMie = res.data.data[2].schedule[2].attention_time
+            this.jue = res.data.data[3].schedule[3].day
+            this.timeJue = res.data.data[3].schedule[3].attention_time
+            this.vie = res.data.data[4].schedule[4].day
+            this.timeVie = res.data.data[4].schedule[4].attention_time
+            this.sab = res.data.data[5].schedule[5].day
+            this.timeSab = res.data.data[5].schedule[5].attention_time
+            this.dom = res.data.data[6].schedule[6].day
+            this.timeDom = res.data.data[6].schedule[6].attention_time
+            /*  accesibilidad | Genesis */
+            this.parking =
+              res.data.data[0].accessibility_and_others.accessibility.parking_with_access_to_the_establishment
+            this.lift =
+              res.data.data[0].accessibility_and_others.accessibility.wheelchair_lift_or_ramp
+            this.restroom =
+              res.data.data[0].accessibility_and_others.accessibility.toilets_with_wheelchair_access
+            this.area =
+              res.data.data[0].accessibility_and_others.accessibility.rest_area_with_wheelchair_access
+            this.sign =
+              res.data.data[0].accessibility_and_others.accessibility.staff_trained_in_sign_language
+            this.braille =
+              res.data.data[0].accessibility_and_others.accessibility.braille_signage_for_blind_people
+  
+            /* publico usual | Genesis */
+            this.toilets =
+              res.data.data[0].accessibility_and_others.usual_audiences.toilets
+            this.unisex =
+              res.data.data[0].accessibility_and_others.services.unisex_toilets
+            this.wifi = res.data.data[0].accessibility_and_others.services.wifi
+          })
+  
+          /*  servicios | Genesis */
+  
+          .catch(
+            /* console.log(e); */
+            console.log('error en GET')
+          )
       },
       save(start, end) {
         this.$refs.dialog[0].save(start, end)
@@ -514,8 +559,8 @@
     },
   }
   </script>
-  
-  <style>
+    
+    <style>
   .text {
     font-family: Montserrat;
     color: grey;

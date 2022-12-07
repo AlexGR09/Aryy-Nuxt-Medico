@@ -56,7 +56,7 @@ export default {
     infoFacility() {
       console.log('creando petición GET')
       this.$axios
-        .get('/facilities', {
+        .get('api/v1/facilities', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
