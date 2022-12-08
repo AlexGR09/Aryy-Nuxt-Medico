@@ -6,21 +6,21 @@
           CITA PRÓXIMA
         </v-card-text>
         <v-card-title class="text-no-wrap ">
-          Fulanito Detal
+          Todavía no <br> tienes citas <br> agendadas
         </v-card-title>
         <v-card-subtitle class="d-flex align-center">
-          5 / Diciembre / 2022
+ 
         </v-card-subtitle>
         <v-card-text class="d-flex align-center">
-          10: 00 HRS
+
         </v-card-text>
-        <v-card-subtitle></v-card-subtitle>
+
       </v-col>
       <v-col cols="4">
         <img
           contain
-          height="100"
-          max-width="100"
+          height="150"
+          max-width="150"
           class="greeting-card-trophy"
           src="@/assets/icons/icon_appointments.svg"
         >

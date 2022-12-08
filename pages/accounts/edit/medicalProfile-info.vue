@@ -135,12 +135,11 @@
                 </v-col>
               </v-row>
 
-                <!-- FOTOGRAFUCAS DE CERTIFICADOS | LUIS REYES -->
+                <!-- FOTOGRAFIAS DE CERTIFICADOS | LUIS REYES -->
                   <h1 class="mb-5 mt-8">CERTIFICADOS</h1>
-
-
                   <VueFileAgent
-                    ref="vueFileAgent"
+                    ref="uploadfiles"
+                    id="uploadfiles" 
                     :theme="'grid'"
                     :multiple="true"
                     :deletable="true"
@@ -233,7 +232,7 @@
                 <BR/><BR/>
                   <v-btn  
                     @click="overlay = !overlay" 
-                    
+                    v-on:click="certified_photos"
                     height="50px" 
                     class="white--text save mt-7" 
                     color="#7900ff" 
@@ -404,11 +403,6 @@
       })
     },
 
-
-
-
-
-
     /* FOTO DE CEDULA | LUIS REYES */
     postMedical(){
       const formData = new FormData();
@@ -424,7 +418,6 @@
         }
         
        })
-       
     },
       
     /* FOTOGRAFIAS DE CERTIFICADOS */
@@ -433,8 +426,8 @@
     /*   formData.append('certificate_photo', this.fileRecords[0].files) */
 
       // Leer archivos seleccionados
-      const files = this.$refs.uploadfiles.files;
-      const totalfiles = this.$refs.uploadfiles.files.length;
+      const files = this.$refs.uploadfiles.fileRecords;
+      const totalfiles = this.$refs.uploadfiles.fileRecords.length;
       for (const index = 0; index < totalfiles; index++) {
       formData.append("certificate_photo[]", fileRecords[index]);
       }
@@ -483,9 +476,6 @@
         }
       },
     },
-
-
-
     mounted() {
         this.getMedicalProfile()
         this.getspecialty()

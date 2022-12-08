@@ -1,9 +1,15 @@
 <template>
   <v-container>
-    <v-text-field v-model="name"></v-text-field>
-    <v-card-title></v-card-title>
-
-   
+    <v-card-text>
+      <p class="text-h4 text--primary">
+        Bienvenido,
+      </p>
+      <p  class="text-h4 text--primary">Dr(a). {{facilities}}</p>
+      <div class="text--primary">
+        Aún no ha terminado de configurar su perfil de, <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link>
+      </div>
+    </v-card-text>
+    <v-card-subtitle class="text-h5 text--primary">CITAS</v-card-subtitle>
     <v-row>
       <v-col cols="12" md="4">
         <dashboard-citas />
@@ -17,12 +23,12 @@
     </v-row>
   </v-container>
 </template>
-
 <script>
 export default {
   data() {
     return {
       name: [],
+      facilities: null,
     }
   },
 
@@ -34,7 +40,7 @@ export default {
         })
         .then((res) => {
           console.log(res)
-          this.data = res.data.data.professional_name
+          this.facilities = res.data.data.professional_name
           alert(res.data.data.professional_name)
         })
     },
@@ -45,3 +51,8 @@ export default {
   },
 }
 </script>
+
+
+<style>
+
+</style>
