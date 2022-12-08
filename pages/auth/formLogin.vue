@@ -156,7 +156,7 @@ export default {
   methods: {
     login() {
       this.$axios
-        .post('login', {
+        .post('api/v1/login', {
           email: this.email,
           password: this.password,
         })

@@ -11,8 +11,10 @@
               <span>Consultorio*</span>
               <v-autocomplete
                 color="#7900ff"
-                :items="facilities"
-                v-model="facilities"
+                v-model="dbSelect"
+                    :items="items"
+                    item-text="name"
+                    item-value="specialty_id"
                 class="textfield"
                 placeholder="Seleccione el consultorio"
                 outlined
@@ -156,11 +158,27 @@ export default {
       modal: false,
       selectedItem: 1,
       facilities: [],
+      dbSelect : '',
+        items : [],
       timeagenda: ['4 Semanas']
     }
   },
-
+  mounted() {
+          console.log('verificando');
+          this.getspecialty();
+      },
   methods: {
+    getspecialty() {
+      this.$axios
+      .get('/api/v1/facilities',{
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(res => {
+        console.log(res)
+        this.items= res.data.data
+        console.log(res.data.data.name)
+      })
+    },
     addDay() {
       const initialHour = [this.initialhour]
       const hourInitial = initialHour.join()
@@ -190,6 +208,7 @@ export default {
             headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
           })
           .then((res) => {
+            this.items=res.data.data[0].name
             console.log(res)
             console.log('exito en GET')
             this.facilities = res.data.data

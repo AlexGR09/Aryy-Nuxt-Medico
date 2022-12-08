@@ -54,7 +54,7 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
  /*    baseURL: 'https://app.aryymd.com', */
 /*  baseURL:'http://aryy-api-v1.test', */ 
- baseURL:'https://c7ec-187-190-205-57.ngrok.io/',
+ baseURL:'https://960c-103-14-26-88.ngrok.io',
     proxyHeaders: false,
     credential: false,
     header:{

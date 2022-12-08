@@ -4,7 +4,6 @@
      <span v-if="!facilities[0]"
       >Todavía no tienes consultorios registrados.</span
     > 
-    
     <v-sheet
     v-for="facility in facilities" :key="facility" 
       class="mb-5"
@@ -43,14 +42,15 @@
                   </v-row>
                   </v-app-bar>
               <template  v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on" v-model="check" class="iconos" icon>
+              
+              <v-btn :to="'/accounts/edit/plannerviews/'+facility.id"  v-bind="attrs" v-on="on" v-model="check" class="iconos" icon>
                 <v-img
                   :src="require('@/assets/icons/icon_verpaciente.svg')"
                   max-width="25"
                 ></v-img>
               </v-btn>
             </template>
-            <watch-facility class="mt-16 ml-13"/>
+            <!-- <watch-facility class="mt-16 ml-13"/> -->
                 </v-dialog>
               <v-btn class="iconos ml-n3"  v-on:click="deleteCard" icon>
                 <v-img
@@ -71,14 +71,15 @@
                   </v-row>
                   </v-app-bar>
               <template  v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on" v-model="check" class="iconos ml-n3" icon>
+                <nuxt-link :to="'/accounts/edit/plannerviews/'+facility.id">
+              <v-btn  v-bind="attrs" v-on="on" v-model="check" class="iconos ml-n3" icon>
                 <v-img
-                :src="require('@/assets/icons/icon_editpaciente.svg')"
+                  :src="require('@/assets/icons/icon_editpaciente.svg')"
                   max-width="25"
                 ></v-img>
-              </v-btn>
+              </v-btn></nuxt-link>
             </template>
-            <edit-facility class="mt-16 ml-13"/>
+            <watch-facility class="mt-16 ml-13"/>
                 </v-dialog>
           
             </v-btn-toggle>
@@ -89,21 +90,25 @@
   </div>
 </template>
 <script>
-import editFacility from './editFacility.vue'
 import watchFacility from './_watchFacility.vue'
 export default {
   components: {
-    editFacility,
     watchFacility,
 },
   data() {
     return {
+      horas: [],
+      facilities: [],
+      props:{
+        facilities: Object
+      },
+      check: '',
+      dialog: '',
       name: '',
       address: '',
       number_ext: '',
       number_int: '',
       state: '',
-      facilities: [],
       selectedItem: 1,
       consultorios: [
         
