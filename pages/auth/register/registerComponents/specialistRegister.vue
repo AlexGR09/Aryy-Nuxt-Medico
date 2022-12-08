@@ -90,8 +90,6 @@
                           item-text="name"
                           item-value="specialty_id"
                         ></v-autocomplete>
-              
-                    
 
                     <!-- CAMPO DE CÉDULA -->
                     <p align="left" class="mb-1 label">Cédula C1</p>
