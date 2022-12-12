@@ -71,15 +71,15 @@
                   </v-row>
                   </v-app-bar>
               <template  v-slot:activator="{ on, attrs }">
-                <nuxt-link :to="'/accounts/edit/plannerviews/'+facility.id">
-              <v-btn  v-bind="attrs" v-on="on" v-model="check" class="iconos ml-n3" icon>
+              
+              <v-btn :to="'/accounts/edit/plannerviews/edit/'+facility.id"  v-bind="attrs" v-on="on" v-model="check" class="iconos" icon>
                 <v-img
                   :src="require('@/assets/icons/icon_editpaciente.svg')"
                   max-width="25"
                 ></v-img>
-              </v-btn></nuxt-link>
+              </v-btn>
             </template>
-            <watch-facility class="mt-16 ml-13"/>
+            <!-- <watch-facility class="mt-16 ml-13"/> -->
                 </v-dialog>
           
             </v-btn-toggle>
@@ -90,10 +90,8 @@
   </div>
 </template>
 <script>
-import watchFacility from './_watchFacility.vue'
 export default {
   components: {
-    watchFacility,
 },
   data() {
     return {
