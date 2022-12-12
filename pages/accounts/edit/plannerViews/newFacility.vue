@@ -555,7 +555,7 @@
                 </v-col>
                 <div class="mt-5 mb-n15">
                   <v-btn
-                  v-on:click="Savefacility"
+                  v-on:click="create"
                     @click="overlay = !overlay"
                     height="50px"
                     class="white--text save"
@@ -676,9 +676,8 @@ export default {
     console.log('verificando')
   },
   methods: {
-     /*    método post para añadir un consultorio | Genesis */
-     Savefacility() {
-    this.$axios
+    create() {
+      this.$axios
       .post('api/v1/facilities/full', {
         name: this.facility_name,
         location: 
@@ -720,21 +719,17 @@ export default {
           clues: 'none',
           city_id: '2',
           coordinates: "54645",
+      }, 
+      { 
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
       })
       .then((response) => {
         console.log(response.data.data)
-        localStorage.setItem('token', response.data.access_token)
-          this.$router.push('/account')
       })
-      .catch((error) => {
-        /*   alert(error.response.data.errors.email) */
-        console.log(error)
-        this.errormail = ''
-        this.errormail = error.response.data.errors.email[0]
-        this.password_error=""
-        this.password_error = error.response.data.errors.password[0]
-      })
-  },
+    },
+    
+     /*    método post para añadir un consultorio | Genesis */
+   
   addDay() {
       const initialHour = [this.initialhour]
       const hourInitial = initialHour.join()
