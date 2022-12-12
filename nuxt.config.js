@@ -52,9 +52,9 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
- /*    baseURL: 'https://app.aryymd.com', */
+     baseURL: 'https://app.aryymd.com', 
 /*  baseURL:'http://aryy-api-v1.test', */ 
- baseURL:'https://960c-103-14-26-88.ngrok.io',
+/*  baseURL:'https://960c-103-14-26-88.ngrok.io', */
     proxyHeaders: false,
     credential: false,
     header:{

@@ -160,7 +160,7 @@ export default {
     getinfoUser() {
               console.log('creando petición GET');
               this.$axios
-              .get('/api/v1/physician',
+              .get('/api/v1/user/profile',
               { 
                 headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
               })
