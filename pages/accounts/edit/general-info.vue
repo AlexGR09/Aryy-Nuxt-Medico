@@ -157,9 +157,17 @@
 
             </v-row>
            <div class="mt-8">
-            <v-btn height="50px" class="white--text save" @click="update" color="#7900ff" large
+            <v-btn height="50px"  @click="overlay = !overlay" class="white--text save" v-on:click="update"  color="#7900ff" large
           >Actualizar datos</v-btn
         >
+        <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
         <v-dialog
         v-model="dialog"
         persistent
@@ -217,6 +225,7 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
     
     data () {
       return {
+        overlay: false,
         full_name: '',
         gender: '',
         email: '',
@@ -238,6 +247,14 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
       ],
       }
     },
+    watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 3000)
+    },
+  },
     methods: {
     getinfoUser() {
               console.log('creando petición GET');
@@ -262,23 +279,20 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
                   )
           },
 
-      update() {
+
+    update(){
       this.$axios
-        .put('/api/v1/user/profile', {
+      .put('/api/v1/user/profile', {
           full_name: 'dra Ana', 
           gender: 'femenino',  
           email: this.email,  
           phone_number: this.phone_number,  
-          birthday: '2000-02-15',   
-        })
-        .then((response) => {
-          console.log(response)
-            localStorage.setItem('token', response.data.access_token)
-        })
-        .catch((error) => {
-          console.log(error)
-          console.log("error en PUT")
-        })
+          birthday: '2000-02-15', 
+          country_code: '52',  
+      },
+      {
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),} 
+      })
     },
           
     reset() {

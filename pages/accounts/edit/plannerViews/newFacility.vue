@@ -723,7 +723,8 @@ export default {
       })
       .then((response) => {
         console.log(response.data.data)
-        localStorage.setItem('token',response.data.access_token)
+        localStorage.setItem('token', response.data.access_token)
+          this.$router.push('/account')
       })
       .catch((error) => {
         /*   alert(error.response.data.errors.email) */
