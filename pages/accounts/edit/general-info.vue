@@ -30,15 +30,27 @@
         <v-card-subtitle><H1 class="ml-n5">INFORMACIÓN DE PERFIL</H1></v-card-subtitle>
         <v-form ref="form" class="multi-col-validation mt-6">
             <v-row>
-                <v-col md="7" cols="12">
+               <!--  <v-col md="7" cols="12">
                     <span>Nombre completo*</span>
                     <v-text-field v-model="full_name"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Selecciona una especialidad"
                     outlined></v-text-field>
+              </v-col> -->
+              <v-col md="7" cols="12">
+                <span>Correo*</span>
+                    <v-text-field v-model="email"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined></v-text-field>
               </v-col>
-              <v-col md="1" cols="12"></v-col>
+              <v-col md="1" cols="12"> <v-img class="mt-9"
+                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                        max-width="25"
+                      ></v-img></v-col>
+              
               <v-col md="3" cols="12">
                 <span>Género*</span>
                     <v-text-field v-model="gender"
@@ -51,18 +63,7 @@
                         :src="require('@/assets/icons/Iconos_EDITAR.svg')"
                         max-width="25"
                       ></v-img></v-col>
-              <v-col md="3" cols="12">
-                <span>Correo*</span>
-                    <v-text-field v-model="email"
-                    color="#9966ff"
-                    class="textfield"
-                    placeholder="Selecciona una especialidad"
-                    outlined></v-text-field>
-              </v-col>
-              <v-col md="1" cols="12"> <v-img class="mt-9"
-                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
-                        max-width="25"
-                      ></v-img></v-col>
+            
               <v-col md="3" cols="12">
                 <span>Teléfono personal*</span>
                     <v-text-field v-model="phone_number"
@@ -76,23 +77,12 @@
                         max-width="25"
                       ></v-img></v-col>
              
-              <v-col md="3" cols="12">
-                <span>Contraseña*</span>
-                    <v-text-field v-model="password"
-                    color="#9966ff"
-                    class="textfield"
-                    placeholder="Selecciona una especialidad"
-                    outlined></v-text-field>
-              </v-col>
-              <v-col md="1" cols="12"> <v-img class="mt-9"
-                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
-                        max-width="25"
-                      ></v-img></v-col>
+            
         
 
          
              
-              <v-col md="4" cols="12">
+              <v-col md="3" cols="12">
                     <span >Fecha de nacimiento</span>
                     <v-dialog
           ref="dialog"
@@ -135,7 +125,22 @@
           </v-date-picker>
         </v-dialog>
               </v-col>
-              
+              <v-col md="1" cols="12"> <v-img class="mt-9"
+                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                        max-width="25"
+                      ></v-img></v-col>
+              <v-col md="3" cols="12">
+                <span>Contraseña*</span>
+                    <v-text-field v-model="password"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined></v-text-field>
+              </v-col>
+              <v-col md="1" cols="12"> <v-img class="mt-9"
+                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                        max-width="25"
+                      ></v-img></v-col>
 
 
             </v-row>
