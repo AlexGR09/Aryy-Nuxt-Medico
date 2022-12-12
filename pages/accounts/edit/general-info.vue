@@ -76,6 +76,18 @@
                         :src="require('@/assets/icons/Iconos_EDITAR.svg')"
                         max-width="25"
                       ></v-img></v-col>
+                      <v-col md="3" cols="12">
+                <span>Nombre completo*</span>
+                    <v-text-field v-model="full_name"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined></v-text-field>
+              </v-col>
+              <v-col md="1" cols="12"> <v-img class="mt-9"
+                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                        max-width="25"
+                      ></v-img></v-col>
              
             
         
@@ -145,8 +157,8 @@
 
             </v-row>
            <div class="mt-8">
-            <v-btn height="50px" class="white--text save" color="#7900ff" large
-          >Actualizar foto</v-btn
+            <v-btn height="50px" class="white--text save" @click="update" color="#7900ff" large
+          >Actualizar datos</v-btn
         >
         <v-dialog
         v-model="dialog"
@@ -242,14 +254,34 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
                        this.email = res.data.data.email
                        this.phone_number = res.data.data.phone_number
                        this.birthday = res.data.data.birthday
-                       this.password = res.data.data.password
+                      /*  this.password = res.data.data.password */
                       })
                   .catch(
                       /* console.log(e); */
                       console.log("error en GET")
                   )
           },
-          reset() {
+
+      update() {
+      this.$axios
+        .put('/api/v1/user/profile', {
+          full_name: 'dra Ana', 
+          gender: 'femenino',  
+          email: this.email,  
+          phone_number: this.phone_number,  
+          birthday: '2000-02-15',   
+        })
+        .then((response) => {
+          console.log(response)
+            localStorage.setItem('token', response.data.access_token)
+        })
+        .catch((error) => {
+          console.log(error)
+          console.log("error en PUT")
+        })
+    },
+          
+    reset() {
       this.$refs.form.reset()
     },
   },

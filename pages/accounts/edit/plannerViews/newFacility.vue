@@ -689,44 +689,10 @@ export default {
             number_ext: this.number_ext,
             number_int: this.number_int,
             reference: this.reference,
-          }
-        ,
-        coordinates: this.coordinates,
-        phone: this.phone_number,
-        extension: this.extension,
-        zipcode: this.zip_code,
-        schedule: [
-          {
-            day: this.lun,
-            attention_time: this.attention_time,
           },
-          {
-            day: this.mar,
-            attention_time: this.attention_time,
-          },
-          {
-            day: this.mie,
-            attention_time: this.attention_time,
-          },
-          {
-            day: this.jue,
-            attention_time: this.attention_time,
-          },
-          {
-            day: this.vie,
-            attention_time: this.attention_time,
-          },
-          {
-            day: this.sab,
-            attention_time: this.attention_time,
-          },
-          {
-            day: this.dom,
-            attention_time: this.attention_time,
-          },
-          
-        ],
-        accessibility_and_others: 
+          phone: this.phone_number,
+          zipcode: this.zip_code,
+          accessibility_and_others: 
           {
             accessibility:
               {
@@ -742,17 +708,18 @@ export default {
               {
                 lgtb_friendly: this.lgbt,
                 safe_space_for_transgender_people: this.trans,
-              }
-            ,
+              },
             services:
               {
                 toilets: this.toilets,
                 unisex_toilets: this.unisex,
                 wifi: this.wifi,
-              }
-            ,
-          }
-        ,
+              },
+            
+          },
+          clues: 'none',
+          city_id: '2',
+          coordinates: "54645",
       })
       .then((response) => {
         console.log(response.data.data)
