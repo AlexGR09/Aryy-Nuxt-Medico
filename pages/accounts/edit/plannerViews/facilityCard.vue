@@ -59,7 +59,7 @@
         max-width="550"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn  v-bind="attrs"  v-on="on" class="iconos ml-n3 mr-n3"   icon>
+          <v-btn   v-bind="attrs"  v-on="on" class="iconos ml-n3 mr-n3"   icon>
                 <v-img
                   :src="require('@/assets/icons/icon_borrarpaciente.svg')"
                   max-width="25"
@@ -82,8 +82,8 @@
             <v-btn
               color="#9966ff"
               text 
-              v-on:click="deleteCard"
-              @click="dialog2 = false"
+              @click="deleteCard(facility.id)"
+              v-on:click="dialog2 = false"
             >
               si
             </v-btn>
@@ -147,6 +147,8 @@ export default {
   mounted() {
     console.log('verificando')
     this.infoFacility()
+    const facilityId = this.$route.params.id;
+    console.log(facilityId)
   },
   methods: {
 
@@ -173,10 +175,10 @@ export default {
           console.log('error en GET')
         )
     },
-    deleteCard(){
+    deleteCard(id){
       console.log('creando petición DELETE')
       this.$axios
-      .delete('api/v1/delete/facilities', {
+      .delete("api/v1/facilities/"+id, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
