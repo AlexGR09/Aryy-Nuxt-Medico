@@ -27,6 +27,7 @@
                 <!-- CAMPO DE $PRECIO DE LA CONSULTA -->
                 <v-col cols="12" sm="6" md="3">
                   <v-text-field
+                    v-model="first_time_consultation"
                     :disabled="!check"
                     color="#7900ff"
                     prefix="$"
@@ -82,6 +83,7 @@
                     value="800"
                     filled
                     outlined
+                    v-model="subsequent_consultation"
                   ></v-text-field>
                 </v-col>
 
@@ -108,13 +110,17 @@
               <v-row>
                 <v-col cols="12" md="6">
                   <v-autocomplete
-                    color="#7900ff"
+                    v-model="dbSelect"
                     class="textfield mb-5"
                     placeholder="Selecciona un servicio"
                     outlined
+                    :items="items"
+                    item-text="name"
+                    item-value="medical_service_id"
                   ></v-autocomplete>
                 </v-col>
 
+<!-- ---------------------PRECIO DEL SERVICIOS MÉDICOS--------------------------------->      
                 <v-col cols="12" md="4">
                   <v-text-field
                     color="#7900ff"
@@ -123,60 +129,50 @@
                     outlined
                     prefix="$"
                     suffix="MXN"
+                    v-model="price"
                   ></v-text-field>
                 </v-col>
               </v-row>
 <!-- ---------------------CAMPOS IDIOMAS --------------------------------->    
               <v-row>
-                <v-col xs="6" md="6" lg="6" xl="6">
-                  <p class="cedu mt-n5 mb-1">Idiomas*</p>
-                  <v-text-field
-                    color="#7900ff"
-                    class="textfield mb-5"
-                    placeholder="Español"
+                <v-col cols="12" md="6">
+                  <p align="left" class="mb-1 label">Idioma*</p>
+                  <v-combobox
+                    v-model="languages"
+                    :items="idioma"
+                    placeholder="Selecciona tu idioma"
+                    multiple
+                    chips
                     outlined
-                  ></v-text-field>
+                    
+                  >
+                    <template v-slot:selection="data">
+                      <v-chip
+                        :key="JSON.stringify(data.item)"
+                        v-bind="data.attrs"
+                        :input-value="data.selected"
+                        :disabled="data.disabled"
+                        @click:close="data.parent.selectItem(data.item)"
+                      >
+                        <v-avatar
+                          class="accent white--text"
+                          left
+                      
+                        ></v-avatar>
+                        {{ data.item }}
+                      </v-chip>
+                    </template>
+                  </v-combobox>
                 </v-col>
-
-
-                <v-col cols="12">
-        <v-combobox
-          v-model="select"
-          :items="items"
-          label="I use a scoped slot"
-          multiple
-          chips
-        >
-          <template v-slot:selection="data">
-            <v-chip
-              :key="JSON.stringify(data.item)"
-              v-bind="data.attrs"
-              :input-value="data.selected"
-              :disabled="data.disabled"
-              @click:close="data.parent.selectItem(data.item)"
-            >
-              <v-avatar
-                class="accent white--text"
-                left
-            
-              ></v-avatar>
-              {{ data.item }}
-            </v-chip>
-          </template>
-        </v-combobox>
-      </v-col>
               </v-row>
-
-
-
               <v-btn
                 @click="overlay = !overlay"
                 height="50px"
                 class="white--text save mt-7"
                 color="#7900ff"
                 large
-                >Guardar cambios</v-btn
-              >
+                v-on:click="putMedicalService"
+              >Guardar cambios</v-btn>
               <v-btn
                 @click="reset"
                 height="50px"
@@ -213,13 +209,21 @@ export default {
       check: '',
       checks: '',
       selectedItem: 1,
-      select: ['Vuetify', 'Programming'],
-        items: [
-          'Programming',
-          'Design',
-          'Vue',
-          'Vuetify',
-        ],
+    
+
+      idioma: "'Español', 'Ingles', 'Frances', 'Italiano'",
+
+      
+      dbSelect: "7",
+      items: [],
+
+      first_time_consultation: "",
+      subsequent_consutation: "",
+      price: "952",
+      medical_service_id: "7"
+
+
+
     }
   },
   watch: {
@@ -234,8 +238,60 @@ export default {
     reset() {
       this.$refs.form.reset()
     },
+  /* OBTENER ESPECIALIDADES */
+    getMedicalService() {
+      this.$axios
+      .get('/api/v1/catalogue/medicalservices',{
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(res => {
+        console.log(res)
+        this.items= res.data.data
+        console.log(res.data)
+       
+      })
+    },
+
+    putMedicalService(){
+      this.$axios
+      .put('https://app.aryymd.com/api/v1/physician/medicalservice',{
+        first_time_consultation: this.first_time_consultation,
+        subsequent_consultation: this.subsequent_consultation,
+        languages: this.idioma,
+        medical_services: [{
+              medical_service_id: this.medical_service_id,
+              price: this.price,
+        }]
+      },
+      {
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),} 
+      })
+    },
+
+
+    getMedical() {
+      this.$axios
+      .get('/api/v1/physician/profile', 
+      {
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(res => {
+        console.log(res)
+        this.first_time_consultation = res.data.data.first_time_consultation
+        this.subsequent_consultation = res.data.data.subsequent_consultation
+        this.languages = res.data.data.languages
+        this.medical_service_id = res.data.physician_medical_services.medical_service_id[0]
+        this.price = res.data.physician_medical_services.price[0]
+      })
+    },
+
+  },
+  mounted() {
+    this.getMedicalService() 
+    this.getMedical()
   },
 }
+
 </script>
   
   <style>

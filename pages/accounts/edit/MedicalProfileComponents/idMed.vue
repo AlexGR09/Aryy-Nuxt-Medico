@@ -170,9 +170,7 @@ export default {
     },
   },
   methods: {
-      reset () {
-        this.$refs.form.reset()
-      },
+    
 
       /* SUBIR FOTO DE LOGO IDENTIDAD MÉDICA | LUIS REYES */
 

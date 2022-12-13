@@ -7,46 +7,17 @@
           <v-img :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" class="mb-n5" max-width="150" min-width="150"></v-img>
           <v-stepper class="elevation-0" alt-labels v-model="e1">
             <v-stepper-header class="elevation-0">
-              <v-stepper-step color="#7900ff" :complete="e1 > 1" step="1">Verificación</v-stepper-step>
+          <!--     <v-stepper-step color="#7900ff" :complete="e1 > 1" step="1">Verificación</v-stepper-step>
+              <v-divider></v-divider> -->
+              <v-stepper-step color="#7900ff" :complete="e1 > 2" step="1">Registro</v-stepper-step>
               <v-divider></v-divider>
-              <v-stepper-step color="#7900ff" :complete="e1 > 2" step="2">Registro</v-stepper-step>
-              <v-divider></v-divider>
-              <v-stepper-step color="#7900ff" step="3">Consultorio</v-stepper-step>
+              <v-stepper-step color="#7900ff" step="2">Consultorio</v-stepper-step>
             </v-stepper-header>
             <!-- contenido de seccion verificación | Genesis -->
             <v-stepper-items color="red">
-              <v-stepper-content step="1">
-                <h2 align="center" justify="end">Crea tu perfil gratuito como especialista</h2>
-                <p class="code">Ingresa el código que recibiste vía WhatsApp o SMS al número que <br/>nos proporcionaste con anterioridad.</p>
-                <div align="">
-                  <v-col xs="11" sm="8" md="8" lg="7" xl="7">
-                    <router-link style="text-decoration: none color: inherit;" to="/auth/register/registerComponents/registerPatient">
-                      <h3 align="left" class="a mb-13">
-                        <v-icon color="#9966ff">mdi-arrow-left</v-icon>Registrarme como paciente
-                      </h3>
-                    </router-link>
-                    <p align="left" class="mb-1 label">Celular</p>
-                    <code-country />
-                    <p align="left" class="mb-1 label">Código de verificación</p>
-                    <v-text-field outlined placeholder="Verifica tu código" class="textfield" color="#b380ff"></v-text-field>
-                    <div align="right">
-                      <v-btn class="btn mt-n11" text color="#9966ff" @click="e1 = 2">Reenviar código</v-btn>
-                      <br/><br/>
-                      <v-btn
-                        width="30%"
-                        large
-                        class="white--text btn mt-n4"
-                        color="#7900FF"
-                        @click="e1 = 2"
-                      >
-                        Siguiente
-                      </v-btn>
-                    </div>
-                  </v-col>
-                </div>
-              </v-stepper-content>
+
               <!-- contenido de seccion formulario registro  | Genesis -->
-              <v-stepper-content step="2">
+              <v-stepper-content step="1">
                 <h2 align="center" justify="end">
                   Crea tu perfil gratuito como especialista
                 </h2>

@@ -158,7 +158,9 @@
                     @delete="fileDeleted($event)"
                     v-model="fileRecords"
                   ></VueFileAgent>
-                  <v-button :disabled="!fileRecordsForUpload.length" @click="uploadFiles()" v-on:click="certified_photos">
+                 
+                 
+                  <v-button :disabled="!fileRecordsForUpload.length" @click="certified_photos()" v-on:click="certified_photos">
                     subir {{ fileRecordsForUpload.length }} files
                   </v-button>
    
@@ -233,7 +235,7 @@
                 <BR/><BR/>
                   <v-btn  
                     @click="overlay = !overlay" 
-                    
+                   
                     height="50px" 
                     class="white--text save mt-7" 
                     color="#7900ff" 
@@ -433,20 +435,23 @@
     /*   formData.append('certificate_photo', this.fileRecords[0].files) */
 
       // Leer archivos seleccionados
-      const files = this.$refs.uploadfiles.files;
-      const totalfiles = this.$refs.uploadfiles.files.length;
-      for (const index = 0; index < totalfiles; index++) {
-      formData.append("certificate_photo[]", file[index]);
-      }
+      /* const files = this.$refs.uploadfiles.files; */
+    /*   const totalfiles = this.$refs.uploadfiles.files.length; */
 
-      this.$axios
+     /*  console.log(this.$refs.uploadfiles.files.length) */
+     console.log("llegue")
+      /* for (const index = 0; index < totalfiles; index++) {
+      formData.append("certificate_photo[]", file[index]);
+      } */
+
+      /* this.$axios
        .post('/api/v1/physician/educationalbackground/uploadcertificate', formData,
        {
         headers:{
           "Authorization": 'Bearer ' + localStorage.getItem("token"),
            "Content-Type": "multipart/form-data"
         }
-       })
+       }) */
 
        console.log(formData)
 

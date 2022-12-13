@@ -178,7 +178,7 @@ export default {
 
   },
 }
-</script>4
+</script>
 
 
 <style>
