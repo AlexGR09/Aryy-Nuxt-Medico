@@ -4,15 +4,34 @@
       <v-card flat>
         <menuPersonal/>
       </v-card>
-      <v-col md="10" lg="10" xl="10">
+      <v-col md="12" lg="10" xl="10">
         <v-card flat class="pa-3 mt-2">
           <v-card-subtitle ><H1 class="mb-5">FOTO DE PERFIL</H1></v-card-subtitle>
           <v-card-text class="d-flex">
       <v-avatar class="me-6" size="80">
-        <v-img v-bind:src="require('@/assets/icons/avatar.png')"></v-img>
+        <v-img v-model="avatar"></v-img>
       </v-avatar>
       <div>
-        <v-btn height="50px" class="white--text save" style="text-transform: uppercase" :loading="isSelecting" @click="handleFileImport" color="#7900ff" large
+
+        <v-btn 
+            color="primary" 
+            rounded 
+            dark 
+            :loading="isSelecting" 
+            @click="handleFileImport"
+        >
+           Subir foto
+        </v-btn>
+        <input 
+            :v-model="selectedFile"
+            ref="uploader" 
+            class="d-none" 
+            type="file"
+            v-on:click="uploadfoto()"
+            @change="onFileChanged"
+        >
+
+        <!-- <v-btn height="50px" class="white--text save" style="text-transform: uppercase" :loading="isSelecting" @click="handleFileImport" color="#7900ff" large
           >Actualizar foto</v-btn
         >
         <input 
@@ -20,7 +39,7 @@
                     class="d-none" 
                     type="file" 
                     @change="onFileChanged"
-                  > 
+                  >  -->
         <v-btn height="50px" class="restore ml-3" color="#999999" outlined large
           >Restaurar foto</v-btn
         >
@@ -44,63 +63,74 @@
                     placeholder="Selecciona una especialidad"
                     outlined></v-text-field>
               </v-col> -->
-              <v-col md="7" cols="12">
-                <span>Correo*</span>
-                    <v-text-field v-model="email"
-                    color="#9966ff"
-                    class="textfield"
-                    placeholder="Selecciona una especialidad"
-                    outlined></v-text-field>
-              </v-col>
-              <v-col md="1" cols="12"> <v-img class="mt-9"
-                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
-                        max-width="25"
-                      ></v-img></v-col>
-              
-              <v-col md="3" cols="12">
-                <span>Género*</span>
-                    <v-text-field v-model="gender"
-                    color="#9966ff"
-                    class="textfield"
-                    placeholder="Selecciona una especialidad"
-                    outlined></v-text-field>
-              </v-col>
-              <v-col md="1" cols="12"> <v-img class="mt-9"
-                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
-                        max-width="25"
-                      ></v-img></v-col>
-            
-              <v-col md="3" cols="12">
-                <span>Teléfono personal*</span>
-                    <v-text-field v-model="phone_number"
-                    color="#9966ff"
-                    class="textfield"
-                    placeholder="Selecciona una especialidad"
-                    outlined></v-text-field>
-              </v-col>
-              <v-col md="1" cols="12"> <v-img class="mt-9"
-                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
-                        max-width="25"
-                      ></v-img></v-col>
-                      <v-col md="3" cols="12">
+              <v-col xs="7" sm="7" md="7" lg="7" xl="7" cols="12">
                 <span>Nombre completo*</span>
                     <v-text-field v-model="full_name"
                     color="#9966ff"
+                    :disabled="!named"
                     class="textfield"
                     placeholder="Selecciona una especialidad"
                     outlined></v-text-field>
               </v-col>
-              <v-col md="1" cols="12"> <v-img class="mt-9"
+              
+              <v-col  xs="1" sm="1" md="1" lg="1" xl="1" cols="12">  <v-btn  @click="named=!named"  class="iconos mt-9" icon><v-img
                         :src="require('@/assets/icons/Iconos_EDITAR.svg')"
                         max-width="25"
-                      ></v-img></v-col>
-             
+                      ></v-img>
+                    </v-btn></v-col>
+              
+              <v-col  xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
+                <span>Género*</span>
+                    <v-text-field v-model="gender"
+                    color="#9966ff"
+                    :disabled="!genderd"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined></v-text-field>
+              </v-col>
+              <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12"> 
+                <v-btn  @click="genderd=!genderd" class="iconos mt-9" icon><v-img
+                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                        max-width="25"
+                      ></v-img>
+                    </v-btn></v-col>
             
-        
+              <v-col xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
+                <span>Teléfono personal*</span>
+                    <v-text-field v-model="phone_number"
+                    color="#9966ff"
+                    :disabled="!phoned"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined></v-text-field>
+              </v-col>
+              <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">    <v-btn  @click="phoned=!phoned"  class="iconos mt-9" icon><v-img
+                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                        max-width="25"
+                      ></v-img>
+                    </v-btn></v-col>
+                    
 
-         
+                    <v-col xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
+                <span>Correo*</span>
+                    <v-text-field v-model="email"
+                    :disabled="!emaild"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined></v-text-field>
+              </v-col>
+              <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12"> 
+                      <v-btn  @click="emaild=!emaild" class="iconos mt-9" icon>
+                        <v-img 
+                        :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                        max-width="25"
+                      ></v-img>
+                    </v-btn>
+
+              </v-col>
              
-              <v-col md="3" cols="12">
+              <v-col xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
                     <span >Fecha de nacimiento</span>
                     <v-dialog
           ref="dialog"
@@ -115,6 +145,7 @@
               color="#9966ff"
                     class="textfield"
                     outlined
+                    :disabled="!dated"
               v-bind="attrs"
               v-on="on"
             ></v-text-field>
@@ -143,22 +174,34 @@
           </v-date-picker>
         </v-dialog>
               </v-col>
-              <v-col md="1" cols="12"> <v-img class="mt-9"
+              <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">  <v-btn  @click="dated=!dated"  class="iconos mt-9" icon><v-img
                         :src="require('@/assets/icons/Iconos_EDITAR.svg')"
                         max-width="25"
-                      ></v-img></v-col>
-              <v-col md="3" cols="12">
+                      ></v-img>
+                    </v-btn></v-col>
+              <v-col xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
                 <span>Contraseña*</span>
                     <v-text-field v-model="password"
                     color="#9966ff"
+                    :disabled="!passwordd"
                     class="textfield"
                     placeholder="Selecciona una especialidad"
                     outlined></v-text-field>
               </v-col>
-              <v-col md="1" cols="12"> <v-img class="mt-9"
+              <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12"> <v-btn  @click="passwordd=!passwordd"  class="iconos mt-9" icon><v-img
                         :src="require('@/assets/icons/Iconos_EDITAR.svg')"
                         max-width="25"
-                      ></v-img></v-col>
+                      ></v-img>
+                    </v-btn></v-col>
+                    <v-col v-if="passwordd" md="3" cols="12">
+                <span>Confirmar contraseña*</span>
+                    <v-text-field v-model="password_confirmation"
+                    color="#9966ff"
+                    :disabled="!passwordd"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined></v-text-field>
+              </v-col>
 
 
             </v-row>
@@ -230,13 +273,23 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
     
     data () {
       return {
+        emaild: '',
+        genderd: '',
+        phoned: '',
+        named: '',
+        dated: '',
+        passwordd: '',
+        passwords: [],
         overlay: false,
         full_name: '',
         gender: '',
         email: '',
         phone_number: '',
         password: '',
+        password_confirmation: '',
         birthday: '',
+        isSelecting: false,
+                selectedFile: null,
         dialog: false,
         date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
     modal: false,
@@ -261,6 +314,20 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
     },
   },
     methods: {
+      uploadfoto(){
+      const formData = new FormData();
+      formData.append('photo', this.selectedFile);
+
+      this.$axios
+       .post('/api/v1/user/uploadprofilephoto', formData,
+       {
+        headers: {
+          "Authorization": 'Bearer ' + localStorage.getItem("token"),
+           "Content-Type": "multipart/form-data"
+        }
+        
+       })
+      },
       handleFileImport() {
                 this.isSelecting = true;
 
@@ -292,6 +359,7 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
                        this.email = res.data.data.email
                        this.phone_number = res.data.data.phone_number
                        this.birthday = res.data.data.birthday
+                       this.password = '********'
                       /*  this.password = res.data.data.password */
                       })
                   .catch(
@@ -300,6 +368,26 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
                   )
           },
 
+          avatar() {
+              console.log('creando petición GET');
+              this.$axios
+              .get('/api/v1/user/getprofilephoto',
+              { 
+                headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+              })
+              .then(res => {
+                       console.log(res)
+                       console.log("exito en GET")
+                       this.avatar = res.data.data.profile_photo
+                      /*  this.password = res.data.data.password */
+                      })
+                  .catch(
+                      /* console.log(e); */
+                      console.log("error en GET")
+                  )
+          },
+
+       
 
     update(){
       this.$axios
@@ -309,7 +397,9 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
           email: this.email,  
           phone_number: this.phone_number,  
           birthday: '2000-02-15', 
-          country_code: '52',  
+          country_code: '52',
+          password: this.password,
+          password_confirmation: this.password_confirmation,  
       },
       {
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),} 
@@ -324,6 +414,7 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
   mounted() {
           console.log('verificando');
           this.getinfoUser();
+          this.avatar();
       },
   }
 </script>

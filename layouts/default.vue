@@ -147,12 +147,23 @@ export default {
        
     },
     methods:{
+
+      logout() {
+              console.log('creando petición GET');
+              this.$axios
+              .get('/api/v1/logout',
+              { 
+              })
+              .then(
+                localStorage.removeItem('token'),
+                       console.log("cierre de sesión"),
+                       this.$router.replace('/auth/login')
+                      )
+          },
+
+          
       /* matar token y redireccionar al login | Genesis */
-      logout(){
-      localStorage.removeItem('token');
-      this.$router.replace('/auth/login');
-      console.log("Cierre de sesión exitoso")
-    }, 
+     
     },
 
 }

@@ -184,6 +184,7 @@ export default {
         .then((res) => {
           console.log("Datos eliminados")
           console.log(res)
+          location.reload()
         })
     },
 
