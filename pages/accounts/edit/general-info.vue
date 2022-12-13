@@ -226,7 +226,6 @@ import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue
   export default {
     components:{
       menuPersonal
-
     },
     
     data () {

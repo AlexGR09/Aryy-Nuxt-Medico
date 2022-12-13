@@ -23,7 +23,7 @@
                   <span>Nombre del consultorio*</span>
                   <v-text-field
                     prepend-inner-icon="mdi-magnify"
-                    v-model="facilities.name"
+                    v-model="facility_name"
                     color="#9966ff"
                     class="textfield"
                     placeholder="Nombre del consultorio"
@@ -33,7 +33,7 @@
                 <v-col md="6" cols="12">
                   <span>Teléfono para citas*</span>
                   <v-text-field
-                    v-model="facilities.phone"
+                    v-model="phone_number"
                     color="#9966ff"
                     class="textfield mb-5"
                     placeholder="XXX XXX XXXX"
@@ -135,7 +135,7 @@
                 <v-col md="4" cols="12">
                   <span>Código postal*</span>
                   <v-text-field
-                    v-model="zipcode"
+                    v-model="zip_code"
                     color="#9966ff"
                     maxlength="5"
                     counter="5"
@@ -373,7 +373,8 @@ export default {
       day: '',
       extension: '',
       city: '',
-      
+      facility_name: '',
+
       parking: false,
       lift: false,
       ramp: false,
@@ -404,6 +405,7 @@ export default {
           name: '',
         },
       ],
+      location: [],
       overlay: false,
       dialog: false,
       selectedItem: 1,
@@ -444,11 +446,40 @@ export default {
           console.log('exito en GET')
           this.id = res.data.data.id
           this.facilities = res.data.data
+          this.location = res.data.data.location
           this.consultorios = res.data.data.length
+
+          this.facility_name = res.data.data.name
+          this.address = res.data.data.location.address
+          this.state = res.data.data.location.state
+          this.suburb = res.data.data.location.suburb
+          this.number_ext = res.data.data.location.number_ext
+          this.number_int = res.data.data.location.number_int
+          this.reference = res.data.data.location.reference
+          this.zip_code = res.data.data.zipcode
+          this.city = res.data.data.city_id
+          this.extension = res.data.data.extension
+          this.phone_number = res.data.data.phone
+
+           /*  accesibilidad | Genesis */
+          this.parking = res.data.data.accessibility_and_others.accessibility.parking_with_access_to_the_establishment
+          this.lift = res.data.data.accessibility_and_others.accessibility.wheelchair_lift_or_ramp
+          this.ramp = res.data.data.accessibility_and_others.accessibility.wheelchair_lift_or_ramp
+          this.restroom = res.data.data.accessibility_and_others.accessibility.toilets_with_wheelchair_access
+          this.area = res.data.data.accessibility_and_others.accessibility.rest_area_with_wheelchair_access
+          this.sign = res.data.data.accessibility_and_others.accessibility.staff_trained_in_sign_language
+          this.braille = res.data.data.accessibility_and_others.accessibility.braille_signage_for_blind_people
          
 
+          /*  publicos usuales | Genesis */
+          this.lgbt = res.data.data.accessibility_and_others.usual_audiences.lgtb_friendly
+          this.trans = res.data.data.accessibility_and_others.usual_audiences.safe_space_for_transgender_people
 
-          /*  accesibilidad | Genesis */
+          /*  servicios | Genesis */
+          this.toilets = res.data.data.accessibility_and_others.services.toilets
+          this.unisex = res.data.data.accessibility_and_others.services.unisex_toilets
+          this.wifi = res.data.data.accessibility_and_others.services.wifi
+
        
         })
 
@@ -460,75 +491,56 @@ export default {
         )
     },
     /*    método put para actualizar los datos de establecimiento | Genesis */
-    update() {
+    update(){
       this.$axios
-        .put(`api/v1/facilities/${this.$route.params.editFacility}`, {
-          facility_name: this.facility_name,
-          location: [
-            {
-              address: this.specialty_id,
-              number_ext: this.license,
-              number_int: this.institution,
-              reference: this.certificates,
-            },
-          ],
-          phone_number: this.biography,
-          zip_code: this.biography,
-          schedule: [
-            {
-              day: this.biography,
-              attention_time: this.biography,
-            },
-            {
-              day: this.biography,
-              attention_time: this.biography,
-            },
-          ],
-          type_schedule: this.biography,
-          consultation_length: this.biography,
-          accessibility_and_others: [
-            {
-              accessibility: [
-                {
-                  parking_with_access_to_the_establishment: this.parking,
-                  wheelchair_lift_or_ramp: this.lift,
-                  /* wheelchair_lift_or_ramp: this.ramp, */
-                  toilets_with_wheelchair_access: this.restroom,
-                  rest_area_with_wheelchair_access: this.area,
-                  staff_trained_in_sign_language: this.sign,
-                  braille_signage_for_blind_people: this.braille,
-                },
-              ],
-              usual_audiences: [
-                {
-                  lgtb_friendly: this.lgbt,
-                  safe_space_for_transgender_people: this.trans,
-                },
-              ],
-              services: [
-                {
-                  toilets: this.toilets,
-                  unisex_toilets: this.unisex,
-                  wifi: this.wifi,
-                },
-              ],
-            },
-          ],
-          /* clues: this.biography,
-            city_id: this.biography, */
-        })
-        .then((response) => {
-          console.log(response.data.data)
-          localStorage.setItem('token', response.data.access_token)
-        })
-        .catch((error) => {
-          /*   alert(error.response.data.errors.email) */
-          this.errormail = ''
-          this.errormail = error.response.data.errors.email[0]
-          this.password_error = ''
-          this.password_error = error.response.data.errors.password[0]
-        })
+      .post(`api/v1/facilities/full/${this.$route.params.editFacility}`, {
+        name: this.facility_name,
+        location: 
+          {
+            address: this.address,
+            state: this.state,
+            suburb: this.suburb,
+            number_ext: this.number_ext,
+            number_int: this.number_int,
+            reference: this.reference,
+          },
+          phone: this.phone_number,
+          extension: this.extension,
+          zipcode: this.zip_code,
+          accessibility_and_others: 
+          {
+            accessibility:
+              {
+                parking_with_access_to_the_establishment: this.parking,
+                wheelchair_lift_or_ramp: this.lift,
+                toilets_with_wheelchair_access: this.restroom,
+                rest_area_with_wheelchair_access: this.area,
+                staff_trained_in_sign_language: this.sign,
+                braille_signage_for_blind_people: this.braille,
+              }
+            ,
+            usual_audiences:
+              {
+                lgtb_friendly: this.lgbt,
+                safe_space_for_transgender_people: this.trans,
+              },
+            services:
+              {
+                toilets: this.toilets,
+                unisex_toilets: this.unisex,
+                wifi: this.wifi,
+              },
+            
+          },
+          clues: 'none',
+          city_id: '2',
+          coordinates: "54645",
+      },
+      {
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),} 
+      })
     },
+
     save(start, end) {
       this.$refs.dialog[0].save(start, end)
     },

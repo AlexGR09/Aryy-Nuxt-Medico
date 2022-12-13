@@ -52,18 +52,48 @@
             </template>
             <!-- <watch-facility class="mt-16 ml-13"/> -->
                 </v-dialog>
-              <v-btn class="iconos ml-n3"  v-on:click="deleteCard" icon>
+
+                <v-dialog
+        v-model="dialog2"
+        persistent
+        max-width="550"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn  v-bind="attrs"  v-on="on" class="iconos ml-n3 mr-n3"   icon>
                 <v-img
                   :src="require('@/assets/icons/icon_borrarpaciente.svg')"
                   max-width="25"
                 ></v-img>
-              </v-btn>
+              </v-btn> 
+        </template>
+        <v-card >
+          <v-card-title class="text-h5 justify-center">
+            <p class="reset">¿Está seguro de eliminar el establecimiento?</p>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn
+              color="#9966ff"
+              text
+              @click="dialog2 = false"
+            >
+              No
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="#9966ff"
+              text 
+              v-on:click="deleteCard"
+              @click="dialog2 = false"
+            >
+              si
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
               <v-dialog  fullscreen  overlay-color="white"
                 transition="dialog-top-transition" v-model="dialog">
                 <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
-                <!--  <v-btn dark icon color="black" @click="dialog = false">
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn> --> 
                   <v-row>
                     <v-col md="5" lg="5" xl="5"></v-col>
                     <v-col md="4" lg="4" xl="4"> <v-img  :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img><p class="mt-n7 prueba">Consultorios</p></v-col>
@@ -95,13 +125,14 @@ export default {
 },
   data() {
     return {
+      dialog: false,
       horas: [],
       facilities: [],
       props:{
         facilities: Object
       },
       check: '',
-      dialog: '',
+      dialog2: '',
       name: '',
       address: '',
       number_ext: '',
@@ -118,9 +149,7 @@ export default {
     this.infoFacility()
   },
   methods: {
-    deleteItem: function (i) {
-      this.consultorios.splice(i, 1)
-    },
+
   /*   metodo get para mostrar datos en card | Genesis */
     infoFacility() {
       console.log('creando petición GET')
