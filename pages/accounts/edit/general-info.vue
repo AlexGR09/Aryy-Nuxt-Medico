@@ -191,7 +191,7 @@
                     color="#9966ff"
                     :disabled="!passwordd"
                     class="textfield"
-                    placeholder="Selecciona una especialidad"
+                    placeholder="********"
                     outlined
                   ></v-text-field>
                 </v-col>
@@ -212,10 +212,12 @@
                     color="#9966ff"
                     :disabled="!passwordd"
                     class="textfield"
-                    placeholder="Selecciona una especialidad"
+                    placeholder="********"
                     outlined
                   ></v-text-field>
-                </v-col>
+                
+                </v-col><v-col></v-col>
+                <p class="hint">{{ msg }}</p>
               </v-row>
               <div class="mt-8">
                 <v-btn
@@ -303,6 +305,7 @@ export default {
       phone_number: '',
       password: '',
       password_confirmation: '',
+      password_confirmationerror: '',
       birthday: '',
       isSelecting: false,
       selectedFile: null,
@@ -334,6 +337,13 @@ export default {
         setTimeout(() => {
           this.overlay = false
         }, 3000)
+    },
+    password_confirmation() {
+      if (this.password === this.password_confirmation) {
+        this.msg = ''
+      } else {
+        this.msg = 'Las contraseñas no coinciden'
+      }
     },
   },
   methods: {
