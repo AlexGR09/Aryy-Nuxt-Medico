@@ -414,6 +414,7 @@
     /* FOTO DE CEDULA | LUIS REYES */
     postMedical(){
       const formData = new FormData();
+       
       formData.append('license_photo', this.idPhoto);
       formData.append('license',this.identification_card);
 

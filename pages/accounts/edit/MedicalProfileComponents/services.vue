@@ -269,6 +269,8 @@ export default {
     },
 
 
+    
+
     getMedical() {
       this.$axios
       .get('/api/v1/physician/profile', 

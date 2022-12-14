@@ -8,47 +8,50 @@
         <v-card flat height="800px" class="pa-3 mt-2">
           <v-card-subtitle>ENFERMEDADES QUE TRATA</v-card-subtitle>
           <v-autocomplete
-            v-model="dbSelect"
-            :items="items"
-            item-text="name"
-            item-value="disease_id"
-            outlined
+              v-model="dbSelect"
+              :loading="isLoading"
+              :items="items"
+              item-text="name"
+              item-value="disease_id"
+              outlined
           ></v-autocomplete>
           <v-card-subtitle class="pa-3 mt-n2 mb-n10"
             ><H1 class="mb-5">ENFERMEDADES QUE TRATA</H1></v-card-subtitle
           >
-
           <v-card-text class="pa-3">
             <v-form ref="form" v-model="valid">
               <v-row>
-                <v-col v-for="(prueba, i) in pruebas" :key="i" xl="6">
-                  <v-checkbox
-                    class="checkbox mb-n6"
-                    color="#9966ff"
+                <v-col v-for="(prueba, i) in enfermedades" :key="i" xl="6">
+                <v-checkbox
+              
+                    class="mb-n6"
                     hide-details
                     :label="prueba.name"
-                  ></v-checkbox>
+                  ></v-checkbox> 
                 </v-col>
-                <v-col xl="6"> </v-col>
               </v-row>
               <br />
               <v-dialog> </v-dialog>
+              
+              
               <v-btn
                 v-bind="attrs"
                 v-on="on"
                 class="btn ml-n5"
                 color="#9966ff"
                 text
-                ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro</v-btn
-              >
-              <div class="mt-5">
+                ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro</v-btn>
+              
+              
+                <div class="mt-5">
                 <v-btn
                   @click="overlay = !overlay"
+                  v-on:click="submit() "
                   height="50px"
                   class="white--text save"
                   color="#7900ff"
                   large
-                  >Guardar cambios</v-btn
+                  >Guardar cambios </v-btn
                 >
                 <v-btn
                   @click="reset"
@@ -85,6 +88,7 @@ export default {
     return {
       overlay: false,
       selectedItem: 1,
+      
       pruebas: [
         { name: 'Infecciones urinarias en adultos' },
         { name: 'Sindrome de vejiga dolorosa' },
@@ -97,8 +101,10 @@ export default {
         { name: 'Hiperplasia prostática' },
         { name: 'Enfermedades de Transmisión sexual (ETS)' },
       ],
-      dbSelect : '',
+      
+      dbSelect : { disease_id: null, name: null},
       items : [],
+      enfermedades: [],
     }
   },
   methods: {
@@ -106,7 +112,7 @@ export default {
       this.$refs.form.reset()
     },
 
-      /* OBTENER ESPECIALIDADES */
+      /* OBTENER ENFERMEDADES */
       getDiseases(){
       this.$axios
       .get('/api/v1/catalogue/diseases',{
@@ -115,15 +121,35 @@ export default {
       .then(res => {
         console.log(res)
         this.items= res.data.data
-        alert(res.data.data)
-       
       })
     },
+      
+    submit() {
+       console.log(this.dbSelect)
+       this.$axios
+        .post('/api/v1/physician/disease',{
+          disease_id: this.dbSelect
+        },{
+            headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+        })
+     },
+
+     getEnfermedades(){
+      this.$axios
+       .get('/api/v1/physician/disease',{
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+       })
+       .then(res =>{
+        console.log(res)
+        this.enfermedades = res.data.data
+       })
+     }
   },
 
   mounted() {
     this.getDiseases()
-  
+    this.getEnfermedades()
+    this.dbSelect = {disease_id: null, name: null};
   },
 
 
@@ -143,7 +169,7 @@ export default {
 </script>
   
   <style>
-.checkbox {
+/* .checkbox {
   font-family: Montserrat;
 }
 .bgactive {
@@ -205,5 +231,5 @@ p {
   font-family: MontserratMedium;
   color: gray;
   font-size: 110%;
-}
+} */
 </style>

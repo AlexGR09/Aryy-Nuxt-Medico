@@ -4,9 +4,12 @@
       <v-tabs class="toolb " v-model="tabs" color="#7900ff" grow>
         <v-tab class="tab">Perfil personal</v-tab>
         <v-tab class="tab">Perfil médico</v-tab>
-        <v-tab class="tab">Agenda</v-tab>
+        <nuxt-link to="/accounts/edit/account/agenda"><v-tab class="tab">Agenda</v-tab></nuxt-link>
+        
       </v-tabs>
     </v-toolbar>
+
+    
     <v-card class="mt-2" flat>
       <v-tabs-items v-model="tabs">
         <v-tab-item><menu-personal/></v-tab-item>
