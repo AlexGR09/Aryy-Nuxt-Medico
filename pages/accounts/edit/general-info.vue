@@ -13,8 +13,8 @@
           <v-card-text class="d-flex">
             
             <v-avatar class="me-6" size="80">
-              <!-- <v-img v-bind:src="require('@/assets/icons/avatar.png')"></v-img> -->
-              <v-img :src="imageUrl"  />
+               <v-img v-if="photo" v-bind:src="require('@/assets/icons/avatar.png')"></v-img> 
+              <v-img v-else :src="imageUrl"  />
             </v-avatar>
             <div>
               
@@ -288,6 +288,7 @@ export default {
   data() {
     return {
       defaultButtonText: '',
+      imageUrl:'',
       emaild: '',
       genderd: '',
       phoned: '',
