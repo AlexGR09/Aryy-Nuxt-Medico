@@ -1,104 +1,144 @@
 <template>
-    <div>
-        <!-- 1. Create the button that will be clicked to select a file -->
-        <v-btn 
-            color="primary" 
-            rounded 
-            dark 
-            :loading="isSelecting" 
-            @click="handleFileImport"
-        >
-           Subir foto
-        </v-btn>
+  <div>
+    <!-- 1. Create the button that will be clicked to select a file -->
+    <v-btn
+      color="primary"
+      rounded
+      dark
+      :loading="isSelecting"
+      @click="handleFileImport"
+    >
+      Subir foto
+    </v-btn>
+    <!-- Create a File Input that will be hidden but triggered with JavaScript -->
+    <input
+      :v-model="selectedFile"
+      ref="uploader"
+      class="d-none"
+      type="file"
+      v-on:click="postMedical()"
+      @change="onFileChanged"
+    />
 
-        <!-- Create a File Input that will be hidden but triggered with JavaScript -->
-        <input 
-            :v-model="selectedFile"
-            ref="uploader" 
-            class="d-none" 
-            type="file"
-            v-on:click="postMedical()"
-            @change="onFileChanged"
-        >
+<!--     <v-img max-height="512" max-width="512" :src="list">{{ list }}</v-img> -->
+    <v-col md="4" cols="12">
+      <v-file-input
+        v-model="files"
+        color="deep-purple accent-4"
+        counter
+        label="seleccionar fotos"
+        multiple
+        placeholder="seleccionar foto"
+        prepend-icon="mdi-paperclip"
+        outlined
+        :show-size="1000"
+      >
+        <template v-slot:selection="{ index, text }">
+          <v-chip
+            v-if="index < 2"
+            color="deep-purple accent-4"
+            dark
+            label
+            small
+          >
+            {{ text }}
+          </v-chip>
 
-        <div class="w-full flex justify-center">
-        <img class="rounded-full border-8 max-h-60 mb-4 border-zinc-800" src="list.profile_photo" alt="">
-      </div>
+          <span
+            v-else-if="index === 2"
+            class="text-overline grey--text text--darken-3 mx-2"
+          >
+            +{{ files.length - 2 }} File(s)
+          </span>
+        </template>
+      </v-file-input>
 
-    </div>
 
-   
+            <v-btn
+                v-on:click="postArray()"
+                elevation="2"
+            >subir</v-btn>
+
+    </v-col>
+  </div>
 </template>
 
+
+
 <script>
-    export default {
-        name: 'Example',
-        data(){
-            return {
-                isSelecting: false,
-                selectedFile: null,
-                list: null,
-            }
+export default {
+  name: 'Example',
+  data() {
+    return {
+      isSelecting: false,
+      selectedFile: null,
+      list: null,
+      files: [],
+    }
+  },
+  methods: {
+    postMedical() {
+      const formData = new FormData()
+      
+      formData.append('photo[]', this.selectedFile)
+      this.$axios.post('/api/v1/user/uploadprofilephoto', formData, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'multipart/form-data',
         },
-        methods: {
+      })
+    },
 
+    getspecialty() {
+      this.$axios
+        .get('/api/v1/user/profile', {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          this.list = res.data.data.profile_photo
+          alert(res.data.data.profile_photo)
+        })
+    },
 
-                        postMedical(){
-                        const formData = new FormData();
-                        formData.append('photo', this.selectedFile);
-                        this.$axios
-                        .post('/api/v1/user/uploadprofilephoto', formData,
-                        {
-                            headers: {
-                            "Authorization": 'Bearer ' + localStorage.getItem("token"),
-                            "Content-Type": "multipart/form-data"
-                            }
-                            
-                        })
-                        
-                        },
+    handleFileImport() {
+      this.isSelecting = true
 
-
-                                       
-
-                                                
-                                                getspecialty() {
-                                            this.$axios
-                                            .get('/api/v1/user/profile',{
-                                                headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
-                                            })
-                                            .then(res => {
-                                                this.list= res.data.data
-                                                alert(res.data.data.profile_photo)
-
-                                            })
-                                            },
-                                         
-                                        handleFileImport() {
-                                            this.isSelecting = true;
-
-                                            // After obtaining the focus when closing the FilePicker, return the button state to normal
-                                            window.addEventListener('focus', () => {
-                                                this.isSelecting = false
-                                            }, { once: true });
-                                            
-                                            // Trigger click on the FileInput
-                                            this.$refs.uploader.click();
-                                        },
-                                        onFileChanged(e) {
-                                            this.selectedFile = e.target.files[0];
-
-                                            // Do whatever you need with the file, liek reading it with FileReader
-                                        }, 
+      // After obtaining the focus when closing the FilePicker, return the button state to normal
+      window.addEventListener(
+        'focus',
+        () => {
+          this.isSelecting = false
+        },
+        { once: true }
+      )
 
       
-        },
+      this.$refs.uploader.click()
+    },
+    onFileChanged(e) {
+      this.selectedFile = e.target.files[0]
 
-        mounted() {
+      
+    },
 
-                this.getspecialty()
-            },
-   
+    /* AREGLOS DE CERTIFICADOS  */
 
+    postArray(){
+        const formData = new FormData()
+        formData.append('certificate_photo[]',this.files)
+        this.$axios
+         .post('/api/v1/physician/educationalbackground/uploadcertificate', formData, {
+            headers:{
+                "Authorization": 'Bearer ' + localStorage.getItem("token"),
+                "Content-Type": "multipart/form-data"
+            }
+         })
     }
+  },
+
+  mounted() {
+    this.getspecialty()
+    console.log(this.files)
+  },
+}
 </script>
