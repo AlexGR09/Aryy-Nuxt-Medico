@@ -1,26 +1,9 @@
 <template>
   <div>
-    <!-- 1. Create the button that will be clicked to select a file -->
-    <v-btn
-      color="primary"
-      rounded
-      dark
-      :loading="isSelecting"
-      @click="handleFileImport"
-    >
-      Subir foto
-    </v-btn>
-    <!-- Create a File Input that will be hidden but triggered with JavaScript -->
-    <input
-      :v-model="selectedFile"
-      ref="uploader"
-      class="d-none"
-      type="file"
-      v-on:click="postMedical()"
-      @change="onFileChanged"
-    />
 
-   <v-img max-height="512" max-width="512" :src="list">{{ list }}</v-img> 
+
+    <p>{{list}}</p>
+
     <v-col md="4" cols="12">
       <v-file-input
         v-model="files"
@@ -138,6 +121,9 @@ export default {
   mounted() {
     this.getspecialty()
     console.log(this.files)
+    this.getOneiewy()
+    this.humano()
+    this-binomao()
   },
 }
 </script>

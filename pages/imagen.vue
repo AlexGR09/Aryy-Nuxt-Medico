@@ -4,6 +4,7 @@
       <div class="col-md-6">
         <div class="input-group">
           <div class="custom-file mb-3">
+
             <input
               type="file"
               class="custom-file-input"
@@ -12,27 +13,32 @@
               multiple
               required
             />
+          </div>
             <label class="custom-file-label" for="uploadfiles"
               >Elija varias archivos para cargar</label
             >
-          </div>
         </div>
       </div>
       <div class="col-md-2">
-        <button
+        <v-btn
           type="button"
           @click="uploadFile()"
           name="upload"
           class="btn btn-primary"
         >
           Cargar Archivos
-        </button>
+        </v-btn>
       </div>
     </div>
     <hr />
     <!-- Mostrando los archivos cargados -->
 
+    
+
+ 
+
   </div>
+
 </template>
 
 <script>
@@ -42,14 +48,12 @@ export default {
         return {
             file: '',
             filenames: [],
-
         }
     },
     methods: {
     uploadFile: function () {
       const el = this
       
-
     //   const formData = new FormData()
 
       // Leer archivos seleccionados

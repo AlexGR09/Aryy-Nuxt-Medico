@@ -6,13 +6,7 @@
       </v-card>
       <v-col md="10" lg="10" xl="10">
         <v-card flat class="pa-3 mt-2">
-          <v-alert 
-            shaped 
-            prominent 
-            dense
-            text
-            type="success"
-          >
+          <v-alert shaped prominent dense text type="success">
             {{ status }}
           </v-alert>
           <v-card-subtitle class="pa-3 mt-n2 mb-n10">
@@ -21,7 +15,7 @@
             <!-- btn editar -->
             <v-toolbar flat type="success">
               <v-icon></v-icon>
-   
+
               <v-spacer></v-spacer>
               <v-btn
                 color="primary"
@@ -133,6 +127,70 @@
 
               <!-- FOTOGRAFIAS DE CERTIFICADOS | LUIS REYES -->
               <h1 class="mb-5 mt-8">CERTIFICADOS</h1>
+
+              <v-col md="4" cols="12">
+                <v-file-input
+                  v-model="files"
+                  color="deep-purple accent-4"
+                  counter
+                  label="seleccionar fotos"
+                  multiple
+                  placeholder="seleccionar foto"
+                  prepend-icon="mdi-paperclip"
+                  outlined
+                  single-line
+                  :show-size="1000"
+                  clearable
+                >
+                  <template v-slot:selection="{ index, text }">
+                    <v-chip
+                      v-if="index < 2"
+                      color="deep-purple accent-4"
+                      dark
+                      label
+                      small
+                    >
+                      {{ text }}
+                    </v-chip>
+
+                    <span
+                      v-else-if="index === 2"
+                      class="text-overline grey--text text--darken-3 mx-2"
+                    >
+                      +{{ files.length - 2 }} File(s)
+                    </span>
+                  </template>
+                </v-file-input>
+                <v-btn v-on:click="postArray()" elevation="2">subir</v-btn>
+              </v-col>
+              <v-col md="7" cols="12">
+                <v-card
+                  v-scroll.self="onScroll"
+                  class="overflow-y-auto"
+                  max-height="400"
+                >
+                  <v-banner
+                    class="justify-center text-h5 font-weight-light"
+                    sticky
+                  >
+                   misv¿ vertificad
+
+                    <span
+                      class="font-weight-bold"
+                      v-text="scrollInvoked"
+                    ></span>
+
+                    times
+                  </v-banner>
+
+                  <v-card-text>
+                    <div v-for="n in 12" :key="n" class="mb-4">
+
+                    </div>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+
               <VueFileAgent
                 ref="uploadfiles"
                 type="file"
@@ -142,10 +200,7 @@
                 :deletable="true"
                 :meta="true"
                 :accept="'image/*'"
-                
                 :helpText="'sube tus certificados'"
-             
-       
               ></VueFileAgent>
 
               <div class="col-md-2">
@@ -306,9 +361,9 @@ export default {
       file: '',
       filenames: [],
 
-
       uploadHeaders: { 'X-Test-Header': 'vue-file-agent' },
       fileRecordsForUpload: [], // maintain an upload queue
+      scrollInvoked: 0,
     }
   },
   watch: {
@@ -324,6 +379,10 @@ export default {
     reset() {
       this.$refs.form.reset()
     },
+
+    onScroll () {
+        this.scrollInvoked++
+      },
 
     getMedicalProfile() {
       this.$axios
@@ -424,28 +483,25 @@ export default {
       )
     },
 
-        uploadFile: function () {
-          console.log(this.uploadfiles.upload)
+    uploadFile: function () {
+      console.log(this.uploadfiles.upload)
       // const el = this
       // const files = this.$refs.uploadfiles.files
 
-      
       // const totalfiles = this.$refs.uploadfiles.files.length
       // const datos = new  FormData()
 
-
-      // for (let index = 0; index < totalfiles; index++) 
+      // for (let index = 0; index < totalfiles; index++)
       // {
       //   datos.append("certificate_photo[]", files[index]);
       // }
-    
 
       // this.$axios
       //   .post('/api/v1/physician/educationalbackground/uploadcertificate', datos, {
       //     headers: {
       //       "Authorization": 'Bearer ' + localStorage.getItem("token"),
       //       'Content-Type': 'multipart/form-data',
-           
+
       //     },
       //   })
       //   .then(function (response) {
@@ -458,11 +514,9 @@ export default {
       //   })
     },
 
-
     /* FOTOGRAFIAS DE CERTIFICADOS */
- 
 
-  /*   uploadFiles: function () {
+    /*   uploadFiles: function () {
       // Usando el cargador predeterminado. Puede usar otro cargador en su lugar.
       this.$refs.vueFileAgent.upload(
         this.uploadUrl,
@@ -503,13 +557,6 @@ export default {
         this.deleteUploadedFile(fileRecord)
       }
     }, */
-
-
-
-
-
-
-
   },
   mounted() {
     this.getMedicalProfile()

@@ -8,8 +8,6 @@
         
       </v-tabs>
     </v-toolbar>
-
-    
     <v-card class="mt-2" flat>
       <v-tabs-items v-model="tabs">
         <v-tab-item><menu-personal/></v-tab-item>

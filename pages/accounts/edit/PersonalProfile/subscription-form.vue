@@ -12,7 +12,7 @@
           <v-form ref="form" v-model="valid">
             <v-card-text class="pa-3 mt-5">
               <v-row>
-                <!--  CAMPO TUPO DE PLAN| LUIS REYES -->
+                <!--  CAMPO TIPO DE PLAN| LUIS REYES -->
                 <v-col md="4" cols="12">
                   <span>Tipo de plan</span>
                   <v-text-field
@@ -20,10 +20,20 @@
                     dense
                   ></v-text-field>
                 </v-col>
+
                 <!-- CAMPO NÚMERO DE USUARIO | LUIS REYES -->
-                <v-col md="4" cols="12">
+                <v-col md="4" cols="12" xl="3">
                   <span>Número de usuarios</span>
-                  <v-text-field placeholder="1 usuario" dense></v-text-field>
+                  <v-text-field
+                    placeholder="1 usuario"
+                    dense
+                    solo
+                    outlined
+                    text
+                  >
+                  </v-text-field>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1"></v-btn>
                 </v-col>
                 <!-- CAMPO DATOS DE PAGOS | LUIS REYES -->
                 <v-col md="4" cols="12">
@@ -36,17 +46,17 @@
                 >¿Quieres cancelar tu suscripción? Contacta a Soporte por el
                 chat</span
               >
-              <!-- botones -->
+              <v-ship solo ref=""></v-ship>
+              <!-- botones | @click="overlay = !overlay" -->
               <BR /><BR />
               <v-btn
-                @click="overlay = !overlay"
                 height="50px"
                 class="white--text save mt-7"
                 color="#7900ff"
                 large
-                >Editar suscripción</v-btn>
+                >Editar suscripción</v-btn
+              >
               <BR /><BR />
-
               <v-overlay :value="overlay">
                 <v-alert
                   class="rounded-xl"
@@ -55,15 +65,78 @@
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
-                  <v-card-subtitle class="pa-3 mt-n2 mb-n10">
-                    <H1 class="mb-5">MÉTODOS DE PAGO</H1>
-                  </v-card-subtitle>
+              <v-card-subtitle class="pa-3 mt-n2 mb-n10">
+                <H1 class="mb-5">MÉTODOS DE PAGO</H1>
+              </v-card-subtitle>
             </v-card-text>
-            <br><br>
+            <br /><br />
             <span>No hay método de pago guardado</span>
-            <br><br>
+            <br /><br />
+            <div>
+              <v-row justify="center">
+                <v-dialog
+                  v-model="dialog"
+                  persistent
+                  max-width="600px"
+                  rounded-xl
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                      Open Dialog
+                    </v-btn>
+                  </template>
+                  <v-card>
+                    <v-card-title>
+                      <span class="text-h5">Métodos de Pagos</span>
+                    </v-card-title>
+                    <v-card-text>
+                      <v-container>
+                        <v-row>
+                          <!-- PAGO DE TARJETA -->
+                          <v-col cols="12" md="6">
+                            <v-btn outlined small color="indigo">
+                              <v-icon left> mdi-credit-card </v-icon> pagar con
+                              tarjeta
 
-            <v-btn class="btn " color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar un método de pago</v-btn>
+                              
+                              </v-btn
+                            >
+                          </v-col>
+
+                          <!-- PAGO DE PAYPAL -->
+
+                          <v-col cols="12" md="6">
+                            <v-btn outlined small color="indigo">
+                              <v-icon left> mdi-parking </v-icon> pagar con
+                              PayPal</v-btn
+                            >
+                          </v-col>
+                            <!-- PAGO DE GooglePay -->
+                          <v-col cols="12" md="6">
+                            <v-btn outlined small color="indigo">
+                              <v-icon left> mdi-google </v-icon> pagar con
+                              GooglePay</v-btn
+                            >
+                          </v-col>
+                            <!-- PAGO DE APPLE PAY -->
+                          <v-col cols="12" md="6">
+                            <v-btn outlined small color="indigo">
+                              <v-icon left> mdi-food-apple </v-icon> pagar con
+                              ApplePay</v-btn
+                            >
+                          </v-col>
+                        </v-row>
+                      </v-container>
+                    </v-card-text>
+                  </v-card>
+                </v-dialog>
+              </v-row>
+            </div>
+
+            <v-btn class="btn" color="#9966ff" text
+              ><v-icon class="icon">mdi-plus-circle</v-icon>Agregar un método de
+              pago</v-btn
+            >
           </v-form>
         </v-card>
       </v-col>
