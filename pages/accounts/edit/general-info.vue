@@ -219,12 +219,14 @@
                 
                 </v-col><v-col xl="12"></v-col>
                 <v-col xl="12">
-                  <v-alert class="alert"
+                  <v-alert v-if="error" class="alert" v-model="errorphone"
         dense
         outlined
         type="error"
       >
-      {{errorphone}}
+      {{errorphone}} <br/> {{passworderror}} <br/> {{erroremail}}
+      
+    
       </v-alert>
                 </v-col>
 
@@ -242,7 +244,7 @@
                   large
                   >Actualizar datos</v-btn
                 >
-                <v-overlay :value="overlay">
+                <v-overlay v-if="ok" :value="overlay">
                   <v-alert
                     class="rounded-xl"
                     icon="mdi-check-circle"
@@ -302,7 +304,11 @@ export default {
 
   data() {
     return {
+      error: '',
+      ok:'',
       errorphone: '',
+      passworderror: '',
+      erroremail: '',
       avatar: '',
       msg: '',
       photo: '',
@@ -374,11 +380,6 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       })
-       .catch((error) => {
-          /*   alert(error.response.data.errors.email) */
-          this.errorphone = ''
-          this.errorphone = error.response.errors.phone_number[0]
-        })
     },
     handleFileImport() {
       this.isSelecting = true
@@ -453,6 +454,7 @@ export default {
         }
       )
        .then(() => {
+        this.ok="ok"
           if (this.password_confirmation === '') {
             this.$router.go(this.$router.currentRoute)
           } else {
@@ -461,6 +463,13 @@ export default {
                           this.$router.replace('/auth/login')
           }
             })
+            .catch((error) => {
+          /*   alert(error.response.data.errors.email) */
+          this.error="error"
+          this.errorphone = error.response.data.errors.phone_number[0]
+          this.passworderror = error.response.data.errors.password[0]
+          this.erroremail = error.response.data.errors.email[0]
+        })
     },
 
     reset() {
