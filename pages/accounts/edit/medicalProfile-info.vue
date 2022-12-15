@@ -6,15 +6,22 @@
       </v-card>
       <v-col md="10" lg="10" xl="10">
         <v-card flat class="pa-3 mt-2">
+          <v-alert 
+            shaped 
+            prominent 
+            dense
+            text
+            type="success"
+          >
+            {{ status }}
+          </v-alert>
           <v-card-subtitle class="pa-3 mt-n2 mb-n10">
             <h1>FORMACIÓN ACADÉMICA</h1>
 
             <!-- btn editar -->
             <v-toolbar flat type="success">
               <v-icon></v-icon>
-              <v-alert shaped prominent type="error">
-                {{ status }}
-              </v-alert>
+   
               <v-spacer></v-spacer>
               <v-btn
                 color="primary"
@@ -124,36 +131,33 @@
                 </v-col>
               </v-row>
 
-              <!-- FOTOGRAFUCAS DE CERTIFICADOS | LUIS REYES -->
+              <!-- FOTOGRAFIAS DE CERTIFICADOS | LUIS REYES -->
               <h1 class="mb-5 mt-8">CERTIFICADOS</h1>
-
               <VueFileAgent
-                ref="vueFileAgent"
+                ref="uploadfiles"
+                type="file"
+                :id="uploadfiles"
                 :theme="'grid'"
                 :multiple="true"
                 :deletable="true"
                 :meta="true"
                 :accept="'image/*'"
-                :maxSize="'2MB'"
-                :maxFiles="5"
+                
                 :helpText="'sube tus certificados'"
-                :errorText="{
-                  type: 'Tipo de archivo invalido. Solo se permiten imágenes',
-                  size: 'Los archivos no deben exceder los 2 MB de tamaño',
-                }"
-                @select="filesSelected($event)"
-                @beforedelete="onBeforeDelete($event)"
-                @delete="fileDeleted($event)"
-                v-model="fileRecords"
+             
+       
               ></VueFileAgent>
 
-              <v-button
-                :disabled="!fileRecordsForUpload.length"
-                @click="certified_photos()"
-                v-on:click="certified_photos"
-              >
-                subir {{ fileRecordsForUpload.length }} files
-              </v-button>
+              <div class="col-md-2">
+                <button
+                  type="button"
+                  @click="uploadFile()"
+                  name="upload"
+                  class="btn btn-primary"
+                >
+                  Cargar Archivos
+                </button>
+              </div>
 
               <!-- REDES SOCIALES | LUIS REYES -->
               <br />
@@ -299,9 +303,10 @@ export default {
       dbSelect: '',
       items: [],
 
-      fileRecords: [],
-      uploadUrl:
-        'https://app.aryymd.com/api/v1/physician/educationalbackground/uploadcertificate',
+      file: '',
+      filenames: [],
+
+
       uploadHeaders: { 'X-Test-Header': 'vue-file-agent' },
       fileRecordsForUpload: [], // maintain an upload queue
     }
@@ -419,34 +424,45 @@ export default {
       )
     },
 
-    /* FOTOGRAFIAS DE CERTIFICADOS */
-    certified_photos() {
-      const formData = new FormData()
-      /*   formData.append('certificate_photo', this.fileRecords[0].files) */
+        uploadFile: function () {
+          console.log(this.uploadfiles.upload)
+      // const el = this
+      // const files = this.$refs.uploadfiles.files
 
-      // Leer archivos seleccionados
-      /* const files = this.$refs.uploadfiles.files; */
-      /*   const totalfiles = this.$refs.uploadfiles.files.length; */
+      
+      // const totalfiles = this.$refs.uploadfiles.files.length
+      // const datos = new  FormData()
 
-      /*  console.log(this.$refs.uploadfiles.files.length) */
-      console.log('llegue')
-      /* for (const index = 0; index < totalfiles; index++) {
-      formData.append("certificate_photo[]", file[index]);
-      } */
 
-      /* this.$axios
-       .post('/api/v1/physician/educationalbackground/uploadcertificate', formData,
-       {
-        headers:{
-          "Authorization": 'Bearer ' + localStorage.getItem("token"),
-           "Content-Type": "multipart/form-data"
-        }
-       }) */
+      // for (let index = 0; index < totalfiles; index++) 
+      // {
+      //   datos.append("certificate_photo[]", files[index]);
+      // }
+    
 
-      console.log(formData)
+      // this.$axios
+      //   .post('/api/v1/physician/educationalbackground/uploadcertificate', datos, {
+      //     headers: {
+      //       "Authorization": 'Bearer ' + localStorage.getItem("token"),
+      //       'Content-Type': 'multipart/form-data',
+           
+      //     },
+      //   })
+      //   .then(function (response) {
+      //     el.filenames = response.data
+
+      //     alert(el.filenames.length + ' los archivos se han subido.')
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error)
+      //   })
     },
 
-    uploadFiles: function () {
+
+    /* FOTOGRAFIAS DE CERTIFICADOS */
+ 
+
+  /*   uploadFiles: function () {
       // Usando el cargador predeterminado. Puede usar otro cargador en su lugar.
       this.$refs.vueFileAgent.upload(
         this.uploadUrl,
@@ -486,7 +502,14 @@ export default {
       } else {
         this.deleteUploadedFile(fileRecord)
       }
-    },
+    }, */
+
+
+
+
+
+
+
   },
   mounted() {
     this.getMedicalProfile()

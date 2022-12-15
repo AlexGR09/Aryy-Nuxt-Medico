@@ -20,7 +20,7 @@
       @change="onFileChanged"
     />
 
-<!--     <v-img max-height="512" max-width="512" :src="list">{{ list }}</v-img> -->
+   <v-img max-height="512" max-width="512" :src="list">{{ list }}</v-img> 
     <v-col md="4" cols="12">
       <v-file-input
         v-model="files"
@@ -31,9 +31,10 @@
         placeholder="seleccionar foto"
         prepend-icon="mdi-paperclip"
         outlined
+        single-line
         :show-size="1000"
       >
-        <template v-slot:selection="{ index, text }">
+        <template  v-slot:selection="{ index, text }">
           <v-chip
             v-if="index < 2"
             color="deep-purple accent-4"
@@ -52,8 +53,6 @@
           </span>
         </template>
       </v-file-input>
-
-
             <v-btn
                 v-on:click="postArray()"
                 elevation="2"
