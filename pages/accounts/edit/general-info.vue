@@ -5,20 +5,19 @@
         <menuPersonal />
       </v-card>
       <v-col md="12" lg="10" xl="10">
-        
         <v-card flat class="pa-3 mt-2">
-          
           <v-card-subtitle
-            ><H1 class="mb-5">FOTO DE PERFIL</H1></v-card-subtitle
-          >
+            ><H1 class="mb-5 mt-n8">FOTO DE PERFIL</H1></v-card-subtitle>
           {{ buttonText }}
           <v-card-text class="d-flex">
             <v-avatar class="me-6" size="80">
-               <v-img v-if="!photo" v-bind:src="require('@/assets/icons/avatar.png')"></v-img> 
-              <v-img v-else :src="imageUrl"  />
+              <v-img
+                v-if="!photo"
+                v-bind:src="require('@/assets/icons/avatar.png')"
+              ></v-img>
+              <v-img v-else :src="imageUrl" />
             </v-avatar>
             <div>
-              
               <v-btn
                 height="50px"
                 class="white--text save"
@@ -215,29 +214,28 @@
                     class="textfield"
                     placeholder="********"
                     outlined
-                  ></v-text-field>
-                
-                </v-col><v-col xl="12"></v-col>
+                  ></v-text-field> </v-col
+                ><v-col xl="12"></v-col>
                 <v-col xl="12">
-                  <v-alert v-if="error" class="alert" v-model="errorphone"
-        dense
-        outlined
-        type="error"
-      >
-      {{errorphone}} <br/> {{passworderror}} <br/> {{erroremail}}
-      
-    
-      </v-alert>
+                  <!-- alert para notificar error | Genesis -->
+                  <v-alert
+                    v-if="error"
+                    class="alert"
+                    v-model="errorphone"
+                    dense
+                    outlined
+                    type="error"
+                  >
+                    {{ errorphone }} <br />
+                    {{ passworderror }} <br />
+                    {{ erroremail }}
+                  </v-alert>
                 </v-col>
-
-                
-              
-              
               </v-row>
               <div class="mt-8">
                 <v-btn
                   height="50px"
-                  @click="overlay = !overlay "
+                  @click="overlay = !overlay"
                   class="white--text save"
                   v-on:click="update"
                   color="#7900ff"
@@ -305,7 +303,7 @@ export default {
   data() {
     return {
       error: '',
-      ok:'',
+      ok: '',
       errorphone: '',
       passworderror: '',
       erroremail: '',
@@ -313,7 +311,7 @@ export default {
       msg: '',
       photo: '',
       defaultButtonText: '',
-      imageUrl:'',
+      imageUrl: '',
       emaild: '',
       genderd: '',
       phoned: '',
@@ -352,7 +350,7 @@ export default {
   computed: {
     buttonText() {
       return this.selectedFile ? this.selectedFile.name : this.defaultButtonText
-    }
+    },
   },
   watch: {
     overlay(val) {
@@ -360,13 +358,6 @@ export default {
         setTimeout(() => {
           this.overlay = false
         }, 3000)
-    },
-    password_confirmation() {
-      if (this.password === this.password_confirmation) {
-        this.msg = ''
-      } else {
-        this.msg = 'Las contraseñas no coinciden'
-      }
     },
   },
   methods: {
@@ -423,7 +414,7 @@ export default {
           console.log('error en GET')
         )
     },
-    
+
     avatarGet() {
       console.log('creando petición GET')
       this.$axios
@@ -437,35 +428,37 @@ export default {
     },
 
     update() {
-      this.$axios.put(
-        '/api/v1/user/profile',
-        {
-          full_name: this.full_name,
-          gender: this.gender,
-          email: this.email,
-          phone_number: this.phone_number,
-          birthday: this.date,
-          country_code: '52',
-          password: this.password,
-          password_confirmation: this.password_confirmation,
-        },
-        {
-          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-        }
-      )
-       .then(() => {
-        this.ok="ok"
+      this.$axios
+        .put(
+          '/api/v1/user/profile',
+          {
+            full_name: this.full_name,
+            gender: this.gender,
+            email: this.email,
+            phone_number: this.phone_number,
+            birthday: this.date,
+            country_code: '52',
+            password: this.password,
+            password_confirmation: this.password_confirmation,
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then(() => {
+          this.ok = 'ok'
           if (this.password_confirmation === '') {
             this.$router.go(this.$router.currentRoute)
           } else {
             localStorage.removeItem('token')
-                          console.log("cierre de sesión")
-                          this.$router.replace('/auth/login')
+            console.log('cierre de sesión')
+            this.$router.replace('/auth/login')
           }
-            })
-            .catch((error) => {
-          /*   alert(error.response.data.errors.email) */
-          this.error="error"
+        })
+        .catch((error) => {
+          this.error = 'error'
           this.errorphone = error.response.data.errors.phone_number[0]
           this.passworderror = error.response.data.errors.password[0]
           this.erroremail = error.response.data.errors.email[0]
@@ -488,7 +481,7 @@ p.reset {
   font-family: Montserrat;
   font-size: 90%;
 }
-.alert{
+.alert {
   font-family: Montserrat;
 }
 </style>

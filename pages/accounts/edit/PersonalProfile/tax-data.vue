@@ -13,7 +13,7 @@
             <v-card-text class="pa-3 mt-5">
               <v-row>
                 <!-- CAMPO DE RFC | LUIS REYES -->
-                <v-col md="4" cols="12">
+                <v-col md="4" lg="4" xl="4" cols="12">
                   <span>RFC</span>
                   <v-text-field
                     v-model="rfc"
@@ -261,12 +261,9 @@ export default {
     this.showData()
   },
   }
+</script> 
 
-
-</script>
-  
-  
-    <style>
+<style>
 .v-input__icon--prepend .v-icon {
   color: #9966ff;
 }
@@ -296,7 +293,6 @@ export default {
 .v-list-item:hover {
   background: #7900ff;
 }
-
 .item-active {
   background-color: #7900ff;
   color: white !important;
