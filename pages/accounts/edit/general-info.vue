@@ -5,7 +5,9 @@
         <menuPersonal />
       </v-card>
       <v-col md="12" lg="10" xl="10">
+        
         <v-card flat class="pa-3 mt-2">
+          
           <v-card-subtitle
             ><H1 class="mb-5">FOTO DE PERFIL</H1></v-card-subtitle
           >
@@ -215,8 +217,20 @@
                     outlined
                   ></v-text-field>
                 
-                </v-col><v-col></v-col>
-                <p class="hint">{{ msg }}</p>
+                </v-col><v-col xl="12"></v-col>
+                <v-col xl="12">
+                  <v-alert class="alert"
+        dense
+        outlined
+        type="error"
+      >
+      {{errorphone}}
+      </v-alert>
+                </v-col>
+
+                
+              
+              
               </v-row>
               <div class="mt-8">
                 <v-btn
@@ -288,6 +302,7 @@ export default {
 
   data() {
     return {
+      errorphone: '',
       avatar: '',
       msg: '',
       photo: '',
@@ -359,6 +374,11 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       })
+       .catch((error) => {
+          /*   alert(error.response.data.errors.email) */
+          this.errorphone = ''
+          this.errorphone = error.response.errors.phone_number[0]
+        })
     },
     handleFileImport() {
       this.isSelecting = true
@@ -458,6 +478,9 @@ export default {
 p.reset {
   font-family: Montserrat;
   font-size: 90%;
+}
+.alert{
+  font-family: Montserrat;
 }
 </style>
 
