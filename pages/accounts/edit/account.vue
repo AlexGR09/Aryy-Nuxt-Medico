@@ -9,7 +9,7 @@
     </v-toolbar>
     <v-card class="mt-2" flat>
       <v-tabs-items v-model="tabs">
-        <v-tab-item><general-info /></v-tab-item>
+        <v-tab-item><menu-personal/></v-tab-item>
         <v-tab-item><menu-med /></v-tab-item>
         <v-tab-item><menu-planner /></v-tab-item>
       </v-tabs-items>
@@ -19,10 +19,10 @@
 
 <script>
 import menuPlanner from './plannerViews/menuPlanner.vue'
-import generalInfo from './general-info.vue'
+import menuPersonal from './PersonalProfile/menuPersonal.vue';
 import MenuMed from './MedicalProfileViews/menuMed.vue'
 export default {
-  components: { menuPlanner, generalInfo, MenuMed },
+  components: { menuPlanner, menuPersonal, MenuMed },
   data: () => ({ show1: false, tabs: 0 }),
 }
 </script>

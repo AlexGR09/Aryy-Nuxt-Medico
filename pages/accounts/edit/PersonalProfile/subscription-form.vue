@@ -68,10 +68,15 @@
         </v-card>
       </v-col>
     </v-row>
+    <menu-personal/>
   </div>
 </template>
       <script>
+      import menuPersonal from './menuPersonal.vue'
 export default {
+  components: {
+    menuPersonal
+  },
   data() {
     return {
       overlay: false,

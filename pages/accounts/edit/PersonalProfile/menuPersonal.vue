@@ -11,7 +11,6 @@
     <v-tab class="proband"> DATOS FISCALES </v-tab>
     <v-tab class="proband"> SUSCRIPCIÓN </v-tab>
     <v-tab-item transition="fade-transition">
-      <!--  <general-info class="mt-n8"/> -->
       <general-info />
     </v-tab-item>
     <v-tab-item transition="fade-transition">

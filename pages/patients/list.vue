@@ -66,7 +66,7 @@
                   <template v-slot:[`item.create`]>
                       <a>Crear cita</a>
                   </template>
-                  template personalizado para mostrar las acciones de la tabla | Genesis
+               <!--    template personalizado para mostrar las acciones de la tabla | Genesis -->
                   <template v-slot:[`item.actions`]="{ item }">
                     <!-- agrupar botones en una sola fila  | Genesis -->
                     <v-btn-toggle borderless class="botones">
