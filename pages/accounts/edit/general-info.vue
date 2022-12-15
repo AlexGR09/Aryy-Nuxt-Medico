@@ -11,9 +11,8 @@
           >
           {{ buttonText }}
           <v-card-text class="d-flex">
-            
             <v-avatar class="me-6" size="80">
-               <v-img v-if="photo" v-bind:src="require('@/assets/icons/avatar.png')"></v-img> 
+               <v-img v-if="!photo" v-bind:src="require('@/assets/icons/avatar.png')"></v-img> 
               <v-img v-else :src="imageUrl"  />
             </v-avatar>
             <div>
@@ -222,7 +221,7 @@
               <div class="mt-8">
                 <v-btn
                   height="50px"
-                  @click="overlay = !overlay"
+                  @click="overlay = !overlay "
                   class="white--text save"
                   v-on:click="update"
                   color="#7900ff"
@@ -289,6 +288,9 @@ export default {
 
   data() {
     return {
+      avatar: '',
+      msg: '',
+      photo: '',
       defaultButtonText: '',
       imageUrl:'',
       emaild: '',
@@ -400,23 +402,16 @@ export default {
           console.log('error en GET')
         )
     },
-
-    getPhoto(a) {
-      this.$axios
-        .get('/api/v1/user/getprofilephoto')
-        .then(({ data }) => {
-          this.img = data.data.profile_photo
-        })
-    },
     
-    avatar() {
+    avatarGet() {
       console.log('creando petición GET')
       this.$axios
         .get('/api/v1/user/getprofilephoto', {
+          photo: 'qwqwqw',
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          this.avatar = res.data.data.profile_photo
+          this.avatar = res.data.data.photo
         })
     },
 
@@ -424,11 +419,11 @@ export default {
       this.$axios.put(
         '/api/v1/user/profile',
         {
-          full_name: 'dra Ana',
-          gender: 'femenino',
+          full_name: this.full_name,
+          gender: this.gender,
           email: this.email,
           phone_number: this.phone_number,
-          birthday: '2000-02-15',
+          birthday: this.date,
           country_code: '52',
           password: this.password,
           password_confirmation: this.password_confirmation,
@@ -437,6 +432,15 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         }
       )
+       .then(() => {
+          if (this.password_confirmation === '') {
+            this.$router.go(this.$router.currentRoute)
+          } else {
+            localStorage.removeItem('token')
+                          console.log("cierre de sesión")
+                          this.$router.replace('/auth/login')
+          }
+            })
     },
 
     reset() {
