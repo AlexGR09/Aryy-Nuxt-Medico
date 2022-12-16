@@ -7,21 +7,21 @@
       <v-col md="12" lg="11" xl="10">
         <v-card height="800px" flat class="pa-3">
           <v-col xl="12">
-                  <!-- alert para notificar error | Genesis -->
-                  <v-alert
-                    v-if="error"
-                    class="alert mt-n6 mb-9"
-                    v-model="errorphone"
-                    dense
-                    outlined
-                    type="error"
-                  >
-                    {{ errorphone }} <br />
-                    {{ passworderror }} <br />
-                    {{ erroremail }}
-                  </v-alert>
-                </v-col>
-         <!--  <v-card-subtitle
+            <!-- alert para notificar error | Genesis -->
+            <v-alert
+              v-if="error"
+              class="alert mt-n6 mb-9"
+              v-model="errorphone"
+              dense
+              outlined
+              type="error"
+            >
+              {{ errorphone }} <br />
+              {{ passworderror }} <br />
+              {{ erroremail }}
+            </v-alert>
+          </v-col>
+          <!--  <v-card-subtitle
             ><H1 class="mb-5 mt-n8">FOTO DE PERFIL</H1></v-card-subtitle>
           {{ buttonText }}
           <v-card-text class="d-flex">
@@ -67,10 +67,11 @@
             </div>
           </v-card-text> -->
           <!-- formulario | Luis Reyes -->
-
           <v-card-text class="mt-n6">
             <v-card-subtitle
-              ><H1 class="ml-n5 mt-n10">INFORMACIÓN DE PERFIL</H1></v-card-subtitle
+              ><H1 class="ml-n5 mt-n10"
+                >INFORMACIÓN DE PERFIL</H1
+              ></v-card-subtitle
             >
             <v-form ref="form" class="multi-col-validation">
               <v-row>
@@ -144,22 +145,24 @@
                   ></v-text-field>
                 </v-col>
                 <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
-
-                  <v-dialog  fullscreen  overlay-color="white"
-                transition="dialog-top-transition" v-model="dialogg">
-               
-                  <template  v-slot:activator="{ on, attrs }">
-                  
-                    <v-btn @click="emaild = !emaild" class="iconos mt-9" icon>
-                    <v-img  v-bind="attrs" v-on="on"
-                      :src="require('@/assets/icons/Iconos_EDITAR.svg')"
-                      max-width="25"
-                    ></v-img>
-                  </v-btn>
-                  </template>
-                  <change-email/>
-                </v-dialog>
-
+                  <v-dialog
+                    fullscreen
+                    overlay-color="white"
+                    transition="dialog-top-transition"
+                    v-model="dialogg"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn @click="emaild = !emaild" class="iconos mt-9" icon>
+                        <v-img
+                          v-bind="attrs"
+                          v-on="on"
+                          :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                          max-width="25"
+                        ></v-img>
+                      </v-btn>
+                    </template>
+                    <change-email />
+                  </v-dialog>
                 </v-col>
 
                 <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
@@ -239,8 +242,8 @@
                     class="textfield"
                     placeholder="********"
                     outlined
-                  ></v-text-field> </v-col>
-               
+                  ></v-text-field>
+                </v-col>
               </v-row>
               <div class="mt-8">
                 <v-btn
@@ -300,14 +303,13 @@
     </v-row>
   </div>
 </template>
-
-
 <script>
 import changeEmail from './PersonalProfile/changeEmail.vue'
 import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue'
 export default {
   components: {
-    menuPersonal, changeEmail
+    menuPersonal,
+    changeEmail,
   },
 
   data() {
@@ -445,7 +447,7 @@ export default {
 }
 </script>
 <style>
-h1{
+h1 {
   font-family: Montserrat;
 }
 p.reset {
