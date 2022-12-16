@@ -27,7 +27,7 @@
                 <v-col md="4" cols="12">
                   <span>Nombre completo</span>
                   <v-text-field
-                  v-model="name"
+                  v-model="taxpayer_name"
                     class="textfield mt-1"
                     color="#9966ff"
                     placeholder="Nombre del contribuyente"
@@ -38,7 +38,7 @@
                 <v-col md="4" cols="12">
                   <span>Régimen fiscal</span>
                   <v-autocomplete
-                  v-model="regime"
+                  v-model="tax_regime"
                     class="textfield mt-1"
                     color="#9966ff"
                     outlined
@@ -50,11 +50,10 @@
                 <v-col md="4" cols="12">
                   <span>Correo electrónico</span> <br />
                   <v-text-field
-                    v-model="email"
+                    v-model="tax_email"
                     class="textfield mt-1"
                     color="#9966ff"
                     outlined
-                    :rules="emailRules"
                     placeholder="Escribe tu Email"
                     required
                   >
@@ -64,11 +63,10 @@
                 <v-col md="8" cols="12">
                   <span>Domicilio fiscal</span> <br />
                   <v-text-field
-                    v-model="residence"
+                    v-model="tax_residence"
                     class="textfield mt-1"
                     color="#9966ff"
                     outlined
-                    :rules="emailRules"
                     placeholder="Escribe la dirección"
                     required
                   >
@@ -105,14 +103,13 @@
              <div class="mt-8">
                 <v-btn
                   height="50px"
-                  @click="overlay = !overlay "
                   class="white--text save"
-                  v-on:click="upload"
+                  v-on:click="actualizar"
                   color="#7900ff"
                   large
                   >Actualizar datos</v-btn
                 >
-                <v-overlay :value="overlay">
+                <v-overlay v-model="overlay">
                   <v-alert
                     class="rounded-xl"
                     icon="mdi-check-circle"
@@ -171,10 +168,10 @@ export default {
   data() {
     return {
       rfc: '',
-      name: '',
-      regime: '',
-      email: '',
-      residence: '',
+      taxpayer_name: '',
+      tax_regime: '',
+      tax_email: '',
+      tax_residence: '',
       constancy: '',
       overlay: false,
       fileRecords: [],
@@ -192,9 +189,6 @@ export default {
     },
   },
   methods: {
-    reset() {
-      this.$refs.form.reset()
-    },
    /*  metodo para mostrar la informacion en los campos | Genesis */
     showData() {
       console.log('creando petición GET')
@@ -206,10 +200,10 @@ export default {
           console.log(res)
           console.log('exito en GET')
           this.rfc = res.data.data.rfc
-          this.name = res.data.data.taxpayer_name
-          this.regime = res.data.data.tax_regime
-          this.email = res.data.data.tax_email
-          this.residence = res.data.data.tax_residence
+          this.taxpayer_name = res.data.data.taxpayer_name
+          this.tax_regime = res.data.data.tax_regime
+          this.tax_email = res.data.data.tax_email
+          this.tax_residence = res.data.data.tax_residence
           this.constancy = res.data.data.constancy
         })
         .catch(
@@ -218,65 +212,62 @@ export default {
         )
     },
    /*  metodo para subir la informacion al servidor | Genesis */
-    upload(){
+   /*  upload(){
+      const formData = new FormData();
+      formData.append('constancy',this.constancy);
+      formData.append('rfc',this.rfc);
+      formData.append('taxpayer_name',this.taxpayer_name);
+      formData.append('tax_regime',"ddd");
+      formData.append('tax_email',this.tax_email);
+      formData.append('tax_residence',this.tax_residence);
       this.$axios
-      .post('api/v1/physician/tax_data', {
-        rfc: this.rfc,
-        taxpayer_name: this.name,
-        tax_regime: this.regime,
-        tax_email: this.email,
-        tax_residence: this.residence,
-        constancy: this.constancy,
-      },
+      .post('api/v1/physician/tax_data', formData,
       {
-        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),} 
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"} 
       })
       .then(() => {
+        this.overlay = true
         this.$router.go(this.$router.currentRoute)
       })
     },
-  },
+  }, */
  /*  metodo para actualizar la informacion en el servidor | Genesis */
-  update(){
-      this.$axios
-      .post('api/v1/physician/tax_data', {
-        rfc: this.rfc,
-        taxpayer_name: this.name,
-        tax_regime: this.regime,
-        tax_email: this.email,
-        tax_residence: this.residence,
-        constancy: this.constancy,
-        _method: 'put'
-      },
-      {
-        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),} 
-      })
-    },
-uploadPhoto(){
+ actualizar(){
       const formData = new FormData();
-      formData.append('constancy', this.constancy);
-
+      formData.append('constancy',this.constancy);
+      formData.append('rfc',this.rfc);
+      formData.append('taxpayer_name',this.taxpayer_name);
+      formData.append('tax_regime',"ddd");
+      formData.append('tax_email',this.tax_email);
+      formData.append('tax_residence',this.tax_residence);
+      formData.append('_method',"put");
       this.$axios
-       .post('api/v1/physician/tax_data', formData,
-       {
-        headers: {
-          "Authorization": 'Bearer ' + localStorage.getItem("token"),
-           "Content-Type": "multipart/form-data"
-        }
-        
-       })
-       
+      .post('api/v1/physician/tax_data', formData,
+      {
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"} 
+      })
+      .then(() => {
+        console.log("Cambios actualizados correctamente")
+        this.overlay = true
+         this.$router.go(this.$router.currentRoute)
+      })
+      .catch(error =>{
+        console.log(error)
+      })
     },
 
     /*  metodo para restaurar la informacion de los campos | Genesis */
     reset() {
       this.$refs.form.reset()
     },
-    mounted() {
+   
+  }, mounted() {
     console.log('verificando')
     this.showData()
   },
-  }
+}
 </script> 
 
 <style>
