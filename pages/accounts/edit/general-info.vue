@@ -70,11 +70,11 @@
 
           <v-card-text class="mt-n6">
             <v-card-subtitle
-              ><H1 class="ml-n5 mt-n6">INFORMACIÓN DE PERFIL</H1></v-card-subtitle
+              ><H1 class="ml-n5 mt-n10">INFORMACIÓN DE PERFIL</H1></v-card-subtitle
             >
-            <v-form ref="form" class="multi-col-validation mt-6">
+            <v-form ref="form" class="multi-col-validation">
               <v-row>
-                <v-col xs="7" sm="7" md="7" lg="7" xl="7" cols="12">
+                <v-col xs="7" sm="11" md="7" lg="7" xl="7" cols="12">
                   <span>Nombre completo*</span>
                   <v-text-field
                     v-model="full_name"
@@ -94,7 +94,7 @@
                     ></v-img> </v-btn
                 ></v-col>
 
-                <v-col xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
                   <span>Género*</span>
                   <v-text-field
                     v-model="gender"
@@ -113,7 +113,7 @@
                     ></v-img> </v-btn
                 ></v-col>
 
-                <v-col xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
                   <span>Teléfono personal*</span>
                   <v-text-field
                     v-model="phone_number"
@@ -132,7 +132,7 @@
                     ></v-img> </v-btn
                 ></v-col>
 
-                <v-col xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
                   <span>Correo*</span>
                   <v-text-field
                     v-model="email"
@@ -152,7 +152,7 @@
                   </v-btn>
                 </v-col>
 
-                <v-col xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
                   <span>Fecha de nacimiento</span>
                   <v-dialog
                     ref="dialog"
@@ -199,7 +199,7 @@
                       max-width="25"
                     ></v-img> </v-btn
                 ></v-col>
-                <v-col xs="3" sm="3" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
                   <span>Contraseña*</span>
                   <v-text-field
                     v-model="password"

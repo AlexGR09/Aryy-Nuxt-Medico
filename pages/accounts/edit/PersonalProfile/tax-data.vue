@@ -20,13 +20,13 @@
                   </v-alert>
                 </v-col>
           <v-card-subtitle class="pa-3 mt-n2 mb-n10">
-            <H1 class="mb-5">MIS DATOS FISCALES</H1>
+            <H1 class="mb-5 mt-n6">MIS DATOS FISCALES</H1>
           </v-card-subtitle>
            <v-form ref="form" class="multi-col-validation mt-6">
             <v-card-text class="pa-3 mt-5">
               <v-row>
                 <!-- CAMPO DE RFC | LUIS REYES -->
-                <v-col md="4" lg="4" xl="4" cols="12">
+                <v-col sm="6" md="4" lg="4" xl="4" cols="12">
                   <span>RFC</span>
                   <v-text-field
                     v-model="rfc"
@@ -37,7 +37,7 @@
                   ></v-text-field>
                 </v-col>
                 <!-- CAMPO DEl CONTRIBUYENTE | LUIS REYES -->
-                <v-col md="4" cols="12">
+                <v-col sm="6" md="4" lg="4" xl="4" cols="12">
                   <span>Nombre completo</span>
                   <v-text-field
                   v-model="taxpayer_name"
@@ -48,7 +48,7 @@
                   ></v-text-field>
                 </v-col>
                 <!-- REGIMEN FISCAL | LUIS REYES -->
-                <v-col md="4" cols="12">
+                <v-col sm="6" md="4" lg="4" xl="4"  cols="12">
                   <span>Régimen fiscal</span>
                   <v-autocomplete
                   v-model="tax_regime"
@@ -60,7 +60,7 @@
                   </v-autocomplete>
                 </v-col>
                 <!-- CAMPO DEl CORREO DEL CONTRIBUYENTE | LUIS REYES -->
-                <v-col md="4" cols="12">
+                <v-col sm="6" md="4" lg="4" xl="4"  cols="12">
                   <span>Correo electrónico</span> <br />
                   <v-text-field
                     v-model="tax_email"
