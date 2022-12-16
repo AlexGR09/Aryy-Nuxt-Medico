@@ -393,8 +393,7 @@ export default {
           console.log(res)
           this.name = res.data.data.professional_name
           this.institution = res.data.data.physician_specialties[0].institution
-          this.identification_card =
-            res.data.data.physician_specialties[0].license
+          this.identification_card = res.data.data.physician_specialties[0].license
           this.status = res.data.message
           this.dbSelect = res.data.data.specialty_id
           alert(res.data.message)

@@ -19,8 +19,6 @@ export default {
   },
 
   
-
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [  "~assets/fonts/font.css",
   "~assets/scss/_variables.scss",
@@ -56,7 +54,7 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
   baseURL: 'https://app.aryymd.com', 
 /*     baseURL:'http://127.0.0.1:8000', */
-      /* baseURL: 'https://5dc9-187-190-205-57.ngrok.io', */
+    /*  baseURL: 'https://6967-187-190-205-57.ngrok.io',  */
     proxyHeaders: false,
     credential: false,
     header:{

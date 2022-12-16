@@ -5,7 +5,6 @@
         <v-tab class="tab">Perfil personal</v-tab>
         <v-tab class="tab">Perfil médico</v-tab>
         <nuxt-link to="/accounts/edit/account/agenda"><v-tab class="tab">Agenda</v-tab></nuxt-link>
-        
       </v-tabs>
     </v-toolbar>
     <v-card class="mt-2" flat>
@@ -18,12 +17,13 @@
   </div>
 </template>
 
+
 <script>
 import menuPlanner from './plannerComponents/menuPlanner.vue'
-
 import MenuMed from './MedicalProfileComponents/menuMed.vue'
 import MenuPersonal from './PersonalProfile/menuPersonal.vue'
 export default {
+  
   components: { menuPlanner,  MenuMed, MenuPersonal},
   data: () => ({show1: false, tabs: 0,}),
   

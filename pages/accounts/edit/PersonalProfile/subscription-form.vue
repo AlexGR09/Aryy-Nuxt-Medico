@@ -16,29 +16,34 @@
                 <v-col md="4" cols="12">
                   <span>Tipo de plan</span>
                   <v-text-field
-                    placeholder="Suscripción GOLD"
+                    v-model="plan"
                     dense
-                  ></v-text-field>
+                    :disabled="!isEditing"
+                  >{{plan}}</v-text-field>
                 </v-col>
 
                 <!-- CAMPO NÚMERO DE USUARIO | LUIS REYES -->
                 <v-col md="4" cols="12" xl="3">
-                  <span>Número de usuarios</span>
+                  <span>Precio</span>
                   <v-text-field
                     placeholder="1 usuario"
                     dense
-                    solo
-                    outlined
+                    v-model="price"
                     text
+                    :disabled="!isEditing"
                   >
                   </v-text-field>
                   <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1"></v-btn>
                 </v-col>
                 <!-- CAMPO DATOS DE PAGOS | LUIS REYES -->
                 <v-col md="4" cols="12">
                   <span>Datos de pagos</span>
-                  <v-autocomplete dense placeholder="No hay datos de pago">
+                  <v-autocomplete 
+                    dense 
+                    placeholder="No hay datos de pago"
+                    :disabled="!isEditing"
+                    >
+                   
                   </v-autocomplete>
                 </v-col>
               </v-row>
@@ -54,8 +59,15 @@
                 class="white--text save mt-7"
                 color="#7900ff"
                 large
+                @click="isEditing = !isEditing"
                 >Editar suscripción</v-btn
               >
+
+              <v-btn
+              v-on:clik="postSucription"
+              >
+                guardar datos
+              </v-btn>
               <BR /><BR />
               <v-overlay :value="overlay">
                 <v-alert
@@ -72,8 +84,11 @@
             <br /><br />
             <span>No hay método de pago guardado</span>
             <br /><br />
-            <div>
-              <v-row justify="center">
+            
+            
+            <!-- boton de metodo de pago -->
+     
+              <v-row >
                 <v-dialog
                   v-model="dialog"
                   persistent
@@ -81,8 +96,9 @@
                   rounded-xl
                 >
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                      Open Dialog
+                    <v-btn  text color="#9966ff"   dark v-bind="attrs" v-on="on">
+                      <v-icon class="icon">mdi-plus-circle</v-icon>Agregar un método de
+                            pago
                     </v-btn>
                   </template>
                   <v-card>
@@ -97,12 +113,9 @@
                             <v-btn outlined small color="indigo">
                               <v-icon left> mdi-credit-card </v-icon> pagar con
                               tarjeta
-
-                              
                               </v-btn
                             >
                           </v-col>
-
                           <!-- PAGO DE PAYPAL -->
 
                           <v-col cols="12" md="6">
@@ -131,12 +144,6 @@
                   </v-card>
                 </v-dialog>
               </v-row>
-            </div>
-
-            <v-btn class="btn" color="#9966ff" text
-              ><v-icon class="icon">mdi-plus-circle</v-icon>Agregar un método de
-              pago</v-btn
-            >
           </v-form>
         </v-card>
       </v-col>
@@ -149,8 +156,10 @@ export default {
     return {
       overlay: false,
       fileRecords: [],
-      uploadUrl: 'https://example.com',
       selectedItem: 1,
+      isEditing: null,
+      plan: "",
+      price: "",
     }
   },
   watch: {
@@ -165,6 +174,37 @@ export default {
     reset() {
       this.$refs.form.reset()
     },
+
+      /* OBTENER plan */
+    getSuscription(){
+      this.$axios
+       .get('/api/v1/users/subscriptions',{
+        headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+       })
+       .then((res) => {
+       /*  console.log(res) */
+        this.price = res.data.data[0].price
+        this.plan = res.data.data[0].name
+        /* console.log(res.data.data[0].name) */
+       })
+
+    },
+
+    postSucription(){
+      this.$axios
+        .post('/api/v1/users/subscriptions',{
+          user_subscription:[{
+            name: this.plan,
+            price: this.price,
+          }],
+          headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+        })
+
+    },
+
+  },
+  mounted() {
+    this.getSuscription()
   },
 }
 </script>
