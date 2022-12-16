@@ -144,12 +144,22 @@
                   ></v-text-field>
                 </v-col>
                 <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
-                  <v-btn @click="emaild = !emaild" class="iconos mt-9" icon>
-                    <v-img
+
+                  <v-dialog  fullscreen  overlay-color="white"
+                transition="dialog-top-transition" v-model="dialogg">
+               
+                  <template  v-slot:activator="{ on, attrs }">
+                  
+                    <v-btn @click="emaild = !emaild" class="iconos mt-9" icon>
+                    <v-img  v-bind="attrs" v-on="on"
                       :src="require('@/assets/icons/Iconos_EDITAR.svg')"
                       max-width="25"
                     ></v-img>
                   </v-btn>
+                  </template>
+                  <change-email/>
+                </v-dialog>
+
                 </v-col>
 
                 <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
@@ -293,10 +303,11 @@
 
 
 <script>
+import changeEmail from './PersonalProfile/changeEmail.vue'
 import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue'
 export default {
   components: {
-    menuPersonal,
+    menuPersonal, changeEmail
   },
 
   data() {
@@ -329,6 +340,7 @@ export default {
       isSelecting: false,
       selectedFile: null,
       dialog: false,
+      dialogg: false,
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),

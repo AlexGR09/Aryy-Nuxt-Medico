@@ -58,7 +58,7 @@
                       ></v-text-field>
                         </v-col>
                       </v-row>
-                      <p align="left" class="mb-1 mt-n7 label">
+                      <p align="left" class="mb-1  label">
                         Verificar vía SMS
                       </p>
                       <v-row class="ml-n6">
@@ -76,7 +76,7 @@
                         </v-col>
                       </v-row>
                       <div >
-                     <v-col class="d-flex justify-space-between mb-6">
+                     <v-col class="d-flex justify-space-between mt-4">
                         <v-btn
                       height="50px"
                       class="restore  btn ml-n3 mt-n4"
@@ -120,10 +120,10 @@
                       ></v-text-field>
                      
                       <div >
-                     <v-col class="d-flex justify-space-between mb-6">
+                     <v-col class="d-flex justify-space-between mt-6 ">
                         <v-btn
                       height="50px"
-                      class="restore  btn ml-n3 mt-n4"
+                      class="restore  btn ml-n3"
                       color="#999999"
                       outlined
                       large
@@ -132,7 +132,7 @@
                         <v-btn
                           width="30%"
                           large
-                          class="white--text btn mr-n3 mt-n4"
+                          class="white--text btn mr-n3 "
                           color="#7900FF"
                           @click="e1 = 3"
                         >
@@ -164,7 +164,7 @@
                         class="textfield"
                         color="#7900ff"
                       ></v-text-field>
-                      <p align="left" class="label mt-n4 mb-1">
+                      <p align="left" class="label mt-3 mb-1">
                         Confirma tu dirrección de correo nuevo*
                       </p>
                             <v-text-field
@@ -173,10 +173,11 @@
                         color="#7900ff"
                       ></v-text-field>
                       <div >
-                     <v-col class="d-flex justify-space-between mb-6">
+                     <v-col class="d-flex justify-space-between">
                         <v-btn
                       height="50px"
-                      class="restore  btn ml-n3 mt-n4"
+                     
+                      class="restore  btn ml-n3 mt-4"
                       color="#999999"
                       outlined
                       large
@@ -186,7 +187,7 @@
                           v-on:click="overlay=!overlay"
                           width="30%"
                           large
-                          class="white--text btn mr-n3 mt-n4"
+                          class="white--text btn mr-n3 mt-4"
                           color="#7900FF"
                           @click="e1 = 3"
                         >
