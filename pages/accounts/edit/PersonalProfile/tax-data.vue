@@ -6,6 +6,19 @@
       </v-card>
       <v-col md="10" lg="10" xl="10">
         <v-card height="800px" flat class="pa-3 mt-2">
+          <v-col xl="12">
+                  <!-- alert para notificar error | Genesis -->
+                  <v-alert
+                   v-if="error"
+                    class="alert"
+                    v-model="errorConstancy"
+                    dense
+                    outlined
+                    type="error"
+                  >
+                    {{ errorConstancy }}
+                  </v-alert>
+                </v-col>
           <v-card-subtitle class="pa-3 mt-n2 mb-n10">
             <H1 class="mb-5">MIS DATOS FISCALES</H1>
           </v-card-subtitle>
@@ -84,6 +97,8 @@
                       <v-file-input
                         v-model="constancy"
                         chips
+                        @click="handleFileImport"
+                        :loading="isSelecting"
                         color="#9966ff"
                         class="textfield"
                         placeholder="Adjunta tu constancia físcal"
@@ -93,8 +108,8 @@
                       <v-input class="input mt-3 mb-n4"
                         >Formatos pemitidos: JPG o PNG. Tamaño máximo de archivo
                         2 MB</v-input
-                      > </v-col
-                    ><v-col md="6" lg="6" xl="6" cols="12"></v-col>
+                      > </v-col>
+                
                   </v-row>
                 </v-card-text>
               </v-row>
@@ -167,28 +182,32 @@ export default {
   },
   data() {
     return {
+      error: '',
       rfc: '',
+      errorConstancy: [],
       taxpayer_name: '',
       tax_regime: '',
       tax_email: '',
       tax_residence: '',
-      constancy: '',
+      constancy: null,
       overlay: false,
       fileRecords: [],
+      isSelecting: false,
       uploadUrl: 'https://example.com',
       selectedItem: 1,
       dialog: false,
     }
   },
   watch: {
-    overlay(val) {
-      val &&
-        setTimeout(() => {
-          this.overlay = false
-        }, 3000)
-    },
   },
   methods: {
+/*     método para barra de carga en file input | Genesis */
+    handleFileImport() {
+                this.isSelecting = true;
+                window.addEventListener('focus', () => {
+                    this.isSelecting = false
+                },);
+            },
    /*  metodo para mostrar la informacion en los campos | Genesis */
     showData() {
       console.log('creando petición GET')
@@ -255,6 +274,8 @@ export default {
       })
       .catch(error =>{
         console.log(error)
+        this.error = 'error'
+          this.errorConstancy = error.response.data.errors.constancy[0]
       })
     },
 

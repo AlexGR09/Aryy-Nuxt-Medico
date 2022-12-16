@@ -5,7 +5,22 @@
         <menuPersonal />
       </v-card>
       <v-col md="12" lg="11" xl="10">
-        <v-card flat class="pa-3 mt-2">
+        <v-card height="800px" flat class="pa-3">
+          <v-col xl="12">
+                  <!-- alert para notificar error | Genesis -->
+                  <v-alert
+                    v-if="error"
+                    class="alert mt-n6 mb-9"
+                    v-model="errorphone"
+                    dense
+                    outlined
+                    type="error"
+                  >
+                    {{ errorphone }} <br />
+                    {{ passworderror }} <br />
+                    {{ erroremail }}
+                  </v-alert>
+                </v-col>
          <!--  <v-card-subtitle
             ><H1 class="mb-5 mt-n8">FOTO DE PERFIL</H1></v-card-subtitle>
           {{ buttonText }}
@@ -214,35 +229,19 @@
                     class="textfield"
                     placeholder="********"
                     outlined
-                  ></v-text-field> </v-col
-                ><v-col xl="12"></v-col>
-                <v-col xl="12">
-                  <!-- alert para notificar error | Genesis -->
-                  <v-alert
-                    v-if="error"
-                    class="alert"
-                    v-model="errorphone"
-                    dense
-                    outlined
-                    type="error"
-                  >
-                    {{ errorphone }} <br />
-                    {{ passworderror }} <br />
-                    {{ erroremail }}
-                  </v-alert>
-                </v-col>
+                  ></v-text-field> </v-col>
+               
               </v-row>
               <div class="mt-8">
                 <v-btn
                   height="50px"
-                  @click="overlay = !overlay"
                   class="white--text save"
                   v-on:click="update"
                   color="#7900ff"
                   large
                   >Actualizar datos</v-btn
                 >
-                <v-overlay v-if="ok" :value="overlay">
+                <v-overlay v-if="ok" v-model="overlay">
                   <v-alert
                     class="rounded-xl"
                     icon="mdi-check-circle"
@@ -307,7 +306,6 @@ export default {
       errorphone: '',
       passworderror: '',
       erroremail: '',
-      avatar: '',
       msg: '',
       photo: '',
       defaultButtonText: '',
@@ -361,37 +359,6 @@ export default {
     },
   },
   methods: {
-    uploadfoto() {
-      const formData = new FormData()
-      formData.append('photo', this.selectedFile)
-
-      this.$axios.post('/api/v1/user/uploadprofilephoto', formData, {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token'),
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-    },
-    handleFileImport() {
-      this.isSelecting = true
-
-      // After obtaining the focus when closing the FilePicker, return the button state to normal
-      window.addEventListener(
-        'focus',
-        () => {
-          this.isSelecting = false
-        },
-        { once: true }
-      )
-
-      // Trigger click on the FileInput
-      this.$refs.uploader.click()
-    },
-    onFileChanged(e) {
-      this.selectedFile = e.target.files[0]
-
-      // Do whatever you need with the file, liek reading it with FileReader
-    },
     getinfoUser() {
       console.log('creando petición GET')
       this.$axios
@@ -415,18 +382,6 @@ export default {
         )
     },
 
-    avatarGet() {
-      console.log('creando petición GET')
-      this.$axios
-        .get('/api/v1/user/getprofilephoto', {
-          photo: 'qwqwqw',
-          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-        })
-        .then((res) => {
-          this.avatar = res.data.data.photo
-        })
-    },
-
     update() {
       this.$axios
         .put(
@@ -448,6 +403,7 @@ export default {
           }
         )
         .then(() => {
+          this.overlay = true
           this.ok = 'ok'
           if (this.password_confirmation === '') {
             this.$router.go(this.$router.currentRoute)
@@ -477,6 +433,9 @@ export default {
 }
 </script>
 <style>
+h1{
+  font-family: Montserrat;
+}
 p.reset {
   font-family: Montserrat;
   font-size: 90%;
