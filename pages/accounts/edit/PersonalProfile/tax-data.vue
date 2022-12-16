@@ -107,7 +107,7 @@
                   height="50px"
                   @click="overlay = !overlay "
                   class="white--text save"
-                  v-on:click="update"
+                  v-on:click="upload"
                   color="#7900ff"
                   large
                   >Actualizar datos</v-btn
@@ -252,6 +252,22 @@ export default {
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),} 
       })
     },
+uploadPhoto(){
+      const formData = new FormData();
+      formData.append('constancy', this.constancy);
+
+      this.$axios
+       .post('api/v1/physician/tax_data', formData,
+       {
+        headers: {
+          "Authorization": 'Bearer ' + localStorage.getItem("token"),
+           "Content-Type": "multipart/form-data"
+        }
+        
+       })
+       
+    },
+
     /*  metodo para restaurar la informacion de los campos | Genesis */
     reset() {
       this.$refs.form.reset()

@@ -4,9 +4,9 @@
       <v-card flat>
         <menuPersonal />
       </v-card>
-      <v-col md="12" lg="10" xl="10">
+      <v-col md="12" lg="11" xl="10">
         <v-card flat class="pa-3 mt-2">
-          <v-card-subtitle
+         <!--  <v-card-subtitle
             ><H1 class="mb-5 mt-n8">FOTO DE PERFIL</H1></v-card-subtitle>
           {{ buttonText }}
           <v-card-text class="d-flex">
@@ -50,12 +50,12 @@
                 512x512 píxeles.
               </p>
             </div>
-          </v-card-text>
+          </v-card-text> -->
           <!-- formulario | Luis Reyes -->
 
-          <v-card-text>
+          <v-card-text class="mt-n6">
             <v-card-subtitle
-              ><H1 class="ml-n5">INFORMACIÓN DE PERFIL</H1></v-card-subtitle
+              ><H1 class="ml-n5 mt-n6">INFORMACIÓN DE PERFIL</H1></v-card-subtitle
             >
             <v-form ref="form" class="multi-col-validation mt-6">
               <v-row>
