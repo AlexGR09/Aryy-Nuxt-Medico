@@ -42,8 +42,7 @@
               <v-list-item-title class="v-list-item-titlee">Cerrar sesión</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-        
-        <div class="container-icon">
+        <div align="center" class="container-icon">
           <v-btn class="btn-sidebar" icon @click.stop="miniVariant = !miniVariant">
             <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
           </v-btn>
@@ -216,6 +215,7 @@ s
 .container-icon {
   margin-top: 3em;
   text-align: center;
+  
 }
 .btn-sidebar {
   background-color: #f4edff;

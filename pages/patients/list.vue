@@ -128,6 +128,7 @@ export default {
   components: {},
   data() {
     return {
+      search: '',
       itemsPerPage: 10,
       page: 1,
       isSelecting: false,
