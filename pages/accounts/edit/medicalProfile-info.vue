@@ -1,9 +1,6 @@
 <template>
   <div>
     <v-row>
-      <v-card flat>
-        <menu-med />
-      </v-card>
       <v-col md="10" lg="10" xl="10">
         <v-card flat class="pa-3 mt-2">
           <v-alert shaped prominent dense text type="success">
@@ -325,13 +322,12 @@
 import Vue from 'vue'
 import VueFileAgent from 'vue-file-agent'
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css'
-import MenuMed from './MedicalProfileComponents/menuMed.vue'
+
 Vue.use(VueFileAgent)
 Vue.use(VueFileAgentStyles)
 
 export default {
   components: {
-    MenuMed,
   },
   data() {
     return {

@@ -25,6 +25,7 @@
 </template>
 <script>
 export default {
+  layout: 'default',
   data() {
     return {
       name: [],
