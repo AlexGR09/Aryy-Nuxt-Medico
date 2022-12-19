@@ -15,7 +15,6 @@
             </v-stepper-header>
             <!-- contenido de seccion verificación | Genesis -->
             <v-stepper-items color="red">
-
               <!-- contenido de seccion formulario registro  | Genesis -->
               <v-stepper-content step="1">
                 <h2 align="center" justify="end">

@@ -15,18 +15,18 @@
         ayuda de aryy.
       </p>
       <!-- ---- Sección de vista iniciar/registrar | Genesis ---- -->
-      <v-tabs class="tabs" color="#7900ff" v-model="tabs">
-        <v-tab to="/auth/login" id="1" class="tabs">Iniciar sesión</v-tab>
+      <v-tabs v-model="tabs"  class="tabs"  color="#7900ff">
+        <v-tab id="1" to="/auth/login"  class="tabs">Iniciar sesión</v-tab>
         <v-tab id="2" class="tabs">
           <!-- SELECTOR DE TIPO DE USUARIOS -->
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                v-on="on"
-                v-bind="attrs"
-                large
                 text
+                large
                 class="tabs boton gray--text"
+                v-bind="attrs"
+                v-on="on"
               >
                 <span class="tabs">Registrarse</span>
                 <v-icon>mdi-menu-down</v-icon>
@@ -42,7 +42,7 @@
                 >
               </v-list-item>
               <v-list-item>
-                <v-list-item-title v-on:click="typeUser" v-model="especialista"
+                <v-list-item-title v-model="especialista" v-on:click="typeUser" 
                   >ESPECIALISTA</v-list-item-title
                 >
               </v-list-item>
@@ -139,11 +139,12 @@
                   <v-row>
                     <v-col xs="11" sm="11" md="11" lg="11" xl="10">
                       <v-btn
-                        v-on:click="register"
+                      
                         class="btnn"
                         color="#7900ff"
                         block
                         height="50"
+                        v-on:click="register"
                         >Registrarme</v-btn
                       >
                       <p class="accede mt-5 mb-5">O registrate usando</p>
@@ -186,8 +187,10 @@
 import { validationMixin } from 'vuelidate'
 import { required, maxLength, email, password } from 'vuelidate/lib/validators'
 export default {
-  mixins: [validationMixin],
+  
   name: 'formLogin',
+  mixins: [validationMixin],
+
   layout: 'auth',
 
   validations: {
@@ -287,7 +290,7 @@ export default {
         })
 
         .then((response) => {
-          console.log(response.data.data)
+       
           localStorage.setItem('token', response.data.access_token)
           this.$router.push(
             '/auth/register/registercomponents/specialistregister'
@@ -317,7 +320,7 @@ export default {
         type_user: this.especialista,
       })
       .then((response) => {
-        console.log(response.data.data)
+       /*  console.log(response.data.data) */
       })
   },
 

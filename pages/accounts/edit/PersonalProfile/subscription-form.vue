@@ -26,9 +26,9 @@
                 <v-col md="4" cols="12" xl="3">
                   <span>Precio</span>
                   <v-text-field
+                    v-model="price"
                     placeholder="1 usuario"
                     dense
-                    v-model="price"
                     text
                     :disabled="!isEditing"
                   >
@@ -39,11 +39,10 @@
                 <v-col md="4" cols="12">
                   <span>Datos de pagos</span>
                   <v-autocomplete 
-                    dense 
-                    placeholder="No hay datos de pago"
-                    :disabled="!isEditing"
+                      dense 
+                      placeholder="No hay datos de pago"
+                      :disabled="!isEditing"
                     >
-                   
                   </v-autocomplete>
                 </v-col>
               </v-row>
@@ -51,7 +50,7 @@
                 >¿Quieres cancelar tu suscripción? Contacta a Soporte por el
                 chat</span
               >
-              <v-ship solo ref=""></v-ship>
+              <v-ship  ref="" solo></v-ship>
               <!-- botones | @click="overlay = !overlay" -->
               <BR /><BR />
               <v-btn
@@ -199,7 +198,7 @@ export default {
           }],
           headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
         })
-
+        
     },
 
   },
@@ -213,6 +212,7 @@ export default {
       <style>
 .v-input__icon--prepend .v-icon {
   color: #9966ff;
+  backdrop-filter: pa;
 }
 .input {
   margin-top: 5px;
