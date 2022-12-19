@@ -72,17 +72,20 @@
             </v-card-title>
             <!-- se llena la tabla con los datos del axios y encabezados con script | Genesis -->
             <v-data-table
-        :headers="headers"
-        :items="characters"
-        item-key="name"
-        :search="search"
-        :page.sync="page"
-        :items-per-page="itemsPerPage"
-        hide-default-footer>
-        <template v-slot:[`item.create`]>
-                <a class="a" href="/medical-record/medical-record">Crear cita</a>
+              :headers="headers"
+              :items="characters"
+              item-key="name"
+              :search="search"
+              :page.sync="page"
+              :items-per-page="itemsPerPage"
+              hide-default-footer
+            >
+              <template #[`item.create`]>
+                <a class="a" href="/medical-record/medical-record"
+                  >Crear cita</a
+                >
               </template>
-              <template v-slot:[`item.actions`]="{ item }">
+              <template #[`item.actions`]="{ item }">
                 <!-- agrupar botones en una sola fila  | Genesis -->
                 <v-btn-toggle borderless class="botones">
                   <v-btn class="iconos" icon>
@@ -91,7 +94,7 @@
                       max-width="23"
                     ></v-img>
                   </v-btn>
-                  <v-btn class="iconos" @click="deleteItem(item)" icon>
+                  <v-btn class="iconos" icon @click="deleteItem(item)">
                     <v-img
                       :src="require('@/assets/icons/icon_borrarpaciente.svg')"
                       max-width="23"
@@ -99,19 +102,17 @@
                   </v-btn>
                 </v-btn-toggle>
               </template>
-      </v-data-table>
+            </v-data-table>
             <v-row class="ma-4 d-flex justify-end" wrap>
-            <v-col class="ma-4 d-flex justify-end" cols="12" md="6">
-              <v-pagination
-              color="#7900ff"
-        v-model="page"
-        :length="pageCount"
-        :total-visible="5"
-      ></v-pagination>
-            </v-col>
-          
-         
-        </v-row>
+              <v-col class="ma-4 d-flex justify-end" cols="12" md="6">
+                <v-pagination
+                  v-model="page"
+                  color="#7900ff"
+                  :length="pageCount"
+                  :total-visible="5"
+                ></v-pagination>
+              </v-col>
+            </v-row>
           </v-card>
         </v-col>
       </div>
@@ -124,8 +125,8 @@
 import axios from 'axios'
 export default {
   name: 'Pacientes',
-  layout: 'patientView',
   components: {},
+  layout: 'patientView',
   data() {
     return {
       search: '',
@@ -162,12 +163,12 @@ export default {
     }
   },
   computed: {
-      totalRecords() {
-          return this.characters.length
-      },
-      pageCount() {
-          return this.totalRecords / this.itemsPerPage
-      },
+    totalRecords() {
+      return this.characters.length
+    },
+    pageCount() {
+      return this.totalRecords / this.itemsPerPage
+    },
   },
   mounted() {
     console.log('verificando')
