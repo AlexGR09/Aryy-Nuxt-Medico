@@ -18,9 +18,9 @@
             <v-card-title>
               <v-row class="ma-4 d-flex justify-space-between">
                 <v-btn width="20%" class="white--text" color="#7900ff"
-                  ><span>Editar expediente</span></v-btn
+                  ><span class="white--text">Editar expediente</span></v-btn
                 >
-                <v-btn width="20%" outlined class="btnStart"
+                <v-btn width="19%" outlined class="btnStart"
                   ><span class="black--text">Iniciar consulta</span
                   ><v-icon class="ml-2">mdi-account-plus</v-icon></v-btn
                 >
@@ -62,7 +62,7 @@
               </v-row>
               <v-row class="ma-4 d-flex justify-end">
                 <v-btn width="40%" class="white--text mr-3" color="#7900ff"
-                  ><span>Importar pacientes</span></v-btn
+                  ><span class="white--text">Importar pacientes</span></v-btn
                 >
                 <v-btn width="43%" outlined class="btnStart"
                   ><span class="black--text">Exportar pacientes</span
