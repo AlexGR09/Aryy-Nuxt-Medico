@@ -18,11 +18,6 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> Genesis
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [  "~assets/fonts/font.css",
   "~assets/scss/_variables.scss",
@@ -56,15 +51,9 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-<<<<<<< HEAD
-  baseURL: 'https://app.aryymd.com', 
-/*     baseURL:'http://127.0.0.1:8000', */
-    /*  baseURL: 'https://6967-187-190-205-57.ngrok.io',  */
-=======
       baseURL: 'https://app.aryymd.com', 
   /*  baseURL:'http://127.0.0.1:8000',   */
 
->>>>>>> Genesis
     proxyHeaders: false,
     credential: false,
     header:{

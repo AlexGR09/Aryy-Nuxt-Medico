@@ -10,39 +10,21 @@
     <v-card class="mt-2" flat>
       <v-tabs-items v-model="tabs">
         <v-tab-item><menu-personal/></v-tab-item>
-<<<<<<< HEAD
       <v-tab-item><menu-med/></v-tab-item>
       <v-tab-item><menu-planner/></v-tab-item>
       </v-tabs-items>
     </v-card>   
-=======
-        <v-tab-item><menu-med /></v-tab-item>
-        <v-tab-item><menu-planner /></v-tab-item>
-      </v-tabs-items>
-    </v-card>
->>>>>>> Genesis
   </div>
 </template>
 
 
 <script>
-<<<<<<< HEAD
-import menuPlanner from './plannerComponents/menuPlanner.vue'
-import MenuMed from './MedicalProfileComponents/menuMed.vue'
-import MenuPersonal from './PersonalProfile/menuPersonal.vue'
-export default {
-  
-  components: { menuPlanner,  MenuMed, MenuPersonal},
-  data: () => ({show1: false, tabs: 0,}),
-  
-=======
 import menuPlanner from './plannerViews/menuPlanner.vue'
 import menuPersonal from './PersonalProfile/menuPersonal.vue';
 import MenuMed from './MedicalProfileViews/menuMed.vue'
 export default {
   components: { menuPlanner, menuPersonal, MenuMed },
   data: () => ({ show1: false, tabs: 0 }),
->>>>>>> Genesis
 }
 </script>
 <style>
