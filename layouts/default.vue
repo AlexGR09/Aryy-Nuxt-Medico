@@ -3,9 +3,6 @@
     <v-app-bar flat color="transparent" height="100" :clipped-left="clipped" fixed absolute app>
       <v-spacer></v-spacer>
              <!-- iconos para notificacion y cuenta | Genesis -->
-             <v-btn icon v-on:click="logout" class="btnnn" color="black" small >
-                    <v-icon>mdi-account</v-icon>
-                  </v-btn>
              <v-btn class="ml-4" icon small>
             <v-img :src="require('@/assets/icons/icon_notification.svg')" max-width="23"></v-img>
         </v-btn>
@@ -36,6 +33,16 @@
             <v-list-item-title class="v-list-item-titlee">{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item  class="mt-n1"  @click="logout">
+            <v-list-item-icon>
+              <v-icon color="#7900ff">mdi-logout-variant</v-icon>
+            </v-list-item-icon>
+  
+            <v-list-item-content active-class="bg-active">
+              <v-list-item-title class="v-list-item-titlee">Cerrar sesión</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        
         <div class="container-icon">
           <v-btn class="btn-sidebar" icon @click.stop="miniVariant = !miniVariant">
             <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
@@ -140,11 +147,30 @@ export default {
        
     },
     methods:{
+
+      logout() {
+              console.log('creando petición GET');
+              this.$axios
+              .get('/api/v1/logout',
+              { 
+              })
+              .then(
+                localStorage.removeItem('token'),
+                       console.log("cierre de sesión"),
+                       this.$router.replace('/auth/login')
+                      )
+          },
+
+          
       /* matar token y redireccionar al login | Genesis */
+<<<<<<< HEAD
          logout () {
           localStorage.removeItem('token');
           this.$router.push('/auth/login');
     }
+=======
+     
+>>>>>>> Genesis
     },
 
 }
@@ -256,4 +282,8 @@ img:hover{
   color: white !important;
   fill: white !important;
 }
+.logout{
+  text-transform: capitalize;
+}
+
 </style>

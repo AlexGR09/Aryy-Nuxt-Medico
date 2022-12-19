@@ -4,14 +4,13 @@
     active-class="bgactive"
     hide-slider
     color="#7900ff"
-    height="130px"
+    height="110px"
     vertical
   >
-    <v-tab class="proband"> PERFIL </v-tab>
-    <v-tab class="proband"> DATOS FISCALES </v-tab>
-    <v-tab class="proband"> SUSCRIPCIÓN </v-tab>
+    <v-tab style="width: 145px" class="proband"> PERFIL </v-tab>
+    <v-tab style="width: 145px" class="proband"> DATOS FISCALES </v-tab>
+    <v-tab style="width: 145px" class="proband"> SUSCRIPCIÓN </v-tab>
     <v-tab-item transition="fade-transition">
-      <!--  <general-info class="mt-n8"/> -->
       <general-info />
     </v-tab-item>
     <v-tab-item transition="fade-transition">
@@ -44,6 +43,7 @@ export default {
 }
 .proband {
   font-family: Montserrat;
+  font-size: 12px;
   align-items: start;
   flex-direction: column;
 }

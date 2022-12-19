@@ -205,7 +205,6 @@ export default {
       password_confirmation: '',
       code: '',
       phone: '',
-      type_user: '',
       errormail: '',
       tabs: 1,
       error: '',
@@ -287,6 +286,7 @@ export default {
           country_code: this.code,
           phone_number: this.phone,
           type_user: 'Physician',
+          
         })
 
         .then((response) => {

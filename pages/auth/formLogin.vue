@@ -23,7 +23,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 v-on="on"
-                v-bin="attrs"
+                v-bind="attrs"
                 large
                 text
                 class="tabs boton gray--text"
@@ -156,7 +156,7 @@ export default {
   methods: {
     login() {
       this.$axios
-        .post('/api/v1/login', {
+        .post('api/v1/login', {
           email: this.email,
           password: this.password,
         })
