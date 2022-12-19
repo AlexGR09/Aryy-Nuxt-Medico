@@ -26,7 +26,6 @@
       </v-tab-item>
     </v-tabs> 
 </template>
-
 <script>
 import medicalProfileInfo from '../medicalProfile-info.vue'
 import IdMed from './idMed.vue'

@@ -1,28 +1,25 @@
 <template>
-  <v-card class="greeting-card rounded-xl">
+  <v-card class="rounded-xl card">
     <v-row class="ma-0 pa-0">
-      <v-col cols="8">
+      <v-col md="">
         <v-card-text class="text-no-wrap ">
           CITA PRÓXIMA
         </v-card-text>
         <v-card-title class="text-no-wrap ">
-          Fulanito Detal
+          Todavía no <br> tienes citas <br> agendadas
         </v-card-title>
         <v-card-subtitle class="d-flex align-center">
-          5 / Diciembre / 2022
         </v-card-subtitle>
         <v-card-text class="d-flex align-center">
-          10: 00 HRS
-        </v-card-text>
-        <v-card-subtitle></v-card-subtitle>
+        </v-card-text> 
       </v-col>
-      <v-col cols="4">
+      <v-col md="4" cols="12">
         <img
           contain
-          height="100"
-          max-width="100"
+          height="110"
+          max-width="110"
           class="greeting-card-trophy"
-          src="@/assets/icons/icon_appointments.svg"
+          src="@/assets/icons/icon_consulta.svg"
         >
       </v-col>
     </v-row>
@@ -68,5 +65,10 @@ export default{
       right: initial;
     }
   }
+}
+
+.card :hover{
+  color: #ffffff;
+  background: #5d01db;
 }
 </style>
