@@ -204,8 +204,8 @@ export default {
       {
         name: 'Merengano Taltipo',
         phone: '9610218998',
-        start: '2022-11-08T11:00:00',
-        end: '2022-11-08T11:30:00',
+        start: '2022-12-08T11:00:00',
+        end: '2022-12-08T11:30:00',
         intervalo: '11:00 - 11:30',
         timed: true,
         color: '#3498db',
@@ -213,8 +213,8 @@ export default {
       {
         name: 'Perengago Gilberto',
         phone: '9610277896',
-        start: '2022-11-08T11:30:00',
-        end: '2022-11-08T12:00:00',
+        start: '2022-12-08T11:30:00',
+        end: '2022-12-08T12:00:00',
         intervalo: '11:30 - 12:00',
         timed: true,
         color: '#1abc9c',
