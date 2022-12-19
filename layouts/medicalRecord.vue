@@ -56,7 +56,7 @@
   <script>
   
   export default {
-      name: "DefaultLayout",
+      name: "medicalRecord",
       data() {
         
           return {
@@ -202,11 +202,7 @@
   /* <<<<<<< HEAD
   =======
   /*color de fondo en las vistas con tema claro */
-  .theme--light.v-application {
-   /*  background-color: var(--v-background-base, #f4edff) !important; */
-    background: #f6f6f6 !important;
-   
-  } 
+
   
   v-navigation-drawer{
   /*   height: 150px;

@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <div >
     <v-row>
-      <v-col xl="9">
-        <H1 class="title">INFORMACIÓN BÁSICA</H1>
+      <v-col xl="8">
+        <H1 class="title mb-3">INFORMACIÓN BÁSICA</H1>
         <basic-info />
       </v-col>
-      <v-col xl="3">
-        <H1 class="title">NOTAS INTERNAS</H1>
+      <v-col xl="4">
+        <H1 class="title mt-3">NOTAS INTERNAS</H1>
         <v-card background="gray">
           <v-card-text>
             <v-textarea
             outlined
             color="#7900ff"
-            height="213px"
+            height="300px"
               no-resize
               background-color="grey lighten-2"
             ></v-textarea>
@@ -32,9 +32,14 @@ export default {
 }
 </script>
 <style scoped>
+
 .title {
   font-family: MontserratBold !important;
   color: #4f565f;
   font-size: 100% !important;
+}
+.fondo{
+  color: red !important;
+  background-color: red !important;
 }
 </style>
