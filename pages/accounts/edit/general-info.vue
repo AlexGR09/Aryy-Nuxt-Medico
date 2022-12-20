@@ -90,7 +90,7 @@
                 <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
                   <v-btn @click="named = !named" class="iconos mt-9" icon
                     ><v-img
-                      :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                      :src="require('@/assets/icons/icon_edit.svg')"
                       max-width="25"
                     ></v-img> </v-btn
                 ></v-col>
@@ -109,7 +109,7 @@
                 <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
                   <v-btn @click="genderd = !genderd" class="iconos mt-9" icon
                     ><v-img
-                      :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                      :src="require('@/assets/icons/icon_edit.svg')"
                       max-width="25"
                     ></v-img> </v-btn
                 ></v-col>
@@ -128,7 +128,7 @@
                 <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
                   <v-btn @click="phoned = !phoned" class="iconos mt-9" icon
                     ><v-img
-                      :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                      :src="require('@/assets/icons/icon_edit.svg')"
                       max-width="25"
                     ></v-img> </v-btn
                 ></v-col>
@@ -156,7 +156,7 @@
                         <v-img
                           v-bind="attrs"
                           v-on="on"
-                          :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                          :src="require('@/assets/icons/icon_edit.svg')"
                           max-width="25"
                         ></v-img>
                       </v-btn>
@@ -208,7 +208,7 @@
                 <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
                   <v-btn @click="dated = !dated" class="iconos mt-9" icon
                     ><v-img
-                      :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                      :src="require('@/assets/icons/icon_edit.svg')"
                       max-width="25"
                     ></v-img> </v-btn
                 ></v-col>
@@ -229,7 +229,7 @@
                     class="iconos mt-9"
                     icon
                     ><v-img
-                      :src="require('@/assets/icons/Iconos_EDITAR.svg')"
+                      :src="require('@/assets/icons/icon_edit.svg')"
                       max-width="25"
                     ></v-img> </v-btn
                 ></v-col>

@@ -70,7 +70,7 @@
           <!-- alerta de chebox -->
 
           <v-col md="6" cols="12">
-            <v-checkbox v-model="checkbox">
+            <v-checkbox color="#7900ff" v-model="checkbox">
               <template v-slot:label>
                 <div>
                   Confirmo que los datos proporcionados son correctos, y pueden

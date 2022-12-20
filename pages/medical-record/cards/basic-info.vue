@@ -1,10 +1,10 @@
 <template>
-  <v-card height="90%" background="grey-lighten-4">
+  <v-card  background="grey-lighten-4">
     <v-card-text>
       <v-row>
         <v-col xl="4">
-          <v-text-field value="+52 961 123 4567" type="text">
-            <template v-slot:prepend>
+          <v-text-field color="#7900ff" value="+52 961 123 4567" type="text">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -15,8 +15,8 @@
         </v-col>
 
         <v-col xl="4">
-          <v-text-field value="Fulanito Detal" type="text">
-            <template v-slot:prepend>
+          <v-text-field color="#7900ff" value="Fulanito Detal" type="text">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -27,8 +27,8 @@
         </v-col>
 
         <v-col xl="4">
-          <v-text-field value="31 años (01 Enero 1991)" type="text">
-            <template v-slot:prepend>
+          <v-text-field color="#7900ff" value="31 años (01 Enero 1991)" type="text">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -41,8 +41,8 @@
 
       <v-row class="mt-n15">
         <v-col xl="4">
-          <v-text-field value="B+" type="text">
-            <template v-slot:prepend>
+          <v-text-field color="#7900ff" value="B+" type="text">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -53,8 +53,8 @@
         </v-col>
 
         <v-col xl="4">
-          <v-text-field value="1.80 mts" type="text">
-            <template v-slot:prepend>
+          <v-text-field color="#7900ff" value="1.80 mts" type="text">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -65,8 +65,8 @@
         </v-col>
 
         <v-col xl="4">
-          <v-text-field value="Hombre" type="text">
-            <template v-slot:prepend>
+          <v-text-field color="#7900ff" value="Hombre" type="text">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -89,8 +89,8 @@
         <v-list width="300px">
           <div class="ml-3">
           <p class="title ml-2">SIGNOS VITALES</p>
-          <v-checkbox class="checkbox" label="Temperatura">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="temperature" class="checkbox" label="Temperatura">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -98,8 +98,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Peso">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="weight" class="mt-n3 checkbox" label="Peso">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -107,8 +107,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Frecuencia respiratoria">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="frequency" class="mt-n3 checkbox" label="Frecuencia respiratoria">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -116,8 +116,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Presión sistólica">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="pressure" class="mt-n3 checkbox" label="Presión sistólica">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -125,8 +125,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Presión diastólica">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="pressureD" class="mt-n3 checkbox" label="Presión diastólica">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -135,8 +135,8 @@
             </template>
           </v-checkbox>
 
-          <v-checkbox class="mt-n3 checkbox"  label="Frecuencia cardiaca">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="pressureheart" class="mt-n3 checkbox"  label="Frecuencia cardiaca">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -144,8 +144,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Saturación de oxigeno">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="oxygen" class="mt-n3 checkbox" label="Saturación de oxigeno">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -153,8 +153,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Masa muscular">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="musculemass" class="mt-n3 checkbox" label="Masa muscular">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -162,8 +162,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Grasa corporal">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="corporalfat" class="mt-n3 checkbox" label="Grasa corporal">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -171,8 +171,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Peso perdido">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="weightlost" class="mt-n3 checkbox" label="Peso perdido">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -181,8 +181,8 @@
             </template>
           </v-checkbox>
 
-          <v-checkbox class="mt-n3 checkbox" label="Grasa">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="fat" class="mt-n3 checkbox" label="Grasa">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -190,8 +190,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Cintura">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="waist" class="mt-n3 checkbox" label="Cintura">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -199,8 +199,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Agua">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="water" class="mt-n3 checkbox" label="Agua">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -208,8 +208,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Músculo">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="muscle" class="mt-n3 checkbox" label="Músculo">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -217,8 +217,8 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox class="mt-n3 checkbox" label="Abdomen">
-            <template v-slot:prepend>
+          <v-checkbox color="#7900ff" v-model="abdomen" class="mt-n3 checkbox" label="Abdomen">
+            <template #prepend>
               <img
                 width="24"
                 height="24"
@@ -233,11 +233,11 @@
     </div>
     <v-divider class="mt-n4"></v-divider>
     <v-row class="mt-2 ml-1">
-      <v-col xl="4">
+      <v-col v-if="temperature" xl="4">
         <v-row class="ml-1">
           <div>
             <v-text-field outlined dense value="37.5 °C" type="text">
-              <template v-slot:prepend>
+              <template #prepend>
                 <img
                   class="mr-n3"
                   width="24"
@@ -248,9 +248,13 @@
             </v-text-field>
             <p class="mt-n8 subtitle">Temperatura</p>
           </div>
+          </v-row>
+          </v-col>
+          <v-col v-if="pressure" xl="4">
+        <v-row class="ml-1">
           <div>
             <v-text-field outlined dense value="120 mmHg" type="text">
-              <template v-slot:prepend>
+              <template #prepend>
                 <img
                   class="mr-n3"
                   width="24"
@@ -261,9 +265,13 @@
             </v-text-field>
             <p class="mt-n8 subtitle">Sistólica</p>
           </div>
-          <div>
-            <v-text-field outlined dense value="120 mmHg" type="text">
-              <template v-slot:prepend>
+          </v-row>
+          </v-col>
+          <v-col v-if="oxygen" xl="4">
+        <v-row class="ml-1">
+          <div >
+            <v-text-field outlined dense value="80" type="text">
+              <template #prepend>
                 <img
                   class="mr-n3"
                   width="24"
@@ -272,21 +280,21 @@
                 />
               </template>
             </v-text-field>
-            <p class="mt-n8 subtitle">Sistólica</p>
+            <p class="mt-n8 subtitle">Saturación de oxigeno</p>
           </div>
         </v-row>
       </v-col>
 
-      <v-col xl="4">
+      <v-col v-if="weight" xl="4">
         <v-row class="ml-1">
-          <div>
+          <div >
             <v-text-field
               outlined
               dense
               value="95 Kg (Diciembre 2022)"
               type="text"
             >
-              <template v-slot:prepend>
+              <template #prepend>
                 <img
                   class="mr-n3"
                   width="24"
@@ -297,9 +305,13 @@
             </v-text-field>
             <p class="mt-n8 subtitle">Peso</p>
           </div>
-          <div>
+          </v-row>
+          </v-col>
+          <v-col v-if="pressureD" xl="4">
+        <v-row class="ml-1">
+          <div >
             <v-text-field outlined dense value="80 mmHg" type="text">
-              <template v-slot:prepend>
+              <template #prepend>
                 <img
                   class="mr-n3"
                   width="24"
@@ -310,9 +322,13 @@
             </v-text-field>
             <p class="mt-n8 subtitle">Diastólica</p>
           </div>
-          <div>
+          </v-row>
+          </v-col>
+          <v-col v-if="musculemass" xl="4">
+        <v-row class="ml-1">
+          <div >
             <v-text-field outlined dense value="15%" type="text">
-              <template v-slot:prepend>
+              <template #prepend>
                 <img
                   class="mr-n3"
                   width="24"
@@ -326,11 +342,11 @@
         </v-row>
       </v-col>
 
-      <v-col xl="4">
+      <v-col v-if="frequency" xl="4">
         <v-row class="ml-1">
-          <div>
+          <div >
             <v-text-field outlined dense value="17 r/m" type="text">
-              <template v-slot:prepend>
+              <template #prepend>
                 <img
                   class="mr-n3"
                   width="24"
@@ -341,9 +357,13 @@
             </v-text-field>
             <p class="mt-n8 subtitle">Frecuencia respiratoria</p>
           </div>
-          <div>
+          </v-row>
+          </v-col>
+          <v-col v-if="pressureheart" xl="4">
+        <v-row class="ml-1">
+          <div >
             <v-text-field outlined dense value="80 bpm" type="text">
-              <template v-slot:prepend>
+              <template #prepend>
                 <img
                   class="mr-n3"
                   width="24"
@@ -354,9 +374,13 @@
             </v-text-field>
             <p class="mt-n8 subtitle">Frecuencia cardiaca</p>
           </div>
-          <div>
+          </v-row>
+          </v-col>
+          <v-col v-if="corporalfat" xl="4">
+        <v-row class="ml-1">
+          <div >
             <v-text-field outlined dense value="20%" type="text">
-              <template v-slot:prepend>
+              <template #prepend>
                 <img
                   class="mr-n3"
                   width="24"
@@ -367,12 +391,143 @@
             </v-text-field>
             <p class="mt-n8 subtitle">Grasa corporal</p>
           </div>
-          
         </v-row>
       </v-col>
+
+      <v-col v-if="weightlost" xl="4">
+        <v-row class="ml-1">
+          <div >
+            <v-text-field outlined dense value="20%" type="text">
+              <template #prepend>
+                <img
+                  class="mr-n3"
+                  width="24"
+                  height="24"
+                  :src="require('@/assets/icons/icon_weightlost.svg')"
+                />
+              </template>
+            </v-text-field>
+            <p class="mt-n8 subtitle">Peso perdido</p>
+          </div>
+        </v-row>
+      </v-col>
+      <v-col v-if="fat" xl="4">
+        <v-row class="ml-1">
+          <div >
+            <v-text-field outlined dense value="20%" type="text">
+              <template #prepend>
+                <img
+                  class="mr-n3"
+                  width="24"
+                  height="24"
+                  :src="require('@/assets/icons/icon_fat.svg')"
+                />
+              </template>
+            </v-text-field>
+            <p class="mt-n8 subtitle">Grasa</p>
+          </div>
+        </v-row>
+      </v-col>
+      <v-col v-if="waist" xl="4">
+        <v-row class="ml-1">
+          <div >
+            <v-text-field outlined dense value="90 cm" type="text">
+              <template #prepend>
+                <img
+                  class="mr-n3"
+                  width="24"
+                  height="24"
+                  :src="require('@/assets/icons/icon_waist.svg')"
+                />
+              </template>
+            </v-text-field>
+            <p class="mt-n8 subtitle">Cintura</p>
+          </div>
+        </v-row>
+      </v-col>
+      <v-col v-if="water" xl="4">
+        <v-row class="ml-1">
+          <div >
+            <v-text-field outlined dense value="20%" type="text">
+              <template #prepend>
+                <img
+                  class="mr-n3"
+                  width="24"
+                  height="24"
+                  :src="require('@/assets/icons/icon_water.svg')"
+                />
+              </template>
+            </v-text-field>
+            <p class="mt-n8 subtitle">Agua</p>
+          </div>
+        </v-row>
+      </v-col>
+      <v-col v-if="muscle" xl="4">
+        <v-row class="ml-1">
+          <div >
+            <v-text-field outlined dense value="20%" type="text">
+              <template #prepend>
+                <img
+                  class="mr-n3"
+                  width="24"
+                  height="24"
+                  :src="require('@/assets/icons/icon_muscle.svg')"
+                />
+              </template>
+            </v-text-field>
+            <p class="mt-n8 subtitle">Músculo</p>
+          </div>
+        </v-row>
+      </v-col>
+      <v-col v-if="abdomen" xl="4">
+        <v-row class="ml-1">
+          <div >
+            <v-text-field outlined dense value="20%" type="text">
+              <template #prepend>
+                <img
+                  class="mr-n3"
+                  width="24"
+                  height="24"
+                  :src="require('@/assets/icons/icon_abdomen.svg')"
+                />
+              </template>
+            </v-text-field>
+            <p class="mt-n8 subtitle">Abdomen</p>
+          </div>
+        </v-row>
+      </v-col>
+
+
     </v-row>
   </v-card>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      temperature: true,
+      weight: true,
+      frequency: true,
+      pressure: true,
+      pressureD: true,
+      pressureheart: true,
+      oxygen: true,
+      musculemass: true,
+      corporalfat: true,
+      weightlost: false,
+      fat: false,
+      waist: false,
+      water: false,
+      muscle: false,
+      abdomen: false,
+
+
+
+
+    }
+  }
+}
+</script>
 
 <style scoped>
 .v-text-field {
