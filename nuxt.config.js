@@ -70,6 +70,10 @@ export default {
     theme: {
       dark: false, /* Desabilitamos el modo dark, posteriomente se realiza la configuración | Luis Reyes */
       themes: {
+        themes: {
+          text: "#7900ff"
+
+        },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,

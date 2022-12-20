@@ -1,41 +1,37 @@
 <template>
-  <v-card class="rounded-xl card">
+  <v-card class="greeting-card rounded-xl">
     <v-row class="ma-0 pa-0">
-      <v-col md="">
-        <v-card-text class="text-no-wrap ">
-          CITA PRÓXIMA
-        </v-card-text>
-        <v-card-title class="text-no-wrap ">
-          Todavía no <br> tienes citas <br> agendadas
-        </v-card-title>
-        <v-card-subtitle class="d-flex align-center">
-        </v-card-subtitle>
-        <v-card-text class="d-flex align-center">
-        </v-card-text> 
-      </v-col>
-      <v-col md="4" cols="12">
-        <img
-          contain
-          height="110"
-          max-width="110"
-          class="greeting-card-trophy"
-          src="@/assets/icons/icon_consulta.svg"
-        >
+      <v-col cols="12">
+        <v-row class="mb-6" no-gutters>
+          <v-col md="4">
+            <br>
+            <br>
+            <p color="#7900ff">INICIAR <br> NUEVA CONSULTA </p>
+          </v-col>
+          <v-col md="4" offset-md="4">
+            <img
+              contain
+              height="100"
+              max-width="100"
+              class="greeting-card-trophy"
+              src="@/assets/icons/icon_consulta.svg"
+            />
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-card>
 </template>
 
+
 <script>
-export default{
-  data(){
-    return{
+export default {
+  data() {
+    return {
 
     }
   },
-
-};
-
+}
 </script>
 
 <style lang="scss" scoped>
@@ -67,8 +63,9 @@ export default{
   }
 }
 
-.card :hover{
+.card :hover {
   color: #ffffff;
   background: #5d01db;
+  border-radius: 20;
 }
 </style>
