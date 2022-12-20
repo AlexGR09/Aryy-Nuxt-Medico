@@ -136,10 +136,10 @@
     data() {
       return {
         dialog: false,
-        sports: 'sportsNo',
-        dreaming: 'dreamNo',
-        resting: 'resNo',
-        smoking: 'smokNo',
+        sports: '',
+        dreaming: '',
+        resting: '',
+        smoking: '',
       }
     },
   }

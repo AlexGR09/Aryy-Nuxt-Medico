@@ -1,13 +1,17 @@
 <template>
   <v-card>
     <!-- sección de alergias | Genesis -->
-   <allergies/>
-<!--    seccion antecedentes patológicos | Genesis -->
-<pathologic-antecedents/>
-<!--    seccion antecedentes no patológicos | Genesis -->
-<non-pathologic-antecedents/>
-<!--    seccion antecedentes heredofamiliares | Genesis -->
-<family-history/>
+    <allergies />
+    <!--    seccion antecedentes patológicos | Genesis -->
+    <pathologic-antecedents />
+    <!--    seccion antecedentes no patológicos | Genesis -->
+    <non-pathologic-antecedents />
+    <!--    seccion antecedentes heredofamiliares | Genesis -->
+    <family-history />
+    <!--    seccion medicamento activo | Genesis -->
+    <medicine />
+    <!--    seccion medicamento anterior | Genesis -->
+    <previuos-medication />
   </v-card>
 </template>
 <script>
@@ -15,9 +19,18 @@ import Allergies from './medical-records/allergies.vue'
 import PathologicAntecedents from './medical-records/pathologic-antecedents.vue'
 import NonPathologicAntecedents from './medical-records/non-pathologic-antecedents.vue'
 import FamilyHistory from './medical-records/family-history.vue'
+import medicine from './medical-records/medicine.vue'
+import PreviuosMedication from './medical-records/previuos-medication.vue'
 export default {
   layout: 'medicalRecord',
-  components: {Allergies, PathologicAntecedents,NonPathologicAntecedents, FamilyHistory},
+  components: {
+    Allergies,
+    PathologicAntecedents,
+    NonPathologicAntecedents,
+    FamilyHistory,
+    medicine,
+    PreviuosMedication,
+  },
   data() {
     return {
       dialog: false,
@@ -42,11 +55,11 @@ span {
   color: #4f565f;
   font-family: MontserratBold;
 }
-.save{
+.save {
   font-family: Montserrat;
   text-transform: unset !important;
 }
-.restore{
+.restore {
   font-family: Montserrat;
   text-transform: unset !important;
 }

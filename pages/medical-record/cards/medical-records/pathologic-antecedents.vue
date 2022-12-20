@@ -141,10 +141,10 @@ export default {
   data() {
     return {
       dialog: false,
-      surgery: 'surNo',
-      transfusion: 'tranNo',
-      diabetes: 'diabNo',
-      disease: 'disNo'
+      surgery: '',
+      transfusion: '',
+      diabetes: '',
+      disease: ''
     }
   },
 }

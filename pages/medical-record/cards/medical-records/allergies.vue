@@ -128,9 +128,9 @@
     data() {
       return {
         dialog: false,
-        alimentarias: 'alimNo',
-        farmacos: 'farmNo',
-        ambientales: 'ambNo',
+        alimentarias: '',
+        farmacos: '',
+        ambientales: '',
       }
     },
   }
