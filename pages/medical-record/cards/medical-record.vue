@@ -12,6 +12,10 @@
     <medicine />
     <!--    seccion medicamento anterior | Genesis -->
     <previuos-medication />
+    <!--    seccion historial de vacunación | Genesis -->
+    <vaccination />
+     <!--    otros antecedentes | Genesis -->
+     <others/>
   </v-card>
 </template>
 <script>
@@ -21,6 +25,8 @@ import NonPathologicAntecedents from './medical-records/non-pathologic-anteceden
 import FamilyHistory from './medical-records/family-history.vue'
 import medicine from './medical-records/medicine.vue'
 import PreviuosMedication from './medical-records/previuos-medication.vue'
+import vaccination from './medical-records/vaccination.vue'
+import others from './medical-records/others.vue'
 export default {
   layout: 'medicalRecord',
   components: {
@@ -30,6 +36,8 @@ export default {
     FamilyHistory,
     medicine,
     PreviuosMedication,
+    vaccination,
+    others,
   },
   data() {
     return {

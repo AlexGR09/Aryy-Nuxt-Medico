@@ -49,8 +49,8 @@
                     <p class="mt-n4">Horas de sueño</p>
                     <v-autocomplete
                       color="#7900ff"
-                      class="mt-n3"
                       style="font-family: Montserrat"
+                      class="mt-n3"
                       outlined
                       placeholder="Seleccione un rango"
                     ></v-autocomplete>
