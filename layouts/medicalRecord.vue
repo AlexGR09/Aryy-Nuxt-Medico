@@ -240,7 +240,6 @@
       
       font-family: Montserrat;
     }
-  
   .bg-active{
     background: #7900ff;
     color: white !important;

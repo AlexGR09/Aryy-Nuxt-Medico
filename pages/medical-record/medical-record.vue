@@ -23,17 +23,24 @@
         <H1 class="title mt-3">CITAS ANTERIORES</H1>
          <v-card><v-card-text></v-card-text></v-card>
       </v-col>
+      <v-col mg="8" lg="8" xl="8">
+        <H1 class="title mb-3">CONSULTA MÉDICA</H1>
+        <consultation/>
+      </v-col>
     </v-row>
   </div>
 </template>
 <script>
 import basicInfo from './cards/basic-info.vue'
+import Consultation from './cards/consultation.vue';
 import medicalRecord from './cards/medical-record.vue'
 export default {
   layout: 'medicalRecord',
   components: {
-    basicInfo, medicalRecord
-  },
+    basicInfo,
+    medicalRecord,
+    Consultation
+},
   data(){
     return{
      /*  fondo efecto libreta para las notas | Genesis */

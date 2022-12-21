@@ -42,7 +42,12 @@
                 <v-col xs="1" md="1" lg="1" xl="2"></v-col>
                 <v-col xs="1" md="1" lg="1" xl="1">
                   <v-btn-toggle borderless class="botones">
-                    <v-btn @click="check=!check" v-model="check" class="iconos" icon>
+                    <v-btn
+                      @click="check = !check"
+                      v-model="check"
+                      class="iconos"
+                      icon
+                    >
                       <v-img
                         :src="require('@/assets/icons/icon_editpaciente.svg')"
                         max-width="25"
@@ -138,11 +143,19 @@
                 </v-col>
               </v-row>
               <v-row>
-  <v-col xs="6" md="6" lg="6" xl="6">
-    <v-btn @click="addInput" v-bind="attrs" v-on="on" class="btn mt-n14 ml-n5" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro idioma</v-btn>
-    </v-col>
-</v-row>
-
+                <v-col xs="6" md="6" lg="6" xl="6">
+                  <v-btn
+                    @click="addInput"
+                    v-bind="attrs"
+                    v-on="on"
+                    class="btn mt-n14 ml-n5"
+                    color="#9966ff"
+                    text
+                    ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro
+                    idioma</v-btn
+                  >
+                </v-col>
+              </v-row>
 
               <v-btn
                 @click="overlay = !overlay"
@@ -186,11 +199,13 @@ export default {
     return {
       textfield: [],
       counter: 0,
-      inputs: [{
-      id: 'fruit0',
-      label: 'Enter Fruit Name',
-      value: '',
-    }],
+      inputs: [
+        {
+          id: 'fruit0',
+          label: 'Enter Fruit Name',
+          value: '',
+        },
+      ],
       overlay: false,
       check: '',
       checks: '',
@@ -214,7 +229,7 @@ export default {
         id: `fruit${++this.counter}`,
         label: 'Enter Fruit Name',
         value: '',
-      });
+      })
     },
     reset() {
       this.$refs.form.reset()
