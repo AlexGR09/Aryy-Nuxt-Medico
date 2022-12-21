@@ -124,7 +124,7 @@
 import axios from 'axios'
 export default {
   name: 'Pacientes',
-  layout: 'patientView',
+  layout: 'default',
   components: {},
   data() {
     return {

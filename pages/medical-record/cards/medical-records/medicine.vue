@@ -30,7 +30,6 @@
                         class="checkbox"
                         color="#7900ff"
                         label="Completado"
-                        value
                       ></v-checkbox>
                     </v-col>
                     <v-col cols="4">
@@ -38,7 +37,6 @@
                         class="checkbox"
                         color="#7900ff"
                         label="No completado"
-                        value
                       ></v-checkbox>
                     </v-col>
                   </v-row>
@@ -124,6 +122,9 @@ p {
 p.sub {
   font-family: MontserratMedium;
   color: #999999;
+}
+p.cuestion {
+  font-size: 115%;
 }
 span {
   color: #4f565f;

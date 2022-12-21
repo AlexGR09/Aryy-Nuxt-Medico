@@ -41,10 +41,6 @@ export default {
   },
   data() {
     return {
-      dialog: false,
-      alimentarias: 'alimNo',
-      farmacos: 'farmNo',
-      ambientales: 'ambNo',
     }
   },
 }

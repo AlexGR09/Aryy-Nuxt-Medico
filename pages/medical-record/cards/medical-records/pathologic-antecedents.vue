@@ -12,7 +12,7 @@
             />
           </v-btn>
         </template>
-        <v-card>
+        <v-card height="100%">
           <v-card-title>
             <span>ANTECEDENTES PATOLÓGICOS</span>
           </v-card-title>
@@ -20,9 +20,12 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4" xl="12">
-                  <p class="mb-n3">Cirugías previas</p>
-
-                  <v-radio-group v-model="surgery" row>
+                  <p class="cuestion mb-n3">Cirugías previas</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="surgery"
+                    row
+                  >
                     <v-radio
                       color="#b380ff"
                       label="Si"
@@ -37,9 +40,12 @@
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
-                  <p class="mt-n4 mb-n3">Transfusiones</p>
-
-                  <v-radio-group v-model="transfusion" row>
+                  <p class="cuestion mt-n4 mb-n3">Transfusiones</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="transfusion"
+                    row
+                  >
                     <v-radio
                       color="#b380ff"
                       label="Si"
@@ -58,9 +64,12 @@
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
-                  <p class="mt-n4 mb-n3">Diabetes</p>
-
-                  <v-radio-group v-model="diabetes" row>
+                  <p class="cuestion mt-n4 mb-n3">Diabetes</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="diabetes"
+                    row
+                  >
                     <v-radio
                       color="#b380ff"
                       label="Si"
@@ -79,9 +88,12 @@
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
-                  <p class="mt-n4 mb-n3">Cardiopatías</p>
-
-                  <v-radio-group v-model="disease" row>
+                  <p class="cuestion mt-n4 mb-n3">Cardiopatías</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
                     <v-radio
                       color="#b380ff"
                       label="Si"
@@ -124,7 +136,25 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p>Sin antecedentes registrados</p>
+    <p v-if="!cirugias[0]">Sin antecedentes registrados</p>
+    <v-list-item
+      v-for="cirugia in cirugias"
+      :key="cirugia"
+      v-else
+      style="font-family: Montserrat"
+      class="ml-n7 mt-n1 lista"
+      two-line
+    >
+      <v-list-item-avatar class="mr-n1">
+        <v-icon color="green">mdi-check-circle</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>Cirugias previas</v-list-item-title>
+        <v-list-item-subtitle
+          >{{ cirugia.name }} en {{ cirugia.date }}</v-list-item-subtitle
+        >
+      </v-list-item-content>
+    </v-list-item>
     <p class="ml-3">
       <img
         class="mr-3"
@@ -144,7 +174,13 @@ export default {
       surgery: '',
       transfusion: '',
       diabetes: '',
-      disease: ''
+      disease: '',
+      cirugias: [
+        {
+          name: 'Apendicectomía',
+          date: 'julio 2018',
+        },
+      ],
     }
   },
 }
@@ -158,6 +194,9 @@ p.titulo {
 p {
   font-family: MontserratMedium;
   color: #999999;
+}
+p.cuestion {
+  font-size: 115%;
 }
 span {
   color: #4f565f;

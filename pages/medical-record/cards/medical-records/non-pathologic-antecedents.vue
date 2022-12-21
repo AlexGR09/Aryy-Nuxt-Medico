@@ -20,9 +20,9 @@
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4" xl="12">
-                    <p class="mb-n3">Actividad física</p>
+                    <p class="cuestion mb-n3">Actividad física</p>
   
-                    <v-radio-group v-model="sports" row>
+                    <v-radio-group  style="font-family: Montserrat" v-model="sports" row>
                       <v-radio
                         color="#b380ff"
                         label="Si"
@@ -46,7 +46,7 @@
                       outlined
                       placeholder="¿Cuántos días a la semana?"
                     ></v-autocomplete>
-                    <p class="mt-n4">Horas de sueño</p>
+                    <p class="cuestion mt-n4">Horas de sueño</p>
                     <v-autocomplete
                       color="#7900ff"
                       style="font-family: Montserrat"
@@ -56,9 +56,9 @@
                     ></v-autocomplete>
                    
                   
-                    <p class="mt-n4 mb-n3">¿Sueña siempre que duerme?</p>
+                    <p class="cuestion mt-n4 mb-n3">¿Sueña siempre que duerme?</p>
   
-                    <v-radio-group v-model="dreaming" row>
+                    <v-radio-group  style="font-family: Montserrat" v-model="dreaming" row>
                       <v-radio
                         color="#b380ff"
                         label="Si"
@@ -71,9 +71,9 @@
                       ></v-radio>
                     </v-radio-group>
                   
-                    <p class="mt-n4 mb-n3">¿Siente que descansa al dormir?</p>
+                    <p class="cuestion mt-n4 mb-n3">¿Siente que descansa al dormir?</p>
   
-                    <v-radio-group v-model="resting" row>
+                    <v-radio-group  style="font-family: Montserrat" v-model="resting" row>
                       <v-radio
                         color="#b380ff"
                         label="Si"
@@ -81,9 +81,9 @@
                       ></v-radio>
                       <v-radio color="#b380ff" label="No" value="resNo"></v-radio>
                     </v-radio-group>
-                    <p class="mt-n4 mb-n3">Tabaquismo</p>
+                    <p class="cuestion mt-n4 mb-n3">Tabaquismo</p>
   
-                    <v-radio-group v-model="smoking" row>
+                    <v-radio-group  style="font-family: Montserrat" v-model="smoking" row>
                       <v-radio
                         color="#b380ff"
                         label="Si"
@@ -154,6 +154,9 @@
     font-family: MontserratMedium;
     color: #999999;
   }
+  p.cuestion {
+  font-size: 115%;
+}
   span {
     color: #4f565f;
     font-family: MontserratBold;

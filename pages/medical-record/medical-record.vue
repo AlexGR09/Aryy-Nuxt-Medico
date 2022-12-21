@@ -2,11 +2,11 @@
   <div>
     <v-row>
       <!-- card info basica | Genesis -->
-      <v-col xl="8">
+      <v-col mg="8" lg="8" xl="8">
         <H1 class="title mb-3">INFORMACIÓN BÁSICA</H1>
         <basic-info />
       </v-col>
-      <v-col xl="4">
+      <v-col md="4" lg="4" xl="4">
         <H1 class="title mt-3">NOTAS INTERNAS</H1>
             <v-textarea
             :style="image"
@@ -15,11 +15,11 @@
               no-resize
             ></v-textarea>
       </v-col>
-      <v-col xl="8">
+      <v-col mg="8" lg="8" xl="8">
         <H1 class="title mb-3">EXPEDIENTE MÉDICO</H1>
         <medical-record />
       </v-col>
-      <v-col xl="4">
+      <v-col  md="4" lg="4" xl="4">
         <H1 class="title mt-3">CITAS ANTERIORES</H1>
          <v-card><v-card-text></v-card-text></v-card>
       </v-col>
@@ -49,8 +49,7 @@ export default {
   color: #4f565f;
   font-size: 100% !important;
 }
-.fondo {
-  color: red !important;
-  background-color: red !important;
+.theme--light.v-application {
+  background: var(--v-background-base, white) !important;
 }
 </style>

@@ -3,96 +3,80 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn block outlined color="#7900ff" v-bind="attrs" v-on="on">
         <v-icon color="#7900ff">mdi-plus</v-icon>
-        ANTECEDENTES PSIQUIATRICOS
+        ANTECEDENTES POSTNATALES
       </v-btn>
     </template>
     <v-card height="600px">
       <v-card-title>
-        <span>ANTECEDENTES PSIQUIATRICOS</span>
+        <span>ANTECEDENTES POSTNATALES</span>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="4" xl="12">
-              <p>Historia familiar</p>
+              <p>Detalles del parto</p>
               <v-text-field
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
-              <p class="mt-n4 mb-n2">Consciencia de enfermedad</p>
-              <v-radio-group v-model="cons" row>
-                <v-radio color="#b380ff" label="Si" value="consYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="consNo"></v-radio>
+
+              <p class="mt-n3">Nombre del bebé</p>
+              <v-text-field
+                class="mt-n3"
+                style="font-family: Montserrat"
+                outlined
+                placeholder="Escriba aquí"
+              ></v-text-field>
+
+              <p class="mt-n3">Peso al nacer</p>
+              <v-text-field
+                class="mt-n3"
+                style="font-family: Montserrat"
+                outlined
+                placeholder="Escriba aquí"
+              ></v-text-field>
+
+              <p class="mt-n3">Salud del bebé</p>
+              <v-text-field
+                class="mt-n3"
+                style="font-family: Montserrat"
+                outlined
+                placeholder="Escriba aquí"
+              ></v-text-field>
+
+              <p class="mt-n3 mb-n2">Tipo de alimentación</p>
+              <v-radio-group style="font-family: Montserrat" v-model="alim" row>
+                <v-radio
+                  color="#b380ff"
+                  label="Solo pecho"
+                  value="alim1"
+                ></v-radio>
+                <v-radio
+                  color="#b380ff"
+                  label="Solo fórmula"
+                  value="alim2"
+                ></v-radio>
+                <v-radio
+                  color="#b380ff"
+                  label="Pecho y fórmula"
+                  value="Alim3"
+                ></v-radio>
               </v-radio-group>
               <v-text-field
                 class="mt-n3"
                 style="font-family: Montserrat"
-                v-if="cons == 'consYes'"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
-              <p class="mt-n3">Áreas afectadas por la enfermedad</p>
+
+              <p class="mt-n3">Estado emocional</p>
               <v-text-field
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
                 placeholder="Escriba aquí"
-              ></v-text-field>
-              <p class="mt-n4 mb-n2">Apoyo del grupo familiar y social</p>
-              <v-radio-group v-model="support" row>
-                <v-radio color="#b380ff" label="Si" value="supYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="supNo"></v-radio>
-              </v-radio-group>
-              <v-text-field
-                class="mt-n3"
-                style="font-family: Montserrat"
-                v-if="support == 'supYes'"
-                outlined
-                placeholder="Escriba aquí"
-              ></v-text-field>
-              <p class="mt-n2">Grupo familiar del paciente</p>
-              <v-text-field
-                class="mt-n3"
-                style="font-family: Montserrat"
-                outlined
-                placeholder="Escriba aqui"
-              ></v-text-field>
-              <p class="mt-n4">Aspectos de la vida social</p>
-              <v-text-field
-                class="mt-n3"
-                style="font-family: Montserrat"
-                outlined
-                placeholder="Escriba aqui"
-              ></v-text-field>
-              <p class="mt-n4">Aspectos de la vida laboral</p>
-              <v-text-field
-                class="mt-n3"
-                style="font-family: Montserrat"
-                outlined
-                placeholder="Escriba aqui"
-              ></v-text-field>
-              <p class="mt-n4">Relación con la autoridad</p>
-              <v-text-field
-                class="mt-n3"
-                style="font-family: Montserrat"
-                outlined
-                placeholder="Escriba aqui"
-              ></v-text-field>
-              <p class="mt-n4">Control de impulsos</p>
-              <v-text-field
-                class="mt-n3"
-                style="font-family: Montserrat"
-                outlined
-                placeholder="Escriba aqui"
-              ></v-text-field>
-              <p class="mt-n4">Manejo de frustración en su vida</p>
-              <v-text-field
-                class="mt-n3"
-                style="font-family: Montserrat"
-                outlined
-                placeholder="Escriba aqui"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -158,7 +142,7 @@ export default {
   },
 }
 </script>
-  <style scoped>
+<style scoped>
 p.titulo {
   font-family: MontserratMedium;
   color: #7900ff;
@@ -166,7 +150,7 @@ p.titulo {
 }
 p {
   font-family: MontserratMedium;
-  color: #999999;
+  color: #4f565f;
 }
 p.sub {
   font-family: MontserratMedium;

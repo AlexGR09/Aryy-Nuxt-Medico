@@ -20,28 +20,28 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4" xl="12">
-                  <p>Vacuna</p>
+                  <p class="cuestion mb-1">Vacuna</p>
                   <v-text-field
                     color="#7900ff"
                     style="font-family: Montserrat"
                     outlined
                     placeholder="Escribe aquí"
                   ></v-text-field>
-                  <p class="mt-n3">Dosis</p>
+                  <p class="cuestion mt-n3 mb-1">Dosis</p>
                   <v-text-field
                     color="#7900ff"
                     style="font-family: Montserrat"
                     outlined
                     placeholder="Escribe aquí"
                   ></v-text-field>
-                  <p class="mt-n3">Número de lote</p>
+                  <p class="cuestion mt-n3 mb-1">Número de lote</p>
                   <v-text-field
                     color="#7900ff"
                     style="font-family: Montserrat"
                     outlined
                     placeholder="Escribe aquí"
                   ></v-text-field>
-                  <p class="mt-n3">Fecha de aplicación</p>
+                  <p class="cuestion mt-n3 mb-1">Fecha de aplicación</p>
                   <v-dialog
                     ref="dialog"
                     v-model="modal"
@@ -169,6 +169,10 @@ p {
 }
 p.sub {
   font-family: MontserratMedium;
+  color: #999999;
+}
+p.cuestion {
+  font-size: 115%;
   color: #999999;
 }
 span {

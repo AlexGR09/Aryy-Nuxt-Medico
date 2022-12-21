@@ -2,20 +2,38 @@
   <v-card-text class="mt-n7">
     <p class="titulo">Otros antecedentes</p>
     <v-divider class="mt-n2 mb-5"/>
-    <v-row>
+    <v-row >
       <v-col xl="4">
      <psychiatric-history/>
       </v-col>
       <v-col xl="8"></v-col>
-      
+      <v-col xl="4">
+      <gynecological-history/>
+      </v-col>
+      <v-col xl="8"></v-col>
+      <v-col xl="4">
+      <perinatal-history/>
+      </v-col>
+      <v-col xl="8"></v-col>
+      <v-col xl="4">
+      <postnatal-history/>
+      </v-col>
+      <v-col xl="8"></v-col>
+      <v-col xl="4">
+      <customized-questionnaire/>
+      </v-col>
     </v-row>
   </v-card-text>
 </template>
   <script>
+import GynecologicalHistory from './others/gynecological-history.vue'
 import PsychiatricHistory from './others/psychiatric-history.vue'
+import PerinatalHistory from './others/perinatal-history.vue'
+import PostnatalHistory from './others/postnatal-history.vue'
+import CustomizedQuestionnaire from './others/customized-questionnaire.vue'
 export default {
   layout: 'medicalRecord',
-  components: {PsychiatricHistory},
+  components: {PsychiatricHistory, GynecologicalHistory, PerinatalHistory, PostnatalHistory, CustomizedQuestionnaire},
   data() {
     return {
      

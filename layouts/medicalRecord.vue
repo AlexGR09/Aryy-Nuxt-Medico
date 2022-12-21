@@ -185,6 +185,9 @@
   .v-list-item:hover {
     background: #7900ff;
   }
+  .v-list-item:hover.lista {
+    background: transparent;
+  }
   
   .item-active {
     background-color: #7900ff;
