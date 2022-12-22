@@ -22,22 +22,19 @@
       placeholder="Escribe aquí los datos de la exploración médica"
       outlined
     ></v-textarea>
-    <v-col xl="12">
+    <v-col md="12" lg="12" xl="12">
       <odontograma />
-     
     </v-col>
-    <div v-for="input in inputs" :key="input.id">
-    <v-row class="ml-0 mt-n8">
-        <v-col xl="12">
-           
-      <p>Diagnostico</p>
-      <v-text-field
-        outlined
-        color="#7900ff"
-        placeholder="Escribe aquí el diagnóstico"
-      ></v-text-field>
-        </v-col>
-      <v-col xl="3">
+    <v-row v-for="input in inputs" :key="input.id" class="ml-n2 mt-n5">
+      <v-col md="12" lg="12" xl="12">
+        <p>Diagnostico</p>
+        <v-text-field
+          outlined
+          color="#7900ff"
+          placeholder="Escribe aquí el diagnóstico"
+        ></v-text-field>
+      </v-col>
+      <v-col class="mt-n8" md="3" lg="3" xl="3">
         <p>Tratamiento</p>
         <v-text-field
           outlined
@@ -45,7 +42,7 @@
           placeholder="Medicamento"
         ></v-text-field>
       </v-col>
-      <v-col xl="2">
+      <v-col class="mt-n8" md="2" lg="2" xl="2">
         <p>Tomar</p>
         <v-text-field
           outlined
@@ -53,7 +50,7 @@
           placeholder="Medicamento"
         ></v-text-field>
       </v-col>
-      <v-col xl="4">
+      <v-col class="mt-n8" md="4" lg="4" xl="4">
         <p>Frecuencia</p>
         <v-text-field
           outlined
@@ -61,7 +58,7 @@
           placeholder="Cada 8 horas"
         ></v-text-field>
       </v-col>
-      <v-col xl="2">
+      <v-col class="mt-n8" md="2" lg="2" xl="2">
         <p>Duración</p>
         <v-text-field
           outlined
@@ -69,8 +66,8 @@
           placeholder="15 días"
         ></v-text-field>
       </v-col>
-      <v-col xl="1">
-        <v-btn class="iconos mt-12" icon>
+      <v-col class="mt-n8" md="1" lg="1" xl="1">
+        <v-btn @click="deleteInput" class="iconos mt-12" icon>
           <v-img
             :src="require('@/assets/icons/icon_borrarpaciente.svg')"
             max-width="25"
@@ -78,8 +75,55 @@
         </v-btn>
       </v-col>
     </v-row>
-</div>
-    <v-btn @click="addInput" v-bind="attrs" v-on="on" color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro medicamento</v-btn>
+    <v-btn
+      class="mt-n7 ml-n4"
+      @click="addInput"
+      v-bind="attrs"
+      v-on="on"
+      color="#9966ff"
+      text
+      ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro
+      medicamento</v-btn
+    >
+
+    <p>Ordenes de laboratorio</p>
+    <v-btn-toggle class="v-checkbox mt-n6">
+      <v-checkbox
+        color="#7900ff"
+        v-model="lab"
+        class="mr-5"
+        label="Estudios de laboratorio"
+      ></v-checkbox>
+      <v-checkbox
+        color="#7900ff"
+        v-model="gab"
+        label="Estudios de gabinete"
+      ></v-checkbox>
+    </v-btn-toggle>
+    <v-textarea
+      color="#7900ff"
+      v-if="lab"
+      placeholder="Escribe aquí los datos del estudio de laboratorio"
+      outlined
+    ></v-textarea>
+    <v-textarea
+      color="#7900ff"
+      v-if="gab"
+      placeholder="Escribe aquí los datos del estudio de gabinete"
+      outlined
+    ></v-textarea>
+    <div>
+    <v-btn height="50px" class="white--text mt-7 btn" color="#7900ff" large
+      >Guardar y terminar</v-btn
+    >
+    <v-btn
+      height="50px"
+      class="btn ml-3 mt-7"
+      color="#999999"
+      outlined
+      large
+      >Imprimir receta</v-btn
+    ></div>
   </v-card>
 </template>
 <script>
@@ -89,11 +133,9 @@ export default {
   components: { odontograma },
   data() {
     return {
-        inputs: [{
-    
-    }],
-      yes: false,
-      no: false,
+      inputs: [{}],
+      lab: false,
+      gab: false,
     }
   },
   methods: {
@@ -102,9 +144,12 @@ export default {
         id: `fruit${++this.counter}`,
         label: 'Enter Fruit Name',
         value: '',
-      });
+      })
     },
-	}
+    deleteInput(i) {
+      this.inputs.splice(i, 1)
+    },
+  },
 }
 </script>
 <style scoped>
@@ -116,5 +161,9 @@ p {
 }
 .montserrat {
   font-family: Montserrat;
+}
+.btn{
+  text-transform: capitalize;
+  font-size: 100%;
 }
 </style>

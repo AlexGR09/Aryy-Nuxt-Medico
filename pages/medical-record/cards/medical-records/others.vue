@@ -3,23 +3,23 @@
     <p class="titulo">Otros antecedentes</p>
     <v-divider class="mt-n2 mb-5"/>
     <v-row >
-      <v-col xl="4">
+      <v-col md="4" lg="4" xl="4">
      <psychiatric-history/>
       </v-col>
-      <v-col xl="8"></v-col>
-      <v-col xl="4">
+      <v-col md="8" lg="8" xl="8"></v-col>
+      <v-col md="4" lg="4" xl="4">
       <gynecological-history/>
       </v-col>
-      <v-col xl="8"></v-col>
-      <v-col xl="4">
+      <v-col md="8" lg="8" xl="8"></v-col>
+      <v-col md="4" lg="4" xl="4">
       <perinatal-history/>
       </v-col>
-      <v-col xl="8"></v-col>
-      <v-col xl="4">
+      <v-col md="8" lg="8" xl="8"></v-col>
+      <v-col md="4" lg="4" xl="4">
       <postnatal-history/>
       </v-col>
-      <v-col xl="8"></v-col>
-      <v-col xl="4">
+      <v-col md="8" lg="8" xl="8"></v-col>
+      <v-col md="4" lg="4" xl="4">
       <customized-questionnaire/>
       </v-col>
     </v-row>

@@ -1,5 +1,5 @@
-<template>
-  <div>
+<template class="template">
+  <div class="template">
     <v-row>
       <!-- card info basica | Genesis -->
       <v-col mg="8" lg="8" xl="8">
@@ -8,46 +8,53 @@
       </v-col>
       <v-col md="4" lg="4" xl="4">
         <H1 class="title mt-3">NOTAS INTERNAS</H1>
-            <v-textarea
-            :style="image"
-              outlined
-              height="355px"
-              no-resize
-            ></v-textarea>
+        <v-textarea
+          class="note"
+          color="#E0E0E0"
+          :style="image"
+          outlined
+          height="355px"
+          no-resize
+        ></v-textarea>
       </v-col>
+
       <v-col mg="8" lg="8" xl="8">
         <H1 class="title mb-3">EXPEDIENTE MÉDICO</H1>
         <medical-record />
       </v-col>
-      <v-col  md="4" lg="4" xl="4">
+      <v-col md="4" lg="4" xl="4">
         <H1 class="title mt-3">CITAS ANTERIORES</H1>
-         <v-card><v-card-text></v-card-text></v-card>
+        <previous />
       </v-col>
       <v-col mg="8" lg="8" xl="8">
         <H1 class="title mb-3">CONSULTA MÉDICA</H1>
-        <consultation/>
+        <consultation />
       </v-col>
     </v-row>
   </div>
 </template>
 <script>
 import basicInfo from './cards/basic-info.vue'
-import Consultation from './cards/consultation.vue';
+import Consultation from './cards/consultation.vue'
 import medicalRecord from './cards/medical-record.vue'
+import previous from './cards/previous.vue'
 export default {
   layout: 'medicalRecord',
   components: {
     basicInfo,
     medicalRecord,
-    Consultation
-},
-  data(){
-    return{
-     /*  fondo efecto libreta para las notas | Genesis */
-      image: {height:"355px", backgroundImage: "url(https://i.ibb.co/rvbqCck/b43a2bf5fbaa26f2e5ca26b9f96d5365.jpg)"  }
+    Consultation,
+    previous,
+  },
+  data() {
+    return {
+      /*  fondo efecto libreta para las notas | Genesis */
+      image: {
+        height: '355px',
+        backgroundImage: 'url(https://i.ibb.co/c2rkczy/Doc1-page-0001-6.jpg)',
+      },
     }
   },
-
 }
 </script>
 <style scoped>
@@ -58,5 +65,15 @@ export default {
 }
 .theme--light.v-application {
   background: var(--v-background-base, white) !important;
+}
+.note {
+  font-family: Montserrat;
+}
+.template {
+  background-color: #f6f6f6;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: -50px;
+  margin-right: -50px;
 }
 </style>
