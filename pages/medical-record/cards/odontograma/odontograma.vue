@@ -21,13 +21,25 @@
           </v-btn>
         </v-col>
       </template>
-      <v-card height="600px">
+      <v-card max-height="600px">
         <v-card-title>
           <span>ODONTOGRAMA</span>
         </v-card-title>
 
         <v-card-text> 
          <!--  insertar odontograma -->
+         <p>(Insertar odontograma) </p>
+         <v-row>
+          <v-col xl="6">
+            <p>Diagnóstico</p>
+            <v-text-field outlined placeholder="Escibre aqui"></v-text-field>
+          </v-col>
+          <v-col xl="6">
+            <p>Procedimiento</p>
+            <v-text-field outlined placeholder="Escibre aqui"></v-text-field>
+          </v-col>
+         </v-row>
+        
         </v-card-text>
         
         <v-col class="ml-6">

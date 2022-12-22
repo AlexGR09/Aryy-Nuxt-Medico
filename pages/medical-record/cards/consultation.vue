@@ -114,12 +114,20 @@
       outlined
     ></v-textarea>
     <div>
-      <v-btn height="50px" class="white--text mt-7 btn" color="#7900ff" large
+      <v-btn v-on:click="overlay = !overlay" @click="save" height="50px" class="white--text mt-7 btn" color="#7900ff" large
         >Guardar y terminar</v-btn
       >
       <v-btn height="50px" class="btn ml-3 mt-7" color="#999999" outlined large
         >Imprimir receta</v-btn
       >
+      <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
     </div>
   </v-card>
 </template>
@@ -130,6 +138,7 @@ export default {
   components: { odontograma },
   data() {
     return {
+      overlay: false,
       inputs: [{}],
       yes: false,
       no: false,
@@ -148,6 +157,9 @@ export default {
     deleteInput(i) {
       this.inputs.splice(i, 1)
     },
+    save(){
+      this.$router.push('/patients/list')
+    }
   },
 }
 </script>
