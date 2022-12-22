@@ -1,3 +1,4 @@
+<!-- seccion de historial de vacunacion dentro de medical record | Genesis -->
 <template>
   <v-card-text class="mt-n7">
     <p class="titulo">Historial de vacunación</p>

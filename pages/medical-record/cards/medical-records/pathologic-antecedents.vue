@@ -1,3 +1,4 @@
+<!-- seccion de antecedentes patologicos dentro de medical record | Genesis -->
 <template>
   <v-card-text class="mt-n7">
     <p class="titulo">Antecedentes patológicos</p>

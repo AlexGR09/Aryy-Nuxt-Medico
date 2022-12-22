@@ -1,3 +1,4 @@
+<!-- seccion de consulta medica | Genesis -->
 <template>
   <v-card class="pa-4 montserrat">
     <p>Descripción de sintomas</p>

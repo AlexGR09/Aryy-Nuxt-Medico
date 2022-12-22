@@ -25,7 +25,11 @@
         <v-card-title>
           <span>ODONTOGRAMA</span>
         </v-card-title>
-        <v-card-text> </v-card-text>
+
+        <v-card-text> 
+         <!--  insertar odontograma -->
+        </v-card-text>
+        
         <v-col class="ml-6">
           <v-btn
             height="50px"

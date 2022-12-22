@@ -1,3 +1,4 @@
+<!-- seccion de expediente médico | Genesis -->
 <template>
   <v-card>
     <!-- sección de alergias | Genesis -->

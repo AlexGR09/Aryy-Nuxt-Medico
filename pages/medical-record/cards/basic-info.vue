@@ -1,3 +1,4 @@
+<!-- card para seccion de informacion basica | Genesis -->
 <template>
   <v-card  background="grey-lighten-4">
     <v-card-text>
@@ -79,7 +80,7 @@
     </v-card-text>
     <v-card-subtitle class="title mt-n11">SIGNOS VITALES</v-card-subtitle>
     <div class="mb-2 mt-n11 d-flex justify-end">
-      <v-menu bottom left>
+      <v-menu :close-on-content-click="false" bottom left>
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <v-icon color="black">mdi-dots-horizontal</v-icon>
@@ -89,7 +90,7 @@
         <v-list width="300px">
           <div class="ml-3">
           <p class="title ml-2">SIGNOS VITALES</p>
-          <v-checkbox color="#7900ff" v-model="temperature" class="checkbox" label="Temperatura">
+          <v-checkbox color="#7900ff" v-model="temperatura" class="checkbox" label="Temperatura">
             <template #prepend>
               <img
                 width="24"
@@ -98,7 +99,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="weight" class="mt-n3 checkbox" label="Peso">
+          <v-checkbox color="#7900ff" v-model="peso" class="mt-n3 checkbox" label="Peso">
             <template #prepend>
               <img
                 width="24"
@@ -107,7 +108,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="frequency" class="mt-n3 checkbox" label="Frecuencia respiratoria">
+          <v-checkbox color="#7900ff" v-model="respiratoria" class="mt-n3 checkbox" label="Frecuencia respiratoria">
             <template #prepend>
               <img
                 width="24"
@@ -116,7 +117,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="pressure" class="mt-n3 checkbox" label="Presión sistólica">
+          <v-checkbox color="#7900ff" v-model="sistolica" class="mt-n3 checkbox" label="Presión sistólica">
             <template #prepend>
               <img
                 width="24"
@@ -125,7 +126,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="pressureD" class="mt-n3 checkbox" label="Presión diastólica">
+          <v-checkbox color="#7900ff" v-model="diastolica" class="mt-n3 checkbox" label="Presión diastólica">
             <template #prepend>
               <img
                 width="24"
@@ -135,7 +136,7 @@
             </template>
           </v-checkbox>
 
-          <v-checkbox color="#7900ff" v-model="pressureheart" class="mt-n3 checkbox"  label="Frecuencia cardiaca">
+          <v-checkbox color="#7900ff" v-model="cardiaca" class="mt-n3 checkbox"  label="Frecuencia cardiaca">
             <template #prepend>
               <img
                 width="24"
@@ -144,7 +145,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="oxygen" class="mt-n3 checkbox" label="Saturación de oxigeno">
+          <v-checkbox color="#7900ff" v-model="oxigeno" class="mt-n3 checkbox" label="Saturación de oxigeno">
             <template #prepend>
               <img
                 width="24"
@@ -153,7 +154,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="musculemass" class="mt-n3 checkbox" label="Masa muscular">
+          <v-checkbox color="#7900ff" v-model="masa" class="mt-n3 checkbox" label="Masa muscular">
             <template #prepend>
               <img
                 width="24"
@@ -162,7 +163,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="corporalfat" class="mt-n3 checkbox" label="Grasa corporal">
+          <v-checkbox color="#7900ff" v-model="grasacorp" class="mt-n3 checkbox" label="Grasa corporal">
             <template #prepend>
               <img
                 width="24"
@@ -171,7 +172,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="weightlost" class="mt-n3 checkbox" label="Peso perdido">
+          <v-checkbox color="#7900ff" v-model="pesoperd" class="mt-n3 checkbox" label="Peso perdido">
             <template #prepend>
               <img
                 width="24"
@@ -181,7 +182,7 @@
             </template>
           </v-checkbox>
 
-          <v-checkbox color="#7900ff" v-model="fat" class="mt-n3 checkbox" label="Grasa">
+          <v-checkbox color="#7900ff" v-model="grasa" class="mt-n3 checkbox" label="Grasa">
             <template #prepend>
               <img
                 width="24"
@@ -190,7 +191,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="waist" class="mt-n3 checkbox" label="Cintura">
+          <v-checkbox color="#7900ff" v-model="cintura" class="mt-n3 checkbox" label="Cintura">
             <template #prepend>
               <img
                 width="24"
@@ -199,7 +200,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="water" class="mt-n3 checkbox" label="Agua">
+          <v-checkbox color="#7900ff" v-model="agua" class="mt-n3 checkbox" label="Agua">
             <template #prepend>
               <img
                 width="24"
@@ -208,7 +209,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="muscle" class="mt-n3 checkbox" label="Músculo">
+          <v-checkbox color="#7900ff" v-model="musculo" class="mt-n3 checkbox" label="Músculo">
             <template #prepend>
               <img
                 width="24"
@@ -217,7 +218,7 @@
               />
             </template>
           </v-checkbox>
-          <v-checkbox color="#7900ff" v-model="abdomen" class="mt-n3 checkbox" label="Abdomen">
+          <v-checkbox color="#7900ff" v-model="abs" class="mt-n3 checkbox" label="Abdomen">
             <template #prepend>
               <img
                 width="24"
@@ -233,7 +234,7 @@
     </div>
     <v-divider class="mt-n4"></v-divider>
     <v-row class="mt-2 ml-1">
-      <v-col v-if="temperature" md="4" lg="4" xl="4">
+      <v-col v-if="temperatura" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
             <v-text-field outlined dense value="37.5 °C" type="text">
@@ -250,7 +251,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="pressure"  md="4" lg="4" xl="4">
+          <v-col v-if="sistolica"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
             <v-text-field outlined dense value="120 mmHg" type="text">
@@ -267,7 +268,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="oxygen"  md="4" lg="4" xl="4">
+          <v-col v-if="oxigeno"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="80" type="text">
@@ -285,7 +286,7 @@
         </v-row>
       </v-col>
 
-      <v-col v-if="weight"  md="4" lg="4" xl="4">
+      <v-col v-if="peso"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field
@@ -307,7 +308,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="pressureD"  md="4" lg="4" xl="4">
+          <v-col v-if="diastolica"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="80 mmHg" type="text">
@@ -324,7 +325,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="musculemass"  md="4" lg="4" xl="4">
+          <v-col v-if="masa"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="15%" type="text">
@@ -342,7 +343,7 @@
         </v-row>
       </v-col>
 
-      <v-col v-if="frequency"  md="4" lg="4" xl="4">
+      <v-col v-if="respiratoria"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="17 r/m" type="text">
@@ -359,7 +360,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="pressureheart"  md="4" lg="4" xl="4">
+          <v-col v-if="cardiaca"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="80 bpm" type="text">
@@ -376,7 +377,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="corporalfat"  md="4" lg="4" xl="4">
+          <v-col v-if="grasacorp"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -394,7 +395,7 @@
         </v-row>
       </v-col>
 
-      <v-col v-if="weightlost"  md="4" lg="4" xl="4">
+      <v-col v-if="pesoperd"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -411,7 +412,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="fat"  md="4" lg="4" xl="4">
+      <v-col v-if="grasa"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -428,7 +429,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="waist"  md="4" lg="4" xl="4">
+      <v-col v-if="cintura"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="90 cm" type="text">
@@ -445,7 +446,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="water"  md="4" lg="4" xl="4">
+      <v-col v-if="agua"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -462,7 +463,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="muscle"  md="4" lg="4" xl="4">
+      <v-col v-if="musculo"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -479,7 +480,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="abdomen"  md="4" lg="4" xl="4">
+      <v-col v-if="abs"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -505,21 +506,21 @@
 export default {
   data() {
     return {
-      temperature: true,
-      weight: true,
-      frequency: true,
-      pressure: true,
-      pressureD: true,
-      pressureheart: true,
-      oxygen: true,
-      musculemass: true,
-      corporalfat: true,
-      weightlost: false,
-      fat: false,
-      waist: false,
-      water: false,
-      muscle: false,
-      abdomen: false,
+      temperatura: true,
+      peso: true,
+      respiratoria: true,
+      sistolica: true,
+      diastolica: true,
+      cardiaca: true,
+      oxigeno: true,
+      masa: true,
+      grasacorp: true,
+      pesoperd: false,
+      grasa: false,
+      cintura: false,
+      agua: false,
+      musculo: false,
+      abs: false,
 
 
 

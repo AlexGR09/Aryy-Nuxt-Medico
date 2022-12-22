@@ -1,3 +1,4 @@
+<!-- seccion de medicamento anterior dentro de medical record | Genesis -->
 <template>
     <v-card-text class="mt-n7">
       <p class="titulo">Medicamento anterior</p>

@@ -1,3 +1,4 @@
+<!-- vista de expediente en consulta | Genesis -->
 <template class="template">
   <div class="template">
     <v-row>

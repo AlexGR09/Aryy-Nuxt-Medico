@@ -1,26 +1,27 @@
+<!-- seccion de otros dentro de medical record | Genesis -->
 <template>
   <v-card-text class="mt-n7">
     <p class="titulo">Otros antecedentes</p>
-    <v-divider class="mt-n2 mb-5"/>
-    <v-row >
+    <v-divider class="mt-n2 mb-5" />
+    <v-row>
       <v-col md="4" lg="4" xl="4">
-     <psychiatric-history/>
+        <psychiatric-history />
       </v-col>
       <v-col md="8" lg="8" xl="8"></v-col>
       <v-col md="4" lg="4" xl="4">
-      <gynecological-history/>
+        <gynecological-history />
       </v-col>
       <v-col md="8" lg="8" xl="8"></v-col>
       <v-col md="4" lg="4" xl="4">
-      <perinatal-history/>
+        <perinatal-history />
       </v-col>
       <v-col md="8" lg="8" xl="8"></v-col>
       <v-col md="4" lg="4" xl="4">
-      <postnatal-history/>
+        <postnatal-history />
       </v-col>
       <v-col md="8" lg="8" xl="8"></v-col>
       <v-col md="4" lg="4" xl="4">
-      <customized-questionnaire/>
+        <customized-questionnaire />
       </v-col>
     </v-row>
   </v-card-text>
@@ -33,11 +34,15 @@ import PostnatalHistory from './others/postnatal-history.vue'
 import CustomizedQuestionnaire from './others/customized-questionnaire.vue'
 export default {
   layout: 'medicalRecord',
-  components: {PsychiatricHistory, GynecologicalHistory, PerinatalHistory, PostnatalHistory, CustomizedQuestionnaire},
+  components: {
+    PsychiatricHistory,
+    GynecologicalHistory,
+    PerinatalHistory,
+    PostnatalHistory,
+    CustomizedQuestionnaire,
+  },
   data() {
-    return {
-     
-    }
+    return {}
   },
 }
 </script>
@@ -70,7 +75,7 @@ span {
 .checkbox {
   font-family: Montserrat;
 }
-.vradio{
+.vradio {
   font-size: 5px;
 }
 </style>

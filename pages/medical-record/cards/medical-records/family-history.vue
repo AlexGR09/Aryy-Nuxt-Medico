@@ -1,3 +1,4 @@
+<!-- seccion de antecedentes heredofamiliares dentro de medical record | Genesis -->
 <template>
   <v-card-text class="mt-n7">
     <p class="titulo">Antecedentes heredofamiliares</p>

@@ -1,3 +1,4 @@
+<!-- seccion de "antecedentes gineco-obstreticos" dentro de la seccion "otros" de medical record | Genesis  -->
 <template>
   <v-dialog scrollable v-model="dialog" max-width="700px">
     <template v-slot:activator="{ on, attrs }">

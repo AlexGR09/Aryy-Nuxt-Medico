@@ -1,3 +1,4 @@
+<!-- seccion de alergias dentro de medical record | Genesis -->
 <template>
   <v-card-text>
     <p class="titulo">Alergias</p>

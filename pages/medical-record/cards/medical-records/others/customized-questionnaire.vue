@@ -1,3 +1,4 @@
+<!-- seccion de "cuestionario personalizado" dentro de la seccion "otros" de medical record | Genesis  -->
 <template>
   <v-dialog scrollable v-model="dialog" max-width="600px">
     <template v-slot:activator="{ on, attrs }">

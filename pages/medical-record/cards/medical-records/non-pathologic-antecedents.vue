@@ -1,3 +1,4 @@
+<!-- seccion de antecedentes no patologicos dentro de medical record | Genesis -->
 <template>
     <v-card-text class="mt-n7">
       <p class="titulo">Antecedentes no patológicos</p>

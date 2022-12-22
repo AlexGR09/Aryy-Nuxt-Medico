@@ -1,3 +1,4 @@
+<!-- seccion de medicamento activo dentro de medical record | Genesis -->
 <template>
   <v-card-text class="mt-n7">
     <p class="titulo">Medicamento activo</p>
