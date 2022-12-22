@@ -1,9 +1,9 @@
 <template>
   <v-dialog scrollable v-model="dialog" max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn block outlined color="#7900ff" v-bind="attrs" v-on="on">
+      <v-btn class="justify-start" width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
         <v-icon color="#7900ff">mdi-plus</v-icon>
-        ANTECEDENTES PSIQUIATRICOS
+        <l>ANTECEDENTES PSIQUIATRICOS</l>
       </v-btn>
     </template>
     <v-card height="600px">
@@ -174,6 +174,10 @@ p.sub {
 }
 span {
   color: #4f565f;
+  font-family: MontserratBold;
+}
+l{
+  font-size: 90%;
   font-family: MontserratBold;
 }
 .save {

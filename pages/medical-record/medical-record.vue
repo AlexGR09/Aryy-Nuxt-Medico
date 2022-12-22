@@ -2,11 +2,11 @@
   <div class="template">
     <v-row>
       <!-- card info basica | Genesis -->
-      <v-col mg="8" lg="8" xl="8">
+      <v-col xs="12" sm="12" md="8" lg="8" xl="8">
         <H1 class="title mb-3">INFORMACIÓN BÁSICA</H1>
         <basic-info />
       </v-col>
-      <v-col md="4" lg="4" xl="4">
+      <v-col xs="12" sm="12" md="4" lg="4" xl="4">
         <H1 class="title mt-3">NOTAS INTERNAS</H1>
         <v-textarea
           class="note"
@@ -18,15 +18,16 @@
         ></v-textarea>
       </v-col>
 
-      <v-col mg="8" lg="8" xl="8">
+      <v-col xs="12" sm="12" md="8" lg="8" xl="8">
         <H1 class="title mb-3">EXPEDIENTE MÉDICO</H1>
         <medical-record />
       </v-col>
-      <v-col md="4" lg="4" xl="4">
+      <v-col xs="12" sm="12" md="4" lg="4" xl="4">
         <H1 class="title mt-3">CITAS ANTERIORES</H1>
-        <previous />
+      <appointments/>
       </v-col>
-      <v-col mg="8" lg="8" xl="8">
+      <v-col xs="12" sm="12"
+       md="8" lg="8" xl="8">
         <H1 class="title mb-3">CONSULTA MÉDICA</H1>
         <consultation />
       </v-col>
@@ -34,20 +35,20 @@
   </div>
 </template>
 <script>
+
 import basicInfo from './cards/basic-info.vue'
 import Consultation from './cards/consultation.vue'
 import medicalRecord from './cards/medical-record.vue'
-import previous from './cards/previous.vue'
+import Appointments from '~/components/appointments.vue'
 export default {
   layout: 'medicalRecord',
   components: {
     basicInfo,
     medicalRecord,
     Consultation,
-    previous,
+    Appointments,
   },
-  data() {
-    return {
+  data() { return {
       /*  fondo efecto libreta para las notas | Genesis */
       image: {
         height: '355px',

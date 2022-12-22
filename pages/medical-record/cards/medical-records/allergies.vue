@@ -12,7 +12,7 @@
             />
           </v-btn>
         </template>
-        <v-card  height="600px">
+        <v-card  max-height="600px">
           <v-card-title>
             <span>ALERGIAS</span>
           </v-card-title>
@@ -38,6 +38,7 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  color="#7900ff"
                     v-model="food"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -63,6 +64,7 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  color="#7900ff"
                     v-model="drugs"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -84,6 +86,7 @@
                     <v-radio color="#b380ff" label="No" value="ambNo"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  color="#7900ff"
                     v-model="environmental"
                     class="mt-n3"
                     style="font-family: Montserrat"

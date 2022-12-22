@@ -113,17 +113,13 @@
       outlined
     ></v-textarea>
     <div>
-    <v-btn height="50px" class="white--text mt-7 btn" color="#7900ff" large
-      >Guardar y terminar</v-btn
-    >
-    <v-btn
-      height="50px"
-      class="btn ml-3 mt-7"
-      color="#999999"
-      outlined
-      large
-      >Imprimir receta</v-btn
-    ></div>
+      <v-btn height="50px" class="white--text mt-7 btn" color="#7900ff" large
+        >Guardar y terminar</v-btn
+      >
+      <v-btn height="50px" class="btn ml-3 mt-7" color="#999999" outlined large
+        >Imprimir receta</v-btn
+      >
+    </div>
   </v-card>
 </template>
 <script>
@@ -134,6 +130,8 @@ export default {
   data() {
     return {
       inputs: [{}],
+      yes: false,
+      no: false,
       lab: false,
       gab: false,
     }
@@ -162,7 +160,7 @@ p {
 .montserrat {
   font-family: Montserrat;
 }
-.btn{
+.btn {
   text-transform: capitalize;
   font-size: 100%;
 }

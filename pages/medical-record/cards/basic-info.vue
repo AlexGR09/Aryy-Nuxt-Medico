@@ -2,7 +2,7 @@
   <v-card  background="grey-lighten-4">
     <v-card-text>
       <v-row>
-        <v-col xl="4">
+        <v-col md="4" lg="4" xl="4">
           <v-text-field color="#7900ff" value="+52 961 123 4567" type="text">
             <template #prepend>
               <img
@@ -14,7 +14,7 @@
           </v-text-field>
         </v-col>
 
-        <v-col xl="4">
+        <v-col md="4" lg="4" xl="4">
           <v-text-field color="#7900ff" value="Fulanito Detal" type="text">
             <template #prepend>
               <img
@@ -26,7 +26,7 @@
           </v-text-field>
         </v-col>
 
-        <v-col xl="4">
+        <v-col md="4" lg="4" xl="4">
           <v-text-field color="#7900ff" value="31 años (01 Enero 1991)" type="text">
             <template #prepend>
               <img
@@ -40,7 +40,7 @@
       </v-row>
 
       <v-row class="mt-n15">
-        <v-col xl="4">
+        <v-col md="4" lg="4" xl="4">
           <v-text-field color="#7900ff" value="B+" type="text">
             <template #prepend>
               <img
@@ -52,7 +52,7 @@
           </v-text-field>
         </v-col>
 
-        <v-col xl="4">
+        <v-col md="4" lg="4" xl="4">
           <v-text-field color="#7900ff" value="1.80 mts" type="text">
             <template #prepend>
               <img
@@ -64,7 +64,7 @@
           </v-text-field>
         </v-col>
 
-        <v-col xl="4">
+        <v-col md="4" lg="4" xl="4">
           <v-text-field color="#7900ff" value="Hombre" type="text">
             <template #prepend>
               <img
@@ -233,7 +233,7 @@
     </div>
     <v-divider class="mt-n4"></v-divider>
     <v-row class="mt-2 ml-1">
-      <v-col v-if="temperature" xl="4">
+      <v-col v-if="temperature" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
             <v-text-field outlined dense value="37.5 °C" type="text">
@@ -250,7 +250,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="pressure" xl="4">
+          <v-col v-if="pressure"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
             <v-text-field outlined dense value="120 mmHg" type="text">
@@ -267,7 +267,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="oxygen" xl="4">
+          <v-col v-if="oxygen"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="80" type="text">
@@ -285,7 +285,7 @@
         </v-row>
       </v-col>
 
-      <v-col v-if="weight" xl="4">
+      <v-col v-if="weight"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field
@@ -307,7 +307,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="pressureD" xl="4">
+          <v-col v-if="pressureD"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="80 mmHg" type="text">
@@ -324,7 +324,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="musculemass" xl="4">
+          <v-col v-if="musculemass"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="15%" type="text">
@@ -342,7 +342,7 @@
         </v-row>
       </v-col>
 
-      <v-col v-if="frequency" xl="4">
+      <v-col v-if="frequency"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="17 r/m" type="text">
@@ -359,7 +359,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="pressureheart" xl="4">
+          <v-col v-if="pressureheart"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="80 bpm" type="text">
@@ -376,7 +376,7 @@
           </div>
           </v-row>
           </v-col>
-          <v-col v-if="corporalfat" xl="4">
+          <v-col v-if="corporalfat"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -394,7 +394,7 @@
         </v-row>
       </v-col>
 
-      <v-col v-if="weightlost" xl="4">
+      <v-col v-if="weightlost"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -411,7 +411,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="fat" xl="4">
+      <v-col v-if="fat"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -428,7 +428,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="waist" xl="4">
+      <v-col v-if="waist"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="90 cm" type="text">
@@ -445,7 +445,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="water" xl="4">
+      <v-col v-if="water"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -462,7 +462,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="muscle" xl="4">
+      <v-col v-if="muscle"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">
@@ -479,7 +479,7 @@
           </div>
         </v-row>
       </v-col>
-      <v-col v-if="abdomen" xl="4">
+      <v-col v-if="abdomen"  md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div >
             <v-text-field outlined dense value="20%" type="text">

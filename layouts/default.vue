@@ -191,7 +191,6 @@ export default {
         .get('/api/v1/logout', {})
         .then(
           localStorage.removeItem('token'),
-          console.log('cierre de sesión'),
           this.$router.replace('/auth/login')
         )
     },

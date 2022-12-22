@@ -2,7 +2,7 @@
   <v-card-text class="mt-n7">
     <p class="titulo">Antecedentes heredofamiliares</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
-      <v-dialog v-model="dialog" max-width="600px">
+      <v-dialog scrollable v-model="dialog"  max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -12,7 +12,7 @@
             />
           </v-btn>
         </template>
-        <v-card>
+        <v-card  max-height="600px">
           <v-card-title>
             <span>ANTECEDENTES HEREDOFAMILIARES</span>
           </v-card-title>
@@ -243,7 +243,7 @@
               </v-row>
             </v-container>
           </v-card-text>
-          <v-card-actions class="mt-n10 ml-5">
+          <v-card-actions  class="mt-n10 ml-5">
             <v-btn
               height="50px"
               class="white--text save mb-5"
@@ -318,6 +318,7 @@ span {
 }
 .restore {
   font-family: Montserrat;
+  background-color: white;
   text-transform: unset !important;
 }
 </style>

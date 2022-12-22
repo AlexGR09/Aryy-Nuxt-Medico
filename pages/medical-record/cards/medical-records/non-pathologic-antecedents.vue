@@ -2,7 +2,7 @@
     <v-card-text class="mt-n7">
       <p class="titulo">Antecedentes no patológicos</p>
       <div class="mb-2 mt-n11 d-flex justify-end">
-        <v-dialog v-model="dialog" max-width="600px">
+        <v-dialog scrollable v-model="dialog" max-width="600px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn dark icon v-bind="attrs" v-on="on">
               <img
@@ -12,7 +12,7 @@
               />
             </v-btn>
           </template>
-          <v-card>
+          <v-card max-height="640px">
             <v-card-title>
               <span>ANTECEDENTES NO PATOLÓGICOS</span>
             </v-card-title>

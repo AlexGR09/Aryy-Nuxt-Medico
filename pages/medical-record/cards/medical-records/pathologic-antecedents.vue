@@ -2,7 +2,7 @@
   <v-card-text class="mt-n7">
     <p class="titulo">Antecedentes patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
-      <v-dialog v-model="dialog" max-width="600px">
+      <v-dialog scrollable v-model="dialog" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -12,7 +12,7 @@
             />
           </v-btn>
         </template>
-        <v-card height="100%">
+        <v-card max-height="600px">
           <v-card-title>
             <span>ANTECEDENTES PATOLÓGICOS</span>
           </v-card-title>
@@ -34,6 +34,7 @@
                     <v-radio color="#b380ff" label="No" value="surNo"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                    color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
                     v-if="surgery == 'surYes'"
@@ -58,6 +59,7 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                    color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
                     v-if="transfusion == 'tranYes'"
@@ -82,6 +84,7 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                    color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
                     v-if="diabetes == 'diabYes'"
@@ -102,6 +105,7 @@
                     <v-radio color="#b380ff" label="No" value="disNo"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                    color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
                     v-if="disease == 'disYes'"
@@ -207,6 +211,7 @@ span {
   text-transform: unset !important;
 }
 .restore {
+  background-color: white;
   font-family: Montserrat;
   text-transform: unset !important;
 }
