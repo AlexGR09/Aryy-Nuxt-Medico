@@ -199,6 +199,7 @@ export default {
 .v-list-item:hover {
   background: #7900ff;
 }
+
 .item-active {
   background-color: #7900ff;
   color: white !important;
