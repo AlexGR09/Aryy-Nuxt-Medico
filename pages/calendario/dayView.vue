@@ -1,5 +1,6 @@
 <template>
   <v-row class="mt-n3">
+    <v-card color="#f2f2f2" class="mx-auto"> <date-picker /></v-card>
     <!-- Calendario vista dia |Genesis -->
     <v-col>
       <v-card>
@@ -25,7 +26,7 @@
             >
               <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
             </v-btn>
-            <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
+            <v-toolbar-title class="calendar mt-7"  v-if="$refs.calendar">
               {{ $refs.calendar.title }}
             </v-toolbar-title>
             <v-btn
@@ -51,7 +52,7 @@
                   <v-icon right>mdi-menu-down</v-icon>
                 </v-btn>
               </template>
-              <v-list>
+              <v-list style="font-family: Montserrat">
                 <v-list-item @click="type = 'day'" to="/calendario/dayView">
                   <v-list-item-title>Día</v-list-item-title>
                 </v-list-item>
@@ -67,22 +68,23 @@
         </v-sheet>
         <v-sheet height="700">
           <v-calendar
-            event-text-color="white"
-            class="calend white--text"
+
+            class="calend"
             locale="mx-es"
             ref="calendar"
             type="day"
             v-model="focus"
             color="#7900ff"
             interval-height="80px"
-            interval-count="48"
             :short-intervals="false"
             interval-width="80px"
+            @click="addEvent"
             :events="events"
             :event-color="getEventColor"
             @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
+            @click:time="addEvent"
           >
             <template v-slot:day-body="{ date, week }">
               <div
@@ -92,6 +94,15 @@
               ></div>
             </template>
           </v-calendar>
+          <v-dialog
+          width="1040px"
+            v-model="newDate"
+            offset-x
+            :close-on-content-click="false"
+         >
+            <new-appointment/>
+          </v-dialog
+          >
           <v-dialog
             width="640px"
             v-model="selectedOpen"
@@ -171,6 +182,8 @@
 export default {
   data: () => ({
     value: '',
+    newDate: false,
+    show: false,
     ready: false,
     focus: '',
     type: 'month',
@@ -239,6 +252,9 @@ export default {
     this.updateTime()
   },
   methods: {
+    addEvent(){
+      this.newDate = true
+    },
     getCurrentTime() {
       return this.cal
         ? this.cal.times.now.hour * 60 + this.cal.times.now.minute
@@ -365,11 +381,9 @@ span::first-letter {
   box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
-   color: white;
 }
 .v-calendar {
   font-family: Montserrat;
-   color: white;
 }
 .v-calendar-title {
   font-family: MontserratBold;
@@ -421,20 +435,22 @@ p.infor {
 .titleAction2 {
   text-transform: uppercase;
   font-size: 90%;
+  color: red;
 }
-.v-event-summary {
-  color: white;
-  font-family: 'Montserrat';
-  text-align: center;
+.v-calendar-daily__interval-text {
+  display: block;
+  position: relative;
+  top: -6px;
   font-size: 15px;
+  padding-right: 4px;
 }
-.v-calendar .v-event-timed {
-  position: absolute;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  pointer-events: all;
+.v-calendar-daily_head-weekday {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  padding: 3px 0px 0px 0px;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
 }
 </style>

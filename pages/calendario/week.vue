@@ -51,7 +51,7 @@
                   <v-icon right>mdi-menu-down</v-icon>
                 </v-btn>
               </template>
-              <v-list>
+              <v-list style="font-family: Montserrat">
                 <v-list-item @click="type = 'day'" to="/calendario/dayView">
                   <v-list-item-title>Día</v-list-item-title>
                 </v-list-item>
@@ -74,7 +74,6 @@
             v-model="focus"
             color="#7900ff"
             interval-height="80px"
-            interval-count="48"
             :short-intervals="false"
             interval-width="80px"
             :events="events"
