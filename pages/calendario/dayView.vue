@@ -67,7 +67,7 @@
         </v-sheet>
         <v-sheet height="700">
           <v-calendar
-            class="calend"
+            class="calend white--text"
             locale="mx-es"
             ref="calendar"
             type="day"
@@ -186,9 +186,9 @@ export default {
       {
         name: 'Fulanito Detal',
         phone: '9615897456',
-        start: '2022-11-08T10:00:00',
+        start: '2022-12-26T10:00:00',
         intervalo: '10:00 - 10:30',
-        end: '2022-11-08T10:30:00',
+        end: '2022-12-26T10:30:00',
         timed: true,
         color: '#1abc9c',
       },
@@ -196,16 +196,16 @@ export default {
         name: 'Zutanito Filipondio',
         phone: '9611115823',
         intervalo: '10:30 - 11:00',
-        start: '2022-11-08T10:30:00',
-        end: '2022-11-08T11:00:00',
+        start: '2022-12-26T10:30:00',
+        end: '2022-12-26T11:00:00',
         timed: true,
         color: '#1abc9c',
       },
       {
         name: 'Merengano Taltipo',
         phone: '9610218998',
-        start: '2022-12-08T11:00:00',
-        end: '2022-12-08T11:30:00',
+        start: '2022-12-26T11:00:00',
+        end: '2022-12-26T11:30:00',
         intervalo: '11:00 - 11:30',
         timed: true,
         color: '#3498db',
@@ -213,8 +213,8 @@ export default {
       {
         name: 'Perengago Gilberto',
         phone: '9610277896',
-        start: '2022-12-08T11:30:00',
-        end: '2022-12-08T12:00:00',
+        start: '2022-12-26T11:30:00',
+        end: '2022-12-26T12:00:00',
         intervalo: '11:30 - 12:00',
         timed: true,
         color: '#1abc9c',
@@ -364,9 +364,14 @@ span::first-letter {
   box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
+   color: white;
+}
+.text-white {
+  color: #fff;
 }
 .v-calendar {
   font-family: Montserrat;
+   color: white;
 }
 .v-calendar-title {
   font-family: MontserratBold;
