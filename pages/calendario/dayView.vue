@@ -67,6 +67,7 @@
         </v-sheet>
         <v-sheet height="700">
           <v-calendar
+            event-text-color="white"
             class="calend white--text"
             locale="mx-es"
             ref="calendar"
@@ -366,9 +367,6 @@ span::first-letter {
   -moz-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
    color: white;
 }
-.text-white {
-  color: #fff;
-}
 .v-calendar {
   font-family: Montserrat;
    color: white;
@@ -424,5 +422,11 @@ p.infor {
   text-transform: uppercase;
   font-size: 90%;
   color: red;
+}
+.v-event-summary {
+  color: white;
+  font-family: 'Montserrat';
+  text-align: center;
+  font-size: 15px;
 }
 </style>

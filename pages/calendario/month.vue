@@ -2,68 +2,24 @@
   <v-row>
     <v-card color="#f2f2f2" class="mx-auto"> <date-picker /></v-card>
 
-    <v-app-bar height="100" :clipped-left="clipped" fixed app>
-      <v-btn class="list mr-4" outlined color="grey darken-2" @click="setToday">
-        <span>Este mes</span>
-      </v-btn>
-      <v-spacer />
-      <v-toolbar flat color="transparent" class="vtoolbar mr-5" dense>
-        <v-text-field
-          reverse
-          class="search"
-          color="#f2f2f2"
-          dense
-          outlined
-          placeholder="Buscar cita"
-          hide-details
-          prepend-inner-icon="mdi-magnify"
-        ></v-text-field>
-      </v-toolbar>
-      <v-menu bottom left>
-        <template v-slot:activator="{ on }">
-          <v-btn class="list white--text mr-5 ml-n5" outlined v-on="on">
-            <span background="#5a09ff">{{ typeToLabel[type] }}</span>
-            <v-icon right>mdi-menu-down</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item @click="type = 'day'" to="/calendario/dayView">
-            <v-list-item-title>Día</v-list-item-title>
-          </v-list-item>
-          <v-list-item @click="type = 'week'" to="/calendario/week">
-            <v-list-item-title>Semana</v-list-item-title>
-          </v-list-item>
-          <v-list-item @click="type = 'month'" to="/calendario/month">
-            <v-list-item-title>Mes</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-btn class="ml-4" icon small>
-        <v-img
-          :src="require('@/assets/icons/icon_settings.svg')"
-          max-width="23"
-        ></v-img>
-      </v-btn>
-      <v-btn class="ml-4" icon small>
-        <v-img
-          :src="require('@/assets/icons/icon_notificationpatient.svg')"
-          max-width="23"
-        ></v-img>
-      </v-btn>
-      <v-btn class="ml-5 mr-7" fab color="#7900ff">
-        <v-icon large color="#fff"> mdi-account </v-icon>
-      </v-btn>
-    </v-app-bar>
     <v-spacer />
     <v-col>
       <v-sheet
         margin-top="1em"
         class="justify-center"
-        height="4rem"
-        width="60rem"
+        height="84"
         text-aling="center"
       >
-        <v-toolbar flat>
+        <v-toolbar class="pt-3" flat>
+          <v-btn
+              width="150px"
+              outlined
+              color="white"
+              class="mr-4 today"
+              @click="setToday"
+            >
+              <l class="today">Este mes</l>
+            </v-btn>
           <v-spacer></v-spacer>
           <v-btn fab text small color="grey darken-2" @click="prev">
             <v-icon color="#9966ff">mdi-arrow-left-drop-circle</v-icon>
@@ -75,22 +31,51 @@
             <v-icon color="#9966ff">mdi-arrow-right-drop-circle</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
+          <v-menu bottom left>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  width="150px"
+                  class="list white--text mr-5 ml-n5"
+                  outlined
+                  v-on="on"
+                >
+                  <span background="#5a09ff">{{ typeToLabel[type] }}</span>
+                  <v-icon right>mdi-menu-down</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item @click="type = 'day'" to="/calendario/dayView">
+                  <v-list-item-title>Día</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click="type = 'week'" to="/calendario/week">
+                  <v-list-item-title>Semana</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click="type = 'month'" to="/calendario/month">
+                  <v-list-item-title>Mes</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
         </v-toolbar>
       </v-sheet>
-      <v-sheet height="40rem" width="60rem">
+      <v-sheet height="42rem" width="80rem">
         <v-calendar
-          locale="mx-es"
-          class="v-calendar"
-          ref="calendar"
-          color="primary"
-          v-model="focus"
-          :events="events"
-          :type="type"
-          :citas="citas"
-          :event-overlap-mode="mode"
-          :event-color="getEventColor"
-          @change="getEvents"
-          :now="today"
+        event-text-color="white"
+            class="calend white--text"
+            locale="mx-es"
+            ref="calendar"
+            type="month"
+            v-model="focus"
+            color="#7900ff"
+            style="font-family: Montserrat;"
+            interval-height="80px"
+            interval-count="48"
+            :short-intervals="false"
+            interval-width="80px"
+            :events="events"
+            :event-color="getEventColor"
+            @click:event="showEvent"
+            @click:more="viewDay"
+            @click:date="viewDay"
         >
           <template :events="events">
             <h3>hola</h3>
@@ -154,7 +139,44 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events: [],
+    events: [
+      {
+        name: 'Fulanito Detal',
+        phone: '9615897456',
+        start: '2022-12-26T10:00:00',
+        intervalo: '10:00 - 10:30',
+        end: '2022-12-26T10:30:00',
+        timed: true,
+        color: '#1abc9c',
+      },
+      {
+        name: 'Zutanito Filipondio',
+        phone: '9611115823',
+        intervalo: '10:30 - 11:00',
+        start: '2022-12-26T10:30:00',
+        end: '2022-12-26T11:00:00',
+        timed: true,
+        color: '#1abc9c',
+      },
+      {
+        name: 'Merengano Taltipo',
+        phone: '9610218998',
+        start: '2022-12-26T11:00:00',
+        end: '2022-12-26T11:30:00',
+        intervalo: '11:00 - 11:30',
+        timed: true,
+        color: '#3498db',
+      },
+      {
+        name: 'Perengago Gilberto',
+        phone: '9610277896',
+        start: '2022-12-26T11:30:00',
+        end: '2022-12-26T12:00:00',
+        intervalo: '11:30 - 12:00',
+        timed: true,
+        color: '#1abc9c',
+      },
+    ],
     colors: [
       'blue',
       'indigo',
@@ -237,7 +259,12 @@ export default {
   font-size: 25px;
   font-family: 'Montserrat', sans-serif;
 }
-
+.calend {
+  box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
+   color: white;
+}
 v-calendar-weekly__head {
   color: black;
 }
@@ -250,23 +277,29 @@ v-event-summary {
   background-color: aqua;
 }
 
-.theme--light.v-calendar-weekly .v-calendar-weekly__day {
-  border-right: #fff 3px solid;
+/* .theme--light.v-calendar-weekly .v-calendar-weekly__day {
+  border-right: red 3px solid;
   border-bottom: #fff 1px solid;
 }
-
+ */
 .theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
   background-color: #cccccc;
 }
-
+.today {
+  text-transform: capitalize;
+  color: white;
+  font-size: 80%;
+  background-color: #7900ff;
+}
 .caja {
   margin-left: 4vh;
   margin-right: 4vh;
 }
 
 h4 {
-  text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  text-transform: capitalize;
+  font-family: 'Montserrat';
+  color: black;
 }
 
 v-col {
@@ -278,10 +311,10 @@ v-col {
 }
 
 .v-event-summary {
-  color: #0065ff;
-  font-family: 'MontserratBold', sans-serif;
-  text-align: center;
+  color: white;
+  font-family: 'Montserrat';
   font-size: 15px;
+  text-transform: capitalize;
 }
 
 .content-calendar {
@@ -300,9 +333,6 @@ v-col {
   height: 30px;
   width: 2rem;
 }
-.search {
-  font-family: Montserrat;
-}
 .v-input__icon--prepend-inner .v-icon {
   color: #cccccc;
 }
@@ -315,5 +345,44 @@ span {
 }
 span::first-letter {
   text-transform: uppercase;
+}
+.v-calendar-weekly__head {
+  display: flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  height: 20px;
+}
+.v-calendar-weekly__head-weekday {
+  flex: 1 0 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  padding: 0px 4px 0px 4px;
+  font-size: 16px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* .v-calendar-weekly__head-weekday .html {
+  font-size: 6px;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+ */
+ .v-btn__content {
+  color: #999999;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-family: 'Montserrat';
+}
+.theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
+  background-color: #f7f7f7;
 }
 </style>
