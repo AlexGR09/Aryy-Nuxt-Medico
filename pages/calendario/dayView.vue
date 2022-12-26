@@ -421,12 +421,20 @@ p.infor {
 .titleAction2 {
   text-transform: uppercase;
   font-size: 90%;
-  color: red;
 }
 .v-event-summary {
   color: white;
   font-family: 'Montserrat';
   text-align: center;
   font-size: 15px;
+}
+.v-calendar .v-event-timed {
+  position: absolute;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  pointer-events: all;
 }
 </style>
