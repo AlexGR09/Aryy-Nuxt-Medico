@@ -118,6 +118,7 @@
         <v-col xl="4">
           <p>Horario*</p>
           <v-dialog
+        
             ref="dialog"
             v-model="modal2"
             :return-value.sync="time"
