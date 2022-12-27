@@ -57,14 +57,14 @@
             </v-menu>
         </v-toolbar>
       </v-sheet>
-      <v-sheet height="42rem" width="80rem">
+      <v-sheet height="44rem" width="84rem">
         <v-calendar
         event-text-color="white"
             class="calend white--text"
             locale="mx-es"
             ref="calendar"
             type="month"
-            v-model="focus"
+            v-model="type"
             color="#7900ff"
             style="font-family: Montserrat;"
             interval-height="80px"
@@ -201,6 +201,26 @@ export default {
     this.$refs.calendar.checkChange()
   },
   methods: {
+    citas() {
+      console.log('creando petición GET')
+      this.$axios
+        .get('api/v1/calendar/appointments', {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log(res)
+          console.log('exito en GET')
+          this.type = res.data.data.type
+          this.month = res.data.data.month
+          
+        })
+        .catch(
+          /* console.log(e); */
+          console.log('error en GET')
+        )
+    },
+
+
     viewDay({ date }) {
       this.focus = date
       this.type = 'day'

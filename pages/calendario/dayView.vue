@@ -1,182 +1,189 @@
 <template>
-  <v-row class="mt-n3">
-    <v-card color="#f2f2f2" class="mx-auto"> <date-picker /></v-card>
-    <!-- Calendario vista dia |Genesis -->
-    <v-col>
-      <v-card>
-        <v-sheet height="84">
-          <v-toolbar flat>
-            <v-btn
-              width="150px"
-              outlined
-              color="white"
-              class="mr-4 today mt-7"
-              @click="setToday"
+  <div>
+    <v-row class="mt-n3">
+      <!-- Calendario vista dia |Genesis -->
+      <v-col>
+        <v-breadcrumbs class="breadcrumbs" :items="items">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
+        <v-card>
+          <v-sheet height="84">
+            <v-toolbar flat>
+              <v-btn
+                width="150px"
+                outlined
+                color="white"
+                class="mr-4 today mt-7"
+                @click="setToday"
+              >
+                <l class="today">hoy</l>
+              </v-btn>
+              <v-spacer></v-spacer>
+              <v-btn
+                class="mt-7 ml-10"
+                fab
+                text
+                small
+                color="grey darken-2"
+                @click="prev"
+              >
+                <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
+              </v-btn>
+              <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
+                {{ $refs.calendar.title }}
+              </v-toolbar-title>
+              <v-btn
+                class="mt-7"
+                fab
+                text
+                small
+                color="grey darken-2"
+                @click="next"
+              >
+                <v-icon color="#9966ff" x-large> mdi-chevron-right </v-icon>
+              </v-btn>
+              <v-spacer></v-spacer>
+              <v-menu bottom left>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    width="150px"
+                    class="list white--text mr-5 ml-n5 mt-7"
+                    outlined
+                    v-on="on"
+                  >
+                    <span background="#5a09ff">{{ typeToLabel[type] }}</span>
+                    <v-icon right>mdi-menu-down</v-icon>
+                  </v-btn>
+                </template>
+                <v-list style="font-family: Montserrat">
+                  <v-list-item @click="type = 'day'" to="/calendario/dayView">
+                    <v-list-item-title>Día</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="type = 'week'" to="/calendario/week">
+                    <v-list-item-title>Semana</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="type = 'month'" to="/calendario/month">
+                    <v-list-item-title>Mes</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-toolbar>
+          </v-sheet>
+          <v-sheet height="700">
+            <v-calendar
+              class="calend"
+              locale="mx-es"
+              ref="calendar"
+              type="day"
+              v-model="focus"
+              color="#7900ff"
+              interval-height="80px"
+              :short-intervals="false"
+              interval-width="80px"
+              @click="addEvent"
+              :events="events"
+              :event-color="getEventColor"
+              @click:event="showEvent"
+              @click:more="viewDay"
+              @click:date="viewDay"
+              @click:time="addEvent"
             >
-              <l class="today">hoy</l>
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn
-              class="mt-7 ml-10"
-              fab
-              text
-              small
-              color="grey darken-2"
-              @click="prev"
-            >
-              <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
-            </v-btn>
-            <v-toolbar-title class="calendar mt-7"  v-if="$refs.calendar">
-              {{ $refs.calendar.title }}
-            </v-toolbar-title>
-            <v-btn
-              class="mt-7"
-              fab
-              text
-              small
-              color="grey darken-2"
-              @click="next"
-            >
-              <v-icon color="#9966ff" x-large> mdi-chevron-right </v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-menu bottom left>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  width="150px"
-                  class="list white--text mr-5 ml-n5 mt-7"
-                  outlined
-                  v-on="on"
-                >
-                  <span background="#5a09ff">{{ typeToLabel[type] }}</span>
-                  <v-icon right>mdi-menu-down</v-icon>
-                </v-btn>
+              <template v-slot:day-body="{ date, week }">
+                <div
+                  class="v-current-time"
+                  :class="{ first: date === week[0].date }"
+                  :style="{ top: nowY }"
+                ></div>
               </template>
-              <v-list style="font-family: Montserrat">
-                <v-list-item @click="type = 'day'" to="/calendario/dayView">
-                  <v-list-item-title>Día</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="type = 'week'" to="/calendario/week">
-                  <v-list-item-title>Semana</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="type = 'month'" to="/calendario/month">
-                  <v-list-item-title>Mes</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </v-toolbar>
-        </v-sheet>
-        <v-sheet height="700">
-          <v-calendar
-
-            class="calend"
-            locale="mx-es"
-            ref="calendar"
-            type="day"
-            v-model="focus"
-            color="#7900ff"
-            interval-height="80px"
-            :short-intervals="false"
-            interval-width="80px"
-            @click="addEvent"
-            :events="events"
-            :event-color="getEventColor"
-            @click:event="showEvent"
-            @click:more="viewDay"
-            @click:date="viewDay"
-            @click:time="addEvent"
-          >
-            <template v-slot:day-body="{ date, week }">
-              <div
-                class="v-current-time"
-                :class="{ first: date === week[0].date }"
-                :style="{ top: nowY }"
-              ></div>
-            </template>
-          </v-calendar>
-          <v-dialog
-          width="1040px"
-            v-model="newDate"
-            offset-x
-            :close-on-content-click="false"
-         >
-            <new-appointment/>
-          </v-dialog
-          >
-          <v-dialog
-            width="640px"
-            v-model="selectedOpen"
-            offset-x
-            :close-on-content-click="false"
-            :activator="selectedElement"
-          >
-            <v-card color="white" min-width="350px" flat>
-              <v-card-text>
+            </v-calendar>
+            <v-dialog
+              width="1040px"
+              v-model="newDate"
+              offset-x
+              :close-on-content-click="false"
+            >
+              <new-appointment />
+            </v-dialog>
+            <v-dialog
+              width="640px"
+              v-model="selectedOpen"
+              offset-x
+              :close-on-content-click="false"
+              :activator="selectedElement"
+            >
+              <v-card color="white" min-width="350px" flat>
+                <v-card-text>
+                  <br />
+                  <v-row>
+                    <v-col>
+                      <h1 class="eventName" v-html="selectedEvent.name"></h1>
+                      <p class="eventPhone mt-5">No. 123</p>
+                      <p
+                        class="eventPhone mt-n3"
+                        v-html="selectedEvent.phone"
+                      ></p>
+                    </v-col>
+                    <v-col xl="4"
+                      ><v-btn large color="#999999" outlined>
+                        <l class="titleAction">Reagendar cita</l>
+                      </v-btn>
+                      <v-btn
+                        large
+                        width="192px"
+                        class="mt-2 mb-3"
+                        color="red"
+                        outlined
+                      >
+                        <l class="titleAction2" color="red">cancelar cita</l>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                  <v-divider></v-divider>
+                  <div class="mt-5">
+                    <p class="infor">
+                      <v-icon color="#9966ff">mdi-calendar</v-icon>sfsfs
+                    </p>
+                    <p class="infor">
+                      <v-icon color="#9966ff">mdi-account</v-icon>Paciente nuevo
+                    </p>
+                    <p class="infor">
+                      <v-icon color="#9966ff">mdi-map-marker-circle</v-icon
+                      >Consultorio Principal
+                    </p>
+                  </div>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn
+                    class="eventAction"
+                    outlined
+                    color="green"
+                    @click="selectedOpen = false"
+                    ><v-icon>mdi-eye</v-icon>
+                    <l class="eventAction ml-3">ASISTIÓ</l>
+                  </v-btn>
+                  <v-btn
+                    class="eventAction"
+                    outlined
+                    color="red"
+                    @click="selectedOpen = false"
+                  >
+                    <v-icon>mdi-eye-off</v-icon>
+                    <l class="eventAction ml-3">NO ASISTIÓ</l>
+                  </v-btn>
+                </v-card-actions>
                 <br />
-                <v-row>
-                  <v-col>
-                    <h1 class="eventName" v-html="selectedEvent.name"></h1>
-                    <p class="eventPhone mt-5">No. 123</p>
-                    <p
-                      class="eventPhone mt-n3"
-                      v-html="selectedEvent.phone"
-                    ></p>
-                  </v-col>
-                  <v-col xl="4"
-                    ><v-btn large color="#999999" outlined>
-                      <l class="titleAction">Reagendar cita</l>
-                    </v-btn>
-                    <v-btn
-                      large
-                      width="192px"
-                      class="mt-2 mb-3"
-                      color="red"
-                      outlined
-                    >
-                      <l class="titleAction2" color="red">cancelar cita</l>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-                <v-divider></v-divider>
-                <div class="mt-5">
-                  <p class="infor">
-                    <v-icon color="#9966ff">mdi-calendar</v-icon>sfsfs
-                  </p>
-                  <p class="infor">
-                    <v-icon color="#9966ff">mdi-account</v-icon>Paciente nuevo
-                  </p>
-                  <p class="infor">
-                    <v-icon color="#9966ff">mdi-map-marker-circle</v-icon
-                    >Consultorio Principal
-                  </p>
-                </div>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn
-                  class="eventAction"
-                  outlined
-                  color="green"
-                  @click="selectedOpen = false"
-                  ><v-icon>mdi-eye</v-icon>
-                  <l class="eventAction ml-3">ASISTIÓ</l>
-                </v-btn>
-                <v-btn
-                  class="eventAction"
-                  outlined
-                  color="red"
-                  @click="selectedOpen = false"
-                >
-                  <v-icon>mdi-eye-off</v-icon>
-                  <l class="eventAction ml-3">NO ASISTIÓ</l>
-                </v-btn>
-              </v-card-actions>
-              <br />
-            </v-card>
-          </v-dialog>
-        </v-sheet>
-      </v-card>
-    </v-col>
-  </v-row>
+              </v-card>
+            </v-dialog>
+          </v-sheet>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 <script>
 export default {
@@ -234,6 +241,23 @@ export default {
         color: '#1abc9c',
       },
     ],
+    items: [
+      {
+        icon: 'mdi-home-outline',
+        disabled: false,
+        href: '/',
+      },
+      {
+        text: 'Calendario',
+        disabled: false,
+        href: '/calendario/month',
+      },
+      {
+        text: 'Dia',
+        disabled: true,
+        href: '/calendario/dayView',
+      },
+    ],
     colors: ['#1abc9c', '#3498db'],
     names: ['Meeting', 'Holiday', 'Travel'],
   }),
@@ -252,7 +276,7 @@ export default {
     this.updateTime()
   },
   methods: {
-    addEvent(){
+    addEvent() {
       this.newDate = true
     },
     getCurrentTime() {
@@ -452,5 +476,9 @@ p.infor {
   font-size: 16px;
   text-align: center;
   text-transform: uppercase;
+}
+span.breadcrumbs {
+  font-family: Montserrat;
+  color: #7900ff;
 }
 </style>

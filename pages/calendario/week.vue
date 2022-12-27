@@ -2,6 +2,18 @@
   <v-row class="mt-n3">
     <!-- Calendario vista dia |Genesis -->
     <v-col>
+      <v-breadcrumbs class="breadcrumbs" :items="items">
+      <template v-slot:item="{ item }">
+        
+        <v-breadcrumbs-item
+          :href="item.href"
+          :disabled="item.disabled"
+        >
+        <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>   
+       <span class="breadcrumbs">{{ item.text }}</span> 
+        </v-breadcrumbs-item>
+      </template>
+    </v-breadcrumbs>
       <v-card>
         <v-sheet height="84">
           <v-toolbar flat>
@@ -219,6 +231,23 @@ export default {
         color: '#1abc9c',
       },
     ],
+    items: [
+      {
+        icon: 'mdi-home-outline',
+        disabled: false,
+        href: '/',
+      },
+      {
+        text: 'Calendario',
+        disabled: false,
+        href: '/calendario/month',
+      },
+      {
+        text: 'Semana',
+        disabled: true,
+        href: '/calendario/week',
+      },
+    ],
     colors: ['#1abc9c', '#3498db'],
     names: ['Meeting', 'Holiday', 'Travel'],
   }),
@@ -423,5 +452,9 @@ p.infor {
   text-transform: uppercase;
   font-size: 90%;
   color: red;
+}
+span.breadcrumbs{
+  font-family: Montserrat;
+  color: #7900ff;
 }
 </style>

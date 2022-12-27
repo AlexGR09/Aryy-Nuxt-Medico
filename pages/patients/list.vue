@@ -1,7 +1,17 @@
 <template>
   <div class="container">
-    <!-- componentes para el app bar | Genesis -->
-
+    <v-breadcrumbs class="breadcrumbs" :items="items">
+      <template v-slot:item="{ item }">
+        
+        <v-breadcrumbs-item
+          :href="item.href"
+          :disabled="item.disabled"
+        >
+        <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>   
+       <span class="breadcrumbs">{{ item.text }}</span> 
+        </v-breadcrumbs-item>
+      </template>
+    </v-breadcrumbs>
     <!-- tabla de pacientes | Genesis -->
     <div class="row justify-content-md-center">
       <div class="col">
@@ -158,6 +168,18 @@ export default {
         'Última visita',
         'Siguiente visita',
       ],
+       items: [
+      {
+        icon: 'mdi-home-outline',
+        disabled: false,
+        href: '/',
+      },
+      {
+        text: 'Lista de pacientes',
+        disabled: false,
+        href: '/patients/list',
+      },
+    ],
     }
   },
   computed: {
@@ -295,6 +317,10 @@ span::first-letter {
 .v-input__icon--append .v-icon {
   color: #7900ff;
   font-size: 52px;
+}
+span.breadcrumbs{
+  font-family: Montserrat;
+  color: #7900ff;
 }
 </style>
   
