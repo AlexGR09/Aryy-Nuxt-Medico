@@ -1,8 +1,11 @@
 <template>
+  <div>
+    <p class="mb-5">{{name}}</p>
   <v-row>
+   
     <v-card color="#f2f2f2" class="mx-auto"> <date-picker /></v-card>
-
-    <v-spacer />
+   
+    <v-spacer /> 
     <v-col>
       <v-sheet
         margin-top="1em"
@@ -72,13 +75,14 @@
             interval-width="80px"
             :events="events"
             :event-color="getEventColor"
-            @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
         >
-          <template :events="events">
-            <h3>hola</h3>
-          </template>
+        
+         <template  v-slot:event="{event}">
+          <div v-for="evento in eventos " :key="evento" :style="{'background-color':event.color,color:'white',height:'15px'}" class=" pl-3">{{ name }}</div>
+<!--           <div :style="{'background-color':event.color,color:'white',height:'15px'}" class=" pl-3">{{ event.name }}</div> -->
+        </template> 
         </v-calendar>
         <v-menu
           v-model="selectedOpen"
@@ -113,6 +117,7 @@
     </v-col>
     <v-spacer />
   </v-row>
+</div>
 </template>
   
 <script>
@@ -139,11 +144,10 @@ export default {
     selectedElement: null,
     selectedOpen: false,
     events: [
-      {
+     {
         name: 'Fulanito Detal',
         phone: '9615897456',
-        start: '2022-12-26T10:00:00',
-        intervalo: '10:00 - 10:30',
+        start: '2022-12-27T10:00:00',
         end: '2022-12-26T10:30:00',
         timed: true,
         color: '#1abc9c',
@@ -151,7 +155,6 @@ export default {
       {
         name: 'Zutanito Filipondio',
         phone: '9611115823',
-        intervalo: '10:30 - 11:00',
         start: '2022-12-26T10:30:00',
         end: '2022-12-26T11:00:00',
         timed: true,
@@ -162,7 +165,6 @@ export default {
         phone: '9610218998',
         start: '2022-12-26T11:00:00',
         end: '2022-12-26T11:30:00',
-        intervalo: '11:00 - 11:30',
         timed: true,
         color: '#3498db',
       },
@@ -171,10 +173,9 @@ export default {
         phone: '9610277896',
         start: '2022-12-26T11:30:00',
         end: '2022-12-26T12:00:00',
-        intervalo: '11:30 - 12:00',
         timed: true,
         color: '#1abc9c',
-      },
+      }, 
     ],
     colors: [
       'blue',
@@ -197,29 +198,34 @@ export default {
     ],
   }),
 
-  mounted() {
+ mounted() {
     this.$refs.calendar.checkChange()
+    this.citas()
   },
   methods: {
     citas() {
       console.log('creando petición GET')
       this.$axios
         .get('api/v1/calendar/appointments', {
+          params: {
+    type: 'month',
+    "month":"12"
+  },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
           console.log('exito en GET')
-          this.type = res.data.data.type
-          this.month = res.data.data.month
-          
+       /*    this.events=res.data.data */
+       this.eventos=res.data.data[0]
+          this.events.name = res.data.data[0].facility_name
+          this.name = res.data.data[0].facility_name
         })
         .catch(
           /* console.log(e); */
           console.log('error en GET')
         )
     },
-
 
     viewDay({ date }) {
       this.focus = date

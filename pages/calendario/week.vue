@@ -264,8 +264,32 @@ export default {
     this.ready = true
     this.scrollToTime()
     this.updateTime()
+    this.citas()
   },
   methods: {
+    citas() {
+      console.log('creando petición GET')
+      this.$axios
+        .get('api/v1/calendar/appointments', {
+          params: {
+    type: 'week',
+    "month":"12"
+  },
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log(res)
+          console.log('exito en GET')
+       /*    this.events=res.data.data */
+       this.eventos=res.data.data[0]
+          this.events.name = res.data.data[0].facility_name
+          this.name = res.data.data[0].facility_name
+        })
+        .catch(
+          /* console.log(e); */
+          console.log('error en GET')
+        )
+    },
     getCurrentTime() {
       return this.cal
         ? this.cal.times.now.hour * 60 + this.cal.times.now.minute

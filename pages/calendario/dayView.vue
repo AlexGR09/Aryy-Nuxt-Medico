@@ -100,6 +100,11 @@
                   :style="{ top: nowY }"
                 ></div>
               </template>
+
+              <template  v-slot:event="{event}">
+            <div :style="{'background-color':event.color,color:'white',height:'15px'}" class=" pl-3">{{ event.intervalo }}</div>
+            <div :style="{'background-color':event.color,color:'white',height:'15px'}" class=" pl-3">{{ event.name }}</div>
+        </template>
             </v-calendar>
             <v-dialog
               width="1040px"
@@ -204,7 +209,7 @@ export default {
     selectedElement: null,
     selectedOpen: false,
     events: [
-      {
+    /*   {
         name: 'Fulanito Detal',
         phone: '9615897456',
         start: '2022-12-26T10:00:00',
@@ -239,7 +244,7 @@ export default {
         intervalo: '11:30 - 12:00',
         timed: true,
         color: '#1abc9c',
-      },
+      }, */
     ],
     items: [
       {
@@ -259,7 +264,6 @@ export default {
       },
     ],
     colors: ['#1abc9c', '#3498db'],
-    names: ['Meeting', 'Holiday', 'Travel'],
   }),
   computed: {
     cal() {
@@ -276,6 +280,28 @@ export default {
     this.updateTime()
   },
   methods: {
+    citas() {
+      console.log('creando petición GET')
+      this.$axios
+        .get('api/v1/calendar/appointments', {
+          params: {
+    type: 'today',
+  },
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log(res)
+          console.log('exito en GET')
+       /*    this.events=res.data.data */
+       this.eventos=res.data.data[0]
+          this.events.name = res.data.data[0].facility_name
+          this.name = res.data.data[0].facility_name
+        })
+        .catch(
+          /* console.log(e); */
+          console.log('error en GET')
+        )
+    },
     addEvent() {
       this.newDate = true
     },
@@ -337,7 +363,7 @@ export default {
         const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
         const second = new Date(first.getTime() + secondTimestamp)
         events.push({
-          name: this.names[this.rnd(0, this.names.length - 1)],
+        /*   name: this.names[this.rnd(0, this.names.length - 1)], */
           start: first,
           end: second,
           color: this.colors[this.rnd(0, this.colors.length - 1)],
