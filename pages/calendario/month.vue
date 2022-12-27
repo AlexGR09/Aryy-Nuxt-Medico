@@ -1,9 +1,19 @@
 <template>
   <div>
-    <p class="mb-5">{{name}}</p>
+ <!--    <p class="black--text">{{events.name}}</p> -->
+ <v-card class="mb-16" >
+  <v-card-text>
+   <!--  <p class="black--text">{{events.phone}}</p>
+      <p class="black--text">{{events.name}}</p>
+      <p class="black--text">{{events.start}}</p>
+      <p class="black--text">{{events.end}}</p> -->
+      <p>{{evento}}</p>
+  </v-card-text>
+ </v-card>   
+   
   <v-row>
    
-    <v-card color="#f2f2f2" class="mx-auto"> <date-picker /></v-card>
+<!--     <v-card color="#f2f2f2" class="mx-auto"> <date-picker /></v-card> -->
    
     <v-spacer /> 
     <v-col>
@@ -79,10 +89,9 @@
             @click:date="viewDay"
         >
         
-         <template  v-slot:event="{event}">
-          <div v-for="evento in eventos " :key="evento" :style="{'background-color':event.color,color:'white',height:'15px'}" class=" pl-3">{{ name }}</div>
-<!--           <div :style="{'background-color':event.color,color:'white',height:'15px'}" class=" pl-3">{{ event.name }}</div> -->
-        </template> 
+         <template  v-slot:event="{events}">
+          <p class="black--text">{{events}}</p>
+        </template>  
         </v-calendar>
         <v-menu
           v-model="selectedOpen"
@@ -132,8 +141,11 @@ export default {
       },
     ],
   },
-  data: () => ({
+  data() {
+    return {
+      evento: [],
     focus: '',
+    appointment_start: '',
     type: 'month',
     typeToLabel: {
       month: 'Mes',
@@ -143,40 +155,17 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events: [
+     events: [
      {
-        name: 'Fulanito Detal',
-        phone: '9615897456',
-        start: '2022-12-27T10:00:00',
-        end: '2022-12-26T10:30:00',
+        name: '',
+        phone: '',
+        start: '2022-12-27T12:00:00',
+        end: '2022-12-27T12:30:00',
         timed: true,
         color: '#1abc9c',
       },
-      {
-        name: 'Zutanito Filipondio',
-        phone: '9611115823',
-        start: '2022-12-26T10:30:00',
-        end: '2022-12-26T11:00:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-      {
-        name: 'Merengano Taltipo',
-        phone: '9610218998',
-        start: '2022-12-26T11:00:00',
-        end: '2022-12-26T11:30:00',
-        timed: true,
-        color: '#3498db',
-      },
-      {
-        name: 'Perengago Gilberto',
-        phone: '9610277896',
-        start: '2022-12-26T11:30:00',
-        end: '2022-12-26T12:00:00',
-        timed: true,
-        color: '#1abc9c',
-      }, 
-    ],
+      
+    ], 
     colors: [
       'blue',
       'indigo',
@@ -196,7 +185,8 @@ export default {
       'Conference',
       'Party',
     ],
-  }),
+  }
+},
 
  mounted() {
     this.$refs.calendar.checkChange()
@@ -208,18 +198,21 @@ export default {
       this.$axios
         .get('api/v1/calendar/appointments', {
           params: {
-    type: 'month',
-    "month":"12"
-  },
+            type: 'month',
+            "month":"12"
+          },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
           console.log('exito en GET')
-       /*    this.events=res.data.data */
-       this.eventos=res.data.data[0]
-          this.events.name = res.data.data[0].facility_name
-          this.name = res.data.data[0].facility_name
+           this.evento=res.data.data[0]
+           this.events.start=res.data.data[0].appointment_start
+           this.events.name=res.data.data[0].appointment_type
+     /*   this.events.name=res.data.data[0].appointment_type
+       this.events.phone=res.data.data[0].appointment_date
+       this.events.start=res.data.data[0].appointment_start
+       this.events.end=res.data.data[0].appointment_start_end */
         })
         .catch(
           /* console.log(e); */
@@ -244,7 +237,7 @@ export default {
       this.$refs.calendar.next()
     },
 
-    updateRange({ start, end }) {
+    /* updateRange({ start, end }) {
       const events = []
       const min = new Date(`${start.date}T00:00:00`)
       const max = new Date(`${end.date}T23:59:59`)
@@ -265,7 +258,7 @@ export default {
         })
       }
       this.events = events
-    },
+    }, */
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
     },

@@ -3,17 +3,13 @@
     <!-- Calendario vista dia |Genesis -->
     <v-col>
       <v-breadcrumbs class="breadcrumbs" :items="items">
-      <template v-slot:item="{ item }">
-        
-        <v-breadcrumbs-item
-          :href="item.href"
-          :disabled="item.disabled"
-        >
-        <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>   
-       <span class="breadcrumbs">{{ item.text }}</span> 
-        </v-breadcrumbs-item>
-      </template>
-    </v-breadcrumbs>
+        <template v-slot:item="{ item }">
+          <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+            <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+            <span class="breadcrumbs">{{ item.text }}</span>
+          </v-breadcrumbs-item>
+        </template>
+      </v-breadcrumbs>
       <v-card>
         <v-sheet height="84">
           <v-toolbar flat>
@@ -21,7 +17,7 @@
               width="150px"
               outlined
               color="white"
-              class="mr-4 today mt-7"
+              class="mr-4 today mt-7 rounded-lg"
               @click="setToday"
             >
               <l class="today">Esta semana</l>
@@ -55,7 +51,7 @@
               <template v-slot:activator="{ on }">
                 <v-btn
                   width="150px"
-                  class="list white--text mr-5 ml-n5 mt-7"
+                  class="list white--text mr-5 ml-n5 mt-7 rounded-lg"
                   outlined
                   v-on="on"
                 >
@@ -272,16 +268,16 @@ export default {
       this.$axios
         .get('api/v1/calendar/appointments', {
           params: {
-    type: 'week',
-    "month":"12"
-  },
+            type: 'week',
+            month: '12',
+          },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
           console.log('exito en GET')
-       /*    this.events=res.data.data */
-       this.eventos=res.data.data[0]
+          /*    this.events=res.data.data */
+          this.eventos = res.data.data[0]
           this.events.name = res.data.data[0].facility_name
           this.name = res.data.data[0].facility_name
         })
@@ -416,14 +412,14 @@ span::first-letter {
   box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
-   color: white;
+  color: white;
 }
 .text-white {
   color: #fff;
 }
 .v-calendar {
   font-family: Montserrat;
-   color: white;
+  color: white;
 }
 .v-calendar-title {
   font-family: MontserratBold;
@@ -477,7 +473,7 @@ p.infor {
   font-size: 90%;
   color: red;
 }
-span.breadcrumbs{
+span.breadcrumbs {
   font-family: Montserrat;
   color: #7900ff;
 }

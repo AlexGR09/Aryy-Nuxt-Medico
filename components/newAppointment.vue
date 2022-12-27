@@ -2,11 +2,30 @@
 <template>
   <v-card>
     <v-card-title>CITA NUEVA</v-card-title>
+    <v-alert
+      v-if="error"
+      style="font-family: Montserrat"
+      dense
+      outlined
+      type="error"
+    >
+      Campos vacíos, <strong>vuelva a intentarlo.</strong>
+    </v-alert>
+    <v-alert
+      v-if="bad"
+      style="font-family: Montserrat"
+      dense
+      outlined
+      type="error"
+    >
+      Datos incorrectos, <strong>verifique.</strong>
+    </v-alert>
     <v-card-text>
       <v-row class="montserrat">
         <v-col xl="4">
           <p>Paciente*</p>
           <v-text-field
+            v-model="patient"
             color="#7900ff"
             hide-details
             outlined
@@ -15,7 +34,13 @@
         </v-col>
         <v-col xl="4">
           <p>Teléfono*</p>
-          <v-text-field color="#7900ff" hide-details outlined placeholder="+52">
+          <v-text-field
+            v-model="phone"
+            color="#7900ff"
+            hide-details
+            outlined
+            placeholder="+52"
+          >
             <template #prepend-inner>
               <div style="width: 30px">
                 <v-img
@@ -30,7 +55,13 @@
         </v-col>
         <v-col xl="4">
           <p>Teléfono de emergencia*</p>
-          <v-text-field color="#7900ff" hide-details outlined placeholder="+52">
+          <v-text-field
+            v-model="emergency_phone"
+            color="#7900ff"
+            hide-details
+            outlined
+            placeholder="+52"
+          >
             <template #prepend-inner>
               <div style="width: 30px">
                 <v-img
@@ -47,10 +78,11 @@
         <v-col xl="4">
           <p>Consultorio*</p>
           <v-autocomplete
+            v-model="facilitie"
             color="#7900ff"
             hide-details
             outlined
-            placeholder="Escribe el nombre del paciente"
+            placeholder="Nombre del consultorio"
           >
             <template #append>
               <div style="width: 30px">
@@ -86,8 +118,8 @@
                   <div style="width: 30px">
                     <v-img
                       style="margin: auto 0"
-                      max-height="20"
-                      max-width="20"
+                      max-height="25"
+                      max-width="22"
                       :src="require('@/assets/icons/iconos_citas.svg')"
                     />
                   </div>
@@ -118,7 +150,6 @@
         <v-col xl="4">
           <p>Horario*</p>
           <v-dialog
-        
             ref="dialog"
             v-model="modal2"
             :return-value.sync="time"
@@ -170,10 +201,11 @@
         <v-col xl="4">
           <p>Servicio*</p>
           <v-autocomplete
+            v-model="service"
             hide-details
             color="#7900ff"
             outlined
-            placeholder="Escribe el nombre del paciente"
+            placeholder="Escribe el tipo de servicio"
           >
             <template #append>
               <div style="width: 30px">
@@ -209,13 +241,74 @@
 export default {
   data() {
     return {
+      patient: '',
+      phone: '+52',
+      emergency_phone: '+52',
+      facilitie: '',
+      time: '',
+      service: '',
+      error: '',
+      bad: '',
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
       modal: false,
-      time: null,
       modal2: false,
     }
+  },
+  watch: {
+    empty() {
+      if (this.patient === null) {
+        this.error = 'error'
+      } else {
+        this.error = ''
+      }
+
+      if (this.phone === null) {
+        this.error = 'error'
+      } else {
+        this.error = ''
+      }
+
+      if (this.emergency_phone === null) {
+        this.error = 'error'
+      } else {
+        this.error = ''
+      }
+
+      if (this.facilitie === null) {
+        this.error = 'error'
+      } else {
+        this.error = ''
+      }
+      if (this.date === null) {
+        this.error = 'error'
+      } else {
+        this.error = ''
+      }
+      if (this.time === null) {
+        this.error = 'error'
+      } else {
+        this.error = ''
+      }
+      if (this.service === null) {
+        this.error = 'error'
+      } else {
+        this.error = ''
+      }
+    },
+    error() {
+      if (this.phone.length < 13) {
+        this.bad = 'bad'
+      } else {
+        this.bad = ''
+      }
+      if (this.emergency_phone.length < 13) {
+        this.bad = 'bad'
+      } else {
+        this.bad = ''
+      }
+    },
   },
 }
 </script>

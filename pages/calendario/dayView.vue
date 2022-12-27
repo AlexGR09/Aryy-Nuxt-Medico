@@ -18,7 +18,7 @@
                 width="150px"
                 outlined
                 color="white"
-                class="mr-4 today mt-7"
+                class="mr-4 today mt-7 rounded-lg "
                 @click="setToday"
               >
                 <l class="today">hoy</l>
@@ -52,7 +52,7 @@
                 <template v-slot:activator="{ on }">
                   <v-btn
                     width="150px"
-                    class="list white--text mr-5 ml-n5 mt-7"
+                    class="list white--text mr-5 ml-n5 mt-7 rounded-lg "
                     outlined
                     v-on="on"
                   >
@@ -101,10 +101,28 @@
                 ></div>
               </template>
 
-              <template  v-slot:event="{event}">
-            <div :style="{'background-color':event.color,color:'white',height:'15px'}" class=" pl-3">{{ event.intervalo }}</div>
-            <div :style="{'background-color':event.color,color:'white',height:'15px'}" class=" pl-3">{{ event.name }}</div>
-        </template>
+              <template v-slot:event="{ event }">
+                <div
+                  :style="{
+                    'background-color': event.color,
+                    color: 'white',
+                    height: '15px',
+                  }"
+                  class="pl-3"
+                >
+                  {{ event.intervalo }}
+                </div>
+                <div
+                  :style="{
+                    'background-color': event.color,
+                    color: 'white',
+                    height: '15px',
+                  }"
+                  class="pl-3"
+                >
+                  {{ event.name }}
+                </div>
+              </template>
             </v-calendar>
             <v-dialog
               width="1040px"
@@ -209,12 +227,12 @@ export default {
     selectedElement: null,
     selectedOpen: false,
     events: [
-    /*   {
+      {
         name: 'Fulanito Detal',
         phone: '9615897456',
-        start: '2022-12-26T10:00:00',
+        start: '2022-12-27T10:00:00',
         intervalo: '10:00 - 10:30',
-        end: '2022-12-26T10:30:00',
+        end: '2022-12-27T10:30:00',
         timed: true,
         color: '#1abc9c',
       },
@@ -222,16 +240,16 @@ export default {
         name: 'Zutanito Filipondio',
         phone: '9611115823',
         intervalo: '10:30 - 11:00',
-        start: '2022-12-26T10:30:00',
-        end: '2022-12-26T11:00:00',
+        start: '2022-12-27T10:30:00',
+        end: '2022-12-27T11:00:00',
         timed: true,
         color: '#1abc9c',
       },
       {
         name: 'Merengano Taltipo',
         phone: '9610218998',
-        start: '2022-12-26T11:00:00',
-        end: '2022-12-26T11:30:00',
+        start: '2022-12-27T11:00:00',
+        end: '2022-12-27T11:30:00',
         intervalo: '11:00 - 11:30',
         timed: true,
         color: '#3498db',
@@ -239,12 +257,12 @@ export default {
       {
         name: 'Perengago Gilberto',
         phone: '9610277896',
-        start: '2022-12-26T11:30:00',
-        end: '2022-12-26T12:00:00',
+        start: '2022-12-27T11:30:00',
+        end: '2022-12-27T12:00:00',
         intervalo: '11:30 - 12:00',
         timed: true,
         color: '#1abc9c',
-      }, */
+      },
     ],
     items: [
       {
@@ -278,6 +296,7 @@ export default {
     this.ready = true
     this.scrollToTime()
     this.updateTime()
+    this.citas()
   },
   methods: {
     citas() {
@@ -285,15 +304,15 @@ export default {
       this.$axios
         .get('api/v1/calendar/appointments', {
           params: {
-    type: 'today',
-  },
+            type: 'today',
+          },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
           console.log('exito en GET')
-       /*    this.events=res.data.data */
-       this.eventos=res.data.data[0]
+          /*    this.events=res.data.data */
+          this.eventos = res.data.data[0]
           this.events.name = res.data.data[0].facility_name
           this.name = res.data.data[0].facility_name
         })
@@ -363,7 +382,7 @@ export default {
         const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
         const second = new Date(first.getTime() + secondTimestamp)
         events.push({
-        /*   name: this.names[this.rnd(0, this.names.length - 1)], */
+          /*   name: this.names[this.rnd(0, this.names.length - 1)], */
           start: first,
           end: second,
           color: this.colors[this.rnd(0, this.colors.length - 1)],
@@ -403,6 +422,9 @@ export default {
     margin-top: -7px;
     margin-left: -6.5px;
   }
+}
+.theme--light.v-btn {
+  color: white;
 }
 h1.eventName {
   font-size: 230%;
@@ -451,6 +473,8 @@ span::first-letter {
 }
 .calendar {
   text-transform: capitalize;
+  font-family: MontserratBold;
+  font-size: 120%;
 }
 .eventAction {
   color: black;
