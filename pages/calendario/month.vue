@@ -1,20 +1,6 @@
 <template>
   <div>
- <!--    <p class="black--text">{{events.name}}</p> -->
- <v-card class="mb-16" >
-  <v-card-text>
-   <!--  <p class="black--text">{{events.phone}}</p>
-      <p class="black--text">{{events.name}}</p>
-      <p class="black--text">{{events.start}}</p>
-      <p class="black--text">{{events.end}}</p> -->
-      <p>{{evento}}</p>
-  </v-card-text>
- </v-card>   
-   
   <v-row>
-   
-<!--     <v-card color="#f2f2f2" class="mx-auto"> <date-picker /></v-card> -->
-   
     <v-spacer /> 
     <v-col>
       <v-sheet
@@ -79,19 +65,18 @@
             type="month"
             v-model="type"
             color="#7900ff"
+            event-start="appointment_start"
+            event-end="appointment_start_end"
+            event-name="appointment_type"
+            event-color="blue"
+            :events="evento"
             style="font-family: Montserrat;"
             interval-height="80px"
             :short-intervals="false"
             interval-width="80px"
-            :events="events"
-            :event-color="getEventColor"
             @click:more="viewDay"
             @click:date="viewDay"
         >
-        
-         <template  v-slot:event="{events}">
-          <p class="black--text">{{events}}</p>
-        </template>  
         </v-calendar>
         <v-menu
           v-model="selectedOpen"
@@ -155,36 +140,7 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-     events: [
-     {
-        name: '',
-        phone: '',
-        start: '2022-12-27T12:00:00',
-        end: '2022-12-27T12:30:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-      
-    ], 
-    colors: [
-      'blue',
-      'indigo',
-      'deep-purple',
-      'cyan',
-      'green',
-      'orange',
-      'grey darken-1',
-    ],
-    names: [
-      'Meeting',
-      'Holiday',
-      'PTO',
-      'Travel',
-      'Event',
-      'Birthday',
-      'Conference',
-      'Party',
-    ],
+    
   }
 },
 
@@ -194,32 +150,21 @@ export default {
   },
   methods: {
     citas() {
-      console.log('creando petición GET')
       this.$axios
         .get('api/v1/calendar/appointments', {
-          params: {
-            type: 'month',
-            "month":"12"
+          params:
+            {
+            type: "month",
+            month: 10,
+            year:"2022"
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
-          console.log('exito en GET')
-           this.evento=res.data.data[0]
-           this.events.start=res.data.data[0].appointment_start
-           this.events.name=res.data.data[0].appointment_type
-     /*   this.events.name=res.data.data[0].appointment_type
-       this.events.phone=res.data.data[0].appointment_date
-       this.events.start=res.data.data[0].appointment_start
-       this.events.end=res.data.data[0].appointment_start_end */
+           this.evento=res.data.data
         })
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
-
     viewDay({ date }) {
       this.focus = date
       this.type = 'day'
@@ -237,28 +182,6 @@ export default {
       this.$refs.calendar.next()
     },
 
-    /* updateRange({ start, end }) {
-      const events = []
-      const min = new Date(`${start.date}T00:00:00`)
-      const max = new Date(`${end.date}T23:59:59`)
-      const days = (max.getTime() - min.getTime()) / 86400000
-      const eventCount = this.rnd(days, days + 20)
-      for (let i = 0; i < eventCount; i++) {
-        const allDay = this.rnd(0, 3) === 0
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime())
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000))
-        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
-        const second = new Date(first.getTime() + secondTimestamp)
-        events.push({
-          name: this.names[this.rnd(0, this.names.length - 1)],
-          start: first,
-          end: second,
-          color: this.colors[this.rnd(0, this.colors.length - 1)],
-          timed: !allDay,
-        })
-      }
-      this.events = events
-    }, */
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
     },

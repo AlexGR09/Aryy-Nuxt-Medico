@@ -84,8 +84,11 @@
             interval-height="80px"
             :short-intervals="false"
             interval-width="80px"
-            :events="events"
-            :event-color="getEventColor"
+            :events="evento"
+            event-start="appointment_start"
+            event-end="appointment_start_end"
+            event-name="appointment_type"
+            event-color="blue"
             @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
@@ -177,6 +180,7 @@
 export default {
   data: () => ({
     value: '',
+    evento: [],
     ready: false,
     focus: '',
     type: 'month',
@@ -189,44 +193,7 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events: [
-      {
-        name: 'Fulanito Detal',
-        phone: '9615897456',
-        start: '2022-12-26T10:00:00',
-        intervalo: '10:00 - 10:30',
-        end: '2022-12-26T10:30:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-      {
-        name: 'Zutanito Filipondio',
-        phone: '9611115823',
-        intervalo: '10:30 - 11:00',
-        start: '2022-12-26T10:30:00',
-        end: '2022-12-26T11:00:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-      {
-        name: 'Merengano Taltipo',
-        phone: '9610218998',
-        start: '2022-12-26T11:00:00',
-        end: '2022-12-26T11:30:00',
-        intervalo: '11:00 - 11:30',
-        timed: true,
-        color: '#3498db',
-      },
-      {
-        name: 'Perengago Gilberto',
-        phone: '9610277896',
-        start: '2022-12-26T11:30:00',
-        end: '2022-12-26T12:00:00',
-        intervalo: '11:30 - 12:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-    ],
+    
     items: [
       {
         icon: 'mdi-home-outline',
@@ -264,27 +231,20 @@ export default {
   },
   methods: {
     citas() {
-      console.log('creando petición GET')
       this.$axios
         .get('api/v1/calendar/appointments', {
-          params: {
-            type: 'week',
-            month: '12',
+          params:
+            {
+            type: "month",
+            month: '10',
+            year:"2022"
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
-          console.log('exito en GET')
-          /*    this.events=res.data.data */
-          this.eventos = res.data.data[0]
-          this.events.name = res.data.data[0].facility_name
-          this.name = res.data.data[0].facility_name
+           this.evento=res.data.data
         })
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
     getCurrentTime() {
       return this.cal

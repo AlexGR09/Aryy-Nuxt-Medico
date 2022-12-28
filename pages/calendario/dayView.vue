@@ -86,8 +86,11 @@
               :short-intervals="false"
               interval-width="80px"
               @click="addEvent"
-              :events="events"
-              :event-color="getEventColor"
+              event-start="appointment_start"
+            event-end="appointment_start_end"
+            event-name="appointment_type"
+            event-color="blue"
+            :events="evento"
               @click:event="showEvent"
               @click:more="viewDay"
               @click:date="viewDay"
@@ -99,30 +102,8 @@
                   :class="{ first: date === week[0].date }"
                   :style="{ top: nowY }"
                 ></div>
-              </template>
+              </template> 
 
-              <template v-slot:event="{ event }">
-                <div
-                  :style="{
-                    'background-color': event.color,
-                    color: 'white',
-                    height: '15px',
-                  }"
-                  class="pl-3"
-                >
-                  {{ event.intervalo }}
-                </div>
-                <div
-                  :style="{
-                    'background-color': event.color,
-                    color: 'white',
-                    height: '15px',
-                  }"
-                  class="pl-3"
-                >
-                  {{ event.name }}
-                </div>
-              </template>
             </v-calendar>
             <v-dialog
               width="1040px"
@@ -226,44 +207,7 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events: [
-      {
-        name: 'Fulanito Detal',
-        phone: '9615897456',
-        start: '2022-12-27T10:00:00',
-        intervalo: '10:00 - 10:30',
-        end: '2022-12-27T10:30:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-      {
-        name: 'Zutanito Filipondio',
-        phone: '9611115823',
-        intervalo: '10:30 - 11:00',
-        start: '2022-12-27T10:30:00',
-        end: '2022-12-27T11:00:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-      {
-        name: 'Merengano Taltipo',
-        phone: '9610218998',
-        start: '2022-12-27T11:00:00',
-        end: '2022-12-27T11:30:00',
-        intervalo: '11:00 - 11:30',
-        timed: true,
-        color: '#3498db',
-      },
-      {
-        name: 'Perengago Gilberto',
-        phone: '9610277896',
-        start: '2022-12-27T11:30:00',
-        end: '2022-12-27T12:00:00',
-        intervalo: '11:30 - 12:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-    ],
+    evento: [],
     items: [
       {
         icon: 'mdi-home-outline',
@@ -300,26 +244,20 @@ export default {
   },
   methods: {
     citas() {
-      console.log('creando petición GET')
       this.$axios
         .get('api/v1/calendar/appointments', {
-          params: {
-            type: 'today',
+          params:
+            {
+            type: "month",
+            month: '12',
+            year:"2022"
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
-          console.log('exito en GET')
-          /*    this.events=res.data.data */
-          this.eventos = res.data.data[0]
-          this.events.name = res.data.data[0].facility_name
-          this.name = res.data.data[0].facility_name
+           this.evento=res.data.data
         })
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
     addEvent() {
       this.newDate = true
@@ -369,28 +307,6 @@ export default {
       }
       nativeEvent.stopPropagation()
     },
-    updateRange({ start, end }) {
-      const events = []
-      const min = new Date(`${start.date}T10:00:00`)
-      const max = new Date(`${end.date}T11:00:00`)
-      const days = (max.getTime() - min.getTime()) / 86400000
-      const eventCount = this.rnd(days, days + 5)
-      for (let i = 0; i < eventCount; i++) {
-        const allDay = this.rnd(0, 3) === 0
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime())
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000))
-        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
-        const second = new Date(first.getTime() + secondTimestamp)
-        events.push({
-          /*   name: this.names[this.rnd(0, this.names.length - 1)], */
-          start: first,
-          end: second,
-          color: this.colors[this.rnd(0, this.colors.length - 1)],
-          timed: !allDay,
-        })
-      }
-      this.events = events
-    },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
     },
@@ -424,7 +340,7 @@ export default {
   }
 }
 .theme--light.v-btn {
-  color: white;
+  color: #999999;
 }
 h1.eventName {
   font-size: 230%;
