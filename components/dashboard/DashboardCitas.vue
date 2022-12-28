@@ -7,6 +7,7 @@
         </v-col>
         <v-col md="6" cols="8">
           <img
+              
               class="greeting-card-trophy"
               src="@/assets/icons/icon_consulta.svg"
             />
