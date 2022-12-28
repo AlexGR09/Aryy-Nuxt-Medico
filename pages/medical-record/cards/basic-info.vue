@@ -3,7 +3,7 @@
   <v-card  background="grey-lighten-4">
     <v-card-text>
       <v-row>
-        <v-col md="4" lg="4" xl="4">
+        <v-col xs="12" sm="12" md="4" lg="4" xl="4">
           <v-text-field color="#7900ff" value="+52 961 123 4567" type="text">
             <template #prepend>
               <img

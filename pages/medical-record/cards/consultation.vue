@@ -23,11 +23,11 @@
       placeholder="Escribe aquí los datos de la exploración médica"
       outlined
     ></v-textarea>
-    <v-col md="12" lg="12" xl="12">
+    <v-col  xs="12" sm="12" md="12" lg="12" xl="12">
       <odontograma />
     </v-col>
     <v-row v-for="input in inputs" :key="input.id" class="ml-n2 mt-n5">
-      <v-col md="12" lg="12" xl="12">
+      <v-col xs="12" sm="12" md="12" lg="12" xl="12">
         <p>Diagnostico</p>
         <v-text-field
           outlined
@@ -35,7 +35,7 @@
           placeholder="Escribe aquí el diagnóstico"
         ></v-text-field>
       </v-col>
-      <v-col class="mt-n8" md="3" lg="3" xl="3">
+      <v-col class="mt-n8"  xs="12" sm="12" md="3" lg="3" xl="3">
         <p>Tratamiento</p>
         <v-text-field
           outlined
@@ -43,7 +43,7 @@
           placeholder="Medicamento"
         ></v-text-field>
       </v-col>
-      <v-col class="mt-n8" md="2" lg="2" xl="2">
+      <v-col class="mt-n8"  xs="12" sm="12" md="2" lg="2" xl="2">
         <p>Tomar</p>
         <v-text-field
           outlined
@@ -51,7 +51,7 @@
           placeholder="Medicamento"
         ></v-text-field>
       </v-col>
-      <v-col class="mt-n8" md="4" lg="4" xl="4">
+      <v-col class="mt-n8"  xs="12" sm="12" md="4" lg="4" xl="4">
         <p>Frecuencia</p>
         <v-text-field
           outlined
@@ -59,7 +59,7 @@
           placeholder="Cada 8 horas"
         ></v-text-field>
       </v-col>
-      <v-col class="mt-n8" md="2" lg="2" xl="2">
+      <v-col class="mt-n8"  xs="12" sm="12" md="2" lg="2" xl="2">
         <p>Duración</p>
         <v-text-field
           outlined
@@ -67,7 +67,7 @@
           placeholder="15 días"
         ></v-text-field>
       </v-col>
-      <v-col class="mt-n8" md="1" lg="1" xl="1">
+      <v-col class="mt-n8"  xs="1" sm="1" md="1" lg="1" xl="1">
         <v-btn @click="deleteInput" class="iconos mt-12" icon>
           <v-img
             :src="require('@/assets/icons/icon_borrarpaciente.svg')"

@@ -7,18 +7,23 @@
         <H1 class="title mb-3">INFORMACIÓN BÁSICA</H1>
         <basic-info />
       </v-col>
-      <v-col xs="12" sm="12" md="4" lg="4" xl="4">
+   </v-row>
+      <v-row>
+        <v-col xs="2" sm="2" md="2" lg="8" xl="2">
         <H1 class="title mt-3">NOTAS INTERNAS</H1>
+        <v-text-area></v-text-area>
         <v-textarea
           class="note"
           color="#E0E0E0"
           :style="image"
           outlined
-          height="355px"
+          width="10vh"
+          height="40vh"
           no-resize
-        ></v-textarea>
-      </v-col>
-
+        ></v-textarea> 
+      </v-col> 
+      </v-row>
+<v-row>
       <v-col xs="12" sm="12" md="8" lg="8" xl="8">
         <H1 class="title mb-3">EXPEDIENTE MÉDICO</H1>
         <medical-record />
