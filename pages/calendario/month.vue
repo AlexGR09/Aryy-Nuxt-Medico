@@ -125,6 +125,7 @@ export default {
       this.$refs.calendar.next()
     },
 
+    
     updateRange({ start, end }) {
       const events = []
       const min = new Date(`${start.date}T00:00:00`)
