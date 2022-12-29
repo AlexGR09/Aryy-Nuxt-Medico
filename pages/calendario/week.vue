@@ -2,9 +2,9 @@
   <v-row class="mt-n3">
     <!-- Calendario vista dia |Genesis -->
     <v-col>
-      <v-breadcrumbs class="breadcrumbs" :items="items">
+      <v-breadcrumbs :items="items">
         <template v-slot:item="{ item }">
-          <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+          <v-breadcrumbs-item :href="item.href">
             <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
             <span class="breadcrumbs">{{ item.text }}</span>
           </v-breadcrumbs-item>
@@ -87,7 +87,7 @@
             :events="evento"
             event-start="appointment_start"
             event-end="appointment_start_end"
-            event-name="appointment_type"
+            event-name="patient_full_name"
             event-color="#1abc9c"
             @click:event="showEvent"
             @click:more="viewDay"
@@ -357,8 +357,8 @@ h4 {
   font-family: Montserrat;
 }
 span {
-  font-size: 1rem;
-  font-family: MontserratMedium;
+  font-size: .85rem;
+  font-family: Montserrat;
   align-items: start;
   color: white;
   text-transform: lowercase;

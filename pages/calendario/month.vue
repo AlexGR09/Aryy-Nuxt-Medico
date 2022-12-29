@@ -75,7 +75,7 @@
             color="#7900ff"
             event-start="appointment_start"
             event-end="appointment_start_end"
-            event-name="appointment_type"
+            event-name="patient_full_name"
             event-color="#1abc9c"
             :events="evento"
             style="font-family: Montserrat"

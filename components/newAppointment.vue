@@ -1,7 +1,8 @@
 <!-- Card para crear cita en calendario | Genesis -->
 <template>
   <v-card>
-    <v-card-title>CITA NUEVA</v-card-title>
+    <v-card-title>CITA NUEVA 
+    </v-card-title>
     <v-alert
       v-if="errordate"
       style="font-family: Montserrat"
@@ -279,6 +280,7 @@ export default {
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
+        
       modal: false,
       modal2: false,
     }

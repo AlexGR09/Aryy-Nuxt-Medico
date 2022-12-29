@@ -15,7 +15,7 @@
           <v-sheet   height="84">
             <v-toolbar  flat>
               <v-btn 
-                width="150px"
+                width="10%"
                 outlined
                 color="white"
                 class="mr-4 today mt-7 rounded-lg "
@@ -23,9 +23,10 @@
               >
                 <l  class="today">hoy</l>
               </v-btn>
-              <v-spacer></v-spacer>
+              
+              <v-spacer class="mr-16"></v-spacer>
               <v-btn
-                class="mt-7 ml-10"
+                class="mt-7 ml-5 "
                 fab
                 text
                 small
@@ -51,8 +52,8 @@
               <v-menu bottom left>
                 <template v-slot:activator="{ on }">
                   <v-btn
-                    width="150px"
-                    class="list white--text mr-5 ml-n5 mt-7 rounded-lg "
+                    width="10%"
+                    class="list white--text   mt-7 rounded-lg "
                     outlined
                     v-on="on"
                   >
@@ -311,6 +312,7 @@ export default {
       return Math.floor((b - a + 1) * Math.random()) + a
     },
   },
+  
 }
 </script>
 
