@@ -19,7 +19,7 @@
         >
           <v-toolbar class="pt-3" flat>
             <v-btn
-              width="150px"
+              width="10%"
               outlined
               color="white"
               class="mr-4 today"
@@ -41,7 +41,7 @@
             <v-menu bottom left>
               <template v-slot:activator="{ on }">
                 <v-btn
-                  width="150px"
+                  width="10%"
                   class="list white--text mr-5 ml-n5"
                   outlined
                   v-on="on"
@@ -79,9 +79,7 @@
             event-color="#1abc9c"
             :events="evento"
             style="font-family: Montserrat"
-            interval-height="80px"
             :short-intervals="false"
-            interval-width="80px"
             @click:more="viewDay"
             @click:date="viewDay"
           >
@@ -148,18 +146,19 @@ export default {
       selectedEvent: {},
       selectedElement: null,
       selectedOpen: false,
+      /* items para el breadcrumb | Genesis */
       items: [
-      {
-        icon: 'mdi-home-outline',
-        disabled: false,
-        href: '/',
-      },
-      {
-        text: 'Calendario',
-        disabled: false,
-        href: '/calendario/month',
-      },
-    ],
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Calendario',
+          disabled: false,
+          href: '/calendario/month',
+        },
+      ],
     }
   },
 
@@ -168,6 +167,7 @@ export default {
     this.citas()
   },
   methods: {
+   /*  metodo para traer todos los datos del servidor | Genesis */
     citas() {
       this.$axios
         .get('api/v1/calendar/appointments', {
@@ -198,17 +198,9 @@ export default {
       this.$refs.calendar.next()
     },
 
-    rnd(a, b) {
-      return Math.floor((b - a + 1) * Math.random()) + a
-    },
   },
 }
 </script>
-
-
-
-
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
@@ -234,11 +226,6 @@ v-event-summary {
   background-color: aqua;
 }
 
-/* .theme--light.v-calendar-weekly .v-calendar-weekly__day {
-  border-right: red 3px solid;
-  border-bottom: #fff 1px solid;
-}
- */
 .theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
   background-color: #cccccc;
 }
@@ -324,15 +311,6 @@ span::first-letter {
   white-space: nowrap;
 }
 
-/* .v-calendar-weekly__head-weekday .html {
-  font-size: 6px;
-  overflow-x: hidden;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
- */
 .v-btn__content {
   color: #999999;
   font-size: 18px;

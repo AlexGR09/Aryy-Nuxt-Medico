@@ -12,21 +12,21 @@
           </template>
         </v-breadcrumbs>
         <v-card>
-          <v-sheet   height="84">
-            <v-toolbar  flat>
-              <v-btn 
+          <v-sheet height="84">
+            <v-toolbar flat>
+              <v-btn
                 width="10%"
                 outlined
                 color="white"
-                class="mr-4 today mt-7 rounded-lg "
+                class="mr-4 today mt-7 rounded-lg"
                 @click="setToday"
               >
-                <l  class="today">hoy</l>
+                <l class="today">hoy</l>
               </v-btn>
-              
+
               <v-spacer class="mr-16"></v-spacer>
               <v-btn
-                class="mt-7 ml-5 "
+                class="mt-7 ml-5"
                 fab
                 text
                 small
@@ -53,7 +53,7 @@
                 <template v-slot:activator="{ on }">
                   <v-btn
                     width="10%"
-                    class="list white--text   mt-7 rounded-lg "
+                    class="list white--text mt-7 ml-5 rounded-lg"
                     outlined
                     v-on="on"
                   >
@@ -103,8 +103,7 @@
                   :class="{ first: date === week[0].date }"
                   :style="{ top: nowY }"
                 ></div>
-              </template> 
-
+              </template>
             </v-calendar>
             <v-dialog
               width="1040px"
@@ -112,7 +111,7 @@
               offset-x
               :close-on-content-click="false"
             >
-              <new-appointment />
+              <new-appointment/>
             </v-dialog>
             <v-dialog
               width="640px"
@@ -168,7 +167,7 @@
                     outlined
                     color="green"
                     @click="selectedOpen = false"
-                    ><v-icon>mdi-eye</v-icon>
+                    ><v-icon color="green">mdi-eye</v-icon>
                     <l class="eventAction ml-3">ASISTIÓ</l>
                   </v-btn>
                   <v-btn
@@ -177,7 +176,7 @@
                     color="red"
                     @click="selectedOpen = false"
                   >
-                    <v-icon>mdi-eye-off</v-icon>
+                    <v-icon color="red">mdi-eye-off</v-icon>
                     <l class="eventAction ml-3">NO ASISTIÓ</l>
                   </v-btn>
                 </v-card-actions>
@@ -207,6 +206,8 @@ export default {
     },
     selectedEvent: {},
     selectedElement: null,
+    start: null,
+    end: null,
     selectedOpen: false,
     evento: [],
     items: [
@@ -244,22 +245,20 @@ export default {
     this.citas()
   },
   methods: {
+   /*  metodo para traer todas las citas registradas en el servidor | Genesis */
     citas() {
       this.$axios
         .get('api/v1/calendar/appointments', {
-          params:
-            {
-              "type": "all"
+          params: {
+            type: 'all',
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
-           this.evento=res.data.data
+          this.evento = res.data.data
         })
-      
     },
-    
     addEvent() {
       this.newDate = true
     },
@@ -312,7 +311,6 @@ export default {
       return Math.floor((b - a + 1) * Math.random()) + a
     },
   },
-  
 }
 </script>
 
@@ -359,7 +357,7 @@ h4 {
 }
 /* texto del evento | Genesis */
 span {
-  font-size: .85rem;
+  font-size: 0.85rem;
   font-family: Montserrat;
   align-items: start;
   color: white;
@@ -459,7 +457,7 @@ span.breadcrumbs {
   line-height: normal;
   position: relative;
   transition: inherit;
-    transition-property: inherit;
+  transition-property: inherit;
   transition-property: opacity;
 }
 .theme--light.v-time-picker-clock {

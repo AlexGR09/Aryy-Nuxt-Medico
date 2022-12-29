@@ -1,8 +1,7 @@
 <!-- Card para crear cita en calendario | Genesis -->
 <template>
   <v-card>
-    <v-card-title>CITA NUEVA 
-    </v-card-title>
+    <v-card-title>CITA NUEVA </v-card-title>
     <v-alert
       v-if="errordate"
       style="font-family: Montserrat"
@@ -37,6 +36,7 @@
           <p>Teléfono*</p>
           <v-row>
             <v-col cols="3" xs="3" sm="12" md="2" lg="2" xl="2">
+             <!--  libreria para codigo de paises | Genesis -->
               <vue-country-code
                 style="height: 56px"
                 enabledCountryCode
@@ -85,7 +85,6 @@
             </v-col>
           </v-row>
         </v-col>
-
         <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Consultorio*</p>
           <v-autocomplete
@@ -205,7 +204,7 @@
                 color="#9966ff"
                 @click="$refs.dialog.save(time)"
               >
-              <p class="btn-calendar">Ok</p>
+                <p class="btn-calendar">Ok</p>
               </v-btn>
             </v-time-picker>
           </v-dialog>
@@ -234,29 +233,27 @@
       <v-row>
         <v-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3">
           <v-btn
-      block
-        @click="agendar"
-        height="50px"
-        class="white--text btn save "
-        color="#7900ff"
-        large
-        ><span class="span">Guardar cambios</span></v-btn
-      >
+            block
+            @click="agendar"
+            height="50px"
+            class="white--text btn save"
+            color="#7900ff"
+            large
+            ><span class="span">Guardar cambios</span></v-btn
+          >
         </v-col>
         <v-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3">
           <v-btn
-      block
-        height="50px"
-        class="restore btn "
-        color="#999999"
-        outlined
-        large
-        ><span class="grey--text">Restaurar todo</span></v-btn
-      >
+            block
+            height="50px"
+            class="restore btn"
+            color="#999999"
+            outlined
+            large
+            ><span class="grey--text">Restaurar todo</span></v-btn
+          >
         </v-col>
       </v-row>
-   
-    
     </v-card-text>
   </v-card>
 </template>
@@ -267,7 +264,7 @@ Vue.use(VueCountryCode)
 export default {
   data() {
     return {
-       errordate: '',
+      errordate: '',
       selectedCountry: '',
       patient: '',
       phone: '',
@@ -280,12 +277,12 @@ export default {
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
-        
       modal: false,
       modal2: false,
     }
   },
   methods: {
+   /*  metodo post para mandar los datos de la cita al servidor | Genesis */
     agendar() {
       this.$axios
         .post(
@@ -314,8 +311,6 @@ export default {
           this.error = 'error'
           console.log(error)
           this.errordate = error.response.message
-        /*   this.errorphone = error.response.data.errors.phone_number[0]
-         */
         })
     },
     onSelect(data) {
@@ -352,9 +347,8 @@ p {
   font-family: 'Montserat';
   line-height: 1.5;
 }
-.btn-calendar{
+.btn-calendar {
   font-family: Montserrat;
   text-transform: uppercase;
 }
-
 </style>

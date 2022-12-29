@@ -14,7 +14,7 @@
         <v-sheet height="84">
           <v-toolbar flat>
             <v-btn
-              width="150px"
+              width="10%"
               outlined
               color="white"
               class="mr-4 today mt-7 rounded-lg"
@@ -50,7 +50,7 @@
             <v-menu bottom left>
               <template v-slot:activator="{ on }">
                 <v-btn
-                  width="150px"
+                  width="10%"
                   class="list white--text mr-5 ml-n5 mt-7 rounded-lg"
                   outlined
                   v-on="on"
@@ -155,7 +155,7 @@
                   outlined
                   color="green"
                   @click="selectedOpen = false"
-                  ><v-icon>mdi-eye</v-icon>
+                  ><v-icon color="green">mdi-eye</v-icon>
                   <l class="eventAction ml-3">ASISTIÓ</l>
                 </v-btn>
                 <v-btn
@@ -164,7 +164,7 @@
                   color="red"
                   @click="selectedOpen = false"
                 >
-                  <v-icon>mdi-eye-off</v-icon>
+                  <v-icon color="red">mdi-eye-off</v-icon>
                   <l class="eventAction ml-3">NO ASISTIÓ</l>
                 </v-btn>
               </v-card-actions>
@@ -193,7 +193,8 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    
+
+    /* items para el breadcrumb | Genesis */
     items: [
       {
         icon: 'mdi-home-outline',
@@ -230,18 +231,18 @@ export default {
     this.citas()
   },
   methods: {
+   /*  metodo para traer los datos de las citas en el servidor | Genesis */
     citas() {
       this.$axios
         .get('api/v1/calendar/appointments', {
-          params:
-            {
-              "type": "all"
+          params: {
+            type: 'all',
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
-           this.evento=res.data.data
+          this.evento = res.data.data
         })
     },
     getCurrentTime() {
@@ -289,28 +290,6 @@ export default {
       }
       nativeEvent.stopPropagation()
     },
-    updateRange({ start, end }) {
-      const events = []
-      const min = new Date(`${start.date}T10:00:00`)
-      const max = new Date(`${end.date}T11:00:00`)
-      const days = (max.getTime() - min.getTime()) / 86400000
-      const eventCount = this.rnd(days, days + 5)
-      for (let i = 0; i < eventCount; i++) {
-        const allDay = this.rnd(0, 3) === 0
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime())
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000))
-        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
-        const second = new Date(first.getTime() + secondTimestamp)
-        events.push({
-          name: this.names[this.rnd(0, this.names.length - 1)],
-          start: first,
-          end: second,
-          color: this.colors[this.rnd(0, this.colors.length - 1)],
-          timed: !allDay,
-        })
-      }
-      this.events = events
-    },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
     },
@@ -324,25 +303,7 @@ export default {
 
 <style lang="scss">
 /* estilos de puntero de hora actual  | Genesis */
-.v-current-time {
-  height: 2px;
-  background-color: red;
-  position: absolute;
-  left: -1px;
-  right: 0;
-  pointer-events: none;
 
-  &.first::before {
-    content: '';
-    position: absolute;
-    background-color: red;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    margin-top: -7px;
-    margin-left: -6.5px;
-  }
-}
 h1.eventName {
   font-size: 230%;
   color: #7900ff;
@@ -357,7 +318,7 @@ h4 {
   font-family: Montserrat;
 }
 span {
-  font-size: .85rem;
+  font-size: 0.85rem;
   font-family: Montserrat;
   align-items: start;
   color: white;
