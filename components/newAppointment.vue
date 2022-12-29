@@ -3,13 +3,13 @@
   <v-card>
     <v-card-title>CITA NUEVA</v-card-title>
     <v-alert
-      v-if="error"
+      v-if="errordate"
       style="font-family: Montserrat"
       dense
       outlined
       type="error"
     >
-      Campos vacíos, <strong>vuelva a intentarlo.</strong>
+      Fecha no disponible, <strong>vuelva a intentarlo.</strong>
     </v-alert>
     <v-alert
       v-if="bad"
@@ -22,7 +22,7 @@
     </v-alert>
     <v-card-text>
       <v-row class="montserrat">
-        <v-col xl="4">
+        <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Paciente*</p>
           <v-text-field
             v-model="patient"
@@ -32,50 +32,60 @@
             placeholder="Escribe el nombre del paciente"
           ></v-text-field>
         </v-col>
-        <v-col xl="4">
+        <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Teléfono*</p>
-          <v-text-field
-            v-model="phone"
-            color="#7900ff"
-            hide-details
-            outlined
-            placeholder="+52"
-          >
-            <template #prepend-inner>
-              <div style="width: 30px">
-                <v-img
-                  style="margin: auto 0; margin-top: -2px"
-                  max-height="25"
-                  max-width="25"
-                  :src="require('@/assets/icons/iconos_MXN.svg')"
-                />
-              </div>
-            </template>
-          </v-text-field>
+          <v-row>
+            <v-col cols="3" xs="3" sm="12" md="2" lg="2" xl="2">
+              <vue-country-code
+                style="height: 56px"
+                enabledCountryCode
+                @onSelect="onSelect"
+                :preferredCountries="['MX', 'us', 'gb']"
+                defaultCountry="mx"
+              >
+              </vue-country-code>
+            </v-col>
+            <v-col cols="9" xs="9" sm="12" md="10" lg="10" xl="10">
+              <v-text-field
+                v-model="phone"
+                color="#7900ff"
+                class="ml-5"
+                hide-details
+                outlined
+                placeholder="XXX XXX XXXX"
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
         </v-col>
-        <v-col xl="4">
+        <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Teléfono de emergencia*</p>
-          <v-text-field
-            v-model="emergency_phone"
-            color="#7900ff"
-            hide-details
-            outlined
-            placeholder="+52"
-          >
-            <template #prepend-inner>
-              <div style="width: 30px">
-                <v-img
-                  style="margin: auto 0; margin-top: -2px"
-                  max-height="25"
-                  max-width="25"
-                  :src="require('@/assets/icons/iconos_MXN.svg')"
-                />
-              </div>
-            </template>
-          </v-text-field>
+          <v-row>
+            <v-col cols="3" xs="3" sm="12" md="2" lg="2" xl="2">
+              <vue-country-code
+                style="height: 56px"
+                enabledCountryCode
+                @onSelect="onSelect"
+                :preferredCountries="['MX', 'us', 'gb']"
+                defaultCountry="mx"
+              >
+              </vue-country-code>
+            </v-col>
+            <v-col cols="9" xs="9" sm="12" md="10" lg="10" xl="10">
+              <v-text-field
+                v-model="emergency_phone"
+                color="#7900ff"
+                class="ml-5"
+                hide-details
+                outlined
+                placeholder="XXX XXX XXXX"
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
         </v-col>
 
-        <v-col xl="4">
+        <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Consultorio*</p>
           <v-autocomplete
             v-model="facilitie"
@@ -95,7 +105,7 @@
               </div> </template
           ></v-autocomplete>
         </v-col>
-        <v-col xl="4">
+        <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Fecha de la cita*</p>
           <v-dialog
             ref="dialog"
@@ -140,6 +150,7 @@
                 text
                 class="btn"
                 color="#7900ff"
+                v-on:click="modal = false"
                 @click="$refs.dialog.save(date)"
               >
                 OK
@@ -147,7 +158,7 @@
             </v-date-picker>
           </v-dialog>
         </v-col>
-        <v-col xl="4">
+        <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Horario*</p>
           <v-dialog
             ref="dialog"
@@ -185,7 +196,7 @@
             >
               <v-spacer></v-spacer>
               <v-btn class="btn" text color="#9966ff" @click="modal2 = false">
-                Cancelar
+                <p class="btn-calendar">Cancelar</p>
               </v-btn>
               <v-btn
                 class="btn"
@@ -193,17 +204,17 @@
                 color="#9966ff"
                 @click="$refs.dialog.save(time)"
               >
-                OK
+              <p class="btn-calendar">Ok</p>
               </v-btn>
             </v-time-picker>
           </v-dialog>
         </v-col>
-        <v-col xl="4">
+        <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Servicio*</p>
           <v-autocomplete
             v-model="service"
             hide-details
-            color="#7900ff"
+            color="primary"
             outlined
             placeholder="Escribe el tipo de servicio"
           >
@@ -219,31 +230,47 @@
           ></v-autocomplete>
         </v-col>
       </v-row>
-      <v-btn
+      <v-row>
+        <v-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3">
+          <v-btn
+      block
+        @click="agendar"
         height="50px"
-        class="white--text btn save mt-7"
+        class="white--text btn save "
         color="#7900ff"
         large
-        ><span>Guardar cambios</span></v-btn
+        ><span class="span">Guardar cambios</span></v-btn
       >
-      <v-btn
+        </v-col>
+        <v-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3">
+          <v-btn
+      block
         height="50px"
-        class="restore btn ml-3 mt-7"
+        class="restore btn "
         color="#999999"
         outlined
         large
         ><span class="grey--text">Restaurar todo</span></v-btn
       >
+        </v-col>
+      </v-row>
+   
+    
     </v-card-text>
   </v-card>
 </template>
 <script>
+import Vue from 'vue'
+import VueCountryCode from 'vue-country-code'
+Vue.use(VueCountryCode)
 export default {
   data() {
     return {
+       errordate: '',
+      selectedCountry: '',
       patient: '',
-      phone: '+52',
-      emergency_phone: '+52',
+      phone: '',
+      emergency_phone: '',
       facilitie: '',
       time: '',
       service: '',
@@ -256,58 +283,41 @@ export default {
       modal2: false,
     }
   },
-  watch: {
-    empty() {
-      if (this.patient === null) {
-        this.error = 'error'
-      } else {
-        this.error = ''
-      }
-
-      if (this.phone === null) {
-        this.error = 'error'
-      } else {
-        this.error = ''
-      }
-
-      if (this.emergency_phone === null) {
-        this.error = 'error'
-      } else {
-        this.error = ''
-      }
-
-      if (this.facilitie === null) {
-        this.error = 'error'
-      } else {
-        this.error = ''
-      }
-      if (this.date === null) {
-        this.error = 'error'
-      } else {
-        this.error = ''
-      }
-      if (this.time === null) {
-        this.error = 'error'
-      } else {
-        this.error = ''
-      }
-      if (this.service === null) {
-        this.error = 'error'
-      } else {
-        this.error = ''
-      }
+  methods: {
+    agendar() {
+      this.$axios
+        .post(
+          'api/v1/calendar/appointments',
+          {
+            phone_number: this.phone,
+            country_code: this.selectedCountry.dialCode,
+            full_name: this.patient,
+            emergency_number: this.emergency_phone,
+            facility_id: '10',
+            appointment_date: this.date,
+            appointment_type: 'Cita consecuente',
+            appointment_time: this.time,
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data.data)
+          location.reload()
+        })
+        .catch((error) => {
+          this.error = 'error'
+          console.log(error)
+          this.errordate = error.response.message
+        /*   this.errorphone = error.response.data.errors.phone_number[0]
+         */
+        })
     },
-    error() {
-      if (this.phone.length < 13) {
-        this.bad = 'bad'
-      } else {
-        this.bad = ''
-      }
-      if (this.emergency_phone.length < 13) {
-        this.bad = 'bad'
-      } else {
-        this.bad = ''
-      }
+    onSelect(data) {
+      this.selectedCountry = data
     },
   },
 }
@@ -340,4 +350,9 @@ p {
   font-family: 'Montserat';
   line-height: 1.5;
 }
+.btn-calendar{
+  font-family: Montserrat;
+  text-transform: uppercase;
+}
+
 </style>

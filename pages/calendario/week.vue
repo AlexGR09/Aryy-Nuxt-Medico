@@ -88,7 +88,7 @@
             event-start="appointment_start"
             event-end="appointment_start_end"
             event-name="appointment_type"
-            event-color="blue"
+            event-color="#1abc9c"
             @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
@@ -235,9 +235,7 @@ export default {
         .get('api/v1/calendar/appointments', {
           params:
             {
-            type: "month",
-            month: '10',
-            year:"2022"
+              "type": "all"
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })

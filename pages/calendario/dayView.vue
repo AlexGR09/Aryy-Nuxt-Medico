@@ -12,16 +12,16 @@
           </template>
         </v-breadcrumbs>
         <v-card>
-          <v-sheet height="84">
-            <v-toolbar flat>
-              <v-btn
+          <v-sheet   height="84">
+            <v-toolbar  flat>
+              <v-btn 
                 width="150px"
                 outlined
                 color="white"
                 class="mr-4 today mt-7 rounded-lg "
                 @click="setToday"
               >
-                <l class="today">hoy</l>
+                <l  class="today">hoy</l>
               </v-btn>
               <v-spacer></v-spacer>
               <v-btn
@@ -81,16 +81,16 @@
               ref="calendar"
               type="day"
               v-model="focus"
-              color="#7900ff"
+              color="#9966ff"
               interval-height="80px"
               :short-intervals="false"
               interval-width="80px"
               @click="addEvent"
               event-start="appointment_start"
-            event-end="appointment_start_end"
-            event-name="appointment_type"
-            event-color="blue"
-            :events="evento"
+              event-end="appointment_start_end"
+              event-name="patient_full_name"
+              event-color="#1abc9c"
+              :events="evento"
               @click:event="showEvent"
               @click:more="viewDay"
               @click:date="viewDay"
@@ -248,9 +248,7 @@ export default {
         .get('api/v1/calendar/appointments', {
           params:
             {
-            type: "month",
-            month: '12',
-            year:"2022"
+              "type": "all"
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
@@ -258,7 +256,9 @@ export default {
           console.log(res)
            this.evento=res.data.data
         })
+      
     },
+    
     addEvent() {
       this.newDate = true
     },
@@ -355,9 +355,10 @@ p.eventPhone {
 h4 {
   font-family: Montserrat;
 }
+/* texto del evento | Genesis */
 span {
-  font-size: 1rem;
-  font-family: MontserratMedium;
+  font-size: .85rem;
+  font-family: Montserrat;
   align-items: start;
   color: white;
   text-transform: lowercase;
@@ -446,5 +447,20 @@ p.infor {
 span.breadcrumbs {
   font-family: Montserrat;
   color: #7900ff;
+}
+.v-btn__content {
+  align-items: center;
+  color: black;
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: inherit;
+  line-height: normal;
+  position: relative;
+  transition: inherit;
+    transition-property: inherit;
+  transition-property: opacity;
+}
+.theme--light.v-time-picker-clock {
+  background: #cccccc;
 }
 </style>

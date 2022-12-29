@@ -1,16 +1,24 @@
 <template>
   <div>
-  <v-row>
-    <v-spacer /> 
-    <v-col>
-      <v-sheet
-        margin-top="1em"
-        class="justify-center"
-        height="84"
-        text-aling="center"
-      >
-        <v-toolbar class="pt-3" flat>
-          <v-btn
+    <v-row>
+      <v-spacer />
+      <v-col>
+        <v-breadcrumbs class="breadcrumbs" :items="items">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
+        <v-sheet
+          margin-top="1em"
+          class="justify-center"
+          height="84"
+          text-aling="center"
+        >
+          <v-toolbar class="pt-3" flat>
+            <v-btn
               width="150px"
               outlined
               color="white"
@@ -19,18 +27,18 @@
             >
               <l class="today">Este mes</l>
             </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn fab text small color="grey darken-2" @click="prev">
-            <v-icon color="#9966ff">mdi-arrow-left-drop-circle</v-icon>
-          </v-btn>
-          <div class="caja" v-if="$refs.calendar">
-            <h4>{{ $refs.calendar.title }}</h4>
-          </div>
-          <v-btn fab text small color="grey darken-2" @click="next">
-            <v-icon color="#9966ff">mdi-arrow-right-drop-circle</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-menu  bottom left>
+            <v-spacer></v-spacer>
+            <v-btn fab text small color="grey darken-2" @click="prev">
+              <v-icon color="#9966ff">mdi-arrow-left-drop-circle</v-icon>
+            </v-btn>
+            <div class="caja" v-if="$refs.calendar">
+              <h4>{{ $refs.calendar.title }}</h4>
+            </div>
+            <v-btn fab text small color="grey darken-2" @click="next">
+              <v-icon color="#9966ff">mdi-arrow-right-drop-circle</v-icon>
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-menu bottom left>
               <template v-slot:activator="{ on }">
                 <v-btn
                   width="150px"
@@ -54,11 +62,11 @@
                 </v-list-item>
               </v-list>
             </v-menu>
-        </v-toolbar>
-      </v-sheet>
-      <v-sheet height="44rem" width="84rem">
-        <v-calendar
-        event-text-color="white"
+          </v-toolbar>
+        </v-sheet>
+        <v-sheet height="44rem" width="84rem">
+          <v-calendar
+            event-text-color="white"
             class="calend white--text"
             locale="mx-es"
             ref="calendar"
@@ -68,50 +76,50 @@
             event-start="appointment_start"
             event-end="appointment_start_end"
             event-name="appointment_type"
-            event-color="blue"
+            event-color="#1abc9c"
             :events="evento"
-            style="font-family: Montserrat;"
+            style="font-family: Montserrat"
             interval-height="80px"
             :short-intervals="false"
             interval-width="80px"
             @click:more="viewDay"
             @click:date="viewDay"
-        >
-        </v-calendar>
-        <v-menu
-          v-model="selectedOpen"
-          :close-on-content-click="false"
-          :activator="selectedElement"
-          offset-x
-        >
-          <v-card color="grey lighten-4" min-width="350px" flat>
-            <v-toolbar :color="selectedEvent.color" dark>
-              <v-btn icon>
-                <v-icon>mdi-pencil</v-icon>
-              </v-btn>
-              <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-            </v-toolbar>
-            <v-card-text>
-              <span v-html="selectedEvent.details"></span>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn text color="secondary" @click="selectedOpen = false">
-                Cancel
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-menu>
-      </v-sheet>
-    </v-col>
-    <v-spacer />
-  </v-row>
-</div>
+          >
+          </v-calendar>
+          <v-menu
+            v-model="selectedOpen"
+            :close-on-content-click="false"
+            :activator="selectedElement"
+            offset-x
+          >
+            <v-card color="grey lighten-4" min-width="350px" flat>
+              <v-toolbar :color="selectedEvent.color" dark>
+                <v-btn icon>
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon>mdi-heart</v-icon>
+                </v-btn>
+                <v-btn icon>
+                  <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+              </v-toolbar>
+              <v-card-text>
+                <span v-html="selectedEvent.details"></span>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn text color="secondary" @click="selectedOpen = false">
+                  Cancel
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-menu>
+        </v-sheet>
+      </v-col>
+      <v-spacer />
+    </v-row>
+  </div>
 </template>
   
 <script>
@@ -129,22 +137,33 @@ export default {
   data() {
     return {
       evento: [],
-    focus: '',
-    appointment_start: '',
-    type: 'month',
-    typeToLabel: {
-      month: 'Mes',
-      week: 'Semana',
-      day: 'Día',
-    },
-    selectedEvent: {},
-    selectedElement: null,
-    selectedOpen: false,
-    
-  }
-},
+      focus: '',
+      appointment_start: '',
+      type: 'month',
+      typeToLabel: {
+        month: 'Mes',
+        week: 'Semana',
+        day: 'Día',
+      },
+      selectedEvent: {},
+      selectedElement: null,
+      selectedOpen: false,
+      items: [
+      {
+        icon: 'mdi-home-outline',
+        disabled: false,
+        href: '/',
+      },
+      {
+        text: 'Calendario',
+        disabled: false,
+        href: '/calendario/month',
+      },
+    ],
+    }
+  },
 
- mounted() {
+  mounted() {
     this.$refs.calendar.checkChange()
     this.citas()
   },
@@ -152,17 +171,14 @@ export default {
     citas() {
       this.$axios
         .get('api/v1/calendar/appointments', {
-          params:
-            {
-            type: "month",
-            month: 10,
-            year:"2022"
+          params: {
+            type: 'all',
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
-           this.evento=res.data.data
+          this.evento = res.data.data
         })
     },
     viewDay({ date }) {
@@ -204,7 +220,7 @@ export default {
   box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(234, 223, 252, 0.75);
-   color: white;
+  color: white;
 }
 v-calendar-weekly__head {
   color: black;
@@ -317,7 +333,7 @@ span::first-letter {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
  */
- .v-btn__content {
+.v-btn__content {
   color: #999999;
   font-size: 18px;
   text-transform: capitalize;
@@ -325,5 +341,9 @@ span::first-letter {
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
   background-color: #f7f7f7;
+}
+span.breadcrumbs {
+  font-family: Montserrat;
+  color: #7900ff;
 }
 </style>

@@ -1,20 +1,29 @@
 <template>
   <div>
-    <hour-picker/>
+    <vue-country-code
+    enabledCountryCode
+        @onSelect="onSelect"
+        :preferredCountries="['MX', 'us', 'gb']"
+        defaultCountry="mx">
+   </vue-country-code>
+   <p>+{{ selectedCountry.dialCode }}</p>
   </div>
 </template>
 
 <script>
-
-import hourPicker from '~/components/hourPicker.vue'
-
+import Vue from "vue";
+import VueCountryCode from "vue-country-code";
+Vue.use(VueCountryCode);
 export default {
-  components: { hourPicker },
-  data ()  {
-   return{
-    
-   }
+  data() {
+    return {
+      selectedCountry: ''
+    };
   },
-  
+  methods: {
+    onSelect(data) {
+      this.selectedCountry = data;
+    }
+  },
 }
 </script>
