@@ -4,7 +4,7 @@
       <!-- Calendario vista dia |Genesis -->
       <v-col>
         <v-breadcrumbs class="breadcrumbs" :items="items">
-          <template v-slot:item="{ item }">
+          <template #item="{ item }">
             <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
               <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
               <span class="breadcrumbs">{{ item.text }}</span>
@@ -35,7 +35,7 @@
               >
                 <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
               </v-btn>
-              <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
+              <v-toolbar-title v-if="$refs.calendar" class="calendar mt-7" >
                 {{ $refs.calendar.title }}
               </v-toolbar-title>
               <v-btn
@@ -50,7 +50,7 @@
               </v-btn>
               <v-spacer></v-spacer>
               <v-menu bottom left>
-                <template v-slot:activator="{ on }">
+                <template #activator="{ on }">
                   <v-btn
                     width="10%"
                     class="list white--text mt-7 ml-5 rounded-lg"
@@ -62,13 +62,13 @@
                   </v-btn>
                 </template>
                 <v-list style="font-family: Montserrat">
-                  <v-list-item @click="type = 'day'" to="/calendario/dayView">
+                  <v-list-item to="/calendario/dayView" @click="type = 'day'">
                     <v-list-item-title>Día</v-list-item-title>
                   </v-list-item>
-                  <v-list-item @click="type = 'week'" to="/calendario/week">
+                  <v-list-item to="/calendario/week" @click="type = 'week'" >
                     <v-list-item-title>Semana</v-list-item-title>
                   </v-list-item>
-                  <v-list-item @click="type = 'month'" to="/calendario/month">
+                  <v-list-item to="/calendario/month" @click="type = 'month'" >
                     <v-list-item-title>Mes</v-list-item-title>
                   </v-list-item>
                 </v-list>
@@ -77,27 +77,27 @@
           </v-sheet>
           <v-sheet height="700">
             <v-calendar
+            ref="calendar"
+            v-model="focus"
               class="calend"
               locale="mx-es"
-              ref="calendar"
               type="day"
-              v-model="focus"
               color="#9966ff"
               interval-height="80px"
               :short-intervals="false"
               interval-width="80px"
-              @click="addEvent"
               event-start="appointment_start"
               event-end="appointment_start_end"
               event-name="patient_full_name"
               event-color="#1abc9c"
               :events="evento"
+              @click="addEvent"
               @click:event="showw"
               @click:more="viewDay"
               @click:date="viewDay"
               @click:time="addEvent"
             >
-              <template v-slot:day-body="{ date, week }">
+              <template #day-body="{ date, week }">
                 <div
                   class="v-current-time"
                   :class="{ first: date === week[0].date }"
@@ -106,16 +106,16 @@
               </template>
             </v-calendar>
             <v-dialog
+            v-model="newDate"
               width="1040px"
-              v-model="newDate"
               offset-x
               :close-on-content-click="false"
             >
               <new-appointment/>
             </v-dialog>
             <v-dialog
+            v-model="selectedOpen"
               width="640px"
-              v-model="selectedOpen"
               offset-x
               :close-on-content-click="false"
               :activator="selectedElement"
@@ -131,9 +131,6 @@
 <script>
 import appointmentCard from './_appointmentCard.vue'
 export default {
-  props:{
-        id: Object
-      },
   components: { appointmentCard },
   data: () => ({
     value: '',
@@ -202,12 +199,9 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          console.log(res)
           this.evento = res.data.data
         })
     },
-    
-
     addEvent() {
       this.newDate = true
     },

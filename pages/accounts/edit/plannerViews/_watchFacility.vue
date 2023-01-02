@@ -2,14 +2,21 @@
   <div>
     <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
       <v-btn dark icon color="black" @click="$router.back()">
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn>
-                  <v-row>
-                    <v-col md="5" lg="5" xl="5"></v-col>
-                    <v-col md="4" lg="4" xl="4"> <v-img class="ml-n8" :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img><p class="mt-n7 prueba">Consultorios</p></v-col>
-                    <v-col ms="3" lg="3" xl="3"></v-col>
-                  </v-row>
-                  </v-app-bar>
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <v-row>
+        <v-col md="5" lg="5" xl="5"></v-col>
+        <v-col md="4" lg="4" xl="4">
+          <v-img
+            class="ml-n8"
+            :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
+            max-width="150"
+          ></v-img>
+          <p class="mt-n7 prueba">Consultorios</p></v-col
+        >
+        <v-col ms="3" lg="3" xl="3"></v-col>
+      </v-row>
+    </v-app-bar>
     <v-card height="100%" flat class="pa-16">
       <v-card-text class="pa-16">
         <v-row class="ml-16">
@@ -17,9 +24,7 @@
             <v-col md="1" lg="1" xl="1"></v-col>
             <v-col md="10" lg="10" xl="10">
               <v-row>
-              
                 <v-col md="12" cols="12">
-                 
                   <span>Nombre del consultorio*</span>
                   <v-text-field
                     disabled
@@ -41,7 +46,7 @@
                     placeholder="XXX XXX XXXX"
                     outlined
                   ></v-text-field>
-                  <span >Horario para recepción de llamadas*</span>
+                  <span>Horario para recepción de llamadas*</span>
                   <div
                     class="form-group mb-9"
                     v-for="(input, k) in inputs"
@@ -246,7 +251,7 @@
                     label="Ascensor con acceso para silla de ruedas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="ramp"
                     class="vcheckbox"
                     color="#7900ff"
@@ -254,7 +259,7 @@
                     label="Rampa con acceso para silla de ruedas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="restroom"
                     class="vcheckbox"
                     color="#7900ff"
@@ -262,7 +267,7 @@
                     label="Sanitarios con accesos para silla de ruedas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="area"
                     class="vcheckbox"
                     color="#7900ff"
@@ -270,7 +275,7 @@
                     label="Área de descanso con acceso para silla de ruedas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="sign"
                     class="vcheckbox"
                     color="#7900ff"
@@ -278,7 +283,7 @@
                     label="Personal capacitado en lengua de señas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="braille"
                     class="vcheckbox"
                     color="#7900ff"
@@ -289,7 +294,7 @@
                 <v-col md="6" lg="6" xl="6">
                   <H1 class="mb-5">PÚBLICOS USUALES</H1>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="lgbt"
                     class="vcheckbox"
                     color="#7900ff"
@@ -297,7 +302,7 @@
                     label="Amigable con la comunidad LGBTQ+"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="trans"
                     class="vcheckbox"
                     color="#7900ff"
@@ -306,7 +311,7 @@
                   ></v-checkbox>
                   <H1 class="mb-5 mt-15">SERVICIOS</H1>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="toilets"
                     class="vcheckbox"
                     color="#7900ff"
@@ -314,7 +319,7 @@
                     label="Sanitarios"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="unisex"
                     class="vcheckbox"
                     color="#7900ff"
@@ -322,7 +327,7 @@
                     label="Sanitario unisex"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="wifi"
                     class="vcheckbox"
                     color="#7900ff"
@@ -330,8 +335,7 @@
                     label="Wi-Fi"
                   ></v-checkbox>
                 </v-col>
-                <div class="mt-5 mb-n15">
-                </div>
+                <div class="mt-5 mb-n15"></div>
               </v-row>
             </v-col>
             <v-col xl="1"></v-col>
@@ -344,8 +348,7 @@
   <script>
 export default {
   layout: 'auth',
-  components: {
-  },
+  components: {},
   data() {
     return {
       timeLun: '',
@@ -368,12 +371,12 @@ export default {
       day: '',
       extension: '',
       city: '',
-      
+
       parking: false,
       lift: false,
       ramp: false,
       restroom: false,
-      area:false,
+      area: false,
       sign: false,
       braille: false,
 
@@ -383,7 +386,7 @@ export default {
 
       unisex: false,
       wifi: false,
-      
+
       attention_time: '',
       address: '',
       number_ext: '',
@@ -421,8 +424,8 @@ export default {
     console.log('verificando')
     this.getFacility()
   },
-  created(){
-    const facilityId = this.$route.params.id;
+  created() {
+    const facilityId = this.$route.params.id
     console.log(facilityId)
   },
   methods: {
@@ -430,7 +433,7 @@ export default {
     getFacility() {
       console.log('creando petición GET')
       this.$axios
-      .get(`api/v1/facilities/${this.$route.params.watchFacility}`, {
+        .get(`api/v1/facilities/${this.$route.params.watchFacility}`, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
@@ -439,11 +442,8 @@ export default {
           this.id = res.data.data.id
           this.facilities = res.data.data
           this.consultorios = res.data.data.length
-         
-
 
           /*  accesibilidad | Genesis */
-       
         })
 
         /*  servicios | Genesis */

@@ -46,11 +46,11 @@
         </v-card-text>
         <v-card-actions>
           <v-btn
+            large
             v-on:click="status"
             v-model="status"
             class="eventAction"
             outlined
-            color="green"
             ><v-icon color="green">mdi-eye</v-icon>
             <l class="eventAction ml-3">ASISTIÓ</l>
           </v-btn>
@@ -59,7 +59,7 @@
             v-model="status"
             class="eventAction"
             outlined
-            color="red"
+            large
           >
             <v-icon color="red">mdi-eye-off</v-icon>
             <l class="eventAction ml-3">NO ASISTIÓ</l>
