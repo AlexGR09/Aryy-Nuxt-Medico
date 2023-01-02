@@ -163,6 +163,8 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-btn
+                    v-on:click="status"
+                    v-model="status"
                     class="eventAction"
                     outlined
                     color="green"
@@ -171,6 +173,8 @@
                     <l class="eventAction ml-3">ASISTIÓ</l>
                   </v-btn>
                   <v-btn
+                    v-on:click="status"
+                    v-model="status"
                     class="eventAction"
                     outlined
                     color="red"
@@ -259,6 +263,19 @@ export default {
           this.evento = res.data.data
         })
     },
+    
+   /*  cambiar status de la cita | Genesis */
+    status() {
+      this.$axios
+        .put('api/v1/appointments/', {
+          status: this.status
+        })
+        .then((response) => {
+          console.log(response.data.data)
+          localStorage.setItem('token', response.data.access_token)
+        })
+    },
+
     addEvent() {
       this.newDate = true
     },

@@ -10,7 +10,6 @@
     </v-breadcrumbs>
     <!-- tabla de pacientes | Genesis -->
     <div class="row justify-content-md-center">
-      
           <v-card width="100%" flat rounded class="margen">
             <v-card-title class="mb-n10">
               <v-row class="ma-4 ml-n2 d-flex justify-start">
@@ -23,6 +22,7 @@
                     hide-details
                     dense
                     background-color="#f4edff"
+                    item-color="deep-purple"
                     color="#7900ff"
                     :items="keys"
                     placeholder="Ordenar por"
@@ -89,7 +89,7 @@
               mobile-breakpoint="0"
               item-key="name"
               hide-default-header
-              :sort-by="sort"
+              :custom-sort="customSort"
               :page.sync="page"
               :items-per-page="itemsPerPage"
               hide-default-footer
@@ -224,10 +224,9 @@ export default {
       ],
       /* Opciones para el select de sort by | Genesis */
       keys: [
-        'Nombre y apellidos',
+        'Nombre completo',
         'Teléfono',
         'Última cita',
-        'Siguiente visita',
       ],
       items: [
         {
@@ -256,6 +255,7 @@ export default {
     this.getTodos()
   },
   methods: {
+
     deleteItemConfirm() {
       this.characters.splice(this.editedIndex, 1)
       this.closeDelete()

@@ -36,7 +36,7 @@
           <p>Teléfono*</p>
           <v-row>
             <v-col cols="3" xs="3" sm="12" md="2" lg="2" xl="2">
-             <!--  libreria para codigo de paises | Genesis -->
+             <!--  libreria para select de codigo de paises | Genesis -->
               <vue-country-code
                 style="height: 56px"
                 enabledCountryCode
