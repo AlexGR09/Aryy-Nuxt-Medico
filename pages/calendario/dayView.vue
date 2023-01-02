@@ -92,7 +92,7 @@
               event-name="patient_full_name"
               event-color="#1abc9c"
               :events="evento"
-              @click:event="showEvent"
+              @click:event="showw"
               @click:more="viewDay"
               @click:date="viewDay"
               @click:time="addEvent"
@@ -120,72 +120,7 @@
               :close-on-content-click="false"
               :activator="selectedElement"
             >
-              <v-card color="white" min-width="350px" flat>
-                <v-card-text>
-                  <br />
-                  <v-row>
-                    <v-col>
-                      <h1 class="eventName" v-html="selectedEvent.name"></h1>
-                      <p class="eventPhone mt-5">No. 123</p>
-                      <p
-                        class="eventPhone mt-n3"
-                        v-html="selectedEvent.phone"
-                      ></p>
-                    </v-col>
-                    <v-col xl="4"
-                      ><v-btn large color="#999999" outlined>
-                        <l class="titleAction">Reagendar cita</l>
-                      </v-btn>
-                      <v-btn
-                        large
-                        width="192px"
-                        class="mt-2 mb-3"
-                        color="red"
-                        outlined
-                      >
-                        <l class="titleAction2" color="red">cancelar cita</l>
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                  <v-divider></v-divider>
-                  <div class="mt-5">
-                    <p class="infor">
-                      <v-icon color="#9966ff">mdi-calendar</v-icon>sfsfs
-                    </p>
-                    <p class="infor">
-                      <v-icon color="#9966ff">mdi-account</v-icon>Paciente nuevo
-                    </p>
-                    <p class="infor">
-                      <v-icon color="#9966ff">mdi-map-marker-circle</v-icon
-                      >Consultorio Principal
-                    </p>
-                  </div>
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn
-                    v-on:click="status"
-                    v-model="status"
-                    class="eventAction"
-                    outlined
-                    color="green"
-                    @click="selectedOpen = false"
-                    ><v-icon color="green">mdi-eye</v-icon>
-                    <l class="eventAction ml-3">ASISTIÓ</l>
-                  </v-btn>
-                  <v-btn
-                    v-on:click="status"
-                    v-model="status"
-                    class="eventAction"
-                    outlined
-                    color="red"
-                    @click="selectedOpen = false"
-                  >
-                    <v-icon color="red">mdi-eye-off</v-icon>
-                    <l class="eventAction ml-3">NO ASISTIÓ</l>
-                  </v-btn>
-                </v-card-actions>
-                <br />
-              </v-card>
+              <appointment-card/>
             </v-dialog>
           </v-sheet>
         </v-card>
@@ -194,7 +129,12 @@
   </div>
 </template>
 <script>
+import appointmentCard from './_appointmentCard.vue'
 export default {
+  props:{
+        id: Object
+      },
+  components: { appointmentCard },
   data: () => ({
     value: '',
     newDate: false,
@@ -249,6 +189,9 @@ export default {
     this.citas()
   },
   methods: {
+    showw(){
+      this.$router.push('/calendario/'+this.id)
+    },
    /*  metodo para traer todas las citas registradas en el servidor | Genesis */
     citas() {
       this.$axios
@@ -264,17 +207,6 @@ export default {
         })
     },
     
-   /*  cambiar status de la cita | Genesis */
-    status() {
-      this.$axios
-        .put('api/v1/appointments/', {
-          status: this.status
-        })
-        .then((response) => {
-          console.log(response.data.data)
-          localStorage.setItem('token', response.data.access_token)
-        })
-    },
 
     addEvent() {
       this.newDate = true
