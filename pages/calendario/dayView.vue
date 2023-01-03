@@ -12,7 +12,7 @@
           </template>
         </v-breadcrumbs>
         <v-card>
-          <v-sheet height="84">
+          <v-sheet class="ml-n2" height="84">
             <v-toolbar flat>
               <v-btn
                 width="10%"

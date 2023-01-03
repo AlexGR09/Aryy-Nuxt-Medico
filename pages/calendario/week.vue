@@ -14,13 +14,17 @@
         <v-sheet height="84">
           <v-toolbar flat>
             <v-btn
+              style="background-color: #7900ff"
               width="10%"
               outlined
               color="white"
               class="mr-4 today mt-7 rounded-lg"
               @click="setToday"
             >
-              <l class="today">Esta semana</l>
+              <l class="today"
+                >Esta <br />
+                semana</l
+              >
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn
@@ -33,7 +37,8 @@
             >
               <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
             </v-btn>
-            <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
+            <v-toolbar-title class="calendar
+             mt-7" v-if="$refs.calendar">
               {{ $refs.calendar.title }}
             </v-toolbar-title>
             <v-btn
@@ -51,7 +56,7 @@
               <template v-slot:activator="{ on }">
                 <v-btn
                   width="10%"
-                  class="list white--text mr-5 ml-n5 mt-7 rounded-lg"
+                  class="list white--text mt-7 rounded-lg"
                   outlined
                   v-on="on"
                 >
@@ -231,7 +236,7 @@ export default {
     this.citas()
   },
   methods: {
-   /*  metodo para traer los datos de las citas en el servidor | Genesis */
+    /*  metodo para traer los datos de las citas en el servidor | Genesis */
     citas() {
       this.$axios
         .get('api/v1/calendar/appointments', {
@@ -347,7 +352,7 @@ span::first-letter {
 .today {
   text-transform: capitalize;
   color: white;
-  background-color: #7900ff;
+  font-size: 90%;
 }
 .calendario {
   border: thin solid transparent;

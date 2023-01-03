@@ -4,33 +4,43 @@
     <day-view />
     <v-dialog
       persistent
-      width="40%"
+      max-width="650px"
       v-model="selectedOpen"
       offset-x
       :close-on-content-click="false"
     >
-      <v-card color="white" min-width="350px" flat>
+      <v-card color="white" flat>
+        <div class="d-flex justify-end">
+          <v-btn
+            dark
+            icon
+            color="grey"
+            @click="$router.push('/calendario/dayview')"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
+
         <v-card-text>
           <br />
           <v-row>
-            <v-col>
-              <h1>{{ cita }}</h1>
-              <p class="eventPhone mt-5">EventNum</p>
-              <p class="eventPhone mt-n3">EventPhone</p>
-            </v-col>
-            <v-col xl="4"
-              ><v-btn block large color="#999999" outlined>
-                <l class="titleAction">Reagendar cita</l>
-              </v-btn>
-              <v-btn large block class="mt-2 mb-3" color="red" outlined>
-                <l class="titleAction2" color="red">cancelar cita</l>
-              </v-btn>
-            </v-col>
-            <v-btn dark icon color="grey" @click="$router.push('/calendario/dayview')">
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
+            <v-row class="ml-0">
+              <v-col cols="12" xs="12" sm="8" xl="8">
+                <h1>{{ cita }}</h1>
+                <p class="eventPhone mt-3">EventNum</p>
+                <p class="eventPhone mt-n3">EventPhone</p>
+              </v-col>
+              <v-col cols="11" xs="11" sm="4" xl="4"
+                ><v-btn block large color="#999999" outlined>
+                  <l class="titleAction">Reagendar cita</l>
+                </v-btn>
+                <v-btn large block class="mt-2 mb-3 boton" color="red" outlined>
+                  <l class="titleAction2" color="red">cancelar cita</l>
+                </v-btn>
+              </v-col>
+            </v-row>
           </v-row>
-          <v-divider></v-divider>
+          <v-divider class="mt-3"></v-divider>
           <div class="mt-5">
             <p class="infor">
               <v-icon color="#9966ff">mdi-calendar</v-icon>sfsfs
@@ -45,26 +55,35 @@
           </div>
         </v-card-text>
         <v-card-actions>
-          <v-btn
-            large
-            v-on:click="status"
-            v-model="statuss"
-            class="eventAction"
-            outlined
-            ><v-icon color="green">mdi-eye</v-icon>
-            <l class="eventAction ml-3">ASISTIÓ</l>
-          </v-btn>
-          <v-btn
-            v-on:click="status"
-            v-model="statuss"
-            class="eventAction"
-            outlined
-            large
-          >
-            <v-icon color="red">mdi-eye-off</v-icon>
-            <l class="eventAction ml-3">NO ASISTIÓ</l>
-          </v-btn>
-          <p>{{status}}</p>
+          <v-row class="mt-n4">
+            <v-col cols="12" xs="12" sm="3" xl="3">
+              <v-btn
+                block
+                large
+                v-model="statuss"
+                @click="statuss = 'attended'"
+                v-on:click="status"
+                class="succes"
+                outlined
+                ><v-icon color="green">mdi-eye</v-icon>
+                <l class="eventAction ml-3">ASISTIÓ</l>
+              </v-btn>
+            </v-col>
+            <v-col cols="12" xs="12" sm="3" xl="3">
+              <v-btn
+                block
+                v-on:click="status"
+                @click="statuss = 'no-attended'"
+                v-model="statuss"
+                class="eventAction"
+                outlined
+                large
+              >
+                <v-icon color="red">mdi-eye-off</v-icon>
+                <l class="eventAction ml-3">NO ASISTIÓ</l>
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-card-actions>
         <br />
       </v-card>
@@ -75,59 +94,46 @@
 import dayView from './dayView.vue'
 export default {
   components: { dayView },
-  name: "appointmentCard",
+  name: 'appointmentCard',
   data() {
     return {
       selectedOpen: true,
       id: '',
-     evento: [],
-     cita: '',
-     name: '',
-     statuss: '',
+      evento: [],
+      cita: '',
+      name: '',
+      statuss: 'scheduled',
     }
   },
   mounted() {
-   /*  this.citas()  */
     this.citaId()
   },
   methods: {
-     /*  metodo para traer todas las citas registradas en el servidor | Genesis */
-     /* citas() {
+    /*  metodo para traer citas por id registradas en el servidor | Genesis */
+    citaId() {
       this.$axios
-        .get('api/v1/calendar/appointments', {
-          params: {
-            type: 'all',
-          },
-          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-        })
+        .get(
+          `api/v1/calendar/appointments/${this.$route.params.appointmentCard}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
         .then((res) => {
+          this.cita = res.data.data.patient.full_name
           this.evento = res.data.data
-          console.log(res)
+          this.id = res.data.data.id_appointment
         })
-    }, */ 
-     /*  metodo para traer citas por id registradas en el servidor | Genesis */
-      citaId() {
-      this.$axios
-        .get(`api/v1/calendar/appointments/${this.$route.params.appointmentCard}`, {
-          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-        })
-        .then((res) => {
-          this.cita=res.data.data.patient.full_name
-          this.evento = res.data.data
-         /*  this.name=res.data.data[0].patient_full_name */
-          this.id=res.data.data.id_appointment
-          console.log("aaaaa")
-        
-        })
-    }, 
+    },
     /*  cambiar status de la cita | Genesis */
     status() {
       this.$axios
         .put('api/v1/appointments/', {
-          status: this.status,
+          status: this.statuss,
         })
         .then((res) => {
-           console.log(res) 
+          console.log(res)
           localStorage.setItem('token', res.data.access_token)
           this.$router.push('/calendario/dayView')
         })
@@ -135,3 +141,23 @@ export default {
   },
 }
 </script>
+<style scoped>
+h1{
+  font-family: Montserrat;
+  font-size: 180%;
+}
+.v-btn::before {
+  background-color: grey;
+  border-radius: inherit;
+  bottom: 0;
+  color: inherit;
+  content: '';
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+}
+</style>

@@ -19,13 +19,17 @@
         >
           <v-toolbar class="pt-3" flat>
             <v-btn
+              style="background-color: #7900ff"
               width="10%"
               outlined
               color="white"
               class="mr-4 today"
               @click="setToday"
             >
-              <l class="today">Este mes</l>
+              <l class="today"
+                >Este <br />
+                mes</l
+              >
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn fab text small color="grey darken-2" @click="prev">
@@ -42,7 +46,7 @@
               <template v-slot:activator="{ on }">
                 <v-btn
                   width="10%"
-                  class="list white--text mr-5 ml-n5"
+                  class="list white--text mr-5 ml-0"
                   outlined
                   v-on="on"
                 >
@@ -167,7 +171,7 @@ export default {
     this.citas()
   },
   methods: {
-   /*  metodo para traer todos los datos del servidor | Genesis */
+    /*  metodo para traer todos los datos del servidor | Genesis */
     citas() {
       this.$axios
         .get('api/v1/calendar/appointments', {
@@ -197,7 +201,6 @@ export default {
     next() {
       this.$refs.calendar.next()
     },
-
   },
 }
 </script>
@@ -232,8 +235,7 @@ v-event-summary {
 .today {
   text-transform: capitalize;
   color: white;
-  font-size: 80%;
-  background-color: #7900ff;
+  font-size: 70%;
 }
 .caja {
   margin-left: 4vh;

@@ -35,7 +35,7 @@
         <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Teléfono*</p>
           <v-row>
-            <v-col cols="3" xs="3" sm="12" md="2" lg="2" xl="2">
+            <v-col cols="3" xs="2" sm="1" md="2" lg="2" xl="2">
              <!--  libreria para select de codigo de paises | Genesis -->
               <vue-country-code
                 style="height: 56px"
@@ -46,7 +46,7 @@
               >
               </vue-country-code>
             </v-col>
-            <v-col cols="9" xs="9" sm="12" md="10" lg="10" xl="10">
+            <v-col cols="9" xs="9" sm="11" md="10" lg="10" xl="10">
               <v-text-field
                 v-model="phone"
                 color="#7900ff"
@@ -62,7 +62,7 @@
         <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Teléfono de emergencia*</p>
           <v-row>
-            <v-col cols="3" xs="3" sm="12" md="2" lg="2" xl="2">
+            <v-col cols="3" xs="2" sm="1" md="2" lg="2" xl="2">
               <vue-country-code
                 style="height: 56px"
                 enabledCountryCode
@@ -72,7 +72,7 @@
               >
               </vue-country-code>
             </v-col>
-            <v-col cols="9" xs="9" sm="12" md="10" lg="10" xl="10">
+            <v-col cols="9" xs="9" sm="11" md="10" lg="10" xl="10">
               <v-text-field
                 v-model="emergency_phone"
                 color="#7900ff"
@@ -214,7 +214,7 @@
           <v-autocomplete
             v-model="service"
             hide-details
-            color="primary"
+            color="#9966ff"
             outlined
             placeholder="Escribe el tipo de servicio"
           >
