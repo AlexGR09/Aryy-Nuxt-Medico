@@ -170,10 +170,6 @@ export default {
           this.number_int = res.data.data[0].location.number_int
           this.state = res.data.data[0].location.state
         })
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
     deleteCard(id){
       console.log('creando petición DELETE')

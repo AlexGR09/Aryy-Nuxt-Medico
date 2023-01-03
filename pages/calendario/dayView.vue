@@ -131,8 +131,12 @@
 <script>
 import appointmentCard from './_appointmentCard.vue'
 export default {
+  name: "dayView",
   components: { appointmentCard },
-  data: () => ({
+ data(){
+  return{
+    cita: '',
+    ide: '',
     value: '',
     newDate: false,
     show: false,
@@ -151,6 +155,9 @@ export default {
     end: null,
     selectedOpen: false,
     evento: [],
+      props:{
+        evento: Object
+      },
     items: [
       {
         icon: 'mdi-home-outline',
@@ -169,7 +176,8 @@ export default {
       },
     ],
     colors: ['#1abc9c', '#3498db'],
-  }),
+  }
+ },
   computed: {
     cal() {
       return this.ready ? this.$refs.calendar : null
@@ -187,19 +195,33 @@ export default {
   },
   methods: {
     showw(){
-      this.$router.push('/calendario/'+this.id)
+      this.$router.push('/calendario/'+this.selectedRoute)
     },
    /*  metodo para traer todas las citas registradas en el servidor | Genesis */
     citas() {
       this.$axios
-        .get('api/v1/calendar/appointments', {
+        .get('api/v1/calendar/appointments/', {
           params: {
             type: 'all',
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
+          this.chosenRoute  = res
+          this.id=res.data.data[0].id_appointment
           this.evento = res.data.data
+          console.log(this.chosenRoute )
+        })
+    },
+    citasId() {
+      this.$router.push('/calendario/'+this.ide)
+      this.$axios
+      .get(`api/v1/calendar/appointments/${this.$route.params.appointmentCard}`, {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          this.cita=res.data.data
+          this.ide=res.data.data.appointment_id
         })
     },
     addEvent() {
