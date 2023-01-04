@@ -15,6 +15,7 @@
               <v-row class="ma-4 ml-n2 d-flex justify-start">
                 <v-col xs="12" sm="12" md="4" lg="4" xl="4">
                   <v-select
+                  @input="changedLabel"
                     v-model="sort"
                     append-icon="mdi-menu-down"
                     outlined
@@ -27,6 +28,9 @@
                     :items="keys"
                     placeholder="Ordenar por"
                   ></v-select>
+                 <!--  <v-btn @click="sorti">Sort By Calories!</v-btn>
+                  <p>a{{ sort }}</p> -->
+              <!--     <p>{{ sortBy }}</p> -->
                 </v-col>
                 <v-toolbar flat color="transparent" class="vtoolbar ml-n8">
                   <v-col class="ml-8" xs="12" sm="12" md="12" lg="12" xl="12">
@@ -89,7 +93,8 @@
               mobile-breakpoint="0"
               item-key="name"
               hide-default-header
-              :custom-sort="customSort"
+              :sort-by.sync="sortBy"
+              :sort-desc.sync="sortDesc"
               :page.sync="page"
               :items-per-page="itemsPerPage"
               hide-default-footer
@@ -200,6 +205,8 @@ export default {
   components: {},
   data() {
     return {
+      sortBy: "name",
+      sortDesc: false,
       sort: '',
       isSelecting: false,
       search: '',
@@ -217,10 +224,10 @@ export default {
           align: 'start',
           value: 'name',
         },
-        { text: 'Teléfono', value: 'species', align: 'start' },
-        { text: 'Última cita', value: 'gender', align: 'start' },
+        { text: 'Teléfono', value: 'species', align: 'start'},
+        { text: 'Última cita', value: 'gender', align: 'start'},
 
-        { text: '', value: 'actions', sortable: false, align: 'end' },
+        { text: '', value: 'actions', align: 'end', },
       ],
       /* Opciones para el select de sort by | Genesis */
       keys: [
@@ -255,7 +262,14 @@ export default {
     this.getTodos()
   },
   methods: {
-
+    changedLabel(event) {
+      this.sort = event;
+      if(this.sort==="Nombre completo"){
+        this.sortDesc = !this.sortDesc;
+      }else{
+        console.log("adiooooos")
+      }
+    },
     deleteItemConfirm() {
       this.characters.splice(this.editedIndex, 1)
       this.closeDelete()

@@ -94,9 +94,9 @@
             event-end="appointment_start_end"
             event-name="patient_full_name"
             event-color="#1abc9c"
-            @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
+            @click:event="showw"
           >
             <template v-slot:day-body="{ date, week }">
               <div
