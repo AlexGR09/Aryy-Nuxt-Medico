@@ -15,7 +15,7 @@
             dark
             icon
             color="grey"
-           @click="selectedOpen=false"
+           @click="$router.push('/calendario/dayview')"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>

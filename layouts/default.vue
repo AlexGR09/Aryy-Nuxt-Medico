@@ -17,10 +17,6 @@
           max-width="23"
         ></v-img>
       </v-btn>
-      <!--    <v-chip  class="mr-n9 ml-2" style=" background: rgb(179,128,255);
-            background: linear-gradient(0deg, rgba(179,128,255,1) 2%, rgba(121,0,255,1) 48%, rgba(81,1,204,1) 98%);">
-        <p class="white--text mr-4 mt-4" style="font-size: .9rem">214 pts</p>
-      </v-chip> -->
       <v-btn
         class="ml-5 mr-7"
         fab
@@ -48,7 +44,7 @@
           alt="logo Aryy"
         />
       </v-avatar>
-      <v-list class="list-item" active-class="bg-active">
+      <v-list class="list-item mb-n6" active-class="bg-active">
         <!-- renderizado de lista del SideBar | Luis Reyes -->
         <v-list-item
           v-for="(item, i) in items"
@@ -66,6 +62,47 @@
             <v-list-item-title class="v-list-item-titlee">{{
               item.title
             }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+   <!--    lista de los elementos bloqueados | Genesis -->
+      <v-list color="#f4edff" disabled class="list-item">
+        <v-list-item
+          v-for="(blockedItem, i) in blockedItems"
+          :key="i"
+          :to="blockedItem.to"
+          router
+          exact
+        >
+          <v-list-item-action active-class="bg-active">
+            <img class="icons" :src="blockedItem.url" alt="" />
+          </v-list-item-action>
+          <v-list-item-content active-class="bg-active">
+            <v-list-item-title class="v-list-item-titlee">{{
+              blockedItem.title
+            }}</v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-action active-class="bg-active">
+            <img
+              class="icons"
+              :src="require('@/assets/icons/icon_lock.svg')"
+              alt=""
+            />
+          </v-list-item-action>
+        </v-list-item>
+      </v-list>
+
+      <v-list class="list-item mt-n3" active-class="bg-active">
+        <v-list-item class="mt-n1" @click="logout">
+          <v-list-item-icon>
+            <v-img :src="require('@/assets/icons/SettingsIcon.svg')" />
+          </v-list-item-icon>
+
+          <v-list-item-content active-class="bg-active">
+            <v-list-item-title class="v-list-item-titlee"
+              >Ajustes</v-list-item-title
+            >
           </v-list-item-content>
         </v-list-item>
         <v-list-item class="mt-n1" @click="logout">
@@ -93,16 +130,8 @@
         </div>
       </v-list>
     </v-navigation-drawer>
-
-    <!-- código de NavBar | Luis Reyes-->
-    <!--  <v-app-bar :clipped-left="clipped" fixed app> 
-    
-      </v-app-bar> -->
-    <!-- pintamos los componetes | Luis Reyes-->
-
     <v-main>
       <v-container>
-        <!-- componente que utiliza para mostrar los componentes de las páginas | Luis Reyes-->
         <Nuxt />
       </v-container>
     </v-main>
@@ -115,7 +144,6 @@ export default {
   data() {
     return {
       activeColor: '#7900ff',
-
       clipped: false,
       drawer: false,
       fixed: false,
@@ -136,6 +164,8 @@ export default {
           title: 'Pacientes',
           to: '/patients/list',
         },
+      ],
+      blockedItems: [
         {
           url: require('@/assets/icons/MessageIcon.svg'),
           title: 'Mensajes',
@@ -171,12 +201,8 @@ export default {
           title: 'Asistente',
           to: '/asistente',
         },
-        {
-          url: require('@/assets/icons/SettingsIcon.svg'),
-          title: 'Ajustes',
-          to: '/ajustes',
-        },
       ],
+
       miniVariant: false,
       right: true,
       rightDrawer: false,
