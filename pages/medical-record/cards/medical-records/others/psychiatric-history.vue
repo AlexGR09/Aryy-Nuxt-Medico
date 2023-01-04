@@ -2,10 +2,14 @@
 <template>
   <v-dialog scrollable v-model="dialog" max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn class="justify-start" width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
+      <v-row>
+      <v-col cols="12" xl="12">
+      <v-btn class="justify-start" block outlined color="#7900ff" v-bind="attrs" v-on="on">
         <v-icon color="#7900ff">mdi-plus</v-icon>
         <l>ANTECEDENTES PSIQUIATRICOS</l>
       </v-btn>
+    </v-col>
+  </v-row>
     </template>
     <v-card height="600px">
       <v-card-title>

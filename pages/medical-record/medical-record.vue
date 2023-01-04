@@ -3,13 +3,12 @@
   <div class="template">
     <v-row>
       <!-- card info basica | Genesis -->
-      <v-col xs="12" sm="12" md="8" lg="8" xl="8">
+      <v-col cols="12" xs="12" sm="12" md="8" lg="8" xl="8">
         <H1 class="title mb-3">INFORMACIÓN BÁSICA</H1>
         <basic-info />
       </v-col>
-   </v-row>
       <v-row>
-        <v-col xs="2" sm="2" md="2" lg="8" xl="2">
+        <v-col class="ml-3 mr-3" xs="11" sm="11" md="11" lg="8" xl="11">
         <H1 class="title mt-3">NOTAS INTERNAS</H1>
         <v-text-area></v-text-area>
         <v-textarea
@@ -17,12 +16,14 @@
           color="#E0E0E0"
           :style="image"
           outlined
-          width="10vh"
+          width="9vh"
           height="40vh"
           no-resize
         ></v-textarea> 
       </v-col> 
       </v-row>
+   </v-row>
+      
 <v-row>
       <v-col xs="12" sm="12" md="8" lg="8" xl="8">
         <H1 class="title mb-3">EXPEDIENTE MÉDICO</H1>
@@ -57,7 +58,7 @@ export default {
   data() { return {
       /*  fondo efecto libreta para las notas | Genesis */
       image: {
-        height: '355px',
+        height: '83%',
         backgroundImage: 'url(https://i.ibb.co/c2rkczy/Doc1-page-0001-6.jpg)',
       },
     }

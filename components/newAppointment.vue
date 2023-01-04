@@ -144,7 +144,7 @@
             >
               <v-spacer></v-spacer>
               <v-btn text class="btn" color="#7900ff" @click="modal = false">
-                Cancelar
+                <p class="can">Cancelar</p>
               </v-btn>
               <v-btn
                 text
@@ -153,7 +153,7 @@
                 v-on:click="modal = false"
                 @click="$refs.dialog.save(date)"
               >
-                OK
+              <p class="can">Ok</p>
               </v-btn>
             </v-date-picker>
           </v-dialog>
@@ -196,7 +196,7 @@
             >
               <v-spacer></v-spacer>
               <v-btn class="btn" text color="#9966ff" @click="modal2 = false">
-                <p class="btn-calendar">Cancelar</p>
+                <p class="can">Cancelar</p>
               </v-btn>
               <v-btn
                 class="btn"
@@ -204,7 +204,7 @@
                 color="#9966ff"
                 @click="$refs.dialog.save(time)"
               >
-                <p class="btn-calendar">Ok</p>
+              <p class="can">Ok</p>
               </v-btn>
             </v-time-picker>
           </v-dialog>
@@ -350,5 +350,11 @@ p {
 .btn-calendar {
   font-family: Montserrat;
   text-transform: uppercase;
+}
+p.can{
+  font-family: Montserrat;
+  color: #4f565f;
+  text-transform: capitalize;
+  font-size: 100%;
 }
 </style>

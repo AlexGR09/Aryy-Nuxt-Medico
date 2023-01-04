@@ -423,4 +423,12 @@ span.breadcrumbs {
 .theme--light.v-time-picker-clock {
   background: #cccccc;
 }
+.v-date-picker-title__date,
+.v-date-picker-header__value button {
+   text-transform: capitalize;
+}
+.v-application {
+  font-family: "Montserrat";
+  line-height: 1.5;
+}
 </style>
