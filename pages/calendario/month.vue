@@ -4,7 +4,7 @@
       <v-spacer />
       <v-col>
         <v-breadcrumbs class="breadcrumbs" :items="items">
-          <template v-slot:item="{ item }">
+          <template #item="{ item }">
             <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
               <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
               <span class="breadcrumbs">{{ item.text }}</span>
@@ -35,7 +35,7 @@
             <v-btn fab text small color="grey darken-2" @click="prev">
               <v-icon color="#9966ff">mdi-arrow-left-drop-circle</v-icon>
             </v-btn>
-            <div class="caja" v-if="$refs.calendar">
+            <div v-if="$refs.calendar" class="caja">
               <h4>{{ $refs.calendar.title }}</h4>
             </div>
             <v-btn fab text small color="grey darken-2" @click="next">
@@ -43,7 +43,7 @@
             </v-btn>
             <v-spacer></v-spacer>
             <v-menu bottom left>
-              <template v-slot:activator="{ on }">
+              <template #activator="{ on }">
                 <v-btn
                   width="10%"
                   class="list white--text mr-5 ml-0"
@@ -55,13 +55,13 @@
                 </v-btn>
               </template>
               <v-list style="font-family: Montserrat">
-                <v-list-item @click="type = 'day'" to="/calendario/dayView">
+                <v-list-item to="/calendario/dayView" @click="type = 'day'">
                   <v-list-item-title>Día</v-list-item-title>
                 </v-list-item>
-                <v-list-item @click="type = 'week'" to="/calendario/week">
+                <v-list-item to="/calendario/week" @click="type = 'week'">
                   <v-list-item-title>Semana</v-list-item-title>
                 </v-list-item>
-                <v-list-item @click="type = 'month'" to="/calendario/month">
+                <v-list-item to="/calendario/month" @click="type = 'month'">
                   <v-list-item-title>Mes</v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -70,12 +70,12 @@
         </v-sheet>
         <v-sheet height="44rem" width="84rem">
           <v-calendar
+            ref="calendar"
+            v-model="type"
             event-text-color="white"
             class="calend white--text"
             locale="mx-es"
-            ref="calendar"
             type="month"
-            v-model="type"
             color="#7900ff"
             event-start="appointment_start"
             event-end="appointment_start_end"
@@ -88,35 +88,6 @@
             @click:date="viewDay"
           >
           </v-calendar>
-          <v-menu
-            v-model="selectedOpen"
-            :close-on-content-click="false"
-            :activator="selectedElement"
-            offset-x
-          >
-            <v-card color="grey lighten-4" min-width="350px" flat>
-              <v-toolbar :color="selectedEvent.color" dark>
-                <v-btn icon>
-                  <v-icon>mdi-pencil</v-icon>
-                </v-btn>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-heart</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
-              </v-toolbar>
-              <v-card-text>
-                <span v-html="selectedEvent.details"></span>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn text color="secondary" @click="selectedOpen = false">
-                  Cancel
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-menu>
         </v-sheet>
       </v-col>
       <v-spacer />
@@ -126,18 +97,8 @@
   
 <script>
 export default {
-  head: {
-    title: 'Calendario',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'home page descripcion',
-      },
-    ],
-  },
-  data() {
-    return {
+data() {
+  return {
       evento: [],
       focus: '',
       appointment_start: '',
@@ -165,7 +126,16 @@ export default {
       ],
     }
   },
-
+  head: {
+    title: 'Calendario',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'home page descripcion',
+      },
+    ],
+  },
   mounted() {
     this.$refs.calendar.checkChange()
     this.citas()
@@ -181,7 +151,6 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          console.log(res)
           this.evento = res.data.data
         })
     },
@@ -314,7 +283,7 @@ span::first-letter {
 }
 
 .v-btn__content {
-  color: #999999;
+  color: #cccccc;
   font-size: 18px;
   text-transform: capitalize;
   font-family: 'Montserrat';

@@ -39,7 +39,7 @@
   
   <script>
   export default {
-    name: 'appointmentRecord',
+    name: 'AppointmentRecord',
     layout: 'medicalRecord',
     data() {
       return {

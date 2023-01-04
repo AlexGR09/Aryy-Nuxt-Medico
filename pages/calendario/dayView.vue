@@ -35,7 +35,7 @@
               >
                 <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
               </v-btn>
-              <v-toolbar-title v-if="$refs.calendar" class="calendar mt-7" >
+              <v-toolbar-title v-if="$refs.calendar" class="calendar mt-7">
                 {{ $refs.calendar.title }}
               </v-toolbar-title>
               <v-btn
@@ -65,10 +65,10 @@
                   <v-list-item to="/calendario/dayView" @click="type = 'day'">
                     <v-list-item-title>Día</v-list-item-title>
                   </v-list-item>
-                  <v-list-item to="/calendario/week" @click="type = 'week'" >
+                  <v-list-item to="/calendario/week" @click="type = 'week'">
                     <v-list-item-title>Semana</v-list-item-title>
                   </v-list-item>
-                  <v-list-item to="/calendario/month" @click="type = 'month'" >
+                  <v-list-item to="/calendario/month" @click="type = 'month'">
                     <v-list-item-title>Mes</v-list-item-title>
                   </v-list-item>
                 </v-list>
@@ -77,8 +77,8 @@
           </v-sheet>
           <v-sheet height="700">
             <v-calendar
-            ref="calendar"
-            v-model="focus"
+              ref="calendar"
+              v-model="focus"
               class="calend"
               locale="mx-es"
               type="day"
@@ -92,10 +92,10 @@
               event-color="#1abc9c"
               :events="evento"
               @click="addEvent"
-              @click:event="showw"
               @click:more="viewDay"
               @click:date="viewDay"
               @click:time="addEvent"
+              @click:event="showw"
             >
               <template #day-body="{ date, week }">
                 <div
@@ -104,23 +104,35 @@
                   :style="{ top: nowY }"
                 ></div>
               </template>
+              <template #event="{ event }">
+                <router-link
+                  style="text-decoration: none; color: inherit"
+                  :to="'/calendario/' + event.id_appointment"
+                >
+                  <p class="eventName">
+                    <b>{{ event.patient_full_name }} </b
+                    >{{ event.appointment_time }} -
+                    {{ event.appointment_time_end }}
+                  </p>
+                </router-link>
+              </template>
             </v-calendar>
             <v-dialog
-            v-model="newDate"
+              v-model="newDate"
               width="1040px"
               offset-x
               :close-on-content-click="false"
             >
-              <new-appointment/>
+              <new-appointment />
             </v-dialog>
             <v-dialog
-            v-model="selectedOpen"
+              v-model="selectedOpen"
               width="640px"
               offset-x
               :close-on-content-click="false"
               :activator="selectedElement"
             >
-              <appointment-card/>
+              <appointment-card />
             </v-dialog>
           </v-sheet>
         </v-card>
@@ -131,53 +143,53 @@
 <script>
 import appointmentCard from './_appointmentCard.vue'
 export default {
-  name: "dayView",
+  name: 'DayView',
   components: { appointmentCard },
- data(){
-  return{
-    cita: '',
-    ide: '',
-    value: '',
-    newDate: false,
-    show: false,
-    ready: false,
-    focus: '',
-    type: 'month',
-    typeToLabel: {
-      month: 'Mes',
-      week: 'Semana',
-      day: 'Dia',
-      '4day': '4 Dias',
-    },
-    selectedEvent: {},
-    selectedElement: null,
-    start: null,
-    end: null,
-    selectedOpen: false,
-    evento: [],
-      props:{
-        evento: Object
+  data() {
+    return {
+      cita: '',
+      id: '',
+      value: '',
+      newDate: false,
+      show: false,
+      ready: false,
+      focus: '',
+      type: 'month',
+      typeToLabel: {
+        month: 'Mes',
+        week: 'Semana',
+        day: 'Dia',
+        '4day': '4 Dias',
       },
-    items: [
-      {
-        icon: 'mdi-home-outline',
-        disabled: false,
-        href: '/',
+      selectedEvent: {},
+      selectedElement: null,
+      start: null,
+      end: null,
+      selectedOpen: false,
+      evento: [],
+      props: {
+        evento: Object,
       },
-      {
-        text: 'Calendario',
-        disabled: false,
-        href: '/calendario/month',
-      },
-      {
-        text: 'Dia',
-        disabled: true,
-        href: '/calendario/dayView',
-      },
-    ],
-    colors: ['#1abc9c', '#3498db'],
-  }
- },
+      items: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Calendario',
+          disabled: false,
+          href: '/calendario/month',
+        },
+        {
+          text: 'Dia',
+          disabled: true,
+          href: '/calendario/dayView',
+        },
+      ],
+      colors: ['#1abc9c', '#3498db'],
+    }
+  },
   computed: {
     cal() {
       return this.ready ? this.$refs.calendar : null
@@ -194,10 +206,10 @@ export default {
     this.citas()
   },
   methods: {
-    showw(){
-      this.$router.push('/calendario/'+this.selectedRoute)
+    showw() {
+      this.$router.push('/calendario/' + this.id)
     },
-   /*  metodo para traer todas las citas registradas en el servidor | Genesis */
+    /*  metodo para traer todas las citas registradas en el servidor | Genesis */
     citas() {
       this.$axios
         .get('api/v1/calendar/appointments/', {
@@ -207,21 +219,11 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          this.chosenRoute  = res
-          this.id=res.data.data[0].id_appointment
+          this.chosenRoute = res
+          this.id = res.data.data[0].id_appointment
           this.evento = res.data.data
-          console.log(this.chosenRoute )
-        })
-    },
-    citasId() {
-      this.$router.push('/calendario/'+this.ide)
-      this.$axios
-      .get(`api/v1/calendar/appointments/${this.$route.params.appointmentCard}`, {
-          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-        })
-        .then((res) => {
-          this.cita=res.data.data
-          this.ide=res.data.data.appointment_id
+          this.event = res.data.data[0]
+          console.log(res)
         })
     },
     addEvent() {
@@ -316,6 +318,9 @@ p.eventPhone {
   font-size: 120%;
   color: gray;
   font-family: Montserrat;
+}
+p.eventName {
+  font-family: montserratMedium;
 }
 h4 {
   font-family: Montserrat;
