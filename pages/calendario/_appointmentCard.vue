@@ -15,7 +15,7 @@
             dark
             icon
             color="grey"
-            @click="$router.push('/calendario/dayview')"
+           @click="selectedOpen=false"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
@@ -133,7 +133,6 @@ export default {
           status: this.statuss,
         })
         .then((res) => {
-          console.log(res)
           localStorage.setItem('token', res.data.access_token)
           this.$router.push('/calendario/dayView')
         })

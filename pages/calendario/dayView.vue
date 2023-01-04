@@ -124,16 +124,8 @@
               :close-on-content-click="false"
             >
               <new-appointment />
-            </v-dialog>
-            <v-dialog
-              v-model="selectedOpen"
-              width="640px"
-              offset-x
-              :close-on-content-click="false"
-              :activator="selectedElement"
-            >
-              <appointment-card />
-            </v-dialog>
+            </v-dialog> 
+             
           </v-sheet>
         </v-card>
       </v-col>
@@ -141,10 +133,8 @@
   </div>
 </template>
 <script>
-import appointmentCard from './_appointmentCard.vue'
 export default {
   name: 'DayView',
-  components: { appointmentCard },
   data() {
     return {
       cita: '',
