@@ -95,7 +95,6 @@
               @click:more="viewDay"
               @click:date="viewDay"
               @click:time="addEvent"
-              @click:event="showw"
             >
               <template #day-body="{ date, week }">
                 <div
@@ -117,6 +116,7 @@
                 </router-link>
               </template>
             </v-calendar>
+            
             <v-dialog
               v-model="newDate"
               width="1040px"
@@ -196,9 +196,9 @@ export default {
     this.citas()
   },
   methods: {
-    showw() {
+   /*  showw() {
       this.$router.push('/calendario/' + this.id)
-    },
+    }, */
     /*  metodo para traer todas las citas registradas en el servidor | Genesis */
     citas() {
       this.$axios
@@ -248,9 +248,9 @@ export default {
     next() {
       this.$refs.calendar.next()
     },
-    showEvent({ nativeEvent, event }) {
+    showEvent({ nativeEvent, evento }) {
       const open = () => {
-        this.selectedEvent = event
+        this.selectedEvent = evento
         this.selectedElement = nativeEvent.target
         requestAnimationFrame(() =>
           requestAnimationFrame(() => (this.selectedOpen = true))

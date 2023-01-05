@@ -3,7 +3,7 @@
   <div>
     <day-view />
     <v-dialog
-      persistent
+      
       max-width="650px"
       v-model="selectedOpen"
       offset-x
@@ -27,8 +27,8 @@
             <v-row class="ml-0">
               <v-col cols="12" xs="12" sm="8" xl="8">
                 <h1>{{ cita }}</h1>
-                <p class="eventPhone mt-3">EventNum</p>
-                <p class="eventPhone mt-n3">EventPhone</p>
+                <p class="eventPhone mt-3">No. {{id}}</p>
+                <p class="eventPhone mt-n3">{{phone}}</p>
               </v-col>
               <v-col cols="11" xs="11" sm="4" xl="4"
                 ><v-btn block large color="#999999" outlined>
@@ -43,14 +43,16 @@
           <v-divider class="mt-3"></v-divider>
           <div class="mt-5">
             <p class="infor">
-              <v-icon color="#9966ff">mdi-calendar</v-icon>sfsfs
+              <v-icon class="mr-5" color="#9966ff">mdi-calendar</v-icon>{{date}}
+            </p>
+            <p class="infor ml-11 mt-n3">
+             {{hour}} hrs
+            </p>
+            <p class="ml-11 mt-n3">
+             {{type}}
             </p>
             <p class="infor">
-              <v-icon color="#9966ff">mdi-account</v-icon>Paciente nuevo
-            </p>
-            <p class="infor">
-              <v-icon color="#9966ff">mdi-map-marker-circle</v-icon>Consultorio
-              Principal
+              <v-icon class="mr-5" color="#9966ff">mdi-map-marker-circle</v-icon>{{facility}}
             </p>
           </div>
         </v-card-text>
@@ -98,6 +100,7 @@ export default {
   data() {
     return {
       selectedOpen: true,
+      selectedEvent: {},
       id: '',
       evento: [],
       cita: '',
@@ -121,9 +124,14 @@ export default {
           }
         )
         .then((res) => {
-          this.cita = res.data.data.patient.full_name
           this.evento = res.data.data
-          this.id = res.data.data.id_appointment
+          this.cita = res.data.data.patient.full_name
+          this.phone = res.data.data.patient.user_phone_number
+          this.id = res.data.data.appointment_id
+          this.date = res.data.data.appointment_date
+          this.type = res.data.data.appointment_type
+          this.hour = res.data.data.appointment_time
+          this.facility = res.data.data.facility.facility_name
         })
     },
     /*  cambiar status de la cita | Genesis */
@@ -143,7 +151,8 @@ export default {
 <style scoped>
 h1{
   font-family: Montserrat;
-  font-size: 180%;
+  font-size: 4vh;
+  color: #7900ff;
 }
 .v-btn::before {
   background-color: grey;
