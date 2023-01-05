@@ -122,6 +122,16 @@
               :activator="selectedElement"
             >
               <v-card color="white" min-width="350px" flat>
+                <div class="d-flex justify-end">
+          <v-btn class="mb-n5"
+            dark
+            icon
+            color="grey"
+                  @click="selectedOpen=false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
                 <v-card-text>
                   <br />
                   <v-row>
