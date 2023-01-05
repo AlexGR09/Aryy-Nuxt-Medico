@@ -1,10 +1,11 @@
+
 <template>
   <div>
     <v-row class="mt-n3">
       <!-- Calendario vista dia |Genesis -->
       <v-col>
         <v-breadcrumbs class="breadcrumbs" :items="items">
-          <template #item="{ item }">
+          <template v-slot:item="{ item }">
             <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
               <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
               <span class="breadcrumbs">{{ item.text }}</span>
@@ -12,7 +13,7 @@
           </template>
         </v-breadcrumbs>
         <v-card>
-          <v-sheet class="ml-n2" height="84">
+          <v-sheet height="84">
             <v-toolbar flat>
               <v-btn
                 width="10%"
@@ -35,7 +36,7 @@
               >
                 <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
               </v-btn>
-              <v-toolbar-title v-if="$refs.calendar" class="calendar mt-7">
+              <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
                 {{ $refs.calendar.title }}
               </v-toolbar-title>
               <v-btn
@@ -50,7 +51,7 @@
               </v-btn>
               <v-spacer></v-spacer>
               <v-menu bottom left>
-                <template #activator="{ on }">
+                <template v-slot:activator="{ on }">
                   <v-btn
                     width="10%"
                     class="list white--text mt-7 ml-5 rounded-lg"
@@ -62,13 +63,13 @@
                   </v-btn>
                 </template>
                 <v-list style="font-family: Montserrat">
-                  <v-list-item to="/calendario/dayView" @click="type = 'day'">
+                  <v-list-item @click="type = 'day'" to="/calendario/dayView">
                     <v-list-item-title>Día</v-list-item-title>
                   </v-list-item>
-                  <v-list-item to="/calendario/week" @click="type = 'week'">
+                  <v-list-item @click="type = 'week'" to="/calendario/week">
                     <v-list-item-title>Semana</v-list-item-title>
                   </v-list-item>
-                  <v-list-item to="/calendario/month" @click="type = 'month'">
+                  <v-list-item @click="type = 'month'" to="/calendario/month">
                     <v-list-item-title>Mes</v-list-item-title>
                   </v-list-item>
                 </v-list>
@@ -77,55 +78,115 @@
           </v-sheet>
           <v-sheet height="700">
             <v-calendar
-              ref="calendar"
-              v-model="focus"
               class="calend"
               locale="mx-es"
+              ref="calendar"
               type="day"
+              v-model="focus"
               color="#9966ff"
               interval-height="80px"
               :short-intervals="false"
               interval-width="80px"
+              @click="addEvent"
               event-start="appointment_start"
               event-end="appointment_start_end"
               event-name="patient_full_name"
               event-color="#1abc9c"
               :events="evento"
-              @click="addEvent"
+              @click:event="showEvent"
               @click:more="viewDay"
               @click:date="viewDay"
               @click:time="addEvent"
             >
-              <template #day-body="{ date, week }">
+              <template v-slot:day-body="{ date, week }">
                 <div
                   class="v-current-time"
                   :class="{ first: date === week[0].date }"
                   :style="{ top: nowY }"
                 ></div>
               </template>
-              <template #event="{ event }">
-                <router-link
-                  style="text-decoration: none; color: inherit"
-                  :to="'/calendario/' + event.id_appointment"
-                >
-                  <p class="eventName">
-                    <b>{{ event.patient_full_name }} </b
-                    >{{ event.appointment_time }} -
-                    {{ event.appointment_time_end }}
-                  </p>
-                </router-link>
-              </template>
             </v-calendar>
-            
             <v-dialog
-              v-model="newDate"
               width="1040px"
+              v-model="newDate"
               offset-x
               :close-on-content-click="false"
             >
-              <new-appointment />
-            </v-dialog> 
-             
+              <new-appointment/>
+            </v-dialog>
+            <v-dialog
+              width="640px"
+              v-model="selectedOpen"
+              offset-x
+              :close-on-content-click="false"
+              :activator="selectedElement"
+            >
+              <v-card color="white" min-width="350px" flat>
+                <v-card-text>
+                  <br />
+                  <v-row>
+                    <v-col>
+                      <h1 class="eventName">{{selectedEvent.patient_full_name}}</h1>
+                      <p class="eventPhone mt-5">No. {{selectedEvent.id_appointment}}</p>
+                      <p class="eventPhone mt-n3">{{number}}</p>
+                      
+                    </v-col>
+                    <v-col xl="4"
+                      ><v-btn large  width="192px" color="#999999" outlined>
+                        <l class="titleAction">Reagendar cita</l>
+                      </v-btn>
+                      <v-btn
+                        large
+                        width="192px"
+                        class="mt-2 mb-3"
+                        color="red"
+                        outlined
+                      >
+                        <l class="titleAction2" color="red">cancelar cita</l>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                  <v-divider></v-divider>
+                  <div class="mt-5">
+                    <p class="infor">
+                      <v-icon class="mr-5" color="#9966ff">mdi-calendar</v-icon>{{date}}
+                    </p>
+                    <p class="infor ml-11 mt-n3">
+                      {{selectedEvent.appointment_time}} -  {{selectedEvent.appointment_time_end}} hrs
+                    </p>
+                    <p class="type ml-11 mt-n3">
+                      {{selectedEvent.appointment_type}}
+                    </p>
+                   
+                    <p class="infor">
+                      <v-icon class="mr-4" color="#9966ff">mdi-map-marker-circle</v-icon
+                      > {{selectedEvent.facility_name}}
+                    </p>
+                  </div>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn
+                    class="eventAction"
+                    outlined
+                    color="green"
+                    @click="selectedOpen = false"
+                    ><v-icon color="green">mdi-eye</v-icon>
+                    <l class="eventAction ml-3">ASISTIÓ</l>
+                  </v-btn>
+                  <v-btn
+                    class="eventAction"
+                    outlined
+                    color="red"
+                    @click="selectedOpen = false"
+                  >
+                    <v-icon color="red">mdi-eye-off</v-icon>
+                    <l class="eventAction ml-3">NO ASISTIÓ</l>
+                  </v-btn>
+                 
+                </v-card-actions>
+                <br />
+              </v-card>
+            </v-dialog>
           </v-sheet>
         </v-card>
       </v-col>
@@ -134,52 +195,45 @@
 </template>
 <script>
 export default {
-  name: 'DayView',
-  data() {
-    return {
-      cita: '',
-      id: '',
-      value: '',
-      newDate: false,
-      show: false,
-      ready: false,
-      focus: '',
-      type: 'month',
-      typeToLabel: {
-        month: 'Mes',
-        week: 'Semana',
-        day: 'Dia',
-        '4day': '4 Dias',
+  data: () => ({
+    number: '',
+    value: '',
+    newDate: false,
+    show: false,
+    ready: false,
+    focus: '',
+    type: 'month',
+    typeToLabel: {
+      month: 'Mes',
+      week: 'Semana',
+      day: 'Dia',
+      '4day': '4 Dias',
+    },
+    selectedEvent: {},
+    selectedElement: null,
+    start: null,
+    end: null,
+    selectedOpen: false,
+    evento: [],
+    items: [
+      {
+        icon: 'mdi-home-outline',
+        disabled: false,
+        href: '/',
       },
-      selectedEvent: {},
-      selectedElement: null,
-      start: null,
-      end: null,
-      selectedOpen: false,
-      evento: [],
-      props: {
-        evento: Object,
+      {
+        text: 'Calendario',
+        disabled: false,
+        href: '/calendario/month',
       },
-      items: [
-        {
-          icon: 'mdi-home-outline',
-          disabled: false,
-          href: '/',
-        },
-        {
-          text: 'Calendario',
-          disabled: false,
-          href: '/calendario/month',
-        },
-        {
-          text: 'Dia',
-          disabled: true,
-          href: '/calendario/dayView',
-        },
-      ],
-      colors: ['#1abc9c', '#3498db'],
-    }
-  },
+      {
+        text: 'Dia',
+        disabled: true,
+        href: '/calendario/dayView',
+      },
+    ],
+    colors: ['#1abc9c', '#3498db'],
+  }),
   computed: {
     cal() {
       return this.ready ? this.$refs.calendar : null
@@ -196,24 +250,18 @@ export default {
     this.citas()
   },
   methods: {
-   /*  showw() {
-      this.$router.push('/calendario/' + this.id)
-    }, */
-    /*  metodo para traer todas las citas registradas en el servidor | Genesis */
+   /*  metodo para traer todas las citas registradas en el servidor | Genesis */
     citas() {
       this.$axios
-        .get('api/v1/calendar/appointments/', {
+        .get('api/v1/calendar/appointments', {
           params: {
             type: 'all',
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
-        .then((res) => {
-          this.chosenRoute = res
-          this.id = res.data.data[0].id_appointment
+        .then((res) => {/* 
+          console.log(res) */
           this.evento = res.data.data
-          this.event = res.data.data[0]
-          console.log(res)
         })
     },
     addEvent() {
@@ -248,21 +296,42 @@ export default {
     next() {
       this.$refs.calendar.next()
     },
-    showEvent({ nativeEvent, evento }) {
+    showEvent({ nativeEvent, event }) {
       const open = () => {
-        this.selectedEvent = evento
+       
+        this.selectedEvent = event
         this.selectedElement = nativeEvent.target
         requestAnimationFrame(() =>
           requestAnimationFrame(() => (this.selectedOpen = true))
         )
       }
       if (this.selectedOpen) {
+       
         this.selectedOpen = false
         requestAnimationFrame(() => requestAnimationFrame(() => open()))
       } else {
-        open()
+        open()    
       }
       nativeEvent.stopPropagation()
+      this.citaId()
+    },
+
+    citaId() {
+      this.$axios
+        .get(
+          "api/v1/calendar/appointments/"+this.selectedEvent.id_appointment,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          this.cita=res.data.data
+          this.number=res.data.data.patient.user_phone_number
+          this.date=res.data.data.appointment_date
+          console.log(res)
+        })
     },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
@@ -274,7 +343,6 @@ export default {
 <style lang="scss" scoped>
 @import '~assets/scss/variables';
 </style>
-
 <style lang="scss">
 /* estilos de puntero de hora actual  | Genesis */
 .v-current-time {
@@ -284,7 +352,6 @@ export default {
   left: -1px;
   right: 0;
   pointer-events: none;
-
   &.first::before {
     content: '';
     position: absolute;
@@ -300,7 +367,7 @@ export default {
   color: #999999;
 }
 h1.eventName {
-  font-size: 230%;
+  font-size: 220%;
   color: #7900ff;
   font-family: Montserrat;
 }
@@ -308,9 +375,6 @@ p.eventPhone {
   font-size: 120%;
   color: gray;
   font-family: Montserrat;
-}
-p.eventName {
-  font-family: montserratMedium;
 }
 h4 {
   font-family: Montserrat;
@@ -378,6 +442,10 @@ p.infor {
   font-family: MontserratBold;
   font-size: 110%;
 }
+p.type {
+  font-family: Montserrat;
+  font-size: 110%;
+}
 .titleAction {
   text-transform: uppercase;
   font-size: 90%;
@@ -422,13 +490,5 @@ span.breadcrumbs {
 }
 .theme--light.v-time-picker-clock {
   background: #cccccc;
-}
-.v-date-picker-title__date,
-.v-date-picker-header__value button {
-   text-transform: capitalize;
-}
-.v-application {
-  font-family: "Montserrat";
-  line-height: 1.5;
 }
 </style>
