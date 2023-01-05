@@ -71,7 +71,7 @@
               <img
                 width="24"
                 height="24"
-                :src="require('@/assets/icons/icon_phone.svg')"
+                :src="require('@/assets/icons/icon_gender.svg')"
               />
             </template>
           </v-text-field>

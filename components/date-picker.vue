@@ -1,7 +1,12 @@
 <template>
-    <v-row justify="center">
-      <v-date-picker  locale="mx-es" v-model="picker" no-title prev-icon='$prev'></v-date-picker>
-    </v-row>
+  <div>
+    <v-row >
+    <v-card flat >
+      <v-date-picker color="#9966ff" class="v-date-picker"  locale="mx-es" v-model="picker" no-title ></v-date-picker>
+    </v-card>
+  </v-row>
+  </div>
+   
   </template>
   
   <script>
@@ -13,3 +18,9 @@
       },
     }
   </script>
+  <style>
+  .v-date-picker{
+    font-family: Montserrat;
+  }
+ 
+  </style>

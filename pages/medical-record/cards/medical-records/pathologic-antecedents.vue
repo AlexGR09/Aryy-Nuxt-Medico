@@ -164,7 +164,7 @@
       <img
         class="mr-3"
         width="20"
-        :src="require('@/assets/icons/iconos_hora.svg')"
+        :src="require('@/assets/icons/icon_timestamp.svg')"
       />Editado el 25 de diciembre de 2022
     </p>
   </v-card-text>

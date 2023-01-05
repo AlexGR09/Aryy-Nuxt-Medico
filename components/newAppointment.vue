@@ -211,7 +211,7 @@
         </v-col>
         <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Servicio*</p>
-          <v-autocomplete
+          <v-text-field
             v-model="service"
             hide-details
             color="#9966ff"
@@ -227,7 +227,7 @@
                   :src="require('@/assets/icons/icon_arrowDown.svg')"
                 />
               </div> </template
-          ></v-autocomplete>
+          ></v-text-field>
         </v-col>
       </v-row>
       <v-row>
@@ -294,7 +294,7 @@ export default {
             emergency_number: this.emergency_phone,
             facility_id: '10',
             appointment_date: this.date,
-            appointment_type: 'Cita consecuente',
+            appointment_type: this.service,
             appointment_time: this.time,
           },
           {

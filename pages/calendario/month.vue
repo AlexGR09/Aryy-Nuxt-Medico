@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-row>
+      <v-card flat class="mr-6"> <date-picker /><today/></v-card>
       <v-spacer />
       <v-col>
         <v-breadcrumbs class="breadcrumbs" :items="items">
@@ -283,8 +284,8 @@ span::first-letter {
 }
 
 .v-btn__content {
-  color: #cccccc;
-  font-size: 18px;
+  
+  font-size: 14px;
   text-transform: capitalize;
   font-family: 'Montserrat';
 }

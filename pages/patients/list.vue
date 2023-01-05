@@ -28,15 +28,11 @@
                     :items="keys"
                     placeholder="Ordenar por"
                   ></v-select>
-                 <!--  <v-btn @click="sorti">Sort By Calories!</v-btn>
-                  <p>a{{ sort }}</p> -->
-              <!--     <p>{{ sortBy }}</p> -->
                 </v-col>
                 <v-toolbar flat color="transparent" class="vtoolbar ml-n8">
                   <v-col class="ml-8" xs="12" sm="12" md="12" lg="12" xl="12">
                     <v-text-field
                       v-model="search"
-                      reverse
                       class="search"
                       color="grey"
                       dense
@@ -61,7 +57,10 @@
                         outlined
                         class="btnStart mr-3"
                         ><span class="black--text">Importar pacientes</span
-                        ><v-icon>mdi-file-outline</v-icon></v-btn
+                        > <v-img
+          :src="require('@/assets/icons/icon_newFile.svg')"
+          max-width="23"
+        ></v-img></v-btn
                       >
                     </template>
                     <span style="text-transform: capitalize"
@@ -80,7 +79,10 @@
                 <v-col class="mb-5" xs="12" sm="12" md="6" lg="5" xl="4">
                   <v-btn block outlined class="btnStart ml-3"
                     ><span class="black--text">Exportar pacientes</span
-                    ><v-icon>mdi-file-outline</v-icon></v-btn
+                    ><v-img
+          :src="require('@/assets/icons/icon_newFile.svg')"
+          max-width="23"
+        ></v-img></v-btn
                   ></v-col
                 >
               </v-row>
@@ -167,13 +169,13 @@
                   <v-btn-toggle borderless>
                     <v-btn class="iconos" icon>
                       <v-img
-                        :src="require('@/assets/icons/icon_verpaciente.svg')"
+                        :src="require('@/assets/icons/icon_watch.svg')"
                         max-width="23"
                       ></v-img>
                     </v-btn>
                     <v-btn class="iconos" @click="deleteItemConfirm" icon>
                       <v-img
-                        :src="require('@/assets/icons/icon_borrarpaciente.svg')"
+                        :src="require('@/assets/icons/icon_delete.svg')"
                         max-width="23"
                       ></v-img>
                     </v-btn>

@@ -2,6 +2,7 @@
 <template>
   <div>
     <v-row class="mt-n3">
+      <v-card v-show="!$vuetify.breakpoint.xs" flat class="mr-6"> <date-picker /><today /></v-card>
       <!-- Calendario vista dia |Genesis -->
       <v-col>
         <v-breadcrumbs class="breadcrumbs" :items="items">
@@ -76,7 +77,7 @@
               </v-menu>
             </v-toolbar>
           </v-sheet>
-          <v-sheet height="700">
+          <v-sheet height="800">
             <v-calendar
               class="calend"
               locale="mx-es"
@@ -93,6 +94,7 @@
               event-name="patient_full_name"
               event-color="#1abc9c"
               :events="evento"
+              event-height="50"
               @click:event="showEvent"
               @click:more="viewDay"
               @click:date="viewDay"
@@ -112,7 +114,7 @@
               offset-x
               :close-on-content-click="false"
             >
-              <new-appointment/>
+              <new-appointment />
             </v-dialog>
             <v-dialog
               width="640px"
@@ -123,29 +125,37 @@
             >
               <v-card color="white" min-width="350px" flat>
                 <div class="d-flex justify-end">
-          <v-btn class="mb-n5"
-            dark
-            icon
-            color="grey"
-                  @click="selectedOpen=false"
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </div>
+                  <v-btn
+                    class="mb-n5"
+                    dark
+                    icon
+                    color="grey"
+                    @click="selectedOpen = false"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                </div>
                 <v-card-text>
                   <br />
                   <v-row>
                     <v-col>
-                      <h1 class="eventName">{{selectedEvent.patient_full_name}}</h1>
-                      <p class="eventPhone mt-5">No. {{selectedEvent.id_appointment}}</p>
-                      <p class="eventPhone mt-n3">{{number}}</p>
-                      
+                      <h1 class="eventName">
+                        {{ selectedEvent.patient_full_name }}
+                      </h1>
+                      <p class="eventPhone mt-5">
+                        No. {{ selectedEvent.id_appointment }}
+                      </p>
+                      <p class="eventPhone mt-n3">{{ number }}</p>
                     </v-col>
                     <v-col xl="4"
-                      ><v-btn large  width="192px" color="#999999" outlined>
+                      ><v-btn large width="192px" color="#999999" outlined>
                         <l class="titleAction">Reagendar cita</l>
                       </v-btn>
-                      <v-btn
+                      <v-dialog v-model="dialog" persistent max-width="450">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      v-bind="attrs"
+                      v-on="on"
                         large
                         width="192px"
                         class="mt-2 mb-3"
@@ -154,24 +164,64 @@
                       >
                         <l class="titleAction2" color="red">cancelar cita</l>
                       </v-btn>
+                  </template>
+                  <v-card>
+                    <v-card-title class="text-h5 justify-center">
+                      <p class="reset">¿Está seguro de cancelar la cita?</p>
+                    </v-card-title>
+                    <v-card-actions>
+                      <v-btn  color="#9966ff" text @click="dialog = false">
+                        <p>No</p>
+                      </v-btn>
+                      <v-spacer></v-spacer>
+                      <v-btn   
+                        color="#9966ff"
+                        text
+                        v-on:click="reset"
+                        @click="dialog = false"
+                      >
+                        <p>Si</p>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
                     </v-col>
                   </v-row>
                   <v-divider></v-divider>
                   <div class="mt-5">
-                    <p class="infor">
-                      <v-icon class="mr-5" color="#9966ff">mdi-calendar</v-icon>{{date}}
-                    </p>
-                    <p class="infor ml-11 mt-n3">
-                      {{selectedEvent.appointment_time}} -  {{selectedEvent.appointment_time_end}} hrs
-                    </p>
-                    <p class="type ml-11 mt-n3">
-                      {{selectedEvent.appointment_type}}
-                    </p>
-                   
-                    <p class="infor">
-                      <v-icon class="mr-4" color="#9966ff">mdi-map-marker-circle</v-icon
-                      > {{selectedEvent.facility_name}}
-                    </p>
+                    <v-row>
+                      <v-col cols="2" xs="2" sm="1" md="1" lg="1" xl="1"
+                        ><v-img
+                          :src="require('@/assets/icons/Iconos_CITAS.svg')"
+                          max-width="23"
+                        ></v-img
+                      ></v-col>
+                      <v-col>
+                        <p class="infor">
+                          {{ date }}
+                        </p>
+                        <p class="infor mt-n3">
+                          {{ selectedEvent.appointment_time }} -
+                          {{ selectedEvent.appointment_time_end }} hrs
+                        </p>
+                        <p class="type mt-n3">
+                          {{ selectedEvent.appointment_type }}
+                        </p>
+                      </v-col>
+                    </v-row>
+                    <v-row class="mt-n6">
+                      <v-col cols="2" xs="2" sm="1" md="1" lg="1" xl="1">
+                        <v-img
+                          :src="require('@/assets/icons/icon_ubi.svg')"
+                          max-width="23"
+                        ></v-img>
+                      </v-col>
+                      <v-col>
+                        <p class="infor">
+                          {{ selectedEvent.facility_name }}
+                        </p></v-col
+                      >
+                    </v-row>
                   </div>
                 </v-card-text>
                 <v-card-actions>
@@ -192,7 +242,6 @@
                     <v-icon color="red">mdi-eye-off</v-icon>
                     <l class="eventAction ml-3">NO ASISTIÓ</l>
                   </v-btn>
-                 
                 </v-card-actions>
                 <br />
               </v-card>
@@ -260,7 +309,7 @@ export default {
     this.citas()
   },
   methods: {
-   /*  metodo para traer todas las citas registradas en el servidor | Genesis */
+    /*  metodo para traer todas las citas registradas en el servidor | Genesis */
     citas() {
       this.$axios
         .get('api/v1/calendar/appointments', {
@@ -269,7 +318,8 @@ export default {
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
-        .then((res) => {/* 
+        .then((res) => {
+          /* 
           console.log(res) */
           this.evento = res.data.data
         })
@@ -308,7 +358,6 @@ export default {
     },
     showEvent({ nativeEvent, event }) {
       const open = () => {
-       
         this.selectedEvent = event
         this.selectedElement = nativeEvent.target
         requestAnimationFrame(() =>
@@ -316,11 +365,10 @@ export default {
         )
       }
       if (this.selectedOpen) {
-       
         this.selectedOpen = false
         requestAnimationFrame(() => requestAnimationFrame(() => open()))
       } else {
-        open()    
+        open()
       }
       nativeEvent.stopPropagation()
       this.citaId()
@@ -329,7 +377,7 @@ export default {
     citaId() {
       this.$axios
         .get(
-          "api/v1/calendar/appointments/"+this.selectedEvent.id_appointment,
+          'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -337,9 +385,9 @@ export default {
           }
         )
         .then((res) => {
-          this.cita=res.data.data
-          this.number=res.data.data.patient.user_phone_number
-          this.date=res.data.data.appointment_date
+          this.cita = res.data.data
+          this.number = res.data.data.patient.user_phone_number
+          this.date = res.data.data.appointment_date
           console.log(res)
         })
     },
@@ -500,5 +548,8 @@ span.breadcrumbs {
 }
 .theme--light.v-time-picker-clock {
   background: #cccccc;
+}
+.btn{
+  color: red;
 }
 </style>

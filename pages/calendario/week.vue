@@ -1,5 +1,6 @@
 <template>
   <v-row class="mt-n3">
+    <v-card flat class="mr-6"> <date-picker /><today/></v-card>
     <!-- Calendario vista dia |Genesis -->
     <v-col>
       <v-breadcrumbs :items="items">
@@ -78,7 +79,7 @@
             </v-menu>
           </v-toolbar>
         </v-sheet>
-        <v-sheet height="700">
+        <v-sheet height="800">
           <v-calendar
             class="calend white--text"
             locale="mx-es"
