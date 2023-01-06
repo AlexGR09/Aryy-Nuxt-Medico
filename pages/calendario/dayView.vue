@@ -171,16 +171,16 @@
                     </v-card-title>
                     <v-card-actions>
                       <v-btn  color="#9966ff" text @click="dialog = false">
-                        <p>No</p>
+                        <p class="confirm">No</p>
                       </v-btn>
                       <v-spacer></v-spacer>
                       <v-btn   
                         color="#9966ff"
                         text
-                        v-on:click="reset"
+                        v-on:click="cancelAppointment"
                         @click="dialog = false"
                       >
-                        <p>Si</p>
+                        <p class="confirm">Si</p>
                       </v-btn>
                     </v-card-actions>
                   </v-card>
@@ -255,6 +255,7 @@
 <script>
 export default {
   data: () => ({
+    dialog: false,
     number: '',
     value: '',
     newDate: false,
@@ -324,6 +325,62 @@ export default {
           this.evento = res.data.data
         })
     },
+    /* obtener datos de cita por ID | Genesis */
+    citaId() {
+      this.$axios
+        .get(
+          'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          this.cita = res.data.data
+          this.number = res.data.data.patient.user_phone_number
+          this.date = res.data.data.appointment_date
+          console.log(res)
+        })
+    },
+    /* cancelar cita | Genesis */
+    cancelAppointment() {
+      this.$axios
+        .put(
+          'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
+          {},
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then(() => {
+          console.log("cita cancelada")
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    /* mostrar datos de evento seleccionado | Genesis */
+    showEvent({ nativeEvent, event }) {
+      const open = () => {
+        this.selectedEvent = event
+        this.selectedElement = nativeEvent.target
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => (this.selectedOpen = true))
+        )
+      }
+      if (this.selectedOpen) {
+        this.selectedOpen = false
+        requestAnimationFrame(() => requestAnimationFrame(() => open()))
+      } else {
+        open()
+      }
+      nativeEvent.stopPropagation()
+      this.citaId()
+    },
+
     addEvent() {
       this.newDate = true
     },
@@ -355,41 +412,6 @@ export default {
     },
     next() {
       this.$refs.calendar.next()
-    },
-    showEvent({ nativeEvent, event }) {
-      const open = () => {
-        this.selectedEvent = event
-        this.selectedElement = nativeEvent.target
-        requestAnimationFrame(() =>
-          requestAnimationFrame(() => (this.selectedOpen = true))
-        )
-      }
-      if (this.selectedOpen) {
-        this.selectedOpen = false
-        requestAnimationFrame(() => requestAnimationFrame(() => open()))
-      } else {
-        open()
-      }
-      nativeEvent.stopPropagation()
-      this.citaId()
-    },
-
-    citaId() {
-      this.$axios
-        .get(
-          'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
-        .then((res) => {
-          this.cita = res.data.data
-          this.number = res.data.data.patient.user_phone_number
-          this.date = res.data.data.appointment_date
-          console.log(res)
-        })
     },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
@@ -433,6 +455,11 @@ p.eventPhone {
   font-size: 120%;
   color: gray;
   font-family: Montserrat;
+}
+p.confirm{
+  font-family: Montserrat;
+  text-transform: capitalize;
+  margin-top: 15px;
 }
 h4 {
   font-family: Montserrat;

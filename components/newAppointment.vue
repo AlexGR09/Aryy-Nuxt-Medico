@@ -211,7 +211,9 @@
         </v-col>
         <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Servicio*</p>
-          <v-text-field
+          <v-autocomplete 
+          
+          :items="items"
             v-model="service"
             hide-details
             color="#9966ff"
@@ -227,7 +229,7 @@
                   :src="require('@/assets/icons/icon_arrowDown.svg')"
                 />
               </div> </template
-          ></v-text-field>
+          ></v-autocomplete>
         </v-col>
       </v-row>
       <v-row>
@@ -274,6 +276,7 @@ export default {
       service: '',
       error: '',
       bad: '',
+      items: ["Consulta de primera vez","Consulta subsecuente"],
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
@@ -337,6 +340,7 @@ p {
 .montserrat {
   font-family: Montserrat;
 }
+
 .btn {
   text-transform: capitalize;
 }

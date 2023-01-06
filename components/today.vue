@@ -51,8 +51,8 @@
         >
       </v-list-item>
     </v-card>
-
-    <p class="montserratMedium mt-6">Filtros</p>
+<br/><br/>
+    <p class="montserratMedium">Filtros</p>
     <v-checkbox
       v-model="consecuente"
       color="#9966ff"
