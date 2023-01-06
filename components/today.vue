@@ -14,8 +14,9 @@
         ></v-list-item-avatar>
     </v-list-item>
 
-    <v-card 
-    v-for="todo in filtered" :key="todo"
+    <v-card
+      v-for="evento in eventos"
+      :key="evento"
       class="mx-auto mb-2"
       max-width="270"
       outlined
@@ -30,13 +31,13 @@
         ></v-sheet>
         <v-list-item-content>
           <p class="montserratMedium">
-            {{ todo.patient_full_name }}
+            {{ evento.patient_full_name }}
           </p>
           <v-list-item-title class="montserratMedium">
-            <l>{{ todo.appointment_type }}</l>
+            <l>{{ evento.appointment_type }}</l>
           </v-list-item-title>
           <v-list-item-subtitle class="montserratMedium">{{
-            todo.appointment_time
+            evento.appointment_time
           }}</v-list-item-subtitle>
         </v-list-item-content>
 
@@ -74,15 +75,13 @@
 export default {
   data() {
     return {
+      selection: [],
       eventos: [],
       name: '',
       type: '',
       hour: '',
       color: '',
       hora: '',
-      selection:[],
-      filtered: [],
-      todos: '',
     }
   },
   mounted() {
@@ -99,31 +98,9 @@ export default {
         })
         .then((res) => {
           this.eventos = res.data.data
-          this.todos = res.data.data
           this.tipo = res.data.data[0].appointment_type
-          console.log(res)
         })
     },
-  },
-  watch: {
-    selection: {
-      handler() {
-        this.filtered= []
-        if (this.selection.length) {
-          this.todos.forEach(t => {
-            this.selection.forEach(s => {
-              if (t.appointment_type.split(/\s/).find(w => w === s.toLowerCase())) {
-                if (!this.filtered.find(f => f.appointment_type === t.appointment_type)) this.filtered = [ ...this.filtered, t]
-              }
-            })
-          })
-        } else {
-          this.filtered = [...this.todos]
-        }
-      },
-      deep: true,
-      immediate: true
-    }
   },
 }
 </script>

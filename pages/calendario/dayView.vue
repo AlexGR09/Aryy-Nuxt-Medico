@@ -94,12 +94,12 @@
               event-name="patient_full_name"
               event-color="#1abc9c"
               :events="evento"
-              event-height="50"
+              :event-height="50"
               @click:event="showEvent"
               @click:more="viewDay"
               @click:date="viewDay"
               @click:time="addEvent"
-            >
+            ><!-- event-color="#1abc9c" -->
               <template v-slot:day-body="{ date, week }">
                 <div
                   class="v-current-time"
@@ -203,6 +203,7 @@
                         <p class="infor mt-n3">
                           {{ selectedEvent.appointment_time }} -
                           {{ selectedEvent.appointment_time_end }} hrs
+                          |{{color }}| {{ selectedEvent.status }}
                         </p>
                         <p class="type mt-n3">
                           {{ selectedEvent.appointment_type }}
@@ -255,6 +256,7 @@
 <script>
 export default {
   data: () => ({
+    date: '',
     dialog: false,
     number: '',
     value: '',
@@ -339,8 +341,12 @@ export default {
           this.cita = res.data.data
           this.number = res.data.data.patient.user_phone_number
           this.date = res.data.data.appointment_date
-
-        /*   if(this.señectedEvent.status) */
+          console.log(res)
+       /*    if(this.selectedEvent.status ==="cancelled"){
+            this.color="red"
+          }else{
+            this.color="#1abc9c"
+          } */
           
         })
     },

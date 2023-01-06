@@ -107,7 +107,7 @@
         </v-list-item>
         <v-list-item class="mt-n1" @click="logout">
           <v-list-item-icon>
-            <v-icon color="#7900ff">mdi-logout-variant</v-icon>
+            <v-icon size="23" color="#7900ff">mdi-logout-variant</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content active-class="bg-active">
