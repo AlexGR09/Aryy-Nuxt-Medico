@@ -320,9 +320,8 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          /* 
-          console.log(res) */
           this.evento = res.data.data
+          console.log(res)
         })
     },
     /* obtener datos de cita por ID | Genesis */
@@ -340,7 +339,9 @@ export default {
           this.cita = res.data.data
           this.number = res.data.data.patient.user_phone_number
           this.date = res.data.data.appointment_date
-          console.log(res)
+
+        /*   if(this.señectedEvent.status) */
+          
         })
     },
     /* cancelar cita | Genesis */
@@ -355,12 +356,6 @@ export default {
             },
           }
         )
-        .then(() => {
-          console.log("cita cancelada")
-        })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     /* mostrar datos de evento seleccionado | Genesis */
     showEvent({ nativeEvent, event }) {
@@ -417,6 +412,7 @@ export default {
       return Math.floor((b - a + 1) * Math.random()) + a
     },
   },
+  
 }
 </script>
 

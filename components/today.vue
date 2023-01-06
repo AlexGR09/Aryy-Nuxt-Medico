@@ -14,9 +14,8 @@
         ></v-list-item-avatar>
     </v-list-item>
 
-    <v-card
-      v-for="evento in eventos"
-      :key="evento"
+    <v-card 
+    v-for="todo in filtered" :key="todo"
       class="mx-auto mb-2"
       max-width="270"
       outlined
@@ -31,13 +30,13 @@
         ></v-sheet>
         <v-list-item-content>
           <p class="montserratMedium">
-            {{ evento.patient_full_name }}
+            {{ todo.patient_full_name }}
           </p>
           <v-list-item-title class="montserratMedium">
-            <l>{{ evento.appointment_type }}</l>
+            <l>{{ todo.appointment_type }}</l>
           </v-list-item-title>
           <v-list-item-subtitle class="montserratMedium">{{
-            evento.appointment_time
+            todo.appointment_time
           }}</v-list-item-subtitle>
         </v-list-item-content>
 
@@ -54,14 +53,16 @@
 <br/><br/>
     <p class="montserratMedium">Filtros</p>
     <v-checkbox
-      v-model="consecuente"
+      value="primera" 
+      v-model="selection"
       color="#9966ff"
       class="montserratMedium"
       hide-details
       label="Primera consulta"
     ></v-checkbox>
     <v-checkbox
-      v-model="primera"
+      value="subsecuente"
+      v-model="selection"
       color="#9966ff"
       class="montserratMedium"
       hide-details
@@ -79,6 +80,9 @@ export default {
       hour: '',
       color: '',
       hora: '',
+      selection:[],
+      filtered: [],
+      todos: '',
     }
   },
   mounted() {
@@ -95,10 +99,31 @@ export default {
         })
         .then((res) => {
           this.eventos = res.data.data
+          this.todos = res.data.data
           this.tipo = res.data.data[0].appointment_type
           console.log(res)
         })
     },
+  },
+  watch: {
+    selection: {
+      handler() {
+        this.filtered= []
+        if (this.selection.length) {
+          this.todos.forEach(t => {
+            this.selection.forEach(s => {
+              if (t.appointment_type.split(/\s/).find(w => w === s.toLowerCase())) {
+                if (!this.filtered.find(f => f.appointment_type === t.appointment_type)) this.filtered = [ ...this.filtered, t]
+              }
+            })
+          })
+        } else {
+          this.filtered = [...this.todos]
+        }
+      },
+      deep: true,
+      immediate: true
+    }
   },
 }
 </script>
