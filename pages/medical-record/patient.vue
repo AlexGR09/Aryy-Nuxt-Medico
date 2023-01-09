@@ -175,7 +175,9 @@
                 :key="date"
                 outlined
             >
-                hola
+            <v-list-item>
+              
+            </v-list-item>
             </v-card>
 
 

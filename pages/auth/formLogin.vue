@@ -48,11 +48,12 @@
       <v-tabs-items v-model="tabs">
         <!--  ----Iniciar sesión |Génesis---- -->
         <v-tab-item>
-          <v-col xs="11" sm="11" md="11" lg="11" xl="7">
+          <v-col cols="12" md="8" >
             <v-card flat>
               <v-card-text>
                 <v-row>
-                  <!-- CAMPO DE INICAIR SESION | LUIS REYES -->
+                  
+                <!-- CAMPO DE INICAIR SESION | LUIS REYES -->
                   <v-text-field
                     v-model="email"
                     justify-right
@@ -113,11 +114,10 @@
           </v-col>
         </v-tab-item>
       </v-tabs-items>
-      <v-card v-model="access_token">
-        {{ access_token }}
-      </v-card>
+
     </div>
   </v-card>
+ 
 </template>
 <script>
 export default {
