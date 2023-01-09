@@ -124,9 +124,6 @@
     </div>
     <v-divider class="mt-n1"></v-divider>
     <p v-if="!alergias[0]">Sin alergías conocidas</p>
-
-
-    
     <p class="ml-3">
       <img
         class="mr-3"

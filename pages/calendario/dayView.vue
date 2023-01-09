@@ -2,7 +2,9 @@
 <template>
   <div>
     <v-row class="mt-n3">
-      <v-card v-show="!$vuetify.breakpoint.xs" flat class="mr-6"> <date-picker /><today /></v-card>
+      <v-card v-show="!$vuetify.breakpoint.xs" flat class="mr-6">
+        <date-picker /><today
+      /></v-card>
       <!-- Calendario vista dia |Genesis -->
       <v-col>
         <v-breadcrumbs class="breadcrumbs" :items="items">
@@ -23,7 +25,7 @@
                 class="mr-4 today mt-7 rounded-lg"
                 @click="setToday"
               >
-                <l class="today">hoy</l>
+                <span class="today">hoy</span>
               </v-btn>
 
               <v-spacer class="mr-16"></v-spacer>
@@ -96,16 +98,27 @@
               :events="evento"
               :event-height="50"
               @click:event="showEvent"
-              @click:more="viewDay"
-              @click:date="viewDay"
               @click:time="addEvent"
-            ><!-- event-color="#1abc9c" -->
+              ><!-- event-color="#1abc9c" -->
               <template v-slot:day-body="{ date, week }">
                 <div
                   class="v-current-time"
                   :class="{ first: date === week[0].date }"
                   :style="{ top: nowY }"
                 ></div>
+              </template>
+              <template v-slot:event="{ event }">
+                <div class="ma-3 mt-0">
+                  <p class="event">
+                    {{ event.patient_full_name }} <!-- ({{ event.status }}) 
+                    ({{color}}) -->
+                  </p>
+                 
+                  <p class="mt-n4">
+                    {{ event.appointment_time }} -
+                    {{ event.appointment_time_end }}
+                  </p>  
+                </div>
               </template>
             </v-calendar>
             <v-dialog
@@ -149,42 +162,46 @@
                     </v-col>
                     <v-col xl="4"
                       ><v-btn large width="192px" color="#999999" outlined>
-                        <l class="titleAction">Reagendar cita</l>
+                        <span class="titleAction">Reagendar cita</span>
                       </v-btn>
                       <v-dialog v-model="dialog" persistent max-width="450">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      v-bind="attrs"
-                      v-on="on"
-                        large
-                        width="192px"
-                        class="mt-2 mb-3"
-                        color="red"
-                        outlined
-                      >
-                        <l class="titleAction2" color="red">cancelar cita</l>
-                      </v-btn>
-                  </template>
-                  <v-card>
-                    <v-card-title class="text-h5 justify-center">
-                      <p class="reset">¿Está seguro de cancelar la cita?</p>
-                    </v-card-title>
-                    <v-card-actions>
-                      <v-btn  color="#9966ff" text @click="dialog = false">
-                        <p class="confirm">No</p>
-                      </v-btn>
-                      <v-spacer></v-spacer>
-                      <v-btn   
-                        color="#9966ff"
-                        text
-                        v-on:click="cancelAppointment"
-                        @click="dialog = false"
-                      >
-                        <p class="confirm">Si</p>
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            v-bind="attrs"
+                            v-on="on"
+                            large
+                            width="192px"
+                            class="mt-2 mb-3"
+                            color="red"
+                            outlined
+                          >
+                            <span class="titleAction2" color="red"
+                              >cancelar cita</span
+                            >
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title class="text-h5 justify-center">
+                            <p class="reset">
+                              ¿Está seguro de cancelar la cita?
+                            </p>
+                          </v-card-title>
+                          <v-card-actions>
+                            <v-btn color="#9966ff" text @click="dialog = false">
+                              <p class="confirm">No</p>
+                            </v-btn>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="#9966ff"
+                              text
+                              v-on:click="cancelAppointment"
+                              @click="dialog = false"
+                            >
+                              <p class="confirm">Si</p>
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
                     </v-col>
                   </v-row>
                   <v-divider></v-divider>
@@ -203,7 +220,6 @@
                         <p class="infor mt-n3">
                           {{ selectedEvent.appointment_time }} -
                           {{ selectedEvent.appointment_time_end }} hrs
-                          |{{color }}| {{ selectedEvent.status }}
                         </p>
                         <p class="type mt-n3">
                           {{ selectedEvent.appointment_type }}
@@ -232,7 +248,7 @@
                     color="green"
                     @click="selectedOpen = false"
                     ><v-icon color="green">mdi-eye</v-icon>
-                    <l class="eventAction ml-3">ASISTIÓ</l>
+                    <span class="eventAction ml-3">ASISTIÓ</span>
                   </v-btn>
                   <v-btn
                     class="eventAction"
@@ -241,7 +257,7 @@
                     @click="selectedOpen = false"
                   >
                     <v-icon color="red">mdi-eye-off</v-icon>
-                    <l class="eventAction ml-3">NO ASISTIÓ</l>
+                    <span class="eventAction ml-3">NO ASISTIÓ</span>
                   </v-btn>
                 </v-card-actions>
                 <br />
@@ -255,47 +271,51 @@
 </template>
 <script>
 export default {
-  data: () => ({
-    date: '',
-    dialog: false,
-    number: '',
-    value: '',
-    newDate: false,
-    show: false,
-    ready: false,
-    focus: '',
-    type: 'month',
-    typeToLabel: {
-      month: 'Mes',
-      week: 'Semana',
-      day: 'Dia',
-      '4day': '4 Dias',
-    },
-    selectedEvent: {},
-    selectedElement: null,
-    start: null,
-    end: null,
-    selectedOpen: false,
-    evento: [],
-    items: [
-      {
-        icon: 'mdi-home-outline',
-        disabled: false,
-        href: '/',
+  data() {
+    return {
+      date: '',
+      color: '',
+      dialog: false,
+      number: '',
+      value: '',
+      prueba: '',
+      newDate: false,
+      show: false,
+      ready: false,
+      focus: '',
+      type: 'month',
+      typeToLabel: {
+        month: 'Mes',
+        week: 'Semana',
+        day: 'Dia',
+        '4day': '4 Dias',
       },
-      {
-        text: 'Calendario',
-        disabled: false,
-        href: '/calendario/month',
-      },
-      {
-        text: 'Dia',
-        disabled: true,
-        href: '/calendario/dayView',
-      },
-    ],
-    colors: ['#1abc9c', '#3498db'],
-  }),
+      selectedEvent: {},
+      selectedElement: null,
+      start: null,
+      end: null,
+      selectedOpen: false,
+      evento: [],
+      items: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Calendario',
+          disabled: false,
+          href: '/calendario/month',
+        },
+        {
+          text: 'Dia',
+          disabled: true,
+          href: '/calendario/dayView',
+        },
+      ],
+      colors: ['#1abc9c', '#3498db'],
+    }
+  },
   computed: {
     cal() {
       return this.ready ? this.$refs.calendar : null
@@ -324,6 +344,7 @@ export default {
         .then((res) => {
           this.evento = res.data.data
           console.log(res)
+          console.log("----------"+this.prueba)
         })
     },
     /* obtener datos de cita por ID | Genesis */
@@ -342,26 +363,19 @@ export default {
           this.number = res.data.data.patient.user_phone_number
           this.date = res.data.data.appointment_date
           console.log(res)
-       /*    if(this.selectedEvent.status ==="cancelled"){
-            this.color="red"
-          }else{
-            this.color="#1abc9c"
-          } */
-          
         })
     },
     /* cancelar cita | Genesis */
     cancelAppointment() {
-      this.$axios
-        .put(
-          'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
-          {},
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
+      this.$axios.put(
+        'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
+        {},
+        {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        }
+      )
     },
     /* mostrar datos de evento seleccionado | Genesis */
     showEvent({ nativeEvent, event }) {
@@ -418,7 +432,6 @@ export default {
       return Math.floor((b - a + 1) * Math.random()) + a
     },
   },
-  
 }
 </script>
 
@@ -458,10 +471,13 @@ p.eventPhone {
   color: gray;
   font-family: Montserrat;
 }
-p.confirm{
+p.confirm {
   font-family: Montserrat;
   text-transform: capitalize;
   margin-top: 15px;
+}
+p.event {
+  font-family: MontserratBold;
 }
 h4 {
   font-family: Montserrat;
@@ -578,7 +594,7 @@ span.breadcrumbs {
 .theme--light.v-time-picker-clock {
   background: #cccccc;
 }
-.btn{
+.btn {
   color: red;
 }
 </style>

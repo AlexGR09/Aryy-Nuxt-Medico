@@ -2,14 +2,10 @@
 <template>
   <v-dialog scrollable v-model="dialog" max-width="700px">
     <template v-slot:activator="{ on, attrs }">
-      <v-row>
-      <v-col xl="12">
-      <v-btn class="justify-start" block outlined color="#7900ff" v-bind="attrs" v-on="on">
-        <v-icon color="#7900ff">mdi-plus</v-icon>
+      <v-btn class="justify-start" width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
+       <v-icon color="#7900ff">mdi-plus</v-icon> 
         <l>ANTECEDENTES GINECO-OBSTÉTRICOS</l>
       </v-btn>
-    </v-col>
-  </v-row>
     </template>
     <v-card height="600px">
       <v-card-title>

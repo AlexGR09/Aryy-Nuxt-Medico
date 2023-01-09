@@ -115,7 +115,7 @@
     ></v-textarea>
   <v-row>
    <v-col cols="12" xs="12" xl="3">
-      <v-btn block v-on:click="overlay = !overlay" @click="save" height="50px" class="white--text mt-7 btn" color="#7900ff" large
+      <v-btn block v-on:click="overlay = !overlay"  height="50px" class="white--text mt-7 btn" color="#7900ff" large
         >Guardar y terminar</v-btn
       ></v-col>
       <v-col cols="12" xs="12"  xl="3">
@@ -160,9 +160,14 @@ export default {
     deleteInput(i) {
       this.inputs.splice(i, 1)
     },
-    save(){
-      this.$router.push('/patients/list')
-    }
+  },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 2000)
+    },
   },
 }
 </script>

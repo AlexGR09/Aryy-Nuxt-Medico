@@ -1,7 +1,7 @@
 <!-- vista de expediente en consulta | Genesis -->
 <template class="template">
   <div class="template">
-    <v-row>
+    <v-row class="mb-n5">
       <!-- card info basica | Genesis -->
       <v-col cols="12" xs="12" sm="12" md="8" lg="8" xl="8">
         <H1 class="title mb-3">INFORMACIÓN BÁSICA</H1>
@@ -9,15 +9,15 @@
       </v-col>
       <v-row>
         <v-col class="ml-3 mr-3" xs="11" sm="11" md="11" lg="8" xl="11">
-        <H1 class="title mt-3">NOTAS INTERNAS</H1>
+        <H1 class="title mb-3 mt-3">NOTAS INTERNAS</H1>
         <v-text-area></v-text-area>
         <v-textarea
           class="note"
           color="#E0E0E0"
-          :style="image"
+          background-color="white"
           outlined
           width="9vh"
-          height="40vh"
+          height="37vh"
           no-resize
         ></v-textarea> 
       </v-col> 
@@ -30,7 +30,7 @@
         <medical-record />
       </v-col>
       <v-col xs="12" sm="12" md="4" lg="4" xl="4">
-        <H1 class="title mt-3">CITAS ANTERIORES</H1>
+        <H1 class="title mb-3">CITAS ANTERIORES</H1>
       <appointments/>
       </v-col>
       <v-col xs="12" sm="12"
@@ -57,10 +57,10 @@ export default {
   },
   data() { return {
       /*  fondo efecto libreta para las notas | Genesis */
-      image: {
-        height: '83%',
+     /*  image: {
+        height: '80%',
         backgroundImage: 'url(https://i.ibb.co/c2rkczy/Doc1-page-0001-6.jpg)',
-      },
+      }, */
     }
   },
 }

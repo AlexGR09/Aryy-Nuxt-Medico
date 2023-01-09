@@ -22,9 +22,9 @@
               class="mr-4 today mt-7 rounded-lg"
               @click="setToday"
             >
-              <l class="today"
+              <span class="today"
                 >Esta <br />
-                semana</l
+                semana</span
               >
             </v-btn>
             <v-spacer></v-spacer>
@@ -97,7 +97,7 @@
             event-color="#1abc9c"
             @click:more="viewDay"
             @click:date="viewDay"
-            @click:event="showw"
+            @click:event="showEvent"
           >
             <template v-slot:day-body="{ date, week }">
               <div
@@ -108,75 +108,139 @@
             </template>
           </v-calendar>
           <v-dialog
-            width="640px"
-            v-model="selectedOpen"
-            offset-x
-            :close-on-content-click="false"
-            :activator="selectedElement"
-          >
-            <v-card color="white" min-width="350px" flat>
-              <v-card-text>
-                <br />
-                <v-row>
-                  <v-col>
-                    <h1 class="eventName" v-html="selectedEvent.name"></h1>
-                    <p class="eventPhone mt-5">No. 123</p>
-                    <p
-                      class="eventPhone mt-n3"
-                      v-html="selectedEvent.phone"
-                    ></p>
-                  </v-col>
-                  <v-col xl="4"
-                    ><v-btn large color="#999999" outlined>
-                      <l class="titleAction">Reagendar cita</l>
-                    </v-btn>
-                    <v-btn
-                      large
-                      width="192px"
-                      class="mt-2 mb-3"
-                      color="red"
-                      outlined
-                    >
-                      <l class="titleAction2" color="red">cancelar cita</l>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-                <v-divider></v-divider>
-                <div class="mt-5">
-                  <p class="infor">
-                    <v-icon color="#9966ff">mdi-calendar</v-icon>sfsfs
-                  </p>
-                  <p class="infor">
-                    <v-icon color="#9966ff">mdi-account</v-icon>Paciente nuevo
-                  </p>
-                  <p class="infor">
-                    <v-icon color="#9966ff">mdi-map-marker-circle</v-icon
-                    >Consultorio Principal
-                  </p>
+              width="640px"
+              v-model="selectedOpen"
+              offset-x
+              :close-on-content-click="false"
+              :activator="selectedElement"
+            >
+              <v-card color="white" min-width="350px" flat>
+                <div class="d-flex justify-end">
+                  <v-btn
+                    class="mb-n5"
+                    dark
+                    icon
+                    color="grey"
+                    @click="selectedOpen = false"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
                 </div>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn
-                  class="eventAction"
-                  outlined
-                  color="green"
-                  @click="selectedOpen = false"
-                  ><v-icon color="green">mdi-eye</v-icon>
-                  <l class="eventAction ml-3">ASISTIÓ</l>
-                </v-btn>
-                <v-btn
-                  class="eventAction"
-                  outlined
-                  color="red"
-                  @click="selectedOpen = false"
-                >
-                  <v-icon color="red">mdi-eye-off</v-icon>
-                  <l class="eventAction ml-3">NO ASISTIÓ</l>
-                </v-btn>
-              </v-card-actions>
-              <br />
-            </v-card>
-          </v-dialog>
+                <v-card-text>
+                  <br />
+                  <v-row>
+                    <v-col>
+                      <h1 class="eventName">
+                        {{ selectedEvent.patient_full_name }}
+                      </h1>
+                      <p class="eventPhone mt-5">
+                        No. {{ selectedEvent.id_appointment }}
+                      </p>
+                      <p class="eventPhone mt-n3">{{ number }}</p>
+                    </v-col>
+                    <v-col xl="4"
+                      ><v-btn large width="192px" color="#999999" outlined>
+                        <span class="titleAction">Reagendar cita</span>
+                      </v-btn>
+                      <v-dialog v-model="dialog" persistent max-width="450">
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            v-bind="attrs"
+                            v-on="on"
+                            large
+                            width="192px"
+                            class="mt-2 mb-3"
+                            color="red"
+                            outlined
+                          >
+                            <span class="titleAction2" color="red"
+                              >cancelar cita</span
+                            >
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title class="text-h5 justify-center">
+                            <p class="reset">
+                              ¿Está seguro de cancelar la cita?
+                            </p>
+                          </v-card-title>
+                          <v-card-actions>
+                            <v-btn color="#9966ff" text @click="dialog = false">
+                              <p class="confirm">No</p>
+                            </v-btn>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="#9966ff"
+                              text
+                              v-on:click="cancelAppointment"
+                              @click="dialog = false"
+                            >
+                              <p class="confirm">Si</p>
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                    </v-col>
+                  </v-row>
+                  <v-divider></v-divider>
+                  <div class="mt-5">
+                    <v-row>
+                      <v-col cols="2" xs="2" sm="1" md="1" lg="1" xl="1"
+                        ><v-img
+                          :src="require('@/assets/icons/Iconos_CITAS.svg')"
+                          max-width="23"
+                        ></v-img
+                      ></v-col>
+                      <v-col>
+                        <p class="infor">
+                          {{ date }}
+                        </p>
+                        <p class="infor mt-n3">
+                          {{ selectedEvent.appointment_time }} -
+                          {{ selectedEvent.appointment_time_end }} hrs
+                        </p>
+                        <p class="type mt-n3">
+                          {{ selectedEvent.appointment_type }}
+                        </p>
+                      </v-col>
+                    </v-row>
+                    <v-row class="mt-n6">
+                      <v-col cols="2" xs="2" sm="1" md="1" lg="1" xl="1">
+                        <v-img
+                          :src="require('@/assets/icons/icon_ubi.svg')"
+                          max-width="23"
+                        ></v-img>
+                      </v-col>
+                      <v-col>
+                        <p class="infor">
+                          {{ selectedEvent.facility_name }}
+                        </p></v-col
+                      >
+                    </v-row>
+                  </div>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn
+                    class="eventAction"
+                    outlined
+                    color="green"
+                    @click="selectedOpen = false"
+                    ><v-icon color="green">mdi-eye</v-icon>
+                    <span class="eventAction ml-3">ASISTIÓ</span>
+                  </v-btn>
+                  <v-btn
+                    class="eventAction"
+                    outlined
+                    color="red"
+                    @click="selectedOpen = false"
+                  >
+                    <v-icon color="red">mdi-eye-off</v-icon>
+                    <span class="eventAction ml-3">NO ASISTIÓ</span>
+                  </v-btn>
+                </v-card-actions>
+                <br />
+              </v-card>
+            </v-dialog>
         </v-sheet>
       </v-card>
     </v-col>
@@ -188,6 +252,9 @@ export default {
     value: '',
     evento: [],
     ready: false,
+     date: '',
+     number: '',
+    dialog: false,
     focus: '',
     type: 'month',
     typeToLabel: {
@@ -237,6 +304,18 @@ export default {
     this.citas()
   },
   methods: {
+         /* cancelar cita | Genesis */
+     cancelAppointment() {
+      this.$axios.put(
+        'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
+        {},
+        {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        }
+      )
+    },
     /*  metodo para traer los datos de las citas en el servidor | Genesis */
     citas() {
       this.$axios
@@ -249,6 +328,24 @@ export default {
         .then((res) => {
           console.log(res)
           this.evento = res.data.data
+        })
+    },
+       /* obtener datos de cita por ID | Genesis */
+       citaId() {
+      this.$axios
+        .get(
+          'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          this.cita = res.data.data
+          this.number = res.data.data.patient.user_phone_number
+          this.date = res.data.data.appointment_date
+          console.log(res)
         })
     },
     getCurrentTime() {
@@ -295,6 +392,7 @@ export default {
         open()
       }
       nativeEvent.stopPropagation()
+      this.citaId()
     },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
@@ -401,5 +499,37 @@ p.infor {
 span.breadcrumbs {
   font-family: Montserrat;
   color: #7900ff;
+}
+.titleAction {
+  text-transform: uppercase;
+  font-size: 90%;
+  color: gray;
+}
+.titleAction2 {
+  text-transform: uppercase;
+  font-size: 90%;
+  color: red;
+}
+p.infor {
+  font-family: MontserratBold;
+  font-size: 110%;
+}
+p.type {
+  font-family: Montserrat;
+  font-size: 110%;
+}
+p.eventPhone {
+  font-size: 120%;
+  color: gray;
+  font-family: Montserrat;
+}
+h1.eventName {
+  font-size: 220%;
+  color: #7900ff;
+  font-family: Montserrat;
+}
+.eventAction {
+  color: black;
+  text-transform: capitalize;
 }
 </style>

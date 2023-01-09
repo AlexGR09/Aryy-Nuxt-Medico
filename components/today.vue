@@ -16,7 +16,7 @@
 
     <v-card
       v-for="evento in eventos"
-      :key="evento"
+      :key="evento.id_appointment"
       class="mx-auto mb-2"
       max-width="270"
       outlined
@@ -34,11 +34,11 @@
             {{ evento.patient_full_name }}
           </p>
           <v-list-item-title class="montserratMedium">
-            <l>{{ evento.appointment_type }}</l>
+            <span>{{ evento.appointment_type }}</span>
           </v-list-item-title>
-          <v-list-item-subtitle class="montserratMedium">{{
-            evento.appointment_time
-          }}</v-list-item-subtitle>
+          <v-list-item-subtitle class="montserratMedium">
+            {{evento.appointment_time}}
+          </v-list-item-subtitle>
         </v-list-item-content>
 
         <v-list-item-avatar tile size="40">
@@ -98,6 +98,7 @@ export default {
         })
         .then((res) => {
           this.eventos = res.data.data
+          this.prueba = res.data.data.appointment_time
           this.tipo = res.data.data[0].appointment_type
         })
     },
@@ -109,8 +110,11 @@ export default {
 .montserratMedium {
   font-family: MontserratMedium;
 }
-l {
+span {
   color: #1abc9c;
+  text-transform: capitalize;
+ /*  font-family: MontserratBold; */
+ font-size: 90%;
 }
 p{
     color: #4f565f;
