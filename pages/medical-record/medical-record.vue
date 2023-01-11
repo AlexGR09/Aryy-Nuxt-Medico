@@ -1,6 +1,14 @@
 <!-- vista de expediente en consulta | Genesis -->
 <template class="template">
   <div class="template">
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="items">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
     <v-row class="mb-n5">
       <!-- card info basica | Genesis -->
       <v-col cols="12" xs="12" sm="12" md="8" lg="8" xl="8">
@@ -55,7 +63,25 @@ export default {
     Consultation,
     Appointments,
   },
-  data() { return {
+  data() { 
+    return {
+      items: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Lista de pacientes',
+          disabled: false,
+          href: '/patients/list',
+        },
+        {
+          text: 'Consulta',
+          disabled: true,
+          href: '/medical-record/medical-record',
+        },
+      ],
       /*  fondo efecto libreta para las notas | Genesis */
      /*  image: {
         height: '80%',
@@ -83,5 +109,9 @@ export default {
   padding-right: 50px;
   margin-left: -50px;
   margin-right: -50px;
+}
+span.breadcrumbs {
+  font-family: Montserrat;
+  color: #7900ff;
 }
 </style>

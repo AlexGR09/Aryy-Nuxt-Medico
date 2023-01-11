@@ -1,74 +1,70 @@
 <template>
-  <v-card class="rounded-xl card">
+  <nuxt-link to="/medical-record/medical-record">
+  <v-card
+    class="greeting-card "
+    outlined
+    color="#ffffff"
+  >
     <v-row class="ma-0 pa-0">
-      <v-col md="">
-        <v-card-text class="text-no-wrap ">
-          CITA PRÓXIMA
-        </v-card-text>
-        <v-card-title class="text-no-wrap ">
-          Todavía no <br> tienes citas <br> agendadas
-        </v-card-title>
-        <v-card-subtitle class="d-flex align-center">
-        </v-card-subtitle>
-        <v-card-text class="d-flex align-center">
-        </v-card-text> 
+      <v-col cols="12">
+          <div>
+            <p class="texto" align="left">
+                INICIAR <br> NUEVA CONSULTAS
+            </p>
+          </div>
       </v-col>
-      <v-col md="4" cols="12">
-        <img
+      <v-col cols="3">
+           <img
           contain
-          height="110"
-          max-width="110"
           class="greeting-card-trophy"
           src="@/assets/icons/icon_consulta.svg"
-        >
+        />
       </v-col>
     </v-row>
   </v-card>
+</nuxt-link>
 </template>
-
-<script>
-export default{
-  data(){
-    return{
-
-    }
-  },
-
-};
-
-</script>
-
 <style lang="scss" scoped>
 .greeting-card {
   position: relative;
-  .greeting-card-bg {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-  .greeting-card-trophy {
-    position: absolute;
-    bottom: 10%;
-    right: 10%;
-  }
+  background: rgb(255,255,255);
+  background: linear-gradient(254deg, rgba(255,255,255,1) 0%, rgba(245,239,255,1) 58%); 
+  border-radius: 30px;
+      .greeting-card-bg {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+      .greeting-card-trophy {
+        position: absolute;
+        max-height: 50vh;
+        max-width: 13vh;
+        bottom: 25%;
+        right: 10%;
+      }
 }
-// rtl
-.v-application {
-  &.v-application--is-rtl {
-    .greeting-card-bg {
-      right: initial;
-      left: 0;
-      transform: rotateY(180deg);
-    }
-    .greeting-card-trophy {
-      left: 2%;
-      right: initial;
-    }
-  }
+.texto{
+  position: absolute;
+  top: 12vh;
+  font-size: 2vh;
+  font-family: MontserratBold;
+  color: #4f565f;
+  margin-left: 3vh;
 }
-
-.card :hover{
+.greeting-card{
+  color: #f4edff;
+  box-shadow: 6px 11px 19px -1px rgba(235,225,252,0.93);
+  -webkit-box-shadow: 6px 11px 19px -1px rgba(235,225,252,0.93);
+  -moz-box-shadow: 6px 11px 19px -1px rgba(235,225,252,0.93);
+  height: 25vh;
+  width: 50vh;
+}
+.greeting-card:hover {
   color: #ffffff;
-  background: #5d01db;
+  background: rgb(121,0,255);
+  background: linear-gradient(170deg, rgba(121,0,255,1) 0%, rgba(121,0,255,1) 78%, rgba(89,227,255,1) 100%); 
+    .texto{
+      color: #ffffff;
+    }
 }
 </style>

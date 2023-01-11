@@ -304,7 +304,7 @@ export default {
     return {
       dialog: false,
       diabetes: '',
-      famil: [],
+      family: [],
       disease: '',
       pressure: '',
       thyroid: '',

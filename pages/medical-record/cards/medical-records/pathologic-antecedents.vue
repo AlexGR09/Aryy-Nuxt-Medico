@@ -181,10 +181,6 @@ export default {
       diabetes: '',
       disease: '',
       cirugias: [
-        {
-          name: 'Apendicectomía',
-          date: 'julio 2018',
-        },
       ],
     }
   },

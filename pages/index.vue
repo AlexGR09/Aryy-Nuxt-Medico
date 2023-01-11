@@ -1,11 +1,12 @@
 <template>
   <v-container>
     <v-card-text>
-      <p class="text-h3 text_welcome" color="#4812d7">Bienvenido,</p>
-      <p class="text-h4 text_welcome">Dr. {{ facilities }}</p>
-      <div class="">
+      <h3 class="text_welcome" color="#4812d7">Bienvenido,</h3>
+      <h4 class="text_welcome">Dr. {{ facilities }}</h4>
+      <div class="mt-3">
+        <p>
         Aún no ha terminado de configurar su perfil de,
-        <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link>
+        <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link></p>
       </div>
     </v-card-text>
     <v-card-subtitle class="pa-3 mt-n2 mb-n10">
@@ -70,9 +71,15 @@ export default {
 
 
 <style>
+ 
 .text_welcome {
-  color: blue;
-  font-family: 'Montserrat', sans-serif;
+  color: #7900ff;
+  font-family: 'Montserrat';
+  font-size: 4vh;
+}
+p{
+  font-family: 'MontserratMedium';
+  color: #4f565f;
 }
 
 

@@ -8,7 +8,7 @@
             dense
             hide-details
             color="#7900ff"
-            value="+52 961 123 4567"
+            placeholder="Número de teléfono"
             type="text"
           >
             <template #prepend>
@@ -24,9 +24,9 @@
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
             dense
+            placeholder="Nombre completo"
             hide-details
             color="#7900ff"
-            value="Fulanito Detal"
             type="text"
           >
             <template #prepend>
@@ -41,10 +41,10 @@
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
+          placeholder="Edad"
             dense
             hide-details
             color="#7900ff"
-            value="31 años (01 Enero 1991)"
             type="text"
           >
             <template #prepend>
@@ -59,10 +59,10 @@
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
+          placeholder="Tipo de sangre"
             class="mt-n5"
             dense
             color="#7900ff"
-            value="B+"
             type="text"
           >
             <template #prepend>
@@ -77,10 +77,10 @@
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
+          placeholder="Estatura"
             class="mt-n5"
             dense
             color="#7900ff"
-            value="1.80 mts"
             type="text"
           >
             <template #prepend>
@@ -96,9 +96,9 @@
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
             class="mt-n5"
+            placeholder="Genero"
             dense
             color="#7900ff"
-            value="Hombre"
             type="text"
           >
             <template #prepend>
@@ -346,7 +346,7 @@
       <v-col v-if="temperatura" cols="4" xs="4" sm="5" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="37.5 °C" type="text">
+            <v-text-field  outlined dense value="°C" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -363,7 +363,7 @@
       <v-col v-if="sistolica" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="120 mmHg" type="text">
+            <v-text-field outlined dense value="mmHg" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -401,7 +401,7 @@
             <v-text-field
               outlined
               dense
-              value="95 Kg (Diciembre 2022)"
+              value="Kg (Fecha)"
               type="text"
             >
               <template #prepend>
@@ -420,7 +420,7 @@
       <v-col v-if="diastolica" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="80 mmHg" type="text">
+            <v-text-field outlined dense value="mmHg" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -455,7 +455,7 @@
       <v-col v-if="respiratoria" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="17 r/m" type="text">
+            <v-text-field outlined dense value="r/m" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -472,7 +472,7 @@
       <v-col v-if="cardiaca" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="80 bpm" type="text">
+            <v-text-field outlined dense value="bpm" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -541,7 +541,7 @@
       <v-col v-if="cintura" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="90 cm" type="text">
+            <v-text-field outlined dense value="cm" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"

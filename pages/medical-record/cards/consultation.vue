@@ -119,7 +119,7 @@
         >Guardar y terminar</v-btn
       ></v-col>
       <v-col cols="12" xs="12"  xl="3">
-      <v-btn block height="50px" class="btn  mt-7" color="#999999" outlined large
+      <v-btn block height="50px" class="btnn  mt-7" color="#999999" outlined large
         >Imprimir receta</v-btn
       ></v-col>
       <v-overlay :value="overlay">
@@ -182,6 +182,10 @@ p {
   font-family: Montserrat;
 }
 .btn {
+  text-transform: capitalize;
+  font-size: 100%;
+}
+.btnn {
   text-transform: capitalize;
   font-size: 100%;
 }
