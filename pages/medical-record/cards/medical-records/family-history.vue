@@ -268,7 +268,25 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p>Sin datos registrados</p>
+    <p v-if="!family[0]">Sin datos registrados</p>
+    <v-list-item
+      v-for="famil in family"
+      :key="famil"
+      v-else
+      style="font-family: Montserrat"
+      class="ml-n7 mt-n1 lista"
+      two-line
+    >
+      <v-list-item-avatar class="mr-n1">
+        <v-icon color="green">mdi-check-circle</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>Cirugias previas</v-list-item-title>
+        <v-list-item-subtitle
+          >{{ famil.name }} en {{ famil.date }}</v-list-item-subtitle
+        >
+      </v-list-item-content>
+    </v-list-item>
     <p class="ml-3">
       <img
         class="mr-3"
@@ -286,6 +304,7 @@ export default {
     return {
       dialog: false,
       diabetes: '',
+      famil: [],
       disease: '',
       pressure: '',
       thyroid: '',

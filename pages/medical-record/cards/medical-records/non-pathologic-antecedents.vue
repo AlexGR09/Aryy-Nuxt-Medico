@@ -120,7 +120,25 @@
         </v-dialog>
       </div>
       <v-divider class="mt-n1"></v-divider>
-      <p>Sin datos registrados</p>
+      <p v-if="!nonpat[0]">Sin datos registrados</p>
+      <v-list-item
+      v-for="nonpat in nonpats"
+      :key="nonpat"
+      v-else
+      style="font-family: Montserrat"
+      class="ml-n7 mt-n1 lista"
+      two-line
+    >
+      <v-list-item-avatar class="mr-n1">
+        <v-icon color="green">mdi-check-circle</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>Cirugias previas</v-list-item-title>
+        <v-list-item-subtitle
+          >{{ nonpat.name }} en {{ nonpat.date }}</v-list-item-subtitle
+        >
+      </v-list-item-content>
+    </v-list-item>
       <p class="ml-3">
         <img
           class="mr-3"
@@ -141,6 +159,7 @@
         dreaming: '',
         resting: '',
         smoking: '',
+        nonpat: [],
       }
     },
   }

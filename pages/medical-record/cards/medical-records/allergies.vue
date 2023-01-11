@@ -124,6 +124,24 @@
     </div>
     <v-divider class="mt-n1"></v-divider>
     <p v-if="!alergias[0]">Sin alergías conocidas</p>
+    <v-list-item
+      v-for="alergia in alergias"
+      :key="alergia"
+      v-else
+      style="font-family: Montserrat"
+      class="ml-n7 mt-n1 lista"
+      two-line
+    >
+      <v-list-item-avatar class="mr-n1">
+        <v-icon color="green">mdi-check-circle</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>Cirugias previas</v-list-item-title>
+        <v-list-item-subtitle
+          >{{ alergia.name }} en {{ alergia.date }}</v-list-item-subtitle
+        >
+      </v-list-item-content>
+    </v-list-item>
     <p class="ml-3">
       <img
         class="mr-3"
