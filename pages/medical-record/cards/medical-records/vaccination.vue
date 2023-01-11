@@ -90,26 +90,25 @@
               </v-row>
             </v-container>
           </v-card-text>
-          <v-card-actions class="mt-n10 ml-5">
+          <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
-              height="50px"
-              class="white--text save mb-5"
-              v-on:click="update"
-              color="#7900ff"
-              large
-              >Guardar cambios</v-btn
-            >
-            <v-btn
-              v-bind="attrs"
-              v-on="on"
-              height="50px"
-              class="restore ml-3 mb-5"
-              color="#999999"
-              outlined
-              large
-              >Restaurar todo</v-btn
-            >
-          </v-card-actions>
+            block
+            @click="overlay = !overlay"
+                height="50px"
+                class="white--text save mb-5"
+                color="#7900ff"
+                large
+                >Guardar cambios</v-btn
+              >
+              <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+            </v-card-actions>
         </v-card>
       </v-dialog>
     </div>
@@ -130,6 +129,7 @@ export default {
   components: {},
   data() {
     return {
+      overlay: false,
       modal: false,
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
@@ -155,6 +155,14 @@ export default {
       farmacos: '',
       ambientales: '',
     }
+  },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 2000)
+    },
   },
 }
 </script>

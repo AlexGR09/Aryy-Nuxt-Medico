@@ -18,7 +18,7 @@
       <v-row>
         <v-col class="ml-3 mr-3" xs="11" sm="11" md="11" lg="8" xl="11">
         <H1 class="title mb-3 mt-3">NOTAS INTERNAS</H1>
-        <v-text-area></v-text-area>
+        
         <v-textarea
           class="note"
           color="#E0E0E0"
@@ -65,6 +65,7 @@ export default {
   },
   data() { 
     return {
+      notes: '',
       items: [
         {
           icon: 'mdi-home-outline',

@@ -4,7 +4,7 @@
     <div>
       <v-card
         v-for="date in dates"
-        :key="date"
+        :key="date.day"
         class="mx-auto montserrat mb-5"
         max-width="100%"
         outlined

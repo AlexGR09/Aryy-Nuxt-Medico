@@ -4,7 +4,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn class="justify-start" width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
         <v-icon color="#7900ff">mdi-plus</v-icon>
-        <l>CUESTIONARIO PERSONALIZADO</l>
+        <span class="l">CUESTIONARIO PERSONALIZADO</span>
       </v-btn>
     </template>
     <v-card height="100%">
@@ -81,9 +81,7 @@
               </div>
               <v-btn
                 @click="addInput"
-                v-bind="attrs"
-                v-on="on"
-                class="btn ml-n5 mt-n3"
+                class="btnn ml-n5 mt-n3"
                 color="#9966ff"
                 text
                 ><v-icon class="icon">mdi-plus-circle</v-icon>Agrega otro
@@ -93,26 +91,22 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <v-col>
+      <v-card-actions class="mt-n10 ml-5 mr-5">
         <v-btn
+          block
+          @click="overlay = !overlay"
           height="50px"
-          class="white--text save mb-5"
-          v-on:click="update"
+          class="white--text save mb-5 mt-5"
           color="#7900ff"
           large
           >Guardar cambios</v-btn
         >
-        <v-btn
-          v-bind="attrs"
-          v-on="on"
-          height="50px"
-          class="restore ml-3 mb-5"
-          color="#999999"
-          outlined
-          large
-          >Restaurar todo</v-btn
-        >
-      </v-col>
+        <v-overlay :value="overlay">
+          <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
+            >Datos actualizados correctamente.</v-alert
+          >
+        </v-overlay>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -123,6 +117,7 @@ export default {
   components: {},
   data() {
     return {
+      overlay: false,
       n: 0,
       editar: '',
       edit: '',
@@ -156,6 +151,14 @@ export default {
       support: '',
     }
   },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 2000)
+    },
+  },
   methods: {
     addInput() {
       this.inputs.push({})
@@ -184,7 +187,8 @@ span {
   color: #4f565f;
   font-family: Montserrat;
 }
-l{
+.l{
+  color: #7900ff;
   font-size: 90%;
   font-family: MontserratBold;
 }
@@ -203,6 +207,12 @@ l{
   font-size: 5px;
 }
 .btn {
+  font-family: MontserratMedium;
+  font-size: 16px;
+  text-transform: unset !important;
+  color: #9966ff;
+}
+.btnn {
   font-family: MontserratMedium;
   font-size: 16px;
   text-transform: unset !important;

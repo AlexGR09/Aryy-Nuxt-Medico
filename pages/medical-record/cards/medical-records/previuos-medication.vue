@@ -2,74 +2,7 @@
 <template>
     <v-card-text class="mt-n7">
       <p class="titulo">Medicamento anterior</p>
-      <div class="mb-2 mt-n11 d-flex justify-end">
-        <v-dialog v-model="dialog" max-width="600px">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn dark icon v-bind="attrs" v-on="on">
-              <img
-                width="24"
-                height="24"
-                :src="require('@/assets/icons/icon_edit.svg')"
-              />
-            </v-btn>
-          </template>
-          <v-card>
-            <v-card-title>
-              <span>HISTORIAL DE MEDICAMENTOS</span>
-            </v-card-title>
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col v-for="medicamento in medicamentos" :key="medicamento" cols="12" sm="6" md="4" xl="12">
-                    <p >{{medicamento.name}} • {{medicamento.mg}} • {{medicamento.presentation}}</p>
-                    <p class="sub mt-n5">
-                      {{medicamento.indication}} • {{medicamento.date}}
-                    </p>
-                    <v-row class="mt-n8">
-                      <v-col cols="3">
-                        <v-checkbox
-                          class="checkbox"
-                          color="#7900ff"
-                          label="Completado"
-                          value
-                        ></v-checkbox>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-checkbox
-                          class="checkbox"
-                          color="#7900ff"
-                          label="No completado"
-                          value
-                        ></v-checkbox>
-                      </v-col>
-                    </v-row>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-            <v-card-actions class="mt-n10 ml-5">
-              <v-btn
-                height="50px"
-                class="white--text save mb-5"
-                v-on:click="update"
-                color="#7900ff"
-                large
-                >Guardar cambios</v-btn
-              >
-              <v-btn
-                v-bind="attrs"
-                v-on="on"
-                height="50px"
-                class="restore ml-3 mb-5"
-                color="#999999"
-                outlined
-                large
-                >Restaurar todo</v-btn
-              >
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </div>
+    
       <v-divider class="mt-n1"></v-divider>
       <p>Sin datos registrados</p>
       <p class="ml-3">

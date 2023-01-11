@@ -77,13 +77,11 @@
       </v-col>
     </v-row>
     <v-btn
-      class="mt-n7 ml-n4"
+      class="mt-n7 ml-n4 add"
       @click="addInput"
-      v-bind="attrs"
-      v-on="on"
       color="#9966ff"
       text
-      ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro
+      ><v-icon class="icon mr-4">mdi-plus-circle</v-icon>Añadir otro
       medicamento</v-btn
     >
 
@@ -113,7 +111,7 @@
       placeholder="Escribe aquí los datos del estudio de gabinete"
       outlined
     ></v-textarea>
-  <v-row>
+  <v-row class="mt-n10">
    <v-col cols="12" xs="12" xl="3">
       <v-btn block v-on:click="overlay = !overlay"  height="50px" class="white--text mt-7 btn" color="#7900ff" large
         >Guardar y terminar</v-btn
@@ -183,10 +181,15 @@ p {
 }
 .btn {
   text-transform: capitalize;
-  font-size: 100%;
+  font-size: 90%;
 }
 .btnn {
   text-transform: capitalize;
-  font-size: 100%;
+  font-size: 90%;
+}
+.add{
+  font-family: MontserratMedium;
+  font-size: 1.6vh;
+  text-transform: capitalize;
 }
 </style>

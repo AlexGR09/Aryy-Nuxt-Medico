@@ -1,15 +1,16 @@
 <template>
   <div>
-    <V-COL xl="12">
+    <v-row>
+    <v-col xl="12">
       <p class="titulo mt-n4">Otros estudios</p>
       <v-divider class="mb-4 mt-n3"></v-divider>
-    </V-COL>
+    </v-col></v-row>
 
     <v-dialog scrollable v-model="dialog" max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-col xl="4">
           <v-btn
-            class="ml-n2 mt-n2"
+            class="ml-n2 mt-n2 odont justify-start"
             block
             outlined
             color="#7900ff"
@@ -46,14 +47,11 @@
           <v-btn
             height="50px"
             class="white--text save mb-5"
-            v-on:click="update"
             color="#7900ff"
             large
             >Guardar cambios</v-btn
           >
           <v-btn
-            v-bind="attrs"
-            v-on="on"
             height="50px"
             class="restore ml-3 mb-5"
             color="#999999"
@@ -124,6 +122,10 @@ span {
 .save {
   font-family: Montserrat;
   text-transform: unset !important;
+}
+.odont{
+  font-family: MontserratBold;
+  color: #7900ff;
 }
 .restore {
   font-family: Montserrat;

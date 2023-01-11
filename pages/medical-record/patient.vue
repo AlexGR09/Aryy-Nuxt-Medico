@@ -13,7 +13,7 @@
                 <v-spacer></v-spacer>
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" src="@/assets/icons/icon_perfil.svg"/>
+                    <img width="25vh" src="@/assets/icons/icon_user.svg"/>
                     <span class="information-basic ms-3">Fulanito Detal</span>
                   </p>
                 </div>
@@ -21,7 +21,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" src="@/assets/icons/icon_phone_dark_.svg"/>
+                    <img width="25vh" src="@/assets/icons/icon_phone.svg"/>
                     <span class="information-basic ms-3">+52 963 258 4521</span>
                   </p>
                 </div>
@@ -29,7 +29,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_cumpleaños_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_birthday.svg"/>
                     <span class="information-basic ms-3">31 años (01 Enero 1991)</span>
                   </p>
                 </div>
@@ -37,7 +37,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_sanguineo_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_bloodtype.svg"/>
                     <span class="information-basic ms-3">Grupo Sanguíneo B+</span>
                   </p>
                 </div>
@@ -45,7 +45,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_estatura_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_height.svg"/>
                     <span class="information-basic ms-3">1.80 mts</span>
                   </p>
                 </div>
@@ -53,7 +53,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_gender.svg"/>
                     <span class="information-basic ms-3">Hombre</span>
                   </p>
                 </div>
@@ -66,7 +66,7 @@
             <v-col cols="12"  md="4" >
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" src="@/assets/icons/icon_perfil.svg"/>
+                    <img width="25vh" src="@/assets/icons/icon_user.svg"/>
                     <span class="information-basic ms-3">37.5°</span>
                     <span class="text-xs text-no-wrap">hola</span>
                   </p>
@@ -75,7 +75,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" src="@/assets/icons/icon_phone_dark_.svg"/>
+                    <img width="25vh" src="@/assets/icons/icon_phone.svg"/>
                     <span class="information-basic ms-3">95 kg</span>
                   </p>
                 </div>
@@ -83,7 +83,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_cumpleaños_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_birthday.svg"/>
                     <span class="information-basic ms-3">31 años (01 Enero 1991)</span>
                   </p>
                 </div>
@@ -91,7 +91,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_sanguineo_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_bloodtype.svg"/>
                     <span class="information-basic ms-3">Grupo Sanguíneo B+</span>
                   </p>
                 </div>
@@ -99,7 +99,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_estatura_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_height.svg"/>
                     <span class="information-basic ms-3">1.80 mts</span>
                   </p>
                 </div>
@@ -107,7 +107,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_gender.svg"/>
                     <span class="information-basic ms-3">Hombre</span>
                   </p>
                 </div>
@@ -115,7 +115,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_gender.svg"/>
                     <span class="information-basic ms-3">Hombre</span>
                   </p>
                 </div>
@@ -123,7 +123,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_gender.svg"/>
                     <span class="information-basic ms-3">Hombre</span>
                   </p>
                 </div>
@@ -131,7 +131,7 @@
             <v-col cols="12" md="4">
                 <div >
                   <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
+                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_gender.svg"/>
                     <span class="information-basic ms-3">Hombre</span>
                   </p>
                 </div>

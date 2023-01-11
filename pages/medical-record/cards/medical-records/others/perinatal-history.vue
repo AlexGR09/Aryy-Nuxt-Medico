@@ -4,7 +4,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn class="justify-start" width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
         <v-icon color="#7900ff">mdi-plus</v-icon>
-        <l>ANTECEDENTES PERINATALES</l>
+        <span class="l">ANTECEDENTES PERINATALES</span>
       </v-btn>
     </template>
     <v-card height="600px">
@@ -25,6 +25,7 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
+                    class="save"
                     v-model="date"
                     outlined
                     placeholder="Selecciona la fecha"
@@ -52,7 +53,7 @@
                   </v-btn>
                 </v-date-picker>
               </v-dialog>
-              <p>Duración del ciclo</p>
+              <p class="mt-n3">Duración del ciclo</p>
               <v-text-field
                 class="mt-n3"
                 style="font-family: Montserrat"
@@ -60,7 +61,7 @@
                 placeholder="Escriba aquí"
               ></v-text-field>
 
-              <p>Último método anticonceptivo utilizado</p>
+              <p class="mt-n3">Último método anticonceptivo utilizado</p>
               <v-text-field
                 class="mt-n3"
                 style="font-family: Montserrat"
@@ -91,6 +92,7 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
+                  class="save mt-n2"
                     v-model="date"
                     outlined
                     placeholder="Selecciona la fecha"
@@ -122,26 +124,22 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <v-col class="ml-6">
+      <v-card-actions class="mt-n10 ml-5 mr-5">
         <v-btn
+          block
+          @click="overlay = !overlay"
           height="50px"
           class="white--text save mb-5"
-          v-on:click="update"
           color="#7900ff"
           large
           >Guardar cambios</v-btn
         >
-        <v-btn
-          v-bind="attrs"
-          v-on="on"
-          height="50px"
-          class="restore ml-3 mb-5"
-          color="#999999"
-          outlined
-          large
-          >Restaurar todo</v-btn
-        >
-      </v-col>
+        <v-overlay :value="overlay">
+          <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
+            >Datos actualizados correctamente.</v-alert
+          >
+        </v-overlay>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -152,6 +150,7 @@ export default {
   components: {},
   data() {
     return {
+      overlay: false,
       modal: false,
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
@@ -180,6 +179,14 @@ export default {
       support: '',
     }
   },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 2000)
+    },
+  },
 }
 </script>
 <style scoped>
@@ -200,8 +207,9 @@ span {
   color: #4f565f;
   font-family: MontserratBold;
 }
-l{
+.l{
   font-size: 90%;
+  color: #7900ff;
   font-family: MontserratBold;
 }
 .save {

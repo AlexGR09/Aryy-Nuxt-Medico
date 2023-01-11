@@ -2,9 +2,16 @@
 <template>
   <v-dialog scrollable v-model="dialog" max-width="700px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn class="justify-start" width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
-       <v-icon color="#7900ff">mdi-plus</v-icon> 
-        <l>ANTECEDENTES GINECO-OBSTÉTRICOS</l>
+      <v-btn
+        class="justify-start"
+        width="360px"
+        outlined
+        color="#7900ff"
+        v-bind="attrs"
+        v-on="on"
+      >
+        <v-icon color="#7900ff">mdi-plus</v-icon>
+        <span class="l">ANTECEDENTES GINECO-OBSTÉTRICOS</span>
       </v-btn>
     </template>
     <v-card height="600px">
@@ -25,6 +32,8 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
+                    color="#7900ff"
+                    class="save"
                     v-model="date"
                     outlined
                     placeholder="Selecciona la fecha"
@@ -42,12 +51,17 @@
                       </div> </template
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="date" scrollable>
+                <v-date-picker
+                  color="#9966ff"
+                  locale="MX-ES"
+                  v-model="date"
+                  scrollable
+                >
                   <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="modal = false">
+                  <v-btn text color="#7900ff" @click="modal = false">
                     Cancel
                   </v-btn>
-                  <v-btn text color="primary" @click="$refs.dialog.save(date)">
+                  <v-btn text ccolor="#7900ff" @click="$refs.dialog.save(date)">
                     OK
                   </v-btn>
                 </v-date-picker>
@@ -62,6 +76,8 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
+                  color="#7900ff"
+                    class="save"
                     v-model="date"
                     outlined
                     placeholder="Selecciona la fecha"
@@ -79,12 +95,12 @@
                       </div> </template
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="date" scrollable>
+                <v-date-picker color="#7900ff" v-model="date" scrollable>
                   <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="modal = false">
+                  <v-btn text color="#7900ff" @click="modal = false">
                     Cancel
                   </v-btn>
-                  <v-btn text color="primary" @click="$refs.dialog.save(date)">
+                  <v-btn text color="#7900ff" @click="$refs.dialog.save(date)">
                     OK
                   </v-btn>
                 </v-date-picker>
@@ -94,196 +110,230 @@
                 <v-radio
                   color="#b380ff"
                   label="Ligero"
-                  value="consYes"
+                  value="ligero"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Moderado"
-                  value="consNo"
+                  value="moderado"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Fuerte"
-                  value="consYes"
+                  value="fuerte"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Manchado"
-                  value="consNo"
+                  value="manchado"
                 ></v-radio>
               </v-radio-group>
 
-              <p class="mt-n4 mb-n2">Dolor</p>
+              <p class="mb-n2">Dolor</p>
               <v-radio-group style="font-family: Montserrat" v-model="cons" row>
                 <v-radio
                   color="#b380ff"
                   label="Cólicos"
-                  value="consYes"
+                  value="colicos"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Dolor de cabeza"
-                  value="consNo"
+                  value="cabeza"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Ovulación"
-                  value="consYes"
+                  value="ovulacion"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Senos sensibles"
-                  value="consNo"
+                  value="sensibles"
                 ></v-radio>
               </v-radio-group>
 
-              <p class="mt-n4 mb-n2">Higiene íntima</p>
+              <p class="mb-n2">Higiene íntima</p>
               <v-radio-group style="font-family: Montserrat" v-model="cons" row>
                 <v-radio
                   color="#b380ff"
                   label="Tampón"
-                  value="consYes"
+                  value="tampon"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Toalla"
-                  value="consNo"
+                  value="toalla"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Protector diario"
-                  value="consYes"
+                  value="protector"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Copa menstrual"
-                  value="consNo"
+                  value="copa"
                 ></v-radio>
               </v-radio-group>
 
-              <p class="mt-n4 mb-n2">Flujo cervical</p>
+              <p class="mb-n2">Flujo cervical</p>
               <v-radio-group style="font-family: Montserrat" v-model="cons" row>
                 <v-radio
                   color="#b380ff"
                   label="Clara de huevo"
-                  value="consYes"
+                  value="huevo"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Pegajoso"
-                  value="consNo"
+                  value="pegajoso"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Cremoso"
-                  value="consYes"
+                  value="cremoso"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Atípico"
-                  value="consNo"
+                  value="atipico"
                 ></v-radio>
               </v-radio-group>
 
-              <p class="mt-n4 mb-n2">Sexo</p>
+              <p class="mb-n2">Sexo</p>
               <v-radio-group style="font-family: Montserrat" v-model="cons" row>
                 <v-radio
                   color="#b380ff"
                   label="Sin protección"
-                  value="consYes"
+                  value="noprotec"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Con protección"
-                  value="consNo"
+                  value="protec"
                 ></v-radio>
                 <v-radio
                   color="#b380ff"
                   label="Coito interrumpido"
-                  value="consYes"
+                  value="inter"
                 ></v-radio>
               </v-radio-group>
 
-              <p class="mt-n4 mb-n3">Embarazos</p>
+              <p class="mb-n3">Embarazos</p>
 
-              <v-radio-group v-model="diabetes" row>
-                <v-radio color="#b380ff" label="Si" value="diabYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="diabNo"></v-radio>
+              <v-radio-group
+                style="font-family: Montserrat"
+                v-model="pregnancy"
+                row
+              >
+                <v-radio color="#b380ff" label="Si" value="pregYes"></v-radio>
+                <v-radio color="#b380ff" label="No" value="pregNo"></v-radio>
               </v-radio-group>
               <v-text-field
+              color="#7900ff"
                 class="mt-n3"
                 style="font-family: Montserrat"
-                v-if="diabetes == 'diabYes'"
+                v-if="pregnancy == 'pregYes'"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
 
               <p class="mt-n4 mb-n3">Cáncer cérvicouterino</p>
 
-              <v-radio-group v-model="diabetes" row>
-                <v-radio color="#b380ff" label="Si" value="diabYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="diabNo"></v-radio>
+              <v-radio-group
+                style="font-family: Montserrat"
+                v-model="cervical"
+                row
+              >
+                <v-radio
+                  color="#b380ff"
+                  label="Si"
+                  value="cervicalYes"
+                ></v-radio>
+                <v-radio
+                  color="#b380ff"
+                  label="No"
+                  value="cervicalNo"
+                ></v-radio>
               </v-radio-group>
               <v-text-field
+              color="#7900ff"
                 class="mt-n3"
                 style="font-family: Montserrat"
-                v-if="diabetes == 'diabYes'"
+                v-if="cervical == 'cervicalYes'"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
 
               <p class="mt-n4 mb-n3">Cáncer de mama</p>
 
-              <v-radio-group v-model="diabetes" row>
-                <v-radio color="#b380ff" label="Si" value="diabYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="diabNo"></v-radio>
+              <v-radio-group style="font-family: Montserrat" v-model="mama" row>
+                <v-radio color="#b380ff" label="Si" value="mamaYes"></v-radio>
+                <v-radio color="#b380ff" label="No" value="mamaNo"></v-radio>
               </v-radio-group>
               <v-text-field
+              color="#7900ff"
                 class="mt-n3"
                 style="font-family: Montserrat"
-                v-if="diabetes == 'diabYes'"
+                v-if="mama == 'mamaYes'"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
 
               <p class="mt-n4 mb-n3">Sexualmente activa</p>
 
-              <v-radio-group v-model="diabetes" row>
-                <v-radio color="#b380ff" label="Si" value="diabYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="diabNo"></v-radio>
+              <v-radio-group
+                style="font-family: Montserrat"
+                v-model="active"
+                row
+              >
+                <v-radio color="#b380ff" label="Si" value="activeYes"></v-radio>
+                <v-radio color="#b380ff" label="No" value="activeNo"></v-radio>
               </v-radio-group>
               <v-text-field
+              color="#7900ff"
                 class="mt-n3"
                 style="font-family: Montserrat"
-                v-if="diabetes == 'diabYes'"
+                v-if="active == 'activeYes'"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
 
               <p class="mt-n4 mb-n3">Método de planificación familiar</p>
 
-              <v-radio-group v-model="diabetes" row>
-                <v-radio color="#b380ff" label="Si" value="diabYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="diabNo"></v-radio>
+              <v-radio-group
+                style="font-family: Montserrat"
+                v-model="planning"
+                row
+              >
+                <v-radio color="#b380ff" label="Si" value="planYes"></v-radio>
+                <v-radio color="#b380ff" label="No" value="planNo"></v-radio>
               </v-radio-group>
               <v-text-field
+              color="#7900ff"
                 class="mt-n3"
                 style="font-family: Montserrat"
-                v-if="diabetes == 'diabYes'"
+                v-if="planning == 'planYes'"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
 
               <p class="mt-n4 mb-n3">Terapia de reemplazo hormonal</p>
 
-              <v-radio-group v-model="diabetes" row>
-                <v-radio color="#b380ff" label="Si" value="diabYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="diabNo"></v-radio>
+              <v-radio-group
+                style="font-family: Montserrat"
+                v-model="hormonal"
+                row
+              >
+                <v-radio color="#b380ff" label="Si" value="hormYes"></v-radio>
+                <v-radio color="#b380ff" label="No" value="hormNo"></v-radio>
               </v-radio-group>
               <v-text-field
-                class="mt-n3"
+              color="#7900ff"
+                class="mt-n3 mb-n3"
                 style="font-family: Montserrat"
-                v-if="diabetes == 'diabYes'"
+                v-if="hormonal == 'hormYes'"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
@@ -298,6 +348,7 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
+                    class="save"
                     v-model="date"
                     outlined
                     placeholder="Selecciona la fecha"
@@ -315,12 +366,17 @@
                       </div> </template
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="date" scrollable>
+                <v-date-picker
+                  color="#9966ff"
+                  locale="MX-ES"
+                  v-model="date"
+                  scrollable
+                >
                   <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="modal = false">
+                  <v-btn text color="#7900ff" @click="modal = false">
                     Cancel
                   </v-btn>
-                  <v-btn text color="primary" @click="$refs.dialog.save(date)">
+                  <v-btn text color="#7900ff" @click="$refs.dialog.save(date)">
                     OK
                   </v-btn>
                 </v-date-picker>
@@ -335,6 +391,8 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
+                  color="#7900ff"
+                    class="save"
                     v-model="date"
                     outlined
                     placeholder="Selecciona la fecha"
@@ -352,12 +410,17 @@
                       </div> </template
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="date" scrollable>
+                <v-date-picker
+                  color="#9966ff"
+                  locale="MX-ES"
+                  v-model="date"
+                  scrollable
+                >
                   <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="modal = false">
+                  <v-btn text color="#7900ff" @click="modal = false">
                     Cancel
                   </v-btn>
-                  <v-btn text color="primary" @click="$refs.dialog.save(date)">
+                  <v-btn text color="#7900ff" @click="$refs.dialog.save(date)">
                     OK
                   </v-btn>
                 </v-date-picker>
@@ -366,26 +429,22 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <v-col class="ml-6">
+      <v-card-actions class="mt-n10 ml-5 mr-5">
         <v-btn
+          block
+          @click="overlay = !overlay"
           height="50px"
           class="white--text save mb-5"
-          v-on:click="update"
           color="#7900ff"
           large
           >Guardar cambios</v-btn
         >
-        <v-btn
-          v-bind="attrs"
-          v-on="on"
-          height="50px"
-          class="restore ml-3 mb-5"
-          color="#999999"
-          outlined
-          large
-          >Restaurar todo</v-btn
-        >
-      </v-col>
+        <v-overlay :value="overlay">
+          <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
+            >Datos actualizados correctamente.</v-alert
+          >
+        </v-overlay>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -396,6 +455,13 @@ export default {
   components: {},
   data() {
     return {
+      overlay: false,
+      pregnancy: '',
+      cervical: '',
+      mama: '',
+      active: '',
+      planning: '',
+      hormonal: '',
       modal: false,
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
@@ -424,6 +490,14 @@ export default {
       support: '',
     }
   },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 2000)
+    },
+  },
 }
 </script>
 <style scoped>
@@ -436,6 +510,7 @@ p {
   font-family: MontserratMedium;
   color: #4f565f;
   margin-bottom: 0px;
+  font-size: 1.7vh;
 }
 p.sub {
   font-family: MontserratMedium;
@@ -445,7 +520,8 @@ span {
   color: #4f565f;
   font-family: MontserratBold;
 }
-l{
+.l {
+  color: #7900ff;
   font-size: 90%;
   font-family: MontserratBold;
 }
