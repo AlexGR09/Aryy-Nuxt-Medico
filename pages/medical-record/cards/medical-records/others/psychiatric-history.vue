@@ -107,7 +107,7 @@
     </v-dialog>
   </v-row>
 </template>
-+
+
 <style scoped>
 p.titulo {
   font-family: MontserratMedium;

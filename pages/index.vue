@@ -9,7 +9,6 @@
       </div>
     </v-card-text>
     <v-card-subtitle class="pa-3 mt-n2 mb-n10">
-
       <H1 class="mb-5">CONSULTAS</H1></v-card-subtitle
     >
     <br />
@@ -28,10 +27,8 @@
         <next-consultation/>
       </v-col>
       <v-col cols="12" md="6">
-        <v-card max-height="700">
-          <v-calendar></v-calendar>
-        </v-card>
         
+          <v-calendar></v-calendar>
       </v-col>
 
     </v-row>
@@ -40,6 +37,7 @@
 <script>
 import nextConsultation from '~/components/dashboard/next-consultation.vue'
 export default {
+  name: "default",
   components: { nextConsultation },
   data() {
     return {
@@ -74,6 +72,4 @@ export default {
   color: blue;
   font-family: 'Montserrat', sans-serif;
 }
-
-
 </style>

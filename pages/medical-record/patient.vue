@@ -4,7 +4,7 @@
     <v-row>
       <v-col cols="12" md="8">
         <p class="subtitle">EXPEDIENTE DEL PACIENTE</p>
-        <v-card class="rounded-lg" :elevation="2">
+        <v-card class="rounded-lg" :elevation="2" scrollable>
           <div class="banner-text">INFORMACIÓN DEL PACIENTE</div>
           <!-- INFORMACION BASICA -->
           <p class="subtitle">INFORMACIÓN BÁSICA</p>
@@ -141,15 +141,21 @@
           <div class="banner-text" icon="mdi-material-design">EXPEDIENTE MÉDICO</div>
             <v-col>
                     <p class="subtitle">ALERGIAS</p>
-                    <div>
-                        <v-list-item>
-      <v-list-item-content>
-        <v-list-item-title>Single-line item</v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-                    </div>
+
             </v-col>
-          <p class="subtitle">ANTECEDENTES PATOLÓGICOS</p>
+    
+              <v-col
+                cols="12"
+                md="6"
+              >
+              <p class="subtitle">ANTECEDENTES PATOLÓGICOS</p>
+                <h5 class="description">
+                  Cirugías previas
+                </h5>
+                <span class="information-description">Apendicitomía en Julio 2018</span>
+              </v-col>
+        
+          
           <p class="subtitle">ANTECEDENTES NO PATOLÓGICOS</p>
           <p class="subtitle">ANTECEDENTES HEREDOFAMILIARES</p>
           <p class="subtitle">MEDICAMENTO ACTIVO</p>
@@ -304,6 +310,9 @@ export default {
 
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap');
+
 .banner-text {
   color: white;
   background: blue;
@@ -317,18 +326,33 @@ export default {
 }
 
 .subtitle {
-  font-size: 1.8vh;
+/*   font-size: 1.8vh;
   padding: 1.3vh;
+  margin: 1vh; */
+  font-size: 1.8vh;
   font-family: 'MontserratBold';
   color: #5b5e63;
-
 }
+
+.description{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.information-description{
+  color: #a6a6a6;
+}
+
 .information-basic{
     color: #a6a6a6;
     font-family: 'Montserrat', sans-serif;
     font-size: 2vh;
 }
 
+.spanes{
+
+
+  
+}
 
 
 		

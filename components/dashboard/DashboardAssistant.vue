@@ -65,7 +65,6 @@
     .texto{
       color: #ffffff;
     }
-
 }
 </style>
 

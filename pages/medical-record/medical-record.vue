@@ -55,7 +55,7 @@
     
     },
     data() { return {
-        /*  fondo efecto libreta para las notas | Genesis */
+       
         image: {
           height: '83%',
           backgroundImage: 'url(https://i.ibb.co/c2rkczy/Doc1-page-0001-6.jpg)',
