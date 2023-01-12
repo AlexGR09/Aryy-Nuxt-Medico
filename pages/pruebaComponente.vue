@@ -1,47 +1,67 @@
+
+
+
 <template>
-  <div id="paper">
-  <div id="pattern">
-    <div id="content">
-    
-      Dear Diary
-      <br/><br/>Here are some of the sweetest memories I made during the last summer trip to Canada. What's even more beautiful about it was that it was the first time the entire family got together to spend quality time with each other. 
-    </div>
-  </div>
+<div id="app">
+  <h2>Todos:</h2>
+  <input type="checkbox" id="vehicle1"  value="primera" v-model="selection">primera<br>
+  <input type="checkbox" id="vehicle2"  value="subsecuente" v-model="selection">subsecuente<br>
+  <ul>
+    <v-card v-for="todo in filtered" :key="todo">
+      {{todo.appointment_type}}
+    </v-card>
+  </ul>
 </div>
 </template>
-<style scoped>
+<script>
+export default {
+  data() {
+    return {
+      selection:[],
+      filtered: [],
+      todos: '',
+    }
+  },
+  mounted(){
+    this.citas()
+  },
+  methods: {
+    citas() {
+      this.$axios
+        .get('api/v1/calendar/appointments', {
+          params: {
+            type: 'all',
+          },
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          this.todos = res.data.data
+          console.log(res)
+        })
+    },
+  },
+  watch: {
+    selection: {
+      handler() {
+        this.filtered= []
 
-
-/* styling paper */
-#paper {
-  width: 600px;
-  height: 400px;
-  position: relative;
-  margin: 20px auto;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: white;
-  box-shadow: 0px 0px 5px 0px #888;
+        
+        if (this.selection.length) {
+          this.todos.forEach(t => {
+            this.selection.forEach(s => {
+              if (t.appointment_type.split(/\s/).find(w => w === s.toLowerCase())) {
+                if (!this.filtered.find(f => f.appointment_type === t.appointment_type)) this.filtered = [ ...this.filtered, t]
+              }
+            })
+          })
+        } else {
+          this.filtered = [...this.todos]
+        }
+      },
+      deep: true,
+      immediate: true
+    }
+  },
+ 
 }
-
-/* styling red vertical line */
-
-
-/* styling blue horizontal lines */
-#pattern {
-  height: 100%;
-  background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
-}
-
-/* styling text content */
-#content {
-  padding-top: 6px;
-  padding-left: 56px;
-  padding-right: 16px;
-  line-height: 25px;
-  font-family: 'Montserrat';
-  font-size: 19px;
-  letter-spacing: 1px;
-  word-spacing: 5px;
-}
-</style>
+</script> 

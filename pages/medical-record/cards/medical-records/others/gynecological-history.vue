@@ -154,7 +154,7 @@
               </v-radio-group>
 
               <p class="mb-n2">Higiene íntima</p>
-              <v-radio-group style="font-family: Montserrat" v-model="cons" row>
+              <v-radio-group style="font-family: Montserrat;" v-model="cons" row>
                 <v-radio
                   color="#b380ff"
                   label="Tampón"
@@ -349,6 +349,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     class="save"
+                    color="#7900ff"
                     v-model="date"
                     outlined
                     placeholder="Selecciona la fecha"
@@ -510,7 +511,6 @@ p {
   font-family: MontserratMedium;
   color: #4f565f;
   margin-bottom: 0px;
-  font-size: 1.7vh;
 }
 p.sub {
   font-family: MontserratMedium;

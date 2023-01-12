@@ -73,11 +73,6 @@ export default {
           href: '/medical-record/medical-record',
         },
       ],
-      /*  fondo efecto libreta para las notas | Genesis */
-     /*  image: {
-        height: '80%',
-        backgroundImage: 'url(https://i.ibb.co/c2rkczy/Doc1-page-0001-6.jpg)',
-      }, */
     }
   },
 }
