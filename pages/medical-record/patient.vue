@@ -8,224 +8,340 @@
           <div class="banner-text">INFORMACIÓN DEL PACIENTE</div>
           <!-- INFORMACION BASICA -->
           <p class="subtitle">INFORMACIÓN BÁSICA</p>
-          <v-row no-gutters >
-            <v-col cols="12"  md="4" >
-                <v-spacer></v-spacer>
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" src="@/assets/icons/icon_perfil.svg"/>
-                    <span class="information-basic ms-3">Fulanito Detal</span>
-                  </p>
-                </div>
+          <v-row no-gutters>
+            <v-col cols="12" md="4">
+              <v-spacer></v-spacer>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img width="25vh" src="@/assets/icons/icon_perfil.svg" />
+                  <span class="information-basic ms-3">Fulanito Detal</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" src="@/assets/icons/icon_phone_dark_.svg"/>
-                    <span class="information-basic ms-3">+52 963 258 4521</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img width="25vh" src="@/assets/icons/icon_phone_dark_.svg" />
+                  <span class="information-basic ms-3">+52 963 258 4521</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_cumpleaños_dark_.svg"/>
-                    <span class="information-basic ms-3">31 años (01 Enero 1991)</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_cumpleaños_dark_.svg"
+                  />
+                  <span class="information-basic ms-3"
+                    >31 años (01 Enero 1991)</span
+                  >
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_sanguineo_dark_.svg"/>
-                    <span class="information-basic ms-3">Grupo Sanguíneo B+</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_sanguineo_dark_.svg"
+                  />
+                  <span class="information-basic ms-3">Grupo Sanguíneo B+</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_estatura_dark_.svg"/>
-                    <span class="information-basic ms-3">1.80 mts</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_estatura_dark_.svg"
+                  />
+                  <span class="information-basic ms-3">1.80 mts</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
-                    <span class="information-basic ms-3">Hombre</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_genero_dark_.svg"
+                  />
+                  <span class="information-basic ms-3">Hombre</span>
+                </p>
+              </div>
             </v-col>
           </v-row>
 
           <!-- Signos vitales -->
           <p class="subtitle">SIGNOS VITALES</p>
-          <v-row no-gutters >
-            <v-col cols="12"  md="4" >
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" src="@/assets/icons/icon_perfil.svg"/>
-                    <span class="information-basic ms-3">37.5°</span>
-                    <span class="text-xs text-no-wrap">hola</span>
-                  </p>
-                </div>
+          <v-row no-gutters>
+            <v-col cols="12" md="4">
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img width="25vh" src="@/assets/icons/icon_perfil.svg" />
+                  <span class="information-basic ms-3">37.5°</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" src="@/assets/icons/icon_phone_dark_.svg"/>
-                    <span class="information-basic ms-3">95 kg</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img width="25vh" src="@/assets/icons/icon_phone_dark_.svg" />
+                  <span class="information-basic ms-3">95 kg</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_cumpleaños_dark_.svg"/>
-                    <span class="information-basic ms-3">31 años (01 Enero 1991)</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_cumpleaños_dark_.svg"
+                  />
+                  <span class="information-basic ms-3"
+                    >31 años (01 Enero 1991)</span
+                  >
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_sanguineo_dark_.svg"/>
-                    <span class="information-basic ms-3">Grupo Sanguíneo B+</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_sanguineo_dark_.svg"
+                  />
+                  <span class="information-basic ms-3">Grupo Sanguíneo B+</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_estatura_dark_.svg"/>
-                    <span class="information-basic ms-3">1.80 mts</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_estatura_dark_.svg"
+                  />
+                  <span class="information-basic ms-3">1.80 mts</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
-                    <span class="information-basic ms-3">Hombre</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_genero_dark_.svg"
+                  />
+                  <span class="information-basic ms-3">Hombre</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
-                    <span class="information-basic ms-3">Hombre</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_genero_dark_.svg"
+                  />
+                  <span class="information-basic ms-3">Hombre</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
-                    <span class="information-basic ms-3">Hombre</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_genero_dark_.svg"
+                  />
+                  <span class="information-basic ms-3">Hombre</span>
+                </p>
+              </div>
             </v-col>
             <v-col cols="12" md="4">
-                <div >
-                  <p class="d-flex align-center mb-6">
-                    <img width="25vh" class="greeting-card-trophy" src="@/assets/icons/icon_genero_dark_.svg"/>
-                    <span class="information-basic ms-3">Hombre</span>
-                  </p>
-                </div>
+              <div>
+                <p class="d-flex align-center mb-6">
+                  <img
+                    width="25vh"
+                    class="greeting-card-trophy"
+                    src="@/assets/icons/icon_genero_dark_.svg"
+                  />
+                  <span class="information-basic ms-3">Hombre</span>
+                </p>
+              </div>
             </v-col>
           </v-row>
-     
-          <div class="banner-text" icon="mdi-material-design">EXPEDIENTE MÉDICO</div>
-            <v-col>
-                    <p class="subtitle">ALERGIAS</p>
 
-            </v-col>
-    
-              <v-col
-                cols="12"
-                md="6"
+          <div class="banner-text" icon="mdi-material-design">
+            EXPEDIENTE MÉDICO
+          </div>
+
+          <!-- ALERGIAS -->
+          <v-col cols="12" md="6">
+            <p class="subtitle">ALERGIAS</p>
+            <div class="container">
+              <span class="information-description">Alergías conocidas.</span>
+            </div>
+          </v-col>
+          <!-- ALERGIAS -->
+
+          <!-- ANTECENDETES PATOLOGICOS -->
+          <v-col cols="12" md="6">
+            <p class="subtitle">ANTECEDENTES PATOLÓGICOS</p>
+            <div class="container">
+              <h5 class="description">Cirugías previas</h5>
+              <span class="information-description"
+                >Apendicitomía en Julio 2018</span
               >
-              <p class="subtitle">ANTECEDENTES PATOLÓGICOS</p>
-                <h5 class="description">
-                  Cirugías previas
-                </h5>
-                <span class="information-description">Apendicitomía en Julio 2018</span>
-              </v-col>
-        
-          
-          <p class="subtitle">ANTECEDENTES NO PATOLÓGICOS</p>
-          <p class="subtitle">ANTECEDENTES HEREDOFAMILIARES</p>
-          <p class="subtitle">MEDICAMENTO ACTIVO</p>
-          <p class="subtitle">MEDICAMENTO ANTERIOR</p>
-          <p class="subtitle">VACUNACIÓN RECIENTE</p>
+            </div>
+          </v-col>
+          <!-- ANTECENDETES PATOLOGICOS -->
+
+          <!-- ANTECENDETES ANTECEDENTES HEREDOFAMILIARES -->
+          <v-col cols="12" md="6">
+            <p class="subtitle">ANTECEDENTES HEREDOFAMILIARES</p>
+            <div class="container">
+              <h5 class="description">Diabetes</h5>
+              <span class="information-description"
+                >Mamá - Tipo 1, Abuelo paterno - Tipo 2</span
+              >
+            </div>
+          </v-col>
+
+          <!-- ANTECENDETES ANTECEDENTES HEREDOFAMILIARES -->
+
+          <!-- ANTECENDETES MEDICAMENTO ACTIVO-->
+          <v-col cols="12" md="6">
+            <p class="subtitle">MEDICAMENTO ACTIVO</p>
+            <div class="container">
+              <h5 class="description">Enalapril . 10 . Tabletas</h5>
+              <span class="information-description"
+                >Mamá - Tipo 1, Abuelo paterno - Tipo 2</span
+              >
+            </div>
+          </v-col>
+
+          <!-- ANTECENDETES MEDICAMENTO ACTIVO-->
+
+          <!-- ANTECENDETES MEDICAMENTO MEDICAMENTO ANTERIOR-->
+          <v-col cols="12" md="6">
+            <p class="subtitle">MEDICAMENTO ANTERIOR</p>
+            <div class="container">
+              <h5 class="description">Enalapril . 10 . Tabletas</h5>
+              <span class="information-description"
+                >Mamá - Tipo 1, Abuelo paterno - Tipo 2</span
+              >
+            </div>
+          </v-col>
+
+          <!-- ANTECENDETES MEDICAMENTO ANTERIOR -->
+          <!-- VACUNACION RECIENTE-->
+          <v-col cols="12" md="6">
+            <p class="subtitle">VACUNACIÓN RECIENTE</p>
+            <div class="container">
+              <h5 class="description">Enalapril . 10 . Tabletas</h5>
+              <span class="information-description"
+                >Influeza . 10/noviembre/2022</span
+              >
+            </div>
+          </v-col>
+
+          <!-- VACUNACION RECIENTER -->
         </v-card>
       </v-col>
-      <!-- NOTAS INTERNAS -->
+
+      <!-- SEGUNDA COLUMNA -->
       <v-col cols="12" md="4">
-        <p>Notas Internas</p>
-        <v-card>
-          <v-textarea solo name="input-7-4" label="Solo textarea"></v-textarea>
+        <p class="subtitle">NOTAS INTERNAS</p>
+        <v-card class="greeting-card" elevation="5">
+          <v-row class="ma-0 pa-0">
+            <v-col cols="12">
+              <div>
+                <p class="information-note">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim dignissimos nulla dolorem doloremque quae consequatur neque dicta, quaerat quasi animi consequuntur eaque deserunt esse et exercitationem, blanditiis molestiae, dolore quod!
+                </p>
+              </div>
+            </v-col>
+          </v-row>
         </v-card>
-      </v-col>
+
+        <!-- NUEVA CONSULTA -->
+
+        <v-col >
+        <p class="subtitle">NUEVA CONSULTA</p>
+          <v-row >
+            <v-col cols="12">
+              <div>
+                <v-btn  elevation="0" class="btn_detail" block small color="#7900ff" dark> Iniciar nueva consulta</v-btn>
+              </div>
+      
+            </v-col>
+            <v-col cols="12">
+              <div>
+                <v-btn  elevation="0" class="btn_detail" block small  color="#a6a6a6" outlined>Agendar cita nueva</v-btn>
+              </div>
+            </v-col>
 
 
-      <!-- CITAS ANTERIORES -->
+
+                  <!-- CITAS ANTERIORES -->
       <p class="subtitle">CITAS ANTERIORES</p>
-      <v-col cols="12" md="4">
+      <v-col >
         <div>
-            <v-card
-                v-for="date in dates"
-                :key="date"
-                outlined
+    <v-card
+      v-for="date in dates"
+      :key="date"
+      class="mx-auto montserrat mb-5"
+     
+      outlined
+    >
+      <v-list-item class="lista" two-line>
+        <v-list-item-avatar tile size="80">
+          <v-row>
+            <v-col>
+              <b style="font-size: 150%">{{date.day}}</b> <br />{{date.month}} <BR /> {{date.year}}</v-col
             >
-            <v-list-item>
-              
-            </v-list-item>
-            </v-card>
-
-
-        </div>
+          </v-row>
+        </v-list-item-avatar>
+        <v-sheet class="mr-3" :color="date.status" height="100" width="2"></v-sheet>
+        <v-list-item-content>
+          <v-list-item-title >
+            <p class="montserrat">{{date.diagnosis}}</p>
+          </v-list-item-title>
+          <v-list-item-subtitle v-if="date.name"
+            >{{date.name}} • {{date.medicine}} • {{date.mg }} <br />
+            {{date.presentation}}</v-list-item-subtitle
+          >
+        </v-list-item-content>
+        <v-list-item-avatar
+          ><v-icon :color="date.status"
+            >{{date.icon}}</v-icon
+          ></v-list-item-avatar
+        >
+      </v-list-item>
+    </v-card>
+  </div>
+      </v-col>
+          </v-row>
+        </v-col>
       </v-col>
 
-      <v-col cols="12" md="4">
-        <div>
-            <v-card
-                v-for="date in dates"
-                :key="date"
-                class="mx-auto montserrat mb-5"
-                max-width="100%"
-                outlined
-            >
-                <v-list-item class="lista" two-line>
-                <v-list-item-avatar tile size="70">
-                    <v-row>
-                    <v-col>
-                        <b style="font-size: 150%">{{date.day}}</b> <br />{{date.month}} <BR /> {{date.year}}</v-col
-                    >
-                    </v-row>
-                </v-list-item-avatar>
-                <v-sheet class="mr-3" :color="date.status" height="100" width="3"></v-sheet>
-                <v-list-item-content>
-                    <v-list-item-title class="text-h5 mb-1">
-                    <p class="montserrat mb-0">{{date.diagnosis}}</p>
-                    </v-list-item-title>
-                    <v-list-item-subtitle v-if="date.name"
-                    >{{date.name}} • {{date.medicine}} • {{date.mg }} <br />
-                    {{date.presentation}}</v-list-item-subtitle
-                    >
-                </v-list-item-content>
-                <v-list-item-avatar
-                    ><v-icon :color="date.status"
-                    >{{date.icon}}</v-icon
-                    ></v-list-item-avatar
-                >
-                </v-list-item>
-            </v-card>
-    </div>
-      </v-col>
+
+
+
     </v-row>
   </v-container>
 </template>
@@ -251,66 +367,43 @@ export default {
       },
     ],
     dates: [
-          {
-              day: '12', month: 'OCT', year: '2022',
-              diagnosis: 'Gastroenteritis y colitis nerviosa',
-              name: 'Peptobismol',
-              medicine: 'Subsalicilato de Bismuto',
-              mg: '',
-              presentation: 'Tabletas',
-              status: 'green',
-              icon: 'mdi-checkbox-marked-circle',
-          },
-          {
-              day: '5', month: 'SEPT', year: '2022',
-              diagnosis: 'Diarrea infecciosa',
-              name: 'Topron',
-              medicine: 'Nifuroxsazida',
-              mg: '400 mg',
-              presentation: 'Capsula',
-              status: 'green',
-              icon: 'mdi-checkbox-marked-circle',
-          },
-          /*  ejemplo cita cancelada | Genesis */
-          {
-              day: '19', month: 'AGO', year: '2022',
-              diagnosis: 'CITA CANCELADA',
-              name: '',
-              medicine: '',
-              mg: '',
-              presentation: '',
-              status: 'red',
-              icon: 'mdi-alert',
-          },
-           /*  ejemplo cita pospuesta | Genesis */
-          {
-              day: '5', month: 'JUN', year: '2022',
-              diagnosis: 'CITA POSPUESTA',
-              name: '',
-              medicine: '',
-              mg: '',
-              presentation: '',
-              status: 'amber',
-               icon: 'mdi-alert',
-          },
-          {
-              day: '1', month: 'ABR', year: '2022',
-              diagnosis: 'CITA POSPUESTA',
-              name: '',
-              medicine: '',
-              mg: '',
-              presentation: '',
-              status: 'amber',
-               icon: 'mdi-alert',
-          },
-      ],
+      {
+            day: '12', month: 'OCT', year: '2022',
+            diagnosis: 'Gastroenteritis y colitis nerviosa',
+            name: 'Peptobismol',
+            medicine: 'Subsalicilato de Bismuto',
+            mg: '',
+            presentation: 'Tabletas',
+            status: 'green',
+            icon: 'mdi-checkbox-marked-circle',
+        },
+        {
+            day: '19', month: 'AGO', year: '2022',
+            diagnosis: 'CITA CANCELADA',
+            name: '',
+            medicine: '',
+            mg: '',
+            presentation: '',
+            status: 'red',
+            icon: 'mdi-alert',
+        },
+
+    ],
   }),
+  methods: {
+    updateMessage: function () {
+      this.message = 'updated'
+      console.log(this.$el.textContent) // => 'no actualiza'
+      this.$nextTick(function () {
+        console.log(this.$el.textContent) // => 'actualzia'
+      })
+    }
+  }
 }
 </script>
 
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap');
 
 .banner-text {
@@ -326,7 +419,7 @@ export default {
 }
 
 .subtitle {
-/*   font-size: 1.8vh;
+  /*   font-size: 1.8vh;
   padding: 1.3vh;
   margin: 1vh; */
   font-size: 1.8vh;
@@ -334,26 +427,44 @@ export default {
   color: #5b5e63;
 }
 
-.description{
-  font-family: 'Montserrat', sans-serif;
-}
-
-.information-description{
+.information-note{
+  font-size: 1.8vh;
+  font-family: 'Montserrat';
   color: #a6a6a6;
 }
 
-.information-basic{
-    color: #a6a6a6;
+.description {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.information-description {
+  color: #a6a6a6;
+  font-size: 1.8vh;
+}
+
+.information-basic {
+  color: #a6a6a6;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vh;
+}
+
+.container {
+  margin-top: 2px;
+}
+.greeting-card {
+  position: relative;
+  border-radius: 50px;
+  height: 25vh;
+  width: 50vh;
+}
+
+
+
+.btn_detail{
+    text-transform: capitalize ;
     font-family: 'Montserrat', sans-serif;
     font-size: 2vh;
+
 }
 
-.spanes{
-
-
-  
-}
-
-
-		
 </style>
