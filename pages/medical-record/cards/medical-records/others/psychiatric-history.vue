@@ -23,7 +23,7 @@
                 placeholder="Escriba aquí"
               ></v-text-field>
               <p class="mt-n4 mb-n2">Consciencia de enfermedad</p>
-              <v-radio-group v-model="cons" row>
+              <v-radio-group style="font-family: Montserrat" v-model="cons" row>
                 <v-radio color="#b380ff" label="Si" value="consYes"></v-radio>
                 <v-radio color="#b380ff" label="No" value="consNo"></v-radio>
               </v-radio-group>
@@ -42,7 +42,7 @@
                 placeholder="Escriba aquí"
               ></v-text-field>
               <p class="mt-n4 mb-n2">Apoyo del grupo familiar y social</p>
-              <v-radio-group v-model="support" row>
+              <v-radio-group   style="font-family: Montserrat" v-model="support" row>
                 <v-radio color="#b380ff" label="Si" value="supYes"></v-radio>
                 <v-radio color="#b380ff" label="No" value="supNo"></v-radio>
               </v-radio-group>

@@ -143,12 +143,12 @@
               scrollable
             >
               <v-spacer></v-spacer>
-              <v-btn text class="btn" color="#7900ff" @click="modal = false">
+              <v-btn text class="btnn" color="#7900ff" @click="modal = false">
                 <p class="can">Cancelar</p>
               </v-btn>
               <v-btn
                 text
-                class="btn"
+                class="btnn"
                 color="#7900ff"
                 v-on:click="modal = false"
                 @click="$refs.dialog.save(date)"
@@ -195,11 +195,11 @@
               full-width
             >
               <v-spacer></v-spacer>
-              <v-btn class="btn" text color="#9966ff" @click="modal2 = false">
+              <v-btn class="btnn" text color="#9966ff" @click="modal2 = false">
                 <p class="can">Cancelar</p>
               </v-btn>
               <v-btn
-                class="btn"
+                class="btnn"
                 text
                 color="#9966ff"
                 @click="$refs.dialog.save(time)"
@@ -248,7 +248,7 @@
           <v-btn
             block
             height="50px"
-            class="restore btn"
+            class="restore btnn"
             color="#999999"
             outlined
             large

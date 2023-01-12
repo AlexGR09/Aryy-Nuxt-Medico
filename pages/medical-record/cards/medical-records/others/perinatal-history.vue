@@ -70,7 +70,7 @@
               ></v-text-field>
 
               <p class="mt-n4 mb-n2">Concepción asistida</p>
-              <v-radio-group v-model="con" row>
+              <v-radio-group   style="font-family: Montserrat" v-model="con" row>
                 <v-radio color="#b380ff" label="Si" value="conYes"></v-radio>
                 <v-radio color="#b380ff" label="No" value="conNo"></v-radio>
               </v-radio-group>

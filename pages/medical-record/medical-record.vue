@@ -1,5 +1,5 @@
 <!-- vista de expediente en consulta | Genesis -->
-<template class="template">
+<template >
   <div class="template">
     <v-breadcrumbs class="breadcrumbs ml-n7" :items="items">
           <template v-slot:item="{ item }">
@@ -12,34 +12,24 @@
     <v-row class="mb-n5">
       <!-- card info basica | Genesis -->
       <v-col cols="12" xs="12" sm="12" md="8" lg="8" xl="8">
-        <H1 class="title mb-3">INFORMACIÓN BÁSICA</H1>
+        <h1 class="title mb-3">INFORMACIÓN BÁSICA</h1>
         <basic-info />
       </v-col>
-      <v-row>
-        <v-col class="ml-3 mr-3" xs="11" sm="11" md="11" lg="8" xl="11">
-        <H1 class="title mb-3 mt-3">NOTAS INTERNAS</H1>
-        
-        <v-textarea
-          class="note"
-          color="#E0E0E0"
-          background-color="white"
-          outlined
-          width="9vh"
-          height="37vh"
-          no-resize
-        ></v-textarea> 
+      <v-row class="mr-n8">
+        <v-col class="ml-3 mr-3" cols="11" xs="11" sm="11" md="11" lg="8" xl="11">
+        <h1 class="title mb-3 mt-3">NOTAS INTERNAS</h1>
+        <textarea v-model="notes"></textarea>
       </v-col> 
       </v-row>
    </v-row>
-      
 <v-row>
       <v-col xs="12" sm="12" md="8" lg="8" xl="8">
         <H1 class="title mb-3">EXPEDIENTE MÉDICO</H1>
         <medical-record />
       </v-col>
       <v-col xs="12" sm="12" md="4" lg="4" xl="4">
-        <H1 class="title mb-3">CITAS ANTERIORES</H1>
-      <appointments/>
+        <H1 class="title mb-3 mr-3">CITAS ANTERIORES</H1>
+      <appointments />
       </v-col>
       <v-col xs="12" sm="12"
        md="8" lg="8" xl="8">
@@ -110,9 +100,27 @@ export default {
   padding-right: 50px;
   margin-left: -50px;
   margin-right: -50px;
+  margin-top: -10px;
 }
 span.breadcrumbs {
   font-family: Montserrat;
   color: #7900ff;
+}
+/* estilos para notas tipo cuaderno | Genesis */
+textarea
+{
+    background: white;
+    border: 1px solid #EEEEEE;
+    box-shadow: 1px 2px 0 #c7c7c7;
+    font-family: 'Montserrat';
+    font-size: 17px;
+    line-height: 50px;
+    padding: 11px 20px 0 20px;
+    resize: none;
+    height: 337px;
+    width:100%;
+    background-image: -webkit-linear-gradient(top , transparent, transparent 49px,rgb(211, 211, 211) 0);
+    -webkit-background-size:  100% 50px;
+    background-size: 100% 50px;
 }
 </style>

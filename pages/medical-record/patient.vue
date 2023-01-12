@@ -7,8 +7,8 @@
         <v-card class="rounded-lg" :elevation="2" scrollable>
           <div class="banner-text">INFORMACIÓN DEL PACIENTE</div>
           <!-- INFORMACION BASICA -->
-          <p class="subtitle">INFORMACIÓN BÁSICA</p>
-          <v-row no-gutters>
+          <p class="subtitle-p">INFORMACIÓN BÁSICA</p>
+          <v-row class="row-icon" no-gutters>
             <v-col cols="12" md="4">
               <v-spacer></v-spacer>
               <div>
@@ -79,8 +79,8 @@
           </v-row>
 
           <!-- Signos vitales -->
-          <p class="subtitle">SIGNOS VITALES</p>
-          <v-row no-gutters>
+          <p class="subtitle-p">SIGNOS VITALES</p>
+          <v-row class="row-icon" no-gutters>
             <v-col cols="12" md="4">
               <div>
                 <p class="d-flex align-center mb-6">
@@ -453,5 +453,16 @@ export default {
     text-transform: capitalize ;
     font-family: 'Montserrat', sans-serif;
     font-size: 2vh;
+}
+.row-icon{
+  margin-top: 2vh;
+  padding: 3vh;
+}
+.subtitle-p{
+  margin-left: 2vh;
+  margin-block-start: 2vh;
+  font-size: 1.8vh;
+  font-family: 'MontserratBold';
+  color: #5b5e63;
 }
 </style>

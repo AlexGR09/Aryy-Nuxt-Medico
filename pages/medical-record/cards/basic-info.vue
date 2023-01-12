@@ -346,7 +346,7 @@
       <v-col v-if="temperatura" cols="4" xs="4" sm="5" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field  outlined dense value="°C" type="text">
+            <v-text-field  outlined dense placeholder="°C" value="°C" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -360,10 +360,11 @@
           </div>
         </v-row>
       </v-col>
+     
       <v-col v-if="sistolica" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="mmHg" type="text">
+            <v-text-field outlined dense placeholder="mmHg" value="mmHg" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -380,7 +381,7 @@
       <v-col v-if="oxigeno" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="80" type="text">
+            <v-text-field outlined dense placeholder="80" value="80" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -401,6 +402,7 @@
             <v-text-field
               outlined
               dense
+              placeholder="Kg (Fecha)"
               value="Kg (Fecha)"
               type="text"
             >
@@ -420,7 +422,7 @@
       <v-col v-if="diastolica" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="mmHg" type="text">
+            <v-text-field outlined dense placeholder="mmHg" value="mmHg" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -437,7 +439,7 @@
       <v-col v-if="masa" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="15%" type="text">
+            <v-text-field outlined dense placeholder="15%" value="15%" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -455,7 +457,7 @@
       <v-col v-if="respiratoria" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="r/m" type="text">
+            <v-text-field outlined dense placeholder="r/m" value="r/m" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -472,7 +474,7 @@
       <v-col v-if="cardiaca" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="bpm" type="text">
+            <v-text-field outlined dense placeholder="bpm" value="bpm" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -489,7 +491,7 @@
       <v-col v-if="grasacorp" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="20%" type="text">
+            <v-text-field outlined dense placeholder="20%" value="20%" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -507,7 +509,7 @@
       <v-col v-if="pesoperd" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="20%" type="text">
+            <v-text-field outlined dense placeholder="20%" value="20%" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -524,7 +526,7 @@
       <v-col v-if="grasa" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="20%" type="text">
+            <v-text-field outlined dense placeholder="20%" value="20%" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -541,7 +543,7 @@
       <v-col v-if="cintura" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="cm" type="text">
+            <v-text-field outlined dense placeholder="cm" value="cm" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -558,7 +560,7 @@
       <v-col v-if="agua" cols="4" xs="4" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="20%" type="text">
+            <v-text-field outlined dense placeholder="20%" value="20%" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -575,7 +577,7 @@
       <v-col v-if="musculo" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="20%" type="text">
+            <v-text-field outlined dense placeholder="20%" value="20%" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
@@ -592,7 +594,7 @@
       <v-col v-if="abs" md="4" lg="4" xl="4">
         <v-row class="ml-1">
           <div>
-            <v-text-field outlined dense value="20%" type="text">
+            <v-text-field outlined dense placeholder="20%" value="20%" type="text">
               <template #prepend>
                 <img
                   class="mr-n3"
