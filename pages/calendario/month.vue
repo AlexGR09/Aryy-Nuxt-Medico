@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-card flat class="mr-6"> <date-picker /><today /></v-card>
+      <v-card flat class="mr-6"> <date-picker @getData="getData" /><today /></v-card>
       <v-spacer />
       <v-col>
         <v-breadcrumbs class="breadcrumbs" :items="items">
@@ -356,6 +356,10 @@ export default {
       }
       nativeEvent.stopPropagation()
       this.citaId()
+    },
+    /* recibir datos de componente date picker | Genesis */
+    getData(data) {
+      this.focus = data;
     },
   },
 }

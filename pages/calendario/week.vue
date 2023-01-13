@@ -1,6 +1,6 @@
 <template>
   <v-row class="mt-n3">
-    <v-card flat class="mr-6"> <date-picker /><today/></v-card>
+    <v-card flat class="mr-6"> <date-picker @getData="getData" /><today/></v-card>
     <!-- Calendario vista dia |Genesis -->
     <v-col>
       <v-breadcrumbs :items="items">
@@ -396,6 +396,10 @@ export default {
     },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
+    },
+    /* recibir datos de componente date picker | Genesis */
+    getData(data) {
+      this.focus = data;
     },
   },
 }
