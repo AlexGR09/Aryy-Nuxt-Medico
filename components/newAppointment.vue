@@ -39,10 +39,10 @@
              <!--  libreria para select de codigo de paises | Genesis -->
               <vue-country-code
                 style="height: 56px"
-                enabledCountryCode
+                enabled-country-code
+                :preferred-countries="['MX', 'us', 'gb']"
+                default-country="mx"
                 @onSelect="onSelect"
-                :preferredCountries="['MX', 'us', 'gb']"
-                defaultCountry="mx"
               >
               </vue-country-code>
             </v-col>
@@ -65,10 +65,10 @@
             <v-col cols="3" xs="2" sm="1" md="2" lg="2" xl="2">
               <vue-country-code
                 style="height: 56px"
-                enabledCountryCode
+                enabled-country-code
+                default-country="mx"
+                :preferred-countries="['MX', 'us', 'gb']"
                 @onSelect="onSelect"
-                :preferredCountries="['MX', 'us', 'gb']"
-                defaultCountry="mx"
               >
               </vue-country-code>
             </v-col>
@@ -114,12 +114,12 @@
             persistent
             width="290px"
           >
-            <template v-slot:activator="{ on, attrs }">
+            <template #activator="{ on, attrs }">
               <v-text-field
+              v-model="date"
                 color="#9966ff"
                 class="mb-n9"
                 outlined
-                v-model="date"
                 placeholder="Selecciona la fecha"
                 v-bind="attrs"
                 v-on="on"
@@ -137,9 +137,9 @@
               </v-text-field>
             </template>
             <v-date-picker
+            v-model="date"
               locale="MX-ES"
               color="#9966ff"
-              v-model="date"
               scrollable
             >
               <v-spacer></v-spacer>
@@ -167,11 +167,11 @@
             persistent
             width="290px"
           >
-            <template v-slot:activator="{ on, attrs }">
+            <template #activator="{ on, attrs }">
               <v-text-field
+              v-model="time"
                 color="#9966ff"
                 outlined
-                v-model="time"
                 placeholder="Selecciona el horario"
                 class="mb-n9"
                 v-bind="attrs"
@@ -189,9 +189,9 @@
               ></v-text-field>
             </template>
             <v-time-picker
-              color="#9966ff"
-              v-if="modal2"
+            v-if="modal2"
               v-model="time"
+              color="#9966ff"
               full-width
             >
               <v-spacer></v-spacer>
@@ -212,9 +212,8 @@
         <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Servicio*</p>
           <v-autocomplete 
-          
+          v-model="service"
           :items="items"
-            v-model="service"
             hide-details
             color="#9966ff"
             outlined
@@ -236,11 +235,11 @@
         <v-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3">
           <v-btn
             block
-            @click="agendar"
             height="50px"
             class="white--text btn save"
             color="#7900ff"
             large
+            @click="agendar"
             ><span class="span">Guardar cambios</span></v-btn
           >
         </v-col>
@@ -306,13 +305,13 @@ export default {
             },
           }
         )
-        .then((response) => {
-          console.log(response.data.data)
+        .then((response) => {/* 
+          console.log(response.data.data) */
           location.reload()
         })
         .catch((error) => {
           this.error = 'error'
-          console.log(error)
+          /* console.log(error) */
           this.errordate = error.response.message
         })
     },

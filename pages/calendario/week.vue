@@ -536,4 +536,14 @@ h1.eventName {
   color: black;
   text-transform: capitalize;
 }
+.v-breadcrumbs {
+  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+  list-style-type: none;
+  margin: 0;
+  padding: 8px 12px;
+    padding-left: 12px;
+}
 </style>

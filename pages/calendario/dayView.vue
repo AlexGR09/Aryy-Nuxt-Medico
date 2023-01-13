@@ -148,6 +148,7 @@
                     <v-icon>mdi-close</v-icon>
                   </v-btn>
                 </div>
+                <div>
                 <v-card-text>
                   <br />
                   <v-row>
@@ -261,6 +262,7 @@
                   </v-btn>
                 </v-card-actions>
                 <br />
+              </div>
               </v-card>
             </v-dialog>
           </v-sheet>
@@ -599,5 +601,15 @@ span.breadcrumbs {
 }
 .btn {
   color: red;
+}
+.v-breadcrumbs {
+  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+  list-style-type: none;
+  margin: 0;
+  padding: 8px 12px;
+    padding-left: 12px;
 }
 </style>
