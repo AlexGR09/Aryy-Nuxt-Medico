@@ -74,7 +74,7 @@
                     @click:append="show1 = !show1"
                     hint="Respeta mayúsculas y minúsculas"
                   ></v-text-field>
-                  <a class="pass">¿Olvidaste tu contraseña?</a>
+                  <a href="/auth/passwordforget" class="pass">¿Olvidaste tu contraseña?</a>
                   <v-btn
                     v-on:click="login"
                     class="btnnn"
@@ -181,6 +181,9 @@ export default {
 
 
 <style>
+a{
+  text-decoration: none;
+}
 .split-btn {
   display: inline-block;
 }
@@ -198,7 +201,7 @@ export default {
 }
 /*estilos para tipos de letra | Genesis*/
 h1 {
-  font-family: 'MontserratBold';
+  font-family: 'Montserrat';
   font-size: 155%;
   margin-top: -30px;
   margin-bottom: 10px;
@@ -292,21 +295,6 @@ r {
   color: #7900ff;
   text-transform: unset !important;
   font-family: MontserratMedium;
-}
-/*degradado icono de google | Genesis */
-.fa-google {
-  background: conic-gradient(
-      from -45deg,
-      #ea4335 110deg,
-      #4285f4 90deg 180deg,
-      #34a853 180deg 270deg,
-      #fbbc05 270deg
-    )
-    73% 55%/150% 150% no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
 }
 /*estilos botones | Genesis */
 .btn {

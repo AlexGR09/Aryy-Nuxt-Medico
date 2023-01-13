@@ -84,7 +84,7 @@
               class="calend"
               locale="mx-es"
               ref="calendar"
-              type="day"
+              :type="type"
               v-model="focus"
               color="#9966ff"
               interval-height="80px"
@@ -283,7 +283,7 @@ export default {
       show: false,
       ready: false,
       focus: '',
-      type: 'month',
+      type: 'day',
       typeToLabel: {
         month: 'Mes',
         week: 'Semana',
@@ -344,7 +344,6 @@ export default {
         .then((res) => {
           this.evento = res.data.data
           console.log(res)
-          console.log("----------"+this.prueba)
         })
     },
     /* obtener datos de cita por ID | Genesis */

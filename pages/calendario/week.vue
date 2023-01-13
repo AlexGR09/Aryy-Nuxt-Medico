@@ -29,7 +29,7 @@
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn
-              class="mt-7 ml-10"
+              class="mt-7 ml-16"
               fab
               text
               small
@@ -84,7 +84,7 @@
             class="calend white--text"
             locale="mx-es"
             ref="calendar"
-            type="week"
+            :type="type"
             v-model="focus"
             color="#7900ff"
             interval-height="80px"
@@ -256,7 +256,7 @@ export default {
      number: '',
     dialog: false,
     focus: '',
-    type: 'month',
+    type: 'week',
     typeToLabel: {
       month: 'Mes',
       week: 'Semana',

@@ -15,8 +15,7 @@
     </v-list-item>
 
     <v-card
-      v-for="evento in eventos"
-      :key="evento.id_appointment"
+    v-for="todo in todosFiltered" :key="todo.id_appointment"
       class="mx-auto mb-2"
       max-width="270"
       outlined
@@ -31,13 +30,13 @@
         ></v-sheet>
         <v-list-item-content>
           <p class="montserratMedium">
-            {{ evento.patient_full_name }}
+            {{ todo.patient_full_name }}
           </p>
           <v-list-item-title class="montserratMedium">
-            <span>{{ evento.appointment_type }}</span>
+            <span>{{ todo.appointment_type }}</span>
           </v-list-item-title>
           <v-list-item-subtitle class="montserratMedium">
-            {{evento.appointment_time}}
+            {{todo.appointment_time}}
           </v-list-item-subtitle>
         </v-list-item-content>
 
@@ -75,14 +74,23 @@
 export default {
   data() {
     return {
-      selection: [],
-      eventos: [],
       name: '',
       type: '',
       hour: '',
       color: '',
       hora: '',
+      selection:[],
+      filtered: [],
+      eventos: [],
     }
+  },
+  computed: {
+    /*  filtrar por tipo de cita | Genesis */
+    todosFiltered() {
+      return this.eventos.filter((todo) => {
+        return this.selection.every((select) => todo.appointment_type.toLowerCase().includes(select.toLowerCase()));
+      });
+    },
   },
   mounted() {
     this.today()
@@ -102,6 +110,27 @@ export default {
           this.tipo = res.data.data[0].appointment_type
         })
     },
+  },
+/*  filtrar por tipo de cita | Genesis */
+  watch: {
+    selection: {
+      handler() {
+        this.filtered= []
+        if (this.selection.length) {
+          this.eventos.forEach(t => {
+            this.selection.forEach(s => {
+              if (t.appointment_type.split('_').find(w => w === s.toUpperCase())) {
+                if (!this.filtered.find(f => f.appointment_type === t.appointment_type)) this.filtered = [ ...this.filtered, t]
+              }
+            })
+          })
+        } else {
+          this.filtered = [...this.eventos]
+        }
+      },
+      deep: true,
+      immediate: true
+    }
   },
 }
 </script>

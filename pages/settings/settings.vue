@@ -26,12 +26,12 @@ export default {
         {
           text: 'Ajustes',
           disabled: false,
-          href: '/calendario/month',
+          href: '/settings/settings',
         },
         {
           text: 'Cuenta',
           disabled: true,
-          href: '/calendario/dayView',
+          href: '/settings/settings',
         },
       ],
     }
