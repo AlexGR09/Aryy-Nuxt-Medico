@@ -4,11 +4,11 @@
     <v-row>
       <v-col cols="12" md="8">
         <p class="subtitle">EXPEDIENTE DEL PACIENTE</p>
-        <v-card class="rounded-lg" :elevation="2" scrollable>
+        <v-card class="rounded-lg" :elevation="2" scrollable >
           <div class="banner-text">INFORMACIÓN DEL PACIENTE</div>
           <!-- INFORMACION BASICA -->
-          <p class="subtitle">INFORMACIÓN BÁSICA</p>
-          <v-row no-gutters>
+          <p class="subtitle-p">INFORMACIÓN BÁSICA</p>
+          <v-row no-gutters class="row-icon">
             <v-col cols="12" md="4">
               <v-spacer></v-spacer>
               <div>
@@ -79,8 +79,8 @@
           </v-row>
 
           <!-- Signos vitales -->
-          <p class="subtitle">SIGNOS VITALES</p>
-          <v-row no-gutters>
+          <p class="subtitle-p">SIGNOS VITALES</p>
+          <v-row no-gutters class="row-icon">
             <v-col cols="12" md="4">
               <div>
                 <p class="d-flex align-center mb-6">
@@ -271,7 +271,10 @@
             <v-col cols="12">
               <div>
                 <p class="information-note">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim dignissimos nulla dolorem doloremque quae consequatur neque dicta, quaerat quasi animi consequuntur eaque deserunt esse et exercitationem, blanditiis molestiae, dolore quod!
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
+                  dignissimos nulla dolorem doloremque quae consequatur neque
+                  dicta, quaerat quasi animi consequuntur eaque deserunt esse et
+                  exercitationem, blanditiis molestiae, dolore quod!
                 </p>
               </div>
             </v-col>
@@ -280,68 +283,87 @@
 
         <!-- NUEVA CONSULTA -->
 
-        <v-col >
-        <p class="subtitle">NUEVA CONSULTA</p>
-          <v-row >
-            <v-col cols="12">
-              <div>
-                <v-btn  elevation="0" class="btn_detail" block small color="#7900ff" dark> Iniciar nueva consulta</v-btn>
-              </div>
-      
-            </v-col>
-            <v-col cols="12">
-              <div>
-                <v-btn  elevation="0" class="btn_detail" block small  color="#a6a6a6" outlined>Agendar cita nueva</v-btn>
-              </div>
-            </v-col>
-
-
-
-                  <!-- CITAS ANTERIORES -->
-      <p class="subtitle">CITAS ANTERIORES</p>
-      <v-col >
-        <div>
-    <v-card
-      v-for="date in dates"
-      :key="date"
-      class="mx-auto montserrat mb-5"
-     
-      outlined
-    >
-      <v-list-item class="lista" two-line>
-        <v-list-item-avatar tile size="80">
+        <v-col>
+          <p class="subtitle">NUEVA CONSULTA</p>
           <v-row>
+            <v-col cols="12">
+              <div>
+                <v-btn
+                  elevation="0"
+                  class="btn_detail"
+                  block
+                  small
+                  color="#7900ff"
+                  dark
+                >
+                  Iniciar nueva consulta</v-btn
+                >
+              </div>
+            </v-col>
+            <v-col cols="12">
+              <div>
+                <v-btn
+                  elevation="0"
+                  class="btn_detail"
+                  block
+                  small
+                  color="#a6a6a6"
+                  outlined
+                  >Agendar cita nueva</v-btn
+                >
+              </div>
+            </v-col>
+
+            <!-- CITAS ANTERIORES -->
+            <p class="subtitle">CITAS ANTERIORES</p>
             <v-col>
-              <b style="font-size: 150%">{{date.day}}</b> <br />{{date.month}} <BR /> {{date.year}}</v-col
-            >
-          </v-row>
-        </v-list-item-avatar>
-        <v-sheet class="mr-3" :color="date.status" height="100" width="2"></v-sheet>
-        <v-list-item-content>
-          <v-list-item-title >
-            <p class="montserrat">{{date.diagnosis}}</p>
-          </v-list-item-title>
-          <v-list-item-subtitle v-if="date.name"
-            >{{date.name}} • {{date.medicine}} • {{date.mg }} <br />
-            {{date.presentation}}</v-list-item-subtitle
-          >
-        </v-list-item-content>
-        <v-list-item-avatar
-          ><v-icon :color="date.status"
-            >{{date.icon}}</v-icon
-          ></v-list-item-avatar
-        >
-      </v-list-item>
-    </v-card>
-  </div>
-      </v-col>
+              <div>
+                <v-card
+                  v-for="date in dates"
+                  :key="date"
+                  class="mx-auto montserrat mb-5"
+                  outlined
+                >
+                  <v-list-item class="lista" two-line>
+                    <v-list-item-avatar tile size="80">
+                      <v-row>
+                        <v-col>
+                          <b style="font-size: 150%">{{ date.day }}</b> <br />{{
+                            date.month
+                          }}
+                          <BR /> {{ date.year }}
+                        </v-col
+                        >
+                      </v-row>
+                    </v-list-item-avatar>
+                    <v-sheet
+                      class="mr-3"
+                      :color="date.status"
+                      height="100"
+                      width="2"
+                    ></v-sheet>
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <p class="montserrat">{{ date.diagnosis }}</p>
+                      </v-list-item-title>
+                      <v-list-item-subtitle v-if="date.name"
+                        >{{ date.name }} • {{ date.medicine }} • {{ date.mg }}
+                        <br />
+                        {{ date.presentation }}</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                    <v-list-item-avatar
+                      ><v-icon :color="date.status">{{
+                        date.icon
+                      }}</v-icon></v-list-item-avatar
+                    >
+                  </v-list-item>
+                </v-card>
+              </div>
+            </v-col>
           </v-row>
         </v-col>
       </v-col>
-
-
-
-
     </v-row>
   </v-container>
 </template>
@@ -368,26 +390,29 @@ export default {
     ],
     dates: [
       {
-            day: '12', month: 'OCT', year: '2022',
-            diagnosis: 'Gastroenteritis y colitis nerviosa',
-            name: 'Peptobismol',
-            medicine: 'Subsalicilato de Bismuto',
-            mg: '',
-            presentation: 'Tabletas',
-            status: 'green',
-            icon: 'mdi-checkbox-marked-circle',
-        },
-        {
-            day: '19', month: 'AGO', year: '2022',
-            diagnosis: 'CITA CANCELADA',
-            name: '',
-            medicine: '',
-            mg: '',
-            presentation: '',
-            status: 'red',
-            icon: 'mdi-alert',
-        },
-
+        day: '12',
+        month: 'OCT',
+        year: '2022',
+        diagnosis: 'Gastroenteritis y colitis nerviosa',
+        name: 'Peptobismol',
+        medicine: 'Subsalicilato de Bismuto',
+        mg: '',
+        presentation: 'Tabletas',
+        status: 'green',
+        icon: 'mdi-checkbox-marked-circle',
+      },
+      {
+        day: '19',
+        month: 'AGO',
+        year: '2022',
+        diagnosis: 'CITA CANCELADA',
+        name: '',
+        medicine: '',
+        mg: '',
+        presentation: '',
+        status: 'red',
+        icon: 'mdi-alert',
+      },
     ],
   }),
   methods: {
@@ -397,14 +422,27 @@ export default {
       this.$nextTick(function () {
         console.log(this.$el.textContent) // => 'actualzia'
       })
-    }
-  }
+    },
+  },
 }
 </script>
 
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap');
+
+.row-icon{
+  margin-top: 2vh;
+  padding: 3vh;
+}
+
+.subtitle-p{
+  margin-left: 2vh;
+  margin-block-start: 2vh;
+  font-size: 1.8vh;
+  font-family: 'MontserratBold';
+  color: #5b5e63;
+}
 
 .banner-text {
   color: white;
@@ -427,7 +465,7 @@ export default {
   color: #5b5e63;
 }
 
-.information-note{
+.information-note {
   font-size: 1.8vh;
   font-family: 'Montserrat';
   color: #a6a6a6;
@@ -458,13 +496,9 @@ export default {
   width: 50vh;
 }
 
-
-
-.btn_detail{
-    text-transform: capitalize ;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2vh;
-
+.btn_detail {
+  text-transform: capitalize;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vh;
 }
-
 </style>
