@@ -29,7 +29,7 @@
       </v-card>
     </div>
   </template>
-  <style>
+  <style scoped>
   .btn{
     color: #7900ff;
     background: #7900ff;

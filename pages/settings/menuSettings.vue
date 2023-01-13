@@ -15,11 +15,9 @@
       </v-tab-item>
       <v-tab-item transition="fade-transition">
         <notifications/>
-       <!--  <notifications class="mt-n8" /> -->
       </v-tab-item>
       <v-tab-item transition="fade-transition">
         <delete-vue/>
-       <!--  <delete class="mt-n8" /> -->
       </v-tab-item>
     </v-tabs>
   </template>
@@ -37,7 +35,6 @@ import deleteVue from "./delete.vue";
         selectedItem: 1,
       }
     },
-   /*  components: { SubscriptionForm, TaxData, GeneralInfo }, */
   }
   </script>
     <style>

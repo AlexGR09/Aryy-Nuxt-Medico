@@ -33,10 +33,10 @@
               <v-stepper-items color="red">
                 <v-stepper-content step="1">
                   <h2 align="center" justify="end">
-                    Actualización
+                    Verificación de datos
                   </h2>
                   <p class="code">
-                    Necesitamos confirmar tu identidad, selecciona que método de<br/> verificacion
+                    Necesitamos confirmar tu identidad, selecciona que método de <br/> verificacion
                     quieres utilizar y sigue los pasos.
                   </p><br/>
                   <div align="">
@@ -50,12 +50,17 @@
                         </v-col>
                         <v-col xl="11">
                             <v-text-field
-                            prepend-inner-icon="mdi-email-outline"
                         outlined
                         placeholder="Correo electrónico"
                         class="textfield"
                         color="#7900ff"
-                      ></v-text-field>
+                      >
+                      <template #prepend-inner>
+                        <div class="mr-4" style="width:25px">
+                          <v-img max-height="25" max-width="30" :src="require('@/assets/icons/icon_email.svg')"/>
+                        </div>
+                      </template>
+                    </v-text-field>
                         </v-col>
                       </v-row>
                       <p align="left" class="mb-1  label">
@@ -67,19 +72,24 @@
                         </v-col>
                         <v-col xl="11">
                             <v-text-field
-                            prepend-inner-icon="mdi-message-text-outline"
                         outlined
                         placeholder="Número telefónico"
                         class="textfield"
                         color="#7900ff"
-                      ></v-text-field>
+                      >
+                      <template #prepend-inner>
+                        <div class="mr-4" style="width:25px">
+                          <v-img max-height="25" max-width="30" :src="require('@/assets/icons/icon_sms.svg')"/>
+                        </div>
+                      </template>
+                    </v-text-field>
                         </v-col>
                       </v-row>
                       <div >
                      <v-col class="d-flex justify-space-between mt-4">
                         <v-btn
-                      height="50px"
-                      class="restore  btn ml-n3 mt-n4"
+                      width="30%"
+                      class="restore  btnn ml-n3 mt-n4"
                       color="#999999"
                       outlined
                       large
@@ -113,17 +123,15 @@
                       <p align="left" class="label mb-1">
                         Código de verificacion*
                       </p>
-                            <v-text-field
-                        outlined
-                        class="textfield"
+                      <v-otp-input 
                         color="#7900ff"
-                      ></v-text-field>
-                     
+                        length="6"
+                      ></v-otp-input>
                       <div >
                      <v-col class="d-flex justify-space-between mt-6 ">
                         <v-btn
-                      height="50px"
-                      class="restore  btn ml-n3"
+                        width="30%"
+                      class="restore  btnn ml-n3"
                       color="#999999"
                       outlined
                       large
@@ -175,9 +183,8 @@
                       <div >
                      <v-col class="d-flex justify-space-between">
                         <v-btn
-                      height="50px"
-                     
-                      class="restore  btn ml-n3 mt-4"
+                        width="30%"
+                      class="restore  btnn ml-n3 mt-4"
                       color="#999999"
                       outlined
                       large
@@ -189,7 +196,7 @@
                           large
                           class="white--text btn mr-n3 mt-4"
                           color="#7900FF"
-                          @click="e1 = 3"
+                          @click="e1 = 1"
                         >
                           Siguiente
                         </v-btn>
@@ -295,7 +302,7 @@
   }
   h2 {
     color: #4f565f;
-    font-family: MontserratBold;
+    font-family: MontserratMedium;
   }
   h3 {
     font-family: 'MontserratLight';
@@ -318,6 +325,10 @@
     font-family: Montserrat;
   }
   .btn {
+    font-family: MontserratMedium;
+    text-transform: unset !important;
+  }
+  .btnn {
     font-family: MontserratMedium;
     text-transform: unset !important;
   }

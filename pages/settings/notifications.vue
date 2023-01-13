@@ -6,7 +6,7 @@
         <v-row>
           <v-col xl="4">
             <h3>Citas nuevas</h3>
-            <h4>Notificaciones sobre las citas registradas en tu calendario</h4>
+           <v-card-subtitle class="ml-n4 mt-n4">Notificaciones sobre las citas registradas en tu calendario </v-card-subtitle>
           </v-col>
           <v-col xl="3">
             <v-switch
@@ -36,10 +36,10 @@
         <v-row>
           <v-col xl="4">
             <h3>Citas próximas</h3>
-            <h4>
+            <v-card-subtitle class="ml-n4 mt-n4">
               Notificaciones sobre las citas cercanas a tu horario actual en tu
               calendario
-            </h4>
+          </v-card-subtitle>
           </v-col>
           <v-col xl="3">
             <v-switch
