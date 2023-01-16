@@ -2,10 +2,10 @@
   <div>
     <account/>
     <v-row>
-      <v-card flat>
-        <menu-med />
-      </v-card>
-      <v-col md="10" lg="10" xl="10">
+       <v-row>
+          <menu-med />
+        </v-row>
+      <v-col cols="12" md="10" lg="10" xl="11">
         <v-card flat class="pa-3 mt-2">
           <v-card-subtitle class="pa-3 mt-n2 mb-n10"
             ><H1 class="mb-5">FOTO DE PERFIL</H1></v-card-subtitle

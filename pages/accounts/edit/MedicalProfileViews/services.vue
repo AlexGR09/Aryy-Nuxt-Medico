@@ -1,10 +1,11 @@
 <template>
   <div>
+    <account/>
     <v-row>
-      <v-card flat>
-        <menu-med />
-      </v-card>
-      <v-col md="10" lg="9" xl="10">
+       <v-row>
+          <menu-med />
+        </v-row>
+      <v-col cols="12" md="10" lg="10" xl="11">
         <v-card flat height="800px" class="pa-3 mt-2">
           <v-form ref="form" v-model="valid">
             <v-card-subtitle class="pa-3 mt-n2 mb-n5"
@@ -190,10 +191,11 @@
   </div>
 </template>
   <script>
+  import Account from '../account.vue';
 import MenuMed from './menuMed.vue'
 export default {
   components: {
-    MenuMed,
+    MenuMed, Account
   },
   data() {
     return {

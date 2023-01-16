@@ -1,8 +1,11 @@
 <template>
   <div>
+    <account/>
     <v-row>
-      <v-card flat> </v-card>
-      <v-col md="10" lg="9" xl="10">
+       <v-row>
+          <menu-med />
+        </v-row>
+      <v-col cols="12" md="10" lg="10" xl="11">
         <v-card flat height="100%" class="pa-3 mt-2">
           <v-card-subtitle class="pa-3 mt-n2 mb-n10"
             ><H1 class="mb-5">IDENTIDAD MÉDICA</H1></v-card-subtitle
@@ -119,10 +122,12 @@
 import Vue from 'vue'
 import VueFileAgent from 'vue-file-agent'
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css'
+import Account from '../account.vue';
+import MenuMed from './menuMed.vue';
 Vue.use(VueFileAgent)
 Vue.use(VueFileAgentStyles)
 export default {
-  components: {},
+  components: {Account, MenuMed},
   data() {
     return {
       overlay: false,

@@ -1,8 +1,11 @@
 <template>
   <div>
     <account/>
-    <v-row> 
-      <v-col md="12" lg="11" xl="10">
+    <v-row>
+       <v-row>
+          <menu-planner />
+        </v-row>
+      <v-col cols="12" md="10" lg="10" xl="11">
         <v-card flat height="800px" class="pa-3 mt-2">
           <v-card-subtitle class="pa-3  mt-n2 mb-n16"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
           <v-card-text class="pa-3 ">
@@ -41,9 +44,10 @@
 import Account from './account.vue'
 import FacilityCard from './plannerViews/facilityCard.vue'
 import NewFacility from './plannerViews/newFacility.vue'
+import menuPlanner from './plannerViews/menuPlanner.vue'
 export default {
   components: {
-    NewFacility, FacilityCard, Account
+    NewFacility, FacilityCard, Account, menuPlanner
 },
   data () {
     return {
