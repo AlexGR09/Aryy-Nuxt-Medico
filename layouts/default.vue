@@ -94,7 +94,7 @@
       </v-list>
 
       <v-list class="list-item mt-n1" active-class="bg-active">
-        <v-list-item class="mt-n1" to="/settings/settings">
+        <v-list-item class="mt-n1" to="/settings/account">
           <v-list-item-icon>
             <v-img :src="require('@/assets/icons/SettingsIcon.svg')" />
           </v-list-item-icon>

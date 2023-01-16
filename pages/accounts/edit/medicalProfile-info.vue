@@ -62,9 +62,9 @@
                   >
                 </v-col>
                 <v-row
-                  class="inputArea ml-0"
-                  v-for="input in inputs"
+                v-for="input in inputs"
                   :key="input.id"
+                  class="inputArea ml-0"
                 >
                   <v-col md="6" lg="6" xl="6" cols="12">
                     <p :for="input.id" class="cedu  mb-n1">
@@ -111,10 +111,10 @@
                 </v-row>
                 <v-col md="6" lg="6" xl="6" cols="12">
                   <v-btn
-                    @click="addInput"
                     class="btn ml-n5 mb-n4"
                     color="#9966ff"
                     text
+                    @click="addInput"
                     ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otra
                     cédula</v-btn
                   >
@@ -122,8 +122,8 @@
                 <v-col class="mt-3" xl="12">
                   <span>Sobre mi(opcional)</span>
                   <v-textarea
+                  v-model="biography"
                     color="#9966ff"
-                    v-model="biography"
                     maxlength="400"
                     counter="400"
                     auto-grow
@@ -134,11 +134,11 @@
                 </v-col>
               </v-row>
               <v-btn
-                @click="overlay = !overlay"
                 height="50px"
                 class="white--text save mt-7"
                 color="#7900ff"
                 large
+                @click="overlay = !overlay"
                 >Guardar cambios</v-btn
               >
               <v-btn

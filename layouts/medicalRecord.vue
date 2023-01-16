@@ -244,23 +244,13 @@ s
 .btn-sidebar {
   background-color: #f4edff;
 }
-/* <<<<<<< HEAD
-=======
-/*color de fondo en las vistas con tema claro */
-
 
 v-navigation-drawer{
-/*   height: 150px;
-  left: 50px; */
- 
   text-align: right;
   position: relative;
   overflow: auto;
   height: calc(0px + 100vh); 
   top: 0px;
-
-/*   top: -50px;
-  width: 150px; */
 }
 
 div .theme--light.v-calendar .v-event-timed {
@@ -272,14 +262,12 @@ div .theme--light.v-calendar .v-event-timed {
 .theme--light.v-divider {
    color: #f4edff;
 }
-
 .vtoolbar{
     border: thin solid #cccccc;
     height: 30px;
     width: 2rem;
   }
   .search{
-    
     font-family: Montserrat;
   }
 .bg-active{
