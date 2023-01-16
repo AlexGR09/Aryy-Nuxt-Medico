@@ -122,11 +122,10 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p v-if="!alergias[0]">Sin alergías conocidas</p>
+<!--     <p v-if="this.prueba='null'">Sin alergías conocidas</p> -->
+    <div>
     <v-list-item
-      v-for="alergia in alergias"
-      :key="alergia"
-      v-else
+  
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -135,18 +134,52 @@
         <v-icon color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title>Cirugias previas</v-list-item-title>
+        <v-list-item-title>Fármacos</v-list-item-title>
         <v-list-item-subtitle
-          >{{ alergia.name }} en {{ alergia.date }}</v-list-item-subtitle
+          >{{ drug_allergy }} </v-list-item-subtitle
         >
       </v-list-item-content>
     </v-list-item>
-    <p class="ml-3">
+    <v-list-item
+  
+      style="font-family: Montserrat"
+      class="ml-n7 mt-n5 lista"
+      two-line
+    >
+      <v-list-item-avatar class="mr-n1">
+        <v-icon color="green">mdi-check-circle</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>Factores ambientales</v-list-item-title>
+        <v-list-item-subtitle
+          >{{ environmental_allergy }} </v-list-item-subtitle
+        >
+      </v-list-item-content>
+    </v-list-item>
+    <v-list-item
+  
+      style="font-family: Montserrat"
+      class="ml-n7 mt-n5 lista"
+      two-line
+    >
+      <v-list-item-avatar class="mr-n1">
+        <v-icon color="green">mdi-check-circle</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>Alimentarias</v-list-item-title>
+        <v-list-item-subtitle
+          >{{ food_allergy }} </v-list-item-subtitle
+        >
+      </v-list-item-content>
+    </v-list-item>
+  </div>
+    <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
         width="20"
         :src="require('@/assets/icons/icon_timestamp.svg')"
-      />Editado el 25 de diciembre de 2022
+      />Editado el {{time
+      }}
     </p>
   </v-card-text>
 </template>
@@ -162,7 +195,12 @@ export default {
       farmacos: '',
       ambientales: '',
       alergias: [
-      ]
+      ],
+      drug_allergy: '',
+      environmental_allergy: '',
+      food_allergy: '',
+      time: '',
+    
     }
   },
   watch: {
@@ -172,6 +210,30 @@ export default {
           this.overlay = false
         }, 2000)
     },
+  },
+  methods: {
+    alergiass() {
+      console.log('creando petición GET')
+      this.$axios
+        .get(`api/v1/medical-records/allergies/patient/${this.$route.params.medicalRecord}`, {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log(res)
+          this.drug_allergy = res.data.data.data.drug_allergy
+          this.environmental_allergy = res.data.data.data.environmental_allergy
+          this.food_allergy = res.data.data.data.food_allergy
+          this.time = res.data.data.data.created_at
+         
+        })
+        .catch(
+          /* console.log(e); */
+          console.log('error en GET')
+        )
+    },
+  },
+  mounted(){
+    this.alergiass()
   },
 }
 </script>

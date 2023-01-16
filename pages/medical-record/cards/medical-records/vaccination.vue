@@ -113,7 +113,23 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p>Sin datos registrados</p>
+    <!-- <p>Sin datos registrados</p> -->
+    <v-list-item
+  
+      style="font-family: Montserrat"
+      class="ml-n7 mt-n5 lista"
+      two-line
+    >
+      <v-list-item-avatar class="mr-n1">
+        <v-icon color="green">mdi-check-circle</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>{{vaccine}} • 
+        {{formattedDate}}
+        </v-list-item-title>
+        
+      </v-list-item-content>
+    </v-list-item>
     <p class="ml-3">
       <img
         class="mr-3"
@@ -124,9 +140,11 @@
   </v-card-text>
 </template>
   <script>
+    import moment from 'moment'
 export default {
   layout: 'medicalRecord',
   components: {},
+  
   data() {
     return {
       overlay: false,
@@ -154,6 +172,8 @@ export default {
       alimentarias: '',
       farmacos: '',
       ambientales: '',
+      vaccine: '',
+      application_date: '',
     }
   },
   watch: {
@@ -164,6 +184,31 @@ export default {
         }, 2000)
     },
   },
+  methods: {
+    vacunas() {
+      console.log('creando petición GET')
+      this.$axios
+        .get(`api/v1/physician/medical-history/vaccination_history/${this.$route.params.medicalRecord}`, {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          console.log(res)
+          this.vaccine = res.data.data.vaccine
+          this.application_date = res.data.data.application_date
+        })
+        .catch(
+          console.log('error en GET')
+        )
+    },
+  },
+  mounted(){
+    this.vacunas()
+  },
+  computed: {
+      formattedDate() {
+        return moment(this.application_date).format('L');
+      }
+    },
 }
 </script>
   <style scoped>

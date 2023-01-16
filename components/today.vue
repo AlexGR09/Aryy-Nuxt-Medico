@@ -95,6 +95,11 @@ export default {
   mounted() {
     this.today()
   },
+  computed: {
+      formattedDate() {
+        return moment(this.application_date).format('L');
+      }
+    },
   methods: {
     today() {
       this.$axios
