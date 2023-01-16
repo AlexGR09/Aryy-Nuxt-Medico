@@ -20,7 +20,7 @@
       <v-btn
         class="ml-5 mr-7"
         fab
-        href="/accounts/edit/account/"
+        href="/accounts/edit/general-info/"
         color="#7900ff"
       >
         <v-avatar class="avata" size="56">

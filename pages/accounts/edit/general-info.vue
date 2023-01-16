@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
     <account class="mb-2"/>
     <v-row>
        <v-row>
@@ -69,8 +77,8 @@
           </v-card-text> -->
           <!-- formulario | Luis Reyes -->
           <v-card-text class="mt-n6">
-            <v-card-subtitle
-              ><H1 class="ml-n5 mt-n10"
+            <v-card-subtitle >
+              <H1 class="mb-5 ml-n4 mt-n7"
                 >INFORMACIÓN DE PERFIL</H1
               ></v-card-subtitle
             >
@@ -361,6 +369,23 @@ export default {
         (v) => !!v || 'E-mail is necesario',
         (v) => /.+@.+/.test(v) || 'E-mail invalido',
       ],
+      breadcrumbs: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Perfil personal',
+          disabled: false,
+          href: '/accounts/edit/general-info',
+        },
+        {
+          text: 'Perfil',
+          disabled: true,
+          href: '/accounts/edit/general-info',
+        },
+      ],
     }
   },
   computed: {
@@ -451,8 +476,10 @@ export default {
 }
 </script>
 <style>
-h1 {
+span.breadcrumbs {
   font-family: Montserrat;
+  color: #7900ff;
+  font-size: 95%;
 }
 p.reset {
   font-family: Montserrat;
@@ -460,6 +487,86 @@ p.reset {
 }
 .alert {
   font-family: Montserrat;
+}
+.v-input__icon--prepend .v-icon {
+  color: #9966ff;
+}
+.input {
+  margin-top: 5px;
+  color: #9966ff !important;
+  font-family: MontserratMedium;
+  font-size: 100%;
+}
+.bgactive {
+  background: #7900ff;
+  color: white !important;
+  fill: white !important;
+}
+.list-item {
+  margin-top: 1em;
+}
+.titlee {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  text-transform: unset !important;
+  color: black;
+}
+.titlee:hover {
+  color: #ffffff;
+}
+.v-list-item:hover {
+  background: #7900ff;
+}
+
+.item-active {
+  background-color: #7900ff;
+  color: white !important;
+}
+a {
+  text-decoration: none !important;
+}
+.save {
+  font-family: Montserrat;
+  text-transform: unset !important;
+}
+.restore {
+  font-family: Montserrat;
+  text-transform: unset !important;
+}
+.btn {
+  font-family: Montserrat;
+  text-transform: unset !important;
+  color: #9966ff;
+}
+.textfield {
+  height: 50px;
+  width: 100%;
+  font-size: 0.9rem;
+  font-family: Montserrat;
+}
+h1 {
+  font-family: MontserratMedium;
+  font-size: 120%;
+  color: #4f565f;
+}
+span {
+  color: #999999;
+  font-family: Montserrat;
+  font-size: 120%;
+}
+p {
+  font-family: MontserratMedium;
+  color: gray;
+  font-size: 110%;
+}
+p.cedu {
+  font-family: Montserrat;
+  font-size: 120%;
+  color: #999999;
+}
+.v-input__icon--append .v-icon {
+  font-size: 50px;
+  color: #999999;
 }
 </style>
 

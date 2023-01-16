@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
    <account/>
     <v-row>
        <v-row>
@@ -84,6 +92,23 @@ export default {
       fileRecords: [],
       uploadUrl: 'https://example.com',
       selectedItem: 1,
+      breadcrumbs: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Perfil personal',
+          disabled: false,
+          href: '/accounts/edit/general-info',
+        },
+        {
+          text: 'Subscripción',
+          disabled: true,
+          href: '/accounts/edit/personalprofile/subscription-form',
+        },
+      ],
     }
   },
   watch: {
@@ -101,9 +126,7 @@ export default {
   },
 }
 </script>
-    
-    
-      <style>
+<style>
 .v-input__icon--prepend .v-icon {
   color: #9966ff;
 }
@@ -183,5 +206,10 @@ p.cedu {
 .v-input__icon--append .v-icon {
   font-size: 50px;
   color: #999999;
+}
+span.breadcrumbs {
+  font-family: Montserrat;
+  color: #7900ff;
+  font-size: 95%;
 }
 </style>

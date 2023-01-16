@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
     <account/>
     <v-row>
        <v-row>
@@ -199,6 +207,23 @@ export default {
       uploadUrl: 'https://example.com',
       selectedItem: 1,
       dialog: false,
+      breadcrumbs: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Perfil personal',
+          disabled: false,
+          href: '/accounts/edit/general-info',
+        },
+        {
+          text: 'Datos fiscales',
+          disabled: true,
+          href: '/accounts/edit/personalprofile/tax-data',
+        },
+      ],
     }
   },
   watch: {
@@ -295,6 +320,11 @@ export default {
 </script> 
 
 <style>
+span.breadcrumbs {
+  font-family: Montserrat;
+  color: #7900ff;
+  font-size: 95%;
+}
 .v-input__icon--prepend .v-icon {
   color: #9966ff;
 }

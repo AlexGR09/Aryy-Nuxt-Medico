@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
     <account/>
     <v-row>
        <v-row>
@@ -168,7 +176,25 @@ export default {
       facilities: [],
       dbSelect : '',
         items : [],
-      timeagenda: ['4 Semanas']
+      timeagenda: ['4 Semanas'],
+
+      breadcrumbs: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Agenda',
+          disabled: false,
+          href: '/accounts/edit/planner-info',
+        },
+        {
+          text: 'Horarios',
+          disabled: true,
+          href: '/accounts/edit/plannerViews/schedule-info',
+        },
+      ],
     }
   },
   mounted() {

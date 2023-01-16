@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
     <account/>
     <v-row>
        <v-row>
@@ -289,6 +297,23 @@ export default {
       fileRecords: [],
       uploadUrl: 'https://example.com',
       selectedItem: 1,
+      breadcrumbs: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Perfil médico',
+          disabled: false,
+          href: '/accounts/edit/medicalProfile-info',
+        },
+        {
+          text: 'Formación',
+          disabled: true,
+          href: '/accounts/edit/personalprofile/tax-data',
+        },
+      ],
     }
   },
   watch: {
