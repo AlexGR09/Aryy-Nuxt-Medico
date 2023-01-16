@@ -1,10 +1,11 @@
 <template>
   <div>
+    <account class="mb-2"/>
     <v-row>
-      <v-card flat>
-        <menuPersonal />
-      </v-card>
-      <v-col md="12" lg="11" xl="10">
+       <v-row>
+          <menu-personal />
+        </v-row>
+      <v-col cols="12" md="10" lg="10" xl="11">
         <v-card height="800px" flat class="pa-3">
           <v-col xl="12">
             <!-- alert para notificar error | Genesis -->
@@ -304,12 +305,15 @@
   </div>
 </template>
 <script>
+import Account from './account.vue'
 import changeEmail from './PersonalProfile/changeEmail.vue'
 import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue'
+
 export default {
   components: {
     menuPersonal,
     changeEmail,
+    Account,
   },
 
   data() {

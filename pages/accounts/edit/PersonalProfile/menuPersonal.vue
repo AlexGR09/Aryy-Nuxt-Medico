@@ -1,4 +1,5 @@
 <template>
+  <v-card class="mt-7 ml-4" flat>
   <v-tabs
     class="list-item mt-8"
     active-class="bgactive"
@@ -7,34 +8,44 @@
     height="110px"
     vertical
   >
-    <v-tab style="width: 145px" class="proband"> PERFIL </v-tab>
-    <v-tab style="width: 145px" class="proband"> DATOS FISCALES </v-tab>
-    <v-tab style="width: 145px" class="proband"> SUSCRIPCIÓN </v-tab>
-    <v-tab-item transition="fade-transition">
-      <general-info />
-    </v-tab-item>
-    <v-tab-item transition="fade-transition">
-      <tax-data class="mt-n8" />
-    </v-tab-item>
-    <v-tab-item transition="fade-transition">
-      <SubscriptionForm />
-      <services class="mt-n8" />
-    </v-tab-item>
+    <v-tab to="/accounts/edit/general-info" style="width: 145px" class="proband"> PERFIL </v-tab>
+    <v-tab to="/accounts/edit/personalprofile/tax-data" style="width: 145px" class="proband"> DATOS FISCALES </v-tab>
+    <v-tab to="/accounts/edit/personalprofile/subscription-form" style="width: 145px" class="proband"> SUSCRIPCIÓN </v-tab>
   </v-tabs>
+  <router-view></router-view>
+  </v-card>
 </template>
   
   <script>
-import GeneralInfo from '../general-info.vue'
-import SubscriptionForm from './subscription-form.vue'
-import TaxData from './tax-data.vue'
-
+  import VueRouter from 'vue-router'
 export default {
   data() {
     return {
       selectedItem: 1,
     }
   },
-  components: { SubscriptionForm, TaxData, GeneralInfo },
+  created() {
+    const GeneralInfo = {
+      template: '<div>  <GeneralInfo/>!</div>',
+    }
+
+    const TaxData = {
+      template: '<div>   <TaxData/></div>',
+    }
+
+    const SubscriptionForm = {
+      template: '<div>   <SubscriptionForm/></div>',
+    }
+
+    const routes = [
+      { path: '/accounts/edit/general-info', component: GeneralInfo },
+      { path: '/accounts/edit/personalprofile/tax-data', component: TaxData },
+      { path: '/accounts/edit/personalprofile/subscription-form', component: SubscriptionForm },
+    ]
+
+    const router = new VueRouter({ routes })
+    return router
+  },
 }
 </script>
   <style>
@@ -42,7 +53,7 @@ export default {
   font-family: MontserratMedium;
 }
 .proband {
-  font-family: Montserrat;
+  font-family: MontserratMedium;
   font-size: 12px;
   align-items: start;
   flex-direction: column;

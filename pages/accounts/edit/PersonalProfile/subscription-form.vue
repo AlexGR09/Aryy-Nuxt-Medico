@@ -1,10 +1,11 @@
 <template>
   <div>
+   <account/>
     <v-row>
-      <v-card flat>
-        <menu-med />
-      </v-card>
-      <v-col md="10" lg="10" xl="10">
+       <v-row>
+          <menu-personal />
+        </v-row>
+      <v-col cols="12" md="10" lg="10" xl="11">
         <v-card flat class="pa-3 mt-2">
           <v-card-subtitle class="pa-3 mt-n2 mb-n10">
             <H1 class="mb-5">DATOS DE LA SUSCRIPCIÓN</H1>
@@ -68,14 +69,14 @@
         </v-card>
       </v-col>
     </v-row>
-    <menu-personal/>
   </div>
 </template>
       <script>
-      import menuPersonal from './menuPersonal.vue'
+          import account from '../account.vue';
+          import menuPersonal from './menuPersonal.vue';
 export default {
   components: {
-    menuPersonal
+  account, menuPersonal
   },
   data() {
     return {

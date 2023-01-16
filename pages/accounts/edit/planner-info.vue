@@ -1,5 +1,6 @@
 <template>
   <div>
+    <account/>
     <v-row> 
       <v-col md="12" lg="11" xl="10">
         <v-card flat height="800px" class="pa-3 mt-2">
@@ -37,12 +38,12 @@
 </div>
 </template>
 <script>
-
+import Account from './account.vue'
 import FacilityCard from './plannerViews/facilityCard.vue'
 import NewFacility from './plannerViews/newFacility.vue'
 export default {
   components: {
-    NewFacility, FacilityCard,
+    NewFacility, FacilityCard, Account
 },
   data () {
     return {

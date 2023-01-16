@@ -1,5 +1,6 @@
 <template>
   <div>
+    <account/>
     <v-row>
       <v-card flat>
         <menu-med />
@@ -256,6 +257,7 @@
 import Vue from 'vue'
 import VueFileAgent from 'vue-file-agent'
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css'
+import Account from './account.vue'
 import MenuMed from './MedicalProfileViews/menuMed.vue'
 
 Vue.use(VueFileAgent)
@@ -263,6 +265,7 @@ Vue.use(VueFileAgentStyles)
 export default {
   components: {
     MenuMed,
+    Account,
   },
   data() {
     return {
