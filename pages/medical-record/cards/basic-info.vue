@@ -650,7 +650,26 @@ export default {
         })
         .then((res) => {
           this.eventos = res.data.data
+        })
+    },
+
+    vitalSigns() {
+      console.log('creando petición GET')
+      this.$axios
+        .get(
+          `api/v1/medical-records/allergies//${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
           console.log(res)
+          this.patient = res.data.data.patient.full_name
+          this.date = res.data.data.appointment_date
+          this.status = res.data.data.status
+          this.statusMethod()
         })
     },
   },

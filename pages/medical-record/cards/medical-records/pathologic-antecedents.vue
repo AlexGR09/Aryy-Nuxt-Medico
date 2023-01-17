@@ -3,6 +3,142 @@
   <v-card-text class="mt-n7">
     <p class="titulo">Antecedentes patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
+
+         <!--   agregar informacion | Genesis -->
+         <v-dialog scrollable v-model="dialog" max-width="600px">
+        <template v-slot:activator="{ on, attrs }">
+             <v-btn v-bind="attrs" v-on="on" icon>
+            <v-icon color="#9966ff">mdi-plus-circle</v-icon>
+          </v-btn> 	
+        </template>
+        <v-card max-height="600px">
+          <v-card-title>
+            <span>ANTECEDENTES PATOLÓGICOS</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12" sm="6" md="4" xl="12">
+                  <p class="cuestion mb-n3">Cirugías previas</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="surgery"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="surYes"
+                    ></v-radio>
+                    <v-radio color="#b380ff" label="No" value="surNo"></v-radio>
+                  </v-radio-group>
+                  <v-text-field
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="surgery == 'surYes'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                  <p class="cuestion mt-n4 mb-n3">Transfusiones</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="transfusion"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="tranYes"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="tranNo"
+                    ></v-radio>
+                  </v-radio-group>
+                  <v-text-field
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="transfusion == 'tranYes'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                  <p class="cuestion mt-n4 mb-n3">Diabetes</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="diabetes"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="diabYes"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="diabNo"
+                    ></v-radio>
+                  </v-radio-group>
+                  <v-text-field
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="diabetes == 'diabYes'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                  <p class="cuestion mt-n4 mb-n3">Cardiopatías</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="disYes"
+                    ></v-radio>
+                    <v-radio color="#b380ff" label="No" value="disNo"></v-radio>
+                  </v-radio-group>
+                  <v-text-field
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="disease == 'disYes'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions class="mt-n10 ml-5 mr-5">
+            <v-btn
+            block
+            @click="overlay = !overlay"
+              height="50px"
+              class="white--text save mb-5"
+              color="#7900ff"
+              large
+              >Guardar cambios</v-btn
+            >
+            <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+
+    <!--   editar informacion | Genesis -->
       <v-dialog scrollable v-model="dialog" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">

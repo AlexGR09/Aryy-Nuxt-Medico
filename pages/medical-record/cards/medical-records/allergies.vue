@@ -4,7 +4,7 @@
     <p class="titulo">Alergias</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
     <!-- agregar información nueva | Genesis -->
-    <v-dialog scrollable v-model="dialog" max-width="600px">
+    <v-dialog scrollable v-model="dialogg" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
        
           <v-btn v-bind="attrs" v-on="on" icon>
@@ -22,18 +22,18 @@
                   <p class="cuestion mb-n3">Alimentarias</p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="alimentarias"
+                    v-model="alim"
                     row
                   >
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="alimYes"
+                      value="alimY"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="alimNo"
+                      value="alimN"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
@@ -41,14 +41,14 @@
                     v-model="food"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="alimentarias == 'alimYes'"
+                    v-if="alim == 'alimY'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
                   <p class="cuestion mt-n4 mb-n3">Fármacos</p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="farmacos"
+                    v-model="farm"
                     row
                   >
                     <v-radio
@@ -64,7 +64,7 @@
                   </v-radio-group>
                   <v-text-field
                   color="#7900ff"
-                    v-model="drugs"
+                    v-model="drugss"
                     class="mt-n3"
                     style="font-family: Montserrat"
                     v-if="farmacos == 'farmYes'"
@@ -74,7 +74,7 @@
                   <p class="cuestion mt-n4 mb-n3">Factores ambientales</p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="ambientales"
+                    v-model="amb"
                     row
                   >
                     <v-radio
@@ -159,7 +159,7 @@
                   </v-radio-group>
                   <v-text-field
                   color="#7900ff"
-                    v-model="food"
+                    v-model="food_allergy"
                     class="mt-n3"
                     style="font-family: Montserrat"
                     v-if="alimentarias == 'alimYes'"
@@ -308,13 +308,18 @@ export default {
   components: {},
   data() {
     return {
+      environmental: '',
+      drugs: '',
+      drugss: '',
       overlay: false,
       dialog: false,
+      dialogg: false,
       alimentarias: '',
       farmacos: '',
       ambientales: '',
-      alergias: [
-      ],
+      alim: '',
+      farm: '',
+      amb: '',
       drug_allergy: '',
       environmental_allergy: '',
       food_allergy: '',
@@ -345,14 +350,39 @@ export default {
           this.environmental_allergy = res.data.data.environmental_allergy
           this.food_allergy = res.data.data.food_allergy
           this.time = res.data.data.created_at
-         
+         this.alergiasalimentarias()
+         this.alergiasambientales()
+         this.alergiasfarmacos()
         })
         .catch(
           /* console.log(e); */
           console.log('error en GET')
         )
     },
+    alergiasalimentarias(){
+    if (this.food_allergy==="N/A"){
+      this.alimentarias='alimNo'
+    }else{
+      this.alimentarias='alimYes'
+    }
   },
+
+  alergiasambientales(){
+    if (this.environmental_allergy==="N/A"){
+      this.ambientales='ambNo'
+    }else{
+      this.ambientales='ambYes'
+    }
+  },
+  alergiasfarmacos(){
+    if (this.drug_allergy==="N/A"){
+      this.farmacos='farmNo'
+    }else{
+      this.farmacos='farmYes'
+    }
+  },
+  },
+ 
   mounted(){
     this.alergiass()
   },
