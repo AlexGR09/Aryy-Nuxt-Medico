@@ -4,7 +4,6 @@
         <v-row>
           <v-col cols="12" md="2">
             <v-select
-              @input="changedLabel"
               v-model="sort"
               append-icon="mdi-menu-down"
               outlined
@@ -16,6 +15,7 @@
               color="#7900ff"
               :items="keys.title"
               placeholder="Ordenar por"
+              @input="changedLabel"
             >
             </v-select>
           </v-col>
@@ -25,7 +25,7 @@
                 bottom
                 left
             >
-                <template v-slot:activator="{ on, attrs }">
+                <template #activator="{ on, attrs }">
                 <v-btn
                     color="primary"
                     icon
@@ -63,7 +63,7 @@
         <!-- buttons to import and export patients | Luis Reyes -->
           
           <v-col class="option-btn">
-            <v-btn
+<!--             <v-btn
                 outlined
                 color="#004D40"
             >
@@ -73,12 +73,41 @@
                 >
                 mdi-file-excel
                 </v-icon>
-            </v-btn>
-          </v-col>        
+            </v-btn> -->
+            <v-tooltip bottom>
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  v-bind="attrs"
+                  :loading="isSelecting"
+                  block
+                  outlined
+                  class="btnStart "
+                  v-on="on"
+                  @click="handleFileImport"
+                  >
+                    <span class="black--text">Importar pacientes</span>
+                      
+                </v-btn>
+              </template>
+                    <span style="text-transform: capitalize">Formatos permitidos: .xlsx</span>
+            </v-tooltip>
+              <input
+                id="archivoExcel"
+                ref="uploader"
+                accept=".xlsx"
+                :v-model="selectedFile"
+                class="d-none"
+                type="file"
+                @change="subirExcel()"
+              />
+          </v-col>
+          
+          <!-- EXPORTAR PACIENTES -->
           <v-col  class="option-btn">
             <v-btn
                 outlined
                 color="#004D40"
+                @click="exportarExcel()"
             >
                 Exportar pacientes
                 <v-icon
@@ -90,11 +119,13 @@
          </v-col>
         <!-- buttons to import and export patients | Luis Reyes -->
         </v-row>
-
-    <!--  
-        <v-data-table>
-        </v-data-table> -->
-        <v-data-table
+        
+     <v-data-table
+          :headers="headers"
+          :items="pacientes"
+        >
+        </v-data-table>
+       <v-data-table
               :search="search"
               :headers="headers"
               :items="characters"
@@ -107,7 +138,7 @@
               :items-per-page="itemsPerPage"
               hide-default-footer
             >
-            <template #header="{ props: { headers } }">
+            <template header="{ props: { headers } }">
                 <thead class="v-data-table-header">
                   <tr>
                     <th
@@ -139,10 +170,8 @@
                       class="justify-center asistencia"
                       color="#e9f7ee"
                       text-color="#1baa55"
-                      ><span style="text-transform: uppercase; font-size: 85%"
-                        >ASISTIÓ</span
-                      ></v-chip
-                    >
+                      ><span style="text-transform: uppercase; font-size: 85%">ASISTIÓ</span
+                      ></v-chip>
                     <!--    chip de cita cancelada | Genesis -->
                     <v-chip
                       v-if="absence"
@@ -179,7 +208,7 @@
                         max-width="23"
                       ></v-img>
                     </v-btn>
-                    <v-btn class="iconos" @click="deleteItemConfirm" icon>
+                    <v-btn class="iconos"  icon @click="deleteItemConfirm">
                       <v-img
                         :src="require('@/assets/icons/icon_delete.svg')"
                         max-width="23"
@@ -195,10 +224,14 @@
   
 <script>
 import axios from 'axios'
-export default {
+import readXlsFile from "read-excel-file"
+/* import exportFromJSON from 'export-from-json'  */
 
+
+
+export default {
   layout: 'default',
-  components: {},
+
   data() {
     return {
       sortBy: "name",
@@ -218,11 +251,11 @@ export default {
         {
           text: 'Nombre completo',
           align: 'start',
-          value: 'name',
+          value: '0',
         },
-        { text: 'Teléfono', value: 'species', align: 'start'},
-        { text: 'Última cita', value: 'gender', align: 'start'},
-        { text: '', value: 'actions', align: 'end', },
+        { text: 'Teléfono', value: '1', align: 'start'},
+        { text: 'Última cita', value: '2', align: 'start'},
+     
       ],
 
  
@@ -246,8 +279,12 @@ export default {
           href: '/patients/list',
         },
       ],
+
+       pacientes:[] 
     }
   },
+
+
   computed: {
     totalRecords() {
       return this.characters.length
@@ -260,7 +297,25 @@ export default {
     console.log('verificando')
     this.getTodos()
   },
+  
+  
+  
   methods: {
+    subirExcel(){
+      const input = document.getElementById("archivoExcel");
+      readXlsFile(input.files[0]).then((rows) => {
+        this.pacientes = rows;
+
+      })
+    },
+ 
+/*  exportarExcel(){
+      const data = this.pacientes;
+      const fileName = 'download'
+      const exportType =  exportFromJSON.types.xls
+      exportFromJSON({data, fileName, exportType})
+    },   */
+
     changedLabel(event) {
       this.sort = event;
       if(this.sort==="Nombre completo"){

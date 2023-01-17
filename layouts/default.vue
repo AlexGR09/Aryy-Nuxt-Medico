@@ -158,9 +158,6 @@ export default {
                        this.$router.replace('/auth/login')
                       )
           },
-          
-      /* matar token y redireccionar al login | Genesis */
-     
     },
 }
 </script>

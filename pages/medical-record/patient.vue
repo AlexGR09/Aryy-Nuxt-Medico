@@ -265,7 +265,7 @@
 
       <!-- SEGUNDA COLUMNA -->
       <v-col cols="12" md="4">
-        <p class="subtitle">NOTAS INTERNAS</p>
+<!--         <p class="subtitle">NOTAS INTERNAS</p>
         <v-card class="greeting-card" elevation="5">
           <v-row class="ma-0 pa-0">
             <v-col cols="12">
@@ -279,7 +279,7 @@
               </div>
             </v-col>
           </v-row>
-        </v-card>
+        </v-card> -->
 
         <!-- NUEVA CONSULTA -->
 
@@ -287,7 +287,7 @@
           <p class="subtitle">NUEVA CONSULTA</p>
           <v-row>
             <v-col cols="12">
-              <div>
+<!--               <div>
                 <v-btn
                   elevation="0"
                   class="btn_detail"
@@ -298,7 +298,51 @@
                 >
                   Iniciar nueva consulta</v-btn
                 >
-              </div>
+              </div> -->
+              <template>
+  <v-row justify="center">
+    <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="800"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="primary"
+          dark
+          class="btn_detail"
+          block
+          v-bind="attrs"
+          v-on="on"
+        >
+          Iniciar nueva consulta
+        </v-btn>
+      </template>
+      <v-card>
+
+        <v-card-text class="card-text">Estas a punto de inicar una consulta fuera del tiempo asignado, este proceso actualizará el Expediente Médico del paciente y no se puede cancelar, ¿estás seguro que deseas continuar?.</v-card-text>
+        <v-card-actions >
+          <div class="btn-modal">
+            <v-btn
+            color="primary"
+            @click="dialog = false"
+          >
+            Cancelar
+          </v-btn>
+          <v-btn
+            color="gray"
+            outlined
+            @click="dialog = false"
+          >
+            Continuar
+          </v-btn>
+
+          </div>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row> 
+</template>
             </v-col>
             <v-col cols="12">
               <div>
@@ -371,6 +415,7 @@
 <script>
 export default {
   data: () => ({
+
     items: [
       {
         text: 'Dashboard',
@@ -436,6 +481,18 @@ export default {
   padding: 3vh;
 }
 
+.card-text{
+  font-size: 2vh;
+  text-align: center;
+  font-family: 'MontserratMedium';
+  
+}
+
+.btn-modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .subtitle-p{
   margin-left: 2vh;
   margin-block-start: 2vh;

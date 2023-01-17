@@ -82,7 +82,6 @@ export default {
       themes: {
         themes: {
           text: "#7900ff"
-
         },
         dark: {
           primary: colors.blue.darken2,
@@ -97,6 +96,7 @@ export default {
     },
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+ /*  build: {}, */
+  build: { filenames: { chunk: () => '[name].js' } },
 }
 

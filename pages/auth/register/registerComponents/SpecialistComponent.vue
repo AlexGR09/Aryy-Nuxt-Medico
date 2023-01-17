@@ -20,7 +20,7 @@
         <v-tab id="2" class="tabs">
           <!-- SELECTOR DE TIPO DE USUARIOS -->
           <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
+            <template #activator="{ on, attrs }">
               <v-btn
                 text
                 large
