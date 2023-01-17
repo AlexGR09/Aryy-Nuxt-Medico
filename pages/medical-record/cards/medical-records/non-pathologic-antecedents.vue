@@ -138,7 +138,7 @@
         >
       </v-list-item-content>
     </v-list-item>
-      <p class="ml-3">
+      <p class="ml-3 d-flex justify-end">
         <img
           class="mr-3"
           width="20"
@@ -179,9 +179,9 @@
     font-size: 130%;
   }
   p {
-    font-family: MontserratMedium;
-    color: #999999;
-  }
+  font-family: MontserratMedium;
+  color: #4f565f;
+}
   p.cuestion {
   font-size: 115%;
 }

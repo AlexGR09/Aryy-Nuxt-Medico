@@ -2,45 +2,44 @@
 <template >
   <div class="template">
     <v-breadcrumbs class="breadcrumbs ml-n7" :items="items">
-          <template v-slot:item="{ item }">
-            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
-              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
-              <span class="breadcrumbs">{{ item.text }}</span>
-            </v-breadcrumbs-item>
-          </template>
-        </v-breadcrumbs>
-    <v-row class="mb-n5">
-      <!-- card info basica | Genesis -->
-      <v-col cols="12" xs="12" sm="12" md="8" lg="8" xl="8">
-        <h1 class="title mb-3">INFORMACIÓN BÁSICA</h1>
-        <basic-info />
+      <template v-slot:item="{ item }">
+        <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+          <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+          <span class="breadcrumbs">{{ item.text }}</span>
+        </v-breadcrumbs-item>
+      </template>
+    </v-breadcrumbs>
+
+    <v-row>
+      <v-col lg="8" xl="9">
+        <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
+          <h1 class="title mb-3">INFORMACIÓN BÁSICA</h1>
+          <basic-info />
+        </v-col>
+        <v-col xs="12" sm="12" md="12" lg="12" xl="12">
+          <H1 class="title mb-3">EXPEDIENTE MÉDICO</H1>
+          <medical-record />
+        </v-col>
+        <v-col xs="12" sm="12" md="12" lg="12" xl="12">
+          <H1 class="title mb-3">CONSULTA MÉDICA</H1>
+          <consultation />
+        </v-col>
       </v-col>
-      <v-row class="mr-n8">
-        <v-col class="ml-3 mr-3" cols="11" xs="11" sm="11" md="11" lg="8" xl="11">
-        <h1 class="title mb-3 mt-3">NOTAS INTERNAS</h1>
-        <textarea v-model="notes"></textarea>
-      </v-col> 
-      </v-row>
-   </v-row>
-<v-row>
-      <v-col xs="12" sm="12" md="8" lg="8" xl="8">
-        <H1 class="title mb-3">EXPEDIENTE MÉDICO</H1>
-        <medical-record />
-      </v-col>
-      <v-col xs="12" sm="12" md="4" lg="4" xl="4">
-        <H1 class="title mb-3 mr-3">CITAS ANTERIORES</H1>
-      <appointments />
-      </v-col>
-      <v-col xs="12" sm="12"
-       md="8" lg="8" xl="8">
-        <H1 class="title mb-3">CONSULTA MÉDICA</H1>
-        <consultation />
+
+      <v-col md="3" lg="4" xl="3">
+        <v-col cols="11" xs="11" sm="11" md="12" lg="12" xl="12">
+          <h1 class="title mb-3">NOTAS INTERNAS</h1>
+          <textarea v-model="notes"></textarea>
+        </v-col>
+        <v-col xs="12" sm="12" md="12" lg="12" xl="12">
+          <H1 class="title mb-3">CITAS ANTERIORES</H1>
+          <appointments />
+        </v-col>
       </v-col>
     </v-row>
   </div>
 </template>
 <script>
-
 import basicInfo from './cards/basic-info.vue'
 import Consultation from './cards/consultation.vue'
 import medicalRecord from './cards/medical-record.vue'
@@ -53,7 +52,7 @@ export default {
     Consultation,
     Appointments,
   },
-  data() { 
+  data() {
     return {
       notes: '',
       items: [
@@ -102,20 +101,24 @@ span.breadcrumbs {
   color: #7900ff;
 }
 /* estilos para notas tipo cuaderno | Genesis */
-textarea
-{
-    background: white;
-    border: 1px solid #EEEEEE;
-    box-shadow: 1px 2px 0 #c7c7c7;
-    font-family: 'Montserrat';
-    font-size: 17px;
-    line-height: 50px;
-    padding: 11px 20px 0 20px;
-    resize: none;
-    height: 337px;
-    width:100%;
-    background-image: -webkit-linear-gradient(top , transparent, transparent 49px,rgb(211, 211, 211) 0);
-    -webkit-background-size:  100% 50px;
-    background-size: 100% 50px;
+textarea {
+  background: white;
+  border: 1px solid #eeeeee;
+  box-shadow: 1px 2px 0 #c7c7c7;
+  font-family: 'Montserrat';
+  font-size: 17px;
+  line-height: 50px;
+  padding: 11px 20px 0 20px;
+  resize: none;
+  height: 337px;
+  width: 100%;
+  background-image: -webkit-linear-gradient(
+    top,
+    transparent,
+    transparent 49px,
+    rgb(211, 211, 211) 0
+  );
+  -webkit-background-size: 100% 50px;
+  background-size: 100% 50px;
 }
 </style>

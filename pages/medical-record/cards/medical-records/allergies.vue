@@ -122,10 +122,11 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-<!--     <p v-if="this.prueba='null'">Sin alergías conocidas</p> -->
-    <div>
+
+    <p v-if="!this.idif">Sin alergías conocidas</p>
+    <div v-else >
     <v-list-item
-  
+      
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -136,7 +137,7 @@
       <v-list-item-content>
         <v-list-item-title>Fármacos</v-list-item-title>
         <v-list-item-subtitle
-          >{{ drug_allergy }} </v-list-item-subtitle
+          >{{ drug_allergy }} {{ msg }} </v-list-item-subtitle
         >
       </v-list-item-content>
     </v-list-item>
@@ -171,15 +172,14 @@
           >{{ food_allergy }} </v-list-item-subtitle
         >
       </v-list-item-content>
-    </v-list-item>
+    </v-list-item> 
   </div>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
         width="20"
         :src="require('@/assets/icons/icon_timestamp.svg')"
-      />Editado el {{time
-      }}
+      />Editado el {{time}}
     </p>
   </v-card-text>
 </template>
@@ -200,6 +200,7 @@ export default {
       environmental_allergy: '',
       food_allergy: '',
       time: '',
+      idif: '',
     
     }
   },
@@ -220,10 +221,11 @@ export default {
         })
         .then((res) => {
           console.log(res)
-          this.drug_allergy = res.data.data.data.drug_allergy
-          this.environmental_allergy = res.data.data.data.environmental_allergy
-          this.food_allergy = res.data.data.data.food_allergy
-          this.time = res.data.data.data.created_at
+          this.idif = res.data.data.id
+          this.drug_allergy = res.data.data.drug_allergy
+          this.environmental_allergy = res.data.data.environmental_allergy
+          this.food_allergy = res.data.data.food_allergy
+          this.time = res.data.data.created_at
          
         })
         .catch(
@@ -245,7 +247,7 @@ p.titulo {
 }
 p {
   font-family: MontserratMedium;
-  color: #999999;
+  color: #4f565f;
 }
 p.cuestion {
   font-size: 115%;

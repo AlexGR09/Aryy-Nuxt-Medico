@@ -3,6 +3,26 @@
   <v-card background="grey-lighten-4">
     <v-card-text>
       <v-row>
+
+        
+        <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
+          <v-text-field
+            dense
+            placeholder="Nombre completo"
+            hide-details
+            color="#7900ff"
+            type="text"
+          >
+            <template #prepend>
+              <img
+                width="24"
+                height="24"
+                :src="require('@/assets/icons/icon_user.svg')"
+              />
+            </template>
+          </v-text-field>
+        </v-col>
+
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
             dense
@@ -21,23 +41,6 @@
           </v-text-field>
         </v-col>
 
-        <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
-          <v-text-field
-            dense
-            placeholder="Nombre completo"
-            hide-details
-            color="#7900ff"
-            type="text"
-          >
-            <template #prepend>
-              <img
-                width="24"
-                height="24"
-                :src="require('@/assets/icons/icon_user.svg')"
-              />
-            </template>
-          </v-text-field>
-        </v-col>
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
@@ -59,8 +62,8 @@
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
+          class="mt-n5"
           placeholder="Tipo de sangre"
-            class="mt-n5"
             dense
             color="#7900ff"
             type="text"

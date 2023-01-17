@@ -69,7 +69,7 @@
     </div>
     <v-divider class="mt-n1"></v-divider>
     <p>Sin datos registrados</p>
-    <p class="ml-3">
+    <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
         width="20"

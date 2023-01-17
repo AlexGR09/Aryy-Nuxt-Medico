@@ -91,16 +91,15 @@ export default {
         return this.selection.every((select) => todo.appointment_type.toLowerCase().includes(select.toLowerCase()));
       });
     },
+   /*  formattedDate() {
+        return moment(this.todo.appointment_time).format('LT');
+      } */
   },
   mounted() {
     this.today()
   },
-  computed: {
-      formattedDate() {
-        return moment(this.application_date).format('L');
-      }
-    },
   methods: {
+    
     today() {
       this.$axios
         .get('api/v1/calendar/appointments', {

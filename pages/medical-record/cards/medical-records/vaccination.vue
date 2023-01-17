@@ -113,9 +113,9 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <!-- <p>Sin datos registrados</p> -->
+    <p v-if="!this.idif">Sin datos registrados</p>
     <v-list-item
-  
+      v-else
       style="font-family: Montserrat"
       class="ml-n7 mt-n5 lista"
       two-line
@@ -130,7 +130,7 @@
         
       </v-list-item-content>
     </v-list-item>
-    <p class="ml-3">
+    <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
         width="20"
@@ -174,6 +174,7 @@ export default {
       ambientales: '',
       vaccine: '',
       application_date: '',
+      idif: '',
     }
   },
   watch: {
@@ -185,6 +186,7 @@ export default {
     },
   },
   methods: {
+   /*  metodo para obtener datos de vacunacion | Genesis */
     vacunas() {
       console.log('creando petición GET')
       this.$axios
@@ -195,10 +197,32 @@ export default {
           console.log(res)
           this.vaccine = res.data.data.vaccine
           this.application_date = res.data.data.application_date
+          this.idif=res.data.data.id
         })
         .catch(
           console.log('error en GET')
         )
+    },
+  /*   metodo para editar datos de vacunación | Genesis */
+    editVacunas() {
+      this.$axios
+        .post('/api/v1/physician/medical-history/vaccination_history/', {
+          patient_id: this.$route.params.medicalRecord,
+          vaccine: this.vaccine,
+          dose: this.dose,
+          lot_number: this.lot_number,
+          application_date: this.application_date,
+        })
+        .then((response) => {
+          console.log(response.data.data)
+          localStorage.setItem('token',response.data.access_token)
+        })
+        .catch((error) => {
+          this.errormail = ''
+          this.errormail = error.response.data.errors.email[0]
+          this.password_error=""
+          this.password_error = error.response.data.errors.password[0]
+        })
     },
   },
   mounted(){
