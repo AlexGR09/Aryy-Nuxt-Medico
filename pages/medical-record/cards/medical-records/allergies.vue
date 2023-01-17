@@ -3,8 +3,127 @@
   <v-card-text>
     <p class="titulo">Alergias</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
+    <!-- agregar información nueva | Genesis -->
+    <v-dialog scrollable v-model="dialog" max-width="600px">
+        <template v-slot:activator="{ on, attrs }">
+       
+          <v-btn v-bind="attrs" v-on="on" icon>
+            <v-icon color="#9966ff">mdi-plus-circle</v-icon>
+          </v-btn> 	
+        </template>
+        <v-card  max-height="600px">
+          <v-card-title>
+            <span>ALERGIAS</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12" sm="6" md="4" xl="12">
+                  <p class="cuestion mb-n3">Alimentarias</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="alimentarias"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="alimYes"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="alimNo"
+                    ></v-radio>
+                  </v-radio-group>
+                  <v-text-field
+                  color="#7900ff"
+                    v-model="food"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="alimentarias == 'alimYes'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                  <p class="cuestion mt-n4 mb-n3">Fármacos</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="farmacos"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="farmYes"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="farmNo"
+                    ></v-radio>
+                  </v-radio-group>
+                  <v-text-field
+                  color="#7900ff"
+                    v-model="drugs"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="farmacos == 'farmYes'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                  <p class="cuestion mt-n4 mb-n3">Factores ambientales</p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="ambientales"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="ambYes"
+                    ></v-radio>
+                    <v-radio color="#b380ff" label="No" value="ambNo"></v-radio>
+                  </v-radio-group>
+                  <v-text-field
+                  color="#7900ff"
+                    v-model="environmental"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="ambientales == 'ambYes'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions class="mt-n10 ml-5 mr-5">
+            <v-btn
+            block
+            @click="overlay = !overlay"
+              height="50px"
+              class="white--text save mb-5"
+              color="#7900ff"
+              large
+              >Guardar cambios</v-btn
+            >
+            <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+
+     <!--  Editar información registrada | Genesis -->
       <v-dialog scrollable v-model="dialog" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
+       
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
               width="24"
@@ -137,7 +256,7 @@
       <v-list-item-content>
         <v-list-item-title>Fármacos</v-list-item-title>
         <v-list-item-subtitle
-          >{{ drug_allergy }} {{ msg }} </v-list-item-subtitle
+          >{{ drug_allergy }}</v-list-item-subtitle
         >
       </v-list-item-content>
     </v-list-item>

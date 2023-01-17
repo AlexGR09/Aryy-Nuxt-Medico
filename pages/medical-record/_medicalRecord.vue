@@ -51,6 +51,7 @@ export default {
     medicalRecord,
     Consultation,
     Appointments,
+    
   },
   data() {
     return {

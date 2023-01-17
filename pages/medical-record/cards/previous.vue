@@ -29,7 +29,9 @@
         <v-list-item-avatar
           ><v-icon :color="date.status"
             >{{date.icon}}</v-icon
-          ></v-list-item-avatar
+          >
+          <v-icon>mdi-note-outline</v-icon>
+          </v-list-item-avatar
         >
       </v-list-item>
     </v-card>
