@@ -20,8 +20,8 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col  cols="12" sm="6" md="4" xl="12">
-                  <p >{{medications}} • 10mg • Tabletas</p>
+                <v-col cols="12" sm="6" md="4" xl="12">
+                  <p>{{ medications }} • 10mg • Tabletas</p>
                   <p class="sub mt-n5">
                     1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
                   </p>
@@ -36,7 +36,7 @@
                     </v-col>
                     <v-col cols="4">
                       <v-checkbox
-                      v-model="incomplete"
+                        v-model="incomplete"
                         class="checkbox"
                         color="#7900ff"
                         label="No completado"
@@ -49,30 +49,28 @@
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
-            block
-            v-on:click="status"
-            @click="overlay = !overlay"
-                height="50px"
-                class="white--text save mb-5"
-                color="#7900ff"
-                large
-                >Guardar cambios</v-btn
+              block
+              v-on:click="status"
+              @click="overlay = !overlay"
+              height="50px"
+              class="white--text save mb-5"
+              color="#7900ff"
+              large
+              >Guardar cambios</v-btn
+            >
+            <v-overlay :value="overlay">
+              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
+                >Datos actualizados correctamente.</v-alert
               >
-              <v-overlay :value="overlay">
-                <v-alert
-                  class="rounded-xl"
-                  icon="mdi-check-circle"
-                  color="green"
-                  >Datos actualizados correctamente.</v-alert
-                >
-              </v-overlay>
-            </v-card-actions>
+            </v-overlay>
+          </v-card-actions>
         </v-card>
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p v-if="!this.idif">Sin datos registrados</p>
+    <p v-if="this.name===''">Sin datos registrados</p>
     <v-list-item
+    v-for="medication in medications" :key="medication"
       v-else
       style="font-family: Montserrat"
       class="ml-n7 mt-n5 lista"
@@ -82,8 +80,8 @@
         <v-icon color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title class="mt-2">{{medications}} • 
-        10mg • Tabletas
+        <v-list-item-title class="mt-2"
+          >{{ medications }} |{{ name }}| • 10mg • Tabletas
         </v-list-item-title>
         <v-list-item-subtitle>
           1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
@@ -105,25 +103,9 @@ export default {
   components: {},
   data() {
     return {
+      name: '',
       idif: '',
       overlay: false,
-        medicamentos: [
-                {
-                    name: 'Enalapril',
-                    mg: "10 mg",
-                    presentation: 'Tabletas',
-                    indication: "1 tableta cada 24 horas",
-                    date:'25/DIC/22 a 25/ENE/2023',
-                },
-                {
-                    name: 'Losartán',
-                    mg: "50 mg",
-                    presentation: 'Comprimido',
-                    indication: "1 comprimido cada 24 horas",
-                    date:'25/DIC/22 a 25/ENE/2023',
-                },
-               
-            ],
       dialog: false,
       alimentarias: '',
       farmacos: '',
@@ -148,7 +130,7 @@ export default {
     medicine() {
       this.$axios
         .get(
-          `api/v1/physician/medical-history/drugactive/${this.$route.params.medicalRecord}`,
+          `api/v1/physician/medical-history/current-medication/${this.$route.params.medicalRecord}`,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -158,7 +140,8 @@ export default {
         .then((res) => {
           console.log(res)
           this.idif = res.data.data.id
-          this.medications = res.data.data.medication[0]
+          this.medications = res.data.data.medication
+          this.name = res.data.data.medication[0]
         })
     },
 
@@ -166,9 +149,7 @@ export default {
       this.$axios
         .put(
           `api/v1/physician/status-medicine/${this.$route.params.medicalRecord}`,
-          {
-           
-          },
+          {},
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -176,12 +157,12 @@ export default {
           }
         )
         .then((res) => {
-         console.log(res)
-         this.complete=true
-         this.incomplete=false
+          console.log(res)
+          this.complete = true
+          this.incomplete = false
         })
     },
-}
+  },
 }
 </script>
 <style scoped>

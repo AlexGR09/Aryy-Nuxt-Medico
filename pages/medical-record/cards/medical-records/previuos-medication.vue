@@ -4,9 +4,9 @@
       <p class="titulo">Medicamento anterior</p>
     
       <v-divider class="mt-n1"></v-divider>
-      <p v-if="!this.idif">Sin datos registrssados</p>
+      <p v-if="this.name===''">Sin datos registrssados</p>
 
-      <v-list-item
+      <v-list-item v-for="medication in medications" :key="medication"
       v-else
       style="font-family: Montserrat"
       class="ml-n7 mt-n5 lista"
@@ -40,29 +40,13 @@
     components: {},
     data() {
       return {
-          medicamentos: [
-                  {
-                      name: 'Enalapril',
-                      mg: "10 mg",
-                      presentation: 'Tabletas',
-                      indication: "1 tableta cada 24 horas",
-                      date:'25/DIC/22 a 25/ENE/2023',
-                  },
-                  {
-                      name: 'Losartán',
-                      mg: "50 mg",
-                      presentation: 'Comprimido',
-                      indication: "1 comprimido cada 24 horas",
-                      date:'25/DIC/22 a 25/ENE/2023',
-                  },
-                 
-              ],
         dialog: false,
         alimentarias: '',
         farmacos: '',
         ambientales: '',
         idif: '',
-        medication: '',
+        medications: '',
+        name: '',
       }
     },
 
@@ -73,7 +57,7 @@
     medicine() {
       this.$axios
         .get(
-          `api/v1/physician/medical-history/previousmedication/${this.$route.params.medicalRecord}`,
+          `api/v1/physician/medical-history/previous-medication/${this.$route.params.medicalRecord}`,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -83,7 +67,8 @@
         .then((res) => {
           console.log(res)
           this.idif = res.data.data.id
-          this.medication = res.data.data
+          this.medications = res.data.data.previous_medication
+          this.name = res.data.data.previous_medication[0]
         })
     },
   }

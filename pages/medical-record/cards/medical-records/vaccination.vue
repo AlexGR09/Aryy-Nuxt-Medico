@@ -20,6 +20,7 @@
                 <v-col cols="12" sm="6" md="4" xl="12">
                   <p class="cuestion mb-1">Vacuna</p>
                   <v-text-field
+                  v-model="vaccine"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     outlined
@@ -27,6 +28,7 @@
                   ></v-text-field>
                   <p class="cuestion mt-n3 mb-1">Dosis</p>
                   <v-text-field
+                  v-model="dose"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     outlined
@@ -34,6 +36,7 @@
                   ></v-text-field>
                   <p class="cuestion mt-n3 mb-1">Número de lote</p>
                   <v-text-field
+                  v-model="lot_number"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     outlined
@@ -91,6 +94,7 @@
             <v-btn
             block
             @click="overlay = !overlay"
+            v-on:click="editVacunas"
                 height="50px"
                 class="white--text save mb-5"
                 color="#7900ff"
@@ -147,31 +151,14 @@ export default {
     return {
       overlay: false,
       modal: false,
-      date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10),
-      medicamentos: [
-        {
-          name: 'Enalapril',
-          mg: '10 mg',
-          presentation: 'Tabletas',
-          indication: '1 tableta cada 24 horas',
-          date: '25/DIC/22 a 25/ENE/2023',
-        },
-        {
-          name: 'Losartán',
-          mg: '50 mg',
-          presentation: 'Comprimido',
-          indication: '1 comprimido cada 24 horas',
-          date: '25/DIC/22 a 25/ENE/2023',
-        },
-      ],
       dialog: false,
       alimentarias: '',
       farmacos: '',
       ambientales: '',
       vaccine: '',
-      application_date: '',
+      date:  new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        .toISOString()
+        .substr(0, 10),
       dose: '',
       lot_number: '',
       idif: '',
@@ -195,7 +182,7 @@ export default {
         .then((res) => {
           console.log(res)
           this.vaccine = res.data.data.vaccine
-          this.application_date = res.data.data.application_date
+          this.date = res.data.data.application_date
           this.dose = res.data.data.dose
           this.lot_number = res.data.data.lot_number
           this.idif=res.data.data.id
@@ -204,23 +191,18 @@ export default {
   /*   metodo para editar datos de vacunación | Genesis */
     editVacunas() {
       this.$axios
-        .post('/api/v1/physician/medical-history/vaccination-history/', {
+        .post('api/v1/physician/medical-history/vaccination-history/', {
           patient_id: this.$route.params.medicalRecord,
           vaccine: this.vaccine,
           dose: this.dose,
           lot_number: this.lot_number,
-          application_date: this.application_date,
-        })
-        .then((response) => {
-          console.log(response.data.data)
-          localStorage.setItem('token',response.data.access_token)
-        })
-        .catch((error) => {
-          this.errormail = ''
-          this.errormail = error.response.data.errors.email[0]
-          this.password_error=""
-          this.password_error = error.response.data.errors.password[0]
-        })
+          application_date: this.date,
+        },
+        {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          })
     },
   },
   mounted(){

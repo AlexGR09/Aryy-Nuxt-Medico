@@ -37,22 +37,22 @@
                       outlined
                       placeholder="Escriba el tipo de actividad"
                     ></v-text-field>
-                    <v-autocomplete
+                    <v-text-field
                       color="#7900ff"
                       class="mt-n3"
                       style="font-family: Montserrat"
                       v-if="sports == 'sportsYes'"
                       outlined
                       placeholder="¿Cuántos días a la semana?"
-                    ></v-autocomplete>
+                    ></v-text-field>
                     <p class="cuestion mt-n4">Horas de sueño</p>
-                    <v-autocomplete
+                    <v-text-field
                       color="#7900ff"
                       style="font-family: Montserrat"
                       class="mt-n3"
                       outlined
                       placeholder="Seleccione un rango"
-                    ></v-autocomplete>
+                    ></v-text-field>
                    
                   
                     <p class="cuestion mt-n4 mb-n3">¿Sueña siempre que duerme?</p>
@@ -153,22 +153,22 @@
                       outlined
                       placeholder="Escriba el tipo de actividad"
                     ></v-text-field>
-                    <v-autocomplete
+                    <v-text-field
                       color="#7900ff"
                       class="mt-n3"
                       style="font-family: Montserrat"
                       v-if="sports == 'sportsYes'"
                       outlined
                       placeholder="¿Cuántos días a la semana?"
-                    ></v-autocomplete>
+                    ></v-text-field>
                     <p class="cuestion mt-n4">Horas de sueño</p>
-                    <v-autocomplete
+                    <v-text-field
                       color="#7900ff"
                       style="font-family: Montserrat"
                       class="mt-n3"
                       outlined
                       placeholder="Seleccione un rango"
-                    ></v-autocomplete>
+                    ></v-text-field>
                    
                   
                     <p class="cuestion mt-n4 mb-n3">¿Sueña siempre que duerme?</p>
@@ -196,8 +196,8 @@
                       ></v-radio>
                       <v-radio color="#b380ff" label="No" value="resNo"></v-radio>
                     </v-radio-group>
+
                     <p class="cuestion mt-n4 mb-n3">Tabaquismo</p>
-  
                     <v-radio-group  style="font-family: Montserrat" v-model="smoking" row>
                       <v-radio
                         color="#b380ff"
@@ -206,6 +206,77 @@
                       ></v-radio>
                       <v-radio color="#b380ff" label="No" value="smokNo"></v-radio>
                     </v-radio-group>
+                    <v-text-field
+                    color="#7900ff"
+                      class="mt-n3"
+                      style="font-family: Montserrat"
+                      v-if="smoking == 'smokYes'"
+                      outlined
+                      placeholder="Escriba la cantidad de cigarrillos al dia"
+                    ></v-text-field>
+                    <v-text-field
+                    v-if="smoking == 'smokYes'"
+                      color="#7900ff"
+                      style="font-family: Montserrat"
+                      class="mt-n3"
+                      outlined
+                      placeholder="Seleccione el tipo"
+                    ></v-text-field>
+
+
+                    <p class="cuestion mt-n4 mb-n3">Alcoholismo</p>
+                    <v-radio-group  style="font-family: Montserrat" v-model="alcoholism" row>
+                      <v-radio
+                        color="#b380ff"
+                        label="Si"
+                        value="alcYes"
+                      ></v-radio>
+                      <v-radio color="#b380ff" label="No" value="alcNo"></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                    color="#7900ff"
+                      class="mt-n3"
+                      style="font-family: Montserrat"
+                      v-if="alcoholism == 'alcYes'"
+                      outlined
+                      placeholder="Frecuencia semanal"
+                    ></v-text-field>
+                    <v-text-field
+                    v-if="alcoholism == 'alcYes'"
+                      color="#7900ff"
+                      style="font-family: Montserrat"
+                      class="mt-n3"
+                      outlined
+                      placeholder="Seleccione el tipo"
+                    ></v-text-field>
+
+                    <p class="cuestion mt-n4 mb-n3">Otras sustancias</p>
+                    <v-radio-group  style="font-family: Montserrat" v-model="other" row>
+                      <v-radio
+                        color="#b380ff"
+                        label="Si"
+                        value="subYes"
+                      ></v-radio>
+                      <v-radio color="#b380ff" label="No" value="subNo"></v-radio>
+                    </v-radio-group>
+
+                    <p class="cuestion mt-n4 mb-n3">Dieta</p>
+                    <v-radio-group  style="font-family: Montserrat" v-model="diet" row>
+                      <v-radio
+                        color="#b380ff"
+                        label="Si"
+                        value="yes"
+                      ></v-radio>
+                      <v-radio color="#b380ff" label="No" value="no"></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                    color="#7900ff"
+                      class="mt-n3"
+                      style="font-family: Montserrat"
+                      v-if="diet == 'yes'"
+                      outlined
+                      placeholder="Seleccione el tipo de dieta"
+                    ></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
@@ -273,6 +344,9 @@
         dreaming: '',
         resting: '',
         smoking: '',
+        alcoholism: '',
+        diet: '',
+        other: '',
         nonpat: [],
       }
     },
@@ -284,6 +358,27 @@
         }, 2000)
     },
   },
+  mounted() {
+    this.datos()
+  },
+  methods: {
+    datos() {
+      this.$axios
+        .get(
+          `api/v1/medical-history/physician/non-pathological-background/patient/${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+          this.idif = res.data.data.idif
+          
+        })
+    },
+  }
   }
   </script>
   <style scoped>

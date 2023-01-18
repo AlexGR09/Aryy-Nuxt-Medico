@@ -67,7 +67,7 @@
                     v-model="drugss"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="farmacos == 'farmYes'"
+                    v-if="farm == 'farmYes'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -222,6 +222,7 @@
             <v-btn
             block
             @click="overlay = !overlay"
+            v-on:click="add"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -308,6 +309,7 @@ export default {
   components: {},
   data() {
     return {
+      food: '',
       environmental: '',
       drugs: '',
       drugss: '',
@@ -354,6 +356,33 @@ export default {
          this.alergiasfarmacos()
         })
     },
+
+    add() {
+      this.$axios
+        .put(
+          'api/v1/medical-records/physician/allergies/patient',
+          {
+            patient_id: this.$route.params.medicalRecord,
+            food_allergy: this.food,
+            drug_allergy: this.drugss,
+            environmental_allergy: this.environmental
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then(() => {
+          console.log("datos agregados")
+        /*   console.log(res) */
+        })
+        
+        .catch(
+          console.log("erroooooor")
+        )
+    },
+
     alergiasalimentarias(){
     if (this.food_allergy==="N/A"){
       this.alimentarias='alimNo'
