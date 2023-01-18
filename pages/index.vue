@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card-text>
-      <h3 class="text_welcome" color="#4812d7">Bienvenido,</h3>
+      <h3 class="text_welcome mb-3" color="#4812d7">Bienvenido,</h3>
       <h4 class="text_welcome">Dr. {{ facilities }}</h4>
       <div class="mt-3">
         <p>

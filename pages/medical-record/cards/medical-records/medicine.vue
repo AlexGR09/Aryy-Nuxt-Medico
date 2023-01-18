@@ -20,10 +20,10 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col v-for="medicamento in medicamentos" :key="medicamento.name" cols="12" sm="6" md="4" xl="12">
-                  <p >{{medicamento.name}} • {{medicamento.mg}} • {{medicamento.presentation}}</p>
+                <v-col  cols="12" sm="6" md="4" xl="12">
+                  <p >{{medications}} • 10mg • Tabletas</p>
                   <p class="sub mt-n5">
-                    {{medicamento.indication}} • {{medicamento.date}}
+                    1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
                   </p>
                   <v-row class="mt-n8">
                     <v-col cols="3">
@@ -68,7 +68,25 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p>Sin datos registrados</p>
+    <p v-if="!this.idif">Sin datos registrados</p>
+    <v-list-item
+      v-else
+      style="font-family: Montserrat"
+      class="ml-n7 mt-n5 lista"
+      two-line
+    >
+      <v-list-item-avatar class="mr-n1">
+        <v-icon color="green">mdi-check-circle</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title class="mt-2">{{medications}} • 
+        10mg • Tabletas
+        </v-list-item-title>
+        <v-list-item-subtitle>
+          1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
+        </v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
@@ -84,6 +102,7 @@ export default {
   components: {},
   data() {
     return {
+      idif: '',
       overlay: false,
         medicamentos: [
                 {
@@ -106,6 +125,7 @@ export default {
       alimentarias: '',
       farmacos: '',
       ambientales: '',
+      medications: '',
     }
   },
   watch: {
@@ -116,6 +136,63 @@ export default {
         }, 2000)
     },
   },
+  mounted() {
+    this.medicine()
+  },
+  methods: {
+    medicine() {
+      console.log('creando petición GET')
+      this.$axios
+        .get(
+          `api/v1/physician/medical-history/drugactive/${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+          this.idif = res.data.data.id
+          this.medications = res.data.data.medication[0]
+        })
+    },
+
+    status() {
+      this.$axios
+        .put(
+          'api/v1/physician/status-medicine',
+          {
+            email: this.email,
+            phone_number: this.phone_number,
+            password: this.password,
+            password_confirmation: this.password_confirmation,
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then(() => {
+          this.overlay = true
+          this.ok = 'ok'
+          if (this.password_confirmation === '') {
+            this.$router.go(this.$router.currentRoute)
+          } else {
+            localStorage.removeItem('token')
+            console.log('cierre de sesión')
+            this.$router.replace('/auth/login')
+          }
+        })
+        .catch((error) => {
+          this.error = 'error'
+          this.errorphone = error.response.data.errors.phone_number[0]
+          this.passworderror = error.response.data.errors.password[0]
+          this.erroremail = error.response.data.errors.email[0]
+        })
+    },
+}
 }
 </script>
 <style scoped>
