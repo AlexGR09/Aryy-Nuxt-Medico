@@ -61,12 +61,12 @@
                       <v-radio
                         color="#b380ff"
                         label="Si"
-                        value="dreamYes"
+                        value="yes"
                       ></v-radio>
                       <v-radio
                         color="#b380ff"
                         label="No"
-                        value="dreamNo"
+                        value="no"
                       ></v-radio>
                     </v-radio-group>
                   
@@ -76,9 +76,9 @@
                       <v-radio
                         color="#b380ff"
                         label="Si"
-                        value="resYes"
+                        value="si"
                       ></v-radio>
-                      <v-radio color="#b380ff" label="No" value="resNo"></v-radio>
+                      <v-radio color="#b380ff" label="No" value="no"></v-radio>
                     </v-radio-group>
                     <p class="cuestion mt-n4 mb-n3">Tabaquismo</p>
   
@@ -146,6 +146,7 @@
                       <v-radio color="#b380ff" label="No" value="sportsNo"></v-radio>
                     </v-radio-group>
                     <v-text-field
+                    v-model="type_activity"
                     color="#7900ff"
                       class="mt-n3"
                       style="font-family: Montserrat"
@@ -154,6 +155,7 @@
                       placeholder="Escriba el tipo de actividad"
                     ></v-text-field>
                     <v-text-field
+                    v-model="days_week"
                       color="#7900ff"
                       class="mt-n3"
                       style="font-family: Montserrat"
@@ -164,6 +166,7 @@
                     <p class="cuestion mt-n4">Horas de sueño</p>
                     <v-text-field
                       color="#7900ff"
+                      v-model="horas_sueño"
                       style="font-family: Montserrat"
                       class="mt-n3"
                       outlined
@@ -173,28 +176,28 @@
                   
                     <p class="cuestion mt-n4 mb-n3">¿Sueña siempre que duerme?</p>
   
-                    <v-radio-group  style="font-family: Montserrat" v-model="dreaming" row>
+                    <v-radio-group  style="font-family: Montserrat" v-model="soñar" row>
                       <v-radio
                         color="#b380ff"
                         label="Si"
-                        value="dreamYes"
+                        value="yes"
                       ></v-radio>
                       <v-radio
                         color="#b380ff"
                         label="No"
-                        value="dreamNo"
+                        value="no"
                       ></v-radio>
                     </v-radio-group>
                   
                     <p class="cuestion mt-n4 mb-n3">¿Siente que descansa al dormir?</p>
   
-                    <v-radio-group  style="font-family: Montserrat" v-model="resting" row>
+                    <v-radio-group  style="font-family: Montserrat" v-model="descanso" row>
                       <v-radio
                         color="#b380ff"
                         label="Si"
-                        value="resYes"
+                        value="yes"
                       ></v-radio>
-                      <v-radio color="#b380ff" label="No" value="resNo"></v-radio>
+                      <v-radio color="#b380ff" label="No" value="no"></v-radio>
                     </v-radio-group>
 
                     <p class="cuestion mt-n4 mb-n3">Tabaquismo</p>
@@ -207,6 +210,7 @@
                       <v-radio color="#b380ff" label="No" value="smokNo"></v-radio>
                     </v-radio-group>
                     <v-text-field
+                    v-model="cigarettes"
                     color="#7900ff"
                       class="mt-n3"
                       style="font-family: Montserrat"
@@ -215,6 +219,7 @@
                       placeholder="Escriba la cantidad de cigarrillos al dia"
                     ></v-text-field>
                     <v-text-field
+                    v-model="typeSmoke"
                     v-if="smoking == 'smokYes'"
                       color="#7900ff"
                       style="font-family: Montserrat"
@@ -234,6 +239,7 @@
                       <v-radio color="#b380ff" label="No" value="alcNo"></v-radio>
                     </v-radio-group>
                     <v-text-field
+                    v-model="alcohol"
                     color="#7900ff"
                       class="mt-n3"
                       style="font-family: Montserrat"
@@ -242,6 +248,7 @@
                       placeholder="Frecuencia semanal"
                     ></v-text-field>
                     <v-text-field
+                    v-model="typeAlcohol"
                     v-if="alcoholism == 'alcYes'"
                       color="#7900ff"
                       style="font-family: Montserrat"
@@ -255,9 +262,9 @@
                       <v-radio
                         color="#b380ff"
                         label="Si"
-                        value="subYes"
+                        value="yes"
                       ></v-radio>
-                      <v-radio color="#b380ff" label="No" value="subNo"></v-radio>
+                      <v-radio color="#b380ff" label="No" value="no"></v-radio>
                     </v-radio-group>
 
                     <p class="cuestion mt-n4 mb-n3">Dieta</p>
@@ -347,7 +354,17 @@
         alcoholism: '',
         diet: '',
         other: '',
+        horas_sueño: '',
+        soñar: '',
+        descanso: '',
         nonpat: [],
+        type_activity: '',
+        days_week: '',
+        cigarettes: '',
+        typeSmoke: '',
+        alcohol: '',
+        typeAlcohol: '',
+
       }
     },
     watch: {
@@ -374,9 +391,27 @@
         )
         .then((res) => {
           console.log(res)
-          this.idif = res.data.data.idif
+          this.type_activity = res.data.data.physical_activity.type_of_activity
+          this.days_week = res.data.data.physical_activity.days_of_the_week
           
+          this.horas_sueño=res.data.data.rest_time.hours_of_sleep
+          this.soñar = res.data.data.rest_time.dreams_while_sleeping
+          this.descanso = res.data.data.rest_time.rest_when_sleeping
+
+          this.cigarettes=res.data.data.smoking.number_of_cigarettes
+          this.typeSmoke=res.data.data.smoking.type
+          this.alcohol=res.data.data.alcoholim.weekly_frequency
+          this.typeAlcohol=res.data.data.alcoholim.type
+          
+          this.status()
         })
+    },
+    status(){
+      if(this.type_activity===null){
+        this.sports="sportsNo"
+      }else{
+        this.sports="sportsYes"
+      }
     },
   }
   }
