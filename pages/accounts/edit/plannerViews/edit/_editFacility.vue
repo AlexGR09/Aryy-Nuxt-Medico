@@ -436,7 +436,6 @@ export default {
   methods: {
     /*  metodo get para recibir datos de establecimiento | Genesis */
     getFacility() {
-      console.log('creando petición GET')
       this.$axios
       .get(`api/v1/facilities/${this.$route.params.editFacility}`, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -482,13 +481,6 @@ export default {
 
        
         })
-
-        /*  servicios | Genesis */
-
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
     /*    método put para actualizar los datos de establecimiento | Genesis */
     update(){

@@ -84,7 +84,6 @@ export default {
   
   methods: {
     infoFacility() {
-      console.log('creando petición GET')
       this.$axios
         .get('api/v1/facilities', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -96,10 +95,6 @@ export default {
           this.facility_name = res.data.data.professional_name
           this.address = res.data.data.location[0].location_id
         })
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
         
       },

@@ -28,6 +28,7 @@
                   <v-row class="mt-n8">
                     <v-col cols="3">
                       <v-checkbox
+                        v-model="complete"
                         class="checkbox"
                         color="#7900ff"
                         label="Completado"
@@ -35,6 +36,7 @@
                     </v-col>
                     <v-col cols="4">
                       <v-checkbox
+                      v-model="incomplete"
                         class="checkbox"
                         color="#7900ff"
                         label="No completado"
@@ -48,6 +50,7 @@
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
             block
+            v-on:click="status"
             @click="overlay = !overlay"
                 height="50px"
                 class="white--text save mb-5"
@@ -126,6 +129,8 @@ export default {
       farmacos: '',
       ambientales: '',
       medications: '',
+      complete: false,
+      incomplete: true,
     }
   },
   watch: {
@@ -141,7 +146,6 @@ export default {
   },
   methods: {
     medicine() {
-      console.log('creando petición GET')
       this.$axios
         .get(
           `api/v1/physician/medical-history/drugactive/${this.$route.params.medicalRecord}`,
@@ -161,12 +165,9 @@ export default {
     status() {
       this.$axios
         .put(
-          'api/v1/physician/status-medicine',
+          `api/v1/physician/status-medicine/${this.$route.params.medicalRecord}`,
           {
-            email: this.email,
-            phone_number: this.phone_number,
-            password: this.password,
-            password_confirmation: this.password_confirmation,
+           
           },
           {
             headers: {
@@ -174,22 +175,10 @@ export default {
             },
           }
         )
-        .then(() => {
-          this.overlay = true
-          this.ok = 'ok'
-          if (this.password_confirmation === '') {
-            this.$router.go(this.$router.currentRoute)
-          } else {
-            localStorage.removeItem('token')
-            console.log('cierre de sesión')
-            this.$router.replace('/auth/login')
-          }
-        })
-        .catch((error) => {
-          this.error = 'error'
-          this.errorphone = error.response.data.errors.phone_number[0]
-          this.passworderror = error.response.data.errors.password[0]
-          this.erroremail = error.response.data.errors.email[0]
+        .then((res) => {
+         console.log(res)
+         this.complete=true
+         this.incomplete=false
         })
     },
 }

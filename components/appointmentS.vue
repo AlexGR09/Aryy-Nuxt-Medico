@@ -16,7 +16,7 @@
               <b style="font-size: 150%">{{ date.day }}</b> <br />{{
                 date.month
               }}
-              <BR /> {{ date.year }}</v-col
+              <br /> {{ date.year }}</v-col
             >
           </v-row>
         </v-list-item-avatar>

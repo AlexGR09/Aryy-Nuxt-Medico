@@ -188,7 +188,6 @@ export default {
   methods: {
    /*  metodo para obtener datos de vacunacion | Genesis */
     vacunas() {
-      console.log('creando petición GET')
       this.$axios
         .get(`api/v1/physician/medical-history/vaccination-history/${this.$route.params.medicalRecord}`, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -201,9 +200,6 @@ export default {
           this.lot_number = res.data.data.lot_number
           this.idif=res.data.data.id
         })
-        .catch(
-          console.log('error en GET')
-        )
     },
   /*   metodo para editar datos de vacunación | Genesis */
     editVacunas() {

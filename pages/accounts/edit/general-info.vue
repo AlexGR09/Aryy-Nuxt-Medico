@@ -403,7 +403,6 @@ export default {
   },
   methods: {
     getinfoUser() {
-      console.log('creando petición GET')
       this.$axios
         .get('/api/v1/user/profile', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -419,10 +418,6 @@ export default {
           this.password = res.data.data.password
           /*  this.password = res.data.data.password */
         })
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
 
     update() {

@@ -654,7 +654,6 @@ export default {
     },
 
     vitalSigns() {
-      console.log('creando petición GET')
       this.$axios
         .get(
           `api/v1/medical-records/allergies//${this.$route.params.medicalRecord}`,

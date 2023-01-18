@@ -295,9 +295,6 @@
             this.attention_time = res.data.data[0].schedule[0].attention_time
          
           })
-          .catch(
-            console.log('error en GET')
-          )
             },
       addDay() {
         const initialHour = [this.initialhour]

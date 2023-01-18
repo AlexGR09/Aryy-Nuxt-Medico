@@ -337,7 +337,6 @@ export default {
     },
 
     getinfoMedical() {
-      console.log('creando petición GET')
       this.$axios
         .get('/api/v1/physician/profile', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -352,10 +351,6 @@ export default {
           this.certificates = res.data.data.certificates
           this.biography = res.data.data.biography
         })
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
     postMedicalinfo() {
       this.$axios

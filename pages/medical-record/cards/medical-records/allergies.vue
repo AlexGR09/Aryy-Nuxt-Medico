@@ -338,7 +338,6 @@ export default {
   },
   methods: {
     alergiass() {
-      console.log('creando petición GET')
       this.$axios
         .get(`api/v1/medical-records/allergies/patient/${this.$route.params.medicalRecord}`, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -354,10 +353,6 @@ export default {
          this.alergiasambientales()
          this.alergiasfarmacos()
         })
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
     alergiasalimentarias(){
     if (this.food_allergy==="N/A"){

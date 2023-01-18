@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     cita() {
-      console.log('creando petición GET')
       this.$axios
         .get(
           `api/v1/calendar/appointments/${this.$route.params.medicalRecord}`,

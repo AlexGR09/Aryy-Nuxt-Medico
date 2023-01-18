@@ -154,7 +154,6 @@ export default {
 
   /*   metodo get para mostrar datos en card | Genesis */
     infoFacility() {
-      console.log('creando petición GET')
       this.$axios
         .get('api/v1/facilities', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -172,7 +171,6 @@ export default {
         })
     },
     deleteCard(id){
-      console.log('creando petición DELETE')
       this.$axios
       .delete("api/v1/facilities/"+id, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },

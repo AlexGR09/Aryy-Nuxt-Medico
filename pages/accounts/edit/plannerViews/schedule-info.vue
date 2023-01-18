@@ -236,7 +236,6 @@ export default {
       })
     },
     getFacilityy() {
-        console.log('creando petición GET')
         this.$axios
           .get('api/v1/facilities', {
             headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -293,13 +292,6 @@ export default {
               res.data.data[0].accessibility_and_others.services.unisex_toilets
             this.wifi = res.data.data[0].accessibility_and_others.services.wifi
           })
-  
-          /*  servicios | Genesis */
-  
-          .catch(
-            /* console.log(e); */
-            console.log('error en GET')
-          )
       },
     getFacility() {
       this.$axios

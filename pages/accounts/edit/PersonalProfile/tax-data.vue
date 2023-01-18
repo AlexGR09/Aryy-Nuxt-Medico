@@ -238,7 +238,6 @@ export default {
             },
    /*  metodo para mostrar la informacion en los campos | Genesis */
     showData() {
-      console.log('creando petición GET')
       this.$axios
         .get('api/v1/physician/tax_data', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -253,10 +252,6 @@ export default {
           this.tax_residence = res.data.data.tax_residence
           this.constancy = res.data.data.constancy
         })
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
    /*  metodo para subir la informacion al servidor | Genesis */
    /*  upload(){

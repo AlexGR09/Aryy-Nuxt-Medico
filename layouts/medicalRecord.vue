@@ -183,7 +183,6 @@ export default {
   methods: {
     /* matar token y redireccionar al login | Genesis */
     logout() {
-      console.log('creando petición GET')
       this.$axios
         .get('/api/v1/logout', {})
         .then(

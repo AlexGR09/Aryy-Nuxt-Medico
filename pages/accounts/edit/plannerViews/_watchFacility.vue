@@ -350,7 +350,6 @@ export default {
   methods: {
     /*  metodo get para recibir datos de establecimiento | Genesis */
     getFacility() {
-      console.log('creando petición GET')
       this.$axios
         .get(`api/v1/facilities/${this.$route.params.watchFacility}`, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -361,16 +360,7 @@ export default {
           this.id = res.data.data.id
           this.facilities = res.data.data
           this.consultorios = res.data.data.length
-
-          /*  accesibilidad | Genesis */
         })
-
-        /*  servicios | Genesis */
-
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
     },
     /*    método put para actualizar los datos de establecimiento | Genesis */
     facility() {

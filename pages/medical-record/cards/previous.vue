@@ -12,7 +12,7 @@
         <v-list-item-avatar tile size="70">
           <v-row>
             <v-col>
-              <b style="font-size: 150%">{{date.day}}</b> <br />{{date.month}} <BR /> {{date.year}}</v-col
+              <b style="font-size: 150%">{{date.day}}</b> <br />{{date.month}} <br /> {{date.year}}</v-col
             >
           </v-row>
         </v-list-item-avatar>

@@ -165,7 +165,6 @@ export default {
   },
   methods: {
     getinfoUser() {
-      console.log('creando petición GET')
       this.$axios
         .get('/api/v1/user/profile', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -176,7 +175,6 @@ export default {
           this.email = res.data.data.email
           this.phone = res.data.data.phone_number
         })
-        .catch(console.log('error en GET'))
     },
     update() {
       this.$axios
