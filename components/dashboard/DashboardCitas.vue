@@ -1,9 +1,8 @@
 <template>
+  <nuxt-link to="/medical-record/medical-record">
   <v-card
     class="greeting-card "
     outlined
-    color="#ffffff"
-   
   >
     <v-row class="ma-0 pa-0">
       <v-col cols="12">
@@ -22,6 +21,7 @@
       </v-col>
     </v-row>
   </v-card>
+</nuxt-link>
 </template>
 <style lang="scss" scoped>
 .greeting-card {

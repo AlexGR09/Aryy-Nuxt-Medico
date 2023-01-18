@@ -39,11 +39,3 @@
     text-transform: capitalize ;
 }
 </style>
-
-<style>
-
-
-
-
-
-</style>

@@ -12,7 +12,6 @@
             >
             <v-card-text class="pa-3">
               <v-row>
-
 <!--------------------------- CAMPO DDE CITA POR PRIMERA VEZ ----------------------->
                 <v-col md="6" cols="12" sm>
                   <v-text-field

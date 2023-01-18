@@ -42,8 +42,10 @@
                 >
               </v-list-item>
               <v-list-item>
-                <v-list-item-title v-model="especialista" v-on:click="typeUser" 
-                  >ESPECIALISTA</v-list-item-title
+                <v-list-item-title 
+                  v-model="especialista" 
+                  @click="typeUser" 
+                >ESPECIALISTA</v-list-item-title
                 >
               </v-list-item>
             </v-list>
@@ -144,7 +146,7 @@
                         color="#7900ff"
                         block
                         height="50"
-                        v-on:click="register"
+                        @click="register"
                         >Registrarme</v-btn
                       >
                       <p class="accede mt-5 mb-5">O registrate usando</p>
@@ -188,7 +190,7 @@ import { validationMixin } from 'vuelidate'
 import { required, maxLength, email, password } from 'vuelidate/lib/validators'
 export default {
   
-  name: 'formLogin',
+
   mixins: [validationMixin],
 
   layout: 'auth',
