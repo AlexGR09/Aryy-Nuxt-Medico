@@ -656,7 +656,7 @@ export default {
     vitalSigns() {
       this.$axios
         .get(
-          `api/v1/medical-records/allergies//${this.$route.params.medicalRecord}`,
+          `api/v1/medical-records/vital-signs/patient/${this.$route.params.medicalRecord}`,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -665,10 +665,6 @@ export default {
         )
         .then((res) => {
           console.log(res)
-          this.patient = res.data.data.patient.full_name
-          this.date = res.data.data.appointment_date
-          this.status = res.data.data.status
-          this.statusMethod()
         })
     },
   },

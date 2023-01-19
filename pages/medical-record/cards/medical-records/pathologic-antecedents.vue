@@ -3,13 +3,12 @@
   <v-card-text class="mt-n7">
     <p class="titulo">Antecedentes patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
-
-         <!--   agregar informacion | Genesis -->
-         <v-dialog scrollable v-model="dialog" max-width="600px">
+      <!--   agregar informacion | Genesis -->
+      <v-dialog scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-             <v-btn v-bind="attrs" v-on="on" icon>
+          <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
-          </v-btn> 	
+          </v-btn>
         </template>
         <v-card max-height="600px">
           <v-card-title>
@@ -90,7 +89,7 @@
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
-                  <p class="cuestion mt-n4 mb-n3">Cardiopatías</p>
+                  <p class="cuestion mt-n4 mb-n3">Cardsiopatías</p>
                   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="disease"
@@ -117,8 +116,8 @@
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
-            block
-            @click="overlay = !overlay"
+              block
+              @click="overlay = !overlay"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -126,19 +125,15 @@
               >Guardar cambios</v-btn
             >
             <v-overlay :value="overlay">
-                <v-alert
-                  class="rounded-xl"
-                  icon="mdi-check-circle"
-                  color="green"
-                  >Datos actualizados correctamente.</v-alert
-                >
-              </v-overlay>
+              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
+                >Datos actualizados correctamente.</v-alert
+              >
+            </v-overlay>
           </v-card-actions>
         </v-card>
       </v-dialog>
 
-
-    <!--   editar informacion | Genesis -->
+      <!--   editar informacion | Genesis -->
       <v-dialog scrollable v-model="dialog" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
@@ -249,14 +244,215 @@
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
+
+                  <p class="cuestion mt-n4 mb-n3">
+                    Presión arterial alta o baja
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Hipertensión"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="Hipotensión"
+                      value="disNo"
+                    ></v-radio>
+                    <v-radio color="#b380ff" label="Si" value="No"></v-radio>
+                  </v-radio-group>
+
+                  <p class="cuestion mt-n4 mb-n3">
+                    Enfermedades tiroideas
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Cáncer
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Enfermedades de la sangre
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Cálculos renales
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Hepatitis
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Traumatismos
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Patologías respiratorias
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Patologías gastrointestinales
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
                 </v-col>
+
+                <p class="cuestion mt-n4 mb-n3">
+                    Enfermedades de transmisión sexual
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
               </v-row>
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
-            block
-            @click="overlay = !overlay"
+              block
+              @click="overlay = !overlay"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -264,37 +460,17 @@
               >Guardar cambios</v-btn
             >
             <v-overlay :value="overlay">
-                <v-alert
-                  class="rounded-xl"
-                  icon="mdi-check-circle"
-                  color="green"
-                  >Datos actualizados correctamente.</v-alert
-                >
-              </v-overlay>
+              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
+                >Datos actualizados correctamente.</v-alert
+              >
+            </v-overlay>
           </v-card-actions>
         </v-card>
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
     <p v-if="!cirugias[0]">Sin antecedentes registrados</p>
-    <v-list-item
-      v-for="cirugia in cirugias"
-      :key="cirugia.name"
-      v-else
-      style="font-family: Montserrat"
-      class="ml-n7 mt-n1 lista"
-      two-line
-    >
-      <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title>Cirugias previas</v-list-item-title>
-        <v-list-item-subtitle
-          >{{ cirugia.name }} en {{ cirugia.date }}</v-list-item-subtitle
-        >
-      </v-list-item-content>
-    </v-list-item>
+    <list-pathologic/>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
@@ -312,13 +488,33 @@ export default {
     return {
       overlay: false,
       dialog: false,
+      editt: false,
       surgery: '',
       transfusion: '',
       diabetes: '',
       disease: '',
-      cirugias: [
-      ],
+      cirugias: [],
     }
+  },
+  mounted() {
+    this.datos()
+  },
+  methods: {
+    /* obtener informacion | Genesis */
+    datos() {
+      this.$axios
+        .get(
+          `api/v1/medical-history/physician/pathological-background/patient/${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+        /*   console.log(res) */
+        })
+    },
   },
   watch: {
     overlay(val) {

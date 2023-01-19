@@ -20,7 +20,7 @@
                 <v-col cols="12" sm="6" md="4" xl="12">
                   <p class="cuestion mb-1">Vacuna</p>
                   <v-text-field
-                  v-model="vaccine"
+                  v-model="name"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     outlined
@@ -28,7 +28,7 @@
                   ></v-text-field>
                   <p class="cuestion mt-n3 mb-1">Dosis</p>
                   <v-text-field
-                  v-model="dose"
+                  v-model="dosis"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     outlined
@@ -36,7 +36,7 @@
                   ></v-text-field>
                   <p class="cuestion mt-n3 mb-1">Número de lote</p>
                   <v-text-field
-                  v-model="lot_number"
+                  v-model="lote"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     outlined
@@ -46,7 +46,7 @@
                   <v-dialog
                     ref="dialog"
                     v-model="modal"
-                    :return-value.sync="date"
+                    :return-value.sync="fecha"
                     persistent
                     width="290px"
                   >
@@ -55,7 +55,7 @@
                         color="#7900ff"
                         style="font-family: Montserrat"
                         outlined
-                        v-model="date"
+                        v-model="fecha"
                         placeholder="Seleccione la fecha"
                         readonly
                         v-bind="attrs"
@@ -72,15 +72,15 @@
                           </div> </template
                       ></v-text-field>
                     </template>
-                    <v-date-picker v-model="date" scrollable>
+                    <v-date-picker color="#7900ff" v-model="fecha" scrollable>
                       <v-spacer></v-spacer>
-                      <v-btn text color="primary" @click="modal = false">
+                      <v-btn text color="#7900ff" @click="modal = false">
                         Cancel
                       </v-btn>
                       <v-btn
                         text
-                        color="primary"
-                        @click="$refs.dialog.save(date)"
+                        color="#7900ff"
+                        @click="$refs.dialog.save(fecha)"
                       >
                         OK
                       </v-btn>
@@ -115,9 +115,10 @@
 
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p v-if="!this.idif">Sin datos registrados</p>
+    <p v-if="!this.vaccine">Sin datos registrados</p>
     <v-list-item
-      v-else
+    v-else
+    v-for="vacuna in vacunass" :key="vacuna.id"
       style="font-family: Montserrat"
       class="ml-n7 mt-n5 lista"
       two-line
@@ -126,10 +127,12 @@
         <v-icon color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title>{{vaccine}} • 
-        {{formattedDate}}
+        <v-list-item-title class="mt-2"> 
+             {{vacuna.vacination[0].vaccine}}  • {{vacuna.vacination[0].application_date}} 
         </v-list-item-title>
-        
+        <v-list-item-subtitle>
+         {{vacuna.vacination[0].dose}} • {{vacuna.vacination[0].lot_number}}
+        </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
     <p class="ml-3 d-flex justify-end">
@@ -142,13 +145,16 @@
   </v-card-text>
 </template>
   <script>
-    import moment from 'moment'
 export default {
   layout: 'medicalRecord',
   components: {},
   
   data() {
     return {
+      name: '',
+      lote: '',
+      dosis: '',
+      vacunass: '',
       overlay: false,
       modal: false,
       dialog: false,
@@ -156,12 +162,15 @@ export default {
       farmacos: '',
       ambientales: '',
       vaccine: '',
+      fecha:  new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        .toISOString()
+        .substr(0, 10),
       date:  new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
       dose: '',
       lot_number: '',
-      idif: '',
+      lenght: '',
     }
   },
   watch: {
@@ -180,38 +189,40 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          console.log(res)
-          this.vaccine = res.data.data.vaccine
-          this.date = res.data.data.application_date
-          this.dose = res.data.data.dose
-          this.lot_number = res.data.data.lot_number
-          this.idif=res.data.data.id
+          this.vacunass = res.data.data
+          this.vaccine = res.data.data[0].vacination[0].vaccine
+          this.date = res.data.data[0].vacination[0].application_date
+          this.dose = res.data.data[0].vacination[0].dose
+          this.lot_number = res.data.data[0].vacination[0].lot_number
+        
+          this.lenght = res.data.data.lenght
         })
     },
-  /*   metodo para editar datos de vacunación | Genesis */
+  /*   metodo para agregar datos de vacunación | Genesis */
     editVacunas() {
       this.$axios
         .post('api/v1/physician/medical-history/vaccination-history/', {
           patient_id: this.$route.params.medicalRecord,
-          vaccine: this.vaccine,
-          dose: this.dose,
-          lot_number: this.lot_number,
-          application_date: this.date,
+          vaccine: this.name,
+          dose: this.dosis,
+          lot_number: this.lote,
+          application_date: this.fecha,
         },
         {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
           })
+          .then(
+        location.reload()
+      )
     },
   },
   mounted(){
     this.vacunas()
   },
   computed: {
-      formattedDate() {
-        return moment(this.application_date).format('L');
-      }
+    
     },
 }
 </script>

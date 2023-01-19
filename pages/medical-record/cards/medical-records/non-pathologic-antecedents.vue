@@ -4,7 +4,7 @@
     <p class="titulo">Antecedentes no patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!-- agregar informacion  | Genesis -->
-      <v-dialog v-if="this.type_activity===null" scrollable v-model="editt" max-width="600px">
+      <v-dialog v-if="!diet" scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
@@ -18,7 +18,7 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4" xl="12">
-                  <p class="cuestion mb-n3">Actividad físsica</p>
+                  <p class="cuestion mb-n3">Actividad física</p>
 
                   <v-radio-group
                     style="font-family: Montserrat"
@@ -42,7 +42,7 @@
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="sports == 'sportNo'"
+                    v-if="sports == 'sportYes'"
                     outlined
                     placeholder="¿Cuántos días a la semana?"
                   ></v-text-field>
@@ -404,8 +404,8 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <!--  <p v-if="!nonpat[0]">Sin datos registrados</p> -->
-    <list-nonpathologic />
+     <p v-if="!diet">Sin datos registrados</p>
+    <list-nonpathologic v-else/>
 
     <p class="ml-3 d-flex justify-end">
       <img
@@ -491,7 +491,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.type_activity = res.data.data.physical_activity.type_of_activity
           this.days_week = res.data.data.physical_activity.days_of_the_week
 
@@ -556,8 +555,6 @@ export default {
           location.reload()
         })
     },
-
-
 
     sportstatus() {
       if (this.type_activity === null) {

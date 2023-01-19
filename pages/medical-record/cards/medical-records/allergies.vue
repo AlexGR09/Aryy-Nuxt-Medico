@@ -359,8 +359,8 @@ export default {
 
     add() {
       this.$axios
-        .put(
-          'api/v1/medical-records/physician/allergies/patient/',
+        .post(
+          'api/v1/medical-records/physician/allergies/patient',
           {
             patient_id: this.$route.params.medicalRecord,
             food_allergy: this.food,
@@ -375,6 +375,7 @@ export default {
         )
     },
 
+    
     alergiasalimentarias(){
     if (this.food_allergy==="N/A"){
       this.alimentarias='alimNo'

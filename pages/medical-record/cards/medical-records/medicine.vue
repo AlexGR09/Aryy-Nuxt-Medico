@@ -138,7 +138,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.idif = res.data.data.id
           this.medications = res.data.data.medication
           this.name = res.data.data.medication[0]
@@ -157,7 +156,7 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
+          location.reload()
           this.complete = true
           this.incomplete = false
         })

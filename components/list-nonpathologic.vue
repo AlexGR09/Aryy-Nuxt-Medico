@@ -155,7 +155,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.type_activity = res.data.data.physical_activity.type_of_activity
           this.days_week = res.data.data.physical_activity.days_of_the_week
 
