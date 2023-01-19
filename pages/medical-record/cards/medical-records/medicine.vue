@@ -81,7 +81,7 @@
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="mt-2"
-          >{{ medications }} |{{ name }}| • 10mg • Tabletas
+          >{{ name }} • 10mg • Tabletas
         </v-list-item-title>
         <v-list-item-subtitle>
           1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22

@@ -341,15 +341,15 @@ export default {
   methods: {
     alergiass() {
       this.$axios
-        .get(`api/v1/medical-records/allergies/patient/${this.$route.params.medicalRecord}`, {
+        .get(`api/v1/medical-records/physician/allergies/patient/${this.$route.params.medicalRecord}`, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
           this.idif = res.data.data.id
-          this.drug_allergy = res.data.data.drug_allergy
-          this.environmental_allergy = res.data.data.environmental_allergy
-          this.food_allergy = res.data.data.food_allergy
+          this.drug_allergy = res.data.data.drug_allergy[0]
+          this.environmental_allergy = res.data.data.environmental_allergy[0]
+          this.food_allergy = res.data.data.food_allergy[0]
           this.time = res.data.data.created_at
          this.alergiasalimentarias()
          this.alergiasambientales()
@@ -360,7 +360,7 @@ export default {
     add() {
       this.$axios
         .put(
-          'api/v1/medical-records/physician/allergies/patient',
+          'api/v1/medical-records/physician/allergies/patient/',
           {
             patient_id: this.$route.params.medicalRecord,
             food_allergy: this.food,
@@ -372,14 +372,6 @@ export default {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
           }
-        )
-        .then(() => {
-          console.log("datos agregados")
-        /*   console.log(res) */
-        })
-        
-        .catch(
-          console.log("erroooooor")
         )
     },
 
