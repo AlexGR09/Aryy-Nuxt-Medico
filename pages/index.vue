@@ -1,6 +1,7 @@
+<!-- Maquetación => Template => Dashboard | Luis Reyes & Responsivo | Luis Reyes -->
 <template>
   <v-container>
-    <v-card-text>
+<!--     <v-card-text>
       <p class="text-h3 text_welcome" color="#4812d7">Bienvenido,</p>
       <p class="text-h4 text_welcome">Dr. {{ facilities }}</p>
       <div class="">
@@ -11,9 +12,9 @@
     <v-card-subtitle class="pa-3 mt-n2 mb-n10">
       <H1 class="mb-5">CONSULTAS</H1></v-card-subtitle
     >
-    <br />
+    <br /> -->
     <v-row>
-      <v-col cols="12" md="4" >
+      <v-col cols="12" md="4">
         <dashboard-citas />
       </v-col>
       <v-col cols="12" md="4">
@@ -75,9 +76,5 @@ export default {
 .text_welcome {
   color: blue;
   font-family: 'Montserrat', sans-serif;
-}
-
-.calendar{
-  margin-block-start: 2vh;
 }
 </style>

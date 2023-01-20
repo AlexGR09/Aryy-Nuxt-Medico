@@ -6,7 +6,7 @@
     color="#ffffff"
   >
     <v-row class="ma-0 pa-0">
-      <v-col cols="12">
+      <v-col cols="12" >
           <div>
             <p class="texto" align="left">
                 INICIAR <br> NUEVA CONSULTAS

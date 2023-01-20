@@ -4,7 +4,7 @@
     <v-toolbar flat color="transparent">
       <v-toolbar-title>Información Básica</v-toolbar-title>
     </v-toolbar>
-  <v-row no-gutters>
+  <v-row>
     <!-- telephone field -->
     <v-col
       cols="12"
@@ -14,11 +14,13 @@
       <v-text-field
         dense
         label="Télefono"
+        prepend-icon="mdi-map-marker"
+        outlined
       >
       <template #prepend>
         <img 
-          width="24"
-          height="24"
+          width="20"
+          height="20"
           :src="require('@/assets/icons/icon_phone.svg')"
         />
       </template>
@@ -33,8 +35,8 @@
           >
             <template #prepend>
               <img
-                width="24"
-                height="24"
+                width="20"
+                height="20"
                 :src="require('@/assets/icons/icon_user.svg')"
               />
             </template>
@@ -54,7 +56,7 @@
         </v-col>
 
         <v-col cols="12" md="4" sm="4">
-          <v-text-field dense label="Tipo de sangre">
+          <v-select dense label="Tipo de sangre" prepend-icon="mdi-map">
             <template #prepend>
               <img
                 width="24"
@@ -62,11 +64,11 @@
                 :src="require('@/assets/icons/icon_bloodtype.svg')"
               />
             </template>
-          </v-text-field>
+          </v-select>
         </v-col>
 
         <v-col cols="12" md="4" sm="4">
-          <v-text-field dense label="Estatura">
+          <v-text-field dense label="Estatura" suffix="M">
             <template #prepend>
               <img
                 width="24"
@@ -77,7 +79,7 @@
           </v-text-field>
         </v-col>
         <v-col cols="12" md="4" sm="4">
-          <v-text-field dense label="Género">
+          <v-select  dense label="Género">
             <template #prepend>
               <img
                 width="24"
@@ -85,14 +87,178 @@
                 :src="require('@/assets/icons/icon_gender.svg')"
               />
             </template>
-          </v-text-field>
+          </v-select >
         </v-col> 
 
-        <v-col>
-          <v-toolbar flat color="transparent">
+
+
+  </v-row>
+  <v-toolbar flat color="transparent">
       <v-toolbar-title>Signos vitales</v-toolbar-title>
     </v-toolbar>
-        </v-col>
+
+
+  
+  <v-row>
+    
+<!-- Signos vitales -->
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Temperatura"
+        prepend-icon="mdi-map-marker"
+        suffix="°C"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_temperature.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Peso"
+        prepend-icon="mdi-map-marker"
+        suffix="Kg"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_weight.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+    
+
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Frecuencia respiratoria"
+        suffix="R/M"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_frequency.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+    
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Sistolica"
+        suffix="mmHg"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_pressure.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Diastolica"
+        suffix="mmHg"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_pressure.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+    
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Frecuencia cardiaca"
+        suffix="bpm"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_pressureheart.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Saturación de Oxigeno"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_oxygen.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Masa Muscular"
+        suffix="%"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_musculemass.svg')"
+         
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Grasa corporal"
+        suffix="%"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_corporalfat.svg')"
+         
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
 
   </v-row>
 </v-container>
@@ -107,11 +273,3 @@ export default {
   },
 }
 </script>
-
-<!-- 
-
-
-
-
-  
- -->

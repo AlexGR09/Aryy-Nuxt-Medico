@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card >
     <div class="margen mt-16">
       <v-img
         :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"

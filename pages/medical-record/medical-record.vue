@@ -2,16 +2,20 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
-<!--         <v-toolbar flat color="transparent">
+      <v-col cols="12" md="8">
+<!--  <v-toolbar flat color="transparent">
           <v-toolbar-title>Expediente Clínico</v-toolbar-title>
-        </v-toolbar> -->
+        </v-toolbar>  -->
         <v-sheet
-          class="rounded-xl"
+          class="rounded-lg"
           elevation="2"
         >
           <basic-info/>
         </v-sheet>
+      </v-col>
+      <v-col cols="12" md="4">
+        <v-card>hola</v-card>
+
       </v-col>
     </v-row>
   </v-container>
