@@ -1,20 +1,30 @@
 <!-- seccion de "antecedentes perinatales" dentro de la seccion "otros" de medical record | Genesis  -->
 <template>
-  <v-dialog scrollable v-model="dialog" max-width="600px">
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn class="justify-start" width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
-        <v-icon color="#7900ff">mdi-plus</v-icon>
-        <l>ANTECEDENTES PERINATALES</l>
-      </v-btn>
-    </template>
-    <v-card height="600px">
-      <v-card-title>
-        <span>ANTECEDENTES PERINATALES</span>
+  <v-dialog 
+    v-model="dialog" 
+    max-width="600px"
+  >
+  <template 
+    #activator="{ on, attrs }">
+    <v-btn
+      color="primary"
+      dark
+      v-bind="attrs"
+      outlined
+      v-on="on"
+    > 
+      <v-icon  left color="#7900ff">mdi-plus</v-icon> 
+      ANTECEDENTES PERINATALES
+    </v-btn>
+  </template> 
+<v-card height="600px">
+  <v-card-title>
+    <span>ANTECEDENTES PERINATALES</span>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
-            <v-col cols="12" sm="6" md="4" xl="12">
+            <v-col >
               <p class="mt-n3">Fecha del último ciclo menstrual</p>
               <v-dialog
                 ref="dialog"
@@ -23,7 +33,7 @@
                 persistent
                 width="290px"
               >
-                <template v-slot:activator="{ on, attrs }">
+                <template #activator="{ on, attrs }">
                   <v-text-field
                     v-model="date"
                     outlined
@@ -59,7 +69,6 @@
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
-
               <p>Último método anticonceptivo utilizado</p>
               <v-text-field
                 class="mt-n3"
@@ -74,9 +83,9 @@
                 <v-radio color="#b380ff" label="No" value="conNo"></v-radio>
               </v-radio-group>
               <v-text-field
+                v-if="con == 'conYes'"
                 class="mt-n3"
                 style="font-family: Montserrat"
-                v-if="con == 'conYes'"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
@@ -89,7 +98,7 @@
                 persistent
                 width="290px"
               >
-                <template v-slot:activator="{ on, attrs }">
+                <template #activator="{ on, attrs }">
                   <v-text-field
                     v-model="date"
                     outlined
@@ -126,29 +135,28 @@
         <v-btn
           height="50px"
           class="white--text save mb-5"
-          v-on:click="update"
           color="#7900ff"
           large
+          @click="perinatalPost"
           >Guardar cambios</v-btn
         >
         <v-btn
           v-bind="attrs"
-          v-on="on"
           height="50px"
           class="restore ml-3 mb-5"
           color="#999999"
           outlined
           large
+          v-on="on"
           >Restaurar todo</v-btn
         >
       </v-col>
     </v-card>
   </v-dialog>
 </template>
-
 <script>
 export default {
-  layout: 'medicalRecord',
+  /* layout: 'medicalRecord', */
   components: {},
   data() {
     return {
@@ -178,10 +186,68 @@ export default {
       ambientales: '',
       con: '',
       support: '',
+
+      /* models to send data */
+      patient_id: '',
+      last_menstrual_cycle:'',
+      cycle_time:'',
+      contraceptive_method_use: '',
+      assisted_conception:'',
+      final_ppf:'',
     }
+  },
+  methods: {
+    perinatalPost(){
+      this.$axios
+        .post('api/v1/physician/medical-history/perinatal-background',{
+              patient_id: this.patient_id,
+              last_menstrual_cycle: this.last_menstrual_cycle,
+              cycle_time: this.cycle_time,
+              contraceptive_method_use: this.contraceptive_method_use,
+              assisted_conception: this.assisted_conception,
+              final_ppf: this.final_ppf,
+        },
+        {
+          headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),}
+        })
+    },
+    perinatalPut(){
+      this.$axios
+        .post('api/v1/physician/medical-history/perinatal-background',{
+              patient_id: this.patient_id,
+              last_menstrual_cycle: this.last_menstrual_cycle,
+              cycle_time: this.cycle_time,
+              contraceptive_method_use: this.contraceptive_method_use,
+              assisted_conception: this.assisted_conception,
+              final_ppf: this.final_ppf,
+        },
+        {
+          headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),}
+        })
+    },
+
+    perinatalGet(){
+      this.$axios.get('/api/v1physician/medical-history/perinatal-background/9',
+      {
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(res => {
+        console.log(res)
+        this.last_menstrual_cycle = res.data.last_menstrual_cycle
+        this.cycle_time = res.data.cycle_time
+        this.contraceptive_method_use = res.data.contraceptive_method_use
+        this.assisted_conception = res.data.contraceptive_method_use
+        this.final_ppf = res.data.contraceptive_method_use
+      })
+    }
+  },
+
+  mounted() {
+    this.perinatalGet()
   },
 }
 </script>
+
 <style scoped>
 p.titulo {
   font-family: MontserratMedium;

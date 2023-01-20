@@ -25,7 +25,6 @@
         <v-card-title>
           <span>ODONTOGRAMA</span>
         </v-card-title>
-
         <v-card-text> 
          <!--  insertar odontograma -->
          <p>(Insertar odontograma) </p>
@@ -39,7 +38,6 @@
             <v-text-field outlined placeholder="Escibre aqui"></v-text-field>
           </v-col>
          </v-row>
-        
         </v-card-text>
         
         <v-col class="ml-6">

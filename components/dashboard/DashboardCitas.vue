@@ -3,6 +3,7 @@
   <v-card
     class="greeting-card "
     outlined
+    color="#ffffff"
   >
     <v-row class="ma-0 pa-0">
       <v-col cols="12">
@@ -13,7 +14,7 @@
           </div>
       </v-col>
       <v-col cols="3">
-          <img
+           <img
           contain
           class="greeting-card-trophy"
           src="@/assets/icons/icon_consulta.svg"
@@ -50,8 +51,6 @@
   color: #4f565f;
   margin-left: 3vh;
 }
-
-
 .greeting-card{
   color: #f4edff;
   box-shadow: 6px 11px 19px -1px rgba(235,225,252,0.93);
@@ -67,7 +66,5 @@
     .texto{
       color: #ffffff;
     }
-
 }
 </style>
-

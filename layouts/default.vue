@@ -17,7 +17,7 @@
       </v-avatar></v-btn>
         </v-app-bar>
     <!--código de lista de elementos del SideBar | Luis Reyes-->
-    <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
+    <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app >
       <v-avatar class="icon-logo">
         <img class="img-logo" src="@/assets/logotipos/ISOLOGO_ARYY.svg" alt="logo Aryy">
       </v-avatar  >

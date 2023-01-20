@@ -27,8 +27,12 @@
         <next-consultation/>
       </v-col>
       <v-col cols="12" md="6">
+        <v-card class="rounded-xl" color="white">
+          <v-row justify="center">
+            <v-date-picker  v-model="picker"  locale="mx-es" width="350" no-title prev-icon='$prev' class="justify-center calendar"></v-date-picker>
+          </v-row>
+        </v-card>
         
-          <v-calendar></v-calendar>
       </v-col>
 
     </v-row>
@@ -37,13 +41,18 @@
 <script>
 import nextConsultation from '~/components/dashboard/next-consultation.vue'
 export default {
-  name: "default",
+  name: "Default",
   components: { nextConsultation },
   data() {
     return {
       name: [],
       facilities: null,
+      picker: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
     }
+  },
+
+  mounted() {
+    this.getName()
   },
 
   methods: {
@@ -53,15 +62,10 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          console.log(res)
           this.facilities = res.data.data.professional_name
           alert(res.data.data.professional_name)
         })
     },
-  },
-
-  mounted() {
-    this.getName()
   },
 }
 </script>
@@ -71,5 +75,9 @@ export default {
 .text_welcome {
   color: blue;
   font-family: 'Montserrat', sans-serif;
+}
+
+.calendar{
+  margin-block-start: 2vh;
 }
 </style>

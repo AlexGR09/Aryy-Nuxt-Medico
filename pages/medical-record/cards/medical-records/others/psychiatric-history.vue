@@ -3,21 +3,37 @@
 <v-row justify="center">
   <v-dialog
     v-model="dialog"
-    persistent
     max-width="600px"
+    scrollable
   >
-  <!-- BOTON DE DIALOG -->
+<!-- BOTON DE DIALOG -->
   <template 
     #activator="{ on, attrs }">
-    <v-btn  width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
-      <v-icon color="#7900ff">mdi-plus</v-icon> 
-        ANTECEDENTES PSIQUIATRICOS
+    <v-btn
+      color="primary"
+      dark
+      v-bind="attrs"
+      outlined
+      v-on="on"
+      >
+      <v-icon  left color="#7900ff">mdi-plus</v-icon> 
+        ANTECEDENTES PSIQUIÁTRICOS
     </v-btn>
   </template> 
       <v-card>
-        <v-card-title>
-          ANTECEDENTES PSIQUIATRICOS
-        </v-card-title>
+        <v-toolbar flat>
+          <v-toolbar-title class="title">ANTECEDENTES PSIQUIATRICOS</v-toolbar-title>
+            <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn
+              icon
+              @click="dialog = false"
+            >
+            <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+ 
         <v-card-text>
           <v-container>
             <v-row>
@@ -31,11 +47,16 @@
                   dense
                 >
                 </v-text-field>
-                
                 <!-- CONCIENCIA DE ENFERMEDAD -->
                 <p>Conciencia de enfermedad</p>
+                <v-radio-group v-model="radiogroup_1" row>
+                  <v-radio  label="Si" v-bind:value="true"></v-radio>
+                  <v-radio label="No" v-bind:value="false"></v-radio>
+                </v-radio-group>
+                <!-- si la respuesta es si se activa el campo -->
                 <v-text-field
-                  v-model="disease_awareness" 
+                  v-if="radiogroup_1"
+                  v-model="disease_awareness"
                   outlined 
                   placeholder="Escribe aqui" 
                   dense
@@ -52,7 +73,12 @@
 
                 <!-- APOYO FAMILIAR DEL GRUPO FAMILIAR -->
                 <p>Ápoyo familiar del grupo familiar</p>
+                <v-radio-group v-model="radiogroup_2" row>
+                  <v-radio  label="Si" v-bind:value="true"></v-radio>
+                  <v-radio label="No" v-bind:value="false"></v-radio>
+                </v-radio-group>
                 <v-text-field
+                  v-if="radiogroup_2"
                   v-model="family_support_group"
                   outlined
                   dense
@@ -111,116 +137,11 @@
                   outlined
                   placeholder="Escribe aqui"
                 ></v-text-field>
-
-
-
               </v-col>
             </v-row>
-
-
-
-<!--             <v-row>
-            
-              <v-col cols="12">
-                <span>Historia Familiar</span>
-                <v-text-field
-                  v-model="family_history"
-                  outlined
-                  placeholder="Escribe aqui"
-                ></v-text-field>
-              </v-col>
-             
-              <v-col cols="12">
-                <span>Coincidencia enfermedad</span>
-                <v-radio-group>
-                  <v-radio v-model="checkbox"  color="#b380ff" label="Si"  value="true" ></v-radio>
-                  <v-radio v-model="checkbox"  color="#b380ff" label="No" value="1"></v-radio>
-                </v-radio-group>
-                <v-text-field
-                  v-if="checkbox"
-                  v-model="disease_awareness"
-                  outlined
-                  placeholder="Escribe aqui"
-                >
-                </v-text-field>
-              </v-col>
-              
-         
-              <v-col cols="12">
-                <v-text-field  
-                  v-if="cons == 'consYes'" 
-                  v-model="areas_affected_by_the_disease"
-                  class="mt-n3"  
-                  outlin4ed 
-                  style="font-family: Montserrat"
-                  placeholder="Escriba aquí" ></v-text-field>
-                <p class="mt-n3">Áreas afectadas por la enfermedad</p>
-              </v-col>
-              
-              <v-col>
-               <v-text-field 
-                class="mt-n3" 
-                style="font-family: Montserrat" 
-                outlined
-                placeholder="Escriba aquí"></v-text-field>
-              <p class="mt-n4 mb-n2">Apoyo del grupo familiar y social</p>
-              <v-radio-group v-model="support" row>
-                <v-radio color="#b380ff" label="Si" value="supYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="supNo"></v-radio>
-              </v-radio-group>
-              </v-col>
-              
-              <v-col cols="12">
-                <v-text-field 
-                  v-if="support == 'supYes'" 
-                  class="mt-n3"
-                  style="font-family: Montserrat" 
-                  outlined
-                  placeholder="Escriba aquí"></v-text-field>
-              </v-col>
-              <v-col cols="12">
-
-              <p class="mt-n2">Grupo familiar del paciente</p>
-              <v-text-field 
-                class="mt-n3" 
-                style="font-family: Montserrat" 
-                outlined
-                placeholder="Escriba aqui"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field 
-                  class="mt-n3" 
-                  style="font-family: Montserrat" 
-                  outlined
-                  placeholder="Escriba aqui"
-                  ></v-text-field>
-              <p class="mt-n4">Aspectos de la vida laboral</p>
-              
-              <v-text-field 
-                class="mt-n3" 
-                style="font-family: Montserrat" 
-                outlined
-                placeholder="Escriba aqui"
-              ></v-text-field>
-              <p class="mt-n4">Relación con la autoridad</p>
-              <v-text-field 
-                class="mt-n3" 
-                style="font-family: Montserrat" 
-                outlined
-                placeholder="Escriba aqui"
-              ></v-text-field>
-              <p class="mt-n4">Control de impulsos</p>
-              <v-text-field 
-                class="mt-n3" 
-                style="font-family: Montserrat" 
-                outlined
-                placeholder="Escriba aqui"
-              ></v-text-field>
-            </v-col>
-            </v-row> -->
-            <v-btn
-            color="blue darken-1"
+  
+              <v-btn
+            color="#7900ff"
             dark
             block
             @click="psychiatricPost"
@@ -243,7 +164,7 @@
 export default{
   data(){
     return{
-      checkbox: null,
+      dialog: false,
       family_history: "",
       disease_awareness:"",
       areas_affected_by_the_disease:"",
@@ -254,13 +175,15 @@ export default{
       relationship_whit_authority:"",
       inpulse_control:"",
       frustration_management:"",
+      radiogroup_1: null,
+      radiogroup_2: null,
     }
   },
 
   methods: {
    psychiatricPost(){
       this.$axios
-        .post('api/v1/physician/medical-history/psycological-background/10',{
+        .post('api/v1/physician/medical-history/psycological-background/',{
           family_history: this.family_history,
           disease_awareness: this.disease_awareness,
           areas_affected_by_the_disease: this.areas_affected_by_the_disease,
@@ -284,6 +207,10 @@ export default{
 </script>
 
 <style scoped>
+
+.title{
+  font-family: MontserratBold;
+}
 p.titulo {
   font-family: MontserratMedium;
   color: #7900ff;
