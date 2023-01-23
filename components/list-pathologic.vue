@@ -2,7 +2,7 @@
  <div>
   <p v-if="this.msg">Sin datos registrados</p>
    <div v-else>
-    <v-list-item
+    <v-list-item v-if="this.previous_surgeries!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -279,7 +279,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.blood_pressure = res.data.data.blood_pressure
           this.blood_transfusions = res.data.data.blood_transfusions
           this.cancer = res.data.data.cancer

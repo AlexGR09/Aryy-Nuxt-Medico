@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list-item
+    <v-list-item v-if="this.type_activity!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -17,7 +17,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item
+    <v-list-item v-if="this.horas_sueño!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -31,7 +31,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item
+    <v-list-item v-if="this.cigarettes!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -48,7 +48,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item
+    <v-list-item v-if="this.alcohol!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -65,7 +65,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item
+    <v-list-item v-if="this.diet!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -79,7 +79,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item
+    <v-list-item v-if="this.other_substances!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -93,7 +93,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item
+    <v-list-item v-if="this.soñar!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -107,7 +107,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item
+    <v-list-item v-if="this.descanso!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
