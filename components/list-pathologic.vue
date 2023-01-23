@@ -1,6 +1,8 @@
 <template>
-   <div>
-    <v-list-item v-if="this.previous_surgeries!='No'"
+ <div>
+  <p v-if="this.msg">Sin datos registrados</p>
+   <div v-else>
+    <v-list-item
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -235,6 +237,8 @@
       </v-list-item-content>
     </v-list-item>
    </div>
+  
+  </div>
 </template>
 
 <script>
@@ -256,6 +260,7 @@ export default {
         respiratory_diseases:'',
         thyroid_diseases:'',
         trauma:'',
+        msg:'',
     }
   },
   mounted() {
@@ -288,8 +293,14 @@ export default {
           this.respiratory_diseases = res.data.data.respiratory_diseases
           this.thyroid_diseases = res.data.data.thyroid_diseases
           this.trauma = res.data.data.trauma
-        })
+        this.msg=res.data.msg
+        }).catch((error) => {console.log(error) })
     },
   },
 }
 </script>
+<style>
+p{
+  font-family: MontserratMedium;
+  color: #4f565f;
+}</style>

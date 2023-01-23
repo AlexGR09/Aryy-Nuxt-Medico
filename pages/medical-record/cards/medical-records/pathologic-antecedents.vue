@@ -4,7 +4,7 @@
     <p class="titulo">Antecedentes patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!--   agregar informacion | Genesis -->
-      <v-dialog scrollable v-model="editt" max-width="600px">
+      <v-dialog v-if="this.msg" scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
@@ -27,19 +27,20 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="surYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="surNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="previous_surgeries"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="surgery == 'surYes'"
+                    v-if="surgery == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
-                  <p class="cuestion mt-n4 mb-n3">Transfusiones</p>
+                  <p class="cuestion mt-n4 mb-n3">Transfusiones {{ transfusion }}</p>
                   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="transfusion"
@@ -48,48 +49,50 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="tranYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="tranNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="blood_transfusions"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="transfusion == 'tranYes'"
+                    v-if="transfusion == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
                   <p class="cuestion mt-n4 mb-n3">Diabetes</p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="diabetes"
+                    v-model="diabetesradio"
                     row
                   >
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="diabYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="diabNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="diabetes"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="diabetes == 'diabYes'"
+                    v-if="diabetesradio == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
-                  <p class="cuestion mt-n4 mb-n3">Cardsiopatías</p>
+                  <p class="cuestion mt-n4 mb-n3">Cardiopatías</p>
                   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="disease"
@@ -98,26 +101,311 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="disYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="disNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="heart_diseases"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="disease == 'disYes'"
+                    v-if="disease == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+
+                  <p class="cuestion mt-n4 mb-n3">
+                    Presión arterial alta o baja
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="blood_pressure"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Hipertensión"
+                      value="Hipertension"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="Hipotensión"
+                      value="Hipotension"
+                    ></v-radio>
+                    <v-radio color="#b380ff" label="Si" value="No"></v-radio>
+                  </v-radio-group>
+
+                  <p class="cuestion mt-n4 mb-n3">
+                    Enfermedades tiroideas
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="thyroid"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="No"
+                    ></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                  v-model="thyroid_diseases"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="thyroid == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Cáncer
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="cancerradio"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="No"
+                    ></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                  v-model="cancer"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="cancerradio == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Enfermedades de la sangre
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="disease"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="disNo"
+                    ></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                  v-model="cancer"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="cancerradio == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Cálculos renales
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="kidney"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="No"
+                    ></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                  v-model="kidney_stones"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="kidney == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Hepatitis
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="hepatitisRadio"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="No"
+                    ></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                  v-model="hepatitis"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="hepatitisRadio == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Traumatismos
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="traumaRadio"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="No"
+                    ></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                  v-model="trauma"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="traumaRadio == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Patologías respiratorias
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="respiratory"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="No"
+                    ></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                  v-model="respiratory_diseases"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="respiratory == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+
+                    <p class="cuestion mt-n4 mb-n3">
+                    Patologías gastrointestinales
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="gastrointestinal"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="No"
+                    ></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                  v-model="gastrointestinal_pathologies"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="gastrointestinal == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                  <p class="cuestion mt-n4 mb-n3">
+                    Enfermedades de transmisión sexual
+                  </p>
+                  <v-radio-group
+                    style="font-family: Montserrat"
+                    v-model="etsRadio"
+                    row
+                  >
+                    <v-radio
+                      color="#b380ff"
+                      label="Si"
+                      value="Si"
+                    ></v-radio>
+                    <v-radio
+                      color="#b380ff"
+                      label="No"
+                      value="No"
+                    ></v-radio>
+                    </v-radio-group>
+                    <v-text-field
+                  v-model="ets"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="etsRadio == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
                 </v-col>
+
+               
               </v-row>
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
+            v-on:click="add"
               block
-              @click="overlay = !overlay"
+              @click="add"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -134,7 +422,7 @@
       </v-dialog>
 
       <!--   editar informacion | Genesis -->
-      <v-dialog scrollable v-model="dialog" max-width="600px">
+      <v-dialog v-else scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -161,19 +449,20 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="surYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="surNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="previous_surgeries"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="surgery == 'surYes'"
+                    v-if="surgery == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
-                  <p class="cuestion mt-n4 mb-n3">Transfusiones</p>
+                  <p class="cuestion mt-n4 mb-n3">Transfusiones {{ transfusion }}</p>
                   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="transfusion"
@@ -182,44 +471,46 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="tranYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="tranNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="blood_transfusions"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="transfusion == 'tranYes'"
+                    v-if="transfusion == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
                   <p class="cuestion mt-n4 mb-n3">Diabetes</p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="diabetes"
+                    v-model="diabetesradio"
                     row
                   >
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="diabYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="diabNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="diabetes"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="diabetes == 'diabYes'"
+                    v-if="diabetesradio == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -232,15 +523,16 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="disYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="disNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="heart_diseases"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="disease == 'disYes'"
+                    v-if="disease == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -250,18 +542,18 @@
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="blood_pressure"
                     row
                   >
                     <v-radio
                       color="#b380ff"
-                      label="Si"
-                      value="Hipertensión"
+                      label="Hipertensión"
+                      value="Hipertension"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="Hipotensión"
-                      value="disNo"
+                      value="Hipotension"
                     ></v-radio>
                     <v-radio color="#b380ff" label="Si" value="No"></v-radio>
                   </v-radio-group>
@@ -271,7 +563,7 @@
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="thyroid"
                     row
                   >
                     <v-radio
@@ -282,16 +574,25 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
+                    <v-text-field
+                  v-model="thyroid_diseases"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="thyroid == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
 
                     <p class="cuestion mt-n4 mb-n3">
                     Cáncer
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="cancerradio"
                     row
                   >
                     <v-radio
@@ -302,9 +603,18 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
+                    <v-text-field
+                  v-model="cancer"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="cancerradio == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
 
                     <p class="cuestion mt-n4 mb-n3">
                     Enfermedades de la sangre
@@ -325,13 +635,22 @@
                       value="disNo"
                     ></v-radio>
                     </v-radio-group>
+                    <v-text-field
+                  v-model="cancer"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="cancerradio == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
 
                     <p class="cuestion mt-n4 mb-n3">
                     Cálculos renales
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="kidney"
                     row
                   >
                     <v-radio
@@ -342,16 +661,25 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
+                    <v-text-field
+                  v-model="kidney_stones"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="kidney == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
 
                     <p class="cuestion mt-n4 mb-n3">
                     Hepatitis
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="hepatitisRadio"
                     row
                   >
                     <v-radio
@@ -362,16 +690,25 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
+                    <v-text-field
+                  v-model="hepatitis"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="hepatitisRadio == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
 
                     <p class="cuestion mt-n4 mb-n3">
                     Traumatismos
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="traumaRadio"
                     row
                   >
                     <v-radio
@@ -382,16 +719,25 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
+                    <v-text-field
+                  v-model="trauma"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="traumaRadio == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
 
                     <p class="cuestion mt-n4 mb-n3">
                     Patologías respiratorias
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="respiratory"
                     row
                   >
                     <v-radio
@@ -402,16 +748,25 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
+                    <v-text-field
+                  v-model="respiratory_diseases"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="respiratory == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
 
                     <p class="cuestion mt-n4 mb-n3">
                     Patologías gastrointestinales
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="gastrointestinal"
                     row
                   >
                     <v-radio
@@ -422,17 +777,24 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
-                </v-col>
-
-                <p class="cuestion mt-n4 mb-n3">
+                    <v-text-field
+                  v-model="gastrointestinal_pathologies"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="gastrointestinal == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                  <p class="cuestion mt-n4 mb-n3">
                     Enfermedades de transmisión sexual
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="etsRadio"
                     row
                   >
                     <v-radio
@@ -443,16 +805,29 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
+                    <v-text-field
+                  v-model="ets"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="etsRadio == 'Si'"
+                    outlined
+                    placeholder="Escriba aquí"
+                  ></v-text-field>
+                </v-col>
+
+               
               </v-row>
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
+            v-on:click="add"
               block
-              @click="overlay = !overlay"
+              @click="add"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -469,14 +844,13 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p v-if="!cirugias[0]">Sin antecedentes registrados</p>
     <list-pathologic/>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
         width="20"
         :src="require('@/assets/icons/icon_timestamp.svg')"
-      />Editado el 25 de diciembre de 2022
+      />Editado el 25 de diciembre de 2022 {{ msg }} b
     </p>
   </v-card-text>
 </template>
@@ -490,10 +864,31 @@ export default {
       dialog: false,
       editt: false,
       surgery: '',
+      diabetesradio: '',
+      cancerradio: '',
       transfusion: '',
-      diabetes: '',
+      thyroid: '',
+      respiratory: '',
+      gastrointestinal: '',
       disease: '',
-      cirugias: [],
+      kidney: '',
+      msg:'',
+      blood_pressure:'',
+      hepatitisRadio: '',
+      etsRadio: '',
+        blood_transfusions:'',
+        cancer:'',
+        traumaRadio:'',
+        diabetes:'',
+        ets:'',
+        gastrointestinal_pathologies:'',
+        heart_diseases:'',
+        hepatitis:'',
+        kidney_stones:'',
+        previous_surgeries:'',
+        respiratory_diseases:'',
+        thyroid_diseases:'',
+        trauma:'',
     }
   },
   mounted() {
@@ -512,10 +907,207 @@ export default {
           }
         )
         .then((res) => {
-        /*   console.log(res) */
+          console.log(res)
+          this.blood_pressure = res.data.data.blood_pressure
+          this.blood_transfusions = res.data.data.blood_transfusions
+          this.cancer = res.data.data.cancer
+          this.diabetes = res.data.data.diabetes
+          this.ets = res.data.data.ets
+          this.gastrointestinal_pathologies = res.data.data.gastrointestinal_pathologies
+          this.heart_diseases = res.data.data.heart_diseases
+          this.hepatitis = res.data.data.hepatitis
+          this.kidney_stones = res.data.data.kidney_stones
+          this.previous_surgeries = res.data.data.previous_surgeries
+          this.respiratory_diseases = res.data.data.respiratory_diseases
+          this.thyroid_diseases = res.data.data.thyroid_diseases
+          this.trauma = res.data.data.trauma
+          this.msg=res.data.msg
+
+
+          /* metodos de status para los radio groups | Genesis */
+          this.surgeriesStatus()
+          this.transfusionsStatus()
+          this.diabetesStatus()
+          this.diseaseStatus()
+          this.cancerStatus()
+          this.thyroidStatus()
+          this.kidneyStatus()
+          this.hepatitisStatus()
+          this.traumaStatus()
+          this.respiratoryStatus()
+          this.gastrointestinalStatus()
+          this.etsStatus()
         })
     },
+
+     add() {
+      this.$axios
+        .post('api/v1/medical-history/physician/pathological-background/', {
+          patient_id: this.$route.params.medicalRecord,
+          previous_surgeries: this.previous_surgeries,
+          blood_transfusions: this.blood_transfusions,
+          diabetes: this.diabetes,
+          heart_diseases: this.heart_diseases,
+          blood_pressure: this.blood_pressure,
+          thyroid_diseases: this.thyroid_diseases,
+          cancer: this.cancer,
+          kidney_stones: this.kidney_stones,
+          hepatitis: this.hepatitis,
+          trauma: this.trauma,
+          respiratory_diseases: this.respiratory_diseases,
+          ets: this.ets,
+          gastrointestinal_pathologies: this.gastrointestinal_pathologies,
+      
+        },
+        {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          })
+          .then(
+            this.surgeriesStatus(),
+          this.transfusionsStatus(),
+          this.diabetesStatus(),
+          this.diseaseStatus(),
+          this.cancerStatus(),
+          this.thyroidStatus(),
+          this.kidneyStatus(),
+          this.hepatitisStatus(),
+          this.traumaStatus(),
+          this.respiratoryStatus(),
+          this.gastrointestinalStatus(),
+          this.etsStatus(),
+          this.overlay = true,
+      )
+    },
+
+ /*    metodos de status para los radio groups | Genesis */
+    surgeriesStatus(){
+      if(this.previous_surgeries === "No"){
+        this.surgery="No"
+      }else if(this.surgery==="No"){
+        this.previous_surgeries="No"
+      }
+      else{
+        this.surgery="Si"
+      }
+    },
+    transfusionsStatus(){
+      if(this.blood_transfusions === "No"){
+        this.transfusion = "No"
+      }else if(this.transfusion==="No"){
+        this.blood_transfusions="No"
+      }
+      else{
+        this.transfusion = "Si"
+      }
+    },
+    diabetesStatus(){
+      if(this.diabetes === "No"){
+        this.diabetesradio="No"
+      }else if(this.diabetesradio==="No"){
+        this.diabetes="No"
+      }
+      else{
+        this.diabetesradio="Si"
+      }
+    },
+    diseaseStatus(){
+      if(this.heart_diseases === "No"){
+        this.disease="No"
+      }else if(this.disease==="No"){
+        this.heart_diseases="No"
+      }
+      else{
+        this.disease="Si"
+      }
+    },
+    cancerStatus(){
+      if(this.cancer ==="No"){
+        this.cancerradio="No"
+      }else if(this.cancerradio==="No"){
+        this.cancer="No"
+      }
+      else{
+        this.cancerradio="Si"
+      }
+    },
+    thyroidStatus(){
+      if(this.thyroid_diseases==="No"){
+        this.thyroid="No"
+      }else if(this.thyroid==="No"){
+        this.thyroid_diseases="No"
+      }
+      else{
+        this.thyroid="Si"
+      }
+    },
+    kidneyStatus(){
+      if(this.kidney_stones==="No"){
+        this.kidney="No"
+      }else if(this.kidney==="No"){
+        this.kidney_stones="No"
+      }
+      else{
+        this.kidney="Si"
+      }
+    },
+    hepatitisStatus(){
+      if(this.hepatitis==="No"){
+        this.hepatitisRadio="No"
+      }else if(this.hepatitisRadio==="No"){
+        this.hepatitis="No"
+      }
+      else{
+        this.hepatitisRadio="Si"
+      }
+    },
+    traumaStatus(){
+      if(this.trauma==="No"){
+        this.traumaRadio="No"
+      }else if(this.traumaRadio==="No"){
+        this.trauma="No"
+      }
+      else{
+        this.traumaRadio="Si"
+      }
+    },
+    respiratoryStatus(){
+      if(this.respiratory_diseases==="No"){
+        this.respiratory="No"
+      }else if(this.respiratory==="No"){
+        this.respiratory_diseases="No"
+      }
+      else{
+        this.respiratory="Si"
+      }
+    },
+    gastrointestinalStatus(){
+      if(this.gastrointestinal_pathologies==="No"){
+        this.gastrointestinal="No"
+      }else if(this.gastrointestinal==="No"){
+        this.gastrointestinal_pathologies="No"
+      }
+      else{
+        this.gastrointestinal="Si"
+      }
+    },
+    etsStatus(){
+      if(this.ets==="No"){
+        this.etsRadio="No"
+      } else if(this.etsRadio==="No"){
+        this.ets="No"
+      }
+      else{
+        this.etsRadio="Si"
+      }
+    },
+    refresh(){
+      this.$router.go(0)
+    }
+    
   },
+  
   watch: {
     overlay(val) {
       val &&
