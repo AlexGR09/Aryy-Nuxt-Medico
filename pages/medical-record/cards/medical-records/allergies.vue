@@ -4,7 +4,7 @@
     <p class="titulo">Alergias</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
     <!-- agregar información nueva | Genesis -->
-    <v-dialog scrollable v-model="dialogg" max-width="600px">
+    <v-dialog v-if="!food" scrollable v-model="dialogg" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
        
           <v-btn v-bind="attrs" v-on="on" icon>
@@ -89,7 +89,7 @@
                     v-model="environmental"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="ambientales == 'ambYes'"
+                    v-if="amb == 'ambYes'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -100,7 +100,8 @@
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
             block
-            @click="overlay = !overlay"
+            @click="add"
+           
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -121,7 +122,7 @@
 
 
      <!--  Editar información registrada | Genesis -->
-      <v-dialog scrollable v-model="dialog" max-width="600px">
+      <v-dialog v-else scrollable v-model="dialog" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
        
           <v-btn dark icon v-bind="attrs" v-on="on">
@@ -159,7 +160,7 @@
                   </v-radio-group>
                   <v-text-field
                   color="#7900ff"
-                    v-model="food_allergy"
+                    v-model="food"
                     class="mt-n3"
                     style="font-family: Montserrat"
                     v-if="alimentarias == 'alimYes'"
@@ -185,7 +186,7 @@
                   </v-radio-group>
                   <v-text-field
                   color="#7900ff"
-                    v-model="drugs"
+                    v-model="drugss"
                     class="mt-n3"
                     style="font-family: Montserrat"
                     v-if="farmacos == 'farmYes'"
@@ -222,7 +223,7 @@
             <v-btn
             block
             @click="overlay = !overlay"
-            v-on:click="add"
+            v-on:click="update"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -257,7 +258,7 @@
       <v-list-item-content>
         <v-list-item-title>Fármacos</v-list-item-title>
         <v-list-item-subtitle
-          >{{ drug_allergy }}</v-list-item-subtitle
+          >{{ drugss }}</v-list-item-subtitle
         >
       </v-list-item-content>
     </v-list-item>
@@ -273,7 +274,7 @@
       <v-list-item-content>
         <v-list-item-title>Factores ambientales</v-list-item-title>
         <v-list-item-subtitle
-          >{{ environmental_allergy }} </v-list-item-subtitle
+          >{{ environmental }} </v-list-item-subtitle
         >
       </v-list-item-content>
     </v-list-item>
@@ -289,7 +290,7 @@
       <v-list-item-content>
         <v-list-item-title>Alimentarias</v-list-item-title>
         <v-list-item-subtitle
-          >{{ food_allergy }} </v-list-item-subtitle
+          >{{ food}} </v-list-item-subtitle
         >
       </v-list-item-content>
     </v-list-item> 
@@ -345,11 +346,10 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          console.log(res)
           this.idif = res.data.data.id
-          this.drug_allergy = res.data.data.drug_allergy[0]
-          this.environmental_allergy = res.data.data.environmental_allergy[0]
-          this.food_allergy = res.data.data.food_allergy[0]
+          this.drugss = res.data.data.drug_allergy[0]
+          this.environmental = res.data.data.environmental_allergy[0]
+          this.food = res.data.data.food_allergy[0]
           this.time = res.data.data.created_at
          this.alergiasalimentarias()
          this.alergiasambientales()
@@ -363,9 +363,40 @@ export default {
           'api/v1/medical-records/physician/allergies/patient',
           {
             patient_id: this.$route.params.medicalRecord,
-            food_allergy: this.food,
-            drug_allergy: this.drugss,
-            environmental_allergy: this.environmental
+            food_allergy:[
+              this.food,
+            ],
+            drug_allergy:[
+              this.drugss,
+            ],
+            environmental_allergy:[
+              this.environmental,
+            ]
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        ).then((res) => {
+          this.overlay=true
+        })
+    },
+    update() {
+      this.$axios
+        .put(
+          `api/v1/medical-records/physician/allergies/patient/${this.$route.params.medicalRecord}`,
+          {
+            patient_id: this.$route.params.medicalRecord,
+            food_allergy:[
+              this.food,
+            ],
+            drug_allergy:[
+              this.drugss,
+            ],
+            environmental_allergy:[
+              this.environmental,
+            ]
           },
           {
             headers: {
@@ -374,7 +405,6 @@ export default {
           }
         )
     },
-
     
     alergiasalimentarias(){
     if (this.food_allergy==="N/A"){
