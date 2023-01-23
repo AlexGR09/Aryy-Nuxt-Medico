@@ -157,7 +157,7 @@
                       label="No"
                       value="alimNo"
                     ></v-radio>
-                  </v-radio-group>
+                  </v-radio-group>{{ food }} y {{alimentarias}}
                   <v-text-field
                   color="#7900ff"
                     v-model="food"
@@ -380,6 +380,7 @@ export default {
           }
         ).then((res) => {
           this.overlay=true
+          this.alergiasalimentarias()
         })
     },
     update() {
@@ -403,26 +404,30 @@ export default {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
           }
-        )
+        )  .then((res) => {
+         this.alergiasalimentarias()
+       
+        })
     },
     
     alergiasalimentarias(){
-    if (this.food_allergy==="N/A"){
+    if (this.food==="N/A"){
       this.alimentarias='alimNo'
-    }else{
+    }
+    else{
       this.alimentarias='alimYes'
     }
   },
 
   alergiasambientales(){
-    if (this.environmental_allergy==="N/A"){
+    if (this.environmental==="N/A"){
       this.ambientales='ambNo'
     }else{
       this.ambientales='ambYes'
     }
   },
   alergiasfarmacos(){
-    if (this.drug_allergy==="N/A"){
+    if (this.drugss==="N/A"){
       this.farmacos='farmNo'
     }else{
       this.farmacos='farmYes'
