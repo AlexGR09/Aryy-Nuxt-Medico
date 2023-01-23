@@ -25,15 +25,15 @@
                     v-model="sports"
                     row
                   >
-                    <v-radio color="#b380ff" label="Si" value="sportYes"></v-radio>
-                    <v-radio color="#b380ff" label="No" value="sportNo"></v-radio>
+                    <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     v-model="type_activity"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="sports == 'sportYes'"
+                    v-if="sports == 'Si'"
                     outlined
                     placeholder="Escriba el tipo de actividad"
                   ></v-text-field>
@@ -42,7 +42,7 @@
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="sports == 'sportYes'"
+                    v-if="sports == 'Si'"
                     outlined
                     placeholder="¿Cuántos días a la semana?"
                   ></v-text-field>
@@ -89,12 +89,12 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="smokYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="smokNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
@@ -102,13 +102,13 @@
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="smoking == 'smokYes'"
+                    v-if="smoking == 'Si'"
                     outlined
                     placeholder="Escriba la cantidad de cigarrillos al dia"
                   ></v-text-field>
                   <v-text-field
                     v-model="typeSmoke"
-                    v-if="smoking == 'smokYes'"
+                    v-if="smoking == 'Si'"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     class="mt-n3"
@@ -125,22 +125,22 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="alcYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="alcNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     v-model="alcohol"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="alcoholism == 'alcYes'"
+                    v-if="alcoholism == 'Si'"
                     outlined
                     placeholder="Frecuencia semanal"
                   ></v-text-field>
                   <v-text-field
                     v-model="typeAlcohol"
-                    v-if="alcoholism == 'alcYes'"
+                    v-if="alcoholism == 'Si'"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     class="mt-n3"
@@ -158,22 +158,21 @@
                     <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
 
-                  <p class="cuestion mt-n4 mb-n3">Dieta</p>
-                  <v-radio-group
+                  <p class="cuestion mt-n4">Dieta</p>
+                <!--   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="dieta"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="yes"></v-radio>
                     <v-radio color="#b380ff" label="No" value="no"></v-radio>
-                  </v-radio-group>
+                  </v-radio-group> -->
                   <v-autocomplete
                     v-model="diet"
                     :items="dietas"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="dieta == 'yes'"
                     outlined
                     placeholder="Seleccione el tipo de dieta"
                   ></v-autocomplete>
@@ -184,7 +183,7 @@
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
               block
-              @click="overlay = !overlay"
+              @click="add"
               v-on:click="add"
               height="50px"
               class="white--text save mb-5"
@@ -220,22 +219,22 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4" xl="12">
-                  <p class="cuestion mb-n3">Actividad físsica</p>
+                  <p class="cuestion mb-n3">EditarActividad física</p>
 
                   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="sports"
                     row
                   >
-                    <v-radio color="#b380ff" label="Si" value="sportYes"></v-radio>
-                    <v-radio color="#b380ff" label="No" value="sportNo"></v-radio>
+                    <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     v-model="type_activity"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="sports == 'sportYes'"
+                    v-if="sports == 'Si'"
                     outlined
                     placeholder="Escriba el tipo de actividad"
                   ></v-text-field>
@@ -291,7 +290,7 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="smokYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
@@ -304,13 +303,13 @@
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="smoking == 'smokYes'"
+                    v-if="smoking == 'Si'"
                     outlined
                     placeholder="Escriba la cantidad de cigarrillos al dia"
                   ></v-text-field>
                   <v-text-field
                     v-model="typeSmoke"
-                    v-if="smoking == 'smokYes'"
+                    v-if="smoking == 'Si'"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     class="mt-n3"
@@ -327,7 +326,7 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="alcYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio color="#b380ff" label="No" value="alcNo"></v-radio>
                   </v-radio-group>
@@ -336,13 +335,13 @@
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="alcoholism == 'alcYes'"
+                    v-if="alcoholism == 'Si'"
                     outlined
                     placeholder="Frecuencia semanal"
                   ></v-text-field>
                   <v-text-field
                     v-model="typeAlcohol"
-                    v-if="alcoholism == 'alcYes'"
+                    v-if="alcoholism == 'Si'"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     class="mt-n3"
@@ -360,22 +359,22 @@
                     <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
 
-                  <p class="cuestion mt-n4 mb-n3">Dieta</p>
-                  <v-radio-group
+                  <p class="cuestion mt-n4">Dieta</p>
+                <!--   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="dieta"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="yes"></v-radio>
                     <v-radio color="#b380ff" label="No" value="no"></v-radio>
-                  </v-radio-group>
+                  </v-radio-group> -->
                   <v-autocomplete
                     v-model="diet"
                     :items="dietas"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="dieta == 'yes'"
+                  
                     outlined
                     placeholder="Seleccione el tipo de dieta"
                   ></v-autocomplete>
@@ -386,7 +385,7 @@
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
               block
-              @click="overlay = !overlay"
+             @click="add"
               v-on:click="add"
               height="50px"
               class="white--text save mb-5"
@@ -551,37 +550,50 @@ export default {
             },
           }
         )
-        .then((res) => {
-          location.reload()
-        })
+        .then(
+          this.overlay=true,
+         this.sportstatus(),
+          this.statusSmoking(),
+          this.statusAlcohol(),
+          this.statusDiet()
+        )
     },
 
     sportstatus() {
       if (this.type_activity === null) {
         this.sports = 'sportNo'
+      }else if(this.sports==="No"){
+        this.type_activity="No"
+        this.days_week="No"
       } else {
-        this.sports = 'sportYes'
+        this.sports = 'Si'
       }
     },
     statusSmoking() {
       if (this.cigarettes === null) {
-        this.smoking = 'smokNo'
+        this.smoking = 'No'
+      }else if(this.smoking==="No"){
+        this.cigarettes="No"
+        this.typeSmoke="No"
       } else {
-        this.smoking = 'smokYes'
+        this.smoking = 'Si'
       }
     },
     statusAlcohol() {
       if (this.alcohol === null) {
-        this.alcoholism = 'alcNo'
+        this.alcoholism = 'No'
+      }else if(this.alcoholism==="No"){
+        this.typeAlcohol="No"
+        this.alcohol="No"
       } else {
-        this.alcoholism = 'alcYes'
+        this.alcoholism = 'Si'
       }
     },
     statusDiet() {
       if (this.diet === null) {
-        this.dieta = 'no'
+        this.dieta = 'No'
       } else {
-        this.dieta = 'yes'
+        this.dieta = 'Si'
       }
     },
   },
