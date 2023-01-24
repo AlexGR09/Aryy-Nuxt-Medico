@@ -194,7 +194,6 @@ export default {
           this.date = res.data.data[0].vacination[0].application_date
           this.dose = res.data.data[0].vacination[0].dose
           this.lot_number = res.data.data[0].vacination[0].lot_number
-        
           this.lenght = res.data.data.lenght
         })
     },
@@ -214,7 +213,7 @@ export default {
             },
           })
           .then(
-        location.reload()
+      /*   location.reload() */
       )
     },
   },

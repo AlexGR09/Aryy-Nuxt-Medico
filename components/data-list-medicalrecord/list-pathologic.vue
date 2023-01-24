@@ -52,7 +52,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.heart_diseases!='No'"
+    v-if="this.heart_diseases=null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -120,6 +120,7 @@
     </v-list-item>
 
     <v-list-item
+    v-if="this.blood_diseases!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -130,7 +131,7 @@
       <v-list-item-content>
         <v-list-item-title>Enfermedades de la sangre</v-list-item-title>
         <v-list-item-subtitle
-          >noc</v-list-item-subtitle
+          >{{blood_diseases}}</v-list-item-subtitle
         >
       </v-list-item-content>
     </v-list-item>
@@ -279,11 +280,13 @@ export default {
           }
         )
         .then((res) => {
+          console.log(res)
           this.blood_pressure = res.data.data.blood_pressure
           this.blood_transfusions = res.data.data.blood_transfusions
           this.cancer = res.data.data.cancer
           this.diabetes = res.data.data.diabetes
           this.ets = res.data.data.ets
+          this.blood_diseases = res.data.data.blood_diseases
           this.gastrointestinal_pathologies = res.data.data.gastrointestinal_pathologies
           this.heart_diseases = res.data.data.heart_diseases
           this.hepatitis = res.data.data.hepatitis
@@ -293,7 +296,7 @@ export default {
           this.thyroid_diseases = res.data.data.thyroid_diseases
           this.trauma = res.data.data.trauma
         this.msg=res.data.msg
-        }).catch((error) => {console.log(error) })
+        })
     },
   },
 }

@@ -385,8 +385,8 @@
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
               block
-             @click="add"
-              v-on:click="add"
+             @click="update"
+              v-on:click="update"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -404,8 +404,8 @@
     </div>
     <v-divider class="mt-n1"></v-divider>
      <p v-if="!diet">Sin datos registrados</p>
-    <list-nonpathologic v-else/>
-
+    <!-- <list-nonpathologic v-else/> -->
+<list-nonpathologic/>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
@@ -416,9 +416,10 @@
   </v-card-text>
 </template>
   <script>
+import ListNonpathologic from '~/components/data-list-medicalrecord/list-nonpathologic.vue'
 export default {
   layout: 'medicalRecord',
-  components: {},
+  components: {ListNonpathologic},
   data() {
     return {
       sportsradio: '',

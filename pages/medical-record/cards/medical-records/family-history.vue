@@ -5,7 +5,7 @@
     <div class="mb-2 mt-n11 d-flex justify-end">
 
         <!-- agregar informacion existente | Genesis -->
-        <v-dialog scrollable v-model="dialog"  max-width="600px">
+        <v-dialog  scrollable v-model="dialog"  max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
@@ -28,27 +28,29 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="diabYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="diabNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="diabetes == 'diabYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="diabetes_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="diabetes == 'diabYes'"
+                    v-if="diabetes == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="diabetes_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="diabetes == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -62,23 +64,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="disYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="disNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="disease == 'disYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="diseases_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="disease == 'disYes'"
+                    v-if="disease == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="diseases_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="disease == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -94,23 +98,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="preYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="preNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="pressure == 'preYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="pressure_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="pressure == 'preYes'"
+                    v-if="pressure == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="pressure_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="pressure == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -124,23 +130,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="tirYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="tirNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="thyroid == 'tirYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="thyroid_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="thyroid == 'tirYes'"
+                    v-if="thyroid == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="thyroid_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="thyroid == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -154,27 +162,27 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="bloodYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="bloodNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="blood == 'bloodYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="blood == 'bloodYes'"
+                    v-if="blood == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="blood == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -188,23 +196,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="canYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="canNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="cancer == 'canYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="cancer_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="cancer == 'canYes'"
+                    v-if="cancer == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="cancer_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="cancer == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -218,23 +228,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="kidYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="kidNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="kidney == 'kidYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="kidney_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="kidney == 'kidYes'"
+                    v-if="kidney == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="kidney_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="kidney == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -245,7 +257,7 @@
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
             block
-            @click="overlay = !overlay"
+            @click="add"
                 height="50px"
                 class="white--text save mb-5"
                 color="#7900ff"
@@ -266,7 +278,7 @@
 
 
       <!-- editar informacion existente | Genesis -->
-      <v-dialog scrollable v-model="dialog"  max-width="600px">
+      <v-dialog  scrollable v-model="edit"  max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -293,27 +305,29 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="diabYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="diabNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="diabetes == 'diabYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="diabetes_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="diabetes == 'diabYes'"
+                    v-if="diabetes == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="diabetes_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="diabetes == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -327,23 +341,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="disYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="disNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="disease == 'disYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="diseases_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="disease == 'disYes'"
+                    v-if="disease == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="diseases_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="disease == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -359,23 +375,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="preYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="preNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="pressure == 'preYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="pressure_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="pressure == 'preYes'"
+                    v-if="pressure == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="pressure_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="pressure == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -389,23 +407,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="tirYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="tirNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="thyroid == 'tirYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="thyroid_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="thyroid == 'tirYes'"
+                    v-if="thyroid == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="thyroid_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="thyroid == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -419,27 +439,27 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="bloodYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="bloodNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="blood == 'bloodYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="blood == 'bloodYes'"
+                    v-if="blood == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="blood == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -453,23 +473,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="canYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="canNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="cancer == 'canYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="cancer_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="cancer == 'canYes'"
+                    v-if="cancer == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="cancer_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="cancer == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -483,23 +505,25 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="kidYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="kidNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
-                  <v-autocomplete
-                    color="#7900ff"
-                    class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="kidney == 'kidYes'"
-                    outlined
-                    placeholder="Selecciona quién de tu familia"
-                  ></v-autocomplete>
                   <v-text-field
+                  v-model="kidney_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="kidney == 'kidYes'"
+                    v-if="kidney == 'Si'"
+                    outlined
+                    placeholder="Selecciona quién(es) de tu familia"
+                  ></v-text-field>
+                  <v-text-field
+                  v-model="kidney_type"
+                    color="#7900ff"
+                    class="mt-n3"
+                    style="font-family: Montserrat"
+                    v-if="kidney == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -510,7 +534,8 @@
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
             block
-            @click="overlay = !overlay"
+            @click="update"
+            v-on:click="update"
                 height="50px"
                 class="white--text save mb-5"
                 color="#7900ff"
@@ -530,25 +555,7 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p v-if="!family[0]">Sin datos registrados</p>
-    <v-list-item
-      v-for="famil in family"
-      :key="famil"
-      v-else
-      style="font-family: Montserrat"
-      class="ml-n7 mt-n1 lista"
-      two-line
-    >
-      <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title>Cirugias previas</v-list-item-title>
-        <v-list-item-subtitle
-          >{{ famil.name }} en {{ famil.date }}</v-list-item-subtitle
-        >
-      </v-list-item-content>
-    </v-list-item>
+   <list-familyhistory/>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
@@ -559,13 +566,16 @@
   </v-card-text>
 </template>
   <script>
+  import listFamilyhistory from '~/components/data-list-medicalrecord/list-familyhistory.vue'
+
 export default {
   layout: 'medicalRecord',
-  components: {},
+  components: {listFamilyhistory},
   data() {
     return {
       overlay: false,
       dialog: false,
+      edit:'',
       diabetes: '',
       family: [],
       disease: '',
@@ -574,6 +584,19 @@ export default {
       blood: '',
       cancer: '',
       kidney: '',
+
+      diabetes_family:'',
+      diabetes_type:'',
+      diseases_family:'',
+      diseases_type:'',
+      pressure_family:'',
+      pressure_type:'',
+      thyroid_family:'',
+      thyroid_type:'',
+      cancer_family:'',
+      cancer_type:'',
+      kidney_family:'',
+      kidney_type:'',
     }
   },
   watch: {
@@ -584,6 +607,218 @@ export default {
         }, 2000)
     },
   },
+  mounted() {
+    this.datos()
+  },
+  methods: {
+    /* obtener informacion | Genesis */
+    datos() {
+      this.$axios
+        .get(
+          `api/v1/medical-history/physician/hereditary-background/patient/${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          this.diabetes_family = res.data.data.diabetes.family
+          this.diabetes_type = res.data.data.diabetes.type
+          this.diseases_family = res.data.data.heart_diseases.family
+          this.diseases_type = res.data.data.heart_diseases.type
+          this.pressure_family = res.data.data.blood_pressure.family
+          this.pressure_type = res.data.data.blood_pressure.type
+          this.thyroid_family = res.data.data.thyroid_diseases.family
+          this.thyroid_type = res.data.data.thyroid_diseases.type
+          this.cancer_family = res.data.data.cancer.family
+          this.cancer_type = res.data.data.cancer.type
+          this.kidney_family = res.data.data.kidney_stones.family
+          this.kidney_type = res.data.data.kidney_stones.type
+
+
+        }).then(
+          this.diabetesStatus(),
+          this.diseasesStatus(),
+          this.pressureStatus(),
+          this.thyroidStatus(),
+          this.cancerStatus(),
+          this.kidneyStatus()
+        )
+    },
+    
+   /*  agregar informacion | Genesis */
+    add() {
+      this.$axios
+        .post(
+          'api/v1/medical-history/physician/hereditary-background/',
+          {
+            patient_id: this.$route.params.medicalRecord,
+            diabetes: 
+              {
+                family: this.diabetes_family,
+                type: this.diabetes_type,
+              },
+              heart_diseases: 
+              {
+                family: this.diseases_family,
+                type: this.diseases_type,
+              },
+              blood_pressure: 
+              {
+                family: this.pressure_family,
+                type: this.pressure_type,
+              },
+              thyroid_diseases: 
+              {
+                family: this.thyroid_family,
+                type: this.thyroid_type,
+              },
+              cancer: 
+              {
+                family: this.cancer_family,
+                type: this.cancer_type,
+              },
+              kidney_stones: 
+              {
+                family: this.kidney_family,
+                type: this.kidney_type,
+              },
+          
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then(
+          this.overlay=true,
+          this.diabetesStatus(),
+          this.diseasesStatus(),
+          this.pressureStatus(),
+          this.thyroidStatus(),
+          this.cancerStatus(),
+          this.kidneyStatus()
+        )
+    },
+
+     /*  actualizar informacion | Genesis */
+     update() {
+      this.$axios
+        .put(
+          `api/v1/medical-history/physician/hereditary-background/patient/${this.$route.params.medicalRecord}`,
+          {
+            patient_id: this.$route.params.medicalRecord,
+            diabetes: 
+              {
+                family: this.diabetes_family,
+                type: this.diabetes_type,
+              },
+              heart_diseases: 
+              {
+                family: this.diseases_family,
+                type: this.diseases_type,
+              },
+              blood_pressure: 
+              {
+                family: this.pressure_family,
+                type: this.pressure_type,
+              },
+              thyroid_diseases: 
+              {
+                family: this.thyroid_family,
+                type: this.thyroid_type,
+              },
+              cancer: 
+              {
+                family: this.cancer_family,
+                type: this.cancer_type,
+              },
+              kidney_stones: 
+              {
+                family: this.kidney_family,
+                type: this.kidney_type,
+              },
+          
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then(
+          this.overlay=true,
+          this.diabetesStatus(),
+          this.diseasesStatus(),
+          this.pressureStatus(),
+          this.thyroidStatus(),
+          this.cancerStatus(),
+          this.kidneyStatus()
+        )
+    },
+    diabetesStatus() {
+      if (this.diabetes_family === null) {
+        this.diabetes = 'No'
+      }else if(this.diabetes==="No"){
+        this.diabetes_family="No"
+        this.diabetes_type="No"
+      } else {
+        this.diabetes = 'Si'
+      }
+    },
+    diseasesStatus(){
+      if (this.diseases_family === null) {
+        this.disease = 'No'
+      }else if(this.disease==="No"){
+        this.diseases_family="No"
+        this.diseases_type="No"
+      } else {
+        this.disease = 'Si'
+      }
+    },
+    pressureStatus(){
+      if (this.pressure_family === null) {
+        this.pressure = 'No'
+      }else if(this.pressure==="No"){
+        this.pressure_family="No"
+        this.pressure_type="No"
+      } else {
+        this.pressure = 'Si'
+      }
+    },
+    thyroidStatus(){
+      if (this.thyroid_family === null) {
+        this.thyroid = 'No'
+      }else if(this.thyroid==="No"){
+        this.thyroid_family="No"
+        this.thyroid_type="No"
+      } else {
+        this.thyroid = 'Si'
+      }
+    },
+    cancerStatus(){
+      if (this.cancer_family === null) {
+        this.cancer = 'No'
+      }else if(this.cancer==="No"){
+        this.cancer_family="No"
+        this.cancer_type="No"
+      } else {
+        this.cancer = 'Si'
+      }
+    },
+    kidneyStatus(){
+      if (this.kidney_family === null) {
+        this.kidney = 'No'
+      }else if(this.kidney==="No"){
+        this.kidney_family="No"
+        this.kidney_type="No"
+      } else {
+        this.kidney = 'Si'
+      }
+    },
+  }
 }
 </script>
   <style scoped>

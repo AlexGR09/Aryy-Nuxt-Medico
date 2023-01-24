@@ -40,7 +40,7 @@
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
-                  <p class="cuestion mt-n4 mb-n3">Transfusiones {{ transfusion }}</p>
+                  <p class="cuestion mt-n4 mb-n3">Transfusiones</p>
                   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="transfusion"
@@ -199,7 +199,7 @@
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="blood"
                     row
                   >
                     <v-radio
@@ -214,11 +214,11 @@
                     ></v-radio>
                     </v-radio-group>
                     <v-text-field
-                  v-model="cancer"
+                  v-model="blood_diseases"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="cancerradio == 'Si'"
+                    v-if="blood == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -396,8 +396,6 @@
                     placeholder="Escriba aquí"
                   ></v-text-field>
                 </v-col>
-
-               
               </v-row>
             </v-container>
           </v-card-text>
@@ -462,7 +460,7 @@
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
-                  <p class="cuestion mt-n4 mb-n3">Transfusiones {{ transfusion }}</p>
+                  <p class="cuestion mt-n4 mb-n3">Transfusiones </p>
                   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="transfusion"
@@ -515,7 +513,7 @@
                     placeholder="Escriba aquí"
                   ></v-text-field>
                   <p class="cuestion mt-n4 mb-n3">Cardiopatías</p>
-                  <v-radio-group
+             <v-radio-group
                     style="font-family: Montserrat"
                     v-model="disease"
                     row
@@ -621,7 +619,7 @@
                   </p>
                   <v-radio-group
                     style="font-family: Montserrat"
-                    v-model="disease"
+                    v-model="blood"
                     row
                   >
                     <v-radio
@@ -636,11 +634,11 @@
                     ></v-radio>
                     </v-radio-group>
                     <v-text-field
-                  v-model="cancer"
+                  v-model="blood_diseases"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="cancerradio == 'Si'"
+                    v-if="blood == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -855,15 +853,18 @@
   </v-card-text>
 </template>
 <script>
+import listPathologic from '~/components/data-list-medicalrecord/list-pathologic.vue'
 export default {
   layout: 'medicalRecord',
-  components: {},
+  components: {listPathologic},
   data() {
     return {
+      blood_diseases: '',
       overlay: false,
       dialog: false,
       editt: false,
       surgery: '',
+      blood:'',
       diabetesradio: '',
       cancerradio: '',
       transfusion: '',
@@ -895,7 +896,7 @@ export default {
     this.datos()
   },
   methods: {
-    /* obtener informacion | Genesis */
+    /* actualizar informacion | Genesis */
     datos() {
       this.$axios
         .get(
@@ -910,6 +911,7 @@ export default {
           this.blood_pressure = res.data.data.blood_pressure
           this.blood_transfusions = res.data.data.blood_transfusions
           this.cancer = res.data.data.cancer
+          this.blood_diseases = res.data.data.blood_diseases
           this.diabetes = res.data.data.diabetes
           this.ets = res.data.data.ets
           this.gastrointestinal_pathologies = res.data.data.gastrointestinal_pathologies
@@ -936,13 +938,15 @@ export default {
           this.respiratoryStatus()
           this.gastrointestinalStatus()
           this.etsStatus()
+          this.bloodStatus()
         })
     },
 
-     add() {
+      add() {
       this.$axios
-        .post('api/v1/medical-history/physician/pathological-background/', {
-          patient_id: this.$route.params.medicalRecord,
+        .post(
+          'api/v1/medical-history/physician/pathological-background/', {
+            patient_id: this.$route.params.medicalRecord,
           previous_surgeries: this.previous_surgeries,
           blood_transfusions: this.blood_transfusions,
           diabetes: this.diabetes,
@@ -950,6 +954,7 @@ export default {
           blood_pressure: this.blood_pressure,
           thyroid_diseases: this.thyroid_diseases,
           cancer: this.cancer,
+          blood_diseases: this.blood_diseases,
           kidney_stones: this.kidney_stones,
           hepatitis: this.hepatitis,
           trauma: this.trauma,
@@ -976,6 +981,51 @@ export default {
           this.respiratoryStatus(),
           this.gastrointestinalStatus(),
           this.etsStatus(),
+          this.bloodStatus(),
+          this.overlay = true,
+      )
+    },
+
+    update() {
+      this.$axios
+        .put(
+          `api/v1/medical-history/physician/pathological-background/patient/${this.$route.params.medicalRecord}`, {
+       
+          previous_surgeries: this.previous_surgeries,
+          blood_transfusions: this.blood_transfusions,
+          diabetes: this.diabetes,
+          heart_diseases: this.heart_diseases,
+          blood_pressure: this.blood_pressure,
+          thyroid_diseases: this.thyroid_diseases,
+          cancer: this.cancer,
+          blood_diseases: this.blood_diseases,
+          kidney_stones: this.kidney_stones,
+          hepatitis: this.hepatitis,
+          trauma: this.trauma,
+          respiratory_diseases: this.respiratory_diseases,
+          ets: this.ets,
+          gastrointestinal_pathologies: this.gastrointestinal_pathologies,
+      
+        },
+        {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          })
+          .then(
+            this.surgeriesStatus(),
+          this.transfusionsStatus(),
+          this.diabetesStatus(),
+          this.diseaseStatus(),
+          this.cancerStatus(),
+          this.thyroidStatus(),
+          this.kidneyStatus(),
+          this.hepatitisStatus(),
+          this.traumaStatus(),
+          this.respiratoryStatus(),
+          this.gastrointestinalStatus(),
+          this.etsStatus(),
+          this.bloodStatus(),
           this.overlay = true,
       )
     },
@@ -1019,6 +1069,16 @@ export default {
       }
       else{
         this.disease="Si"
+      }
+    },
+    bloodStatus(){
+      if(this.blood_diseases === "No"){
+        this.blood="No"
+      }else if(this.diseases==="No"){
+        this.blood_diseases="No"
+      }
+      else{
+        this.blood="Si"
       }
     },
     cancerStatus(){

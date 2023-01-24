@@ -3,15 +3,14 @@
   <v-card-text>
     <p class="titulo">Alergias</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
-    <!-- agregar información nueva | Genesis -->
-    <v-dialog v-if="!food" scrollable v-model="dialogg" max-width="600px">
+      <!-- agregar información nueva | Genesis -->
+      <v-dialog v-if="!food" scrollable v-model="dialogg" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-       
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
-          </v-btn> 	
+          </v-btn>
         </template>
-        <v-card  max-height="600px">
+        <v-card max-height="600px">
           <v-card-title>
             <span>ALERGIAS</span>
           </v-card-title>
@@ -25,19 +24,11 @@
                     v-model="alim"
                     row
                   >
-                    <v-radio
-                      color="#b380ff"
-                      label="Si"
-                      value="alimY"
-                    ></v-radio>
-                    <v-radio
-                      color="#b380ff"
-                      label="No"
-                      value="alimN"
-                    ></v-radio>
+                    <v-radio color="#b380ff" label="Si" value="alimY"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="alimN"></v-radio>
                   </v-radio-group>
                   <v-text-field
-                  color="#7900ff"
+                    color="#7900ff"
                     v-model="food"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -63,7 +54,7 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
-                  color="#7900ff"
+                    color="#7900ff"
                     v-model="drugss"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -85,7 +76,7 @@
                     <v-radio color="#b380ff" label="No" value="ambNo"></v-radio>
                   </v-radio-group>
                   <v-text-field
-                  color="#7900ff"
+                    color="#7900ff"
                     v-model="environmental"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -99,9 +90,8 @@
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
-            block
-            @click="add"
-           
+              block
+              @click="add"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -109,22 +99,17 @@
               >Guardar cambios</v-btn
             >
             <v-overlay :value="overlay">
-                <v-alert
-                  class="rounded-xl"
-                  icon="mdi-check-circle"
-                  color="green"
-                  >Datos actualizados correctamente.</v-alert
-                >
-              </v-overlay>
+              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
+                >Datos actualizados correctamente.</v-alert
+              >
+            </v-overlay>
           </v-card-actions>
         </v-card>
       </v-dialog>
 
-
-     <!--  Editar información registrada | Genesis -->
+      <!--  Editar información registrada | Genesis -->
       <v-dialog v-else scrollable v-model="dialog" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-       
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
               width="24"
@@ -133,7 +118,7 @@
             />
           </v-btn>
         </template>
-        <v-card  max-height="600px">
+        <v-card max-height="600px">
           <v-card-title>
             <span>ALERGIAS</span>
           </v-card-title>
@@ -157,9 +142,9 @@
                       label="No"
                       value="alimNo"
                     ></v-radio>
-                  </v-radio-group>{{ food }} y {{alimentarias}}
+                  </v-radio-group>
                   <v-text-field
-                  color="#7900ff"
+                    color="#7900ff"
                     v-model="food"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -185,7 +170,7 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
-                  color="#7900ff"
+                    color="#7900ff"
                     v-model="drugss"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -207,7 +192,7 @@
                     <v-radio color="#b380ff" label="No" value="ambNo"></v-radio>
                   </v-radio-group>
                   <v-text-field
-                  color="#7900ff"
+                    color="#7900ff"
                     v-model="environmental"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -221,9 +206,9 @@
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
-            block
-            @click="overlay = !overlay"
-            v-on:click="update"
+              block
+              @click="overlay = !overlay"
+              v-on:click="update"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -231,13 +216,10 @@
               >Guardar cambios</v-btn
             >
             <v-overlay :value="overlay">
-                <v-alert
-                  class="rounded-xl"
-                  icon="mdi-check-circle"
-                  color="green"
-                  >Datos actualizados correctamente.</v-alert
-                >
-              </v-overlay>
+              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
+                >Datos actualizados correctamente.</v-alert
+              >
+            </v-overlay>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -245,62 +227,53 @@
     <v-divider class="mt-n1"></v-divider>
 
     <p v-if="!this.idif">Sin alergías conocidas</p>
-    <div v-else >
-    <v-list-item
-      
-      style="font-family: Montserrat"
-      class="ml-n7 mt-n1 lista"
-      two-line
-    >
-      <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title>Fármacos</v-list-item-title>
-        <v-list-item-subtitle
-          >{{ drugss }}</v-list-item-subtitle
-        >
-      </v-list-item-content>
-    </v-list-item>
-    <v-list-item
-  
-      style="font-family: Montserrat"
-      class="ml-n7 mt-n5 lista"
-      two-line
-    >
-      <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title>Factores ambientales</v-list-item-title>
-        <v-list-item-subtitle
-          >{{ environmental }} </v-list-item-subtitle
-        >
-      </v-list-item-content>
-    </v-list-item>
-    <v-list-item
-  
-      style="font-family: Montserrat"
-      class="ml-n7 mt-n5 lista"
-      two-line
-    >
-      <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title>Alimentarias</v-list-item-title>
-        <v-list-item-subtitle
-          >{{ food}} </v-list-item-subtitle
-        >
-      </v-list-item-content>
-    </v-list-item> 
-  </div>
+    <div v-else>
+      <v-list-item
+        style="font-family: Montserrat"
+        class="ml-n7 mt-n1 lista"
+        two-line
+      >
+        <v-list-item-avatar class="mr-n1">
+          <v-icon color="green">mdi-check-circle</v-icon>
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title>Fármacos</v-list-item-title>
+          <v-list-item-subtitle>{{ drugss }}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item
+        style="font-family: Montserrat"
+        class="ml-n7 mt-n5 lista"
+        two-line
+      >
+        <v-list-item-avatar class="mr-n1">
+          <v-icon color="green">mdi-check-circle</v-icon>
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title>Factores ambientales</v-list-item-title>
+          <v-list-item-subtitle>{{ environmental }} </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item
+        style="font-family: Montserrat"
+        class="ml-n7 mt-n5 lista"
+        two-line
+      >
+        <v-list-item-avatar class="mr-n1">
+          <v-icon color="green">mdi-check-circle</v-icon>
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title>Alimentarias</v-list-item-title>
+          <v-list-item-subtitle>{{ food }} </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+    </div>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
         width="20"
         :src="require('@/assets/icons/icon_timestamp.svg')"
-      />Editado el {{time}}
+      />Editado el {{ time }}
     </p>
   </v-card-text>
 </template>
@@ -328,7 +301,6 @@ export default {
       food_allergy: '',
       time: '',
       idif: '',
-    
     }
   },
   watch: {
@@ -342,18 +314,23 @@ export default {
   methods: {
     alergiass() {
       this.$axios
-        .get(`api/v1/medical-records/physician/allergies/patient/${this.$route.params.medicalRecord}`, {
-          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-        })
+        .get(
+          `api/v1/medical-records/physician/allergies/patient/${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
         .then((res) => {
           this.idif = res.data.data.id
           this.drugss = res.data.data.drug_allergy[0]
           this.environmental = res.data.data.environmental_allergy[0]
           this.food = res.data.data.food_allergy[0]
           this.time = res.data.data.created_at
-         this.alergiasalimentarias()
-         this.alergiasambientales()
-         this.alergiasfarmacos()
+          this.alergiasalimentarias()
+          this.alergiasambientales()
+          this.alergiasfarmacos()
         })
     },
 
@@ -363,24 +340,20 @@ export default {
           'api/v1/medical-records/physician/allergies/patient',
           {
             patient_id: this.$route.params.medicalRecord,
-            food_allergy:[
-              this.food,
-            ],
-            drug_allergy:[
-              this.drugss,
-            ],
-            environmental_allergy:[
-              this.environmental,
-            ]
+            food_allergy: [this.food],
+            drug_allergy: [this.drugss],
+            environmental_allergy: [this.environmental],
           },
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
           }
-        ).then((res) => {
-          this.overlay=true
+        )
+        .then((res) => {
+          this.overlay = true
           this.alergiasalimentarias()
+          this.$router.go(this.$router.currentRoute)
         })
     },
     update() {
@@ -389,53 +362,47 @@ export default {
           `api/v1/medical-records/physician/allergies/patient/${this.$route.params.medicalRecord}`,
           {
             patient_id: this.$route.params.medicalRecord,
-            food_allergy:[
-              this.food,
-            ],
-            drug_allergy:[
-              this.drugss,
-            ],
-            environmental_allergy:[
-              this.environmental,
-            ]
+            food_allergy: [this.food],
+            drug_allergy: [this.drugss],
+            environmental_allergy: [this.environmental],
           },
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
           }
-        )  .then((res) => {
-         this.alergiasalimentarias()
-       
+        )
+        .then((res) => {
+          this.alergiasalimentarias()
+          this.$router.go(this.$router.currentRoute)
         })
     },
-    
-    alergiasalimentarias(){
-    if (this.food==="N/A"){
-      this.alimentarias='alimNo'
-    }
-    else{
-      this.alimentarias='alimYes'
-    }
+
+    alergiasalimentarias() {
+      if (this.food === 'N/A') {
+        this.alimentarias = 'alimNo'
+      } else {
+        this.alimentarias = 'alimYes'
+      }
+    },
+
+    alergiasambientales() {
+      if (this.environmental === 'N/A') {
+        this.ambientales = 'ambNo'
+      } else {
+        this.ambientales = 'ambYes'
+      }
+    },
+    alergiasfarmacos() {
+      if (this.drugss === 'N/A') {
+        this.farmacos = 'farmNo'
+      } else {
+        this.farmacos = 'farmYes'
+      }
+    },
   },
 
-  alergiasambientales(){
-    if (this.environmental==="N/A"){
-      this.ambientales='ambNo'
-    }else{
-      this.ambientales='ambYes'
-    }
-  },
-  alergiasfarmacos(){
-    if (this.drugss==="N/A"){
-      this.farmacos='farmNo'
-    }else{
-      this.farmacos='farmYes'
-    }
-  },
-  },
- 
-  mounted(){
+  mounted() {
     this.alergiass()
   },
 }
