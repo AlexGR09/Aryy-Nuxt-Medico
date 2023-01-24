@@ -133,7 +133,7 @@
                       label="Hipotensión"
                       value="Hipotension"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="Si" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
 
                   <p class="cuestion mt-n4 mb-n3">
@@ -553,7 +553,7 @@
                       label="Hipotensión"
                       value="Hipotension"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="Si" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
 
                   <p class="cuestion mt-n4 mb-n3">
