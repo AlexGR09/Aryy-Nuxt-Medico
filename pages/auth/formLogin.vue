@@ -15,12 +15,12 @@
         ayuda de aryy.
       </p>
       <!-- ---- Sección de vista iniciar sesión y registrar| Genesis ---- -->
-      <v-tabs class="tabs" color="#7900ff" v-model="tabs">
+      <v-tabs  v-model="tabs" class="tabs" color="#7900ff">
         <v-tab class="tabs">Iniciar sesión</v-tab>
         <v-tab class="tabs">
           <!--    menu para mostrar el tipo de registro segun tipo de usuario | Genesis -->
           <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
+            <template #activator="{ on, attrs }">
               <v-btn
                 v-on="on"
                 v-bin="attrs"
@@ -62,6 +62,7 @@
                     color="#b380ff"
                     class="textfield mb-8"
                   ></v-text-field>
+                
                   <!-- CAMPO DE CONTRASEÑA | LUIS REYES  -->
                   <v-text-field
                     v-model="password"
@@ -114,7 +115,6 @@
           </v-col>
         </v-tab-item>
       </v-tabs-items>
-
     </div>
   </v-card>
  
@@ -126,7 +126,7 @@ export default {
   /* Correcciones | Luis Reyes  */
   data() {
     return {
-      email: '',
+      email: ' ',
       password: '',
       access_token: '',
       tabs: 2,

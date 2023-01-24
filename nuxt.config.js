@@ -52,6 +52,12 @@ export default {
   auth:{
     
   },
+/* 
+  router: {
+
+    middleware: ['authenticated']
+
+  }, */
 
   styleResources: {
     scss: ['./assets/scss/*.scss']

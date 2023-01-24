@@ -17,6 +17,7 @@
             <v-col cols="12" sm="6" md="4" xl="12">
               <p>Detalles del parto</p>
               <v-text-field
+                v-model="delivery_details"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -25,6 +26,7 @@
 
               <p class="mt-n3">Nombre del bebé</p>
               <v-text-field
+                v-model="baby_name"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -33,6 +35,7 @@
 
               <p class="mt-n3">Peso al nacer</p>
               <v-text-field
+                v-model="baby_weight"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -41,6 +44,7 @@
 
               <p class="mt-n3">Salud del bebé</p>
               <v-text-field
+                v-model="baby_health"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -50,6 +54,7 @@
               <p class="mt-n3 mb-n2">Tipo de alimentación</p>
               <v-radio-group style="font-family: Montserrat" v-model="alim" row>
                 <v-radio
+  
                   color="#b380ff"
                   label="Solo pecho"
                   value="alim1"
@@ -65,15 +70,9 @@
                   value="Alim3"
                 ></v-radio>
               </v-radio-group>
-              <v-text-field
-                class="mt-n3"
-                style="font-family: Montserrat"
-                outlined
-                placeholder="Escriba aquí"
-              ></v-text-field>
-
               <p class="mt-n3">Estado emocional</p>
               <v-text-field
+                v-model="emotonial_state"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -90,6 +89,7 @@
           v-on:click="update"
           color="#7900ff"
           large
+          @click="postnatalPost"
           >Guardar cambios</v-btn
         >
         <v-btn
@@ -139,7 +139,47 @@ export default {
       ambientales: '',
       cons: '',
       support: '',
+      delivery_detail:'',
+      baby_name: '',
+      baby_weight: '',
+      baby_health: '',
+      type_of_feeding:'', 
+      emotonial_state: ''
+
     }
+  },
+
+  methods: {
+    postnatalPost() {
+      this.$axios
+        .post('api/v1/physician/medical-history/1/postnatal-background',{
+          delivery_details: this.delivery_details,
+          baby_name: this.baby_name,
+          baby_weight: this.baby_weight,
+          baby_health: this.baby_health ,
+          type_of_feeding: this.type_of_feeding,
+          emotonial_state: this.emotonial_state
+        },
+        {
+          headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),}
+        })
+    },
+    postnatalGet() {
+      this.$axios
+        .get(`api/v1/physician/medical-history/${this.$route.params.medicalRecord}/postnatal-background`, {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          this.delivery_details = res.data.data.delivery_details
+          this.baby_name = res.data.data.baby_name
+          this.baby_weight = res.data.data.baby_weight
+          this.type_of_feeding = res.data.data.type_of_feeding
+          this.emotonial_state = res.data.data.emotonial_state
+        })
+    },
+  },
+  mounted() {
+    this.postnatalGet()
   },
 }
 </script>

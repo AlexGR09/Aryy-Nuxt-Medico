@@ -4,15 +4,20 @@
 <!--     <v-card-text>
       <p class="text-h3 text_welcome" color="#4812d7">Bienvenido,</p>
       <p class="text-h4 text_welcome">Dr. {{ facilities }}</p>
-      <div class="">
-        Aún no ha terminado de configurar su perfil de,
-        <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link>
-      </div>
+
     </v-card-text>
     <v-card-subtitle class="pa-3 mt-n2 mb-n10">
       <H1 class="mb-5">CONSULTAS</H1></v-card-subtitle
     >
     <br /> -->
+
+        <v-toolbar flat color="transparent">
+          <v-toolbar-title>Dr. {{ facilities }}</v-toolbar-title>
+        </v-toolbar> 
+        <div class="">
+        Aún no ha terminado de configurar su perfil de,
+        <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link>
+      </div>
     <v-row>
       <v-col cols="12" md="4">
         <dashboard-citas />
@@ -33,7 +38,7 @@
             <v-date-picker  v-model="picker"  locale="mx-es" width="350" no-title prev-icon='$prev' class="justify-center calendar"></v-date-picker>
           </v-row>
         </v-card>
-        
+          
       </v-col>
 
     </v-row>
@@ -42,6 +47,7 @@
 <script>
 import nextConsultation from '~/components/dashboard/next-consultation.vue'
 export default {
+
   name: "Default",
   components: { nextConsultation },
   data() {
