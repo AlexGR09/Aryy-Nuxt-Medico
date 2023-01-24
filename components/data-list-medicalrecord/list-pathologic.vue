@@ -249,6 +249,7 @@ export default {
   data() {
     return {
         blood_pressure:'',
+        blood_diseases: '',
         blood_transfusions:'',
         cancer:'',
         diabetes:'',

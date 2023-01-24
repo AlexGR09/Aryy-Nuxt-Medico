@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p v-if="!this.pressure_family" >Sin datos registrados</p>
-    <div v-else>
+    <div v-if="this.null!=null">
       <v-list-item
       v-if="this.diabetes_family!='No'"
         style="font-family: Montserrat"
@@ -12,7 +11,7 @@
           <v-icon color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title>Diabetes</v-list-item-title>
+          <v-list-item-title>Diabetes |{{ null }}|</v-list-item-title>
           <v-list-item-subtitle
             >{{ diabetes_family }} • {{ diabetes_type }}</v-list-item-subtitle
           >
@@ -81,7 +80,7 @@
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Enfermedades de la sangre</v-list-item-title>
-          <v-list-item-subtitle>{{blood_family}} • Tipo</v-list-item-subtitle>
+          <v-list-item-subtitle>{{blood_family}} • {{blood_type}}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -117,6 +116,7 @@
         </v-list-item-content>
       </v-list-item>
     </div>
+    <p  v-else>Sin datos registrados</p>
   </div>
 </template>
 <script>
@@ -138,6 +138,7 @@ export default {
       kidney_type: '',
       blood_family:'',
       blood_type: '',
+      null:'',
     }
   },
   mounted() {
@@ -157,6 +158,7 @@ export default {
         )
         .then((res) => {
           console.log(res)
+          this.null=res.data.data.blood_diseases
           this.blood_family=res.data.data.blood_diseases.type
           this.blood_type=res.data.data.blood_diseases.family
           this.diabetes_family = res.data.data.diabetes.family
