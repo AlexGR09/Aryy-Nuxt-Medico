@@ -219,7 +219,7 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4" xl="12">
-                  <p class="cuestion mb-n3">EditarActividad física</p>
+                  <p class="cuestion mb-n3">Actividad física</p>
 
                   <v-radio-group
                     style="font-family: Montserrat"
@@ -295,7 +295,7 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="smokNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
@@ -328,7 +328,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="alcNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     v-model="alcohol"
@@ -403,8 +403,7 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-     <p v-if="!diet">Sin datos registrados</p>
-    <!-- <list-nonpathologic v-else/> -->
+     
 <list-nonpathologic/>
     <p class="ml-3 d-flex justify-end">
       <img
@@ -560,10 +559,62 @@ export default {
         )
     },
 
+     /* actualizar información | Genesis */
+     update() {
+      this.$axios
+        .put(
+          `api/v1/medical-history/physician/non-pathological-background/patient/${this.$route.params.medicalRecord}`,
+          {
+            patient_id: this.$route.params.medicalRecord,
+            other_substances: this.other_substances,
+            diet: this.diet,
+            drug_active: 'string',
+            previous_medication: 'null',
+            physical_activity: 
+              {
+                days_of_the_week: this.days_week,
+                type_of_activity: this.type_activity,
+              },
+            rest_time: 
+              {
+                dreams_while_sleeping: this.soñar,
+                hours_of_sleep: this.horas_sueño,
+                rest_when_sleeping: this.descanso,
+              },
+            alcoholim:
+              {
+                type: this.typeAlcohol,
+                weekly_frequency: this.alcohol,
+              },
+            smoking:
+              {
+                number_of_cigarettes: this.cigarettes,
+                type: this.typeSmoke,
+              },
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then(
+          this.overlay=true,
+         this.sportstatus(),
+          this.statusSmoking(),
+          this.statusAlcohol(),
+          this.statusDiet()
+        )
+    },
+
+
     sportstatus() {
       if (this.type_activity === null) {
-        this.sports = 'sportNo'
-      }else if(this.sports==="No"){
+        this.sports = 'No'
+      }else if (this.type_activity === 'No') {
+        this.sports = 'No'
+      }
+      else if(this.sports==="No"){
         this.type_activity="No"
         this.days_week="No"
       } else {
@@ -571,12 +622,15 @@ export default {
       }
     },
     statusSmoking() {
-      if (this.cigarettes === null) {
+      if (this.cigarettes === 'null') {
         this.smoking = 'No'
       }else if(this.smoking==="No"){
         this.cigarettes="No"
         this.typeSmoke="No"
-      } else {
+      } else if (this.cigarettes === 'No') {
+        this.smoking = 'No'
+      }
+       else {
         this.smoking = 'Si'
       }
     },
@@ -586,6 +640,8 @@ export default {
       }else if(this.alcoholism==="No"){
         this.typeAlcohol="No"
         this.alcohol="No"
+      }else if (this.alcohol === 'No') {
+        this.alcoholism = 'No'
       } else {
         this.alcoholism = 'Si'
       }

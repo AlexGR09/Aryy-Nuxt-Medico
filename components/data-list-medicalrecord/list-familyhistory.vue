@@ -3,6 +3,7 @@
     <p v-if="!this.pressure_family" >Sin datos registrados</p>
     <div v-else>
       <v-list-item
+      v-if="this.diabetes_family!='No'"
         style="font-family: Montserrat"
         class="ml-n7 mt-n1 lista"
         two-line
@@ -19,6 +20,7 @@
       </v-list-item>
 
       <v-list-item
+      v-if="this.diseases_family!='No'"
         style="font-family: Montserrat"
         class="ml-n7 mt-n1 lista"
         two-line
@@ -35,6 +37,7 @@
       </v-list-item>
 
       <v-list-item
+      v-if="this.pressure_family!='No'"
         style="font-family: Montserrat"
         class="ml-n7 mt-n1 lista"
         two-line
@@ -51,6 +54,7 @@
       </v-list-item>
 
       <v-list-item
+      v-if="this.thyroid_family!='No'"
         style="font-family: Montserrat"
         class="ml-n7 mt-n1 lista"
         two-line
@@ -67,6 +71,7 @@
       </v-list-item>
 
       <v-list-item
+      v-if="this.thyroid_family!='No'"
         style="font-family: Montserrat"
         class="ml-n7 mt-n1 lista"
         two-line
@@ -76,7 +81,7 @@
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Enfermedades de la sangre</v-list-item-title>
-          <v-list-item-subtitle>Familia • Tipo</v-list-item-subtitle>
+          <v-list-item-subtitle>{{blood_family}} • Tipo</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -128,8 +133,11 @@ export default {
       thyroid_type: '',
       cancer_family: '',
       cancer_type: '',
+      blood_diseases: '',
       kidney_family: '',
       kidney_type: '',
+      blood_family:'',
+      blood_type: '',
     }
   },
   mounted() {
@@ -149,6 +157,8 @@ export default {
         )
         .then((res) => {
           console.log(res)
+          this.blood_family=res.data.data.blood_diseases.type
+          this.blood_type=res.data.data.blood_diseases.family
           this.diabetes_family = res.data.data.diabetes.family
           this.diabetes_type = res.data.data.diabetes.type
           this.diseases_family = res.data.data.heart_diseases.family

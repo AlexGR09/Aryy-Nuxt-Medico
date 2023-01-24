@@ -258,6 +258,7 @@
             <v-btn
             block
             @click="add"
+            v-on:click="add"
                 height="50px"
                 class="white--text save mb-5"
                 color="#7900ff"
@@ -448,6 +449,7 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="blood_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -456,6 +458,7 @@
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-model="blood_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -597,6 +600,8 @@ export default {
       cancer_type:'',
       kidney_family:'',
       kidney_type:'',
+      blood_family:'',
+      blood_type: '',
     }
   },
   watch: {
@@ -623,6 +628,8 @@ export default {
           }
         )
         .then((res) => {
+          this.blood_family=res.data.data.blood_diseases.type
+          this.blood_type=res.data.data.blood_diseases.family
           this.diabetes_family = res.data.data.diabetes.family
           this.diabetes_type = res.data.data.diabetes.type
           this.diseases_family = res.data.data.heart_diseases.family

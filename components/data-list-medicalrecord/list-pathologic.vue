@@ -280,7 +280,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.blood_pressure = res.data.data.blood_pressure
           this.blood_transfusions = res.data.data.blood_transfusions
           this.cancer = res.data.data.cancer
