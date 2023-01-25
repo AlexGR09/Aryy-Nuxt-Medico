@@ -420,7 +420,7 @@
       </v-dialog>
 
       <!--   editar informacion | Genesis -->
-      <v-dialog v-else scrollable v-model="editt" max-width="600px">
+      <v-dialog @click:outside="reloadPage" v-else scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -823,7 +823,6 @@
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
-            v-on:click="add"
               block
               @click="add"
               height="50px"
@@ -983,9 +982,13 @@ export default {
           this.etsStatus(),
           this.bloodStatus(),
           this.overlay = true,
+          /* window.location.reload() */
+          
       )
     },
-
+    reloadPage(){
+      this.$router.go()
+  },
     update() {
       this.$axios
         .put(

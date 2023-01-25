@@ -5,7 +5,7 @@
     <div class="mb-2 mt-n11 d-flex justify-end">
 
         <!-- agregar informacion existente | Genesis -->
-        <v-dialog  scrollable v-model="dialog"  max-width="600px">
+        <v-dialog v-if="!this.null" scrollable v-model="dialog"  max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
@@ -171,6 +171,7 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-model="blood_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -179,6 +180,7 @@
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-model="blood_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
@@ -279,7 +281,7 @@
 
 
       <!-- editar informacion existente | Genesis -->
-      <v-dialog  scrollable v-model="edit"  max-width="600px">
+      <v-dialog v-else @click:outside="reloadPage" scrollable v-model="edit"  max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -537,8 +539,8 @@
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
             block
-            @click="update"
-            v-on:click="update"
+            @click="add"
+            v-on:click="add"
                 height="50px"
                 class="white--text save mb-5"
                 color="#7900ff"
@@ -587,6 +589,7 @@ export default {
       blood: '',
       cancer: '',
       kidney: '',
+      null: '',
 
       diabetes_family:'',
       diabetes_type:'',
@@ -642,6 +645,7 @@ export default {
           this.cancer_type = res.data.data.cancer.type
           this.kidney_family = res.data.data.kidney_stones.family
           this.kidney_type = res.data.data.kidney_stones.type
+          this.null=res.data.data.blood_diseases
 
 
         }).then(
@@ -650,7 +654,8 @@ export default {
           this.pressureStatus(),
           this.thyroidStatus(),
           this.cancerStatus(),
-          this.kidneyStatus()
+          this.kidneyStatus(),
+          this.bloodStatus()
         )
     },
     
@@ -676,6 +681,11 @@ export default {
                 family: this.pressure_family,
                 type: this.pressure_type,
               },
+              blood_diseases: 
+              {
+                family: this.blood_family,
+                type: this.blood_type,
+              },
               thyroid_diseases: 
               {
                 family: this.thyroid_family,
@@ -706,7 +716,8 @@ export default {
           this.pressureStatus(),
           this.thyroidStatus(),
           this.cancerStatus(),
-          this.kidneyStatus()
+          this.kidneyStatus(),
+          this.bloodStatus()
         )
     },
 
@@ -732,6 +743,11 @@ export default {
                 family: this.pressure_family,
                 type: this.pressure_type,
               },
+              blood_diseases: 
+              {
+                family: this.blood_family,
+                type: this.blood_type,
+              },
               thyroid_diseases: 
               {
                 family: this.thyroid_family,
@@ -762,9 +778,13 @@ export default {
           this.pressureStatus(),
           this.thyroidStatus(),
           this.cancerStatus(),
-          this.kidneyStatus()
+          this.kidneyStatus(),
+          this.bloodStatus()
         )
     },
+    reloadPage(){
+      this.$router.go()
+  },
     diabetesStatus() {
       if (this.diabetes_family === null) {
         this.diabetes = 'No'
@@ -823,6 +843,16 @@ export default {
         this.kidney_type="No"
       } else {
         this.kidney = 'Si'
+      }
+    },
+    bloodStatus(){
+      if (this.blood_family === null) {
+        this.blood = 'No'
+      }else if(this.blood==="No"){
+        this.blood_family="No"
+        this.blood_type="No"
+      } else {
+        this.blood = 'Si'
       }
     },
   }

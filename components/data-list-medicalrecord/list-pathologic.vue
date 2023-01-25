@@ -2,7 +2,7 @@
  <div>
   <p v-if="this.msg">Sin datos registrados</p>
    <div v-else>
-    <v-list-item v-if="this.previous_surgeries!='No'"
+    <v-list-item v-if="this.previous_surgeries!='No' && this.previous_surgeries!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -18,7 +18,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item v-if="this.blood_transfusions!='No'"
+    <v-list-item v-if="this.blood_transfusions!='No' && this.blood_transfusions!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -35,7 +35,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.diabetes!='No'"
+    v-if="this.diabetes!='No' && this.diabetes!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -52,7 +52,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.heart_diseases=null"
+    v-if="this.heart_diseases=null && this.heart_diseases!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -69,7 +69,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.blood_pressure!='No'"
+    v-if="this.blood_pressure!='No' && this.blood_pressure!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -86,7 +86,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.thyroid_diseases!='No'"
+    v-if="this.thyroid_diseases!='No' && this.thyroid_diseases!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -103,7 +103,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.cancer!='No'"
+    v-if="this.cancer!='No' && this.cancer!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -120,7 +120,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.blood_diseases!='No'"
+    v-if="this.blood_diseases!='No' && this.blood_diseases!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -137,7 +137,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.kidney_stones!='No'"
+    v-if="this.kidney_stones!='No' && this.kidney_stones!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -154,7 +154,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.hepatitis!='No'"
+    v-if="this.hepatitis!='No' && this.hepatitis!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -171,7 +171,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.trauma!='No'"
+    v-if="this.trauma!='No' && this.trauma!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -188,7 +188,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.respiratory_diseases!='No'"
+    v-if="this.respiratory_diseases!='No' && this.respiratory_diseases!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -205,7 +205,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.gastrointestinal_pathologies!='No'"
+    v-if="this.gastrointestinal_pathologies!='No' && this.gastrointestinal_pathologies!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -222,7 +222,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.ets!='No'"
+    v-if="this.ets!='No' && this.ets!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -305,4 +305,8 @@ export default {
 p{
   font-family: MontserratMedium;
   color: #4f565f;
-}</style>
+}
+[v-cloak] {
+  display: none;
+}
+</style>

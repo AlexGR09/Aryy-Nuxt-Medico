@@ -159,7 +159,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.null= res.data.data.alcoholim
 
           this.type_activity = res.data.data.physical_activity.type_of_activity

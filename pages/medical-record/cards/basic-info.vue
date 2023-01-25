@@ -7,6 +7,7 @@
         
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
+          v-model="patient"
             dense
             placeholder="Nombre completo"
             hide-details
@@ -25,11 +26,11 @@
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
+          v-model="phone_number"
             dense
             hide-details
             color="#7900ff"
             placeholder="Número de teléfono"
-            type="text"
           >
             <template #prepend>
               <img
@@ -634,10 +635,15 @@ export default {
       musculo: false,
       abs: false,
       citas: false,
+      code:'',
+      phone:'',
+      phone_number:'',
+      patient:'',
     }
   },
   mounted() {
     this.today()
+    this.basic_info()
   },
   methods: {
     today() {
@@ -665,6 +671,28 @@ export default {
         )
         .then((res) => {
           console.log(res)
+        })
+    },
+    /* datos de paciente para datos basicos | Genesis */
+    basic_info() {
+      this.$axios
+        .get(
+          `api/v1/calendar/appointments/${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+          this.patient = res.data.data.patient.full_name
+          this.status = res.data.data.status
+          this.code = res.data.data.patient.user_country_code
+          this.phone = res.data.data.patient.user_phone_number
+
+          const elements = [this.code+this.phone];
+          this.phone_number=(elements.join());
         })
     },
   },

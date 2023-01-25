@@ -11,7 +11,7 @@
           <v-icon color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title>Diabetes |{{ null }}|</v-list-item-title>
+          <v-list-item-title>Diabetes</v-list-item-title>
           <v-list-item-subtitle
             >{{ diabetes_family }} • {{ diabetes_type }}</v-list-item-subtitle
           >
@@ -70,7 +70,7 @@
       </v-list-item>
 
       <v-list-item
-      v-if="this.thyroid_family!='No'"
+      v-if="this.blood_family!='No'"
         style="font-family: Montserrat"
         class="ml-n7 mt-n1 lista"
         two-line
@@ -85,6 +85,7 @@
       </v-list-item>
 
       <v-list-item
+      v-if="this.cancer_family!='No'"
         style="font-family: Montserrat"
         class="ml-n7 mt-n1 lista"
         two-line
@@ -101,6 +102,7 @@
       </v-list-item>
 
       <v-list-item
+      v-if="this.kidney_family!='No'"
         style="font-family: Montserrat"
         class="ml-n7 mt-n1 lista"
         two-lin
@@ -157,7 +159,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.null=res.data.data.blood_diseases
           this.blood_family=res.data.data.blood_diseases.type
           this.blood_type=res.data.data.blood_diseases.family

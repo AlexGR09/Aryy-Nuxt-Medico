@@ -201,7 +201,7 @@
       </v-dialog>
 
       <!--    editar informacion | Genesis -->
-      <v-dialog v-else scrollable v-model="editt" max-width="600px">
+      <v-dialog @click:outside="reloadPage" v-else scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -243,7 +243,7 @@
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="sports == 'sportNo'"
+                    v-if="sports == 'Si'"
                     outlined
                     placeholder="¿Cuántos días a la semana?"
                   ></v-text-field>
@@ -605,6 +605,9 @@ export default {
           this.statusAlcohol(),
           this.statusDiet()
         )
+    },
+    reloadPage(){
+      this.$router.go()
     },
 
 

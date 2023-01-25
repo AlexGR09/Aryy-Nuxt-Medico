@@ -1,36 +1,37 @@
 <template>
   <div>
-    <v-tabs fixed-tabs>
-    <v-tab to="/settings/account">Foo</v-tab>
-    <v-tab to="/settings/notifications">Bar</v-tab>
-  </v-tabs>
-  <router-view></router-view>
+    <div>This is the stuff that gets hidden until it's loaded...</div>
+    <v-overlay :value="overlay">
+      <v-card light height="100vh" width="100vw"
+        ><v-card-text>
+          <v-skeleton-loader
+            light
+            type="list-item-avatar-three-line, image, article"
+          ></v-skeleton-loader>
+          <v-skeleton-loader
+            light
+            type="list-item-avatar-three-line, image, article"
+          ></v-skeleton-loader> </v-card-text
+      ></v-card>
+    </v-overlay>
   </div>
 </template>
+
 <script>
-import VueRouter from 'vue-router'
 export default {
-  data() {
-    return {}
-    
+  data: () => ({
+    overlay: true,
+    attrs: {
+      class: 'mb-6',
+      boilerplate: true,
+      elevation: 2,
+    },
+  }),
+  mounted() {
+    // hide the overlay when everything has loaded
+    // you could choose some other event, e.g. if you're loading
+    // data asynchronously, you could wait until that process returns
+    this.overlay = false
   },
-  created(){
-    const Foo = {
-  template: '<div>  <account/>!</div>'
-};
-
-const Bar = {
-  template: '<div>   <notifications/></div>'
-};
-
-const routes = [
-  { path: '/settings/account', component: Foo },
-  { path: '/settings/notifications', component: Bar },
-];
-
-const router = new VueRouter({ routes });
-return router
-  }
-  
 }
 </script>
