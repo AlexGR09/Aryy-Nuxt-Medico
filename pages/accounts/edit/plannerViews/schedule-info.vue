@@ -257,40 +257,6 @@ export default {
             this.phone = res.data.data[0].phone
             this.zipcode = res.data.data[0].zipcode
   
-            this.lun = res.data.data[0].schedule[0].day
-            this.timeLun = res.data.data[0].schedule[0].attention_time
-            this.mar = res.data.data[1].schedule[1].day
-            this.timeMar = res.data.data[1].schedule[1].attention_time
-            this.mie = res.data.data[2].schedule[2].day
-            this.timeMie = res.data.data[2].schedule[2].attention_time
-            this.jue = res.data.data[3].schedule[3].day
-            this.timeJue = res.data.data[3].schedule[3].attention_time
-            this.vie = res.data.data[4].schedule[4].day
-            this.timeVie = res.data.data[4].schedule[4].attention_time
-            this.sab = res.data.data[5].schedule[5].day
-            this.timeSab = res.data.data[5].schedule[5].attention_time
-            this.dom = res.data.data[6].schedule[6].day
-            this.timeDom = res.data.data[6].schedule[6].attention_time
-            /*  accesibilidad | Genesis */
-            this.parking =
-              res.data.data[0].accessibility_and_others.accessibility.parking_with_access_to_the_establishment
-            this.lift =
-              res.data.data[0].accessibility_and_others.accessibility.wheelchair_lift_or_ramp
-            this.restroom =
-              res.data.data[0].accessibility_and_others.accessibility.toilets_with_wheelchair_access
-            this.area =
-              res.data.data[0].accessibility_and_others.accessibility.rest_area_with_wheelchair_access
-            this.sign =
-              res.data.data[0].accessibility_and_others.accessibility.staff_trained_in_sign_language
-            this.braille =
-              res.data.data[0].accessibility_and_others.accessibility.braille_signage_for_blind_people
-  
-            /* publico usual | Genesis */
-            this.toilets =
-              res.data.data[0].accessibility_and_others.usual_audiences.toilets
-            this.unisex =
-              res.data.data[0].accessibility_and_others.services.unisex_toilets
-            this.wifi = res.data.data[0].accessibility_and_others.services.wifi
           })
       },
     getFacility() {
@@ -313,13 +279,6 @@ export default {
         .then((response) => {
           console.log(response.data.data)
           localStorage.setItem('token', response.data.access_token)
-        })
-        .catch((error) => {
-          /*   alert(error.response.data.errors.email) */
-          this.errormail = ''
-          this.errormail = error.response.data.errors.email[0]
-          this.password_error = ''
-          this.password_error = error.response.data.errors.password[0]
         })
     },
     putFacility() {

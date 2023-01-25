@@ -305,13 +305,11 @@ export default {
             },
           }
         )
-        .then((response) => {/* 
-          console.log(response.data.data) */
+        .then((response) => {
           location.reload()
         })
         .catch((error) => {
           this.error = 'error'
-          /* console.log(error) */
           this.errordate = error.response.message
         })
     },

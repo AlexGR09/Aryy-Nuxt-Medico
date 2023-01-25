@@ -3,7 +3,6 @@
   <v-card-text class="mt-n7">
     <p class="titulo">Antecedentes heredofamiliares</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
-
         <!-- agregar informacion existente | Genesis -->
         <v-dialog v-if="!this.null" scrollable v-model="dialog"  max-width="600px">
         <template v-slot:activator="{ on, attrs }">

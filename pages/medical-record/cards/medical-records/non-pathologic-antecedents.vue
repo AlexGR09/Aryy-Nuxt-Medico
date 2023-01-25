@@ -422,6 +422,7 @@ export default {
   data() {
     return {
       sportsradio: '',
+      errordata:'',
       dias: '',
       overlay: false,
       editt: false,

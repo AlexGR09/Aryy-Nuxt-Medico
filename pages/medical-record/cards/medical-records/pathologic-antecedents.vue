@@ -400,21 +400,38 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
-            v-on:click="add"
+            <v-row>
+             
+              <v-col cols="12">
+                <v-btn
               block
               @click="add"
               height="50px"
-              class="white--text save mb-5"
+              class="white--text save"
               color="#7900ff"
               large
               >Guardar cambios</v-btn
-            >
+            > </v-col>
+            <!-- <v-col v-if="this.errordata" cols="12">
+               
+               <v-alert class="mt-n4"
+     style="font-family: Montserrat; background-color: white !important"
+     dense
+     outlined
+     type="error"
+   >
+     Datos incompletos, <strong>vuelva a intentarlo.</strong>
+   </v-alert>
+             </v-col> -->
             <v-overlay :value="overlay">
               <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
-                >Datos actualizados correctamente.</v-alert
+                >Datos agregados correctamente.</v-alert
               >
             </v-overlay>
+             
+            </v-row>
+            
+            
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -889,6 +906,7 @@ export default {
         respiratory_diseases:'',
         thyroid_diseases:'',
         trauma:'',
+        errordata:'',
     }
   },
   mounted() {
@@ -939,7 +957,7 @@ export default {
           this.etsStatus()
           this.bloodStatus()
         })
-    },
+    }, 
 
       add() {
       this.$axios
@@ -960,6 +978,7 @@ export default {
           respiratory_diseases: this.respiratory_diseases,
           ets: this.ets,
           gastrointestinal_pathologies: this.gastrointestinal_pathologies,
+          
       
         },
         {
@@ -985,6 +1004,10 @@ export default {
           /* window.location.reload() */
           
       )
+      .catch((error)=>{
+          this.errordata = ''
+          this.errordata = error.response.data.errors
+        })
     },
     reloadPage(){
       this.$router.go()
@@ -1039,6 +1062,8 @@ export default {
         this.surgery="No"
       }else if(this.surgery==="No"){
         this.previous_surgeries="No"
+      }else if(this.msg){
+        this.surgery=""
       }
       else{
         this.surgery="Si"
@@ -1049,6 +1074,8 @@ export default {
         this.transfusion = "No"
       }else if(this.transfusion==="No"){
         this.blood_transfusions="No"
+      }else if(this.msg){
+        this.transfusion=""
       }
       else{
         this.transfusion = "Si"
@@ -1059,6 +1086,8 @@ export default {
         this.diabetesradio="No"
       }else if(this.diabetesradio==="No"){
         this.diabetes="No"
+      }else if(this.msg){
+        this.diabetes=""
       }
       else{
         this.diabetesradio="Si"
@@ -1069,6 +1098,8 @@ export default {
         this.disease="No"
       }else if(this.disease==="No"){
         this.heart_diseases="No"
+      }else if(this.msg){
+        this.disease=""
       }
       else{
         this.disease="Si"
@@ -1079,6 +1110,8 @@ export default {
         this.blood="No"
       }else if(this.diseases==="No"){
         this.blood_diseases="No"
+      }else if(this.msg){
+        this.blood=""
       }
       else{
         this.blood="Si"
@@ -1089,6 +1122,8 @@ export default {
         this.cancerradio="No"
       }else if(this.cancerradio==="No"){
         this.cancer="No"
+      }else if(this.msg){
+        this.cancer=""
       }
       else{
         this.cancerradio="Si"
@@ -1099,6 +1134,8 @@ export default {
         this.thyroid="No"
       }else if(this.thyroid==="No"){
         this.thyroid_diseases="No"
+      }else if(this.msg){
+        this.thyroid=""
       }
       else{
         this.thyroid="Si"
@@ -1109,6 +1146,8 @@ export default {
         this.kidney="No"
       }else if(this.kidney==="No"){
         this.kidney_stones="No"
+      }else if(this.msg){
+        this.kidney=""
       }
       else{
         this.kidney="Si"
@@ -1119,6 +1158,8 @@ export default {
         this.hepatitisRadio="No"
       }else if(this.hepatitisRadio==="No"){
         this.hepatitis="No"
+      }else if(this.msg){
+        this.hepatitis=""
       }
       else{
         this.hepatitisRadio="Si"
@@ -1129,6 +1170,8 @@ export default {
         this.traumaRadio="No"
       }else if(this.traumaRadio==="No"){
         this.trauma="No"
+      }else if(this.msg){
+        this.trauma=""
       }
       else{
         this.traumaRadio="Si"
@@ -1139,6 +1182,8 @@ export default {
         this.respiratory="No"
       }else if(this.respiratory==="No"){
         this.respiratory_diseases="No"
+      }else if(this.msg){
+        this.respiratory=""
       }
       else{
         this.respiratory="Si"
@@ -1149,6 +1194,8 @@ export default {
         this.gastrointestinal="No"
       }else if(this.gastrointestinal==="No"){
         this.gastrointestinal_pathologies="No"
+      }else if(this.msg){
+        this.gastrointestinal=""
       }
       else{
         this.gastrointestinal="Si"
@@ -1159,6 +1206,8 @@ export default {
         this.etsRadio="No"
       } else if(this.etsRadio==="No"){
         this.ets="No"
+      }else if(this.msg){
+        this.ets=""
       }
       else{
         this.etsRadio="Si"

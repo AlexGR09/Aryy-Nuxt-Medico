@@ -6,9 +6,10 @@
         {{ patient }}
         <v-chip
           small
-          class="justify-center asistencia"
-          color="#e9f7ee"
-          text-color="#1baa55"
+          class="justify-center asistencia ml-4"
+          :style="border_color"
+          :color="color"
+          :text-color="text_color"
         >
           {{ status }}
         </v-chip>
@@ -45,11 +46,15 @@ export default {
     return {
       patient: '',
       date: '',
+      color:'',
+      text_color:'',
       status: '',
+      border_color: '',
     }
   },
   mounted() {
     this.cita()
+    this.colorChip()
   },
   methods: {
     cita() {
@@ -67,16 +72,56 @@ export default {
           this.patient = res.data.data.patient.full_name
           this.date = res.data.data.appointment_date
           this.status = res.data.data.status
+          this.color=res.data.data.status
+          this.text_color=res.data.data.status
+          this.border_color=res.data.data.status
+
+          /* metodos para estilo de chip | Genesis */
           this.statusMethod()
+          this.colorChip()
+          this.textColorChip()
+          this.borderColor()
         })
     },
+
+    /* metodos para estilo de chip | Genesis */
     statusMethod() {
       if (this.status === 'scheduled') {
         this.status = 'Agendada'
-      } else if (this.status === 'canceled') {
+      } else if (this.status === 'cancelled') {
         this.status = 'Cancelada'
       }
+      else if (this.status === 'assisted') {
+        this.status = 'Asistió'
+      }
     },
+    colorChip(){
+      if (this.color === 'scheduled') {
+        this.color = '#e9f7ee'
+      } else if (this.color === 'cancelled') {
+        this.color = '#fdeeec'
+      }  else if (this.color === 'assisted') {
+        this.color = '#e9f7ee'
+      }
+    },
+    textColorChip(){
+      if (this.text_color === 'scheduled') {
+        this.text_color = 'green'
+      } else if (this.text_color === 'cancelled') {
+        this.text_color = 'red'
+      } else if (this.text_color === 'assisted') {
+        this.text_color = 'green'
+      }
+    },
+    borderColor(){
+      if (this.border_color === 'scheduled') {
+        this.border_color = ' border: thin solid green !important;'
+      } else if (this.border_color === 'cancelled') {
+        this.border_color = ' border: thin solid red !important;'
+      }else if (this.border_color === 'assisted') {
+        this.border_color = ' border: thin solid green !important;'
+      }
+    }
   },
 }
 </script>
@@ -110,8 +155,7 @@ p.subtitle2 {
   margin-top: -20px;
   color: #999999;
 }
-.asistencia {
+/* .asistencia {
   border: thin solid #1baa55 !important;
-  margin-left: 15px;
-}
+} */
 </style>
