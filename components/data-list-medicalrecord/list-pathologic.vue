@@ -1,6 +1,7 @@
 <template>
  <div>
   <p v-if="this.msg">Sin datos registrados</p>
+  <p v-else-if="this.condicion=='true'">Sin antecedentes registrados</p>
    <div v-else>
     <v-list-item v-if="this.previous_surgeries!='No' && this.previous_surgeries!==null"
       style="font-family: Montserrat"
@@ -52,7 +53,7 @@
     </v-list-item>
 
     <v-list-item
-    v-if="this.heart_diseases=null && this.heart_diseases!==null"
+    v-if="this.heart_diseases!='No' && this.heart_diseases!==null"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -248,6 +249,7 @@ export default {
   components: {},
   data() {
     return {
+        condicion:false,
         blood_pressure:'',
         blood_diseases: '',
         blood_transfusions:'',
@@ -263,6 +265,7 @@ export default {
         thyroid_diseases:'',
         trauma:'',
         msg:'',
+        errordata:'',
     }
   },
   mounted() {
@@ -281,6 +284,7 @@ export default {
           }
         )
         .then((res) => {
+          console.log(res)
           this.blood_pressure = res.data.data.blood_pressure
           this.blood_transfusions = res.data.data.blood_transfusions
           this.cancer = res.data.data.cancer
@@ -296,8 +300,19 @@ export default {
           this.thyroid_diseases = res.data.data.thyroid_diseases
           this.trauma = res.data.data.trauma
         this.msg=res.data.msg
+         this.condiciones() 
+        
+        }).catch((error)=>{
+          this.errordata = ''
+          this.errordata = error.response.data.errors
         })
     },
+    condiciones(){
+      if(this.blood_pressure==="No" && this.blood_transfusions==="No" && this.cancer==="No" && this.diabetes==="No" && this.ets==="No" && this.blood_diseases==="No" && this.gastrointestinal_pathologies==="No"
+      && this.heart_diseases==="No" && this.hepatitis==="No" && this.kidney_stones==="No" && this.previous_surgeries==="No" && this.respiratory_diseases==="No" && this.thyroid_diseases==="No" && this.trauma==="No"){
+        this.condicion='true'
+      }
+    }
   },
 }
 </script>

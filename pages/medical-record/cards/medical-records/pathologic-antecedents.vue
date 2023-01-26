@@ -4,7 +4,7 @@
     <p class="titulo">Antecedentes patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!--   agregar informacion | Genesis -->
-      <v-dialog v-if="this.msg" scrollable v-model="editt" max-width="600px">
+      <v-dialog @click:outside="reloadPage" v-if="this.msg" scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
@@ -406,32 +406,32 @@
                 <v-btn
               block
               @click="add"
+              v-on:click="add"
               height="50px"
               class="white--text save"
               color="#7900ff"
               large
               >Guardar cambios</v-btn
             > </v-col>
-            <!-- <v-col v-if="this.errordata" cols="12">
-               
-               <v-alert class="mt-n4"
-     style="font-family: Montserrat; background-color: white !important"
-     dense
-     outlined
-     type="error"
-   >
-     Datos incompletos, <strong>vuelva a intentarlo.</strong>
-   </v-alert>
-             </v-col> -->
-            <v-overlay :value="overlay">
-              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
-                >Datos agregados correctamente.</v-alert
+            <v-col  cols="12">
+               <v-alert v-model="incompleto" class="mt-n4"
+                style="font-family: Montserrat; background-color: white !important"
+                dense
+                outlined
+                type="error"
               >
-            </v-overlay>
-             
+                Datos incompletos, <strong>vuelva a intentarlo.</strong>
+              </v-alert>
+             </v-col>
+             <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
             </v-row>
-            
-            
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -647,7 +647,7 @@
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
                     <v-text-field
@@ -839,20 +839,38 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
+            <v-row>
+             
+              <v-col cols="12">
+                <v-btn
               block
-              @click="add"
+              @click="update"
+              v-on:click="update"
               height="50px"
-              class="white--text save mb-5"
+              class="white--text save"
               color="#7900ff"
               large
               >Guardar cambios</v-btn
-            >
-            <v-overlay :value="overlay">
-              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
-                >Datos actualizados correctamente.</v-alert
+            > </v-col>
+            <v-col  cols="12">
+               <v-alert v-model="incompleto" class="mt-n4"
+                style="font-family: Montserrat; background-color: white !important"
+                dense
+                outlined
+                type="error"
               >
-            </v-overlay>
+                Datos incompletos, <strong>vuelva a intentarlo.</strong>
+              </v-alert>
+             </v-col>
+             <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+            </v-row>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -876,6 +894,7 @@ export default {
   data() {
     return {
       blood_diseases: '',
+      incompleto: false,
       overlay: false,
       dialog: false,
       editt: false,
@@ -940,6 +959,7 @@ export default {
           this.thyroid_diseases = res.data.data.thyroid_diseases
           this.trauma = res.data.data.trauma
           this.msg=res.data.msg
+          
 
 
           /* metodos de status para los radio groups | Genesis */
@@ -1001,12 +1021,13 @@ export default {
           this.etsStatus(),
           this.bloodStatus(),
           this.overlay = true,
-          /* window.location.reload() */
+          this.incompleto=false
           
       )
       .catch((error)=>{
           this.errordata = ''
           this.errordata = error.response.data.errors
+          this.incompleto=true
         })
     },
     reloadPage(){
@@ -1039,6 +1060,8 @@ export default {
             },
           })
           .then(
+          this.incompleto=false,
+
             this.surgeriesStatus(),
           this.transfusionsStatus(),
           this.diabetesStatus(),
@@ -1053,7 +1076,11 @@ export default {
           this.etsStatus(),
           this.bloodStatus(),
           this.overlay = true,
-      )
+      ) .catch((error)=>{
+          this.errordata = ''
+          this.errordata = error.response.data.errors
+          this.incompleto=true
+        })
     },
 
  /*    metodos de status para los radio groups | Genesis */
@@ -1062,7 +1089,8 @@ export default {
         this.surgery="No"
       }else if(this.surgery==="No"){
         this.previous_surgeries="No"
-      }else if(this.msg){
+      }
+      else if(this.msg){
         this.surgery=""
       }
       else{
@@ -1108,7 +1136,7 @@ export default {
     bloodStatus(){
       if(this.blood_diseases === "No"){
         this.blood="No"
-      }else if(this.diseases==="No"){
+      }else if(this.blood==="No"){
         this.blood_diseases="No"
       }else if(this.msg){
         this.blood=""

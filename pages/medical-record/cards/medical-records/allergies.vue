@@ -4,7 +4,7 @@
     <p class="titulo">Alergias</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!-- agregar información nueva | Genesis -->
-      <v-dialog v-if="!food" scrollable v-model="dialogg" max-width="600px">
+      <v-dialog v-if="!msg" scrollable v-model="dialogg" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
@@ -24,15 +24,15 @@
                     v-model="alim"
                     row
                   >
-                    <v-radio color="#b380ff" label="Si" value="alimY"></v-radio>
-                    <v-radio color="#b380ff" label="No" value="alimN"></v-radio>
+                    <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     color="#7900ff"
                     v-model="food"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="alim == 'alimY'"
+                    v-if="alim == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -45,12 +45,12 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="farmYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
                       color="#b380ff"
                       label="No"
-                      value="farmNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
@@ -58,7 +58,7 @@
                     v-model="drugss"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="farm == 'farmYes'"
+                    v-if="farm == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -71,16 +71,16 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="ambYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="ambNo"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     color="#7900ff"
                     v-model="environmental"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="amb == 'ambYes'"
+                    v-if="amb == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -108,7 +108,7 @@
       </v-dialog>
 
       <!--  Editar información registrada | Genesis -->
-      <v-dialog v-else scrollable v-model="dialog" max-width="600px">
+      <v-dialog  v-else scrollable v-model="dialog" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -135,12 +135,13 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="alimYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="alergiasalimentarias"
                       color="#b380ff"
                       label="No"
-                      value="alimNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
@@ -148,7 +149,7 @@
                     v-model="food"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="alimentarias == 'alimYes'"
+                    v-if="alimentarias == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -161,12 +162,13 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="farmYes"
+                      value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="alergiasfarmacos"
                       color="#b380ff"
                       label="No"
-                      value="farmNo"
+                      value="No"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
@@ -174,7 +176,7 @@
                     v-model="drugss"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="farmacos == 'farmYes'"
+                    v-if="farmacos == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -187,16 +189,16 @@
                     <v-radio
                       color="#b380ff"
                       label="Si"
-                      value="ambYes"
+                      value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="ambNo"></v-radio>
+                    <v-radio @click="alergiasambientales" color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     color="#7900ff"
                     v-model="environmental"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="ambientales == 'ambYes'"
+                    v-if="ambientales == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -207,8 +209,7 @@
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-btn
               block
-              @click="overlay = !overlay"
-              v-on:click="update"
+              @click="update"
               height="50px"
               class="white--text save mb-5"
               color="#7900ff"
@@ -224,50 +225,8 @@
         </v-card>
       </v-dialog>
     </div>
-    <v-divider class="mt-n1"></v-divider>
-
-    <p v-if="!this.idif">Sin alergías conocidas</p>
-    <div v-else>
-      <v-list-item
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n1 lista"
-        two-line
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Fármacos</v-list-item-title>
-          <v-list-item-subtitle>{{ drugss }}</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-      <v-list-item
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n5 lista"
-        two-line
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Factores ambientales</v-list-item-title>
-          <v-list-item-subtitle>{{ environmental }} </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-      <v-list-item
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n5 lista"
-        two-line
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Alimentarias</v-list-item-title>
-          <v-list-item-subtitle>{{ food }} </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-    </div>
+    <v-divider class="mt-n1 mb-3"></v-divider>
+<list-alergies/>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
@@ -278,11 +237,13 @@
   </v-card-text>
 </template>
   <script>
+    import listAlergies from '~/components/data-list-medicalrecord/list-allergies.vue'
 export default {
   layout: 'medicalRecord',
-  components: {},
+  components: {listAlergies},
   data() {
     return {
+      msg:'',
       food: '',
       environmental: '',
       drugs: '',
@@ -328,6 +289,7 @@ export default {
           this.environmental = res.data.data.environmental_allergy[0]
           this.food = res.data.data.food_allergy[0]
           this.time = res.data.data.created_at
+          this.msg=res.data.data.drug_allergy[0]
           this.alergiasalimentarias()
           this.alergiasambientales()
           this.alergiasfarmacos()
@@ -353,8 +315,16 @@ export default {
         .then((res) => {
           this.overlay = true
           this.alergiasalimentarias()
-          this.$router.go(this.$router.currentRoute)
+          this.alergiasambientales()
+          this.alergiasfarmacos()
+          this.reloadPage()
         })
+    },
+
+    reloadPage(){
+      if(this.overlay===true){
+        this.$router.go()
+      }
     },
     update() {
       this.$axios
@@ -374,36 +344,47 @@ export default {
         )
         .then((res) => {
           this.alergiasalimentarias()
-          this.$router.go(this.$router.currentRoute)
+          this.alergiasambientales()
+          this.alergiasfarmacos()
+          this.overlay=true
+          this.reloadPage()
         })
     },
 
     alergiasalimentarias() {
       if (this.food === 'N/A') {
-        this.alimentarias = 'alimNo'
-      } else {
-        this.alimentarias = 'alimYes'
+        this.alimentarias = 'No'
+      } else if(this.alimentarias==="No"){
+        this.food = "N/A"
+      }
+       else{
+        this.alimentarias = 'Si'
       }
     },
 
     alergiasambientales() {
       if (this.environmental === 'N/A') {
-        this.ambientales = 'ambNo'
+        this.ambientales = 'No'
+      } else if(this.ambientales==="No"){
+        this.environmental = "N/A"
       } else {
-        this.ambientales = 'ambYes'
+        this.ambientales = 'Si'
       }
     },
     alergiasfarmacos() {
       if (this.drugss === 'N/A') {
-        this.farmacos = 'farmNo'
+        this.farmacos = 'No'
+      } else if(this.farmacos==="No"){
+        this.drugss = "N/A"
       } else {
-        this.farmacos = 'farmYes'
+        this.farmacos = 'Si'
       }
     },
   },
 
   mounted() {
     this.alergiass()
+    
   },
 }
 </script>
