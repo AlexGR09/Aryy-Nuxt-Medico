@@ -86,7 +86,6 @@ export default {
           }
         )
         .then((res) => {
-            console.log(res)
           this.idif = res.data.data.id
           this.drugss = res.data.data.drug_allergy[0]
           this.environmental = res.data.data.environmental_allergy[0]

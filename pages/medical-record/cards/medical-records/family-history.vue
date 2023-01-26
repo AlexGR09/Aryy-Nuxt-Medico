@@ -4,15 +4,23 @@
     <p class="titulo">Antecedentes heredofamiliares</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
         <!-- agregar informacion existente | Genesis -->
-        <v-dialog v-if="!this.null" scrollable v-model="dialog"  max-width="600px">
+        <v-dialog persistent v-if="!this.null" scrollable v-model="dialog"  max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
           </v-btn> 	
         </template>
         <v-card  max-height="600px">
-          <v-card-title>
-            <span>ANTECEDENTES HEREDOFAMILIARES</span>
+          <v-card-title class="d-flex justify-space-between flex-wrap">
+            <span >ANTECEDENTES HEREDOFAMILIARES</span>
+                  <v-btn
+                    dark
+                    icon
+                    color="grey"
+                    @click="reloadPage"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -256,17 +264,29 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
-            block
-            @click="add"
-            v-on:click="add"
-                height="50px"
-                class="white--text save mb-5"
-                color="#7900ff"
-                large
-                >Guardar cambios</v-btn
+            <v-row>
+             
+              <v-col cols="12">
+                <v-btn
+              block
+              @click="add"
+              height="50px"
+              class="white--text save"
+              color="#7900ff"
+              large
+              >Guardar cambios</v-btn
+            > </v-col>
+            <v-col  cols="12">
+               <v-alert v-model="incompleto" class="mt-n4"
+                style="font-family: Montserrat; background-color: white !important"
+                dense
+                outlined
+                type="error"
               >
-              <v-overlay :value="overlay">
+                Datos incompletos, <strong>vuelva a intentarlo.</strong>
+              </v-alert>
+             </v-col>
+             <v-overlay :value="overlay">
                 <v-alert
                   class="rounded-xl"
                   icon="mdi-check-circle"
@@ -274,13 +294,14 @@
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
-            </v-card-actions>
+            </v-row>
+          </v-card-actions>
         </v-card>
       </v-dialog>
 
 
       <!-- editar informacion existente | Genesis -->
-      <v-dialog v-else @click:outside="reloadPage" scrollable v-model="edit"  max-width="600px">
+      <v-dialog persistent v-else scrollable v-model="edit"  max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -291,8 +312,16 @@
           </v-btn>
         </template>
         <v-card  max-height="600px">
-          <v-card-title>
-            <span>ANTECEDENTES HEREDOFAMILIARES</span>
+           <v-card-title class="d-flex justify-space-between flex-wrap">
+            <span >ANTECEDENTES HEREDOFAMILIARES</span>{{diabetes}} {{ diabetes_family }}
+                  <v-btn
+                    dark
+                    icon
+                    color="grey"
+                    @click="reloadPage"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -310,6 +339,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="diabetesStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -345,7 +375,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" @click="diseasesStatus" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="diseases_family"
@@ -379,7 +409,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="pressureStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="pressure_family"
@@ -411,7 +441,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="thyroidStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="thyroid_family"
@@ -432,8 +462,7 @@
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
-                  <p class="cuestion mb-n3 mt-n4">Enfermedades de la sangre</p>
-                  <v-radio-group
+                  <p class="cuestion mb-n3 mt-n4">Enfermedades de la sangre</p>                  <v-radio-group
                     style="font-family: Montserrat"
                     v-model="blood"
                     row
@@ -444,6 +473,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="bloodStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -479,7 +509,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="cancerStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="cancer_family"
@@ -511,7 +541,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="kidneyStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="kidney_family"
@@ -536,25 +566,39 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
-            block
-            @click="add"
-            v-on:click="add"
-                height="50px"
-                class="white--text save mb-5"
-                color="#7900ff"
-                large
-                >Guardar cambios</v-btn
+            <v-row>
+             
+              <v-col cols="12">
+                <v-btn
+              block
+              v-on:click="update"
+              height="50px"
+              class="white--text save"
+              color="#7900ff"
+              large
+              >Guardar cambios</v-btn
+            > </v-col>
+            <v-col  cols="12">
+               <v-alert v-model="incompleto" class="mt-n4"
+                style="font-family: Montserrat; background-color: white !important"
+                dense
+                outlined
+                type="error"
               >
-              <v-overlay :value="overlay">
+                Datos incompletos, <strong>vuelva a intentarlo.</strong>
+              </v-alert>
+             </v-col>
+             <v-overlay    :value="overlay">
                 <v-alert
+            
                   class="rounded-xl"
                   icon="mdi-check-circle"
                   color="green"
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
-            </v-card-actions>
+            </v-row>
+          </v-card-actions>
         </v-card>
       </v-dialog>
     </div>
@@ -579,6 +623,8 @@ export default {
     return {
       overlay: false,
       dialog: false,
+      incompleto: false,
+      errordata: '',
       edit:'',
       diabetes: '',
       family: [],
@@ -645,8 +691,6 @@ export default {
           this.kidney_family = res.data.data.kidney_stones.family
           this.kidney_type = res.data.data.kidney_stones.type
           this.null=res.data.data.blood_diseases
-
-
         }).then(
           this.diabetesStatus(),
           this.diseasesStatus(),
@@ -710,6 +754,7 @@ export default {
         )
         .then(
           this.overlay=true,
+          this.incompleto=false,
           this.diabetesStatus(),
           this.diseasesStatus(),
           this.pressureStatus(),
@@ -717,7 +762,11 @@ export default {
           this.cancerStatus(),
           this.kidneyStatus(),
           this.bloodStatus()
-        )
+        ).catch((error)=>{
+          this.errordata = ''
+          this.errordata = error.response.data.errors
+          this.incompleto=true
+        })
     },
 
      /*  actualizar informacion | Genesis */
@@ -772,6 +821,7 @@ export default {
         )
         .then(
           this.overlay=true,
+          this.incompleto=false,
           this.diabetesStatus(),
           this.diseasesStatus(),
           this.pressureStatus(),
@@ -779,17 +829,18 @@ export default {
           this.cancerStatus(),
           this.kidneyStatus(),
           this.bloodStatus()
-        )
+        ).catch((error)=>{
+          this.errordata = ''
+          this.errordata = error.response.data.errors
+          this.incompleto=true
+        })
     },
     reloadPage(){
       this.$router.go()
   },
     diabetesStatus() {
-      if (this.diabetes_family === null) {
-        this.diabetes = 'No'
-      }else if(this.diabetes==="No"){
-        this.diabetes_family="No"
-        this.diabetes_type="No"
+      if(this.diabetes_type==="No"){
+        this.diabetes="No"
       } else {
         this.diabetes = 'Si'
       }

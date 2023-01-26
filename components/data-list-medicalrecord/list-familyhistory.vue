@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="this.null!=null && this.errordata">
+    <div>
       <v-list-item
       v-if="this.diabetes_family!='No'"
         style="font-family: Montserrat"
@@ -118,7 +118,7 @@
         </v-list-item-content>
       </v-list-item>
     </div>
-    <p  v-else>Sin datos registrados</p>
+    <p>Sin datos registrados</p>
   </div>
 </template>
 <script>
