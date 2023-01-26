@@ -4,15 +4,23 @@
     <p class="titulo">Antecedentes no patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!-- agregar informacion  | Genesis -->
-      <v-dialog v-if="!diet" scrollable v-model="editt" max-width="600px">
+      <v-dialog persistent v-if="!diet" scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
           </v-btn>
         </template>
         <v-card max-height="640px">
-          <v-card-title>
-            <span>ANTECEDENTES NO PATOLÓGICOS</span>
+          <v-card-title class="d-flex justify-space-between flex-wrap">
+            <span >ANTECEDENTES NO PATOLÓGICOS</span>
+                  <v-btn
+                    dark
+                    icon
+                    color="grey"
+                    @click="reloadPage"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -181,27 +189,43 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
+            <v-row>
+             
+              <v-col cols="12">
+                <v-btn
               block
               @click="add"
-              v-on:click="add"
               height="50px"
-              class="white--text save mb-5"
+              class="white--text save"
               color="#7900ff"
               large
               >Guardar cambios</v-btn
-            >
-            <v-overlay :value="overlay">
-              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
-                >Datos actualizados correctamente.</v-alert
+            > </v-col>
+            <v-col  cols="12">
+               <v-alert v-model="incompleto" class="mt-n4"
+                style="font-family: Montserrat; background-color: white !important"
+                dense
+                outlined
+                type="error"
               >
-            </v-overlay>
+                Datos incompletos, <strong>vuelva a intentarlo.</strong>
+              </v-alert>
+             </v-col>
+             <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+            </v-row>
           </v-card-actions>
         </v-card>
       </v-dialog>
 
       <!--    editar informacion | Genesis -->
-      <v-dialog @click:outside="reloadPage" v-else scrollable v-model="editt" max-width="600px">
+      <v-dialog persistent v-else scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -212,8 +236,16 @@
           </v-btn>
         </template>
         <v-card max-height="640px">
-          <v-card-title>
-            <span>ANTECEDENTES NO PATOLÓGICOS</span>
+          <v-card-title class="d-flex justify-space-between flex-wrap">
+            <span >ANTECEDENTES NO PATOLÓGICOS</span>
+                  <v-btn
+                    dark
+                    icon
+                    color="grey"
+                    @click="reloadPage"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -227,7 +259,7 @@
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="sportstatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     v-model="type_activity"
@@ -293,6 +325,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="statusSmoking"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -328,7 +361,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="statusAlcohol"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     v-model="alcohol"
@@ -383,21 +416,38 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
+            <v-row>
+             
+              <v-col cols="12">
+                <v-btn
               block
-             @click="update"
               v-on:click="update"
               height="50px"
-              class="white--text save mb-5"
+              class="white--text save"
               color="#7900ff"
               large
               >Guardar cambios</v-btn
-            >
-            <v-overlay :value="overlay">
-              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
-                >Datos actualizados correctamente.</v-alert
+            > </v-col>
+            <v-col  cols="12">
+               <v-alert v-model="incompleto" class="mt-n4"
+                style="font-family: Montserrat; background-color: white !important"
+                dense
+                outlined
+                type="error"
               >
-            </v-overlay>
+                Datos incompletos, <strong>vuelva a intentarlo.</strong>
+              </v-alert>
+             </v-col>
+             <v-overlay    :value="overlay">
+                <v-alert
+            
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+            </v-row>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -421,6 +471,7 @@ export default {
   components: {ListNonpathologic},
   data() {
     return {
+      incompleto:false,
       sportsradio: '',
       errordata:'',
       dias: '',
@@ -553,11 +604,17 @@ export default {
         )
         .then(
           this.overlay=true,
+          this.incompleto=false,
          this.sportstatus(),
           this.statusSmoking(),
           this.statusAlcohol(),
           this.statusDiet()
         )
+      .catch((error)=>{
+          this.errordata = ''
+          this.errordata = error.response.data.errors
+          this.incompleto=true
+        })
     },
 
      /* actualizar información | Genesis */
@@ -601,11 +658,16 @@ export default {
         )
         .then(
           this.overlay=true,
+          this.incompleto=false,
          this.sportstatus(),
           this.statusSmoking(),
           this.statusAlcohol(),
           this.statusDiet()
-        )
+        ) .catch((error)=>{
+          this.errordata = ''
+          this.errordata = error.response.data.errors
+          this.incompleto=true
+        })
     },
     reloadPage(){
       this.$router.go()

@@ -4,15 +4,23 @@
     <p class="titulo">Antecedentes patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!--   agregar informacion | Genesis -->
-      <v-dialog v-if="this.msg" scrollable v-model="editt" max-width="600px">
+      <v-dialog persistent v-if="this.msg" scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
           </v-btn>
         </template>
         <v-card max-height="600px">
-          <v-card-title>
-            <span>ANTECEDENTES PATOLÓGICOS</span>
+          <v-card-title class="d-flex justify-space-between flex-wrap">
+            <span >ANTECEDENTES PATOLÓGICOS</span>
+                  <v-btn
+                    dark
+                    icon
+                    color="grey"
+                    @click="reloadPage"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
           </v-card-title>
           <v-card-text>
             <v-container>
