@@ -247,7 +247,6 @@ export default {
         console.log(res)
         this.items= res.data.data
         console.log(res.data)
-       
       })
     },
 

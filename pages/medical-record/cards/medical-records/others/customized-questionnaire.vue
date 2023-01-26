@@ -1,4 +1,4 @@
-<!-- seccion de "cuestionario personalizado" dentro de la seccion "otros" de medical record | Genesis  -->
+<!-- Maquetación => Componente => Dialog Cuestionario | Génesis & Responsivo | Luis Reyes &  Consumo de Api | Luis Reyes-->
 <template>
   <v-dialog scrollable v-model="dialog" max-width="600px">
     <template v-slot:activator="{ on, attrs }">
@@ -7,37 +7,52 @@
         <span class="l">CUESTIONARIO PERSONALIZADO</span>
       </v-btn>
     </template>
-    <v-card height="100%">
-      <v-card-title>
-        <v-col xl="7" class="mr-n10">
-          <v-text-field
+    <v-card>
+      <v-col>
+        <v-toolbar
+          flat
+        >
+        <v-text-field
+            v-model="title"
             solo
             style="font-size: 17px"
-            class="ml-n3 edit mb-n16"
+            class="ml-n2 edit mb-n8"
             :disabled="!text"
             flat
-            value="PLANTILLA PERSONALIZADA"
-          ></v-text-field
-        ></v-col>
-        <v-btn class="mb-n8" @click="text = !text" icon>
+            placeholder="PLANTILLA DE CUESTIONARIO"
+          ></v-text-field>
+          <v-btn  @click="text = !text" icon>
           <img
-            width="24"
-            height="24"
+            width="20"
+            height="20"
             :src="require('@/assets/icons/icon_edit.svg')"
         /></v-btn>
-      </v-card-title>
+
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn
+            icon
+            @click="dialog = false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+      </v-col>
+
+      
       <v-card-text>
         <v-container>
           <v-row>
-            <v-col cols="12" sm="6" md="4" xl="12">
+            <v-col >
               <div class="d-flex justify-space-between">
                 <v-text-field
+                  v-model="pregunta"
                   class="ml-n3 editar"
                   :disabled="!editar"
                   solo
                   flat
-                  value="Pregunta personalizada"
-                  placeholder="Escribe tu pregunta"
+                  label="Pregunta personalizada"
                 ></v-text-field>
                 <v-btn @click="editar = !editar" icon>
                   <img
@@ -47,10 +62,12 @@
                 /></v-btn>
               </div>
               <v-text-field
+                v-model="respueta"
                 style="font-family: Montserrat"
                 outlined
-                placeholder="Escriba aquí"
+                label="Respuesta"
               ></v-text-field>
+              
               <div class="inputArea" v-for="input in inputs" :key="input.id">
                 <div class="d-flex justify-space-between mt-n2">
                   <v-text-field
@@ -95,7 +112,7 @@
       <v-card-actions class="mt-n10 ml-5 mr-5">
         <v-btn
           block
-          @click="overlay = !overlay"
+          @click="cuestionarioPost"
           height="50px"
           class="white--text save mb-5 mt-5"
           color="#7900ff"
@@ -111,7 +128,6 @@
     </v-card>
   </v-dialog>
 </template>
-
 <script>
 export default {
   layout: 'medicalRecord',
@@ -150,6 +166,10 @@ export default {
       ambientales: '',
       cons: '',
       support: '',
+      title:'',
+      pregunta:'',
+      respuesta: ''
+
     }
   },
   watch: {
@@ -159,7 +179,8 @@ export default {
           this.overlay = false
         }, 2000)
     },
-  },
+  }, 
+
   methods: {
     addInput() {
       this.inputs.push({})
@@ -167,6 +188,28 @@ export default {
     deleteInput(i) {
       this.inputs.splice(i, 1)
     },
+
+    cuestionarioPost(){
+      this.$axios
+        .post('https://app.aryymd.com/api/v1/physician/personalized-questionnaire',{
+        title: this.title,
+        questions:[
+          {
+            title: 'fdfffs',
+            answers: [
+              {
+                title: 'dsffsfffsfs',
+              }
+            ]
+          }
+        ] 
+        },
+        {
+          headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),}
+        })
+       
+        console.log(this.cuestionarioPost)
+    }
   },
 }
 </script>
@@ -227,3 +270,4 @@ span {
   font-family: MontserratBold;
 }
 </style>
+

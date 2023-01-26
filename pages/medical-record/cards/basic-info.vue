@@ -1,6 +1,8 @@
 <!-- Maquetación => Componente => Información básica | Genesis & Responsivo | Luis Reyes -->
 <template>
+  <v-card class="rounded-lg">
   <v-container>
+
     <v-toolbar flat color="transparent">
       <v-toolbar-title>Información Básica</v-toolbar-title>
     </v-toolbar>
@@ -15,7 +17,7 @@
         dense
         label="Télefono"
         prepend-icon="mdi-map-marker"
-        outlined
+    
       >
       <template #prepend>
         <img 
@@ -89,19 +91,16 @@
             </template>
           </v-select >
         </v-col> 
-
-
-
   </v-row>
-  <v-toolbar flat color="transparent">
+
+<!-- Signos vitales -->
+
+ <!--  <v-row>
+    
+
+<v-toolbar flat color="transparent">
       <v-toolbar-title>Signos vitales</v-toolbar-title>
     </v-toolbar>
-
-
-  
-  <v-row>
-    
-<!-- Signos vitales -->
 
     <v-col cols="12" md="4" sm="4">
       <v-text-field
@@ -260,8 +259,10 @@
     </v-col>
 
 
-  </v-row>
+  </v-row> -->
+
 </v-container>
+</v-card>
 </template>
 
 <script>

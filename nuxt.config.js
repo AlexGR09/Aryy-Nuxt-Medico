@@ -54,7 +54,6 @@ export default {
   },
 /* 
   router: {
-
     middleware: ['authenticated']
 
   }, */
@@ -62,13 +61,11 @@ export default {
   styleResources: {
     scss: ['./assets/scss/*.scss']
   },
-
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-  baseURL: 'https://app.aryymd.com', 
+baseURL: 'https://app.aryymd.com',  
 /*     baseURL:'http://127.0.0.1:8000', */
-    /*  baseURL: 'https://6967-187-190-205-57.ngrok.io',  */
     proxyHeaders: false,
     credential: false,
     header:{
@@ -76,8 +73,6 @@ export default {
       'Content-Type': 'application/json',
     /*   "Authorization": 'Bearer ' + $localStorage.getItem("token")  */
     }
-    
-
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

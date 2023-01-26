@@ -1,6 +1,189 @@
 <!-- seccion de consulta medica | Genesis -->
 <template>
-  <v-card class="pa-4 montserrat">
+  <v-card class="pa-4 montserrat rounded-lg">
+    <!-- sintomas -->
+    <p>Signos vitales</p>
+  <v-row>
+<!-- Signos vitales -->
+    <v-col cols="12" md="4" sm="4">
+      <!-- Temperatura -->
+      <v-text-field
+        v-model="temperature"
+        dense
+        outlined
+        label="Temperatura"
+        prepend-icon="mdi-map-marker"
+        suffix="°C"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_temperature.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+<!-- Altura -->
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        v-model="weight"
+        dense
+        outlined
+        label="Peso"
+        prepend-icon="mdi-map-marker"
+        suffix="Kg"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_weight.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+    
+<!-- Breathing_frecuency -->
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+       v-model="Breathing_frecuency"
+        dense
+        outlined
+        label="Frecuencia respiratoria"
+        suffix="R/M"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_frequency.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+    
+<!-- systolic_pressure -->
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+       v-model="systolic_pressure"
+        dense
+        outlined
+        label="Sistolica"
+        suffix="mmHg"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_pressure.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        outlined
+        label="Diastolica"
+        suffix="mmHg"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_pressure.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+    
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        outlined
+        label="Frecuencia cardiaca"
+        suffix="bpm"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_pressureheart.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        outlined
+        label="Saturación de Oxigeno"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_oxygen.svg')"
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Masa Muscular"
+        outlined
+        suffix="%"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_musculemass.svg')"
+         
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+
+    <v-col cols="12" md="4" sm="4">
+      <v-text-field
+        dense
+        label="Grasa corporal"
+        outlined
+        suffix="%"
+      >
+      <template #prepend>
+        <img 
+          width="20"
+          height="20"
+          :src="require('@/assets/icons/icon_corporalfat.svg')"
+         
+        />
+      </template>
+      </v-text-field>
+    </v-col>
+
+
+  </v-row>
+
+
+    <!-- sintomas -->
+
+
+
+
     <p>Descripción de sintomas</p>
     <v-textarea
       color="#7900ff"
@@ -130,8 +313,10 @@
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
-            </v-col>
+    
           </v-row>
+
+          <v-btn @click="recetaMedica">enviar</v-btn>
   </v-card>
 </template>
 <script>
@@ -147,7 +332,37 @@ export default {
       no: false,
       lab: false,
       gab: false,
-    }
+
+      /* signos vitales */
+      temperature: '54324',
+      weight: '423',
+      breathing_frecuency: '42432',
+      systolic_pressure: '4324',
+      diasystolic_pressure:'3424',
+      heart_rate: '243422',
+      oxygen_saturation:'34224',
+      body_mass:'42342',
+      body_fat:'3424432',
+      weight_loss:'42342',
+      fat: '42342',
+      waist: '4324',
+      water: '4232',
+      muscle: '46545542',
+      abdomen: '635',
+      symptom: '4353',
+      diagnosis: '45345',
+      medical_examination: '13141',
+      brand: '1234',
+      drug_name: '24234',
+      presentation: '3412',
+      instruction: '',
+      amount: '',
+      frequency: '',
+      duration: '',
+      laboratory_studies: '',
+      cabinet_studies:'',
+	}
+
   },
   methods: {
     addInput() {
@@ -162,7 +377,50 @@ export default {
     },
     save(){
       this.$router.push('/patients/list')
-    }
+    },
+    recetaMedica(){
+      this.$axios
+        .post('api/v1/physician/medical-appointments/1/prescriptions',{
+          vital_sings:
+          [
+            {
+              temperature: this.temperature,
+              weight: this.weight,
+              breathing_frecuency: this.breathing_frecuency,
+              systolic_pressure: this.systolic_pressure,
+              diasystolic_pressure: this.diasystolic_pressure,
+              heart_rate: this.heart_rate,
+              oxygen_saturation: this.oxygen_saturation,
+              body_mass: this.body_mass,
+              body_fat:this.body_fat,
+              weight_loss: this.weight_loss,
+              fat: this.fat,
+              waist: this.wait,
+              water: this.water,
+              muscle: this.muscle,
+              abdomen: this.abdomen,
+            }
+          ]
+
+        },
+        {
+          headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),}
+        })
+    }, 
+    postnatalGet() {
+      this.$axios
+        .get('https://app.aryymd.com/api/v1/physician/medical-appointments/patient/1', {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          alert(res.data.data[1].duration_treatment)
+          this.delivery_details = res.data.data.delivery_details
+          this.duration_treatment = res.data.data[1].duration_treatment
+        })
+    },
+  },
+  mounted() {
+    this.postnatalGet()
   },
 }
 </script>

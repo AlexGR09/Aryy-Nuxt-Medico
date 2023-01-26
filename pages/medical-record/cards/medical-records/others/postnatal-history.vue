@@ -177,6 +177,43 @@ export default {
           this.emotonial_state = res.data.data.emotonial_state
         })
     },
+    postnatalPut(){
+      this.$axios
+      .put(`api/v1/physician/medical-history/${this.$route.params.medicalRecord}/postnatal-background`,{
+        postnatal_background_id:  this.$route.params.medicalRecord,
+        delivery_details: this.delivery_detail,
+        baby_name: this.baby_name,
+        baby_wight: this.bay_wight,
+        type_of_feeding: this.type_of_feeding
+      })
+    },
+  
+    update() {
+      this.$axios
+        .put(
+          `api/v1/medical-records/physician/allergies/patient/${this.$route.params.medicalRecord}`,
+          {
+            patient_id: this.$route.params.medicalRecord,
+            food_allergy:[
+              this.food,
+            ],
+            drug_allergy:[
+              this.drugss,
+            ],
+            environmental_allergy:[
+              this.environmental,
+            ]
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )  .then((res) => {
+         this.alergiasalimentarias()
+       
+        })
+    },
   },
   mounted() {
     this.postnatalGet()
