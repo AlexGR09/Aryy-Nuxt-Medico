@@ -4,9 +4,9 @@
     <p class="titulo">Antecedentes heredofamiliares</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
         <!-- agregar informacion existente | Genesis -->
-        <v-dialog persistent v-if="this.errordata" scrollable v-model="dialog"  max-width="600px">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" v-on="on" icon>
+        <v-dialog v-if="this.errordata" v-model="dialog" persistent  scrollable   max-width="600px">
+        <template #activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
           </v-btn> 	
         </template>
@@ -28,8 +28,8 @@
                 <v-col cols="12" sm="6" md="4" xl="12">
                   <p class="cuestion mb-n3">Disabetes</p>{{ diabetes }}
                   <v-radio-group
+                  v-model="diabetes"
                     style="font-family: Montserrat"
-                    v-model="diabetes"
                     row
                   >
                     <v-radio
@@ -38,35 +38,35 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
-                    @click="diabetesStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
+                      @click="diabetesStatus"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="diabetes == 'Si'"
                   v-model="diabetes_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="diabetes == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="diabetes == 'Si'"
                   v-model="diabetes_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="diabetes == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
                   <p class="cuestion mb-n3 mt-n4">Cardiopatías</p>
                   <v-radio-group
+                  v-model="disease"
                     style="font-family: Montserrat"
-                    v-model="disease"
                     row
                   >
                     <v-radio
@@ -74,23 +74,23 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" @click="diseasesStatus" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="diseasesStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="disease == 'Si'"
                   v-model="diseases_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="disease == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="disease == 'Si'"
                   v-model="diseases_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="disease == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -99,8 +99,8 @@
                     Presión arterial alta o baja
                   </p>
                   <v-radio-group
+                  v-model="pressure"
                     style="font-family: Montserrat"
-                    v-model="pressure"
                     row
                   >
                     <v-radio
@@ -111,28 +111,28 @@
                     <v-radio color="#b380ff" label="No" value="No" @click="pressureStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="pressure == 'Si'"
                   v-model="pressure_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="pressure == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="pressure == 'Si'"
                   v-model="pressure_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="pressure == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
                   <p class="cuestion mb-n3 mt-n4">Enfermedades tiroideas</p>
                   <v-radio-group
+                  v-model="thyroid"
                     style="font-family: Montserrat"
-                    v-model="thyroid"
                     row
                   >
                     <v-radio
@@ -143,28 +143,28 @@
                     <v-radio color="#b380ff" label="No" value="No" @click="thyroidStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="thyroid == 'Si'"
                   v-model="thyroid_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="thyroid == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="thyroid == 'Si'"
                   v-model="thyroid_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="thyroid == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
                   <p class="cuestion mb-n3 mt-n4">Enfermedades de la sangre</p>
                   <v-radio-group
+                  v-model="blood"
                     style="font-family: Montserrat"
-                    v-model="blood"
                     row
                   >
                     <v-radio
@@ -180,28 +180,28 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="blood == 'Si'"
                   v-model="blood_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="blood == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="blood == 'Si'"
                   v-model="blood_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="blood == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
                   <p class="cuestion mb-n3 mt-n4">Cáncer</p>
                   <v-radio-group
+                  v-model="cancer"
                     style="font-family: Montserrat"
-                    v-model="cancer"
                     row
                   >
                     <v-radio
@@ -209,31 +209,32 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio @click="cancerStatus" color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="cancerStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="cancer == 'Si'"
                   v-model="cancer_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="cancer == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="cancer == 'Si'"
                   v-model="cancer_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="cancer == 'Si'"
+                    
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
                   <p class="cuestion mb-n3 mt-n4">Cálculos renales</p>
                   <v-radio-group
+                  v-model="kidney"
                     style="font-family: Montserrat"
-                    v-model="kidney"
                     row
                   >
                     <v-radio
@@ -244,20 +245,20 @@
                     <v-radio color="#b380ff" label="No" value="No" @click="kidneyStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="kidney == 'Si'"
                   v-model="kidney_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="kidney == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="kidney == 'Si'"
                   v-model="kidney_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="kidney == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -267,19 +268,20 @@
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
             <v-row>
-             
               <v-col cols="12">
                 <v-btn
               block
-              @click="add"
               height="50px"
               class="white--text save"
               color="#7900ff"
               large
+              @click="add"
               >Guardar cambios</v-btn
             > </v-col>
             <v-col  cols="12">
-               <v-alert v-model="incompleto" class="mt-n4"
+               <v-alert 
+               v-model="incompleto"
+               class="mt-n4"
                 style="font-family: Montserrat; background-color: white !important"
                 dense
                 outlined
@@ -303,8 +305,8 @@
 
 
       <!-- editar informacion existente | Genesis -->
-      <v-dialog persistent v-else scrollable v-model="edit"  max-width="600px">
-        <template v-slot:activator="{ on, attrs }">
+      <v-dialog v-else v-model="edit"  persistent scrollable max-width="600px">
+        <template #activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
               width="24"
@@ -331,8 +333,8 @@
                 <v-col cols="12" sm="6" md="4" xl="12">
                   <p class="cuestion mb-n3">Diabetes</p>
                   <v-radio-group
+                  v-model="diabetes"
                     style="font-family: Montserrat"
-                    v-model="diabetes"
                     row
                   >
                     <v-radio
@@ -341,35 +343,35 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
-                    @click="diabetesStatus"
+                    value="No"
                       color="#b380ff"
                       label="No"
-                      value="No"
+                      @click="diabetesStatus"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="diabetes == 'Si'"
                   v-model="diabetes_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="diabetes == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="diabetes == 'Si'"
                   v-model="diabetes_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="diabetes == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
                   <p class="cuestion mb-n3 mt-n4">Cardiopatías</p>
                   <v-radio-group
+                  v-model="disease"
                     style="font-family: Montserrat"
-                    v-model="disease"
                     row
                   >
                     <v-radio
@@ -377,23 +379,23 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" @click="diseasesStatus" value="No"></v-radio>
+                    <v-radio value="No" color="#b380ff" label="No" @click="diseasesStatus" ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="disease == 'Si'"
                   v-model="diseases_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="disease == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="disease == 'Si'"
                   v-model="diseases_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="disease == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
@@ -402,8 +404,8 @@
                     Presión arterial alta o baja
                   </p>
                   <v-radio-group
+                  v-model="pressure"
                     style="font-family: Montserrat"
-                    v-model="pressure"
                     row
                   >
                     <v-radio
@@ -414,28 +416,28 @@
                     <v-radio color="#b380ff" label="No" value="No" @click="pressureStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="pressure == 'Si'"
                   v-model="pressure_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="pressure == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="pressure == 'Si'"
                   v-model="pressure_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="pressure == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
                   <p class="cuestion mb-n3 mt-n4">Enfermedades tiroideas</p>
                   <v-radio-group
+                  v-model="thyroid"
                     style="font-family: Montserrat"
-                    v-model="thyroid"
                     row
                   >
                     <v-radio
@@ -446,27 +448,28 @@
                     <v-radio color="#b380ff" label="No" value="No" @click="thyroidStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="thyroid == 'Si'"
                   v-model="thyroid_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="thyroid == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="thyroid == 'Si'"
                   v-model="thyroid_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="thyroid == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
-                  <p class="cuestion mb-n3 mt-n4">Enfermedades de la sangre</p>                  <v-radio-group
+                  <p class="cuestion mb-n3 mt-n4">Enfermedades de la sangre</p>                  
+                  <v-radio-group
+                  v-model="blood"
                     style="font-family: Montserrat"
-                    v-model="blood"
                     row
                   >
                     <v-radio
@@ -475,35 +478,35 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
-                    @click="bloodStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
+                      @click="bloodStatus"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="blood == 'Si'"
                   v-model="blood_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="blood == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="blood == 'Si'"
                   v-model="blood_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="blood == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
                   <p class="cuestion mb-n3 mt-n4">Cáncer</p>
                   <v-radio-group
+                  v-model="cancer"
                     style="font-family: Montserrat"
-                    v-model="cancer"
                     row
                   >
                     <v-radio
@@ -514,28 +517,28 @@
                     <v-radio color="#b380ff" label="No" value="No" @click="cancerStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="cancer == 'Si'"
                   v-model="cancer_family"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="cancer == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="cancer == 'Si'"
                   v-model="cancer_type"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="cancer == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
                   ></v-text-field>
 
                   <p class="cuestion mb-n3 mt-n4">Cálculos renales</p>
                   <v-radio-group
+                  v-model="kidney"
                     style="font-family: Montserrat"
-                    v-model="kidney"
                     row
                   >
                     <v-radio
@@ -546,22 +549,22 @@
                     <v-radio color="#b380ff" label="No" value="No" @click="kidneyStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="kidney == 'Si'"
                   v-model="kidney_family"
                     color="#7900ff"
                     class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="kidney == 'Si'"
                     outlined
                     placeholder="Selecciona quién(es) de tu familia"
+                    style="font-family: Montserrat"
                   ></v-text-field>
                   <v-text-field
+                  v-if="kidney == 'Si'"
                   v-model="kidney_type"
                     color="#7900ff"
                     class="mt-n3"
-                    style="font-family: Montserrat"
-                    v-if="kidney == 'Si'"
                     outlined
                     placeholder="Escriba aquí"
+                    style="font-family: Montserrat"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -573,15 +576,17 @@
               <v-col cols="12">
                 <v-btn
               block
-              v-on:click="update"
               height="50px"
               class="white--text save"
               color="#7900ff"
               large
+              @click="update"
               >Guardar cambios</v-btn
             > </v-col>
             <v-col  cols="12">
-               <v-alert v-model="incompleto" class="mt-n4"
+               <v-alert
+               v-model="incompleto"
+               class="mt-n4"
                 style="font-family: Montserrat; background-color: white !important"
                 dense
                 outlined
@@ -619,8 +624,8 @@
   import listFamilyhistory from '~/components/data-list-medicalrecord/list-familyhistory.vue'
 
 export default {
-  layout: 'medicalRecord',
   components: {listFamilyhistory},
+  layout: 'medicalRecord',
   data() {
     return {
       overlay: false,

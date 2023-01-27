@@ -4,9 +4,9 @@
     <p class="titulo">Antecedentes no patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!-- agregar informacion  | Genesis -->
-      <v-dialog persistent v-if="this.dataNull===true" scrollable v-model="editt" max-width="600px">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" v-on="on" icon>
+      <v-dialog v-if="this.dataNull===true" v-model="editt" persistent  scrollable  max-width="600px">
+        <template #activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on" >
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
           </v-btn>
         </template>
@@ -29,35 +29,35 @@
                   <p class="cuestion mb-n3">Actividad física</p>
 
                   <v-radio-group
+                  v-model="sports"
                     style="font-family: Montserrat"
-                    v-model="sports"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
                     <v-radio color="#b380ff" label="No" value="No" @click="sportstatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="sports == 'Si'"
                     v-model="type_activity"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="sports == 'Si'"
                     outlined
                     placeholder="Escriba el tipo de actividad"
                   ></v-text-field>
                   <v-text-field
+                  v-if="sports == 'Si'"
                     v-model="days_week"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="sports == 'Si'"
                     outlined
                     placeholder="¿Cuántos días a la semana?"
                   ></v-text-field>
                   <p class="cuestion mt-n4">Horas de sueño</p>
                   <v-text-field
+                  v-model="horas_sueño"
                     color="#7900ff"
-                    v-model="horas_sueño"
                     style="font-family: Montserrat"
                     class="mt-n3"
                     outlined
@@ -67,8 +67,8 @@
                   <p class="cuestion mt-n4 mb-n3">¿Sueña siempre que duerme?</p>
 
                   <v-radio-group
+                  v-model="soñar"
                     style="font-family: Montserrat"
-                    v-model="soñar"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
@@ -80,8 +80,8 @@
                   </p>
 
                   <v-radio-group
+                  v-model="descanso"
                     style="font-family: Montserrat"
-                    v-model="descanso"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
@@ -90,8 +90,8 @@
 
                   <p class="cuestion mt-n4 mb-n3">Tabaquismo</p>
                   <v-radio-group
+                  v-model="smoking"
                     style="font-family: Montserrat"
-                    v-model="smoking"
                     row
                   >
                     <v-radio
@@ -107,17 +107,17 @@
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="smoking == 'Si'"
                     v-model="cigarettes"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="smoking == 'Si'"
                     outlined
                     placeholder="Escriba la cantidad de cigarrillos al dia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="smoking == 'Si'"
                     v-model="typeSmoke"
-                    v-if="smoking == 'Si'"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     class="mt-n3"
@@ -127,8 +127,8 @@
 
                   <p class="cuestion mt-n4 mb-n3">Alcoholismo</p>
                   <v-radio-group
+                  v-model="alcoholism"
                     style="font-family: Montserrat"
-                    v-model="alcoholism"
                     row
                   >
                     <v-radio
@@ -139,17 +139,17 @@
                     <v-radio color="#b380ff" label="No" value="No" @click="statusAlcohol"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="alcoholism == 'Si'"
                     v-model="alcohol"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="alcoholism == 'Si'"
                     outlined
                     placeholder="Frecuencia semanal"
                   ></v-text-field>
                   <v-text-field
+                  v-if="alcoholism == 'Si'"
                     v-model="typeAlcohol"
-                    v-if="alcoholism == 'Si'"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     class="mt-n3"
@@ -159,8 +159,8 @@
 
                   <p class="cuestion mt-n4 mb-n3">Otras sustancias</p>
                   <v-radio-group
+                  v-model="other_substances"
                     style="font-family: Montserrat"
-                    v-model="other_substances"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
@@ -195,15 +195,17 @@
               <v-col cols="12">
                 <v-btn
               block
-              @click="add"
               height="50px"
               class="white--text save"
               color="#7900ff"
               large
+              @click="add"
               >Guardar cambios</v-btn
             > </v-col>
             <v-col  cols="12">
-               <v-alert v-model="incompleto" class="mt-n4"
+               <v-alert 
+               v-model="incompleto"
+               class="mt-n4"
                 style="font-family: Montserrat; background-color: white !important"
                 dense
                 outlined
@@ -226,8 +228,8 @@
       </v-dialog>
 
       <!--    editar informacion | Genesis -->
-      <v-dialog persistent v-else scrollable v-model="editt" max-width="600px">
-        <template v-slot:activator="{ on, attrs }">
+      <v-dialog v-else v-model="editt" persistent  scrollable  max-width="600px">
+        <template #activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
               width="24"
@@ -255,35 +257,35 @@
                   <p class="cuestion mb-n3">Actividad física</p>
 
                   <v-radio-group
+                  v-model="sports"
                     style="font-family: Montserrat"
-                    v-model="sports"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
                     <v-radio color="#b380ff" label="No" value="No" @click="sportstatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="sports == 'Si'"
                     v-model="type_activity"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="sports == 'Si'"
                     outlined
                     placeholder="Escriba el tipo de actividad"
                   ></v-text-field>
                   <v-text-field
+                  v-if="sports == 'Si'"
                     v-model="days_week"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="sports == 'Si'"
                     outlined
                     placeholder="¿Cuántos días a la semana?"
                   ></v-text-field>
                   <p class="cuestion mt-n4">Horas de sueño</p>
                   <v-text-field
+                  v-model="horas_sueño"
                     color="#7900ff"
-                    v-model="horas_sueño"
                     style="font-family: Montserrat"
                     class="mt-n3"
                     outlined
@@ -293,8 +295,8 @@
                   <p class="cuestion mt-n4 mb-n3">¿Sueña siempre que duerme?</p>
 
                   <v-radio-group
+                  v-model="soñar"
                     style="font-family: Montserrat"
-                    v-model="soñar"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
@@ -306,8 +308,8 @@
                   </p>
 
                   <v-radio-group
+                  v-model="descanso"
                     style="font-family: Montserrat"
-                    v-model="descanso"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
@@ -316,8 +318,8 @@
 
                   <p class="cuestion mt-n4 mb-n3">Tabaquismo</p>
                   <v-radio-group
+                  v-model="smoking"
                     style="font-family: Montserrat"
-                    v-model="smoking"
                     row
                   >
                     <v-radio
@@ -326,24 +328,24 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
-                    @click="statusSmoking"
                       color="#b380ff"
                       label="No"
                       value="No"
+                      @click="statusSmoking"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="smoking == 'Si'"
                     v-model="cigarettes"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="smoking == 'Si'"
                     outlined
                     placeholder="Escriba la cantidad de cigarrillos al dia"
                   ></v-text-field>
                   <v-text-field
+                  v-if="smoking == 'Si'"
                     v-model="typeSmoke"
-                    v-if="smoking == 'Si'"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     class="mt-n3"
@@ -353,8 +355,8 @@
 
                   <p class="cuestion mt-n4 mb-n3">Alcoholismo</p>
                   <v-radio-group
+                  v-model="alcoholism"
                     style="font-family: Montserrat"
-                    v-model="alcoholism"
                     row
                   >
                     <v-radio
@@ -365,17 +367,17 @@
                     <v-radio color="#b380ff" label="No" value="No" @click="statusAlcohol"></v-radio>
                   </v-radio-group>
                   <v-text-field
+                  v-if="alcoholism == 'Si'"
                     v-model="alcohol"
                     color="#7900ff"
                     class="mt-n3"
                     style="font-family: Montserrat"
-                    v-if="alcoholism == 'Si'"
                     outlined
                     placeholder="Frecuencia semanal"
                   ></v-text-field>
                   <v-text-field
+                  v-if="alcoholism == 'Si'"
                     v-model="typeAlcohol"
-                    v-if="alcoholism == 'Si'"
                     color="#7900ff"
                     style="font-family: Montserrat"
                     class="mt-n3"
@@ -385,8 +387,8 @@
 
                   <p class="cuestion mt-n4 mb-n3">Otras sustancias</p>
                   <v-radio-group
+                  v-model="other_substances"
                     style="font-family: Montserrat"
-                    v-model="other_substances"
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
@@ -422,15 +424,17 @@
               <v-col cols="12">
                 <v-btn
               block
-              v-on:click="update"
               height="50px"
               class="white--text save"
               color="#7900ff"
               large
+              @click="update"
               >Guardar cambios</v-btn
             > </v-col>
             <v-col  cols="12">
-               <v-alert v-model="incompleto" class="mt-n4"
+               <v-alert 
+               v-model="incompleto" 
+               class="mt-n4"
                 style="font-family: Montserrat; background-color: white !important"
                 dense
                 outlined
@@ -468,8 +472,8 @@
   <script>
 import ListNonpathologic from '~/components/data-list-medicalrecord/list-nonpathologic.vue'
 export default {
-  layout: 'medicalRecord',
   components: {ListNonpathologic},
+  layout: 'medicalRecord',
   data() {
     return {
       null:'',
