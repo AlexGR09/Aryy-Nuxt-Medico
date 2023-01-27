@@ -4,15 +4,23 @@
     <p class="titulo">Historial de vacunación</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
 
-      <v-dialog v-model="dialog" max-width="600px">
+      <v-dialog persistent v-model="dialog" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
           </v-btn> 	
         </template>
         <v-card>
-          <v-card-title>
-            <span>VACUNACIÓN</span>
+          <v-card-title class="d-flex justify-space-between flex-wrap">
+            <span >VACUNACIÓN</span>
+                  <v-btn
+                    dark
+                    icon
+                    color="grey"
+                    @click="reloadPage"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -91,17 +99,28 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
-            block
-            @click="overlay = !overlay"
-            v-on:click="editVacunas"
-                height="50px"
-                class="white--text save mb-5"
-                color="#7900ff"
-                large
-                >Guardar cambios</v-btn
+            <v-row>
+              <v-col cols="12">
+                <v-btn
+              block
+              @click="addVacunas"
+              height="50px"
+              class="white--text save"
+              color="#7900ff"
+              large
+              >Guardar cambios</v-btn
+            > </v-col>
+            <v-col  cols="12">
+               <v-alert v-model="incompleto" class="mt-n4"
+                style="font-family: Montserrat; background-color: white !important"
+                dense
+                outlined
+                type="error"
               >
-              <v-overlay :value="overlay">
+                Datos incompletos, <strong>vuelva a intentarlo.</strong>
+              </v-alert>
+             </v-col>
+             <v-overlay :value="overlay">
                 <v-alert
                   class="rounded-xl"
                   icon="mdi-check-circle"
@@ -109,7 +128,8 @@
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
-            </v-card-actions>
+            </v-row>
+          </v-card-actions>
         </v-card>
       </v-dialog>
 
@@ -151,6 +171,8 @@ export default {
   
   data() {
     return {
+      incompleto: false,
+      errordata:'',
       name: '',
       lote: '',
       dosis: '',
@@ -182,6 +204,9 @@ export default {
     },
   },
   methods: {
+    reloadPage(){
+      this.$router.go()
+  },
    /*  metodo para obtener datos de vacunacion | Genesis */
     vacunas() {
       this.$axios
@@ -198,7 +223,7 @@ export default {
         })
     },
   /*   metodo para agregar datos de vacunación | Genesis */
-    editVacunas() {
+    addVacunas() {
       this.$axios
         .post('api/v1/physician/medical-history/vaccination-history/', {
           patient_id: this.$route.params.medicalRecord,
@@ -213,8 +238,13 @@ export default {
             },
           })
           .then(
-      /*   location.reload() */
-      )
+          this.overlay=true,
+          this.incompleto=false,
+        ).catch((error)=>{
+            this.incompleto=true
+          this.errordata = ''
+          this.errordata = error.response.data.errors
+        })
     },
   },
   mounted(){

@@ -4,7 +4,7 @@
     <p class="titulo">Antecedentes heredofamiliares</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
         <!-- agregar informacion existente | Genesis -->
-        <v-dialog persistent v-if="!this.null" scrollable v-model="dialog"  max-width="600px">
+        <v-dialog persistent v-if="this.errordata" scrollable v-model="dialog"  max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
@@ -26,7 +26,7 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4" xl="12">
-                  <p class="cuestion mb-n3">Diabetes</p>
+                  <p class="cuestion mb-n3">Disabetes</p>{{ diabetes }}
                   <v-radio-group
                     style="font-family: Montserrat"
                     v-model="diabetes"
@@ -38,6 +38,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="diabetesStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -73,7 +74,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" @click="diseasesStatus" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="diseases_family"
@@ -107,7 +108,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="pressureStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="pressure_family"
@@ -139,7 +140,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="thyroidStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="thyroid_family"
@@ -175,6 +176,7 @@
                       color="#b380ff"
                       label="No"
                       value="No"
+                      @click="bloodStatus"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
@@ -207,7 +209,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio @click="cancerStatus" color="#b380ff" label="No" value="No"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="cancer_family"
@@ -239,7 +241,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="kidneyStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="kidney_family"
@@ -313,7 +315,7 @@
         </template>
         <v-card  max-height="600px">
            <v-card-title class="d-flex justify-space-between flex-wrap">
-            <span >ANTECEDENTES HEREDOFAMILIARES</span>{{diabetes}} {{ diabetes_family }}
+            <span >ANTECEDENTES HEREDOFAMILIARES</span><br/>
                   <v-btn
                     dark
                     icon
@@ -692,17 +694,16 @@ export default {
           this.kidney_family = res.data.data.kidney_stones.family
           this.kidney_type = res.data.data.kidney_stones.type
           this.null=res.data.data.blood_diseases
-        }).then(
-          this.diabetesStatus(),
-          this.diseasesStatus(),
-          this.pressureStatus(),
-          this.thyroidStatus(),
-          this.cancerStatus(),
-          this.kidneyStatus(),
+          this.diabetesStatus()
+          this.diseasesStatus()
+          this.pressureStatus()
+          this.thyroidStatus()
+          this.cancerStatus()
+          this.kidneyStatus()
           this.bloodStatus()
-        ).catch((error) => {
+        }).catch((error) => {
           this.errordata = ''
-          this.errordata = error.response.data
+          this.errordata = error.response.data.msg
         })
         
     },
@@ -843,17 +844,28 @@ export default {
     reloadPage(){
       this.$router.go()
   },
+
+
     diabetesStatus() {
-      if(this.diabetes_type==="No"){
+      if(this.diabetes_family === 'No'){
         this.diabetes="No"
+      }else if(this.diabetes_family === null){
+        this.diabetes="No"
+      }
+      else if(this.diabetes==="No"){
+        this.diabetes_family="No"
+        this.diabetes_type="No"
       } else {
         this.diabetes = 'Si'
       }
-    },
+    }, 
     diseasesStatus(){
       if (this.diseases_family === null) {
         this.disease = 'No'
-      }else if(this.disease==="No"){
+      } if (this.diseases_family === 'No') {
+        this.disease = 'No'
+      }
+      else if(this.disease==="No"){
         this.diseases_family="No"
         this.diseases_type="No"
       } else {
@@ -863,7 +875,10 @@ export default {
     pressureStatus(){
       if (this.pressure_family === null) {
         this.pressure = 'No'
-      }else if(this.pressure==="No"){
+      } if (this.pressure_family === 'No') {
+        this.pressure = 'No'
+      }
+      else if(this.pressure==="No"){
         this.pressure_family="No"
         this.pressure_type="No"
       } else {
@@ -873,7 +888,10 @@ export default {
     thyroidStatus(){
       if (this.thyroid_family === null) {
         this.thyroid = 'No'
-      }else if(this.thyroid==="No"){
+      } if (this.thyroid_family === 'No') {
+        this.thyroid = 'No'
+      }
+      else if(this.thyroid==="No"){
         this.thyroid_family="No"
         this.thyroid_type="No"
       } else {
@@ -883,7 +901,10 @@ export default {
     cancerStatus(){
       if (this.cancer_family === null) {
         this.cancer = 'No'
-      }else if(this.cancer==="No"){
+      } if (this.cancer_family === 'No') {
+        this.cancer = 'No'
+      }
+      else if(this.cancer==="No"){
         this.cancer_family="No"
         this.cancer_type="No"
       } else {
@@ -893,7 +914,10 @@ export default {
     kidneyStatus(){
       if (this.kidney_family === null) {
         this.kidney = 'No'
-      }else if(this.kidney==="No"){
+      } if (this.kidney_family === 'No') {
+        this.kidney = 'No'
+      }
+      else if(this.kidney==="No"){
         this.kidney_family="No"
         this.kidney_type="No"
       } else {
@@ -903,7 +927,10 @@ export default {
     bloodStatus(){
       if (this.blood_family === null) {
         this.blood = 'No'
-      }else if(this.blood==="No"){
+      } if (this.blood_family === 'No') {
+        this.blood = 'No'
+      }
+      else if(this.blood==="No"){
         this.blood_family="No"
         this.blood_type="No"
       } else {

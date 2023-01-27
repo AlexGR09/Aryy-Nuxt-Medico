@@ -11,8 +11,16 @@
           </v-btn>
         </template>
         <v-card max-height="600px">
-          <v-card-title>
-            <span>ALERGIAS</span>
+          <v-card-title class="d-flex justify-space-between flex-wrap">
+            <span >ALERGIAS</span>
+                  <v-btn
+                    dark
+                    icon
+                    color="grey"
+                    @click="reloadPage"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -89,20 +97,37 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
+            <v-row>
+             
+              <v-col cols="12">
+                <v-btn
               block
               @click="add"
               height="50px"
-              class="white--text save mb-5"
+              class="white--text save"
               color="#7900ff"
               large
               >Guardar cambios</v-btn
-            >
-            <v-overlay :value="overlay">
-              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
-                >Datos actualizados correctamente.</v-alert
+            > </v-col>
+            <v-col  cols="12">
+               <v-alert v-model="incompleto" class="mt-n4"
+                style="font-family: Montserrat; background-color: white !important"
+                dense
+                outlined
+                type="error"
               >
-            </v-overlay>
+                Datos incompletos, <strong>vuelva a intentarlo.</strong>
+              </v-alert>
+             </v-col>
+             <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+            </v-row>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -119,8 +144,16 @@
           </v-btn>
         </template>
         <v-card max-height="600px">
-          <v-card-title>
-            <span>ALERGIAS</span>
+          <v-card-title class="d-flex justify-space-between flex-wrap">
+            <span >ALERGIAS</span>
+                  <v-btn
+                    dark
+                    icon
+                    color="grey"
+                    @click="reloadPage"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -207,20 +240,37 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
+            <v-row>
+             
+              <v-col cols="12">
+                <v-btn
               block
               @click="update"
               height="50px"
-              class="white--text save mb-5"
+              class="white--text save"
               color="#7900ff"
               large
               >Guardar cambios</v-btn
-            >
-            <v-overlay :value="overlay">
-              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
-                >Datos actualizados correctamente.</v-alert
+            > </v-col>
+            <v-col  cols="12">
+               <v-alert v-model="incompleto" class="mt-n4"
+                style="font-family: Montserrat; background-color: white !important"
+                dense
+                outlined
+                type="error"
               >
-            </v-overlay>
+                Datos incompletos, <strong>vuelva a intentarlo.</strong>
+              </v-alert>
+             </v-col>
+             <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+            </v-row>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -243,6 +293,8 @@ export default {
   components: {listAlergies},
   data() {
     return {
+      incompleto: false,
+      errordata: '',
       msg:'',
       food: '',
       environmental: '',
@@ -313,19 +365,20 @@ export default {
           }
         )
         .then((res) => {
-          this.overlay = true
+          this.overlay=true
+          this.incompleto=false
           this.alergiasalimentarias()
           this.alergiasambientales()
           this.alergiasfarmacos()
-          this.reloadPage()
+        }).catch((error)=>{
+            this.incompleto=true
+          this.errordata = ''
+          this.errordata = error.response.data.errors
         })
     },
-
     reloadPage(){
-      if(this.overlay===true){
-        this.$router.go()
-      }
-    },
+      this.$router.go()
+  },
     update() {
       this.$axios
         .put(
@@ -343,11 +396,15 @@ export default {
           }
         )
         .then((res) => {
+          this.overlay=true
+          this.incompleto=false
           this.alergiasalimentarias()
           this.alergiasambientales()
           this.alergiasfarmacos()
-          this.overlay=true
-          this.reloadPage()
+        }).catch((error)=>{
+            this.incompleto=true
+          this.errordata = ''
+          this.errordata = error.response.data.errors
         })
     },
 
@@ -356,7 +413,7 @@ export default {
         this.alimentarias = 'No'
       } else if(this.alimentarias==="No"){
         this.food = "N/A"
-      }
+      } 
        else{
         this.alimentarias = 'Si'
       }
@@ -376,7 +433,8 @@ export default {
         this.farmacos = 'No'
       } else if(this.farmacos==="No"){
         this.drugss = "N/A"
-      } else {
+      } 
+      else {
         this.farmacos = 'Si'
       }
     },

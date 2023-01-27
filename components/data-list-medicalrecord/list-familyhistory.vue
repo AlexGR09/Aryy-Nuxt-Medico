@@ -146,6 +146,7 @@ export default {
   },
   mounted() {
     this.datos()
+    
   },
   methods: {
     /* obtener informacion | Genesis */

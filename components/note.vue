@@ -71,8 +71,6 @@ export default {
           }
         )
         .then((res) => {
-          
-          console.log(res)
           this.patient = res.data.data.patient.full_name
           this.date = res.data.data.appointment_date
           this.status = res.data.data.status

@@ -37,7 +37,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="surgeriesStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="previous_surgeries"
@@ -63,6 +63,7 @@
                       color="#b380ff"
                       label="No"
                       value="No"
+                      @click="transfusionsStatus"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
@@ -86,6 +87,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="diabetesStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -111,7 +113,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="diseaseStatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                   v-model="heart_diseases"
@@ -161,6 +163,7 @@
                       color="#b380ff"
                       label="No"
                       value="No"
+                      @click="thyroidStatus"
                     ></v-radio>
                     </v-radio-group>
                     <v-text-field
@@ -190,6 +193,7 @@
                       color="#b380ff"
                       label="No"
                       value="No"
+                      @click="cancerStatus"
                     ></v-radio>
                     </v-radio-group>
                     <v-text-field
@@ -216,9 +220,10 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="bloodStatus"
                       color="#b380ff"
                       label="No"
-                      value="disNo"
+                      value="No"
                     ></v-radio>
                     </v-radio-group>
                     <v-text-field
@@ -245,6 +250,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="kidneyStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -274,6 +280,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="hepatitisStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -303,6 +310,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="traumaStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -332,6 +340,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="respiratoryStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -361,6 +370,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="gastrointestinalStatus"
                       color="#b380ff"
                       label="No"
                       value="No"
@@ -389,6 +399,7 @@
                       value="Si"
                     ></v-radio>
                     <v-radio
+                    @click="etsStatus"
                       color="#b380ff"
                       label="No"
                       value="No"

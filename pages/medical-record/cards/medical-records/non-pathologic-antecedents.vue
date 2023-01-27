@@ -4,7 +4,7 @@
     <p class="titulo">Antecedentes no patológicos</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!-- agregar informacion  | Genesis -->
-      <v-dialog persistent v-if="!diet" scrollable v-model="editt" max-width="600px">
+      <v-dialog persistent v-if="this.dataNull===true" scrollable v-model="editt" max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
@@ -34,7 +34,7 @@
                     row
                   >
                     <v-radio color="#b380ff" label="Si" value="Si"></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="sportstatus"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     v-model="type_activity"
@@ -103,6 +103,7 @@
                       color="#b380ff"
                       label="No"
                       value="No"
+                      @click="statusSmoking"
                     ></v-radio>
                   </v-radio-group>
                   <v-text-field
@@ -135,7 +136,7 @@
                       label="Si"
                       value="Si"
                     ></v-radio>
-                    <v-radio color="#b380ff" label="No" value="No"></v-radio>
+                    <v-radio color="#b380ff" label="No" value="No" @click="statusAlcohol"></v-radio>
                   </v-radio-group>
                   <v-text-field
                     v-model="alcohol"
@@ -454,7 +455,7 @@
     </div>
     <v-divider class="mt-n1"></v-divider>
      
-<list-nonpathologic/>
+<list-nonpathologic  @getData="getData"/>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
@@ -471,6 +472,13 @@ export default {
   components: {ListNonpathologic},
   data() {
     return {
+      null:'',
+      dataNull:true,
+      alcoholismNull:'',
+      other_substancesNull:'',
+      physical_activityNull:'',
+      rest_timeNull:'',
+      smokingNull:'',
       dataerror:'',
       incompleto:false,
       sportsradio: '',
@@ -532,6 +540,9 @@ export default {
     this.datos()
   },
   methods: {
+    getData(data) {
+      this.null = data;
+    },
     /* obtener informacion | Genesis */
     datos() {
       this.$axios
@@ -562,10 +573,24 @@ export default {
           this.statusSmoking()
           this.statusAlcohol()
           this.statusDiet()
+          this.nullVerify()
+
+         /* para verificar si es nulo | Genesis */
+         this.alcoholismNull = res.data.data.alcoholim
+      this.physical_activityNull= res.data.data.physical_activity
+      this.smokingNull=res.data.data.smoking
+
         }).catch((error) => {
           this.dataerror = ''
           this.dataerror = error
         })
+    },
+    nullVerify(){
+      if(this.alcoholismNull==='null' && this.physical_activityNull==='null' && this.smokingNull==='null'){
+        this.dataNull=true
+      }else{
+        this.dataNull=false
+      }
     },
   
     /* agregar información | Genesis */
