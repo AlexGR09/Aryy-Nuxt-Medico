@@ -471,6 +471,7 @@ export default {
   components: {ListNonpathologic},
   data() {
     return {
+      dataerror:'',
       incompleto:false,
       sportsradio: '',
       errordata:'',
@@ -498,6 +499,7 @@ export default {
       cigarettes: '',
       typeSmoke: '',
       alcohol: '',
+      activityerror:'',
       diettype: '',
       alcoholismo: '',
       typeAlcohol: '',
@@ -560,6 +562,9 @@ export default {
           this.statusSmoking()
           this.statusAlcohol()
           this.statusDiet()
+        }).catch((error) => {
+          this.dataerror = ''
+          this.dataerror = error
         })
     },
   

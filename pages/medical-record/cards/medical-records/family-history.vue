@@ -635,6 +635,7 @@ export default {
       cancer: '',
       kidney: '',
       null: '',
+      dataerror:'',
 
       diabetes_family:'',
       diabetes_type:'',
@@ -699,7 +700,11 @@ export default {
           this.cancerStatus(),
           this.kidneyStatus(),
           this.bloodStatus()
-        )
+        ).catch((error) => {
+          this.errordata = ''
+          this.errordata = error.response.data
+        })
+        
     },
     
    /*  agregar informacion | Genesis */

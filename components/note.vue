@@ -35,7 +35,7 @@
           id, gravida enim. Fusce et felis et velit pharetra dapibus. Aenean
           efficitur nec ipsum vel porta. Nulla quis malesuada felis. Aliquam
           ligula metus, tempor quis sapien non, volutpat commodo velit.
-        </p>
+        </p> 
       </v-card-text>
     </v-card>
   </div>
@@ -50,6 +50,9 @@ export default {
       text_color:'',
       status: '',
       border_color: '',
+      dia:'',
+      mes:'',
+      año:'',
     }
   },
   mounted() {
@@ -68,6 +71,7 @@ export default {
           }
         )
         .then((res) => {
+          
           console.log(res)
           this.patient = res.data.data.patient.full_name
           this.date = res.data.data.appointment_date

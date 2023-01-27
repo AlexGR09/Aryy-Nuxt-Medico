@@ -72,6 +72,7 @@ export default {
       food_allergy: '',
       time: '',
       idif: '',
+      errordata:'',
     }
   },
   methods: {
@@ -91,9 +92,6 @@ export default {
           this.environmental = res.data.data.environmental_allergy[0]
           this.food = res.data.data.food_allergy[0]
           this.time = res.data.data.created_at
-          this.alergiasalimentarias()
-          this.alergiasambientales()
-          this.alergiasfarmacos()
         })
     },
   },

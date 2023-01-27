@@ -1,7 +1,7 @@
 <template>
   <div>
   <div v-if="this.null!=null">
-    <v-list-item v-if="this.type_activity!='No'"
+    <v-list-item v-if="this.type_activity!='No' && this.activityerror"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
@@ -142,6 +142,7 @@ export default {
       diet: '',
       other_substances: '',
       null:'',
+      activityerror:'',
     }
   },
   mounted() {
@@ -159,6 +160,7 @@ export default {
           }
         )
         .then((res) => {
+          console.log(res)
           this.null= res.data.data.alcoholim
 
           this.type_activity = res.data.data.physical_activity.type_of_activity
@@ -175,6 +177,9 @@ export default {
 
           this.diet = res.data.data.diet
           this.other_substances = res.data.data.other_substances
+        }).catch((error) => {
+          this.activityerror = ''
+          this.activityerror = error
         })
     },
 

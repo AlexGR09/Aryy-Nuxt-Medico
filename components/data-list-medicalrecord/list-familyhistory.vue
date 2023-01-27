@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div v-if="!this.errordata">
       <v-list-item
       v-if="this.diabetes_family!='No'"
         style="font-family: Montserrat"
@@ -118,7 +118,7 @@
         </v-list-item-content>
       </v-list-item>
     </div>
-    <p>Sin datos registrados</p>
+    <p v-else>Sin datos registrados</p>
   </div>
 </template>
 <script>
@@ -160,7 +160,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.null=res.data.data.blood_diseases
           this.blood_family=res.data.data.blood_diseases.type
           this.blood_type=res.data.data.blood_diseases.family
@@ -176,10 +175,9 @@ export default {
           this.cancer_type = res.data.data.cancer.type
           this.kidney_family = res.data.data.kidney_stones.family
           this.kidney_type = res.data.data.kidney_stones.type
-        })
-        .catch((error) => {
+        }).catch((error) => {
           this.errordata = ''
-          this.errordata = error.response.data.errors
+          this.errordata = error.response.data
         })
     },
   },
