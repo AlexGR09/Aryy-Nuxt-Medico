@@ -1,23 +1,29 @@
 <!-- EXPEDIENTE MÉDICO -->
 <template>
     <v-container>
-        <v-row>
-            <v-col cols="12" md="8">
+        <v-row >
+    
+            <v-col cols="6" md="8">
                 <form-medical-consultation :components="components"/>
             </v-col>
-            <v-col cols="12" md="4">
+            <v-col cols="6" md="4">
                 <form-internal-notes/>
             </v-col>
-        </v-row>    
+            <v-col cols="6" md="4">
+                <card-appointment/>
+            </v-col>
+        </v-row>
+
+ 
     </v-container>
 </template>
 
 <script>
-
+import CardAppointment from '~/components/medical_record/CardAppointment.vue'
 import FormInternalNotes from '~/components/medical_record/form-InternalNotes.vue'
 import formMedicalConsultation from '~/components/medical_record/form-MedicalConsultation.vue'
 export default{
-  components: { formMedicalConsultation, FormInternalNotes },
+  components: { formMedicalConsultation, FormInternalNotes, CardAppointment},
     data(){
         return{
             components: 
@@ -147,8 +153,6 @@ export default{
                     elevation:'2',
                     dark:'dark'
                 },
-      
-       
             ]
 
         }
