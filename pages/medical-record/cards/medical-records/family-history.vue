@@ -1,7 +1,13 @@
 <!-- seccion de antecedentes heredofamiliares dentro de medical record | Genesis -->
 <template>
   <v-card-text class="mt-n7">
-    <p class="titulo">Antecedentes heredofamiliares</p>
+    <div class="hidden-sm-and-down">
+      <p class="titulo">Antecedentes heredofamiliares</p>
+              </div>
+   
+    <div class="hidden-md-and-up">
+      <p class="titulo">Antecedentes <br/> heredofamiliares</p>
+    </div>
     <div class="mb-2 mt-n11 d-flex justify-end">
         <!-- agregar informacion existente | Genesis -->
         <v-dialog v-if="this.errordata" v-model="dialog" persistent  scrollable   max-width="600px">
@@ -315,9 +321,15 @@
             />
           </v-btn>
         </template>
-        <v-card  max-height="600px">
-           <v-card-title class="d-flex justify-space-between flex-wrap">
-            <span >ANTECEDENTES HEREDOFAMILIARES</span><br/>
+        <v-card mobile-breakpoint="550"  max-height="600px">
+           <v-card-title class=" d-flex justify-space-between flex-wrap">
+           <!--  span a mostrar en pantallas md/lg | Genesis -->
+            <div class="hidden-sm-and-down">
+            <span >ANTECEDENTES HEREDOFAMILIARES</span><br/> </div>
+            <div class="hidden-md-and-up">
+           <!--    span a mostrar en pantallas xs/sm | Genesis -->
+            <span >ANTECEDENTES <br/> HEREDOFAMILIARES</span><br/> </div>
+            
                   <v-btn
                     dark
                     icon
@@ -326,6 +338,7 @@
                   >
                     <v-icon>mdi-close</v-icon>
                   </v-btn>
+                 
           </v-card-title>
           <v-card-text>
             <v-container>

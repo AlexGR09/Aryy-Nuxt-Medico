@@ -1,7 +1,9 @@
 <!-- seccion de antecedentes no patologicos dentro de medical record | Genesis -->
 <template>
   <v-card-text class="mt-n7">
-    <p class="titulo">Antecedentes no patológicos</p>
+    <div class="hidden-sm-and-down">  <p class="titulo">Antecedentes no patológicos</p></div>
+      <div class="hidden-md-and-up">  <p class="titulo">Antecedentes <br/> no patológicos</p></div>
+  
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!-- agregar informacion  | Genesis -->
       <v-dialog v-if="this.dataNull===true" v-model="editt" persistent  scrollable  max-width="600px">
@@ -12,8 +14,13 @@
         </template>
         <v-card max-height="640px">
           <v-card-title class="d-flex justify-space-between flex-wrap">
-            <span >ANTECEDENTES NO PATOLÓGICOS</span>
-                  <v-btn
+               <!--  span a mostrar en pantallas md/lg | Genesis -->
+            <div class="hidden-sm-and-down">
+            <span >ANTECEDENTES NO PATOLÓGICOS</span><br/> </div>
+            <div class="hidden-md-and-up">
+           <!--    span a mostrar en pantallas xs/sm | Genesis -->
+            <span >ANTECEDENTES <br/> NO PATOLÓGICOS</span><br/> </div>
+                  <v-btn 
                     dark
                     icon
                     color="grey"
@@ -240,7 +247,11 @@
         </template>
         <v-card max-height="640px">
           <v-card-title class="d-flex justify-space-between flex-wrap">
-            <span >ANTECEDENTES NO PATOLÓGICOS</span>
+            <div class="hidden-sm-and-down">
+            <span >ANTECEDENTES NO PATOLÓGICOS</span><br/> </div>
+            <div class="hidden-md-and-up">
+           <!--    span a mostrar en pantallas xs/sm | Genesis -->
+            <span >ANTECEDENTES <br/> NO PATOLÓGICOS</span><br/> </div>
                   <v-btn
                     dark
                     icon

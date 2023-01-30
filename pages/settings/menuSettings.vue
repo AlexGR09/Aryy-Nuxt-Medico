@@ -2,7 +2,7 @@
   <v-card flat>
     <v-tabs
       class="list-item mt-8 ml-n3"
-      active-class="bgactive"
+      active-class="bg-active"
       hide-slider
       color="#7900ff"
       height="110px"
@@ -13,6 +13,9 @@
       </v-tab>
       <v-tab to="/settings/notifications" style="width: 145px" class="proband">
         NOTIFICACIONES
+      </v-tab>
+      <v-tab to="/settings/theme" style="width: 145px" class="proband">
+        TEMA
       </v-tab>
       <v-tab to="/settings/delete" style="width: 145px" class="proband">
         ELIMINAR
@@ -39,6 +42,10 @@ export default {
       template: '<div>   <notifications/></div>',
     }
 
+    const theme = {
+      template: '<div>   <theme/></div>',
+    }
+
     const deleteAccount = {
       template: '<div>   <deleteAccount/></div>',
     }
@@ -46,6 +53,7 @@ export default {
     const routes = [
       { path: '/settings/account', component: account },
       { path: '/settings/notifications', component: notifications },
+      { path: '/settings/theme', component: theme },
       { path: '/settings/delete', component: deleteAccount },
     ]
 
@@ -63,5 +71,10 @@ export default {
   font-size: 12px;
   align-items: start;
   flex-direction: column;
+}
+.bgactive {
+  background: #7900ff;
+  color: white !important;
+  fill: white !important;
 }
 </style>

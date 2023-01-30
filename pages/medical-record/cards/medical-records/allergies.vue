@@ -133,7 +133,7 @@
       </v-dialog>
 
       <!--  Editar información registrada | Genesis -->
-      <v-dialog  v-else scrollable v-model="dialog" max-width="600px">
+      <v-dialog  v-else scrollable v-model="dialog" max-width="55vh"> 
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img
@@ -462,6 +462,7 @@ p.cuestion {
 span {
   color: #4f565f;
   font-family: MontserratBold;
+  font-size: 1.1rem
 }
 .save {
   font-family: Montserrat;

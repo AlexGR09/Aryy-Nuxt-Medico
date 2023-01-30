@@ -1,31 +1,30 @@
 <template>
   <div>
-    <div>This is the stuff that gets hidden until it's loaded...</div>
-    <v-overlay :value="overlay">
-      <v-card light height="100vh" width="100vw"
-        ><v-card-text>
-          <v-skeleton-loader
-            light
-            type="list-item-avatar-three-line, image, article"
-          ></v-skeleton-loader>
-          <v-skeleton-loader
-            light
-            type="list-item-avatar-three-line, image, article"
-          ></v-skeleton-loader> </v-card-text
-      ></v-card>
-    </v-overlay>
+    <div id="app">
+  <v-container  >
+    <v-row class="hidden-sm-and-down">
+      <h3 style="color:red;">1. should only show in md/lg</h3>
+    </v-row>
+    <v-row class="hidden-sm-and-up">
+      <h3 style="color:red;">2. should only show in xs</h3>
+    </v-row>
+    <v-row class="hidden-md-and-up">
+      <h3>3. should only show in xs/sm</h3>
+    </v-row>
+    <div class="hidden-md-and-down">
+      <span>4. should only show in lg</span>
+    </div>
+    <v-row >
+       <h3>5. should always be shown</h3>
+    </v-row>
+  </v-container>
+</div>
   </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    overlay: true,
-    attrs: {
-      class: 'mb-6',
-      boilerplate: true,
-      elevation: 2,
-    },
   }),
   mounted() {
     // hide the overlay when everything has loaded

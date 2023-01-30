@@ -12,7 +12,12 @@
         </template>
         <v-card max-height="600px">
           <v-card-title class="d-flex justify-space-between flex-wrap">
-            <span >ANTECEDENTES PATOLÓGICOS</span>
+             <!--  span a mostrar en pantallas md/lg | Genesis -->
+             <div class="hidden-sm-and-down">
+            <span >ANTECEDENTES PATOLÓGICOS</span><br/> </div>
+            <div class="hidden-md-and-up">
+           <!--    span a mostrar en pantallas xs/sm | Genesis -->
+            <span >ANTECEDENTES <br/> PATOLÓGICOS</span><br/> </div>
                   <v-btn
                     dark
                     icon
@@ -468,7 +473,12 @@
         </template>
         <v-card max-height="600px">
           <v-card-title class="d-flex justify-space-between flex-wrap">
-            <span >ANTECEDENTES PATOLÓGICOS</span>
+               <!--  span a mostrar en pantallas md/lg | Genesis -->
+            <div class="hidden-sm-and-down">
+            <span >ANTECEDENTES PATOLÓGICOS</span><br/> </div>
+            <div class="hidden-md-and-up">
+           <!--    span a mostrar en pantallas xs/sm | Genesis -->
+            <span >ANTECEDENTES <br/> PATOLÓGICOS</span><br/> </div>
                   <v-btn
                     dark
                     icon

@@ -113,4 +113,14 @@ span.breadcrumbs {
   font-family: Montserrat;
   color: #7900ff;
 }
+.v-card__title {
+  font-family: MontserratBold;
+  color: #4f565f;
+  font-size: 2.2vh;
+}
+.v-card__subtitle {
+  font-size: 1.7vh;
+  text-transform: none;
+  font-family: Montserrat;
+}
 </style>

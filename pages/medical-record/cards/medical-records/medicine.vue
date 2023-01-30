@@ -15,7 +15,12 @@
         </template>
         <v-card>
           <v-card-title>
-            <span>HISTORIAL DE MEDICAMENTOS</span>
+             <!--  span a mostrar en pantallas md/lg | Genesis -->
+            <div class="hidden-sm-and-down">
+            <span >HISTORIAL DE MEDICAMENTO</span><br/> </div>
+            <div class="hidden-md-and-up">
+           <!--    span a mostrar en pantallas xs/sm | Genesis -->
+            <span >HISTORIAL <br/> DE MEDICAMENTO</span><br/> </div>
           </v-card-title>
           <v-card-text>
             <v-container>
