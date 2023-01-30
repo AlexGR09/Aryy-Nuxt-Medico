@@ -270,6 +270,7 @@ export default {
   },
   mounted() {
     this.datos()
+    this.datosVer()
   },
   methods: {
     /* obtener informacion | Genesis */
@@ -277,6 +278,39 @@ export default {
       this.$axios
         .get(
           `api/v1/medical-history/physician/pathological-background/patient/${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          this.blood_pressure = res.data.data.blood_pressure
+          this.blood_transfusions = res.data.data.blood_transfusions
+          this.cancer = res.data.data.cancer
+          this.diabetes = res.data.data.diabetes
+          this.ets = res.data.data.ets
+          this.blood_diseases = res.data.data.blood_diseases
+          this.gastrointestinal_pathologies = res.data.data.gastrointestinal_pathologies
+          this.heart_diseases = res.data.data.heart_diseases
+          this.hepatitis = res.data.data.hepatitis
+          this.kidney_stones = res.data.data.kidney_stones
+          this.previous_surgeries = res.data.data.previous_surgeries
+          this.respiratory_diseases = res.data.data.respiratory_diseases
+          this.thyroid_diseases = res.data.data.thyroid_diseases
+          this.trauma = res.data.data.trauma
+        this.msg=res.data.msg
+         this.condiciones() 
+        
+        }).catch((error)=>{
+          this.errordata = ''
+          this.errordata = error.response.data.errors
+        })
+    },
+    datosVer() {
+      this.$axios
+        .get(
+          `api/v1/medical-history/physician/pathological-background/patient/${this.$route.params.patient}`,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),

@@ -191,72 +191,53 @@
 
           <!-- ALERGIAS -->
           <v-col cols="12" md="6">
-            <p class="subtitle">ALERGIAS</p>
-            <div class="container">
-              <span class="information-description">Alergías conocidas.</span>
-            </div>
+            <p class="titulo mb-n2">Alergias</p>
+        
+              <list-alergies/>
           </v-col>
           <!-- ALERGIAS -->
 
           <!-- ANTECENDETES PATOLOGICOS -->
           <v-col cols="12" md="6">
-            <p class="subtitle">ANTECEDENTES PATOLÓGICOS</p>
-            <div class="container">
-              <h5 class="description">Cirugías previas</h5>
-              <span class="information-description"
-                >Apendicitomía en Julio 2018</span
-              >
-            </div>
+            <p class="titulo mb-n2">ANTECEDENTES PATOLÓGICOS</p>
+          <list-pathologic/>
           </v-col>
           <!-- ANTECENDETES PATOLOGICOS -->
 
+            <!-- ANTECENDETES NO PATOLOGICOS -->
+            <v-col cols="12" md="6">
+            <p class="titulo mb-n2">ANTECEDENTES NO PATOLÓGICOS</p>
+          <listnonPathologic/>
+          </v-col>
+          <!-- ANTECENDETES NO PATOLOGICOS -->
+
           <!-- ANTECENDETES ANTECEDENTES HEREDOFAMILIARES -->
           <v-col cols="12" md="6">
-            <p class="subtitle">ANTECEDENTES HEREDOFAMILIARES</p>
-            <div class="container">
-              <h5 class="description">Diabetes</h5>
-              <span class="information-description"
-                >Mamá - Tipo 1, Abuelo paterno - Tipo 2</span
-              >
-            </div>
+            <p class="titulo mb-n2">ANTECEDENTES HEREDOFAMILIARES</p>
+           <listFamilyhistory/>
           </v-col>
 
           <!-- ANTECENDETES ANTECEDENTES HEREDOFAMILIARES -->
 
           <!-- ANTECENDETES MEDICAMENTO ACTIVO-->
           <v-col cols="12" md="6">
-            <p class="subtitle">MEDICAMENTO ACTIVO</p>
-            <div class="container">
-              <h5 class="description">Enalapril . 10 . Tabletas</h5>
-              <span class="information-description"
-                >Mamá - Tipo 1, Abuelo paterno - Tipo 2</span
-              >
-            </div>
+            <p class="titulo mb-n2">MEDICAMENTO ACTIVO</p>
+           <listMedicine/>
           </v-col>
 
           <!-- ANTECENDETES MEDICAMENTO ACTIVO-->
 
           <!-- ANTECENDETES MEDICAMENTO MEDICAMENTO ANTERIOR-->
           <v-col cols="12" md="6">
-            <p class="subtitle">MEDICAMENTO ANTERIOR</p>
-            <div class="container">
-              <h5 class="description">Enalapril . 10 . Tabletas</h5>
-              <span class="information-description"
-                >Mamá - Tipo 1, Abuelo paterno - Tipo 2</span
-              >
-            </div>
+            <p class="titulo mb-n2">MEDICAMENTO ANTERIOR</p>
+            <ListPreviousMedicine/>
           </v-col>
 
           <!-- ANTECENDETES MEDICAMENTO ANTERIOR -->
           <!-- VACUNACION RECIENTE-->
           <v-col cols="12" md="6">
-            <p class="subtitle">VACUNACIÓN RECIENTE</p>
-            <div class="container">
-              <h5 class="description">Enalapril . 10 . Tabletas</h5>
-              <span class="information-description"
-                >Influeza . 10/noviembre/2022</span
-              >
-            </div>
+            <p class="titulo mb-n2">VACUNACIÓN RECIENTE</p>
+            <list-vaccination/>
           </v-col>
 
           <!-- VACUNACION RECIENTER -->
@@ -347,7 +328,17 @@
 </template>
 
 <script>
+import listAlergies from '~/components/data-list-medicalrecord/list-allergies.vue'
+import listPathologic from '~/components/data-list-medicalrecord/list-pathologic.vue'
+import listnonPathologic from '~/components/data-list-medicalrecord/list-nonpathologic.vue'
+import listFamilyhistory from '~/components/data-list-medicalrecord/list-familyhistory.vue'
+import listMedicine from '~/components/data-list-medicalrecord/list-medicine.vue'
+import listPreviousMedicine from '~/components/data-list-medicalrecord/list-previousMedicine.vue'
+import ListPreviousMedicine from '~/components/data-list-medicalrecord/list-previousMedicine.vue'
+import listVaccination from '~/components/data-list-medicalrecord/list-vaccination.vue'
 export default {
+  layout: 'medicalRecord',
+  components: { listAlergies, listPathologic, listnonPathologic, listFamilyhistory, listMedicine, listPreviousMedicine, ListPreviousMedicine,listVaccination },
   data: () => ({
     items: [
       {
@@ -389,6 +380,8 @@ export default {
         },
     ],
   }),
+  mounted(){
+  },
   methods: {
     updateMessage: function () {
       this.message = 'updated'
@@ -396,8 +389,9 @@ export default {
       this.$nextTick(function () {
         console.log(this.$el.textContent) // => 'actualzia'
       })
-    }
+    },
   }
+  
 }
 </script>
 
@@ -464,5 +458,9 @@ export default {
   font-size: 1.8vh;
   font-family: 'MontserratBold';
   color: #5b5e63;
+}
+.titulo{
+  font-size: 2vh;
+  font-family: MontserratBold;
 }
 </style>

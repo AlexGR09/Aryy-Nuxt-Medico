@@ -73,26 +73,7 @@
       </v-dialog>
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p v-if="this.name===''">Sin datos registrados</p>
-    <v-list-item
-    v-for="medication in medications" :key="medication"
-      v-else
-      style="font-family: Montserrat"
-      class="ml-n7 mt-n5 lista"
-      two-line
-    >
-      <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title class="mt-2"
-          >{{ name }} • 10mg • Tabletas
-        </v-list-item-title>
-        <v-list-item-subtitle>
-          1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
-        </v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
+    <listMedicine/> 
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
@@ -103,9 +84,10 @@
   </v-card-text>
 </template>
 <script>
+import listMedicine from '~/components/data-list-medicalrecord/list-medicine.vue'
 export default {
   layout: 'medicalRecord',
-  components: {},
+  components: {listMedicine},
   data() {
     return {
       name: '',
@@ -130,12 +112,31 @@ export default {
   },
   mounted() {
     this.medicine()
+    this.medicineVer()
   },
   methods: {
     medicine() {
       this.$axios
         .get(
           `api/v1/physician/medical-history/current-medication/${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+          this.idif = res.data.data.id
+          this.medications = res.data.data.medication
+          this.name = res.data.data.medication[0]
+        })
+    },
+
+    medicineVer() {
+      this.$axios
+        .get(
+          `api/v1/physician/medical-history/current-medication/${this.$route.params.patient}`,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),

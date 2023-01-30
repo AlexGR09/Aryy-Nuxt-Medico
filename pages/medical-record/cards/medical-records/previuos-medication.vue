@@ -4,26 +4,7 @@
       <p class="titulo">Medicamento anterior</p>
     
       <v-divider class="mt-n1"></v-divider>
-      <p v-if="this.name===''">Sin datos registrssados</p>
-
-      <v-list-item v-for="medication in medications" :key="medication"
-      v-else
-      style="font-family: Montserrat"
-      class="ml-n7 mt-n5 lista"
-      two-line
-    >
-      <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title class="mt-2">{{medication}} • 
-        10mg • Tabletas
-        </v-list-item-title>
-        <v-list-item-subtitle>
-          1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
-        </v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
+      <listPreviousMedicine/>
 
       <p class="ml-3 d-flex justify-end">
         <img
@@ -35,9 +16,10 @@
     </v-card-text>
   </template>
   <script>
+  import listPreviousMedicine from '~/components/data-list-medicalrecord/list-previousMedicine.vue'
   export default {
     layout: 'medicalRecord',
-    components: {},
+    components: {listPreviousMedicine},
     data() {
       return {
         dialog: false,

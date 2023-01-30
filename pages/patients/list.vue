@@ -118,7 +118,7 @@
               <!--  seccion de nombre de paciente | Genesis -->
               <template v-slot:[`item.name`]="{ item }">
                 <!-- agrupar botones en una sola fila  | Genesis -->
-                <a class="name" href="/medical-record/patient">{{
+                <a class="name" :href="'/medical-record/view/10'">{{
                   item.name
                 }}</a>
               </template>

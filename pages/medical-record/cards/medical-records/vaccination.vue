@@ -135,26 +135,7 @@
 
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <p v-if="!this.vaccine">Sin datos registrados</p>
-    <v-list-item
-    v-else
-    v-for="vacuna in vacunass" :key="vacuna.id"
-      style="font-family: Montserrat"
-      class="ml-n7 mt-n5 lista"
-      two-line
-    >
-      <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title class="mt-2"> 
-             {{vacuna.vacination[0].vaccine}}  • {{vacuna.vacination[0].application_date}} 
-        </v-list-item-title>
-        <v-list-item-subtitle>
-         {{vacuna.vacination[0].dose}} • {{vacuna.vacination[0].lot_number}}
-        </v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
+   <list-vaccination/>
     <p class="ml-3 d-flex justify-end">
       <img
         class="mr-3"
@@ -165,9 +146,10 @@
   </v-card-text>
 </template>
   <script>
+  import listVaccination from '~/components/data-list-medicalrecord/list-vaccination.vue'
 export default {
   layout: 'medicalRecord',
-  components: {},
+  components: {listVaccination},
   
   data() {
     return {

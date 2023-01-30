@@ -94,10 +94,31 @@ export default {
           this.time = res.data.data.created_at
         })
     },
+    alergiasView() {
+      this.$axios
+        .get(
+          `api/v1/medical-records/physician/allergies/patient/${this.$route.params.patient}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+          this.idif = res.data.data.id
+          this.drugss = res.data.data.drug_allergy[0]
+          this.environmental = res.data.data.environmental_allergy[0]
+          this.food = res.data.data.food_allergy[0]
+          this.time = res.data.data.created_at
+          this.msg=res.data.data.drug_allergy[0]
+        })
+    },
   },
 
   mounted() {
     this.alergiass()
+    this.alergiasView()
   },
 }
 </script>
