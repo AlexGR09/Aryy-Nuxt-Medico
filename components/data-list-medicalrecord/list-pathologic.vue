@@ -9,7 +9,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Cirugías previas</v-list-item-title>
@@ -25,7 +25,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Transfusiones</v-list-item-title>
@@ -42,7 +42,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Diabetes</v-list-item-title>
@@ -59,7 +59,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Cardiopatías</v-list-item-title>
@@ -76,7 +76,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Presión arterial</v-list-item-title>
@@ -93,7 +93,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Enfermedades tiroideas</v-list-item-title>
@@ -110,7 +110,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Cancer</v-list-item-title>
@@ -127,7 +127,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Enfermedades de la sangre</v-list-item-title>
@@ -144,7 +144,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Cálculos renales</v-list-item-title>
@@ -161,7 +161,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Hepatitis</v-list-item-title>
@@ -178,7 +178,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Traumatismos</v-list-item-title>
@@ -195,7 +195,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Patologías respiratorias</v-list-item-title>
@@ -212,7 +212,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Patologías gastrointestinales</v-list-item-title>
@@ -229,7 +229,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Enfermedades de transmisión sexual</v-list-item-title>

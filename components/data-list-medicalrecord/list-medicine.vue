@@ -9,7 +9,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="mt-2"

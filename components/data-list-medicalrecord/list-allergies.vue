@@ -2,7 +2,8 @@
     <div>
         <p v-if="this.drugss==='N/A' && this.environmental==='N/A' && this.food==='N/A'">Sin alergías conocidas</p>
         <p v-if="!this.idif">Sin alergías registradas</p>
-    <div v-else>
+      
+    <div v-else>  
       <v-list-item
       v-if="this.drugss!='N/A' && this.drugss!=null"
         style="font-family: Montserrat"
@@ -10,7 +11,8 @@
         two-line
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
+          
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Fármacos</v-list-item-title>
@@ -25,7 +27,7 @@
         two-line
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Factores ambientales</v-list-item-title>
@@ -40,7 +42,7 @@
         two-line
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Alimentarias</v-list-item-title>

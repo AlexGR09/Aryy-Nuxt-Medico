@@ -8,7 +8,7 @@
         two-line
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Diabetes</v-list-item-title>
@@ -25,7 +25,7 @@
         two-line
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Cardiopatías</v-list-item-title>
@@ -42,7 +42,7 @@
         two-line
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Presión arterial alta o baja</v-list-item-title>
@@ -59,7 +59,7 @@
         two-line
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Enfermedades tiroideas</v-list-item-title>
@@ -76,7 +76,7 @@
         two-line
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Enfermedades de la sangre</v-list-item-title>
@@ -91,7 +91,7 @@
         two-line
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Cáncer</v-list-item-title>
@@ -108,7 +108,7 @@
         two-lin
       >
         <v-list-item-avatar class="mr-n1">
-          <v-icon color="green">mdi-check-circle</v-icon>
+          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>Cálculos renales</v-list-item-title>

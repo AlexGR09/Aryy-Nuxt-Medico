@@ -7,7 +7,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Actividad física</v-list-item-title>
@@ -24,7 +24,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Horas de sueño</v-list-item-title>
@@ -38,7 +38,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Tabaquismo</v-list-item-title>
@@ -55,7 +55,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Alcoholismo</v-list-item-title>
@@ -72,7 +72,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Dieta</v-list-item-title>
@@ -86,7 +86,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Otras sustancias</v-list-item-title>
@@ -100,7 +100,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Sueños al dormir</v-list-item-title>
@@ -114,7 +114,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Descanso al dormir</v-list-item-title>
