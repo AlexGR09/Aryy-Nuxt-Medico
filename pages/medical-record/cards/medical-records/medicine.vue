@@ -26,7 +26,7 @@
                     1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
                   </p>
                   <v-row class="mt-n8">
-                    <v-col cols="3">
+                    <v-col cols="6" xl="3">
                       <v-checkbox
                         v-model="complete"
                         class="checkbox"
@@ -34,7 +34,7 @@
                         label="Completado"
                       ></v-checkbox>
                     </v-col>
-                    <v-col cols="4">
+                    <v-col cols="6" xl="4">
                       <v-checkbox
                         v-model="incomplete"
                         class="checkbox"

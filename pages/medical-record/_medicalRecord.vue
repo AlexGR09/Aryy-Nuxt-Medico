@@ -92,9 +92,9 @@ export default {
 .template {
   background-color: #f6f6f6;
   padding-left: 50px;
-  padding-right: 50px;
+  padding-right: 3vw;
   margin-left: -50px;
-  margin-right: -50px;
+  margin-right: -3%;
   margin-top: -10px;
 }
 span.breadcrumbs {
