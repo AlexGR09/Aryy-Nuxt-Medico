@@ -1,506 +1,146 @@
 <template>
-    <v-container>
-    <div>
-        <v-row>
-          <v-col cols="12" md="2">
-            <v-select
-              v-model="sort"
-              append-icon="mdi-menu-down"
-              outlined
-              class="select"
-              hide-details
-              dense
-              background-color="#f4edff"
-              item-color="deep-purple"
-              color="#7900ff"
-              :items="keys.title"
-              placeholder="Ordenar por"
-              @input="changedLabel"
-            >
-            </v-select>
-          </v-col>
-        <!-- ICONO FILTRE RESPOSIVE -->
-        <v-col class="filter-menu" cols="2" md="4" >
-            <v-menu
-                bottom
-                left
-            >
-                <template #activator="{ on, attrs }">
-                <v-btn
-                    color="primary"
-                    icon
-                    v-bind="attrs"
-                    v-on="on"
-                >
-                    <v-icon>mdi-filter</v-icon>
-                </v-btn>
-                </template>
-                <v-list>
-                <v-list-item
-                    v-for="(item, i) in keys"
-                    :key="i"
-                >
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item>
-                </v-list>
-            </v-menu>
-        </v-col>
-        <!-- ICONO FILTRE RESPOSIVE -->
-        <v-col cols="9" md="4" >
-            <v-text-field
-            v-model="search"
-              class="search"
-              dense
-              outlined
-              label="Búsqueda"
-              prepend-inner-icon="mdi-magnify"
-            >
-            </v-text-field>
-        </v-col>
-
-          <v-spacer></v-spacer>
-          
-        <!-- buttons to import and export patients | Luis Reyes -->
-          
-          <v-col class="option-btn">
-<!--             <v-btn
-                outlined
-                color="#004D40"
-            >
-                Importar pacientes
-                <v-icon
-                    right
-                >
-                mdi-file-excel
-                </v-icon>
-            </v-btn> -->
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <v-btn
-                  v-bind="attrs"
-                  :loading="isSelecting"
-                  block
-                  outlined
-                  class="btnStart "
-                  v-on="on"
-                  @click="handleFileImport"
-                  >
-                    <span class="black--text">Importar pacientes</span>
-                      
-                </v-btn>
-              </template>
-                    <span style="text-transform: capitalize">Formatos permitidos: .xlsx</span>
-            </v-tooltip>
-              <input
-                id="archivoExcel"
-                ref="uploader"
-                accept=".xlsx"
-                :v-model="selectedFile"
-                class="d-none"
-                type="file"
-                @change="subirExcel()"
-              />
-          </v-col>
-          
-          <!-- EXPORTAR PACIENTES -->
-          <v-col  class="option-btn">
-            <v-btn
-                outlined
-                color="#004D40"
-                @click="exportarExcel()"
-            >
-                Exportar pacientes
-                <v-icon
-                    right
-                >
-                mdi-file-excel
-                </v-icon>
-            </v-btn>
-         </v-col>
-        <!-- buttons to import and export patients | Luis Reyes -->
-        </v-row>
-        
-     <v-data-table
-          :headers="headers"
-          :items="pacientes"
+  <div>
+    <v-data-table
+      :headers="headers"
+      :items="items"
+      :items-per-page="5"
+      hide-default-footer
+    >
+      <template>
+        <v-icon
+          small
+          class="mr-2"
         >
-        </v-data-table>
-       <v-data-table
-              :search="search"
-              :headers="headers"
-              :items="characters"
-              mobile-breakpoint="0"
-              item-key="name"
-              hide-default-header
-              :sort-by.sync="sortBy"
-              :sort-desc.sync="sortDesc"
-              :page.sync="page"
-              :items-per-page="itemsPerPage"
-              hide-default-footer
-            >
-            <template header="{ props: { headers } }">
-                <thead class="v-data-table-header">
-                  <tr>
-                    <th
-                      v-for="header in headers"
-                      :key="header.value"
-                      class="text-uppercase"
-                      scope="col"
-                    >
-                      <span class="headers">{{ header.text }}</span>
-                    </th>
-                  </tr>
-                </thead>
-              </template> 
-              <!--  seccion de nombre de paciente | Genesis -->
-              <template v-slot:[`item.name`]="{ item }">
-                <!-- agrupar botones en una sola fila  | Genesis -->
-                <a class="name" href="/medical-record/patient">{{
-                  item.name
-                }}</a>
-              </template>
+          mdi-pencil
+        </v-icon>
+      </template>
+    </v-data-table>
+    <div class="text-right pt-2">
+      <v-pagination
+        v-model="page"
+        :length="pageCount"
+      ></v-pagination>
 
-              <!-- Seccion de última cita | Genesis -->
-              <template v-slot:[`item.gender`]="{ item }">
-                <v-row >
-                  <v-col cols="12" xs="12" sm="12" md="5" lg="4" xl="3">
-                    <!--    chip de cita asistida | Genesis -->
-                    <v-chip
-                      v-if="attendance"
-                      class="justify-center asistencia"
-                      color="#e9f7ee"
-                      text-color="#1baa55"
-                      ><span style="text-transform: uppercase; font-size: 85%">ASISTIÓ</span
-                      ></v-chip>
-                    <!--    chip de cita cancelada | Genesis -->
-                    <v-chip
-                      v-if="absence"
-                      class="justify-center cancel"
-                      color="#fdeeec"
-                      text-color="#e74c3c"
-                      ><span style="text-transform: uppercase; font-size: 85%"
-                        >CANCELADA</span
-                      ></v-chip
-                    >
-                    <!--    chip de cita no asistida | Genesis -->
-                    <v-chip
-                      v-if="na"
-                      class="justify-center na"
-                      color="#f5f5f5"
-                      text-color="#999999"
-                      ><span style="text-transform: uppercase; font-size: 85%"
-                        >N/A</span
-                      ></v-chip
-                    >
-                  </v-col>
-                  <v-col cols="12" xs="2" sm="2" md="5" lg="3" xl="3">
-                    <p>{{ item.gender }}</p>
-                  </v-col>
-                </v-row>
-              </template>
-              <template v-slot:[`item.actions`]>
-                <!-- agrupar botones en una sola fila  | Genesis -->
-                <div style="width: 25px">
-                  <v-btn-toggle borderless>
-                    <v-btn class="iconos" icon>
-                      <v-img
-                        :src="require('@/assets/icons/icon_watch.svg')"
-                        max-width="23"
-                      ></v-img>
-                    </v-btn>
-                    <v-btn class="iconos"  icon @click="deleteItemConfirm">
-                      <v-img
-                        :src="require('@/assets/icons/icon_delete.svg')"
-                        max-width="23"
-                      ></v-img>
-                    </v-btn>
-                  </v-btn-toggle>
-                </div>
-              </template>
-            </v-data-table>
     </div>
-</v-container>
+  </div>
 </template>
-  
+
 <script>
-import axios from 'axios'
-import readXlsFile from "read-excel-file"
-/* import exportFromJSON from 'export-from-json'  */
-
-
-
-export default {
-  layout: 'default',
-
-  data() {
-    return {
-      sortBy: "name",
-      sortDesc: false,
-      sort: '',
-      isSelecting: false,
-      search: '',
-      attendance: true,
-      absence: false,
-      na: false,
-      itemsPerPage: 10,
+export default{
+  data(){
+    return{
       page: 1,
-      selectedFile: null,
-      characters: [],
-      headers: [
-        /* encabezados para la tabla y estilos | Genesis */
+        pageCount: 0,
+        itemsPerPage: 10,
+      headers:[
         {
-          text: 'Nombre completo',
-          align: 'start',
-          value: '0',
-        },
-        { text: 'Teléfono', value: '1', align: 'start'},
-        { text: 'Última cita', value: '2', align: 'start'},
-     
-      ],
-
- 
-      /* Opciones para el select de sort by | Genesis */
-      keys: [
-
-         { title: 'Nombre completo' },
-        { title: 'Teléfono' },
-        { title: 'Última cita' }
-
-      ],
-      items: [
-        {
-          icon: 'mdi-home-outline',
-          disabled: false,
-          href: '/',
+          text:'Nombre completo',
+          value: 'name'
         },
         {
-          text: 'Lista de pacientes',
-          disabled: false,
-          href: '/patients/list',
+          text: 'Teléfono',
+          value: 'phone_number'
         },
+        {
+          text: 'Ultima cita',
+          value: 'last_appointment'
+        },
+        {
+          text: 'Status',
+          value:'status'
+        },
+        {
+          text: 'Acciones',
+          value: 'actions'
+        }
       ],
+      items: [],
+      
 
-       pacientes:[] 
     }
   },
-
-
-  computed: {
-    totalRecords() {
-      return this.characters.length
-    },
-    pageCount() {
-      return this.totalRecords / this.itemsPerPage
-    },
-  },
-  mounted() {
-    console.log('verificando')
-    this.getTodos()
-  },
-  
-  
-  
   methods: {
-    subirExcel(){
-      const input = document.getElementById("archivoExcel");
-      readXlsFile(input.files[0]).then((rows) => {
-        this.pacientes = rows;
-
-      })
-    },
+    GET_DATA(){
+      this.$axios
+        .get('/api/v1/physician/list-patients/',{
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((response) => {
+          console.log(response)
+      /* console.log(response.data.data[0].patient.full_name)
+          console.log(response.data.data[0].patient.user_info.phone_number)
+          console.log(response.data.data[0].last_appointment)
+          console.log(response.data.data[0].status) */
+    /*       this.items = response.data.data.patient((item) =>{
+            return {
+              full_name: item.full_name,
+            }
+          }) */
+          const obj = response.data.data;
+          const tamano = obj.length;
  
-/*  exportarExcel(){
-      const data = this.pacientes;
-      const fileName = 'download'
-      const exportType =  exportFromJSON.types.xls
-      exportFromJSON({data, fileName, exportType})
-    },   */
+        //   Object.keys(obj).forEach(function(k){
+        //     // console.log(obj[k].id)
+        //       this.items = [
+        //       {
+        //         'last_appointment' : 'sddssd'
+        //       }
+        //     ]
+        // });
 
-    changedLabel(event) {
-      this.sort = event;
-      if(this.sort==="Nombre completo"){
-        this.sortDesc = !this.sortDesc;
-      }else{
-        console.log("adiooooos")
-      }
-    },
-    deleteItemConfirm() {
-      this.characters.splice(this.editedIndex, 1)
-      this.closeDelete()
-    },
-    handleFileImport() {
-      this.isSelecting = true
-      // After obtaining the focus when closing the FilePicker, return the button state to normal
-      window.addEventListener(
-        'focus',
-        () => {
-          this.isSelecting = false
-        },
-        { once: true }
-      )
-      // Trigger click on the FileInput
-      this.$refs.uploader.click()
-    },
-    onFileChanged(e) {
-      this.selectedFile = e.target.files[0]
-      // Do whatever you need with the file, liek reading it with FileReader
-    },
-    chooseFiles() {
-      document.getElementById('fileUpload').click()
-    },
-    getTodos() {
-      console.log('peticion GET')
-      axios
-        .get('https://rickandmortyapi.com/api/character')
-        .then((res) => {
-          console.log(res)
-          this.characters = res.data.results
+      //   const objeto =   {
+      //           // Le agregas la fecha
+      //           name: "Foursquare",
+      //           last_appoinment: 4,
+      //  }
+
+       for(let i=0; i<tamano; i++){
+     
+      const objeto =   {
+                name: obj[i].patient.full_name,
+                phone_number: obj[i].patient.user_info.phone_number,
+                last_appointment : obj[i].last_appointment,
+                status : obj[i].status,
+
+       }
+      this.items.push(objeto);
+    } 
+
+          // this.items = [
+          //         {
+          //           'last_appointment' : 'saas',
+          //         }
+          //   ]
+
+          // Object.entries(obj).forEach(entry => {
+          //   const [key] = entry;
+
+          //  const res = entry[key];
+
+          //   console.log(res)
+     
+          //   this.items = [
+          //     {
+          //       'last_appointment' : res.last_appointment,
+          //       'status' : entry[key].status,
+      
+          //     }
+              
+          //   ]
+   
+
+          // });
+
+          
+       
         })
-        .catch((e) => {
-          /* console.log(e); */
-          console.log(e)
-        })
     },
+    
   },
+
+  mounted() {
+    this.GET_DATA()
+  },
+
 }
 </script>
-<style>
-
-/* styles for patient table */
-
-@media screen and (max-width: 810px) {
-    .select, .option-btn{
-        display:none;
-    }
-}
-
-.filter-menu{
-
-    margin-left: 2vh;
-}
-@media only screen and (min-width: 880px) {
-.filter-menu {
-	display: none !important;
- }
-}
-
-@media only screen and (max-width: 880px) {
-	.filter-menu {
-		display: block !important;
-	}
-}
-
-.vtoolbar {
-  border: thin solid #cccccc;
-  height: 30px;
-  width: 2rem;
-}
-.search {
-  font-family: Montserrat;
-}
-.thead {
-  font-family: Montserrat;
-  color: #999999;
-  font-size: 0.85rem;
-}
-/*   estilos para llenado de tabla | Genesis */
-th {
-  font-family: Montserrat;
-}
-h3 {
-  padding-left: 3rem;
-  font-size: 1.4rem;
-}
-tbody {
-  font-family: 'MontserratMedium';
-}
-a {
-  color: #9966ff !important;
-  font-family: MontserratBold;
-  font-size: 15px;
-  text-decoration: none;
-  margin-left: -2px;
-}
-a.name {
-  color: black !important;
-  font-family: Montserrat;
-  font-size: 15px;
-  text-decoration: none;
-  margin-left: -2px;
-}
-a.header {
-  color: black !important;
-  font-family: Montserrat;
-  font-size: 15px;
-  text-decoration: none;
-  text-transform: uppercase;
-  margin-left: -2px;
-}
-span {
-  font-size: 0.9rem;
-  font-family: MontserratMedium;
-  align-items: start;
-  text-transform: lowercase;
-}
-span::first-letter {
-  text-transform: uppercase;
-}
-.select {
-  font-family: MontserratMedium;
-  font-size: 15px;
-}
-.select input::placeholder {
-  color: #7900ff !important;
-  opacity: 1;
-}
-/*   estilos para botones | Genesis */
-.boton {
-  color: #9966ff;
-}
-.botones {
-  background: transparent !important;
-}
-.btnStart {
-  text-transform: uppercase !important;
-}
-.iconos {
-  margin-left: -10px;
-}
-/* estilos para barra de busqueda | Genesis */
-.vtoolbar {
-  border: thin solid #cccccc;
-  height: 30px;
-  width: 6rem;
-}
-.search {
-  font-family: Montserrat;
-}
-.v-input__icon--prepend-inner .v-icon {
-  color: #cccccc;
-}
-.v-input__icon--append .v-icon {
-  color: #7900ff;
-  font-size: 52px;
-}
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-}
-.asistencia {
-  border: thin solid #1baa55 !important;
-  width: 100%;
-}
-.cancel {
-  border: thin solid #e74c3c !important;
-  width: 100%;
-}
-.na {
-  border: thin solid #999999 !important;
-  width: 100%;
-}
-span.headers {
-  text-transform: capitalize !important;
-  font-family: Montserrat;
-  color: #999999;
-}
-</style>

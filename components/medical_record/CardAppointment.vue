@@ -18,29 +18,18 @@ export default{
             appointment_date:null,
             duration_treatment: null,
             medical_appoiintmen: null,
-           
             note: null,
             prescription: null,
-          
             patient_id: null,
             patiend_name: null,
             status: null,
             vital_sig_if: null,
-            symptom: null,
-            diagnosis: null,
-            medical_examition: null,
-            brand: null,
-            amount: null,
-            drug_name: null,
-            frequency: null,
-            instruction: null,
-            presentation: null,
-            cabinet_studies: null,
+      
         }
     },
     
     methods: {
-        
+    
        
         GET_DATA(){
 /* 
@@ -67,6 +56,7 @@ export default{
                     console.log(res.data.data[1].prescription.diagnosis)
                 })
         }, 
+        
     },
     mounted() {
         this.GET_DATA()

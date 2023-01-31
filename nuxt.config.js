@@ -4,7 +4,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   /* Configuración de SEO Global | Luis Reyes */
   head: {
-    titleTemplate: '%s | Aryy',
+    titleTemplate: 'aryy',
     title: 'Sitio oficial',
     htmlAttrs: {
       lang: 'mx-es',
@@ -74,7 +74,6 @@ baseURL: 'https://app.aryymd.com',
     /*   "Authorization": 'Bearer ' + $localStorage.getItem("token")  */
     }
   },
-
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
@@ -98,6 +97,5 @@ baseURL: 'https://app.aryymd.com',
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
  /*  build: {}, */
-  build: { filenames: { chunk: () => '[name].js' } },
+  build: { filenames: { chunk: () => '[name].js' }, postcss: null, },
 }
-

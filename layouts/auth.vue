@@ -1,9 +1,6 @@
-<!-- Layout para el login | Genesis -->
+<!-- layout sin template | Genesis -->
 <template>
-     <v-app>
-        <nuxt />
-</v-app>
+        <v-app>
+                <Nuxt />
+        </v-app>
 </template>
-<style>
-
-</style>
