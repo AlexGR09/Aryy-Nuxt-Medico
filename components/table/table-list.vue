@@ -63,7 +63,6 @@ export default {
           const obj = response.data.data
           const tamano = obj.length
           for (let i = 0; i < tamano; i++) {
-
             const objeto = {
               name: obj[i].patient.full_name,
               phone_number: obj[i].patient.user_info.phone_number,

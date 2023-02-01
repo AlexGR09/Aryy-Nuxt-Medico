@@ -25,8 +25,8 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col cols="12" sm="6" md="4" xl="12">
-                  <p>{{ medications }} • 10mg • Tabletas</p>
+                <v-col  v-for="medication in medications" :key="medication" cols="12" sm="6" md="4" xl="12">
+                  <p>{{ medication }}</p>
                   <p class="sub mt-n5">
                     1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
                   </p>
@@ -49,6 +49,7 @@
                     </v-col>
                   </v-row>
                 </v-col>
+                
               </v-row>
             </v-container>
           </v-card-text>
@@ -130,6 +131,7 @@ export default {
           this.idif = res.data.data.id
           this.medications = res.data.data.medication
           this.name = res.data.data.medication[0]
+         
         })
     },
 

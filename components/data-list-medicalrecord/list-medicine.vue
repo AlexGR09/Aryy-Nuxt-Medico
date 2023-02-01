@@ -13,7 +13,9 @@
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="mt-2"
-          >{{ name }} • 10mg • Tabletas
+          >{{ medication }} 
+
+          
         </v-list-item-title>
         <v-list-item-subtitle>
           1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
@@ -55,10 +57,10 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.idif = res.data.data.id
           this.medications = res.data.data.medication
           this.name = res.data.data.medication[0]
+         
         })
     },
 
