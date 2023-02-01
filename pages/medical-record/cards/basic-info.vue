@@ -156,7 +156,7 @@
 export default {
   data() {
     return {
-      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      date: '',
     modal: false,
       code:'',
       phone:'',
@@ -166,6 +166,7 @@ export default {
   },
   mounted() {
     this.basic_info()
+    this.data()
   },
   methods: {
  
@@ -189,6 +190,22 @@ export default {
 
           const elements = [this.code+this.phone];
           this.phone_number=(elements.join());
+        })
+    },
+
+    data() {
+      this.$axios
+        .get(
+          `api/v1/basic-information/patient/${this.$route.params.medicalRecord}/medical-apointment/${this.$route.params.medicalRecord}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log("------------")
+          console.log(res)
         })
     },
   },

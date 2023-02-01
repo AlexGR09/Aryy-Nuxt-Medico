@@ -3,7 +3,7 @@
         <v-sheet height="64">
           <v-toolbar
             flat
-          >
+          >|{{ selectedElement }}| 
             <v-btn
               fab
               text
@@ -57,11 +57,12 @@ export default {
     names: [],
 	}
   },
-  methods:{
     mounted () {
     this.$refs.calendar.checkChange()
+    console.log(this.$refs.calendar)
   },
   methods: {
+
     prev () {
       this.$refs.calendar.prev()
     },
@@ -99,8 +100,7 @@ export default {
     },
   },
   }
-  
-}
+
 </script>
 <style>
 .theme--light.v-calendar-weekly {
