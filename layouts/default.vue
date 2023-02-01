@@ -8,10 +8,8 @@
       app
     >
       <v-img
-        lazy-src="https://picsum.photos/id/11/10/6"
-        max-height="100"
-        max-width="200"
-        src="https://picsum.photos/id/11/500/300"
+        max-width="100"
+        src="@/assets/logotipos/ISOLOGO_ARYY.svg"
       ></v-img>
       <v-list>
         <v-list-item
@@ -100,7 +98,7 @@ export default {
         {
           url: require("@/assets/icons/icon_calendario.svg"),
           title: 'Calendario',
-          to: '/inspire'
+          to: '/Calendar'
         },
         {
           url: require("@/assets/icons/icon_paciente.svg"),

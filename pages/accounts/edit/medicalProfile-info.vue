@@ -399,7 +399,7 @@ export default {
           alert(res.data.message)
         })
 
-      /*           alert(error.response.data.errors.email)
+      /*  alert(error.response.data.errors.email)
           this.name = ''
           this.is_verified = error.response.data.data0]  
           console.log(error.res.data.message)

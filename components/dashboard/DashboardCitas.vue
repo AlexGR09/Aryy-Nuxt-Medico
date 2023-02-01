@@ -4,6 +4,7 @@
     class="greeting-card "
     outlined
     color="#ffffff"
+    
   >
     <v-row class="ma-0 pa-0">
       <v-col cols="12" >

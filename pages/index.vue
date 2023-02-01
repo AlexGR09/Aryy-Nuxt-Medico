@@ -1,16 +1,6 @@
 <!-- Maquetación => Template => Dashboard | Luis Reyes & Responsivo | Luis Reyes -->
 <template>
   <v-container>
-<!--     <v-card-text>
-      <p class="text-h3 text_welcome" color="#4812d7">Bienvenido,</p>
-      <p class="text-h4 text_welcome">Dr. {{ facilities }}</p>
-
-    </v-card-text>
-    <v-card-subtitle class="pa-3 mt-n2 mb-n10">
-      <H1 class="mb-5">CONSULTAS</H1></v-card-subtitle
-    >
-    <br /> -->
-
         <v-toolbar flat color="transparent">
           <v-toolbar-title>Dr. {{ facilities }}</v-toolbar-title>
         </v-toolbar> 
@@ -38,8 +28,13 @@
             <v-date-picker  v-model="picker"  locale="mx-es" width="350" no-title prev-icon='$prev' class="justify-center calendar"></v-date-picker>
           </v-row>
         </v-card>
-          
       </v-col>
+      <v-row>
+        <v-btn>
+          generar
+        </v-btn>
+      </v-row>
+      
 
 
     </v-row>
