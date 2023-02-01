@@ -30,7 +30,7 @@
       </v-col>
       <v-col cols="12" md="6">
         <v-card max-height="700">
-          <v-calendar></v-calendar>
+         <calendar/>
         </v-card>
         
       </v-col>
@@ -40,8 +40,9 @@
 </template>
 <script>
 import nextConsultation from '~/components/dashboard/next-consultation.vue'
+import calendar from '~/components/dashboard/calendar.vue'
 export default {
-  components: { nextConsultation },
+  components: { nextConsultation,calendar },
   data() {
     return {
       name: [],

@@ -4,7 +4,6 @@
     <v-card-text>
       <v-row>
 
-        
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
           v-model="patient"
@@ -44,21 +43,55 @@
 
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
-          <v-text-field
-          placeholder="Edad"
-            dense
+          <v-dialog
+          ref="dialog"
+          v-model="modal"
+          :return-value.sync="date"
+          persistent
+          width="290px"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
             hide-details
+            placeholder="Fecha de nacimiento"
+            dense
             color="#7900ff"
-            type="text"
-          >
-            <template #prepend>
+              v-model="date"
+              v-bind="attrs"
+              v-on="on"
+            >   <template #prepend>
               <img
                 width="24"
                 height="24"
                 :src="require('@/assets/icons/icon_birthday.svg')"
               />
-            </template>
-          </v-text-field>
+            </template></v-text-field>
+          </template>
+          <v-date-picker
+          color="#9966ff"
+          locale="MX-ES"
+            v-model="date"
+            scrollable
+          >
+            <v-spacer></v-spacer>
+            <v-btn
+              text
+              color="primary"
+              @click="modal = false"
+            >
+              Cancel
+            </v-btn>
+            <v-btn
+              text
+              color="primary"
+              @click="$refs.dialog.save(date)"
+            >
+              OK
+            </v-btn>
+           
+          </v-date-picker>
+        </v-dialog>
+    
         </v-col>
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
@@ -116,13 +149,15 @@
         </v-col>
       </v-row>
     </v-card-text>
-  <v-btn color="purple" text>Guardar</v-btn>
+  <v-btn color="#7900ff" text>Guardar</v-btn>
   </v-card>
 </template>
 <script>
 export default {
   data() {
     return {
+      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+    modal: false,
       code:'',
       phone:'',
       phone_number:'',
