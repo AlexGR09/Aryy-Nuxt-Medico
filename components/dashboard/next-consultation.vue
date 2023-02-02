@@ -34,7 +34,6 @@
                 block   
                 color="#7900ff"
                 >Iniciar consulta </v-btn>
-           
             </div>
             </v-col>
           </div>

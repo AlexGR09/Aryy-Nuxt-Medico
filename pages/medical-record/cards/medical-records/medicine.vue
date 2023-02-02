@@ -77,7 +77,7 @@
     </div>
     <v-divider class="mt-n1"></v-divider>
     <listMedicine/> 
-    <p class="ml-3 mb-0 mt-n5 d-flex justify-end">
+    <p class="ml-3 mb-n1 mt-n1 d-flex justify-end">
       <img
         class="mr-3"
         width="20"
@@ -129,7 +129,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.idif = res.data.data.id
           this.medications = res.data.data.medication
           this.name = res.data.data.medication[0]
@@ -148,7 +147,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.idif = res.data.data.id
           this.medications = res.data.data.medication
           this.name = res.data.data.medication[0]

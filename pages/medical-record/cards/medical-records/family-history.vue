@@ -624,7 +624,7 @@
     </div>
     <v-divider class="mt-n1"></v-divider>
    <list-familyhistory/>
-   <p class="ml-3 mb-0 mt-n5 d-flex justify-end">
+   <p class="ml-3 mb-n1 mt-n1 d-flex justify-end">
       <img
         class="mr-3"
         width="20"
