@@ -133,7 +133,7 @@
       </v-dialog>
 
       <!--  Editar información registrada | Genesis -->
-      <v-dialog  v-else scrollable v-model="dialog" max-width="55vh"> 
+      <v-dialog  v-else scrollable v-model="dialog" max-width="600px"> 
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
             <img

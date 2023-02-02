@@ -460,7 +460,7 @@
       </v-dialog>
 
       <!--   editar informacion | Genesis -->
-      <v-dialog persistent v-else scrollable v-model="editt" max-width="600px">
+      <v-dialog persistent v-else scrollable v-model="editt" max-height="600px" max-width="600px">
        
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">

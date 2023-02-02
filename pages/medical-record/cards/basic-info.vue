@@ -65,6 +65,9 @@
                 height="24"
                 :src="require('@/assets/icons/icon_birthday.svg')"
               />
+            </template>
+            <template #append>
+              ({{ calculateAge }} años)
             </template></v-text-field>
           </template>
           <v-date-picker
@@ -76,14 +79,14 @@
             <v-spacer></v-spacer>
             <v-btn
               text
-              color="primary"
+              color="#7900ff"
               @click="modal = false"
             >
               Cancel
             </v-btn>
             <v-btn
               text
-              color="primary"
+              color="#7900ff"
               @click="$refs.dialog.save(date)"
             >
               OK
@@ -95,8 +98,11 @@
         </v-col>
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
-          <v-text-field
+          <v-autocomplete
+          style="font-family: Montserrat !important"
           v-model="bloodtype"
+          item-color="purple accent-4"
+          :items="blood"
           class="mt-n5"
           placeholder="Tipo de sangre"
             dense
@@ -110,7 +116,7 @@
                 :src="require('@/assets/icons/icon_bloodtype.svg')"
               />
             </template>
-          </v-text-field>
+          </v-autocomplete>
         </v-col>
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
@@ -128,6 +134,10 @@
                 height="24"
                 :src="require('@/assets/icons/icon_height.svg')"
               />
+            </template>
+
+            <template #append>
+             mts
             </template>
           </v-text-field>
         </v-col>
@@ -169,12 +179,23 @@ export default {
       bloodtype:'',
       height:'',
       gender:'',
+      blood: ["A+","A-","B+","B-","AB+","AB-","O+","O-"],
     }
   },
   mounted() {
     this.basic_info()
     this.data()
   },
+  computed:{
+   /*  funcion para calcular la edad con el date picker | Genesis */
+        calculateAge: function() {
+          const currentDate = new Date();
+          const birthDate = new Date(this.date);
+          const difference = currentDate - birthDate;
+          const age = Math.floor(difference/31557600000);
+          return age
+        },
+      },
   methods: {
     /* datos de paciente para datos basicos | Genesis */
     basic_info() {
@@ -222,7 +243,7 @@ export default {
         .put(
           `api/v1/basic-information/patient/${this.$route.params.medicalRecord}`,
           {
-            phone_number: this.phone_number,
+            phone_number: this.phone,
             full_name: this.patient,
             birthday: this.date,
             blood_type: this.bloodtype,
