@@ -1,6 +1,6 @@
 <!-- seccion de antecedentes heredofamiliares dentro de medical record | Genesis -->
 <template>
-  <v-card-text class="mt-n7">
+  <v-card-text class="mb-6">
     <div class="hidden-sm-and-down">
       <p class="titulo">Antecedentes heredofamiliares</p>
               </div>
@@ -624,7 +624,7 @@
     </div>
     <v-divider class="mt-n1"></v-divider>
    <list-familyhistory/>
-    <p class="ml-3 d-flex justify-end">
+   <p class="ml-3 mb-0 mt-n5 d-flex justify-end">
       <img
         class="mr-3"
         width="20"

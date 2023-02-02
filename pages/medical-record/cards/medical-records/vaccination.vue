@@ -1,6 +1,6 @@
 <!-- seccion de historial de vacunacion dentro de medical record | Genesis -->
 <template>
-  <v-card-text class="mt-n7">
+   <v-card-text class="mb-6">
     <p class="titulo">Historial de vacunación</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
 
@@ -136,7 +136,8 @@
     </div>
     <v-divider class="mt-n1"></v-divider>
    <list-vaccination/>
-    <p class="ml-3 d-flex justify-end">
+    
+   <p class="ml-3 mb-0 mt-n5 d-flex justify-end">
       <img
         class="mr-3"
         width="20"

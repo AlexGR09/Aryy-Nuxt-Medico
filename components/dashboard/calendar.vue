@@ -1,54 +1,68 @@
 <template>
-    <div>
-        <v-sheet height="64">
-          <v-toolbar
-            flat
-          >|{{ selectedElement }}| 
-            <v-btn
-              fab
-              text
-              small
-              color="grey darken-2"
-              @click="prev"
-            >
-              <v-icon small>
-                mdi-chevron-left
-              </v-icon>
-            </v-btn>
-             <v-toolbar-title v-if="$refs.calendar">
-              {{ $refs.calendar.title }}
-            </v-toolbar-title>
-            <v-btn
-              fab
-              text
-              small
-              color="grey darken-2"
-              @click="next"
-            >
-              <v-icon small>
-                mdi-chevron-right
-              </v-icon>
-            </v-btn>
-          </v-toolbar>
-        </v-sheet>
-        <v-sheet height="250">
-          <v-calendar
+    <div> 
+      <v-sheet height="84">
+      
+            <v-toolbar flat>
+              <v-btn
+                class="mt-7 ml-5"
+                fab
+                text
+                small
+                color="grey darken-2"
+                @click="prev"
+              >
+                <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
+              </v-btn> 
+              <v-btn width="5" height="20" color="#f4edff" class="mes mt-6 mr-n14" @click="viewMonth" v-if="this.type==='day'">
+                Mes</v-btn> 
+                <v-spacer></v-spacer>
+              <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
+                <l v-if="this.type==='day'">{{ this.$refs.calendar.$data.lastStart.day }}</l>  {{ $refs.calendar.title }}
+              </v-toolbar-title> 
+              <v-spacer></v-spacer>
+              <v-btn
+                class="mt-7"
+                fab
+                text
+                small
+                color="grey darken-2"
+                @click="next"
+              >
+                <v-icon color="#9966ff" x-large> mdi-chevron-right </v-icon>
+              </v-btn>
+            </v-toolbar>
+          </v-sheet>
+          <v-sheet height="46.6vh">
+            <v-calendar
+            hide-header
             ref="calendar"
             v-model="focus"
-            color="primary"
-            :events="events"
-            :event-color="getEventColor"
-            type="month"
-          ></v-calendar>
-        </v-sheet>
+            event-text-color="white"
+            class="calend white--text"
+            locale="mx-es"
+            :type="type"
+            color="#7900ff"
+            event-start="appointment_start"
+            event-end="appointment_start_end"
+            event-name="patient_full_name"
+            event-color="#1abc9c"
+            :events="evento"
+            style="font-family: Montserrat"
+            :short-intervals="false"
+            @click:event="showEvent"
+            @click:more="viewDay"
+            @click:date="viewDay"
+              >
+            </v-calendar>
+            </v-sheet>
     </div>
 </template>
 <script>
 export default {
   data() {
     return {
-        focus: '',
-    type: 'month',
+      focus: '',
+      type: 'month',
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
@@ -58,11 +72,33 @@ export default {
 	}
   },
     mounted () {
+      console.log( this.$refs.calendar.$data.times.now.day)
     this.$refs.calendar.checkChange()
     console.log(this.$refs.calendar)
+    this.citas()
   },
   methods: {
-
+    citas() {
+      this.$axios
+        .get('api/v1/calendar/appointments', {
+          params: {
+            type: 'all',
+          },
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          this.evento = res.data.data
+          console.log(res)
+        })
+    },
+    viewDay({ date }) {
+      this.focus = date
+      this.type = 'day'
+    },
+    viewMonth({ date }) {
+      this.focus = date
+      this.type = 'month'
+    },
     prev () {
       this.$refs.calendar.prev()
     },
@@ -116,5 +152,9 @@ export default {
 .theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday {
   border-right: #e0e0e0 0px solid;
   color: #000000;
+}
+.mes{
+  font-family: Montserrat;
+  text-transform: none;
 }
 </style>

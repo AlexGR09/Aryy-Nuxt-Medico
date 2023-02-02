@@ -1,23 +1,23 @@
 <!-- seccion de expediente médico | Genesis -->
 <template>
-  <v-card>
+  <div>
     <!-- sección de alergias | Genesis -->
-    <allergies />
+    <v-card><allergies /></v-card>
     <!--    seccion antecedentes patológicos | Genesis -->
-    <pathologic-antecedents />
+    <v-card><pathologic-antecedents /></v-card>
     <!--    seccion antecedentes no patológicos | Genesis -->
-    <non-pathologic-antecedents />
+    <v-card><non-pathologic-antecedents /></v-card>
     <!--    seccion antecedentes heredofamiliares | Genesis -->
-    <family-history />
+    <v-card><family-history /></v-card>
     <!--    seccion medicamento activo | Genesis -->
-    <medicine />
+    <v-card><medicine /></v-card>
     <!--    seccion medicamento anterior | Genesis -->
-    <previuos-medication />
+    <v-card><previuos-medication /></v-card>
     <!--    seccion historial de vacunación | Genesis -->
-    <vaccination />
+    <v-card><vaccination /></v-card>
      <!--    otros antecedentes | Genesis -->
      <others/>
-  </v-card>
+  </div>
 </template>
 <script>
 import Allergies from './medical-records/allergies.vue'

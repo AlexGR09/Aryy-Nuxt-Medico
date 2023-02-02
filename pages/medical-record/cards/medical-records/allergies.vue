@@ -1,6 +1,6 @@
 <!-- seccion de alergias dentro de medical record | Genesis -->
 <template>
-  <v-card-text>
+  <v-card-text class="mb-6">
     <p class="titulo">Alergias</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
       <!-- agregar información nueva | Genesis -->
@@ -277,7 +277,7 @@
     </div>
     <v-divider class="mt-n1 mb-3"></v-divider>
 <list-alergies/>
-    <p class="ml-3 d-flex justify-end">
+    <p class="ml-3 mb-0 mt-n5 d-flex justify-end">
       <img
         class="mr-3"
         width="20"

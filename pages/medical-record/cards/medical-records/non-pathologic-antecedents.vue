@@ -1,6 +1,6 @@
 <!-- seccion de antecedentes no patologicos dentro de medical record | Genesis -->
 <template>
-  <v-card-text class="mt-n7">
+   <v-card-text class="mb-6">
     <div class="hidden-sm-and-down">  <p class="titulo">Antecedentes no patológicos</p></div>
       <div class="hidden-md-and-up">  <p class="titulo">Antecedentes <br/> no patológicos</p></div>
   
@@ -471,7 +471,7 @@
     <v-divider class="mt-n1"></v-divider>
      
 <list-nonpathologic  @getData="getData"/>
-    <p class="ml-3 d-flex justify-end">
+<p class="ml-3 mb-0 mt-n5 d-flex justify-end">
       <img
         class="mr-3"
         width="20"

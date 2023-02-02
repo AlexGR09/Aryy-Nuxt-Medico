@@ -101,7 +101,7 @@
           <v-autocomplete
           style="font-family: Montserrat !important"
           v-model="bloodtype"
-          item-color="purple accent-4"
+          item-color="purple darken-4"
           :items="blood"
           class="mt-n5"
           placeholder="Tipo de sangre"

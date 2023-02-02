@@ -1,6 +1,6 @@
 <template>
     <div>
-      <v-card class="mb-7" v-for="evento in eventos" :key="evento">
+      <v-card class="mt-3 mb-7" v-for="evento in eventos" :key="evento">
         <v-row>
         <v-col cols="2" xl="1">
           <v-img
@@ -25,11 +25,17 @@
               order-lg="2"
             >
               <div>
-                <v-btn  color="#f4edff" class="btn" block> Cambiar fecha </v-btn>
+                <v-btn color="#f4edff" class="btn" block> Cambiar fecha </v-btn>
               </div>
               <div>
-                <v-btn :to="'/medical-record/' + evento.id_appointment" class="btn_detail white--text mt-2" block   color="#7900ff" dark > Iniciar consulta </v-btn>
-              </div>
+                <v-btn
+                @click="$router.push('/medical-record/' + evento.id_appointment)"
+                class="btn_detail white--text mt-2" 
+                block   
+                color="#7900ff"
+                >Iniciar consulta </v-btn>
+           
+            </div>
             </v-col>
           </div>
         </v-card-text>
@@ -61,6 +67,9 @@
           console.log(res)
         })
     },
+    startConsultation(){
+      
+    }
     }
     
   }
