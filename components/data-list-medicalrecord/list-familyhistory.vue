@@ -162,7 +162,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.null=res.data.data.blood_diseases
           this.blood_family=res.data.data.blood_diseases.type
           this.blood_type=res.data.data.blood_diseases.family

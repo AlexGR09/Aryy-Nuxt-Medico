@@ -1,11 +1,18 @@
-<template>
-  <v-container>
-    <v-breadcrumbs :items="items"></v-breadcrumbs>
+<template >
+  <div class="template">
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="items">
+      <template v-slot:item="{ item }">
+        <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+          <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+          <span class="breadcrumbs">{{ item.text }}</span>
+        </v-breadcrumbs-item>
+      </template>
+    </v-breadcrumbs>
     <v-row>
       <v-col cols="12" md="8">
-        <p class="subtitle">EXPEDIENTE DEL PACIENTE</p>
+        <p class="subtitle-p ml-0 mb-3">EXPEDIENTE DEL PACIENTE</p>
         <v-card class="rounded-lg" :elevation="2" scrollable>
-          <div class="banner-text">INFORMACIÓN DEL PACIENTE</div>
+          <div class="banner-text"><p class="infor">INFORMACIÓN DEL PACIENTE</p></div>
           <!-- INFORMACION BASICA -->
           <p class="subtitle-p">INFORMACIÓN BÁSICA</p>
           <v-row class="row-icon" no-gutters>
@@ -324,7 +331,7 @@
 
 
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -341,22 +348,22 @@ export default {
   components: { listAlergies, listPathologic, listnonPathologic, listFamilyhistory, listMedicine, listPreviousMedicine, ListPreviousMedicine,listVaccination },
   data: () => ({
     items: [
-      {
-        text: 'Dashboard',
-        disabled: false,
-        href: 'breadcrumbs_dashboard',
-      },
-      {
-        text: 'Lista de pacientes',
-        disabled: false,
-        href: 'http://localhost:3000/patients/list',
-      },
-      {
-        text: 'Expediente',
-        disabled: true,
-        href: 'http://localhost:3000/',
-      },
-    ],
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Lista de pacientes',
+          disabled: false,
+          href: '/patients/list',
+        },
+        {
+          text: 'Expediente',
+          disabled: true,
+          href: '/medical-record/medical-record',
+        },
+      ],
     dates: [
       {
             day: '12', month: 'OCT', year: '2022',
@@ -400,14 +407,11 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap');
 .banner-text {
   color: white;
-  background: blue;
+  background: #7900ff;
   font-size: 2.5vh;
   font-family: 'Montserrat', sans-serif;
   padding: 5px;
   height: 5vh;
-}
-.title {
-  font-size: 12px;
 }
 .subtitle {
   /*   font-size: 1.8vh;
@@ -462,5 +466,13 @@ export default {
 .titulo{
   font-size: 2vh;
   font-family: MontserratBold;
+}
+span.breadcrumbs {
+  font-family: Montserrat;
+  color: #7900ff;
+}
+p.infor{
+  color: white;
+  margin-left: 2vh;
 }
 </style>

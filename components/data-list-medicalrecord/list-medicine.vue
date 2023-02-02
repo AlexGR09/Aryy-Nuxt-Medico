@@ -81,24 +81,6 @@ export default {
           this.name = res.data.data.medication[0]
         })
     },
-
-    status() {
-      this.$axios
-        .put(
-          `api/v1/physician/status-medicine/${this.$route.params.medicalRecord}`,
-          {},
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
-        .then((res) => {
-          location.reload()
-          this.complete = true
-          this.incomplete = false
-        })
-    },
   },
 }
 </script>

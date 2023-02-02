@@ -28,7 +28,7 @@
                 <v-btn  color="#f4edff" class="btn" block> Cambiar fecha </v-btn>
               </div>
               <div>
-                <v-btn :to="'/medical-record/' + evento.id_appointment" class="btn_detail mt-2" block   color="#7900ff" dark > Iniciar consulta </v-btn>
+                <v-btn :to="'/medical-record/' + evento.id_appointment" class="btn_detail white--text mt-2" block   color="#7900ff" dark > Iniciar consulta </v-btn>
               </div>
             </v-col>
           </div>

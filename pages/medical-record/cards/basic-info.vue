@@ -96,6 +96,7 @@
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
+          v-model="bloodtype"
           class="mt-n5"
           placeholder="Tipo de sangre"
             dense
@@ -114,6 +115,7 @@
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
+          v-model="height"
           placeholder="Estatura"
             class="mt-n5"
             dense
@@ -132,6 +134,7 @@
 
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
+          v-model="gender"
             class="mt-n5"
             placeholder="Genero"
             dense
@@ -149,7 +152,7 @@
         </v-col>
       </v-row>
     </v-card-text>
-  <v-btn color="#7900ff" text>Guardar</v-btn>
+  <v-btn @click="update" color="#7900ff" text>Guardar</v-btn>
   </v-card>
 </template>
 <script>
@@ -157,11 +160,15 @@ export default {
   data() {
     return {
       date: '',
-    modal: false,
+      modal: false,
       code:'',
       phone:'',
       phone_number:'',
       patient:'',
+      birthday:'',
+      bloodtype:'',
+      height:'',
+      gender:'',
     }
   },
   mounted() {
@@ -169,7 +176,6 @@ export default {
     this.data()
   },
   methods: {
- 
     /* datos de paciente para datos basicos | Genesis */
     basic_info() {
       this.$axios
@@ -182,7 +188,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.patient = res.data.data.patient.full_name
           this.status = res.data.data.status
           this.code = res.data.data.patient.user_country_code
@@ -204,9 +209,32 @@ export default {
           }
         )
         .then((res) => {
-          console.log("------------")
           console.log(res)
+          this.date=res.data.data.patient.birthday
+          this.bloodtype=res.data.data.medical_history.blood_type
+          this.height=res.data.data.medical_history.height
+          this.gender=res.data.data.patient.gender
         })
+    },
+
+    update() {
+      this.$axios
+        .put(
+          `api/v1/basic-information/patient/${this.$route.params.medicalRecord}`,
+          {
+            phone_number: this.phone_number,
+            full_name: this.patient,
+            birthday: this.date,
+            blood_type: this.bloodtype,
+            height: this.height,
+            gender: this.gender
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
     },
   },
 }

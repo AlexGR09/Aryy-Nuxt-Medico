@@ -57,7 +57,6 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          console.log(res)
           this.facilities = res.data.data.professional_name
           alert(res.data.data.professional_name)
         })

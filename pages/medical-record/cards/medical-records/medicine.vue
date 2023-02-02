@@ -26,10 +26,11 @@
             <v-container>
               <v-row>
                 <v-col  v-for="medication in medications" :key="medication" cols="12" sm="6" md="4" xl="12">
+                  <div>
                   <p>{{ medication }}</p>
-                  <p class="sub mt-n5">
+                 <!--  <p class="sub mt-n5">
                     1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
-                  </p>
+                  </p> -->
                   <v-row class="mt-n8">
                     <v-col cols="6" xl="3">
                       <v-checkbox
@@ -48,8 +49,8 @@
                       ></v-checkbox>
                     </v-col>
                   </v-row>
+                </div>
                 </v-col>
-                
               </v-row>
             </v-container>
           </v-card-text>
