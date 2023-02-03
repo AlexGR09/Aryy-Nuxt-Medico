@@ -304,6 +304,10 @@ s
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#f4edff", GradientType=1);
 }
 
+.theme--dark.v-application {
+  /*  background-color: var(--v-background-base, #f4edff) !important; */
+  background: #363940;}
+
 v-navigation-drawer {
   /*   height: 150px;
   left: 50px; */

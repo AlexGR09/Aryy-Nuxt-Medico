@@ -3,7 +3,7 @@
     <v-breadcrumbs class="breadcrumbs ml-n7" :items="items">
       <template v-slot:item="{ item }">
         <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
-          <v-icon class="bread" size="22" color="#7900ff">{{ item.icon }}</v-icon>
+          <v-icon class="bread" size="22" color="primary">{{ item.icon }}</v-icon>
           <span class="breadcrumbs">{{ item.text }}</span>
         </v-breadcrumbs-item>
       </template>
@@ -15,18 +15,31 @@
         </v-col>
       </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
-        <v-card height="800px" flat class="pa-3 montserrat">
+        <v-card color="card" height="800px" flat class="pa-3 montserrat">
           <v-card-title> TEMA DE ARYY </v-card-title>
           <v-card-subtitle
             >Escoge el tema para visualizar tu interfaz de aryy. <br />
             El tema por defecto es el Tema claro.
           </v-card-subtitle>
           <v-card-text>
-            <v-row
-              >
-              <v-col cols="12" xl="3"
-                ><v-card flat
-                  @click="lightm"
+            <v-row            
+                > <v-card flat
+            @click="lightMode"
+                  v-model="light"
+                  v-ripple
+                  link
+                  hover
+                >
+                  <v-card-text>
+                    <v-icon>mdi-weather-sunny</v-icon>Tema claro
+                    <v-chip class="chip justify-center" v-if="light === true" small>Activo</v-chip>
+                    <v-img
+                      :src="require('@/assets/themes/claro.png')"
+                    ></v-img>
+                  </v-card-text>
+                </v-card>
+               <v-card flat
+            @click="darkMode"
                   v-model="light"
                   v-ripple
                   link
@@ -34,30 +47,14 @@
                   height="250px"
                 >
                   <v-card-text>
-                    <v-icon>mdi-weather-sunny</v-icon>Tema claro
+                    <v-icon>mdi-weather-night</v-icon>Tema Oscuro
                     <v-chip class="chip justify-center" v-if="light === true" small>Activo</v-chip>
-                    <v-sheet class="mt-2" color="grey" height="170px"></v-sheet>
+                    <v-img
+                      :src="require('@/assets/themes/oscuro.png')"
+                    ></v-img>
                   </v-card-text>
-                </v-card></v-col
-              >
-              <v-col cols="12" xl="3"
-                ><v-card flat
-                  @click="darkm"
-                  v-model="dark"
-                  v-ripple
-                  link
-                  hover
-                  height="250px"
-                >
-                <v-card-text>
-                    <v-icon>mdi-weather-night</v-icon>Tema oscuro
-                    <v-chip class="chip justify-center" v-if="dark === true" small>Activo</v-chip>
-                    <v-sheet class="mt-2" color="grey darken-3" height="170px"></v-sheet>
-                  </v-card-text></v-card
-              ></v-col>
-              <v-col cols="12" xl="3"
-                ><v-card flat
-                  @click="systemm"
+                </v-card>
+            <v-card flat
                   v-model="system"
                   v-ripple
                   link
@@ -67,10 +64,12 @@
                 <v-card-text>
                     <v-icon>mdi-laptop</v-icon>Tema del sistema
                     <v-chip class="chip justify-center" v-if="system === true" small>Activo</v-chip>
-                    <v-sheet class="mt-2" color="grey" height="170px"></v-sheet>
+                    <v-img
+                      :src="require('@/assets/themes/sistema.png')"
+                    ></v-img>
                   </v-card-text>
                 </v-card
-              ></v-col>
+              >
             </v-row>
           </v-card-text>
         </v-card>
@@ -107,24 +106,17 @@ export default {
     }
   },
   mounted() {},
+
   methods: {
-    lightm() {
-      this.light = true
-      this.dark = false
-      this.system = false
+    darkMode() {
+      this.$vuetify.theme.dark = true;
     },
-    darkm() {
-      this.dark = true
-      this.light = false
-      this.system = false
-    },
-    systemm() {
-      this.system = true
-      this.dark = false
-      this.light = false
-    },
-  },
+    lightMode() {
+      this.$vuetify.theme.dark = false;
+    }
+  }
 }
+
 </script>
   <style scoped>
 span.breadcrumbs {
