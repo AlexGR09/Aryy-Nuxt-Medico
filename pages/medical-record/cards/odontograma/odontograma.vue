@@ -22,7 +22,7 @@
           </v-btn>
         </v-col>
       </template>
-      <v-card max-height="600px">
+      <v-card color="card" max-height="600px">
         <v-card-title>
           <span>ODONTOGRAMA</span>
         </v-card-title>

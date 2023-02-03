@@ -14,7 +14,7 @@
           <menu-personal />
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
-        <v-card height="800px" flat class="pa-3 mt-2">
+        <v-card color="card" height="800px" flat class="pa-3 mt-2">
           <v-col xl="12">
                   <!-- alert para notificar error | Genesis -->
                   <v-alert

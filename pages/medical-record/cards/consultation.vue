@@ -1,6 +1,6 @@
 <!-- seccion de consulta medica | Genesis -->
 <template>
-  <v-card class="pa-4 montserrat">
+  <v-card color="card" class="pa-4 montserrat">
     <p>Descripción de sintomas</p>
     <v-textarea
       color="#7900ff"

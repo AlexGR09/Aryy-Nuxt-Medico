@@ -33,7 +33,7 @@
         <next-consultation />
       </v-col>
       <v-col cols="12" md="6">
-        <v-card class="pa-10" max-height="700">
+        <v-card color="card" class="pa-10" max-height="700">
           <calendar />
         </v-card>
       </v-col>

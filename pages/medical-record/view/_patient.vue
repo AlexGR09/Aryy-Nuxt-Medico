@@ -11,7 +11,7 @@
     <v-row>
       <v-col cols="12" md="8">
         <p class="subtitle-p ml-0 mb-3">EXPEDIENTE DEL PACIENTE</p>
-        <v-card class="rounded-lg" :elevation="2" scrollable>
+        <v-card color="card" class="rounded-lg" :elevation="2" scrollable>
           <div class="banner-text"><p class="infor">INFORMACIÓN DEL PACIENTE</p></div>
           <!-- INFORMACION BASICA -->
           <p class="subtitle-p">INFORMACIÓN BÁSICA</p>
@@ -254,7 +254,7 @@
       <!-- SEGUNDA COLUMNA -->
       <v-col cols="12" md="4">
         <p class="subtitle">NOTAS INTERNAS</p>
-        <v-card class="greeting-card" elevation="5">
+        <v-card color="card" class="greeting-card" elevation="5">
           <v-row class="ma-0 pa-0">
             <v-col cols="12">
               <div>

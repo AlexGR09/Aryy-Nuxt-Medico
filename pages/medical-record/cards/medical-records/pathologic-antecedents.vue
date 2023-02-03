@@ -10,7 +10,7 @@
             <v-icon color="#9966ff">mdi-plus-circle</v-icon>
           </v-btn>
         </template>
-        <v-card max-height="600px">
+        <v-card color="card" max-height="600px">
           <v-card-title class="d-flex justify-space-between flex-wrap">
              <!--  span a mostrar en pantallas md/lg | Genesis -->
              <div class="hidden-sm-and-down">
@@ -471,7 +471,7 @@
             />
           </v-btn>
         </template>
-        <v-card max-height="600px">
+        <v-card color="card" max-height="600px">
           <v-card-title class="d-flex justify-space-between flex-wrap">
                <!--  span a mostrar en pantallas md/lg | Genesis -->
             <div class="hidden-sm-and-down">

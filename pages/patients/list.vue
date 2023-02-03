@@ -10,7 +10,7 @@
     </v-breadcrumbs>
     <!-- tabla de pacientes | Genesis -->
     <div class="row justify-content-md-center">
-          <v-card width="100%" flat rounded class="margen">
+          <v-card color="card" width="100%" flat rounded class="margen">
             <v-card-title class="mb-n10">
               <v-row class="ma-4 ml-n2 d-flex justify-start">
                 <v-col xs="12" sm="12" md="4" lg="4" xl="4">

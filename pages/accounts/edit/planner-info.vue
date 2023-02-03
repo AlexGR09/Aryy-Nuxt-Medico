@@ -14,7 +14,7 @@
           <menu-planner />
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
-        <v-card flat height="800px" class="pa-3 mt-2">
+        <v-card color="card" flat height="800px" class="pa-3 mt-2">
           <v-card-subtitle class="pa-3  mt-n2 mb-n16"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
           <v-card-text class="pa-3 ">
             <!-- card para mostrar datos de consultorio | Genesis -->

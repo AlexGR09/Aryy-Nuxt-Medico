@@ -12,7 +12,7 @@
       color="grey"
       rounded
     >
-      <v-card outlined color="white">
+      <v-card color="card" outlined>
         <v-row>
           <v-col xs="1" sm="1" md="1" lg="1" xl="1"
             ><v-img

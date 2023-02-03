@@ -14,7 +14,7 @@
         <span class="l">ANTECEDENTES GINECO-OBSTÉTRICOS</span>
       </v-btn>
     </template>
-    <v-card height="600px">
+    <v-card color="card" height="600px">
       <v-card-title>
         <span>ANTECEDENTES GINECO-OBSTÉTRICOS</span>
       </v-card-title>

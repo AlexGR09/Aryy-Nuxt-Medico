@@ -2,7 +2,7 @@
 <template>
   <div>
     <v-row class="mt-n3">
-      <v-card v-show="!$vuetify.breakpoint.xs" flat class="mr-6">
+      <v-card color="card" v-show="!$vuetify.breakpoint.xs" flat class="mr-6">
         <date-picker @getData="getData" /><today
       /></v-card>
       <!-- Calendario vista dia |Genesis -->
@@ -139,7 +139,7 @@
               :close-on-content-click="false"
               :activator="selectedElement"
             >
-              <v-card color="white" min-width="350px" flat>
+              <v-card color="card" min-width="350px" flat>
                 <div class="d-flex justify-end">
                   <v-btn
                     class="mb-n5"

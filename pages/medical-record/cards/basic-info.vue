@@ -1,6 +1,6 @@
 <!-- card para seccion de informacion basica | Genesis -->
 <template>
-  <v-card background="grey-lighten-4">
+  <v-card color="card" background="grey-lighten-4">
     <v-card-text>
       <v-row>
 

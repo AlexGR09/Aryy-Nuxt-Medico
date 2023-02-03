@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-card flat>
+      <v-card color="card" flat>
         <v-date-picker
           @change="setData"
           color="#9966ff"

@@ -23,7 +23,7 @@
           </v-card-subtitle>
           <v-card-text>
             <v-row            
-                > <v-card flat
+                > <v-card color="card" flat
             @click="lightMode"
                   v-model="light"
                   v-ripple
@@ -38,7 +38,7 @@
                     ></v-img>
                   </v-card-text>
                 </v-card>
-               <v-card flat
+               <v-card color="card" flat
             @click="darkMode"
                   v-model="light"
                   v-ripple
@@ -54,7 +54,7 @@
                     ></v-img>
                   </v-card-text>
                 </v-card>
-            <v-card flat
+            <v-card color="card" flat
                   v-model="system"
                   v-ripple
                   link

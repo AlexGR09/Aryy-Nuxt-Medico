@@ -7,7 +7,7 @@
         <span class="l">CUESTIONARIO PERSONALIZADO</span>
       </v-btn>
     </template>
-    <v-card height="100%">
+    <v-card color="card" height="100%">
       <v-card-title>
         <v-col xl="7" class="mr-n10">
           <v-text-field

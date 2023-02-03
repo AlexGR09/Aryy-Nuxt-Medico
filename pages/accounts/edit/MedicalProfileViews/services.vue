@@ -14,7 +14,7 @@
           <menu-med />
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
-        <v-card flat height="800px" class="pa-3 mt-2">
+        <v-card color="card" flat height="800px" class="pa-3 mt-2">
           <v-form ref="form" v-model="valid">
             <v-card-subtitle class="pa-3 mt-n2 mb-n5"
               ><H1 class="mb-5">SERVICIOS</H1></v-card-subtitle

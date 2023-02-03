@@ -10,7 +10,7 @@
                     <v-col ms="3" lg="3" xl="3"></v-col>
                   </v-row>
                   </v-app-bar>
-    <v-card height="100%" flat class="pa-16">
+    <v-card color="card" height="100%" flat class="pa-16">
       <v-card-text class="pa-16">
         <v-row class="ml-16">
           <v-form class="ml-16" ref="form" v-model="valid">

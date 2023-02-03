@@ -14,7 +14,7 @@
           <menu-planner />
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
-      <v-card flat class="pa-3 mt-2">
+      <v-card color="card" flat class="pa-3 mt-2">
         <v-card-subtitle class="pa-3 mb-n5 mt-n2"
           ><H1 class="mb-5">CONFIGURACIÓN DE HORARIOS</H1></v-card-subtitle
         >

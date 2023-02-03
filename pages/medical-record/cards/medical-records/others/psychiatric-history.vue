@@ -7,7 +7,7 @@
         <span class="l">ANTECEDENTES PSIQUIATRICOS</span>
       </v-btn>
     </template>
-    <v-card height="600px">
+    <v-card color="card" height="600px">
       <v-card-title>
         <span>ANTECEDENTES PSIQUIATRICOS</span>
       </v-card-title>

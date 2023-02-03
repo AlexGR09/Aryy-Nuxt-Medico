@@ -1,6 +1,6 @@
 <template>
     <div>
-      <v-card class="mt-3 mb-7" v-for="evento in eventos" :key="evento">
+      <v-card color="card" class="mt-3 mb-7" v-for="evento in eventos" :key="evento">
         <v-row>
         <v-col cols="2" xl="1">
           <v-img

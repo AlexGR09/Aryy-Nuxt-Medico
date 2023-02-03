@@ -10,10 +10,9 @@
                 </template>
             </v-breadcrumbs>
         </div>
-        <v-card     
+        <v-card color="card"     
             outlined
             class="greeting-card"
-            color="white" 
             rounded="xl" 
         >
             <table-list/>

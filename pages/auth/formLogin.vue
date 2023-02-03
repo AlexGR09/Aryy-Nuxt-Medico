@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card color="card" flat>
     <div class="margen mt-16">
       <v-img
         :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
@@ -49,7 +49,7 @@
         <!--  ----Iniciar sesión |Génesis---- -->
         <v-tab-item>
           <v-col xs="11" sm="11" md="11" lg="11" xl="7">
-            <v-card flat>
+            <v-card color="card" flat>
               <v-card-text>
                 <v-row>
                   <!-- CAMPO DE INICAIR SESION | LUIS REYES -->
@@ -113,7 +113,7 @@
           </v-col>
         </v-tab-item>
       </v-tabs-items>
-      <v-card v-model="access_token">
+      <v-card color="card" v-model="access_token">
         {{ access_token }}
       </v-card>
     </div>

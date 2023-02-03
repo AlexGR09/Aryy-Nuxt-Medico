@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="pa-3 mt-2">
+  <v-card color="card" flat class="pa-3 mt-2">
     <!-- formulario | Luis Reyes -->
     <v-card-subtitle>PERFIL MÉDICO</v-card-subtitle>
     <v-card-text>

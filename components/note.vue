@@ -1,7 +1,7 @@
 <!-- card para abrir en dialog en notas internas de expediente | Genesis -->
 <template>
   <div>
-    <v-card width="700">
+    <v-card color="card" width="700">
       <v-card-title>
         {{ patient }}
         <v-chip

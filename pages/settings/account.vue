@@ -15,7 +15,7 @@
         </v-col>
       </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
-        <v-card height="800px" flat class="pa-3 montserrat">
+        <v-card color="card" height="800px" flat class="pa-3 montserrat">
           <v-card-title> AJUSTES DE CUENTA </v-card-title>
           <v-card-subtitle>
             Edita tu correo, tu contraseña o tu teléfono. Esta información es

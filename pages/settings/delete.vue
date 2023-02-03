@@ -15,7 +15,7 @@
         </v-col>
       </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
-        <v-card min-height="800px" flat class="pa-3 montserrat">
+        <v-card color="card" min-height="800px" flat class="pa-3 montserrat">
           <v-card-title>ELIMINAR CUENTA</v-card-title>
           <v-card-subtitle
             >Al hacer click en continuar, estarás borrando permanentemente tu

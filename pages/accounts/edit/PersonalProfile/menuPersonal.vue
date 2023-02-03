@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mt-7 ml-4" flat>
+  <v-card color="card" class="mt-7 ml-4" flat>
   <v-tabs
     class="list-item mt-8"
     active-class="bgactive"
