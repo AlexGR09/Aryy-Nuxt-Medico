@@ -1,6 +1,6 @@
 <template>
  <div>
-  <p v-if="this.msg">Sin datos registrados</p>
+  <p class="no-data" v-if="this.msg">Sin datos registrados</p>
   <p v-else-if="this.condicion=='true'">Sin antecedentes registrados</p>
    <div v-else>
     <v-list-item v-if="this.previous_surgeries!='No' && this.previous_surgeries!==null"

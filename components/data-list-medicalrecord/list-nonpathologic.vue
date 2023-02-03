@@ -122,7 +122,7 @@
       </v-list-item-content>
     </v-list-item>
   </div>
-  <p v-else>Sin datos registrados</p>
+  <p class="no-data" v-else>Sin datos registrados</p>
 </div>
 </template>
 

@@ -1,9 +1,15 @@
 <template>
   <v-app dark>
     <!--código de lista de elementos del SideBar | Luis Reyes-->
+    <v-app-bar v-if="$vuetify.breakpoint.smAndDown"
+      color="#f6f6f6"
+      height="35"
+    ><v-app-bar-nav-icon  @click.stop="drawer = !drawer " /></v-app-bar>
+  
     <v-navigation-drawer
+    :expand-on-hover="$vuetify.breakpoint.mdAndUp && drawer"
       v-model="drawer"
-      :mini-variant="miniVariant"
+      :mini-variant.sync="miniVariant"
       :clipped="clipped"
       fixed
       app
@@ -92,7 +98,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <div class="container-icon">
+       <!--  <div class="container-icon">
           <v-btn
             class="btn-sidebar"
             icon
@@ -102,7 +108,7 @@
               >mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon
             >
           </v-btn>
-        </div>
+        </div> -->
       </v-list>
     </v-navigation-drawer>
     <v-main>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p v-if="this.name===''">Sin datos registrados</p>
+        <p class="no-data" v-if="this.name===''">Sin datos registrados</p>
     <v-list-item
     v-for="medication in medications" :key="medication"
       v-else

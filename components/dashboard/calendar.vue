@@ -41,7 +41,7 @@
         ref="calendar"
         v-model="focus"
         event-text-color="white"
-        class="calend white--text"
+        class=" white--text"
         locale="mx-es"
         :type="type"
         color="#7900ff"
@@ -155,8 +155,14 @@ export default {
   border-right: #e0e0e0 0px solid;
   color: #000000;
 }
+.theme--light.v-calendar-daily {
+  background-color: #FFFFFF;
+  border-left: #e0e0e0 0px solid;
+  border-top: #e0e0e0 0px solid;
+}
 .mes {
   font-family: Montserrat;
   text-transform: none;
 }
+
 </style>

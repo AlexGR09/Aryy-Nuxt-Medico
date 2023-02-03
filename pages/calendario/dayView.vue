@@ -40,8 +40,11 @@
                 <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
               </v-btn>
               <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
-                {{ $refs.calendar.title }}
-              </v-toolbar-title>
+          <l v-if="this.type === 'day'">{{
+            this.$refs.calendar.$data.lastStart.day
+          }}</l>
+          {{ $refs.calendar.title }}
+        </v-toolbar-title>
               <v-btn
                 class="mt-7"
                 fab

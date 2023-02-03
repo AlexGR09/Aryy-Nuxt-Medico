@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p v-if="this.name===''">Sin datos registrssados</p>
+        <p class="no-data" v-if="this.name===''">Sin datos registrssados</p>
 
       <v-list-item v-for="medication in medications" :key="medication"
       v-else
@@ -8,8 +8,8 @@
       class="ml-n7 mt-n5 lista"
       two-line
     >
-      <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+      <v-list-item-avatar  class="mr-n1">
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="mt-2">{{medication}}

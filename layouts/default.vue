@@ -9,6 +9,7 @@
       absolute
       app
     >
+    <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawer = !drawer " />
       <v-spacer></v-spacer>
       <!-- iconos para notificacion y cuenta | Genesis -->
       <v-btn class="ml-4" icon small>
@@ -31,8 +32,9 @@
     </v-app-bar>
     <!--código de lista de elementos del SideBar | Luis Reyes-->
     <v-navigation-drawer
+    :expand-on-hover="$vuetify.breakpoint.mdAndUp && drawer"
       v-model="drawer"
-      :mini-variant="miniVariant"
+      :mini-variant.sync="miniVariant"
       :clipped="clipped"
       fixed
       app
@@ -122,7 +124,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <div class="container-icon">
+       <!--  <div class="container-icon">
           <v-btn
             class="btn-sidebar"
             icon
@@ -132,7 +134,7 @@
               >mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon
             >
           </v-btn>
-        </div>
+        </div> -->
       </v-list>
     </v-navigation-drawer>
     <v-main>

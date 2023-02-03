@@ -21,7 +21,7 @@
               <div>
                 <p class="d-flex align-center mb-6">
                   <img width="25vh" src="@/assets/icons/icon_perfil.svg" />
-                  <span class="information-basic ms-3">Fulanito Detal</span>
+                  <span class="information-basic ms-3">{{patient}}</span>
                 </p>
               </div>
             </v-col>
@@ -29,7 +29,7 @@
               <div>
                 <p class="d-flex align-center mb-6">
                   <img width="25vh" src="@/assets/icons/icon_phone_dark_.svg" />
-                  <span class="information-basic ms-3">+52 963 258 4521</span>
+                  <span class="information-basic ms-3">{{phone_number}}</span>
                 </p>
               </div>
             </v-col>
@@ -42,7 +42,7 @@
                     src="@/assets/icons/icon_cumpleaños_dark_.svg"
                   />
                   <span class="information-basic ms-3"
-                    >31 años (01 Enero 1991)</span
+                    >{{date}} {{ edad }}</span
                   >
                 </p>
               </div>
@@ -55,7 +55,7 @@
                     class="greeting-card-trophy"
                     src="@/assets/icons/icon_sanguineo_dark_.svg"
                   />
-                  <span class="information-basic ms-3">Grupo Sanguíneo B+</span>
+                  <span class="information-basic ms-3">Grupo Sanguíneo {{ bloodtype }}</span>
                 </p>
               </div>
             </v-col>
@@ -67,7 +67,7 @@
                     class="greeting-card-trophy"
                     src="@/assets/icons/icon_estatura_dark_.svg"
                   />
-                  <span class="information-basic ms-3">1.80 mts</span>
+                  <span class="information-basic ms-3">{{height}} mts</span>
                 </p>
               </div>
             </v-col>
@@ -79,7 +79,7 @@
                     class="greeting-card-trophy"
                     src="@/assets/icons/icon_genero_dark_.svg"
                   />
-                  <span class="information-basic ms-3">Hombre</span>
+                  <span class="information-basic ms-3">{{gender}}</span>
                 </p>
               </div>
             </v-col>
@@ -193,12 +193,12 @@
           </v-row>
 
           <div class="banner-text" icon="mdi-material-design">
-            EXPEDIENTE MÉDICO
+            <p class="infor">EXPEDIENTE MÉDICO</p>
           </div>
 
           <!-- ALERGIAS -->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2">Alergias</p>
+            <p class="titulo mb-n2 ml-6">ALERGIAS</p>
         
               <list-alergies/>
           </v-col>
@@ -206,21 +206,21 @@
 
           <!-- ANTECENDETES PATOLOGICOS -->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2">ANTECEDENTES PATOLÓGICOS</p>
+            <p class="titulo mb-n2 ml-6">ANTECEDENTES PATOLÓGICOS</p>
           <list-pathologic/>
           </v-col>
           <!-- ANTECENDETES PATOLOGICOS -->
 
             <!-- ANTECENDETES NO PATOLOGICOS -->
             <v-col cols="12" md="6">
-            <p class="titulo mb-n2">ANTECEDENTES NO PATOLÓGICOS</p>
+            <p class="titulo mb-n2 ml-6">ANTECEDENTES NO PATOLÓGICOS</p>
           <listnonPathologic/>
           </v-col>
           <!-- ANTECENDETES NO PATOLOGICOS -->
 
           <!-- ANTECENDETES ANTECEDENTES HEREDOFAMILIARES -->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2">ANTECEDENTES HEREDOFAMILIARES</p>
+            <p class="titulo mb-n2 ml-6">ANTECEDENTES HEREDOFAMILIARES</p>
            <listFamilyhistory/>
           </v-col>
 
@@ -228,7 +228,7 @@
 
           <!-- ANTECENDETES MEDICAMENTO ACTIVO-->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2">MEDICAMENTO ACTIVO</p>
+            <p class="titulo mb-n2 ml-6">MEDICAMENTO ACTIVO</p>
            <listMedicine/>
           </v-col>
 
@@ -236,14 +236,14 @@
 
           <!-- ANTECENDETES MEDICAMENTO MEDICAMENTO ANTERIOR-->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2">MEDICAMENTO ANTERIOR</p>
+            <p class="titulo mb-n2 ml-6">MEDICAMENTO ANTERIOR</p>
             <ListPreviousMedicine/>
           </v-col>
 
           <!-- ANTECENDETES MEDICAMENTO ANTERIOR -->
           <!-- VACUNACION RECIENTE-->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2">VACUNACIÓN RECIENTE</p>
+            <p class="titulo mb-n2 ml-6">VACUNACIÓN RECIENTE</p>
             <list-vaccination/>
           </v-col>
 
@@ -347,6 +347,15 @@ export default {
   layout: 'medicalRecord',
   components: { listAlergies, listPathologic, listnonPathologic, listFamilyhistory, listMedicine, listPreviousMedicine, ListPreviousMedicine,listVaccination },
   data: () => ({
+    patient:'',
+    status:'',
+    code:'',
+    phone:'',
+    phone_number:'',
+    date:'',
+    bloodtype:'',
+    height:'',
+    gender:'',
     items: [
         {
           icon: 'mdi-home-outline',
@@ -388,14 +397,62 @@ export default {
     ],
   }),
   mounted(){
+    this.basic_info()
+    this.data()
   },
+
   methods: {
+
+    calculateAge: function() {
+          const currentDate = new Date();
+          const birthDate = this.date;
+          const difference = currentDate - birthDate;
+          const age = Math.floor(difference/31557600000);
+          this.edad= age
+        },
+
     updateMessage: function () {
       this.message = 'updated'
       console.log(this.$el.textContent) // => 'no actualiza'
       this.$nextTick(function () {
         console.log(this.$el.textContent) // => 'actualzia'
       })
+    },
+    basic_info() {
+      this.$axios
+        .get(
+          `api/v1/calendar/appointments/${this.$route.params.patient}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          this.patient = res.data.data.patient.full_name
+          this.code = res.data.data.patient.user_country_code
+          this.phone = res.data.data.patient.user_phone_number
+          const elements = [this.code+this.phone];
+          this.phone_number=(elements.join());
+        })
+    },
+    data() {
+      this.$axios
+        .get(
+          `api/v1/basic-information/patient/${this.$route.params.patient}/medical-apointment/${this.$route.params.patient}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+          this.date=res.data.data.patient.birthday
+          this.bloodtype=res.data.data.medical_history.blood_type
+          this.height=res.data.data.medical_history.height
+          this.gender=res.data.data.patient.gender
+        })
     },
   }
   

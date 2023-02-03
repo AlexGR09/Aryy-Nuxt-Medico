@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p v-if="this.drugss==='N/A' && this.environmental==='N/A' && this.food==='N/A'">Sin alergías conocidas</p>
-        <p v-if="!this.idif">Sin alergías registradas</p>
+        <p class="no-data" v-if="this.drugss==='N/A' && this.environmental==='N/A' && this.food==='N/A'">Sin alergías conocidas</p>
+        <p class="no-data" v-if="!this.idif">Sin alergías registradas</p>
       
     <div v-else>  
       <v-list-item
@@ -107,7 +107,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res)
           this.idif = res.data.data.id
           this.drugss = res.data.data.drug_allergy[0]
           this.environmental = res.data.data.environmental_allergy[0]

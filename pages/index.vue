@@ -14,8 +14,8 @@
         </p>
       </div>
     </v-card-text>
-    <v-card-subtitle class="pa-3 mt-n2 mb-n10">
-      <H1 class="mb-5">CONSULTAS</H1></v-card-subtitle
+    <v-card-subtitle class="pa-3 mt-n2 mb-n5">
+     CONSULTAS</v-card-subtitle
     >
     <br />
     <v-row>
@@ -101,5 +101,9 @@ p {
 b {
   font-family: MontserratMedium;
   color: #9966ff;
+}
+.v-card__subtitle{
+  font-family: MontserratBold;
+  color: #4f565f;
 }
 </style>

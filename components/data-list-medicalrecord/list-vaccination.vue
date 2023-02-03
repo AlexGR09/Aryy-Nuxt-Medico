@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p v-if="!this.vaccine">Sin datos registrados</p>
+        <p class="no-data" v-if="!this.vaccine">Sin datos registrados</p>
     <v-list-item
     v-else
     v-for="vacuna in vacunass" :key="vacuna.id"
@@ -9,7 +9,7 @@
       two-line
     >
       <v-list-item-avatar class="mr-n1">
-        <v-icon color="green">mdi-check-circle</v-icon>
+        <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="mt-2"> 
@@ -96,3 +96,10 @@ export default {
     },
 }
 </script>
+<style>
+p.no-data{
+  color: #999999;
+  margin-left: 3vh;
+  margin-top: 1vh;
+}
+</style>
