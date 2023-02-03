@@ -50,5 +50,6 @@ export default{
   -webkit-box-shadow: 6px 11px 19px -1px rgba(235,225,252,0.93);
   -moz-box-shadow: 6px 11px 19px -1px rgba(235,225,252,0.93);
 }
+
 </style>
 

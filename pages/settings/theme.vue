@@ -22,8 +22,7 @@
             El tema por defecto es el Tema claro.
           </v-card-subtitle>
           <v-card-text>
-            <v-row            
-                > <v-card color="card" flat
+            <v-row> <v-card color="card" flat
             @click="lightMode"
                   v-model="light"
                   v-ripple
@@ -33,7 +32,7 @@
                   <v-card-text>
                     <v-icon>mdi-weather-sunny</v-icon>Tema claro
                     <v-chip class="chip justify-center" v-if="light === true" small>Activo</v-chip>
-                    <v-img
+                    <v-img class="mt-2"
                       :src="require('@/assets/themes/claro.png')"
                     ></v-img>
                   </v-card-text>
@@ -48,13 +47,14 @@
                 >
                   <v-card-text>
                     <v-icon>mdi-weather-night</v-icon>Tema Oscuro
-                    <v-chip class="chip justify-center" v-if="light === true" small>Activo</v-chip>
-                    <v-img
+                    <v-chip class="chip justify-center" v-if="dark === true" small>Activo</v-chip>
+                    <v-img class="mt-2"
                       :src="require('@/assets/themes/oscuro.png')"
                     ></v-img>
                   </v-card-text>
                 </v-card>
             <v-card color="card" flat
+            @click="systemMode"
                   v-model="system"
                   v-ripple
                   link
@@ -64,7 +64,7 @@
                 <v-card-text>
                     <v-icon>mdi-laptop</v-icon>Tema del sistema
                     <v-chip class="chip justify-center" v-if="system === true" small>Activo</v-chip>
-                    <v-img
+                    <v-img class="mt-2"
                       :src="require('@/assets/themes/sistema.png')"
                     ></v-img>
                   </v-card-text>
@@ -110,9 +110,20 @@ export default {
   methods: {
     darkMode() {
       this.$vuetify.theme.dark = true;
+      this.dark=true
+      this.light=false
+      this.system=false
     },
     lightMode() {
       this.$vuetify.theme.dark = false;
+      this.light=true
+      this.dark=false
+      this.system=false
+    },
+    systemMode(){
+      this.system=true
+      this.dark=false
+      this.light=false
     }
   }
 }
