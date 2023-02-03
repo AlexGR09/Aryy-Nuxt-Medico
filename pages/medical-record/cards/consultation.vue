@@ -1,6 +1,6 @@
 <!-- seccion de consulta medica | Genesis -->
 <template>
-  <v-card class="pa-4 montserrat rounded-lg">
+  <div>
     <p>Signos vitales</p>
     <v-row>
       <!-- Signos vitales -->
@@ -203,7 +203,7 @@
 
       <v-col cols="12" md="4" sm="4">
         <v-text-field
-          v-model="weight_loss"
+          v-model="fat"
           dense
           label="Grasa"
           outlined
@@ -218,9 +218,9 @@
           </template>
         </v-text-field>
       </v-col>
-
+      
       <!-- cintura -->
-
+      
       <v-col cols="12" md="4" sm="4">
         <v-text-field v-model="waist" dense label="Cintura" outlined suffix="%">
           <template #prepend>
@@ -232,11 +232,11 @@
           </template>
         </v-text-field>
       </v-col>
-
+      
       <!-- agua -->
-
+      
       <v-col cols="12" md="4" sm="4">
-        <v-text-field v-model="waist" dense label="Agua" outlined suffix="%">
+        <v-text-field v-model="water" dense label="Agua" outlined suffix="%">
           <template #prepend>
             <img
               width="20"
@@ -288,72 +288,134 @@
       </v-col>
     </v-row>
 
+    <v-row>
+
+    </v-row>
+
     <p>Descripción de sintomas</p>
     <v-textarea
+      v-model="symptom"
       color="#7900ff"
       placeholder="Escribe aquí los síntomas del paciente"
       outlined
     ></v-textarea>
-    <p class="mt-n2">Exploración médica</p>
+
+
+
+
     <v-btn-toggle class="v-checkbox mt-n6">
       <v-checkbox
+      v-model="yes"
         color="#7900ff"
-        v-model="yes"
         class="mr-5"
         label="Si"
       ></v-checkbox>
       <v-checkbox color="#7900ff" v-model="no" label="No"></v-checkbox>
     </v-btn-toggle>
+    
     <v-textarea
+      v-model="medical_examination"
       color="#7900ff"
       v-if="yes"
       placeholder="Escribe aquí los datos de la exploración médica"
       outlined
     ></v-textarea>
-    <v-col xs="12" sm="12" md="12" lg="12" xl="12">
+    
+<!--     <v-col xs="12" sm="12" md="12" lg="12" xl="12">
       <odontograma />
-    </v-col>
-    <v-row v-for="input in inputs" :key="input.id" class="ml-n2 mt-n5">
-      <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
-        <p>Diagnostico</p>
-        <v-text-field
+    </v-col> -->
+
+<!-- AGREGAR MEDICAMENTO -->
+<v-col>
+    <p>Diagnostico</p>
+      <v-text-field
+          v-model="diagnosis"
           outlined
           color="#7900ff"
           placeholder="Escribe aquí el diagnóstico"
-        ></v-text-field>
-      </v-col>
+      ></v-text-field>
+</v-col>
+    <v-row v-for="input in inputs" :key="input.id" class="ml-n2 mt-n5">
       <v-col class="mt-n8" cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
-        <p>Tratamiento</p>
+        
+        <!-- MARCA -->
+        <p>Marca</p>
         <v-text-field
+          v-model="brand"
           outlined
           color="#7900ff"
           placeholder="Medicamento"
         ></v-text-field>
       </v-col>
-      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="2" lg="2" xl="2">
+      
+      <!-- MEDICAMENTO -->
+      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
+        <p>medicamento</p>
+        <v-text-field
+          v-model="drug_name"
+          outlined
+          color="#7900ff"
+          placeholder="Medicamento"
+        ></v-text-field>
+      </v-col>
+
+      <!-- presentacion -->
+      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
+        <p>Presentación</p>
+        <v-text-field
+          v-model="presentation"
+          outlined
+          color="#7900ff"
+          placeholder="Medicamento"
+        ></v-text-field>
+      </v-col>
+
+      <!-- TOMAR -->
+
+      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
         <p>Tomar</p>
         <v-text-field
-          outlined
-          color="#7900ff"
-          placeholder="Medicamento"
-        ></v-text-field>
-      </v-col>
-      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
-        <p>Frecuencia</p>
-        <v-text-field
+          v-model="amount"
           outlined
           color="#7900ff"
           placeholder="Cada 8 horas"
         ></v-text-field>
       </v-col>
+
+      <!-- FRECUENCIA -->
+
+      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
+        <p>Frecuencia</p>
+        <v-text-field
+          v-model="frequency"
+          outlined
+          color="#7900ff"
+          placeholder="Cada 8 horas"
+        ></v-text-field>
+      </v-col>
+      
+      <!-- duraction -->
       <v-col class="mt-n8" cols="10" xs="10" sm="12" md="2" lg="2" xl="2">
         <p>Duración</p>
         <v-text-field
+          v-model="duration_days"
           outlined
           color="#7900ff"
           placeholder="15 días"
         ></v-text-field>
       </v-col>
+
+      <!-- instruciones deñ medicamente -->
+      <v-col class="mt-n8" cols="10" xs="10" sm="12" md="2" lg="2" xl="2">
+        <p>Instrucción del medicamento</p>
+        <v-text-field
+          v-model="instruction"
+          outlined
+          color="#7900ff"
+          placeholder="15 días"
+        ></v-text-field>
+      </v-col>
+      
       <v-col class="mt-n8" cols="2" xs="2" sm="1" md="1" lg="1" xl="1">
         <v-btn @click="deleteInput" class="iconos mt-12" icon>
           <v-img
@@ -363,6 +425,7 @@
         </v-btn>
       </v-col>
     </v-row>
+    
     <v-btn
       class="mt-n7 ml-n4"
       @click="addInput"
@@ -390,11 +453,11 @@
     </v-btn-toggle>
 
     <v-textarea
-      v-model="laboratory_studies"
-      color="#7900ff"
-      v-if="lab"
-      placeholder="Escribe aquí los datos del estudio de laboratorio"
-      outlined
+        v-model="laboratory_studies"
+        color="#7900ff"
+        v-if="lab"
+        placeholder="Escribe aquí los datos del estudio de laboratorio"
+        outlined
     ></v-textarea>
 
     <v-textarea
@@ -404,12 +467,12 @@
       placeholder="Escribe aquí los datos del estudio de gabinete"
       outlined
     ></v-textarea>
+  
     <v-row>
       <v-col cols="12" xs="12" xl="3">
         <v-btn
           block
           v-on:click="overlay = !overlay"
-          @click="save"
           height="50px"
           class="white--text mt-7 btn"
           color="#7900ff"
@@ -433,16 +496,19 @@
           >Datos actualizados correctamente.</v-alert
         >
       </v-overlay>
+
+      <v-btn @click="POST_DATA" color="primary">guardar receta</v-btn>
     </v-row>
 
-    <v-btn @click="recetaMedica">enviar</v-btn>
-  </v-card>
+  
+  </div>
 </template>
 <script>
-import odontograma from './odontograma/odontograma.vue'
+
+
 export default {
   layout: 'medicalRecord',
-  components: { odontograma },
+ 
   data() {
     return {
       overlay: false,
@@ -451,38 +517,37 @@ export default {
       no: false,
       lab: false,
       gab: false,
-
-      temperature: '54324',
-      weight: '423',
-      breathing_frecuency: '42432',
-      systolic_pressure: '4324',
-      diasystolic_pressure: '3424',
-      heart_rate: '243422',
-      oxygen_saturation: '34224',
-      body_mass: '42342',
-      body_fat: '3424432',
-      weight_loss: '42342',
-      fat: '42342',
-      waist: '4324',
-      water: '4232',
-      muscle: '46545542',
-      abdomen: '635',
-      symptom: '4353',
-      diagnosis: '45345',
-      medical_examination: '13141',
-      brand: '1234',
-      drug_name: '24234',
-      presentation: '3412',
+      temperature: '',
+      weight: '',
+      breathing_frecuency: '',
+      systolic_pressure: '',
+      diasystolic_pressure: '',
+      heart_rate: '',
+      oxygen_saturation: '',
+      body_mass: '',
+      body_fat: '',
+      weight_loss: '',
+      fat: '',
+      waist: '',
+      water: '',
+      muscle: '',
+      abdomen: '',
+      symptom: '',
+      diagnosis: '',
+      medical_examination: '',
+      brand: '',
+      drug_name: '',
+      presentation: '',
       instruction: '',
       amount: '',
       frequency: '',
-      duration: '',
-      laboratory_studies: '',
+      duration_days: '',
+      laboratory_studies: ' ',
       cabinet_studies: '',
     }
   },
 
-  qmethods: {
+  methods: {
     addInput() {
       this.inputs.push({
         id: `fruit${++this.counter}`,
@@ -497,11 +562,12 @@ export default {
     save() {
       this.$router.push('/patients/list')
     },
-    recetaMedica() {
+    
+    POST_DATA() {
       this.$axios.post(
-        'api/v1/physician/medical-appointments/1/prescriptions',
+        '/api/v1/physician/medical-appointments/2/prescriptions',
         {
-          vital_sings: [
+          vital_signs:
             {
               temperature: this.temperature,
               weight: this.weight,
@@ -519,17 +585,40 @@ export default {
               muscle: this.muscle,
               abdomen: this.abdomen,
             },
-          ],
+        
+          prescription : 
+            {
+            symptom: this.symptom,
+            diagnosis: this.diagnosis,
+            medical_examination : this.medical_examination,
+            treatment: 
+            
+              {
+                brand: this.brand,
+                drug_name : this.drug_name,
+                presentation: this.presentation,
+                instruction: this.instruction,
+                amount: this.amount,
+                frequency: this.frequency,
+                duration_days: this.duration_days
+            }
+      
+          },
+        
+          laboratory_studies: this.laboratory_studies,
+          cabinet_studies: this.cabinet_studies
         },
         {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         }
       )
     },
+    
+    
     postnatalGet() {
       this.$axios
         .get(
-          'https://app.aryymd.com/api/v1/physician/medical-appointments/patient/1',
+          '/api/v1/physician/medical-appointments/patient/1',
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -542,6 +631,7 @@ export default {
           this.duration_treatment = res.data.data[1].duration_treatment
         })
     },
+
   },
   mounted() {
     this.postnatalGet()

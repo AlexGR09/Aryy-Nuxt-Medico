@@ -3,9 +3,8 @@
         <v-toolbar color="primary" dark flat>
             <v-toolbar-title>Signos vitales</v-toolbar-title>
             <v-spacer/>
-            <v-toolbar-items>
                 <v-btn icon><v-icon>mdi-dots-horizontal</v-icon></v-btn>
-            </v-toolbar-items>
+        <v-divider></v-divider>
         </v-toolbar>
         <v-container>
             <v-row>

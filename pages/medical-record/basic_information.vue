@@ -24,17 +24,21 @@
                         <div class="my-2">
                             <v-btn block color="gray" outlined >Agendar cita nueva</v-btn>
                         </div>
-                
                     </v-container>
                     </v-card>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col cols="12" md="8">
-                    <v-card>Expediente medico</v-card>
+                    <span>CONSULTA MÉDICA</span>
+                    <v-card outlined class="greeting-card" color="white" rounded="lg" >
+                        <v-container>
+                            <prescription-medical/>
+                        </v-container>
+                    </v-card>
                 </v-col>
                 <v-col cols="12" md="4">
-                    <v-card>Citas anteriores</v-card>
+                    <v-card >Citas anteriores</v-card>
                 </v-col>
             </v-row>
         </v-container>
@@ -42,13 +46,14 @@
 </template>
 
 <script>
+import prescriptionMedical from '~/components/medical_record/prescription-medical.vue'
 export default {
+  components: { prescriptionMedical },
     data(){
         return{
 
         }
     },
-    
 }
 </script>
 

@@ -9,20 +9,27 @@
         </v-breadcrumbs-item>
       </template>
     </v-breadcrumbs>
-
     <v-row>
       <v-col lg="8" xl="9">
         <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
           <h1 class="title mb-3">INFORMACIÓN BÁSICA</h1>
-          <basic-info />
+          <v-card>
+            <basic-info />
+          </v-card>
+          
         </v-col>
         <v-col xs="12" sm="12" md="12" lg="12" xl="12">
           <H1 class="title mb-3">EXPEDIENTE MÉDICO</H1>
           <medical-record />
         </v-col>
-        <v-col xs="12" sm="12" md="12" lg="12" xl="12">
+        <v-col cols="12">
+          <br><br>
           <H1 class="title mb-3">CONSULTA MÉDICA</H1>
+          <v-card outlined>
+            <v-container>
           <consultation />
+        </v-container>
+        </v-card>
         </v-col>
       </v-col>
 
