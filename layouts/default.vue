@@ -7,10 +7,10 @@
       fixed
       app
     >
-      <v-img
+      <img
         max-width="100"
         src="@/assets/logotipos/ISOLOGO_ARYY.svg"
-      ></v-img>
+      />
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -39,7 +39,7 @@
       flat
       color="white"
     >
-      <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawer = !drawer , fixed = !fixed" />
+      <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawer = !drawer " />
       <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
@@ -169,6 +169,7 @@ export default {
     /* cerrar sesión */
     signOff(){
       alert("SALIR")
+      sjdjdasj
 
     }
 

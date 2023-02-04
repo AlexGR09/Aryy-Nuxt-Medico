@@ -71,8 +71,7 @@ export default{
                     label:'Peso',
                     suffix: 'Kg',
                     dense: 'dense',
-                    src: require("@/assets/icons/icon_weight.svg") 
-    
+                    src: require("@/assets/icons/icon_weight.svg")
                 },
                 {
                     etiqueta: 'v-text-field',
