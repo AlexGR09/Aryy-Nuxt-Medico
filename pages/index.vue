@@ -19,13 +19,13 @@
     >
     <br />
     <v-row>
-      <v-col cols="12" md="4">
+     <!--  <v-col cols="12" md="4">
         <dashboard-citas />
-      </v-col>
-      <v-col cols="12" md="4">
+      </v-col> -->
+      <v-col cols="12" md="6">
         <dashboard-marketing />
       </v-col>
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="6">
         <dashboard-assistant />
       </v-col>
       <!-- Citas proximas | Luis Reyes -->

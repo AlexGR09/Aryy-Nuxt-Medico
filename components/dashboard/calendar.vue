@@ -52,7 +52,6 @@
         :events="evento"
         style="font-family: Montserrat"
         :short-intervals="false"
-        @click:event="showEvent"
         @click:more="viewDay"
         @click:date="viewDay"
       >
