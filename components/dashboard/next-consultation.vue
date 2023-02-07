@@ -25,7 +25,7 @@
               order-lg="2"
             >
               <div>
-                <v-btn color="#f4edff" class="btn" block> Cambiar fecha </v-btn>
+                <v-btn color="#f4edff" class="btn" block><span>Cambiar fecha</span> </v-btn>
               </div>
               <div>
                 <v-btn
@@ -33,7 +33,7 @@
                 class="btn_detail white--text mt-2" 
                 block   
                 color="#7900ff"
-                >Iniciar consulta </v-btn>
+                ><span>Iniciar consulta</span> </v-btn>
             </div>
             </v-col>
           </div>
