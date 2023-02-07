@@ -617,6 +617,8 @@ export default {
  surgeriesStatus(){
       if(this.previous_surgeries === "No"){
         this.surgery="No"
+      }else if(this.surgery==="No"){
+        this.previous_surgeries="No"
       }else if(this.msg){
         this.surgery=""
       }
@@ -627,6 +629,8 @@ export default {
     transfusionsStatus(){
       if(this.blood_transfusions === "No"){
         this.transfusion = "No"
+      }else if(this.transfusion==="No"){
+        this.blood_transfusions="No"
       }else if(this.msg){
         this.transfusion=""
       }
@@ -637,7 +641,10 @@ export default {
     diabetesStatus(){
       if(this.diabetes === "No"){
         this.diabetesradio="No"
-      }else if(this.msg){
+      }else if(this.diabetesradio==="No"){
+        this.diabetes="No"
+      }
+      else if(this.msg){
         this.diabetes=""
       }
       else{
@@ -647,6 +654,8 @@ export default {
     diseaseStatus(){
       if(this.heart_diseases === "No"){
         this.disease="No"
+      }else  if(this.disease==="No"){
+        this.heart_diseases="No"
       }else if(this.msg){
         this.disease=""
       }
@@ -657,7 +666,10 @@ export default {
     bloodStatus(){
       if(this.blood_diseases === "No"){
         this.blood="No"
-      }else if(this.msg){
+      }else   if(this.blood==="No"){
+        this.blood_diseases="No"
+      }
+      else if(this.msg){
         this.blood=""
       }
       else{
@@ -667,6 +679,8 @@ export default {
     cancerStatus(){
       if(this.cancer ==="No"){
         this.cancerradio="No"
+      }else   if(this.cancerradio==="No"){
+        this.cancer="No"
       }else if(this.msg){
         this.cancer=""
       }
@@ -677,6 +691,8 @@ export default {
     thyroidStatus(){
       if(this.thyroid_diseases==="No"){
         this.thyroid="No"
+      }else   if(this.thyroid==="No"){
+        this.thyroid_diseases="No"
       }else if(this.msg){
         this.thyroid=""
       }
@@ -687,7 +703,10 @@ export default {
     kidneyStatus(){
       if(this.kidney_stones==="No"){
         this.kidney="No"
-      }else if(this.msg){
+      }else if(this.kidney==="No"){
+        this.kidney_stones="No"
+      }
+      else if(this.msg){
         this.kidney=""
       }
       else{
@@ -697,6 +716,8 @@ export default {
     hepatitisStatus(){
       if(this.hepatitis==="No"){
         this.hepatitisRadio="No"
+      }else  if(this.hepatitisRadio==="No"){
+        this.hepatitis="No"
       }else if(this.msg){
         this.hepatitis=""
       }
@@ -707,6 +728,8 @@ export default {
     traumaStatus(){
       if(this.trauma==="No"){
         this.traumaRadio="No"
+      }else  if(this.traumaRadio==="No"){
+        this.trauma="No"
       }else if(this.msg){
         this.trauma=""
       }
@@ -717,6 +740,8 @@ export default {
     respiratoryStatus(){
       if(this.respiratory_diseases==="No"){
         this.respiratory="No"
+      }else  if(this.traumaRadio==="No"){
+        this.trauma="No"
       }else if(this.msg){
         this.respiratory=""
       }
@@ -727,6 +752,8 @@ export default {
     gastrointestinalStatus(){
       if(this.gastrointestinal_pathologies==="No"){
         this.gastrointestinal="No"
+      }else if(this.gastrointestinal==="No"){
+        this.gastrointestinal_pathologies="No"
       }else if(this.msg){
         this.gastrointestinal=""
       }
@@ -737,6 +764,8 @@ export default {
     etsStatus(){
       if(this.ets==="No"){
         this.etsRadio="No"
+      }else  if(this.etsRadio==="No"){
+        this.ets="No"
       }else if(this.msg){
         this.ets=""
       }

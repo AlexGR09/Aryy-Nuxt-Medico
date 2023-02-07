@@ -3,14 +3,15 @@
   <v-card-text class="mb-6">
     <p class="titulo">Alergias</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
-    <new-allergies v-if="!msg"/>
+      <!-- componente agregar datos -->
+      <new-allergies v-if="!msg" />
       
-<edit-allergies v-else/>
-    
+       <!-- componente editar datos -->
+      <edit-allergies v-else />
     </div>
     <v-divider class="mt-n1 mb-3"></v-divider>
-<list-alergies/>
-<p class="ml-3 mb-n1 mt-n1 d-flex justify-end">
+    <list-alergies />
+    <p class="ml-3 mb-n1 mt-n1 d-flex justify-end">
       <img
         class="mr-3"
         width="20"
@@ -20,17 +21,13 @@
   </v-card-text>
 </template>
   <script>
-    import listAlergies from '~/components/data-list-medicalrecord/list-allergies.vue'
-    import newAllergies from '~/components/newInfoForms/newAllergies.vue'
-    import editAllergies from '~/components/editableForms/editAllergies.vue'
+import listAlergies from '~/components/data-list-medicalrecord/list-allergies.vue'
+import newAllergies from '~/components/newInfoForms/newAllergies.vue'
+import editAllergies from '~/components/editableForms/editAllergies.vue'
 export default {
   layout: 'medicalRecord',
-  components: {listAlergies,newAllergies,editAllergies},
-  data() {
-    return {
-      msg:'',
-    }
-  },
+  components: { listAlergies, newAllergies, editAllergies },
+  data() {return {msg: '',}},
   methods: {
     alergiass() {
       this.$axios
@@ -43,7 +40,7 @@ export default {
           }
         )
         .then((res) => {
-          this.msg=res.data.data.drug_allergy[0]
+          this.msg = res.data.data.drug_allergy[0]
         })
     },
   },
@@ -69,6 +66,6 @@ p.cuestion {
 span {
   color: #4f565f;
   font-family: MontserratBold;
-  font-size: 1.1rem
+  font-size: 1.1rem;
 }
 </style>

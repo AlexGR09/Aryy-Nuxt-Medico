@@ -1,7 +1,7 @@
 <template>
   <div>
   <div v-if="this.null!=null">
-    <v-list-item v-if="this.type_activity!='No' && this.activityerror"
+    <v-list-item v-if="this.type_activity!='No'"
       style="font-family: Montserrat"
       class="ml-n7 mt-n1 lista"
       two-line
