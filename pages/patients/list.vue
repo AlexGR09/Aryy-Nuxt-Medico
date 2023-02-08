@@ -36,7 +36,6 @@
                       class="search"
                       color="grey"
                       dense
-                      background-color="white"
                       outlined
                       placeholder="Búsqueda   "
                       prepend-inner-icon="mdi-magnify"
@@ -408,10 +407,6 @@ span::first-letter {
 .v-input__icon--append .v-icon {
   color: #7900ff;
   font-size: 52px;
-}
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
 }
 .asistencia {
   border: thin solid #1baa55 !important;

@@ -131,10 +131,6 @@ h4 {
   font-size: 1.8vh;
   color: #999999;
 }
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-}
 .v-card__title {
   font-family: MontserratBold;
   color: #4f565f;

@@ -114,6 +114,17 @@
                   outlined
                   placeholder="XXX XXX XXXX"
                 >
+                <template #prepend-inner>
+                <vue-country-code
+                
+                  enabled-country-code
+                  style="border: 0px; font-family: Montserrat; color: black"
+                  :preferred-countries="['MX', 'us', 'gb']"
+                  default-country="mx"
+                  @onSelect="onSelect"
+                >
+                </vue-country-code
+              ></template>
                 </v-text-field>
               </v-col>
               <v-col class="mt-n6" cols="1" xl="1">
@@ -132,7 +143,12 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
+import VueCountryCode from 'vue-country-code'
 import menuSettings from './menuSettings.vue'
+Vue.use(VueCountryCode)
+
+
 export default {
   components: { menuSettings },
   data() {
@@ -210,6 +226,9 @@ export default {
           this.erroremail = error.response.data.errors.email[0]
         })
     },
+    onSelect({name, iso2, dialCode}) {
+       console.log(name, iso2, dialCode);
+     },
   },
   mounted() {
     this.getinfoUser()
@@ -233,9 +252,5 @@ p {
   font-size: 1.7vh;
   text-transform: none;
   font-family: Montserrat;
-}
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
 }
 </style>

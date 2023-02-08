@@ -366,3 +366,70 @@ img:hover {
 }
 
 </style>
+
+
+
+<!-- estilos para tema oscuro -->
+<style>
+.theme--dark.v-card > .v-card__text, .theme--dark.v-card > .v-card__title {
+    color: white;
+}
+.theme--dark.v-card > .v-card__text, .theme--dark.v-card > .v-card__subtitle {
+    color: white;
+}
+.theme--dark.v-icon {
+  color: #FFFFFF !important;
+}
+.theme--dark.v-card > .v-card__text, .theme--dark.v-card > .v-card__text {
+    color: white !important;
+}
+.theme--dark.v-btn {
+  color: white;
+}
+.theme--dark.v-navigation-drawer {
+  background-color: #363940;
+}
+.theme--dark.v-application a {
+  color: #FFFFFF !important;
+}
+.theme--dark.v-application p {
+  color: #FFFFFF !important;
+}
+.theme--dark.v-icon {
+  color: #FFFFFF !important;
+}
+.theme--dark.v-input input, .theme--dark.v-input textarea {
+  color: #999999 !important;
+}
+.theme--dark.v-input {
+  color: #999999 !important;
+}
+.theme--dark.v-text-field--solo-inverted.v-input--is-focused > .v-input__control > .v-input__slot {
+  background: transparent;
+}
+
+.theme--dark.v-select.v-text-field--solo-inverted.v-input--is-focused .v-select__selections {
+  color: white;
+}
+
+.v-application .white {
+  background-color: transparent !important;
+  border-color:transparent !important;
+}
+</style>
+
+<!-- estilos para tema claro -->
+<style>
+.theme--light.v-card > .v-card__text, .theme--light.v-card > .v-card__title {
+    color: rgba(0, 0, 0, 0.6);
+}
+.theme--light.v-icon.bread {
+  color: #7900ff !important;
+}
+.theme--light.v-card > .v-card__text, .theme--light.v-card > .v-card__subtitle {
+    color: #4f565f;
+}
+.theme--light.v-application p {
+  color: #4f565f;
+}
+</style>

@@ -8,13 +8,15 @@
             </v-breadcrumbs-item>
           </template>
         </v-breadcrumbs>
-    <account/>
+    <account v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
        <v-row>
-          <menu-personal />
+          <menu-personal v-if="$vuetify.breakpoint.lgAndUp"/>
+          
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
-        <v-card color="card" height="800px" flat class="pa-3 mt-2">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
+        <v-card color="card" height="800px" flat class="pa-3">
           <v-col xl="12">
                   <!-- alert para notificar error | Genesis -->
                   <v-alert
@@ -124,16 +126,18 @@
               </v-row>
 
               <!-- botones -->
-             <div class="mt-8">
+              <v-row>
+                <v-col cols="12" xl="2">
                 <v-btn
+                block
                   height="50px"
                   class="white--text save"
-                  v-on:click="actualizar"
+                  v-on:click="update"
                   color="#7900ff"
                   large
                   >Actualizar datos</v-btn
                 >
-                <v-overlay v-model="overlay">
+                <v-overlay v-if="ok" v-model="overlay">
                   <v-alert
                     class="rounded-xl"
                     icon="mdi-check-circle"
@@ -141,13 +145,16 @@
                     >Datos actualizados correctamente.</v-alert
                   >
                 </v-overlay>
+              </v-col>
+              <v-col cols="12" xl="2">
                 <v-dialog v-model="dialog" persistent max-width="450">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
+                      block
                       v-bind="attrs"
                       v-on="on"
                       height="50px"
-                      class="restore ml-3"
+                      class="restore "
                       color="#999999"
                       outlined
                       large
@@ -174,22 +181,23 @@
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
-              </div>
+                </v-col>
+              </v-row>
             </v-card-text>
           </v-form>
         </v-card>
       </v-col>
     </v-row>
-    <menu-personal />
   </div>
 </template>
     <script>
     import account from '../account.vue';
+import accountMenu from '../accountMenu.vue';
 import menuPersonal from './menuPersonal.vue'
 
 export default {
   components: {
-    menuPersonal, account
+    menuPersonal, account, accountMenu
   },
   data() {
     return {
@@ -315,11 +323,6 @@ export default {
 </script> 
 
 <style>
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-  font-size: 95%;
-}
 .v-input__icon--prepend .v-icon {
   color: #9966ff;
 }

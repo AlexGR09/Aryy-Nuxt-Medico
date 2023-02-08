@@ -8,13 +8,15 @@
             </v-breadcrumbs-item>
           </template>
         </v-breadcrumbs>
-   <account/>
+   <account  v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
        <v-row>
-          <menu-personal />
+          <menu-personal  v-if="$vuetify.breakpoint.lgAndUp" />
+        
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
-        <v-card color="card" flat class="pa-3 mt-2">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
+        <v-card color="card" flat class="pa-3">
           <v-card-subtitle class="pa-3 mt-n2 mb-n10">
             <H1 class="mb-5">DATOS DE LA SUSCRIPCIÓN</H1>
           </v-card-subtitle>
@@ -81,10 +83,11 @@
 </template>
       <script>
           import account from '../account.vue';
+          import accountMenu from '../accountMenu.vue';
           import menuPersonal from './menuPersonal.vue';
 export default {
   components: {
-  account, menuPersonal
+  account,accountMenu, menuPersonal
   },
   data() {
     return {
@@ -206,10 +209,5 @@ p.cedu {
 .v-input__icon--append .v-icon {
   font-size: 50px;
   color: #999999;
-}
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-  font-size: 95%;
 }
 </style>

@@ -541,10 +541,6 @@ span::first-letter {
 .theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
   background-color: #f7f7f7;
 }
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-}
 .titleAction {
   text-transform: uppercase;
   font-size: 90%;

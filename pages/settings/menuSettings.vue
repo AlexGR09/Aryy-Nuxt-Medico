@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-tabs
-    background-color="card"
+      background-color="card"
       class="list-item mt-8 ml-n3"
       active-class="bg-active"
       hide-slider

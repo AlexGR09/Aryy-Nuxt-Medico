@@ -3,8 +3,8 @@
     <v-breadcrumbs class="breadcrumbs ml-n7" :items="items">
       <template v-slot:item="{ item }">
         <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
-          <v-icon class="bread" size="22" color="primary">{{ item.icon }}</v-icon>
-          <span class="breadcrumbs">{{ item.text }}</span>
+          <v-icon class="bread" size="22">{{ item.icon }}</v-icon>
+          <span >{{ item.text }}</span>
         </v-breadcrumbs-item>
       </template>
     </v-breadcrumbs>
@@ -127,11 +127,7 @@ export default {
 }
 
 </script>
-  <style scoped>
-span.breadcrumbs {
-  font-family: Montserrat;
-/*   color: #7900ff; */
-}
+  <style >
 .v-card__subtitle {
   font-size: 1.7vh;
   text-transform: none;
@@ -154,35 +150,6 @@ span.breadcrumbs {
     margin-right: 10px;
 }
 .v-icon.bread{
-    color: #7900ff !important;
     margin-right: 10px;
-}
-</style>
-
-<!-- estilos para tema oscuro -->
-<style>
-
-.theme--light.v-card > .v-card__text, .theme--light.v-card > .v-card__title {
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.theme--dark.v-card > .v-card__text, .theme--dark.v-card > .v-card__title {
-    color: white;
-}
-
-.theme--dark.v-icon {
-  color: #FFFFFF !important;
-}
-
-.theme--dark.v-card > .v-card__text, .theme--dark.v-card > .v-card__text {
-    color: white !important;
-}
-
-.theme--dark.v-btn {
-  color: white;
-}
-
-.theme--dark.v-navigation-drawer {
-  background-color: #363940;
 }
 </style>

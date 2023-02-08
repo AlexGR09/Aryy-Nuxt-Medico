@@ -583,10 +583,6 @@ p.type {
   text-align: center;
   text-transform: uppercase;
 }
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-}
 .v-btn__content {
   align-items: center;
   color: black;

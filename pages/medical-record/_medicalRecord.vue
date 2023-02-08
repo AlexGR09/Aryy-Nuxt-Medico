@@ -97,10 +97,6 @@ export default {
   margin-right: -3%;
   margin-top: -10px;
 }
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-}
 /* estilos para notas tipo cuaderno | Genesis */
 textarea {
   background: white;

@@ -8,7 +8,7 @@
           v-on="on"
           class="greeting-card"
           outlined
-          color="#ffffff"
+          color="card"
           solo
         >
           <v-row class="ma-0 pa-0">

@@ -8,7 +8,7 @@
           v-on="on"
           class="greeting-card"
           outlined
-          color="#ffffff"
+          color="card"
           solo
         >
           <v-row class="ma-0 pa-0">
@@ -80,7 +80,6 @@ export default {
   top: 10vh;
   font-size: 2vh;
   font-family: MontserratBold;
-  color: #4f565f;
   margin-left: 3vh;
 }
 .greeting-card {

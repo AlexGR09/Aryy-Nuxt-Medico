@@ -500,10 +500,6 @@ p.infor {
   font-size: 90%;
   color: red;
 }
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-}
 .titleAction {
   text-transform: uppercase;
   font-size: 90%;

@@ -108,10 +108,6 @@ h1 {
   text-transform: capitalize;
   /*   width: 12%; */
 }
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-}
 .v-card__title {
   font-family: MontserratBold;
   color: #4f565f;

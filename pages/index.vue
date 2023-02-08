@@ -104,6 +104,5 @@ b {
 }
 .v-card__subtitle{
   font-family: MontserratBold;
-  color: #4f565f;
 }
 </style>

@@ -8,12 +8,14 @@
             </v-breadcrumbs-item>
           </template>
         </v-breadcrumbs>
-    <account class="mb-2"/>
+    <account v-if="$vuetify.breakpoint.lgAndUp" class="mb-2"/>
     <v-row>
        <v-row>
-          <menu-personal />
+          <menu-personal v-if="$vuetify.breakpoint.lgAndUp" />
+         
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
         <v-card color="card" height="800px" flat class="pa-3">
           <v-col xl="12">
             <!-- alert para notificar error | Genesis -->
@@ -84,7 +86,7 @@
             >
             <v-form ref="form" class="multi-col-validation">
               <v-row>
-                <v-col xs="7" sm="11" md="7" lg="7" xl="7" cols="12">
+                <v-col xs="7" md="7" lg="7" xl="7" cols="10">
                   <span>Nombre completo*</span>
                   <v-text-field
                     v-model="full_name"
@@ -96,7 +98,7 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
+                <v-col  cols="1">
                   <v-btn @click="named = !named" class="iconos mt-9" icon
                     ><v-img
                       :src="require('@/assets/icons/icon_edit.svg')"
@@ -104,7 +106,7 @@
                     ></v-img> </v-btn
                 ></v-col>
 
-                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
                   <span>Género*</span>
                   <v-text-field
                     v-model="gender"
@@ -115,7 +117,7 @@
                     outlined
                   ></v-text-field>
                 </v-col>
-                <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
+                <v-col cols="1">
                   <v-btn @click="genderd = !genderd" class="iconos mt-9" icon
                     ><v-img
                       :src="require('@/assets/icons/icon_edit.svg')"
@@ -123,7 +125,7 @@
                     ></v-img> </v-btn
                 ></v-col>
 
-                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
                   <span>Teléfono personal*</span>
                   <v-text-field
                     v-model="phone_number"
@@ -134,7 +136,7 @@
                     outlined
                   ></v-text-field>
                 </v-col>
-                <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
+                <v-col  cols="1">
                   <v-btn @click="phoned = !phoned" class="iconos mt-9" icon
                     ><v-img
                       :src="require('@/assets/icons/icon_edit.svg')"
@@ -142,7 +144,7 @@
                     ></v-img> </v-btn
                 ></v-col>
 
-                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
                   <span>Correo*</span>
                   <v-text-field
                     v-model="email"
@@ -153,7 +155,7 @@
                     outlined
                   ></v-text-field>
                 </v-col>
-                <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
+                <v-col cols="1">
                   <v-dialog
                     fullscreen
                     overlay-color="white"
@@ -174,7 +176,7 @@
                   </v-dialog>
                 </v-col>
 
-                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
                   <span>Fecha de nacimiento</span>
                   <v-dialog
                     ref="dialog"
@@ -214,14 +216,14 @@
                     </v-date-picker>
                   </v-dialog>
                 </v-col>
-                <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
+                <v-col  cols="1">
                   <v-btn @click="dated = !dated" class="iconos mt-9" icon
                     ><v-img
                       :src="require('@/assets/icons/icon_edit.svg')"
                       max-width="25"
                     ></v-img> </v-btn
                 ></v-col>
-                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="12">
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
                   <span>Contraseña*</span>
                   <v-text-field
                     v-model="password"
@@ -232,7 +234,7 @@
                     outlined
                   ></v-text-field>
                 </v-col>
-                <v-col xs="1" sm="1" md="1" lg="1" xl="1" cols="12">
+                <v-col cols="1">
                   <v-btn
                     @click="passwordd = !passwordd"
                     class="iconos mt-9"
@@ -242,7 +244,7 @@
                       max-width="25"
                     ></v-img> </v-btn
                 ></v-col>
-                <v-col v-if="passwordd" md="3" cols="12">
+                <v-col v-if="passwordd" md="3" cols="10">
                   <span>Confirmar contraseña*</span>
                   <v-text-field
                     v-model="password_confirmation"
@@ -254,8 +256,10 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <div class="mt-8">
+              <v-row>
+                <v-col cols="10" xl="2">
                 <v-btn
+                block
                   height="50px"
                   class="white--text save"
                   v-on:click="update"
@@ -271,13 +275,16 @@
                     >Datos actualizados correctamente.</v-alert
                   >
                 </v-overlay>
+              </v-col>
+              <v-col cols="10" xl="2">
                 <v-dialog v-model="dialog" persistent max-width="450">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
+                      block
                       v-bind="attrs"
                       v-on="on"
                       height="50px"
-                      class="restore ml-3"
+                      class="restore "
                       color="#999999"
                       outlined
                       large
@@ -304,7 +311,8 @@
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
-              </div>
+                </v-col>
+              </v-row>
             </v-form>
           </v-card-text>
         </v-card>
@@ -314,6 +322,7 @@
 </template>
 <script>
 import Account from './account.vue'
+import accountMenu from './accountMenu.vue'
 import changeEmail from './PersonalProfile/changeEmail.vue'
 import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue'
 
@@ -322,6 +331,7 @@ export default {
     menuPersonal,
     changeEmail,
     Account,
+    accountMenu
   },
 
   data() {
@@ -471,11 +481,6 @@ export default {
 }
 </script>
 <style>
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-  font-size: 95%;
-}
 p.reset {
   font-family: Montserrat;
   font-size: 90%;
@@ -548,6 +553,7 @@ span {
   color: #999999;
   font-family: Montserrat;
   font-size: 120%;
+  text-transform: capitalize;
 }
 p {
   font-family: MontserratMedium;

@@ -21,7 +21,7 @@ export default {
     }
 
     const menuPersonal = {
-      template: '<div>   <menuPersonal/></div>',
+      template: '<div> <menuPersonal/></div>',
     }
 
     const menuMed = {

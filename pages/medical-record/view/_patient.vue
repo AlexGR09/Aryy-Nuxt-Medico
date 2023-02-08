@@ -524,10 +524,6 @@ export default {
   font-size: 2vh;
   font-family: MontserratBold;
 }
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-}
 p.infor{
   color: white;
   margin-left: 2vh;

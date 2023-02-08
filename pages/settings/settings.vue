@@ -39,8 +39,4 @@ export default {
 }
 </script>
 <style scoped>
-span.breadcrumbs {
-  font-family: Montserrat;
-  color: #7900ff;
-}
 </style>
