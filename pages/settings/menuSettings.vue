@@ -1,6 +1,7 @@
 <template>
-  <v-card color="card" flat>
+  <div>
     <v-tabs
+    background-color="card"
       class="list-item mt-8 ml-n3"
       active-class="bg-active"
       hide-slider
@@ -22,7 +23,7 @@
       </v-tab>
     </v-tabs>
     <router-view></router-view>
-  </v-card>
+  </div>
 </template>
     
     <script>

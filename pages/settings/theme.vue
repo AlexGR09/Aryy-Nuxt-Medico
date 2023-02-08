@@ -43,7 +43,6 @@
                   v-ripple
                   link
                   hover
-                  height="250px"
                 >
                   <v-card-text>
                     <v-icon>mdi-weather-night</v-icon>Tema Oscuro
@@ -59,7 +58,6 @@
                   v-ripple
                   link
                   hover
-                  height="250px"
                 >
                 <v-card-text>
                     <v-icon>mdi-laptop</v-icon>Tema del sistema
@@ -132,12 +130,7 @@ export default {
   <style scoped>
 span.breadcrumbs {
   font-family: Montserrat;
-  color: #7900ff;
-}
-.v-card__title {
-  font-family: MontserratBold;
-  color: #4f565f;
-  font-size: 2.2vh;
+/*   color: #7900ff; */
 }
 .v-card__subtitle {
   font-size: 1.7vh;
@@ -163,5 +156,33 @@ span.breadcrumbs {
 .v-icon.bread{
     color: #7900ff !important;
     margin-right: 10px;
+}
+</style>
+
+<!-- estilos para tema oscuro -->
+<style>
+
+.theme--light.v-card > .v-card__text, .theme--light.v-card > .v-card__title {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.theme--dark.v-card > .v-card__text, .theme--dark.v-card > .v-card__title {
+    color: white;
+}
+
+.theme--dark.v-icon {
+  color: #FFFFFF !important;
+}
+
+.theme--dark.v-card > .v-card__text, .theme--dark.v-card > .v-card__text {
+    color: white !important;
+}
+
+.theme--dark.v-btn {
+  color: white;
+}
+
+.theme--dark.v-navigation-drawer {
+  background-color: #363940;
 }
 </style>

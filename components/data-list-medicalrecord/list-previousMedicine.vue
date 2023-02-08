@@ -35,34 +35,20 @@ export default {
       idif: '',
       medications: '',
       name: '',
+      id:'',
     }
   },
-
+  created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
+  },
   mounted() {
-  this.medicine()
   this.medicineVer()
 },
 methods: {
   medicineVer() {
     this.$axios
       .get(
-        `api/v1/physician/medical-history/previous-medication/${this.$route.params.medicalRecord}`,
-        {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
-          },
-        }
-      )
-      .then((res) => {
-        this.idif = res.data.data.id
-        this.medications = res.data.data.previous_medication
-        this.name = res.data.data.previous_medication[0]
-      })
-  },
-  medicine() {
-    this.$axios
-      .get(
-        `api/v1/physician/medical-history/previous-medication/${this.$route.params.patient}`,
+        'api/v1/physician/medical-history/previous-medication/'+this.id,
         {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token'),

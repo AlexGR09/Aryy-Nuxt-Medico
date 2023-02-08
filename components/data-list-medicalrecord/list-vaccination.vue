@@ -51,6 +51,7 @@ export default {
       dose: '',
       lot_number: '',
       lenght: '',
+      id:'',
     }
   },
   methods: {
@@ -60,21 +61,7 @@ export default {
    /*  metodo para obtener datos de vacunacion | Genesis */
     vacunas() {
       this.$axios
-        .get(`api/v1/physician/medical-history/vaccination-history/${this.$route.params.medicalRecord}`, {
-          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-        })
-        .then((res) => {
-          this.vacunass = res.data.data
-          this.vaccine = res.data.data[0].vacination[0].vaccine
-          this.date = res.data.data[0].vacination[0].application_date
-          this.dose = res.data.data[0].vacination[0].dose
-          this.lot_number = res.data.data[0].vacination[0].lot_number
-          this.lenght = res.data.data.lenght
-        })
-    },
-    vacunasVer() {
-      this.$axios
-        .get(`api/v1/physician/medical-history/vaccination-history/${this.$route.params.patient}`, {
+        .get('api/v1/physician/medical-history/vaccination-history/'+this.id, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
@@ -87,9 +74,11 @@ export default {
         })
     },
   },
+  created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
+  },
   mounted(){
     this.vacunas()
-    this.vacunasVer()
   },
   computed: {
     

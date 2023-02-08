@@ -14,12 +14,12 @@
         <v-card color="card" class="rounded-lg" :elevation="2" scrollable>
           <div class="banner-text"><p class="infor">INFORMACIÓN DEL PACIENTE</p></div>
           <!-- INFORMACION BASICA -->
-          <p class="subtitle-p">INFORMACIÓN BÁSICA</p>
+          <p class="subtitle-p mb-n4">INFORMACIÓN BÁSICA</p>
           <v-row class="row-icon" no-gutters>
             <v-col cols="12" md="4">
               <v-spacer></v-spacer>
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img width="25vh" src="@/assets/icons/icon_perfil.svg" />
                   <span class="information-basic ms-3">{{patient}}</span>
                 </p>
@@ -27,7 +27,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img width="25vh" src="@/assets/icons/icon_phone_dark_.svg" />
                   <span class="information-basic ms-3">{{phone_number}}</span>
                 </p>
@@ -35,7 +35,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -49,7 +49,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -61,7 +61,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -73,7 +73,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -86,11 +86,11 @@
           </v-row>
 
           <!-- Signos vitales -->
-          <p class="subtitle-p">SIGNOS VITALES</p>
+          <p class="subtitle-p my-n4">SIGNOS VITALES</p>
           <v-row class="row-icon" no-gutters>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img width="25vh" src="@/assets/icons/icon_perfil.svg" />
                   <span class="information-basic ms-3">37.5°</span>
                 </p>
@@ -98,7 +98,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img width="25vh" src="@/assets/icons/icon_phone_dark_.svg" />
                   <span class="information-basic ms-3">95 kg</span>
                 </p>
@@ -106,7 +106,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -120,7 +120,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -132,7 +132,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -144,7 +144,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -156,7 +156,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -168,7 +168,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -180,7 +180,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div>
-                <p class="d-flex align-center mb-6">
+                <p class="d-flex align-center">
                   <img
                     width="25vh"
                     class="greeting-card-trophy"
@@ -206,21 +206,21 @@
 
           <!-- ANTECENDETES PATOLOGICOS -->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2 ml-6">ANTECEDENTES PATOLÓGICOS</p>
+            <p class="titulo mb-n2 mt-n5 ml-6">ANTECEDENTES PATOLÓGICOS</p>
           <list-pathologic/>
           </v-col>
           <!-- ANTECENDETES PATOLOGICOS -->
 
             <!-- ANTECENDETES NO PATOLOGICOS -->
             <v-col cols="12" md="6">
-            <p class="titulo mb-n2 ml-6">ANTECEDENTES NO PATOLÓGICOS</p>
+            <p class="titulo mb-n2 mt-n5 ml-6">ANTECEDENTES NO PATOLÓGICOS</p>
           <listnonPathologic/>
           </v-col>
           <!-- ANTECENDETES NO PATOLOGICOS -->
 
           <!-- ANTECENDETES ANTECEDENTES HEREDOFAMILIARES -->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2 ml-6">ANTECEDENTES HEREDOFAMILIARES</p>
+            <p class="titulo mb-n2 mt-n5 ml-6">ANTECEDENTES HEREDOFAMILIARES</p>
            <listFamilyhistory/>
           </v-col>
 
@@ -228,7 +228,7 @@
 
           <!-- ANTECENDETES MEDICAMENTO ACTIVO-->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2 ml-6">MEDICAMENTO ACTIVO</p>
+            <p class="titulo mb-2 mt-n5 ml-6">MEDICAMENTO ACTIVO</p>
            <listMedicine/>
           </v-col>
 
@@ -236,14 +236,14 @@
 
           <!-- ANTECENDETES MEDICAMENTO MEDICAMENTO ANTERIOR-->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2 ml-6">MEDICAMENTO ANTERIOR</p>
+            <p class="titulo mb-2 mt-n5 ml-6">MEDICAMENTO ANTERIOR</p>
             <ListPreviousMedicine/>
           </v-col>
 
           <!-- ANTECENDETES MEDICAMENTO ANTERIOR -->
           <!-- VACUNACION RECIENTE-->
           <v-col cols="12" md="6">
-            <p class="titulo mb-n2 ml-6">VACUNACIÓN RECIENTE</p>
+            <p class="titulo mb-2 mt-n5 ml-6">VACUNACIÓN RECIENTE</p>
             <list-vaccination/>
           </v-col>
 
@@ -491,8 +491,8 @@ export default {
   font-size: 1.8vh;
 }
 .information-basic {
-  color: #a6a6a6;
-  font-family: 'Montserrat', sans-serif;
+  color: #999999;
+  font-family: 'MontserratMedium';
   font-size: 2vh;
 }
 .container {

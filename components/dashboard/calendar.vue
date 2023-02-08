@@ -74,9 +74,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$refs.calendar.$data.times.now.day)
     this.$refs.calendar.checkChange()
-    console.log(this.$refs.calendar)
     this.citas()
   },
   methods: {
@@ -89,7 +87,6 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          this.evento = res.data.data
           console.log(res)
         })
     },

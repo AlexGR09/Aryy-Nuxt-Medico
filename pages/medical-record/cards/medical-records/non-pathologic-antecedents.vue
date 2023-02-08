@@ -5,7 +5,11 @@
       <div class="hidden-md-and-up">  <p class="titulo">Antecedentes <br/> no patológicos</p></div>
   
     <div class="mb-2 mt-n11 d-flex justify-end">
+
+      <!-- componente agregar datos -->
     <new-non-pathologic v-if="this.dataNull===true"/>
+
+    <!-- componente editar datos -->
     <edit-non-pathologic v-else/>
     </div>
     <v-divider class="mt-n1"></v-divider>

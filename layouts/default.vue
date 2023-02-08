@@ -69,7 +69,7 @@
       </v-list>
 
    <!--    lista de los elementos bloqueados | Genesis -->
-      <v-list color="#f4edff" disabled class="list-item">
+      <v-list disabled class="list-item disabledItem">
         <v-list-item
           v-for="(blockedItem, i) in blockedItems"
           :key="i"
@@ -258,7 +258,6 @@ export default {
 .v-list-item-titlee {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
-  color: #7900ff;
 }
 .v-list-item-titlee:hover {
   color: #ffffff;
@@ -352,4 +351,18 @@ img:hover {
 .logout {
   text-transform: capitalize;
 }
+
+.theme--dark.v-card > .v-card__text, .theme--dark.v-card > .v-card__text {
+    color: white !important;
+}
+
+.theme--dark.v-list.disabledItem {
+  background: #4f5157 !important;
+  color: #4f5157 !important;
+}
+.theme--light.v-list.disabledItem {
+  background: #f4edff !important;
+  color: #f4edff !important;
+}
+
 </style>

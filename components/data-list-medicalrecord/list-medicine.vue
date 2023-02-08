@@ -38,18 +38,20 @@ export default {
       medications: '',
       complete: false,
       incomplete: true,
+      id:'',
 	}
   },
-  
+  created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
+  },
   mounted() {
     this.medicine()
-    this.medicineVer()
   },
   methods: {
     medicine() {
       this.$axios
         .get(
-          `api/v1/physician/medical-history/current-medication/${this.$route.params.medicalRecord}`,
+          'api/v1/physician/medical-history/current-medication/'+this.id,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -64,22 +66,6 @@ export default {
         })
     },
 
-    medicineVer() {
-      this.$axios
-        .get(
-          `api/v1/physician/medical-history/current-medication/${this.$route.params.patient}`,
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
-        .then((res) => {
-          this.idif = res.data.data.id
-          this.medications = res.data.data.medication
-          this.name = res.data.data.medication[0]
-        })
-    },
   },
 }
 </script>

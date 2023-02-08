@@ -9,8 +9,10 @@
       <p class="titulo">Antecedentes <br/> heredofamiliares</p>
     </div>
     <div class="mb-2 mt-n11 d-flex justify-end">
-    
+    <!-- componente agregar datos -->
       <new-family-history v-if="this.errordata"/>
+
+      <!-- componente editar datos -->
       <edit-family-history v-else/>
      
     </div>

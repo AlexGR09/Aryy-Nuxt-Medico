@@ -143,17 +143,20 @@ export default {
       other_substances: '',
       null:'',
       activityerror:'',
+      id:'',
     }
+  },
+  created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
   },
   mounted() {
     this.datos()
-    this.datosVer()
   },
   methods: {
     datos() {
       this.$axios
         .get(
-          `api/v1/medical-history/physician/non-pathological-background/patient/${this.$route.params.medicalRecord}`,
+          'api/v1/medical-history/physician/non-pathological-background/patient/'+this.id,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -182,38 +185,6 @@ export default {
           this.activityerror = error
         })
     },
-
-    datosVer() {
-      this.$axios
-        .get(
-          `api/v1/medical-history/physician/non-pathological-background/patient/${this.$route.params.patient}`,
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
-        .then((res) => {
-          this.null= res.data.data.alcoholim
-
-          this.type_activity = res.data.data.physical_activity.type_of_activity
-          this.days_week = res.data.data.physical_activity.days_of_the_week
-
-          this.horas_sueño = res.data.data.rest_time.hours_of_sleep
-          this.soñar = res.data.data.rest_time.dreams_while_sleeping
-          this.descanso = res.data.data.rest_time.rest_when_sleeping
-         
-          this.cigarettes = res.data.data.smoking.number_of_cigarettes
-          this.typeSmoke = res.data.data.smoking.type
-          this.alcohol = res.data.data.alcoholim.weekly_frequency
-          this.typeAlcohol = res.data.data.alcoholim.type
-
-          this.diet = res.data.data.diet
-          this.other_substances = res.data.data.other_substances
-        })
-    },
-
-
   },
 }
 </script>

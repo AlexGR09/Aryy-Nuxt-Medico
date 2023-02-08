@@ -75,31 +75,14 @@ export default {
       time: '',
       idif: '',
       errordata:'',
+      id:'',
     }
   },
   methods: {
     alergiass() {
       this.$axios
         .get(
-          `api/v1/medical-records/physician/allergies/patient/${this.$route.params.medicalRecord}`,
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
-        .then((res) => {
-          this.idif = res.data.data.id
-          this.drugss = res.data.data.drug_allergy[0]
-          this.environmental = res.data.data.environmental_allergy[0]
-          this.food = res.data.data.food_allergy[0]
-          this.time = res.data.data.created_at
-        })
-    },
-    alergiasView() {
-      this.$axios
-        .get(
-          `api/v1/medical-records/physician/allergies/patient/${this.$route.params.patient}`,
+          'api/v1/medical-records/physician/allergies/patient/'+this.id,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -117,9 +100,11 @@ export default {
     },
   },
 
+  created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
+  },
   mounted() {
     this.alergiass()
-    this.alergiasView()
   },
 }
 </script>

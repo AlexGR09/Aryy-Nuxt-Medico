@@ -1,82 +1,12 @@
 <!-- seccion de medicamento activo dentro de medical record | Genesis -->
 <template>
-   <v-card-text class="mb-6">
-
+  <v-card-text class="mb-6">
     <p class="titulo">Medicamento activo</p>
     <div class="mb-2 mt-n11 d-flex justify-end">
-      <v-dialog v-model="dialog" max-width="600px">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn dark icon v-bind="attrs" v-on="on">
-            <img
-              width="24"
-              height="24"
-              :src="require('@/assets/icons/icon_edit.svg')"
-            />
-          </v-btn>
-        </template>
-        <v-card>
-          <v-card-title>
-             <!--  span a mostrar en pantallas md/lg | Genesis -->
-            <div class="hidden-sm-and-down">
-            <span >HISTORIAL DE MEDICAMENTO</span><br/> </div>
-            <div class="hidden-md-and-up">
-           <!--    span a mostrar en pantallas xs/sm | Genesis -->
-            <span >HISTORIAL <br/> DE MEDICAMENTO</span><br/> </div>
-          </v-card-title>
-          <v-card-text>
-            <v-container>
-              <v-row>
-                <v-col  v-for="medication in medications" :key="medication" cols="12" sm="6" md="4" xl="12">
-                  <div>
-                  <p>{{ medication }}</p>
-                 <!--  <p class="sub mt-n5">
-                    1 comprimido cada 24 horas • 17/NOV/22 a 31/DIC/22
-                  </p> -->
-                  <v-row class="mt-n8">
-                    <v-col cols="6" xl="3">
-                      <v-checkbox
-                        v-model="complete"
-                        class="checkbox"
-                        color="#7900ff"
-                        label="Completado"
-                      ></v-checkbox>
-                    </v-col>
-                    <v-col cols="6" xl="4">
-                      <v-checkbox
-                        v-model="incomplete"
-                        class="checkbox"
-                        color="#7900ff"
-                        label="No completado"
-                      ></v-checkbox>
-                    </v-col>
-                  </v-row>
-                </div>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card-text>
-          <v-card-actions class="mt-n10 ml-5 mr-5">
-            <v-btn
-              block
-              v-on:click="status"
-              @click="overlay = !overlay"
-              height="50px"
-              class="white--text save mb-5"
-              color="#7900ff"
-              large
-              >Guardar cambios</v-btn
-            >
-            <v-overlay :value="overlay">
-              <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
-                >Datos actualizados correctamente.</v-alert
-              >
-            </v-overlay>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+      <edit-medicine />
     </div>
     <v-divider class="mt-n1"></v-divider>
-    <listMedicine/> 
+    <listMedicine />
     <p class="ml-3 mb-n1 mt-n1 d-flex justify-end">
       <img
         class="mr-3"
@@ -87,90 +17,16 @@
   </v-card-text>
 </template>
 <script>
+import editMedicine from '~/components/editableForms/editMedicine.vue'
 import listMedicine from '~/components/data-list-medicalrecord/list-medicine.vue'
 export default {
   layout: 'medicalRecord',
-  components: {listMedicine},
+  components: { editMedicine, listMedicine },
   data() {
-    return {
-      name: '',
-      idif: '',
-      overlay: false,
-      dialog: false,
-      alimentarias: '',
-      farmacos: '',
-      ambientales: '',
-      medications: '',
-      complete: false,
-      incomplete: true,
-    }
+    return {}
   },
-  watch: {
-    overlay(val) {
-      val &&
-        setTimeout(() => {
-          this.overlay = false
-        }, 2000)
-    },
-  },
-  mounted() {
-    this.medicine()
-    this.medicineVer()
-  },
-  methods: {
-    medicine() {
-      this.$axios
-        .get(
-          `api/v1/physician/medical-history/current-medication/${this.$route.params.medicalRecord}`,
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
-        .then((res) => {
-          this.idif = res.data.data.id
-          this.medications = res.data.data.medication
-          this.name = res.data.data.medication[0]
-         
-        })
-    },
-
-    medicineVer() {
-      this.$axios
-        .get(
-          `api/v1/physician/medical-history/current-medication/${this.$route.params.patient}`,
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
-        .then((res) => {
-          this.idif = res.data.data.id
-          this.medications = res.data.data.medication
-          this.name = res.data.data.medication[0]
-        })
-    },
-
-    status() {
-      this.$axios
-        .put(
-          `api/v1/physician/status-medicine/${this.$route.params.medicalRecord}`,
-          {},
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
-        .then((res) => {
-          location.reload()
-          this.complete = true
-          this.incomplete = false
-        })
-    },
-  },
+  mounted() {},
+  methods: {},
 }
 </script>
 <style scoped>

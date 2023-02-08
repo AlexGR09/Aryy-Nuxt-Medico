@@ -46,19 +46,18 @@
                     }"
                     class="white--text deletebtn"
                     large
-                    >Cancelar</v-btn
+                    ><span>Cancelar</span></v-btn
                   >
                 </v-hover>
               </v-col>
               <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="2">
                 <v-btn
                   block
-                  color="#4f565f"
-                  class="deletebtn ml-2"
+                  class=" ml-2"
                   large
                   outlined
                 >
-                  Eliminar cuenta
+                  <span>Eliminar cuenta</span>
                 </v-btn>
               </v-col>
             </v-row>
