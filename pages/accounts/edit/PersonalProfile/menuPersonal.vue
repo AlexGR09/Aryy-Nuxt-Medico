@@ -1,11 +1,12 @@
 <template>
+  <div>
+
   <v-tabs
-    class="list-item mt-8"
     active-class="bgactive"
     hide-slider
-    color="#7900ff"
-    height="130px"
-    vertical
+    centered
+    :vertical="$vuetify.breakpoint.name === 'xl'"
+    :horizontal="$vuetify.breakpoint.name === 'xs'"
   >
     <v-tab class="proband"> PERFIL </v-tab>
     <v-tab class="proband"> DATOS FISCALES </v-tab>
@@ -22,6 +23,7 @@
       <services class="mt-n8" />
     </v-tab-item>
   </v-tabs>
+</div>
 </template>
   
   <script>

@@ -3,7 +3,7 @@
         <v-card class="greeting-card" outlined rounded="lg" >
             <v-col cols="12">
                 <v-toolbar flat>
-                    <template v-slot:extension>
+                    <template #v-slot:extension>
                         <v-tabs v-model="tab" centered fixed-tabs >
                             <v-tab v-for="item in items" :key="item" :value="'mobile-tabs-5-' + i">
                                 {{ item.title }}
@@ -21,7 +21,6 @@
             </v-col>
         </v-card>
     </v-container>
-    
 </template>
 
 <script>

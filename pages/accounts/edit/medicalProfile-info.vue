@@ -11,11 +11,9 @@
           </v-alert>
           <v-card-subtitle class="pa-3 mt-n2 mb-n10">
             <h1>FORMACIÓN ACADÉMICA</h1>
-
             <!-- btn editar -->
             <v-toolbar flat type="success">
               <v-icon></v-icon>
-
               <v-spacer></v-spacer>
               <v-btn
                 color="primary"
@@ -51,13 +49,11 @@
                   <v-text-field
                     v-model="name"
                     outlined
-                    placeholder="Escribe cómo quieres que aparezca tu nombre"
+                    placeholder="Nombre del médico"
                     :disabled="!isEditing"
                   ></v-text-field>
                 </v-col>
-
                 <!-- SELECIONAR ESPECIALIDAD | LUIS REYES -->
-
                 <v-col md="6" cols="12">
                   <span>Especialidad*</span>
                   <v-autocomplete
@@ -77,6 +73,7 @@
                   <v-text-field
                     v-model="identification_card"
                     outlined
+                    label="Cédula Profesional"
                     placeholder="000000000000"
                     :disabled="!isEditing"
                   ></v-text-field>
@@ -88,7 +85,7 @@
                   <v-text-field
                     v-model="institution"
                     outlined
-                    placeholder="Escribe el nombre de la institución"
+                    label="Institución que otorgo la cédula"
                     :disabled="!isEditing"
                   ></v-text-field>
                 </v-col>
@@ -112,8 +109,8 @@
                 <v-col xl="12">
                   <span>Sobre mi(opcional)</span>
                   <v-textarea
-                    color="#9966ff"
                     v-model="aboutme"
+                    color="#9966ff"
                     maxlength="400"
                     counter="400"
                     auto-grow
@@ -142,7 +139,7 @@
                   :show-size="1000"
                   clearable
                 >
-                  <template v-slot:selection="{ index, text }">
+                  <template #v-slot:selection="{ index, text }">
                     <v-chip
                       v-if="index < 2"
                       color="deep-purple accent-4"
@@ -161,7 +158,7 @@
                     </span>
                   </template>
                 </v-file-input>
-                <v-btn v-on:click="postArray()" elevation="2">subir</v-btn>
+                <v-btn elevation="2" @click="postArray" >subir</v-btn>
               </v-col>
               <v-col md="7" cols="12">
                 <v-card
@@ -173,28 +170,23 @@
                     class="justify-center text-h5 font-weight-light"
                     sticky
                   >
-                   misv¿ vertificad
-
+                    misv¿ vertificad
                     <span
                       class="font-weight-bold"
                       v-text="scrollInvoked"
                     ></span>
-
                     times
                   </v-banner>
-
                   <v-card-text>
-                    <div v-for="n in 12" :key="n" class="mb-4">
-
-                    </div>
+                    <div v-for="n in 12" :key="n" class="mb-4"></div>
                   </v-card-text>
                 </v-card>
               </v-col>
 
               <VueFileAgent
+                :id="uploadfiles"
                 ref="uploadfiles"
                 type="file"
-                :id="uploadfiles"
                 :theme="'grid'"
                 :multiple="true"
                 :deletable="true"
@@ -206,9 +198,9 @@
               <div class="col-md-2">
                 <button
                   type="button"
-                  @click="uploadFile()"
                   name="upload"
                   class="btn btn-primary"
+                  @click="uploadFile()"
                 >
                   Cargar Archivos
                 </button>
@@ -257,18 +249,13 @@
                 <!-- TikTok -->
                 <v-col md="4" cols="12">
                   <span>Tiktok</span>
-                  <v-text-field
-                    v-model="tiktok"
-                    outlined
-                    dense
-                    placeholder="tiktok.com/medico"
-                  >
-                    <template>
+                  <v-text-field v-model="tiktok" outlined dense>
+                    `<template>`
                       <img
                         style="width: 5 vh"
                         src="@/assets/icons/icon_tiktok.svg"
                       />
-                    </template>
+                      `</template>`
                   </v-text-field>
                 </v-col>
 
@@ -289,11 +276,11 @@
 
               <BR /><BR />
               <v-btn
-                @click="overlay = !overlay"
                 height="50px"
                 class="white--text save mt-7"
                 color="#7900ff"
                 large
+                @click="overlay = !overlay"
               >
                 Guardar cambios
               </v-btn>
@@ -375,14 +362,19 @@ export default {
     },
   },
 
+  mounted() {
+    this.getMedicalProfile()
+    this.getspecialty()
+  },
+
   methods: {
     reset() {
       this.$refs.form.reset()
     },
 
-    onScroll () {
-        this.scrollInvoked++
-      },
+    onScroll() {
+      this.scrollInvoked++
+    },
 
     getMedicalProfile() {
       this.$axios
@@ -390,10 +382,10 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          console.log(res)
           this.name = res.data.data.professional_name
           this.institution = res.data.data.physician_specialties[0].institution
-          this.identification_card = res.data.data.physician_specialties[0].license
+          this.identification_card =
+            res.data.data.physician_specialties[0].license
           this.status = res.data.message
           this.dbSelect = res.data.data.specialty_id
           alert(res.data.message)
@@ -457,9 +449,8 @@ export default {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
-          console.log(res)
           this.items = res.data.data
-          console.log(res.data.data)
+          /* onsole.log(res.data.data) */
         })
     },
 
@@ -483,7 +474,7 @@ export default {
     },
 
     uploadFile: function () {
-      console.log(this.uploadfiles.upload)
+      /* console.log(this.uploadfiles.upload) */
       // const el = this
       // const files = this.$refs.uploadfiles.files
 
@@ -557,41 +548,43 @@ export default {
       }
     }, */
   },
-  mounted() {
-    this.getMedicalProfile()
-    this.getspecialty()
-  },
+ 
 }
 </script>
 
-
-  <style>
+<style>
 .v-input__icon--prepend .v-icon {
   color: #9966ff;
 }
+
 .input {
   margin-top: 5px;
   color: #9966ff !important;
   font-family: MontserratMedium;
   font-size: 100%;
 }
+
 .bgactive {
   background: #7900ff;
   color: white !important;
   fill: white !important;
 }
+
 .list-item {
   margin-top: 1em;
 }
+
 .titlee {
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   text-transform: unset !important;
   color: black;
 }
+
 .titlee:hover {
   color: #ffffff;
 }
+
 .v-list-item:hover {
   background: #7900ff;
 }
@@ -600,48 +593,58 @@ export default {
   background-color: #7900ff;
   color: white !important;
 }
+
 a {
   text-decoration: none !important;
 }
+
 .save {
   font-family: Montserrat;
   text-transform: unset !important;
 }
+
 .restore {
   font-family: Montserrat;
   text-transform: unset !important;
 }
+
 .btn {
   font-family: Montserrat;
   text-transform: unset !important;
   color: #9966ff;
 }
+
 .textfield {
   height: 50px;
   width: 100%;
   font-size: 0.9rem;
   font-family: Montserrat;
 }
+
 h1 {
   font-family: MontserratMedium;
   font-size: 120%;
   color: #4f565f;
 }
+
 span {
   color: #999999;
   font-family: Montserrat;
   font-size: 120%;
 }
+
 p {
   font-family: MontserratMedium;
   color: gray;
   font-size: 110%;
 }
+
 p.cedu {
   font-family: Montserrat;
   font-size: 120%;
   color: #999999;
 }
+
 .v-input__icon--append .v-icon {
   font-size: 50px;
   color: #999999;

@@ -1,13 +1,13 @@
 <!-- Maquetación => Template => Dashboard | Luis Reyes & Responsivo | Luis Reyes -->
 <template>
   <v-container>
-        <v-toolbar flat color="transparent">
-          <v-toolbar-title>Dr. {{ facilities }}</v-toolbar-title>
-        </v-toolbar> 
-        <div class="">
+    <v-toolbar flat color="transparent">
+      <v-toolbar-title>Dr. {{ facilities }}</v-toolbar-title>
+    </v-toolbar>
+    <div class="">
         Aún no ha terminado de configurar su perfil de,
-        <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link>
-      </div>
+      <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link>
+    </div>
     <v-row>
       <v-col cols="12" md="4">
         <dashboard-citas />
@@ -20,54 +20,153 @@
       </v-col>
       <!-- Citas proximas | Luis Reyes -->
       <v-col cols="12" md="6">
-        <next-consultation/>
+        <next-consultation />
       </v-col>
       <v-col cols="12" md="6">
         <v-card class="rounded-xl" color="white">
           <v-row justify="center">
-            <v-date-picker  v-model="picker"  locale="mx-es" width="350" no-title prev-icon='$prev' class="justify-center calendar"></v-date-picker>
+            <v-date-picker
+              v-model="picker"
+              locale="mx-es"
+              width="350"
+              no-title
+              prev-icon="$prev"
+              class="justify-center calendar"
+            ></v-date-picker>
           </v-row>
         </v-card>
       </v-col>
-      <v-row>
-        <v-btn>
-          generar
-        </v-btn>
-      </v-row>
-      
-
-
+    </v-row>
+    <v-row>
+      <v-btn color="primary" class="text-lowercase"  @click="generatePDF">
+        Generar pdf
+      </v-btn>
     </v-row>
   </v-container>
 </template>
 <script>
+import  JsPDF  from "jspdf";
+import AutoTable from 'jspdf-autotable'
 import nextConsultation from '~/components/dashboard/next-consultation.vue'
-export default {
 
-  name: "Default",
+export default {
+  name: 'Default',
   components: { nextConsultation },
   data() {
     return {
       name: [],
       facilities: null,
-      picker: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      specialty: null,
+      license: null,
+      institution: null,
+      patient_name: null,
+      drug_name: null,
+      brand: null,
+      presentation: null,
+      amount: null,
+      frequency: null,
+      duration:null,
+
+      todos: [
+        { title:'hola 1', description: 'quien eres'},
+
+      ],
+      
+      picker: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        .toISOString()
+        .substr(0, 10),
     }
   },
 
   mounted() {
-    this.getName()
+   this.getName() 
+    this.GET_RECETA()
   },
 
   methods: {
-    getName() {
+  getName() {
       this.$axios
         .get('/api/v1/physician/profile', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           this.facilities = res.data.data.professional_name
-          alert(res.data.data.professional_name)
+          this.specialty = res.data.data.specialty[0].name
+          this.license = res.data.data.physician_specialty[0].license
+          this.institution = res.data.data.physician_specialty[0].institution
+          alert(res.data.data.specialty[0].name)
         })
+    },
+
+    
+ GET_RECETA(){
+      this.$axios
+      .get('/api/v1/physician/medical-appointments/2',{
+        headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+      })
+      .then((res) => {
+        this.patient_name = res.data.data.patient_name
+        this.drug_name = res.data.data.prescription.treatment.drug_name
+        this.brand = res.data.data.prescription.treatment.brand
+        this.presentation = res.data.data.prescription.treatment.presentation
+        this.amount = res.data.data.prescription.treatment.amount
+        this.frequency = res.data.data.prescription.treatment.frequency
+        this.duration = res.data.data.prescription.treatment.duration_days
+      })
+    },
+
+    generatePDF() {
+      /*       const vm = 
+      const columns = [
+        {title: "Title", dataKey: "title"},
+        {title: "Description", dataKey: "description"}
+      ];
+      const doc = new JsPDF();
+      doc.text('To Do List', 40, 40);
+      doc.autoTable(columns, vm.todos, {
+        margin: {top: 100},
+      });
+      doc.save('receta.pdf'); */
+
+
+      
+
+      /*   
+
+      doc.setTextColor("blue");
+      doc.setFont("helvetica", "bold");
+      doc.text('Tratamiento', 10, 50)
+      doc.line(10, 52, 50, 52);
+
+      doc.text(this.drug_name, 10, 60)
+      doc.text(this.presentation, 30, 60)
+      doc.text(this.amount,50,60)
+      doc.text(this.frequency, 70, 60) */
+
+      /*  autoTable(doc, { html: '#my-table' })
+      autoTable(doc, { 
+        theme: 'plain',
+        margin: { top: 100 },
+        heading: "Sample PDF Generator",
+        head: [['Medicamento', 'Marca', 'Presentación','Cantidad','Frecuencia','Duración']],
+        body: [
+          [this.drug_name, this.brand , this.presentation , this.amount , this.frequency],
+          // ...
+        ],
+      })  */
+      const vm = this
+      const columns = [
+        {title: "Title", dataKey: "title"},
+        {title: "Description", dataKey: "description"}
+      ];
+      const doc = new JsPDF('p', 'pt');
+      const table = new AutoTable
+      doc.text('To Do List', 40, 40);
+      table.autoTable(columns, vm.todos, {
+        margin: {top: 60},
+      });
+
+      doc.save('receta.pdf')
     },
   },
 }
