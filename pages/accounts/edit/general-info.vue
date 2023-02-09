@@ -78,16 +78,15 @@
             </div>
           </v-card-text> -->
           <!-- formulario | Luis Reyes -->
-          <v-card-text class="mt-n6">
-            <v-card-subtitle >
-              <H1 class="mb-5 ml-n4 mt-n7"
-                >INFORMACIÓN DE PERFIL</H1
-              ></v-card-subtitle
+          <v-card-subtitle class="mt-n8 mb-3" >
+             INFORMACIÓN DE PERFIL</v-card-subtitle
             >
+          <v-card-text class="mt-n6">
+         
             <v-form ref="form" class="multi-col-validation">
               <v-row>
                 <v-col xs="7" md="7" lg="7" xl="7" cols="10">
-                  <span>Nombre completo*</span>
+                  <p>Nombre completo*</p>
                   <v-text-field
                     v-model="full_name"
                     color="#9966ff"
@@ -107,7 +106,7 @@
                 ></v-col>
 
                 <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
-                  <span>Género*</span>
+                  <p>Género*</p>
                   <v-text-field
                     v-model="gender"
                     color="#9966ff"
@@ -126,7 +125,7 @@
                 ></v-col>
 
                 <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
-                  <span>Teléfono personal*</span>
+                  <p>Teléfono personal*</p>
                   <v-text-field
                     v-model="phone_number"
                     color="#9966ff"
@@ -145,7 +144,7 @@
                 ></v-col>
 
                 <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
-                  <span>Correo*</span>
+                  <p>Correo*</p>
                   <v-text-field
                     v-model="email"
                     :disabled="!emaild"
@@ -177,7 +176,7 @@
                 </v-col>
 
                 <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
-                  <span>Fecha de nacimiento</span>
+                  <p>Fecha de nacimiento</p>
                   <v-dialog
                     ref="dialog"
                     v-model="modal"
@@ -224,7 +223,7 @@
                     ></v-img> </v-btn
                 ></v-col>
                 <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
-                  <span>Contraseña*</span>
+                  <p>Contraseña*</p>
                   <v-text-field
                     v-model="password"
                     color="#9966ff"
@@ -549,16 +548,14 @@ h1 {
   font-size: 120%;
   color: #4f565f;
 }
-span {
-  color: #999999;
-  font-family: Montserrat;
-  font-size: 120%;
-  text-transform: capitalize;
-}
 p {
-  font-family: MontserratMedium;
-  color: gray;
-  font-size: 110%;
+  color: #999999 !important;
+  font-family: Montserrat !important;
+  font-size: 120%;
+  text-transform: lowercase !important;
+}
+p::first-letter {
+  text-transform: uppercase !important;
 }
 p.cedu {
   font-family: Montserrat;
@@ -569,5 +566,10 @@ p.cedu {
   font-size: 50px;
   color: #999999;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+    color: #4f565f !important;
+  }
 </style>
 

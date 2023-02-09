@@ -16,7 +16,7 @@
             <div class="me-2 mb-2">
               <v-card-title color="#7900ff" class="nombre pt-0 px-0"> {{evento.patient_full_name}} </v-card-title>
               <v-card-subtitle class="text-xs pa-0">
-                {{evento.appointment_date}} . {{evento.appointment_time}}
+                {{evento.appointment_date}}  {{evento.appointment_time}}
               </v-card-subtitle>
             </div>
             <v-col

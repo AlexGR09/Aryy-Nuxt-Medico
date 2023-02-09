@@ -16,20 +16,20 @@
       <v-col cols="12" md="10" lg="10" xl="11">
         <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
       <v-card color="card" flat class="pa-3 mt-2">
-        <v-card-subtitle class="pa-3 mb-n5 mt-n2"
-          ><H1 class="mb-5">CONFIGURACIÓN DE HORARIOS</H1></v-card-subtitle
+        <v-card-subtitle class="pa-3 mt-n2"
+          >CONFIGURACIÓN DE HORARIOS</v-card-subtitle
         >
         <v-card-text class="pa-3">
           <v-row>
             <v-col md="7" lg="6" xl="6" cols="12">
-              <span>Consultorio*</span>
+              <p>Consultorio*</p>
               <v-autocomplete
                 color="#7900ff"
                 v-model="dbSelect"
                     :items="items"
                     item-text="name"
                     item-value="specialty_id"
-                class="textfield"
+                class="textfield mt-n3"
                 placeholder="Seleccione el consultorio"
                 outlined
               ></v-autocomplete>
@@ -72,25 +72,37 @@
                 :items="timeagenda"
                 color="#7900ff"
                 v-model="consultation_length"
-                class="textfield mb-10"
+                class="textfield "
                 placeholder="4 semanas"
                 outlined
               ></v-autocomplete>
             </v-col>
           </v-row>
-
-          <v-btn height="50px" class="white--text save" color="#7900ff" large
-            >Guardar cambios</v-btn
-          >
-          <v-btn
-            height="50px"
-            class="restore ml-3"
-            color="#999999"
-            outlined
-            large
-            >Restaurar todo</v-btn
-          >
         </v-card-text>
+        <v-card-actions>
+              <v-row >
+                <v-col xl="2" cols="12">
+              <v-btn
+              block
+              v-on:click="postMedicalinfo"
+                @click="overlay = !overlay"
+                height="50px"
+                class="white--text save "
+                color="#7900ff"
+                large
+                ><span class="white--text">Guardar cambios</span></v-btn
+              ></v-col>
+             
+              <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+            </v-row>
+            </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
@@ -107,7 +119,7 @@ export default {
   },
   data() {
     return {
-      
+      overlay:false,
       type: ['Permanente','Temporal'],
       dias: [],
       inicio: [],
@@ -198,6 +210,15 @@ export default {
         },
       ],
     }
+  },
+  
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 3000)
+    },
   },
   mounted() {
           console.log('verificando');
@@ -386,4 +407,8 @@ span {
   font-family: Montserrat;
   font-size: 120%;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+  }
 </style>

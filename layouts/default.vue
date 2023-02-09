@@ -365,6 +365,13 @@ img:hover {
   color: #f4edff !important;
 }
 
+span{
+  text-transform: lowercase;
+}
+span::first-letter{
+  text-transform: uppercase;
+}
+
 </style>
 
 

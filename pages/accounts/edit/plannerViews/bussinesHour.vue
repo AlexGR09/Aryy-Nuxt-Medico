@@ -47,7 +47,7 @@
       <v-col md="6" cols="12"></v-col>
 
       <!--  inputs para agregar los horarios desde un select | Genesis -->
-      <v-col class="mb-n7 mt-n8" md="11" xl="12" cols="12">
+      <v-col class="mb-n7 mt-n8" md="5" xl="5" cols="12">
         <v-row class="ml-0">
           <span class="mt-8">De</span>
           <v-col cols="11" sm="3" md="4" lg="4" xl="4">
@@ -312,7 +312,7 @@
           <v-col xl="5"></v-col>
         </v-row>
         <v-btn color="#9966ff" class="btnhour ml-n5" @click="addDay" text>
-          Agregar horario</v-btn>
+         <span class="mt-n13 ml-n2"> Agregar horario</span></v-btn>
       </v-col>
   </div>
 </template>

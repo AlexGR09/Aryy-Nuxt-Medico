@@ -30,15 +30,15 @@
                     {{ errorConstancy }}
                   </v-alert>
                 </v-col>
-          <v-card-subtitle class="pa-3 mt-n2 mb-n10">
-            <H1 class="mb-5 mt-n6">MIS DATOS FISCALES</H1>
+          <v-card-subtitle class="pa-3 mt-n4 mb-n7">
+          MIS DATOS FISCALES
           </v-card-subtitle>
            <v-form ref="form" class="multi-col-validation mt-6">
             <v-card-text class="pa-3 mt-5">
               <v-row>
                 <!-- CAMPO DE RFC | LUIS REYES -->
                 <v-col sm="6" md="4" lg="4" xl="4" cols="12">
-                  <span>RFC</span>
+                  <p>RFC</p>
                   <v-text-field
                     v-model="rfc"
                     color="#9966ff"
@@ -49,7 +49,7 @@
                 </v-col>
                 <!-- CAMPO DEl CONTRIBUYENTE | LUIS REYES -->
                 <v-col sm="6" md="4" lg="4" xl="4" cols="12">
-                  <span>Nombre completo</span>
+                  <p>Nombre completo</p>
                   <v-text-field
                   v-model="taxpayer_name"
                     class="textfield mt-1"
@@ -60,7 +60,7 @@
                 </v-col>
                 <!-- REGIMEN FISCAL | LUIS REYES -->
                 <v-col sm="6" md="4" lg="4" xl="4"  cols="12">
-                  <span>Régimen fiscal</span>
+                  <p>Régimen fiscal</p>
                   <v-autocomplete
                   v-model="tax_regime"
                     class="textfield mt-1"
@@ -72,10 +72,10 @@
                 </v-col>
                 <!-- CAMPO DEl CORREO DEL CONTRIBUYENTE | LUIS REYES -->
                 <v-col sm="6" md="4" lg="4" xl="4"  cols="12">
-                  <span>Correo electrónico</span> <br />
+                  <p>Correo electrónico</p> 
                   <v-text-field
                     v-model="tax_email"
-                    class="textfield mt-1"
+                    class="textfield"
                     color="#9966ff"
                     outlined
                     placeholder="Escribe tu Email"
@@ -85,7 +85,7 @@
                 </v-col>
                 <!-- CAMPO DOMICILIO FISCAL | LUIS REYES -->
                 <v-col md="8" cols="12">
-                  <span>Domicilio fiscal</span> <br />
+                  <p>Domicilio fiscal</p>
                   <v-text-field
                     v-model="tax_residence"
                     class="textfield mt-1"
@@ -96,8 +96,8 @@
                   >
                   </v-text-field>
                 </v-col>
-                <v-card-subtitle class="mt-2">
-                  <H1 class="mb-5">CONSTACIA DE SITUACIÓN FISCAL</H1>
+                <v-card-subtitle class="mt-2 mb-4">
+               CONSTACIA DE SITUACIÓN FISCAL
                 </v-card-subtitle>
                 <v-card-text>
                   <v-row>
@@ -135,7 +135,7 @@
                   v-on:click="update"
                   color="#7900ff"
                   large
-                  >Actualizar datos</v-btn
+                  ><span class="save white--text">Guardar cambios</span></v-btn
                 >
                 <v-overlay v-if="ok" v-model="overlay">
                   <v-alert
@@ -158,7 +158,7 @@
                       color="#999999"
                       outlined
                       large
-                      >Restaurar todo</v-btn
+                      ><span class="restore">Restaurar todo</span></v-btn
                     >
                   </template>
                   <v-card>
@@ -361,11 +361,13 @@ a {
 }
 .save {
   font-family: Montserrat;
-  text-transform: unset !important;
+  text-transform: capitalize !important;
+  font-size: 1.7vh !important;
 }
 .restore {
   font-family: Montserrat;
-  text-transform: unset !important;
+  text-transform: capitalize !important;
+  font-size: 1.7vh !important;
 }
 .btn {
   font-family: Montserrat;
@@ -383,15 +385,14 @@ h1 {
   font-size: 120%;
   color: #4f565f;
 }
-span {
-  color: #999999;
+p {
+  color: #999999 !important;
   font-family: Montserrat;
   font-size: 120%;
+  text-transform: lowercase !important;
 }
-p {
-  font-family: MontserratMedium;
-  color: gray;
-  font-size: 110%;
+p::first-letter {
+  text-transform: uppercase !important;
 }
 p.cedu {
   font-family: Montserrat;
@@ -402,4 +403,9 @@ p.cedu {
   font-size: 50px;
   color: #999999;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+    color: #4f565f !important;
+  }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-card color="card" height="100%" flat class="pa-16">
+      
       <v-card-text class="pa-16 ml-10">
         <v-row class="ml-16">
           <v-form class="ml-16" ref="form" v-model="valid">
@@ -8,7 +9,7 @@
             <v-col md="10" lg="10" xl="10">
               <v-row>
                 <v-col md="12" cols="12">
-                  <span>Nombre del consultorio*</span>
+                  <p>Nombre del consultorio*</p>
                   <v-text-field
                     prepend-inner-icon="mdi-magnify"
                     v-model="facility_name"
@@ -26,7 +27,7 @@
                 </v-col>
                 <v-row v-for="input in inputs" :key="input.id" class="ml-1 mt-2">
                 <v-col md="6" cols="12">
-                  <span>Teléfono para citas*</span>
+                  <p>Teléfono para citas*</p>
                   <v-text-field :for="input.id"
                     v-model="phone_number"
                     color="#9966ff"
@@ -35,11 +36,11 @@
                     outlined
                   ></v-text-field>
                   <v-btn @click="addInput" class="btn ml-n5 mt-n5" color="#9966ff" text
-                    ><v-icon class="icon">mdi-plus-circle</v-icon>Agregar otro
-                    número</v-btn
+                    ><v-icon class="icon ">mdi-plus-circle</v-icon><span>Agregar otro
+                    número</span></v-btn
                   >
                   <v-col class="mb-n7" md="11" cols="12">
-        <p class="mt-4 mb-4 span">Horario para recepción de llamadas*</p>
+        <p class="mt-4 mb-4">Horario para recepción de llamadas*</p>
         <div>
         <v-btn-toggle borderless class="botones mb-n5 mt-n4">
           <v-checkbox
@@ -90,7 +91,7 @@
       <!--  inputs para agregar los horarios desde un select | Genesis -->
       <v-col class="mb-n7 mt-n8" md="11" xl="12" cols="12">
         <v-row class="ml-0">
-          <span class="mt-8">De</span>
+          <p class="mt-8">De</p>
           <v-col cols="11" sm="3" md="4" lg="4" xl="4">
             <v-autocomplete
               v-model="initialhour"
@@ -102,7 +103,7 @@
             ></v-autocomplete>
           </v-col>
 
-          <span class="mt-8">A</span>
+          <p class="mt-8">A</p>
           <v-col cols="11" sm="3" md="4" lg="4" xl="4">
             <v-autocomplete
               v-model="endhour"
@@ -122,7 +123,7 @@
           >
         </v-row>
         <v-row v-if="hour" class="ml-0 mt-n2">
-          <span class="mt-8">De</span>
+          <p class="mt-8">De</p>
           <v-col cols="11" sm="3" xl="4">
             <v-select
               v-model="initialhour2"
@@ -204,7 +205,6 @@
             >
             <v-chip label v-if="!final2[0]">No registrado</v-chip></v-col
           >
-
           <v-col xl="5"></v-col>
         </v-row>
 
@@ -352,15 +352,15 @@
           >
           <v-col xl="5"></v-col>
         </v-row>
-        <v-btn color="#9966ff" class="btnhour ml-n5" @click="addDay" text>
-          Agregar horario</v-btn>
+        <v-btn color="#9966ff" class="ml-n13 mt-n7" @click="addDay" text>
+          <span>Agregar horario</span></v-btn>
       </v-col>
   </div>
             </v-col>
                   
                 </v-col>
                 <v-col md="6" cols="12">
-                  <span>Extensión</span>
+                  <p>Extensión</p>
                   <v-text-field :for="input.id"
                     v-model="extension"
                     color="#9966ff"
@@ -372,7 +372,7 @@
                 </v-col>
               </v-row>
                 <v-col md="4" cols="12">
-                  <span>Código postal*</span>
+                  <p>Código postal*</p>
                   <v-text-field
                     v-model="zip_code"
                     color="#9966ff"
@@ -384,7 +384,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Estado*</span>
+                  <p>Estado*</p>
                   <v-text-field
                     v-model="state"
                     color="#9966ff"
@@ -394,7 +394,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Ciudad o Municipio*</span>
+                  <p>Ciudad o Municipio*</p>
                   <v-text-field
                     v-model="city"
                     color="#9966ff"
@@ -404,7 +404,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Colonia*</span>
+                  <p>Colonia*</p>
                   <v-text-field
                     v-model="suburb"
                     color="#9966ff"
@@ -414,7 +414,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="8" cols="12">
-                  <span>Ubicación*</span>
+                  <p>Ubicación*</p>
                   <v-text-field
                     v-model="address"
                     color="#9966ff"
@@ -424,7 +424,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Número exterior*</span>
+                  <p>Número exterior*</p>
                   <v-text-field
                     v-model="number_ext"
                     color="#9966ff"
@@ -434,7 +434,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Número interior</span>
+                  <p>Número interior</p>
                   <v-text-field
                     v-model="number_int"
                     color="#9966ff"
@@ -444,7 +444,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Referencias*</span>
+                  <p>Referencias*</p>
                   <v-text-field
                     v-model="reference"
                     color="#9966ff"
@@ -452,13 +452,13 @@
                     placeholder="Escribe referencias de la ubicación"
                     outlined
                   ></v-text-field>
-                  <v-text-field
+                <!--   <v-text-field
                     v-model="coordinates"
                     color="#9966ff"
                     class="textfield"
                     placeholder="coordenada"
                     outlined
-                  ></v-text-field>
+                  ></v-text-field> -->
                 </v-col>
               </v-row>
               <v-row>
@@ -561,16 +561,7 @@
                     class="white--text save"
                     color="#7900ff"
                     large
-                    >Guardar cambios</v-btn
-                  >
-                  <v-btn
-                    @click="reset"
-                    height="50px"
-                    class="restore ml-3"
-                    color="#999999"
-                    outlined
-                    large
-                    >Restaurar todo</v-btn
+                    ><span class="save">Guardar cambios</span></v-btn
                   >
                   <v-overlay :value="overlay">
                     <v-alert
@@ -676,60 +667,29 @@ export default {
     console.log('verificando')
   },
   methods: {
-    create() {
+     /*    método post para añadir un consultorio | Genesis */
+     create() {
       this.$axios
-      .post('api/v1/facilities/full', {
-        name: this.facility_name,
-        location: 
-          {
-            address: this.address,
-            state: this.state,
-            suburb: this.suburb,
-            number_ext: this.number_ext,
-            number_int: this.number_int,
-            reference: this.reference,
-          },
-          phone: this.phone_number,
-          zipcode: this.zip_code,
-          accessibility_and_others: 
-          {
-            accessibility:
-              {
-                parking_with_access_to_the_establishment: this.parking,
-                wheelchair_lift_or_ramp: this.lift,
-                toilets_with_wheelchair_access: this.restroom,
-                rest_area_with_wheelchair_access: this.area,
-                staff_trained_in_sign_language: this.sign,
-                braille_signage_for_blind_people: this.braille,
-              }
-            ,
-            usual_audiences:
-              {
-                lgtb_friendly: this.lgbt,
-                safe_space_for_transgender_people: this.trans,
-              },
-            services:
-              {
-                toilets: this.toilets,
-                unisex_toilets: this.unisex,
-                wifi: this.wifi,
-              },
-            
-          },
-          clues: 'none',
-          city_id: '2',
-          coordinates: "54645",
-      }, 
-      { 
-        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
-      })
-      .then((response) => {
-        console.log(response.data.data)
-        location.reload()
-      })
+        .post(
+          'api/v1/facilities', {
+            name: this.facility_name,
+            location:{
+              address: this.address,
+              state: this.state,
+              suburb: this.suburb,
+              number_ext: this.number_ext,
+              number_int: this.number_int,
+              reference: this.reference,
+            },
+            zipcode: this.zip_code,
+            city_id: '1'
+        },
+        {headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+         },
+        })
     },
     
-     /*    método post para añadir un consultorio | Genesis */
    
   addDay() {
       const initialHour = [this.initialhour]
@@ -825,6 +785,7 @@ a {
 .save {
   font-family: Montserrat;
   text-transform: unset !important;
+  font-size: 1.6vh !important;
 }
 .restore {
   font-family: Montserrat;
@@ -845,9 +806,10 @@ H1 {
   font-family: MontserratBold;
   font-size: 120%;
 }
-span {
+p {
   font-family: Montserrat;
   font-size: 120%;
+  color: #999999 !important;
 }
 p.span {
   font-family: Montserrat;

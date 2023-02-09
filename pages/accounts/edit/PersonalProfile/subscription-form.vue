@@ -17,15 +17,15 @@
       <v-col cols="12" md="10" lg="10" xl="11">
         <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
         <v-card color="card" flat class="pa-3">
-          <v-card-subtitle class="pa-3 mt-n2 mb-n10">
-            <H1 class="mb-5">DATOS DE LA SUSCRIPCIÓN</H1>
+          <v-card-subtitle class="pa-3 mb-n5">
+          DATOS DE LA SUSCRIPCIÓN
           </v-card-subtitle>
           <v-form ref="form" v-model="valid">
             <v-card-text class="pa-3 mt-5">
               <v-row>
                 <!--  CAMPO TUPO DE PLAN| LUIS REYES -->
                 <v-col md="4" cols="12">
-                  <span>Tipo de plan</span>
+                  <p>Tipo de plan</p>
                   <v-text-field
                     placeholder="Suscripción GOLD"
                     dense
@@ -33,19 +33,19 @@
                 </v-col>
                 <!-- CAMPO NÚMERO DE USUARIO | LUIS REYES -->
                 <v-col md="4" cols="12">
-                  <span>Número de usuarios</span>
+                  <p>Número de usuarios</p>
                   <v-text-field placeholder="1 usuario" dense></v-text-field>
                 </v-col>
                 <!-- CAMPO DATOS DE PAGOS | LUIS REYES -->
                 <v-col md="4" cols="12">
-                  <span>Datos de pagos</span>
+                  <p>Datos de pagos</p>
                   <v-autocomplete dense placeholder="No hay datos de pago">
                   </v-autocomplete>
                 </v-col>
               </v-row>
-              <span class="input mt-5 mb-n4"
+              <p class="input mb-n4"
                 >¿Quieres cancelar tu suscripción? Contacta a Soporte por el
-                chat</span
+                chat</p
               >
               <!-- botones -->
               <BR /><BR />
@@ -66,15 +66,15 @@
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
-                  <v-card-subtitle class="pa-3 mt-n2 mb-n10">
-                    <H1 class="mb-5">MÉTODOS DE PAGO</H1>
-                  </v-card-subtitle>
+                  
             </v-card-text>
-            <br><br>
-            <span>No hay método de pago guardado</span>
-            <br><br>
+            <v-card-subtitle class="pa-3 mt-n2 ">
+                  MÉTODOS DE PAGO
+                  </v-card-subtitle>
+            <p class="payment ml-5">No hay método de pago guardado</p>
+            
 
-            <v-btn class="btn " color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon>Agregar un método de pago</v-btn>
+            <v-btn class="btn " color="#9966ff" text><v-icon class="icon">mdi-plus-circle</v-icon><span class="btn">Agregar un método de pago</span></v-btn>
           </v-form>
         </v-card>
       </v-col>
@@ -139,6 +139,9 @@ export default {
   font-family: MontserratMedium;
   font-size: 15px;
 }
+p.input::first-letter {
+  text-transform: uppercase !important;
+}
 .bgactive {
   background: #7900ff;
   color: white !important;
@@ -177,7 +180,12 @@ a {
 }
 .btn {
   font-family: Montserrat;
-  text-transform: unset !important;
+  text-transform: lowercase !important;
+  color: #9966ff;
+  border: 0px;
+}
+span.btn::first-letter {
+  text-transform: uppercase !important;
   color: #9966ff;
 }
 .textfield {
@@ -194,8 +202,27 @@ h1 {
 span {
   color: #999999;
   font-family: Montserrat;
-  font-size: 120%;
+  font-size: 110%;
+  text-transform: lowercase !important;
 }
+p {
+  color: #999999 !important;
+  font-family: Montserrat;
+  font-size: 110%;
+  text-transform: lowercase !important;
+}
+
+p::first-letter {
+  text-transform: uppercase !important;
+}
+
+.payment {
+  color: #999999 !important;
+  font-family: Montserrat;
+  font-size: 110%;
+  text-transform: lowercase !important;
+}
+
 p {
   font-family: MontserratMedium;
   color: gray;
@@ -210,4 +237,9 @@ p.cedu {
   font-size: 50px;
   color: #999999;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+    color: #4f565f !important;
+  }
 </style>

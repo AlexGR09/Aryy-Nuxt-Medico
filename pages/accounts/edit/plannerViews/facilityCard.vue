@@ -1,8 +1,8 @@
    <!-- card para mostrar datos de consultorio | Genesis -->
 <template>
   <div>
-    <span v-if="!facilities[0]"
-      >Todavía no tienes consultorios registrados.</span
+    <p v-if="!facilities[0]"
+      >Todavía no tienes consultorios registrados.</p
     >
     <v-sheet
       v-for="facility in facilities"

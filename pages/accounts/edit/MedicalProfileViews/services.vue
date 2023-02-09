@@ -17,8 +17,8 @@
         <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
         <v-card color="card" flat height="800px" class="pa-3 mt-2">
           <v-form ref="form" v-model="valid">
-            <v-card-subtitle class="pa-3 mt-n2 mb-n5"
-              ><H1 class="mb-5">SERVICIOS</H1></v-card-subtitle
+            <v-card-subtitle class="pa-3 mt-n2"
+              >SERVICIOS</v-card-subtitle
             >
             <v-card-text class="pa-3">
               <v-row>
@@ -166,24 +166,21 @@
                   >
                 </v-col>
               </v-row>
-
+            </v-card-text>
+            <v-card-actions>
+              <v-row class="mt-7">
+                <v-col xl="2" cols="12">
               <v-btn
+              block
+              v-on:click="postMedicalinfo"
                 @click="overlay = !overlay"
                 height="50px"
-                class="white--text save mt-7"
+                class="white--text save "
                 color="#7900ff"
                 large
                 >Guardar cambios</v-btn
-              >
-              <v-btn
-                @click="reset"
-                height="50px"
-                class="restore ml-3 mt-7"
-                color="#999999"
-                outlined
-                large
-                >Restaurar todo</v-btn
-              >
+              ></v-col>
+             
               <v-overlay :value="overlay">
                 <v-alert
                   class="rounded-xl"
@@ -192,7 +189,8 @@
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
-            </v-card-text>
+            </v-row>
+            </v-card-actions>
           </v-form>
         </v-card>
       </v-col>
@@ -334,4 +332,9 @@ p {
   color: gray;
   font-size: 110%;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+    color: #4f565f !important;
+  }
 </style>

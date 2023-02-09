@@ -16,14 +16,14 @@
       <v-col cols="12" md="10" lg="10" xl="11">
         <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
         <v-card color="card" flat class="pa-3 mt-2">
-          <v-card-subtitle class="pa-3 mt-n2 mb-n10"
-            ><H1 class="mb-5">FOTO DE PERFIL</H1></v-card-subtitle
+          <v-card-subtitle class="pa-3 mt-n2"
+            >FOTO DE PERFIL</v-card-subtitle
           >
           <v-form ref="form" v-model="valid">
-            <v-card-text class="pa-3 mt-5">
+            <v-card-text class="pa-3">
               <v-row>
                 <v-col md="12" lg="12" xl="12" cols="12">
-                  <span>Nombre*</span>
+                  <p>Nombre*</p>
                   <v-text-field
                     v-model="professional_name"
                     color="#9966ff"
@@ -33,7 +33,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
-                  <span>Especialidad*</span>
+                  <p>Especialidad*</p>
                   <v-text-field
                     v-model="specialty"
                     color="#9966ff"
@@ -44,7 +44,7 @@
                 </v-col>
                 <v-col md="6" lg="6" xl="6" cols="12"></v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
-                  <span>Subespecialidad (opcional)</span>
+                  <p>Subespecialidad (opcional)</p>
                   <v-autocomplete
                     v-model="subspecialty"
                     color="#9966ff"
@@ -58,7 +58,7 @@
                   >
                 </v-col>
                 <v-col md="6" lg="6" xl="6" cols="12">
-                  <span>Subespecialidad (opcional)</span>
+                  <p>Subespecialidad (opcional)</p>
                   <v-autocomplete
                     v-model="subespeciality2"
                     color="#9966ff"
@@ -77,7 +77,7 @@
                   class="inputArea ml-0"
                 >
                   <v-col md="6" lg="6" xl="6" cols="12">
-                    <p :for="input.id" class="cedu  mb-n1">
+                    <p :for="input.id" class="  mb-n1">
                       No. de cedula*
                     </p>
                     <v-text-field
@@ -90,7 +90,7 @@
                     ></v-text-field>
                   </v-col>
                   <v-col md="6" lg="6" xl="6" cols="12">
-                    <p :for="input.id" class="cedu mb-n1">
+                    <p :for="input.id" class=" mb-n1">
                       Institución que otorgó la cédula*
                     </p>
                     <v-text-field
@@ -103,7 +103,7 @@
                     ></v-text-field>
                   </v-col>
                   <v-col md="6" lg="6" xl="6" cols="12">
-                    <p :for="input.id" class="cedu mb-1">Foto de cedula*</p>
+                    <p :for="input.id" class=" mb-1">Foto de cedula*</p>
                     <v-file-input
                       :id="input.id"
                       v-model="fileIden"
@@ -130,7 +130,7 @@
                   >
                 </v-col>
                 <v-col class="mt-3" xl="12">
-                  <span>Sobre mi(opcional)</span>
+                  <p>Sobre mi(opcional)</p>
                   <v-textarea
                   v-model="biography"
                     color="#9966ff"
@@ -143,31 +143,6 @@
                   ></v-textarea>
                 </v-col>
               </v-row>
-              <v-btn
-                height="50px"
-                class="white--text save mt-7"
-                color="#7900ff"
-                large
-                @click="overlay = !overlay"
-                >Guardar cambios</v-btn
-              >
-              <v-btn
-                height="50px"
-                @click="reset"
-                class="restore ml-3 mt-7"
-                color="#999999"
-                outlined
-                large
-                >Restaurar todo</v-btn
-              >
-              <v-overlay :value="overlay">
-                <v-alert
-                  class="rounded-xl"
-                  icon="mdi-check-circle"
-                  color="green"
-                  >Datos actualizados correctamente.</v-alert
-                >
-              </v-overlay>
               <H1 class="mb-5 mt-8">CERTIFICADOS</H1>
               <VueFileAgent
                 :multiple="true"
@@ -232,26 +207,19 @@
            
             </v-card-text>
             <v-card-actions>
-              <v-row>
-                <v-col cols="12">
+              <v-row class="mt-7">
+                <v-col xl="2" cols="12">
               <v-btn
               block
               v-on:click="postMedicalinfo"
                 @click="overlay = !overlay"
                 height="50px"
-                class="white--text save mt-7"
+                class="white--text save "
                 color="#7900ff"
                 large
                 >Guardar cambios</v-btn
               ></v-col>
-              <v-btn
-                height="50px"
-                class="restore ml-3 mt-7"
-                color="#999999"
-                outlined
-                large
-                >Restaurar todo</v-btn
-              >
+             
               <v-overlay :value="overlay">
                 <v-alert
                   class="rounded-xl"
@@ -477,9 +445,9 @@ span {
   text-transform: capitalize;
 }
 p {
-  font-family: MontserratMedium;
-  color: gray;
-  font-size: 110%;
+  font-family: Montserrat !important;
+  color: #999999 !important;
+  font-size: 120%;
 }
 p.cedu {
   font-family: Montserrat;
@@ -490,4 +458,8 @@ p.cedu {
   font-size: 50px;
   color: #999999;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+  }
 </style>
