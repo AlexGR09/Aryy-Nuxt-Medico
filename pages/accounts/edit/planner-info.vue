@@ -63,8 +63,8 @@
                       class="btn ml-n5 mt-n3"
                       color="#9966ff"
                       text
-                      ><v-icon class="icon">mdi-plus-circle</v-icon><span>Agrega un
-                      consultorio</span></v-btn
+                      ><v-icon class="icon">mdi-plus-circle</v-icon><p class="btn mt-3 ml-n0">Agrega un
+                      consultorio</p></v-btn
                     >
                   </template>
                   <new-facility />
@@ -200,6 +200,15 @@ h1.planner {
 span {
   font-family: Montserrat;
   font-size: 1.8vh !important;
+}
+p.btn{
+   font-family: Montserrat;
+  font-size: 1.8vh !important;
+  color:#7900ff !important;
+  text-transform: lowercase !important;
+}
+p.btn::first-letter{
+  text-transform: uppercase !important;
 }
 p {
   font-family: MontserratMedium;

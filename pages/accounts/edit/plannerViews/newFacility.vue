@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-card color="card" height="100%" flat class="pa-16">
-      
       <v-card-text class="pa-16 ml-10">
         <v-row class="ml-16">
           <v-form class="ml-16" ref="form" v-model="valid">
@@ -670,24 +669,84 @@ export default {
      /*    método post para añadir un consultorio | Genesis */
      create() {
       this.$axios
-        .post(
-          'api/v1/facilities', {
-            name: this.facility_name,
-            location:{
-              address: this.address,
-              state: this.state,
-              suburb: this.suburb,
-              number_ext: this.number_ext,
-              number_int: this.number_int,
-              reference: this.reference,
+      .post('api/v1/facilities/full', {
+        
+        name: this.facility_name,
+        location: 
+          {
+            address: this.address,
+            state: this.state,
+            suburb: this.suburb,
+            number_ext: this.number_ext,
+            number_int: this.number_int,
+            reference: this.reference,
+          },
+          phone: this.phone_number,
+          zipcode: this.zip_code,
+          schedule: [
+            {
+              day: this.lun,
+              attention_time: this.initialhour
             },
-            zipcode: this.zip_code,
-            city_id: '1'
-        },
-        {headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token'),
-         },
-        })
+            {
+              day: this.mar,
+              attention_time: this.initialhour
+            },
+            {
+              day: this.mie,
+              attention_time: this.initialhour
+            },
+            {
+              day: this.jue,
+              attention_time: this.initialhour
+            },
+            {
+              day: this.vie,
+              attention_time: this.initialhour
+            },
+            {
+              day: this.sab,
+              attention_time: this.initialhour
+            },
+            {
+              day: this.dom,
+              attention_time: this.initialhour
+            },
+          ],
+          accessibility_and_others: 
+          {
+            accessibility:
+              {
+                parking_with_access_to_the_establishment: this.parking,
+                wheelchair_lift_or_ramp: this.lift,
+                toilets_with_wheelchair_access: this.restroom,
+                rest_area_with_wheelchair_access: this.area,
+                staff_trained_in_sign_language: this.sign,
+                braille_signage_for_blind_people: this.braille,
+              }
+            ,
+            usual_audiences:
+              {
+                lgtb_friendly: this.lgbt,
+                safe_space_for_transgender_people: this.trans,
+              },
+            services:
+              {
+                toilets: this.toilets,
+                unisex_toilets: this.unisex,
+                wifi: this.wifi,
+              },
+            
+          },
+          city_id: '2',
+          coordinates: "123456789"
+      }, 
+      { 
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then((response) => {
+        console.log(response.data.data)
+      })
     },
     
    
