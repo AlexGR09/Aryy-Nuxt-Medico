@@ -8,12 +8,13 @@
             </v-breadcrumbs-item>
           </template>
         </v-breadcrumbs>
-    <account/>
+        <account v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
        <v-row>
-          <menu-med />
+          <menu-med v-if="$vuetify.breakpoint.lgAndUp"/>
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
         <v-card color="card" flat height="800px" class="pa-3 mt-2">
           <v-card-subtitle class="pa-3 mt-n2 mb-n10"
             ><H1 class="mb-5">ENFERMEDADES QUE TRATA</H1></v-card-subtitle
@@ -77,11 +78,12 @@
 </template>
   <script>
   import Account from '../account.vue';
+  import accountMenu from '../accountMenu.vue';
 import MenuMed from './menuMed.vue'
 
 export default {
   components: {
-    MenuMed,Account
+    MenuMed,Account,accountMenu
   },
   data() {
     return {

@@ -8,12 +8,13 @@
             </v-breadcrumbs-item>
           </template>
         </v-breadcrumbs>
-    <account/>
+    <account v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
        <v-row>
-          <menu-planner />
+          <menu-planner v-if="$vuetify.breakpoint.lgAndUp"/>
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
       <v-card color="card" flat class="pa-3 mt-2">
         <v-card-subtitle class="pa-3 mb-n5 mt-n2"
           ><H1 class="mb-5">CONFIGURACIÓN DE HORARIOS</H1></v-card-subtitle
@@ -97,11 +98,12 @@
 </template>
 <script>
   import Account from '../account.vue';
+  import accountMenu from '../accountMenu.vue';
 import bussinesHour from './bussinesHour.vue'
 import menuPlanner from './menuPlanner.vue'
 export default {
   components: {
-    bussinesHour, Account,menuPlanner
+    bussinesHour, Account,menuPlanner,accountMenu
   },
   data() {
     return {

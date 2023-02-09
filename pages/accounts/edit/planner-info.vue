@@ -8,14 +8,15 @@
             </v-breadcrumbs-item>
           </template>
         </v-breadcrumbs>
-    <account/>
+    <account v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
        <v-row>
-          <menu-planner />
+          <menu-planner v-if="$vuetify.breakpoint.lgAndUp"/>
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
         <v-card color="card" flat height="800px" class="pa-3 mt-2">
-          <v-card-subtitle class="pa-3  mt-n2 mb-n16"><H1 class="mb-15">CONSULTORIOS</H1></v-card-subtitle>
+          <v-card-subtitle class="pa-3  mt-n2 mb-n16"><h1 class="mb-15 planner">CONSULTORIOS</h1></v-card-subtitle>
           <v-card-text class="pa-3 ">
             <!-- card para mostrar datos de consultorio | Genesis -->
             <facility-card/>
@@ -53,9 +54,10 @@ import Account from './account.vue'
 import FacilityCard from './plannerViews/facilityCard.vue'
 import NewFacility from './plannerViews/newFacility.vue'
 import menuPlanner from './plannerViews/menuPlanner.vue'
+import accountMenu from './accountMenu.vue'
 export default {
   components: {
-    NewFacility, FacilityCard, Account, menuPlanner
+    NewFacility, FacilityCard, Account, menuPlanner,accountMenu
 },
   data () {
     return {
@@ -156,6 +158,11 @@ H1{
   font-family: MontserratBold;
   font-size: 120%;
 }  
+h1.planner {
+  font-family: MontserratMedium;
+  font-size: 115%;
+  color: #4f565f !important;
+}
 span{
   font-family: Montserrat;
   font-size: 120%;

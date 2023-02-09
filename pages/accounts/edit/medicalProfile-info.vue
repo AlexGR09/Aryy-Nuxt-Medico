@@ -8,12 +8,13 @@
             </v-breadcrumbs-item>
           </template>
         </v-breadcrumbs>
-    <account/>
+    <account v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
        <v-row>
-          <menu-med />
+          <menu-med v-if="$vuetify.breakpoint.lgAndUp"/>
         </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
         <v-card color="card" flat class="pa-3 mt-2">
           <v-card-subtitle class="pa-3 mt-n2 mb-n10"
             ><H1 class="mb-5">FOTO DE PERFIL</H1></v-card-subtitle
@@ -182,54 +183,59 @@
     </v-row> -->
               <H1 class="mb-5 mt-8">REDES SOCIALES</H1>
               <v-row>
-                <v-col xs="9" sm="9" md="12" lg="6" xl="4">
+                <v-col cols="12" xs="9" sm="9" md="12" lg="6" xl="4">
                   <span>Facebook</span>
-                  <v-btn outlined class="btn" block color="#999999" height="50"
+                  <v-btn outlined class="btnsocial justify-start" block color="#999999" height="50"
                     ><v-img
                       class="mr-3"
                       :src="require('@/assets/icons/icon_facebook.svg')"
-                      max-width="35"
+                      max-width="3.5vh"
                     ></v-img>
-                    Vincula tu cuenta de Facebook
+                    <span class="social">Vincula tu cuenta de Facebook</span>
                   </v-btn>
                 </v-col>
 
                 <v-col xs="12" sm="12" md="12" lg="6" xl="4">
                   <span>Instagram</span>
-                  <v-btn outlined class="btn" block color="#999999" height="50"
+                  <v-btn outlined class="btnsocial justify-start" block color="#999999" height="50"
                     ><v-img
                       class="mr-3"
                       :src="require('@/assets/icons/icon_insta.svg')"
-                      max-width="28"
+                      max-width="3vh"
                     ></v-img>
-                    Vincula tu cuenta de Instagram
+                    <span class="social">Vincula tu cuenta de Instagram</span>
                   </v-btn>
                 </v-col>
-                <v-col xs="12" sm="12" md="12" lg="6" xl="4">
+                <v-col c xs="12" sm="12" md="12" lg="6" xl="4">
                   <span>TikTok</span>
-                  <v-btn outlined class="btn" block color="#999999" height="50"
+                  <v-btn outlined class="btnsocial justify-start" block color="#999999" height="50"
                     ><v-img
                       class="mr-3"
                       :src="require('@/assets/icons/icon_tiktok.svg')"
-                      max-width="28"
+                      max-width="3vh"
                     ></v-img>
-                    Vincula tu cuenta de TikTok
+                    <span class="social">Vincula tu cuenta de TikTok</span>
                   </v-btn>
                 </v-col>
                 <v-col xs="12" sm="12" md="12" lg="6" xl="4">
                   <span>Sitio Web</span>
-                  <v-btn outlined class="btn" block color="#999999" height="50"
+                  <v-btn outlined class="btnsocial justify-start" block color="#999999" height="50"
                     ><v-img
                       class="mr-3"
                       :src="require('@/assets/icons/icon_internet.svg')"
                       max-width="25"
                     ></v-img>
-                    <l>Ingresa tu sitio web</l>
+                    <span class="social">Ingresa tu sitio web</span>
                   </v-btn>
                 </v-col>
               </v-row>
-              <BR /><BR />
+           
+            </v-card-text>
+            <v-card-actions>
+              <v-row>
+                <v-col cols="12">
               <v-btn
+              block
               v-on:click="postMedicalinfo"
                 @click="overlay = !overlay"
                 height="50px"
@@ -237,7 +243,7 @@
                 color="#7900ff"
                 large
                 >Guardar cambios</v-btn
-              >
+              ></v-col>
               <v-btn
                 height="50px"
                 class="restore ml-3 mt-7"
@@ -254,7 +260,8 @@
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
-            </v-card-text>
+            </v-row>
+            </v-card-actions>
           </v-form>
         </v-card>
       </v-col>
@@ -267,6 +274,7 @@ import VueFileAgent from 'vue-file-agent'
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css'
 import Account from './account.vue'
 import MenuMed from './MedicalProfileViews/menuMed.vue'
+import accountMenu from './accountMenu.vue'
 
 Vue.use(VueFileAgent)
 Vue.use(VueFileAgentStyles)
@@ -274,6 +282,7 @@ export default {
   components: {
     MenuMed,
     Account,
+    accountMenu
   },
   data() {
     return {
@@ -431,8 +440,24 @@ a {
 }
 .btn {
   font-family: Montserrat;
-  text-transform: unset !important;
+  text-transform: capitalize !important;
   color: #9966ff;
+  border: solid 0px;
+}
+.btnsocial {
+  border: solid 1px #999999;
+}
+.span.social::first-letter {
+  font-family: Montserrat;
+  text-transform: uppercase !important;
+  color: #999999;
+  border: solid 1px #999999;
+}
+.social {
+  font-family: Montserrat;
+  text-transform: lowercase !important;
+  color: #999999;
+   font-size: 1.7vh;
 }
 .textfield {
   height: 50px;
@@ -449,6 +474,7 @@ span {
   color: #999999;
   font-family: Montserrat;
   font-size: 120%;
+  text-transform: capitalize;
 }
 p {
   font-family: MontserratMedium;

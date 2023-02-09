@@ -50,22 +50,18 @@
               v-bind="attrs"
               v-on="on"
             >
-              <span class="tab ml-3 mr-n2">Perfil Personal</span>
+              <span class="tab ml-3 mr-n2">Agenda</span>
               <v-icon> mdi-menu-down </v-icon>
             </v-btn>
           </template>
 
           <v-list class="listaa">
-            <v-list-item v-for="item in more" :key="item.name" :to="item.to">
+            <v-list-item v-for="item in agenda" :key="item.name" :to="item.to">
               {{ item.name }}
             </v-list-item>
           </v-list>
         </v-menu></v-tab>
 
-        
-       
-     <!--  <v-tab to="/accounts/edit/medicalProfile-info/">Perfil médico</v-tab>
-      <v-tab to="/accounts/edit/planner-info/">Agenda</v-tab> -->
     </v-tabs>
 </template>
   
@@ -78,20 +74,19 @@ export default {
     personal: [
       { name: 'Perfil', to: '/accounts/edit/general-info' },
       { name: 'Datos fiscales', to: '/accounts/edit/personalprofile/tax-data' },
-      {
-        name: 'Suscripción',
-        to: '/accounts/edit/personalprofile/subscription-form',
-      },
+      { name: 'Suscripción', to: '/accounts/edit/personalprofile/subscription-form'},
     ],
 
     medico: [
-      { name: 'Formación', to: '/accounts/edit/general-info'},
-      { name: 'Id Med', to: '/accounts/edit/personalprofile/tax-data' },
-      {
-        name: 'Servicios',
-        to: '/accounts/edit/personalprofile/subscription-form',
-      },
-      { name: 'Enfermedades', to: '/accounts/edit/personalprofile/subscription-form' },
+      { name: 'Formación', to: '/accounts/edit/medicalProfile-info'},
+      { name: 'Id Med', to: '/accounts/edit/medicalProfileViews/idMed' },
+      { name: 'Servicios', to: '/accounts/edit/medicalProfileViews/services'},
+      { name: 'Enfermedades', to: '/accounts/edit/medicalProfileViews/illnes' },
+    ],
+
+    agenda: [
+      { name: 'Consultorios', to: '/accounts/edit/planner-info' },
+      { name: 'Horarios', to: '/accounts/edit/plannerViews/schedule-info' },
     ],
   }),
   created() {
@@ -111,6 +106,7 @@ export default {
       { path: '/accounts/edit/general-info/', component: menuPlanner },
       { path: '/accounts/edit/medicalProfile-info/', component: menuPersonal },
       { path: '/accounts/edit/planner-info/', component: menuMed },
+      
     ]
 
     const router = new VueRouter({ routes })

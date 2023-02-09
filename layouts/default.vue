@@ -416,6 +416,13 @@ img:hover {
   background-color: transparent !important;
   border-color:transparent !important;
 }
+
+.v-application a {
+  color: #7900ff;
+  font-family: MontserratMedium !important;
+}
+
+
 </style>
 
 <!-- estilos para tema claro -->
