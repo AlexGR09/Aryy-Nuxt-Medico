@@ -40,86 +40,49 @@
                     outlined
                   ></v-text-field>
                   <span >Horario para recepción de llamadas*</span>
-                  <div
-                    class="form-group mb-9"
-                    v-for="(input, k) in inputs"
-                    :key="k"
-                  >
-                    <v-row class="mt-2 mb-n15">
-                      <v-col xl="12">
-                        <p class="weekday">
-                          {{ lun }}
-                          <v-chip
-                            class="ml-5"
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            >{{ timeLun }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="mar">
-                          {{ mar }}
-                          <v-chip
-                            class="ml-3"
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            >{{ timeMar }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="mie">
-                          {{ mie }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="mie"
-                            >{{ timeMie }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="jue">
-                          {{ jue }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="jue"
-                            >{{ timeJue }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="vie">
-                          {{ vie }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="vie"
-                            >{{ timeVie }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="sab">
-                          {{ sab }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="sab"
-                            >{{ timeSab }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="dom">
-                          {{ dom }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="dom"
-                            >{{ timeDom }}</v-chip
-                          >
-                        </p>
-                      </v-col>
-                    </v-row>
-                  </div>
+                  
+                  <v-row>
+                    <v-col class="mt-2" cols="6" xl="2">
+                      <p class="mb-4">{{ lunes }}</p>
+                      <p class="mb-4">{{ martes }}</p>
+                      <p class="mb-4">{{ miercoles }}</p>
+                      <p class="mb-4">{{ jueves }}</p>
+                      <p class="mb-4">{{ viernes }}</p>
+                      <p class="mb-4">{{ sabado }}</p>
+                      <p class="mb-4">{{ domingo }}</p>
+                    </v-col>
+
+                    <v-col xl="5">
+                      <v-chip v-if="lun" class="ml-3" color="#f4edff" label>{{
+                        timeLun
+                      }}</v-chip
+                      ><br v-if="lun" />
+                      <v-chip v-if="mar" class="ml-3" color="#f4edff" label>{{
+                        timeMar
+                      }}</v-chip
+                      ><br v-if="mar" />
+                      <v-chip v-if="mie" class="ml-3" color="#f4edff" label>{{
+                        timeMie
+                      }}</v-chip
+                      ><br v-if="mie" />
+                      <v-chip v-if="jue" class="ml-3" color="#f4edff" label>{{
+                        timeJue
+                      }}</v-chip
+                      ><br v-if="jue" />
+                      <v-chip v-if="vie" class="ml-3" color="#f4edff" label>{{
+                        timeVie
+                      }}</v-chip
+                      ><br />
+                      <v-chip v-if="sab" class="ml-3" color="#f4edff" label>{{
+                        timeSab
+                      }}</v-chip
+                      ><br v-if="sab" />
+                      <v-chip v-if="dom" class="ml-3" color="#f4edff" label>{{
+                        timeDom
+                      }}</v-chip
+                      ><br v-if="dom" />
+                    </v-col>
+                  </v-row>
                 </v-col>
                 <v-col md="6" cols="12">
                   <span>Extensión</span>

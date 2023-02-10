@@ -41,16 +41,18 @@
                 <v-app-bar
                   flat
                   height="150px"
-                  color="white"
+                  color="#ffffff"
                   dense
                   fixed
                   hide-on-scroll
                 >
-                  <!--  <v-btn dark icon color="black" @click="dialog = false">
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn> -->
+                  
                   <v-row>
-                    <v-col md="5" lg="5" xl="5"></v-col>
+                    <v-col md="5" lg="5" xl="5">
+                    <!--   <v-btn @click="back" icon
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        > -->
+                    </v-col>
                     <v-col md="4" lg="4" xl="4">
                       <v-img
                         :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"

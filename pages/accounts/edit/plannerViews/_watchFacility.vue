@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
-      <v-btn dark icon color="black" @click="$router.back()">
+    <v-app-bar flat height="150px" color="#ffffff" dense fixed hide-on-scroll>
+      <v-btn icon color="black" @click="$router.back()">
         <v-icon>mdi-close</v-icon>
       </v-btn>
       <v-row>
@@ -25,7 +25,7 @@
             <v-col md="10" lg="10" xl="10">
               <v-row>
                 <v-col md="12" cols="12">
-                  <span>Nombre del consultorio*</span>
+                  <p>Nombre del consultorio*</p>
                   <v-text-field
                     disabled
                     prepend-inner-icon="mdi-magnify"
@@ -37,7 +37,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="6" cols="12">
-                  <span>Teléfono para citas*</span>
+                  <p>Teléfono para citas*</p>
                   <v-text-field
                     disabled
                     v-model="facilities.phone"
@@ -46,9 +46,53 @@
                     placeholder="XXX XXX XXXX"
                     outlined
                   ></v-text-field>
+                  <p class="mb-3">Horario para recepción de llamadas*</p>
+
+                  <v-row>
+                    <v-col class="mt-2" cols="6" xl="2">
+                      <p class="mb-4">{{ lunes }}</p>
+                      <p class="mb-4">{{ martes }}</p>
+                      <p class="mb-4">{{ miercoles }}</p>
+                      <p class="mb-4">{{ jueves }}</p>
+                      <p class="mb-4">{{ viernes }}</p>
+                      <p class="mb-4">{{ sabado }}</p>
+                      <p class="mb-4">{{ domingo }}</p>
+                    </v-col>
+
+                    <v-col xl="5">
+                      <v-chip v-if="lun" class="ml-3" color="#f4edff" label>{{
+                        timeLun
+                      }}</v-chip
+                      ><br v-if="lun" />
+                      <v-chip v-if="mar" class="ml-3" color="#f4edff" label>{{
+                        timeMar
+                      }}</v-chip
+                      ><br v-if="mar" />
+                      <v-chip v-if="mie" class="ml-3" color="#f4edff" label>{{
+                        timeMie
+                      }}</v-chip
+                      ><br v-if="mie" />
+                      <v-chip v-if="jue" class="ml-3" color="#f4edff" label>{{
+                        timeJue
+                      }}</v-chip
+                      ><br v-if="jue" />
+                      <v-chip v-if="vie" class="ml-3" color="#f4edff" label>{{
+                        timeVie
+                      }}</v-chip
+                      ><br />
+                      <v-chip v-if="sab" class="ml-3" color="#f4edff" label>{{
+                        timeSab
+                      }}</v-chip
+                      ><br v-if="sab" />
+                      <v-chip v-if="dom" class="ml-3" color="#f4edff" label>{{
+                        timeDom
+                      }}</v-chip
+                      ><br v-if="dom" />
+                    </v-col>
+                  </v-row>
                 </v-col>
                 <v-col md="6" cols="12">
-                  <span>Extensión</span>
+                  <p>Extensión</p>
                   <v-text-field
                     disabled
                     v-model="extension"
@@ -60,7 +104,7 @@
                 </v-col>
                 <!--  <span>Horario para recepción de llamadas*</span> -->
                 <v-col md="4" cols="12">
-                  <span>Código postal*</span>
+                  <p>Código postal*</p>
                   <v-text-field
                     disabled
                     v-model="zipcode"
@@ -73,7 +117,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Estado*</span>
+                  <p>Estado*</p>
                   <v-text-field
                     disabled
                     v-model="state"
@@ -84,7 +128,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Ciudad o Municipio*</span>
+                  <p>Ciudad o Municipio*</p>
                   <v-text-field
                     disabled
                     v-model="city"
@@ -95,7 +139,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Colonia*</span>
+                  <p>Colonia*</p>
                   <v-text-field
                     disabled
                     v-model="suburb"
@@ -106,7 +150,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="8" cols="12">
-                  <span>Ubicación*</span>
+                  <p>Ubicación*</p>
                   <v-text-field
                     disabled
                     v-model="address"
@@ -117,7 +161,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Número exterior*</span>
+                  <p>Número exterior*</p>
                   <v-text-field
                     disabled
                     v-model="number_ext"
@@ -128,7 +172,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Número interior</span>
+                  <p>Número interior</p>
                   <v-text-field
                     disabled
                     v-model="number_int"
@@ -139,7 +183,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Referencias*</span>
+                  <p>Referencias*</p>
                   <v-text-field
                     disabled
                     v-model="reference"
@@ -153,14 +197,7 @@
               <v-row>
                 <v-col md="6" lg="6" xl="6">
                   <H1 class="mb-5">ACCESIBILIDAD</H1>
-                  <v-checkbox
-                    disabled
-                    v-model="parking"
-                    class="vcheckbox"
-                    color="#7900ff"
-                    hide-details
-                    label="Estacionamiento con acceso al establecimiento"
-                  ></v-checkbox>
+
                   <v-checkbox
                     disabled
                     v-model="lift"
@@ -270,6 +307,13 @@ export default {
   components: {},
   data() {
     return {
+      lunes: '',
+      martes: '',
+      miercoles: '',
+      jueves: '',
+      viernes: '',
+      sabado: '',
+      domingo: '',
       timeLun: '',
       timeMar: '',
       timeMie: '',
@@ -277,6 +321,16 @@ export default {
       timeVie: '',
       timeSab: '',
       timeDom: '',
+
+      timeLun2: '',
+      timeMar2: '',
+      timeMie2: '',
+      timeJue2: '',
+      timeVie2: '',
+      timeSab2: '',
+      timeDom2: '',
+
+      attention_time1: '',
       lun: '',
       mar: '',
       mie: '',
@@ -340,12 +394,11 @@ export default {
     },
   },
   mounted() {
-    console.log('verificando')
     this.getFacility()
   },
   created() {
     const facilityId = this.$route.params.id
-    console.log(facilityId)
+    return facilityId
   },
   methods: {
     /*  metodo get para recibir datos de establecimiento | Genesis */
@@ -356,12 +409,97 @@ export default {
         })
         .then((res) => {
           console.log(res)
-          console.log('exito en GET')
           this.id = res.data.data.id
           this.facilities = res.data.data
           this.consultorios = res.data.data.length
+          this.zipcode = res.data.data.zipcode
+          this.state = res.data.data.location.state
+          this.city = res.data.data.city_id
+          this.extension = res.data.data.extension
+          this.suburb = res.data.data.location.suburb
+          this.address = res.data.data.location.address
+          this.number_ext = res.data.data.location.number_ext
+          this.number_int = res.data.data.location.number_int
+          this.reference = res.data.data.location.reference
+
+          /*  accesibilidad */
+          this.restroom =
+            res.data.data.accessibility_and_others.accessibility.toilets_with_wheelchair_access
+          this.area =
+            res.data.data.accessibility_and_others.accessibility.rest_area_with_wheelchair_access
+          this.sign =
+            res.data.data.accessibility_and_others.accessibility.staff_trained_in_sign_language
+          this.braille =
+            res.data.data.accessibility_and_others.accessibility.braille_signage_for_blind_people
+          this.lift =
+            res.data.data.accessibility_and_others.accessibility.wheelchair_ramp
+          this.ramp =
+            res.data.data.accessibility_and_others.accessibility.wheelchair_lift
+
+          /*  publicos usuales */
+          this.lgbt =
+            res.data.data.accessibility_and_others.usual_audiences.lgtb_friendly
+          this.safe_space_for_transgender_people =
+            res.data.data.accessibility_and_others.usual_audiences.lgtb_friendly
+
+          /*  servicios */
+          this.toilets = res.data.data.accessibility_and_others.services.toilets
+          this.unisex =
+            res.data.data.accessibility_and_others.services.unisex_toilets
+          this.wifi = res.data.data.accessibility_and_others.services.wifi
+
+          /* horario */
+          this.timeLun =
+            res.data.data.calling_attetion_schedule[0].attention_time1
+          this.timeMar =
+            res.data.data.calling_attetion_schedule[0].attention_time1
+          this.timeMie =
+            res.data.data.calling_attetion_schedule[0].attention_time1
+          this.timeJue =
+            res.data.data.calling_attetion_schedule[0].attention_time1
+          this.timeVie =
+            res.data.data.calling_attetion_schedule[0].attention_time1
+          this.timeSab =
+            res.data.data.calling_attetion_schedule[0].attention_time1
+          this.timeDom =
+            res.data.data.calling_attetion_schedule[0].attention_time1
+
+          this.lun = res.data.data.calling_attetion_schedule[0].day
+          this.mar = res.data.data.calling_attetion_schedule[1].day
+          this.mie = res.data.data.calling_attetion_schedule[2].day
+          this.jue = res.data.data.calling_attetion_schedule[3].day
+          this.vie = res.data.data.calling_attetion_schedule[4].day
+          this.sab = res.data.data.calling_attetion_schedule[5].day
+          this.dom = res.data.data.calling_attetion_schedule[6].day
+          this.days()
         })
     },
+
+    /* cambiar los dias de ingles a español */
+    days() {
+      if (this.lun === 'monday') {
+        this.lunes = 'Lunes'
+      }
+      if (this.mar === 'tuesday') {
+        this.martes = 'Martes'
+      }
+      if (this.mie === 'wednesday') {
+        this.miercoles = 'Miércoles'
+      }
+      if (this.jue === 'thursday') {
+        this.jueves = 'Jueves'
+      }
+      if (this.vie === 'friday') {
+        this.viernes = 'Viernes'
+      }
+      if (this.sab === 'saturday') {
+        this.sabado = 'Sábado'
+      }
+      if (this.dom === 'sunday') {
+        this.domingo = 'Domingo'
+      }
+    },
+
     /*    método put para actualizar los datos de establecimiento | Genesis */
     facility() {
       this.$axios
@@ -507,9 +645,11 @@ H1 {
   font-family: MontserratBold;
   font-size: 120%;
 }
-span {
+p {
   font-family: Montserrat;
   font-size: 120%;
+  margin-bottom: -1px !important;
+  color: #999999 !important;
 }
 .v-input__icon--prepend-inner .v-icon {
   color: #999999;
@@ -520,5 +660,9 @@ span {
   color: #9966ff !important;
   font-family: MontserratMedium;
   font-size: 100%;
+}
+.v-chip {
+  margin-bottom: 0.7vh !important;
+  border: thin solid #7900ff !important;
 }
 </style>

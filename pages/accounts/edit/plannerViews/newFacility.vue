@@ -94,7 +94,7 @@
           <v-col cols="11" sm="3" md="4" lg="4" xl="4">
             <v-autocomplete
               v-model="initialhour"
-              class="textfield }"
+              class="textfield"
               color="#9966ff"
               placeholder="08:00 AM"
               outlined
@@ -586,6 +586,14 @@ export default {
   },
   data() {
     return {
+      lunes:'',
+      martes:'',
+      miercoles:'',
+      jueves:'',
+      viernes:'',
+      sabado:'',
+      domingo:'',
+      
       valid: '',
       dias: [],
       hourss: [],
@@ -652,6 +660,8 @@ export default {
        chipLun: true, chipMar: true, chipMie: true, chipJue: true,
       chipVie: true, chipSab: true, chipLun2: true, chipMar2: true,
       chipMie2: true, chipJue2: true, chipVie2: true, chipSab2: true,
+      matutino:'',
+      vespertino:'',
     }
   },
   watch: {
@@ -668,6 +678,8 @@ export default {
   methods: {
      /*    método post para añadir un consultorio | Genesis */
      create() {
+      this.addDay()
+      this.days()
       this.$axios
       .post('api/v1/facilities/full', {
         
@@ -682,43 +694,53 @@ export default {
             reference: this.reference,
           },
           phone: this.phone_number,
+          extension: this.extension,
           zipcode: this.zip_code,
-          schedule: [
+          calling_attetion_schedule: [
             {
-              day: this.lun,
-              attention_time: this.initialhour
+              day: this.lunes,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
             },
             {
-              day: this.mar,
-              attention_time: this.initialhour
+              day: this.martes,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
             },
             {
-              day: this.mie,
-              attention_time: this.initialhour
+              day: this.miercoles,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
             },
             {
-              day: this.jue,
-              attention_time: this.initialhour
+              day: this.jueves,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
             },
             {
-              day: this.vie,
-              attention_time: this.initialhour
+              day: this.viernes,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
             },
             {
-              day: this.sab,
-              attention_time: this.initialhour
+              day: this.sabado,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
             },
             {
-              day: this.dom,
-              attention_time: this.initialhour
+              day: this.domingo,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
             },
           ],
           accessibility_and_others: 
           {
             accessibility:
               {
-                parking_with_access_to_the_establishment: this.parking,
-                wheelchair_lift_or_ramp: this.lift,
+                parking_with_access_to_the_establishment: this.ramp,
+                wheelchair_lift_or_ramp: this.ramp,
+                wheelchair_lift: this.lift,
+                wheelchair_ramp: this.ramp,
                 toilets_with_wheelchair_access: this.restroom,
                 rest_area_with_wheelchair_access: this.area,
                 staff_trained_in_sign_language: this.sign,
@@ -749,39 +771,26 @@ export default {
       })
     },
     
-   
+   /* unir los horarios en una sola variable por turno  */
   addDay() {
-      const initialHour = [this.initialhour]
-      const hourInitial = initialHour.join()
-      this.inicio = hourInitial
-      const endHour = [this.endhour]
-      const hourFinal = endHour.join()
-      this.final = hourFinal
-
-      const initialHour2 = [this.initialhour2]
-      const hourInitial2 = initialHour2.join()
-      this.inicio2 = hourInitial2
-      const endHour2 = [this.endhour2]
-      const hourFinal2 = endHour2.join()
-      this.final2 = hourFinal2
-
-      const time = [this.inicio + ' a ' + this.final]
-      const time2 = [this.inicio2 + ' a ' + this.final2]
-      const attentiontime2 = time.join(' ')
-      this.attentiontimee = attentiontime2
-
-      const attentiontime3 = time2.join(' ')
-      this.attentiontime4 = attentiontime3
-
-      if (!this.hour) {
-        this.attentiontime4 = []
-      }
-
-      const horario = [this.attentiontimee + this.attentiontime4]
-      const horario2 = horario.join()
-      this.attentiontime = horario2
-      console.log(this.attentiontime)
+     const rango1 = [this.initialhour, this.endhour]
+     const rango2 = [this.initialhour2, this.endhour2]
+     const turno1 = rango1.join(' a ')
+     const turno2 = rango2.join(' a ')
+     this.matutino=turno1
+     this.vespertino=turno2
     },
+   /*  mandar los dias en ingles */
+    days(){
+      if(this.lun===true){this.lunes='monday'}
+      if(this.mar===true){this.martes='tuesday'}
+      if(this.mie===true){this.miercoles='wednesday'}
+      if(this.jue===true){this.jueves='thursday'}
+      if(this.vie===true){this.viernes='friday'}
+      if(this.sab===true){this.sabado='saturday'}
+      if(this.dom===true){this.domingo='sunday'}
+    },
+
     save(start, end) {
       this.$refs.dialog[0].save(start, end)
     },
