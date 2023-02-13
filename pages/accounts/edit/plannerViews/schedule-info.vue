@@ -17,7 +17,7 @@
         <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
       <v-card color="card" flat class="pa-3 mt-2">
         <v-card-subtitle class="pa-3 mt-n2"
-          >CONFIGURACIÓN DE HORARIOS</v-card-subtitle
+          >CONFIGURACIÓN DE HORARIOS </v-card-subtitle
         >
         <v-card-text class="pa-3">
           <v-row>
@@ -25,14 +25,16 @@
               <p>Consultorio*</p>
               <v-autocomplete
                 color="#7900ff"
-                v-model="dbSelect"
-                    :items="items"
-                    item-text="name"
-                    item-value="specialty_id"
+                
+                v-model="userId"
+                :items="items"
+                item-text="name"
+                item-value="id"
+                return-object
                 class="textfield mt-n3"
                 placeholder="Seleccione el consultorio"
                 outlined
-              ></v-autocomplete>
+              ></v-autocomplete>  <!-- | {{ userId.id }} | -->
             </v-col>
             <v-col md="5" lg="6" xl="6" cols="12"></v-col>
             <v-col md="7" lg="6" xl="6" cols="12">
@@ -48,7 +50,322 @@
             </v-col>
             <v-col class="mb-n7" md="11" cols="12">
         <h1 class="mt-4 mb-4">HORARIOS DE CONSULTA</h1>
-            <bussines-hour/>
+        <div>
+        <v-btn-toggle borderless class="botones mb-n5 mt-n4">
+          <v-checkbox
+            v-model="lun"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Lun"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="mar"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Mar"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="mie"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Mie"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="jue"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Jue"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="vie"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Vie"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="sab"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Sab"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="dom"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Dom"
+          ></v-checkbox>
+        </v-btn-toggle>
+      <v-col md="6" cols="12"></v-col>
+
+      <!--  inputs para agregar los horarios desde un select | Genesis -->
+      <v-col class="mb-n7 mt-n8" md="11" xl="6" cols="12">
+        <v-row class="ml-0">
+          <p class="mt-8">De</p>
+          <v-col cols="11" sm="3" md="4" lg="4" xl="4">
+            <v-autocomplete
+            @change="sendMessage"
+              v-model="initialhour"
+              class="textfield"
+              color="#9966ff"
+              placeholder="08:00 AM"
+              outlined
+              :items="hours"
+            ></v-autocomplete>
+          </v-col>
+
+          <p class="mt-8">A</p>
+          <v-col cols="11" sm="3" md="4" lg="4" xl="4">
+            <v-autocomplete
+              v-model="endhour"
+              class="textfield"
+              color="#9966ff"
+              placeholder="08:00 PM"
+              outlined
+              :items="hours"
+            ></v-autocomplete>
+          </v-col>
+          <v-btn
+            @click="hour = !hour"
+            class="icono ml-n5 mt-5"
+            color="#9966ff"
+            text
+            ><v-icon>mdi-plus-circle</v-icon></v-btn
+          >
+        </v-row>
+        <v-row v-if="hour" class="ml-0 mt-n2">
+          <p class="mt-8">De</p>
+          <v-col cols="11" sm="3" xl="4">
+            <v-select
+              v-model="initialhour2"
+              class="textfield"
+              color="#9966ff"
+              placeholder="08:00 AM"
+              outlined
+              :items="hours"
+            ></v-select>
+          </v-col>
+          <span class="mt-8">A</span>
+          <v-col cols="11" sm="3" xl="4">
+            <v-select
+              v-model="endhour2"
+              class="textfield"
+              color="#9966ff"
+              placeholder="08:00 AM"
+              outlined
+              :items="hours"
+            ></v-select>
+          </v-col>
+        </v-row> </v-col
+      ><v-col md="1" lg="1" xl="1" class="mt-4"></v-col>
+      <v-col>
+        <v-row class="mb-n10" v-if="lun">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Lun</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="(!initialhour)">No registrado</v-chip>
+            <v-chip
+              v-if="initialhour"
+              @click:close="lun = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour }} a {{ endhour }}</span></v-chip
+            >
+            <v-chip
+              v-if="(endhour2)"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour2 }} a {{ endhour2 }}</span></v-chip
+            >
+            <v-chip label v-if="!endhour2">No registrado</v-chip>
+          </v-col>
+          <!-- <v-col xl="3"  class="ml-n10"><v-chip>09:00 AM A 80:00 PM</v-chip></v-col> -->
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="mar">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Mar</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!inicio[0]">No registrado</v-chip>
+            <v-chip
+              v-if="inicio[0]"
+              @click:close="chipMar = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio }} a {{ final }}</span></v-chip
+            >
+            <v-chip
+              v-if="(final2[0]  && hour)"
+              @click:close="chipMar2 = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio2 }} a {{ final2 }}</span></v-chip
+            >
+            <v-chip label v-if="!final2[0]">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="mie">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Mie</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!inicio[0]">No registrado</v-chip>
+            <v-chip
+              v-if="inicio[0] "
+              @click:close="chipMie = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio }} a {{ final }}</span></v-chip
+            >
+            <v-chip
+              v-if="(final2[0]  && hour)"
+              @click:close="chipMie2 = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio2 }} a {{ final2 }}</span></v-chip
+            >
+            <v-chip label v-if="!final2[0]">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="jue">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Jue</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!inicio[0]">No registrado</v-chip>
+            <v-chip
+              v-if="inicio[0]"
+              @click:close="chipJue = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio }} a {{ final }}</span></v-chip
+            >
+            <v-chip
+              v-if="(final2[0]  && hour)"
+              @click:close="chipJue2 = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio2 }} a {{ final2 }}</span></v-chip
+            >
+            <v-chip label v-if="!final2[0]">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="vie">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Vie</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!inicio[0]">No registrado</v-chip>
+            <v-chip
+              v-if="inicio[0]"
+              @click:close="chipVie = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio }} a {{ final }}</span></v-chip
+            >
+            <v-chip
+              v-if="(final2[0]  && hour)"
+              @click:close="chipVie2 = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio2 }} a {{ final2 }}</span></v-chip
+            >
+            <v-chip label v-if="!final2[0]">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="sab">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Sab</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!inicio[0]">No registrado</v-chip>
+            <v-chip
+              v-if="inicio[0]"
+              @click:close="chipSab = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio }} a {{ final }}</span></v-chip
+            >
+            <v-chip
+              v-if="(final2[0]  && hour)"
+              @click:close="chipSab2 = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio2 }} a {{ final2 }}</span></v-chip
+            >
+            <v-chip label v-if="!final2[0]">No registrado</v-chip>
+          </v-col>
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row v-if="dom">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Dom</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!inicio[0]">No registrado</v-chip>
+            <v-chip
+              v-if="inicio[0]"
+              @click:close="chipDom = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio }} a {{ final }}</span></v-chip
+            >
+            <v-chip
+              v-if="(final2[0]  && hour)"
+              @click:close="chipDom2 = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ inicio2 }} a {{ final2 }}</span></v-chip
+            >
+            <v-chip label v-if="!final2[0]">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+        <v-btn color="#9966ff" class="ml-n13 mt-n7" @click="addDay" text>
+          <span>Agregar horario</span></v-btn>
+      </v-col>
+   
+  </div>
+            
             </v-col>
           </v-row>
           <v-row >
@@ -56,7 +373,7 @@
               <h1 class="">DURACIÓN DE LA CONSULTA</h1>
               <v-text-field
                 color="#7900ff"
-                v-model="attention_time"
+                v-model="consultation_length"
                 class="textfield"
                 placeholder="XX"
                 outlined
@@ -66,12 +383,12 @@
             ><v-col md="6" cols="12"></v-col>
           </v-row>
           <v-row>
-            <v-col md="6" lg="5" xl="4" cols="12">
-              <h1 class="mb-4">TIEMPO PARA MOSTRAR AGENDA</h1>
+            <v-col md="6" lg="5" xl="4" cols="12"> 
+              <h1 class="mb-4">TIEMPO PARA MOSTRAR AGENDA </h1>
               <v-autocomplete
                 :items="timeagenda"
                 color="#7900ff"
-                v-model="consultation_length"
+                v-model="agenda"
                 class="textfield "
                 placeholder="4 semanas"
                 outlined
@@ -84,8 +401,7 @@
                 <v-col xl="2" cols="12">
               <v-btn
               block
-              v-on:click="postMedicalinfo"
-                @click="overlay = !overlay"
+                @click="putFacility"
                 height="50px"
                 class="white--text save "
                 color="#7900ff"
@@ -111,14 +427,15 @@
 <script>
   import Account from '../account.vue';
   import accountMenu from '../accountMenu.vue';
-import bussinesHour from './bussinesHour.vue'
-import menuPlanner from './menuPlanner.vue'
+import menuPlanner from './menuPlanner.vue';
 export default {
   components: {
-    bussinesHour, Account,menuPlanner,accountMenu
+     Account,menuPlanner,accountMenu
   },
   data() {
     return {
+      parentmessage:'',
+      userId:'',
       overlay:false,
       type: ['Permanente','Temporal'],
       dias: [],
@@ -134,19 +451,6 @@ export default {
       initialhour2: '',
       endhour2: '',
       attention_time: '',
-      /* valores de los chips de horario | Genesis */
-      chipLun: true,
-      chipMar: true,
-      chipMie: true,
-      chipJue: true,
-      chipVie: true,
-      chipSab: true,
-      chipLun2: true,
-      chipMar2: true,
-      chipMie2: true,
-      chipJue2: true,
-      chipVie2: true,
-      chipSab2: true,
 
       /*  v-models de los checkbox | Genesis */
       lun: false,
@@ -157,15 +461,6 @@ export default {
       sab: false,
       dom: false, 
 
-      days: [
-        { value: 0, name: 'Lun' },
-        { value: 1, name: 'Mar' },
-        { value: 2, name: 'Mie' },
-        { value: 3, name: 'Jue' },
-        { value: 4, name: 'Vie' },
-        { value: 5, name: 'Sab' },
-        { value: 6, name: 'Dom' },
-      ],
 
       hours: [
         '01:00 AM', '01:30 AM', '02:00 AM', '02:30 AM',  '03:00 AM',  '03:30 AM',  '04:00 AM', '04:30 AM', '05:00 AM', '05:30 AM', '06:00 AM', '06:30 AM', '07:00 AM', '07:30 AM', '08:00 AM',
@@ -209,7 +504,12 @@ export default {
           href: '/accounts/edit/plannerViews/schedule-info',
         },
       ],
+      idfacility:'',
+      day:'',
+      attention: '',
+      rest:'',
     }
+  
   },
   
   watch: {
@@ -221,7 +521,6 @@ export default {
     },
   },
   mounted() {
-          console.log('verificando');
           this.getspecialty();
       },
   methods: {
@@ -233,24 +532,98 @@ export default {
       .then(res => {
         console.log(res)
         this.items= res.data.data
-        console.log(res.data.data.name)
+        this.idfacility = res.data.data.id
       })
     },
-    addDay() {
-      const initialHour = [this.initialhour]
-      const hourInitial = initialHour.join()
-      this.inicio = hourInitial
-      const endHour = [this.endhour]
-      const hourFinal = endHour.join()
-      this.final = hourFinal
 
-      const initialHour2 = [this.initialhour2]
-      const hourInitial2 = initialHour2.join()
-      this.inicio2 = hourInitial2
-      const endHour2 = [this.endhour2]
-      const hourFinal2 = endHour2.join()
-      this.final2 = hourFinal2
+    putFacility() {
+      this.addDay()
+      this.days()
+  this.$axios
+    .put(
+      `api/v1/schedule/facilities/${this.userId.id}`,
+      {
+        type_schedule: this.type_schedule,
+      
+        consultation_length: this.consultation_length,
+        schedule:{
+          free_days: ["2022-01-01","2022-02-02"],
+          week: [
+            {
+              day: this.lunes,
+              attention_time: this.attention,
+              rest_hours: this.rest
+            },
+            {
+              day: this.martes,
+              attention_time: this.attention,
+              rest_hours: this.rest
+            },
+            {
+              day: this.miercoles,
+              attention_time: this.attention,
+              rest_hours: this.rest
+            },
+            {
+              day: this.jueves,
+              attention_time: this.attention,
+              rest_hours: this.rest
+            },
+            {
+              day: this.viernes,
+              attention_time: this.attention,
+              rest_hours: this.rest
+            },
+            {
+              day: this.sabado,
+              attention_time: this.attention,
+              rest_hours: this.rest
+            },
+            {
+              day: this.domingo,
+              attention_time: this.attention,
+              rest_hours: this.rest
+            },
+          ],
+          
+        }
+    
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        },
+      }
+    )
+    .then((res) => {
+      this.overlay=true
+    })
+},
+
+       
+  /* unir los horarios en una sola variable por turno  */
+  addDay() {
+     const rango1 = [this.initialhour, this.endhour2]
+     const rango2 = [this.endhour, this.initialhour2]
+     const turno1 = rango1.join(' a ')
+     const turno2 = rango2.join(' a ')
+     this.attention=turno1
+     this.rest=turno2
     },
+   /*  mandar los dias en ingles */
+    days(){
+      if(this.lun===true){this.lunes='monday'}
+      if(this.mar===true){this.martes='tuesday'}
+      if(this.mie===true){this.miercoles='wednesday'}
+      if(this.jue===true){this.jueves='thursday'}
+      if(this.vie===true){this.viernes='friday'}
+      if(this.sab===true){this.sabado='saturday'}
+      if(this.dom===true){this.domingo='sunday'}
+    },
+    sendMessage() {
+                this.test = this.endhour
+            },
+
     addInput() {
       this.inputs.push({
         id: `fruit${++this.counter}`,
@@ -258,61 +631,9 @@ export default {
         value: '',
       })
     },
-    getFacilityy() {
-        this.$axios
-          .get('api/v1/facilities', {
-            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-          })
-          .then((res) => {
-            this.items=res.data.data[0].name
-            console.log(res)
-            console.log('exito en GET')
-            this.facilities = res.data.data
-            this.consultorios = res.data.data.length
-            this.horas = res.data.data[0].schedule.lenght
-            this.name = res.data.data[0].name
-            this.address = res.data.data[0].location.address
-            this.number_ext = res.data.data[0].location.number_ext
-            this.number_int = res.data.data[0].location.number_int
-            this.state = res.data.data[0].location.state
-            this.suburb = res.data.data[0].location.suburb
-            this.reference = res.data.data[0].location.reference
-            this.phone = res.data.data[0].phone
-            this.zipcode = res.data.data[0].zipcode
-  
-          })
-      },
-    getFacility() {
-      this.$axios
-        .post('/api/v1/physician/facility', {
-          facility_name: this.facility_name,  
-          schedule: [
-            {
-              day: this.lun,
-              attention_time: this.attention_time,
-            },
-            {
-              day: this.mar,
-              attention_time: this.modal2,
-            },
-          ],
-          type_schedule: this.type_schedule,
-          consultation_length: this.consultation_length,
-        })
-        .then((response) => {
-          console.log(response.data.data)
-          localStorage.setItem('token', response.data.access_token)
-        })
-    },
-    putFacility() {
-      this.$axios
-        .put('/api/v1/physician', {})
-        .then((response) => {
-          console.log(response.data.data)
-          localStorage.setItem('token', response.data.access_token)
-        })
-        .catch(console.log('error'))
-    },
+
+
+   
     save(time) {
       this.$refs.dialog[0].save(time)
     },
@@ -411,4 +732,10 @@ span {
     font-family: MontserratBold !important;
     font-size: 110% !important;
   }
+  .v-icon.icono{
+    border: 0px !important;
+  }
 </style>
+
+
+

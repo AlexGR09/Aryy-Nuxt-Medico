@@ -555,7 +555,7 @@
                 <div class="mt-5 mb-n15">
                   <v-btn
                   v-on:click="create"
-                    @click="overlay = !overlay"
+              
                     height="50px"
                     class="white--text save"
                     color="#7900ff"
@@ -767,6 +767,7 @@ export default {
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
       })
       .then((response) => {
+        this.overlay=true
         console.log(response.data.data)
       })
     },

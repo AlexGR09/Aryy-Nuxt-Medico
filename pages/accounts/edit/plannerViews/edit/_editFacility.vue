@@ -391,7 +391,6 @@ export default {
     console.log('verificando')
     this.getFacility()
     const facilityId = this.$route.params.id;
-    console.log(facilityId)
   },
   created(){
    

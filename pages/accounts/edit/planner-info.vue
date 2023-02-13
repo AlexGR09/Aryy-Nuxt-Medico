@@ -133,6 +133,7 @@ export default {
 
     back() {
       this.dialog = false
+      this.$router.go() 
     },
   },
 }
