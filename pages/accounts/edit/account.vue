@@ -33,26 +33,13 @@ export default {
     return {
       show1: false,
       tabs: 0,
+
     }
   },
+
+
+
+
 }
 </script>
 
-<style>
-/* .tab{
-    font-family: Montserrat;
-    font-size: 1rem;
-    text-transform: capitalize;
-}
-
-.shad{
-  box-shadow: 10px 10px 5px 0px rgba(153,102,255,0.18);
--webkit-box-shadow: 10px 10px 5px 0px rgba(153,102,255,0.18);
--moz-box-shadow: 10px 10px 5px 0px rgba(153,102,255,0.18);
-}
-.toolb{
-  box-shadow: 2px 6px 5px 0px rgb(153,102,255,0.3);
--webkit-box-shadow: 2px 6px 5px 0px rgb(153,102,255,0.3);
--moz-box-shadow: 2px 6px 5px 0px rgb(153,102,255,0.3);
-} */
-</style>

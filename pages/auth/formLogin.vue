@@ -164,7 +164,12 @@ export default {
         .then((response) => {
           console.log(response.data)
           localStorage.setItem('token', response.data.access_token)
-          this.$router.push('/')
+          if(response.data.success){
+            this.$store.commit('SET_AUTHENTICATED', true)
+            this.$router.push('/')
+
+          }
+
         })
       /*         .then(data => localStorage.setItem("token", access_token))
         this.access_token=""

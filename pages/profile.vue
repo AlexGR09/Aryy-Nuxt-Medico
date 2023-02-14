@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container >
         <v-card class="greeting-card" outlined rounded="lg" >
             <v-col cols="12">
                 <v-toolbar flat>
@@ -43,7 +43,13 @@ export default{
             ]
 
         }
-    }
+    },
+    mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
+  }
 }
 </script>
 

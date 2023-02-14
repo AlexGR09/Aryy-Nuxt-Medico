@@ -1,14 +1,15 @@
 <template>
   <div>
     <v-row>
-      <v-card flat>
+   <v-card flat>
         <menu-med />
       </v-card>
+
       <v-col md="10" lg="10" xl="10">
         <v-card flat class="pa-3 mt-2">
-          <v-alert shaped prominent dense text type="success">
+ <!--          <v-alert shaped prominent dense text type="success">
             {{ status }}
-          </v-alert>
+          </v-alert> -->
           <v-card-subtitle class="pa-3 mt-n2 mb-n10">
             <h1>FORMACIÓN ACADÉMICA</h1>
             <!-- btn editar -->
@@ -160,6 +161,7 @@
                 </v-file-input>
                 <v-btn elevation="2" @click="postArray" >subir</v-btn>
               </v-col>
+              
               <v-col md="7" cols="12">
                 <v-card
                   v-scroll.self="onScroll"
@@ -170,7 +172,7 @@
                     class="justify-center text-h5 font-weight-light"
                     sticky
                   >
-                    misv¿ vertificad
+                    misv¿vertificad
                     <span
                       class="font-weight-bold"
                       v-text="scrollInvoked"
@@ -318,7 +320,7 @@ Vue.use(VueFileAgentStyles)
 
 export default {
   components: {
-    MenuMed,
+ MenuMed, 
   },
   data() {
     return {
@@ -450,7 +452,7 @@ export default {
         })
         .then((res) => {
           this.items = res.data.data
-          /* onsole.log(res.data.data) */
+          alert(res.data.data.data)
         })
     },
 

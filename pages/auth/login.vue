@@ -19,8 +19,6 @@
                   v-for="(item, title) in items"
                   :key="title"
                 >{{ item.title }}</v-tab>
-
-               
               </v-tabs>
             </template>
           </v-toolbar>
@@ -28,7 +26,6 @@
             <v-tab-item>
               <v-card flat>
                 <form-auth/>
-    
               </v-card>
             </v-tab-item>
           </v-tabs-items>

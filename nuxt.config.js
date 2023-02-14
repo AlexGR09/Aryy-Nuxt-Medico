@@ -3,6 +3,11 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   /* Configuración de SEO Global | Luis Reyes */
+  loadingIndicator: {
+    name: 'circle',
+    color: '#3B8070',
+    background: 'white'
+  },
   head: {
     titleTemplate: 'aryy',
     title: 'Sitio oficial',
@@ -52,11 +57,10 @@ export default {
   auth:{
     
   },
-/* 
-  router: {
-    middleware: ['authenticated']
 
-  }, */
+  router: {
+      middleware: ['authenticated']  
+  }, 
 
   styleResources: {
     scss: ['./assets/scss/*.scss']
@@ -74,6 +78,7 @@ baseURL: 'https://app.aryymd.com',
     /*   "Authorization": 'Bearer ' + $localStorage.getItem("token")  */
     }
   },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],

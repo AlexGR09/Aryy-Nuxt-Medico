@@ -38,9 +38,9 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-btn color="primary" class="text-lowercase"  @click="generatePDF">
+<!--       <v-btn color="primary" class="text-lowercase"  @click="generatePDF">
         Generar pdf
-      </v-btn>
+      </v-btn> -->
     </v-row>
   </v-container>
 </template>
@@ -52,6 +52,9 @@ import nextConsultation from '~/components/dashboard/next-consultation.vue'
 export default {
   name: 'Default',
   components: { nextConsultation },
+
+    middleware: 'authenticated',
+
   data() {
     return {
       name: [],

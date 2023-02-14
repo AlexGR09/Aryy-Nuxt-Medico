@@ -37,11 +37,16 @@ export default{
                     text: 'Lista de pacientes',
                     disabled: false,
                     href: '/patients'
-
                 }
             ],
         }
     },
+    mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
+  }
 }
 </script>
 

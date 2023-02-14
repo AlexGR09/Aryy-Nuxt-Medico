@@ -42,6 +42,12 @@
         max-width: 13vh;
         bottom: 25%;
         right: 10%;
+        align-items: start;
+        image-orientation: flip;
+        padding: auto;
+        color: #000;
+        
+
       }
 }
 .texto{

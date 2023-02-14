@@ -1,17 +1,53 @@
 <template>
   <v-app dark>
+    <v-app-bar
+      flat
+      color="transparent"
+      height="100"
+      :clipped-left="clipped"
+      fixed
+      absolute
+      app
+    >
+    <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawer = !drawer " />
+      <v-spacer></v-spacer>
+      <!-- iconos para notificacion y cuenta | Genesis -->
+      <v-btn class="ml-4" icon small>
+        <v-img
+          :src="require('@/assets/icons/icon_notification.svg')"
+          max-width="23"
+        ></v-img>
+      </v-btn>
+      <v-btn
+        class="ml-5 mr-7"
+        fab
+        href="/accounts/edit/general-info/"
+        color="#7900ff"
+      >
+        <v-avatar class="avata" size="56">
+          <img
+            src="https://doctorslist.info/wp-content/uploads/2022/08/10-Best-Doctors-in-Bangladesh-1.png"
+          /> </v-avatar
+      ></v-btn>
+    </v-app-bar>
+    <!--código de lista de elementos del SideBar | Luis Reyes-->
     <v-navigation-drawer
+    :expand-on-hover="$vuetify.breakpoint.mdAndUp && drawer"
       v-model="drawer"
-      :mini-variant="miniVariant"
+      :mini-variant.sync="miniVariant"
       :clipped="clipped"
       fixed
       app
     >
-      <img
-        max-width="100"
-        src="@/assets/logotipos/ISOLOGO_ARYY.svg"
-      />
-      <v-list>
+      <v-avatar class="icon-logo">
+        <img
+          class="img-logo"
+          src="@/assets/logotipos/ISOLOGO_ARYY.svg"
+          alt="logo Aryy"
+        />
+      </v-avatar>
+      <v-list class="list-item mb-n6" active-class="bg-active">
+        <!-- renderizado de lista del SideBar | Luis Reyes -->
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
@@ -19,65 +55,93 @@
           router
           exact
         >
-          <v-list-item-action>
-            <img :src="item.url"/>
-            <v-icon>{{ item.icon }}</v-icon>
+          <v-list-item-action active-class="bg-active">
+            <!--pintamos el objeto img en el SideBar | Luis Reyes-->
+            <img class="icons" :src="item.url" alt="" />
           </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-content active-class="bg-active">
+            <!--pintamos el objeto titulo en el SideBar | Luis Reyes-->
+            <v-list-item-title class="v-list-item-titlee">{{
+              item.title
+            }}</v-list-item-title>
           </v-list-item-content>
-          <v-list-item-action>
-            <v-icon color="purple">{{ item.padlock }}</v-icon>
+        </v-list-item>
+      </v-list>
+
+   <!--    lista de los elementos bloqueados | Genesis -->
+      <v-list disabled class="list-item disabledItem">
+        <v-list-item
+          v-for="(blockedItem, i) in blockedItems"
+          :key="i"
+          :to="blockedItem.to"
+          router
+          exact
+        >
+          <v-list-item-action active-class="bg-active">
+            <img class="icons" :src="blockedItem.url" alt="" />
+          </v-list-item-action>
+          <v-list-item-content active-class="bg-active">
+            <v-list-item-title class="v-list-item-titlee">{{
+              blockedItem.title
+            }}</v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-action active-class="bg-active">
+            <img
+              class="icons"
+              :src="require('@/assets/icons/icon_lock.svg')"
+              alt=""
+            />
           </v-list-item-action>
         </v-list-item>
       </v-list>
+
+      <v-list class="list-item mt-n1" active-class="bg-active">
+        <v-list-item class="mt-n1" to="/settings/account">
+          <v-list-item-icon>
+            <img
+              class="icons"
+              :src="require('@/assets/icons/SettingsIcon.svg')"
+              alt=""
+            />
+          </v-list-item-icon>
+
+          <v-list-item-content active-class="bg-active">
+            <v-list-item-title class="v-list-item-titlee"
+              >Ajustes</v-list-item-title
+            >
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item class="mt-n1" @click="logout">
+          <v-list-item-icon>
+            <v-icon size="23" color="#7900ff">mdi-logout-variant</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content active-class="bg-active">
+            <v-list-item-title class="v-list-item-titlee"
+              >Cerrar sesión</v-list-item-title
+            >
+          </v-list-item-content>
+        </v-list-item>
+
+       <!--  <div class="container-icon">
+          <v-btn
+            class="btn-sidebar"
+            icon
+            @click.stop="miniVariant = !miniVariant"
+          >
+            <v-icon
+              >mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon
+            >
+          </v-btn>
+        </div> -->
+      </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-      flat
-      color="white"
-    >
-      <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawer = !drawer " />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-spacer />
-      <v-btn icon color="primary">
-        <v-icon>mdi-bell-outline</v-icon>
-      </v-btn>
-      <v-avatar>
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/194/194915.png"
-      />
-    </v-avatar>
-    </v-app-bar>
     <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
   </v-app>
 </template>
 
@@ -163,17 +227,6 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js'
     }
-  },
-  methods:{
-
-    /* cerrar sesión */
-    signOff(){
-      alert("SALIR")
-      sjdjdasj
-
-    }
-
-
   },
 
 }
