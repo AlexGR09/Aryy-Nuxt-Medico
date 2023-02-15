@@ -68,11 +68,10 @@ export default{
                 })
                 .then((response) => {
                     const token = response.data.access_token
-                    console.log(response)
-                    localStorage.setItem('token', response.data.access_token)
+                    localStorage.setItem('token', token)
                     if(response.data.access_token === token){
                        /* store.commit('SET_TOKEN', token) */
-                       localStorage.getItem('token', response.data.data.access_token)
+                        this.$store.commit('setToken', token);
                         this.$store.commit('SET_AUTHENTICATED', true)
                         this.$router.push('/')
                     } 

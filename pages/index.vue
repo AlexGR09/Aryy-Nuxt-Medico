@@ -1,5 +1,6 @@
 <!-- Maquetación => Template => Dashboard | Luis Reyes & Responsivo | Luis Reyes -->
 <template>
+  <v-app>
   <v-container>
     <v-toolbar flat color="transparent">
       <v-toolbar-title>Dr. {{ facilities }}</v-toolbar-title>
@@ -9,13 +10,13 @@
       <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link>
     </div>
     <v-row>
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="4" sm="8">
         <dashboard-citas />
       </v-col>
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="4" sm="8">
         <dashboard-marketing />
       </v-col>
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="4" sm="8">
         <dashboard-assistant />
       </v-col>
       <!-- Citas proximas | Luis Reyes -->
@@ -41,17 +42,21 @@
 <!--       <v-btn color="primary" class="text-lowercase"  @click="generatePDF">
         Generar pdf
       </v-btn> -->
+
+      <icon-home/>
     </v-row>
   </v-container>
+</v-app>
 </template>
 <script>
 import  JsPDF  from "jspdf";
 import AutoTable from 'jspdf-autotable'
 import nextConsultation from '~/components/dashboard/next-consultation.vue'
+import IconHome from '~/components/iconos/icon-home.vue';
 
 export default {
   name: 'Default',
-  components: { nextConsultation },
+  components: { nextConsultation, IconHome },
 
     middleware: 'authenticated',
 

@@ -55,9 +55,6 @@ export default {
     '@nuxtjs/axios',
   ],
 
-  auth:{
-    
-  },
 
   router: {
       middleware: ['authenticated']  

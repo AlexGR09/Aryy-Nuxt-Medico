@@ -1,29 +1,19 @@
-/* export default ({ store, redirect }) => {
-    // if user is not authenticated, redirect on login page
-     {
-    count () {
-      return this.$store.state.example.count
-    }
-    if (!store.state.authenticated) {
-        updateState (token) {
-    this.$store.commit('example/setToken', token)
-  }
-        return redirect("/auth/login");
-    }, 
-    if()
-} */
 
-// middleware/authentication.js
-
-export default function({ store, redirect }){
+/* middleware para acceder con el token almacenado en localStorage | Luis Reyes */
+export default function({ store, redirect, $axios}) {
+/*     const token = 'token'  */
     console.log('conectando ')
     if (!store.state.authenticated) {
+/*         if(process.client){
+            localStorage.getItem('token');
+            return redirect("/auth/login");
+        } */
         return redirect("/auth/login");
     }
-    else{
-       console.log('acceso denegado')
-    }
 }
+
+
+
 
 
 
