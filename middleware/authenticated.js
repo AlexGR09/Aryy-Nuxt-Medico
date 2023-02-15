@@ -10,6 +10,7 @@
   }
         return redirect("/auth/login");
     }, 
+    if()
 } */
 
 // middleware/authentication.js
@@ -21,6 +22,8 @@ export default function({ store, redirect }){
     }
     else{
        console.log('acceso denegado')
-    } 
+    }
 }
-  
+
+
+

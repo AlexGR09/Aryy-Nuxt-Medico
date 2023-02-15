@@ -48,6 +48,7 @@ export default {
     '@nuxtjs/style-resources',
   ],
 
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -102,5 +103,17 @@ baseURL: 'https://app.aryymd.com',
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
  /*  build: {}, */
-  build: { filenames: { chunk: () => '[name].js' }, postcss: null, },
+  build: {
+/*     extend (config, {isDev, isClient}){
+      config.resolve.symlinks = false
+      config.resolve.alias = {
+        'vue$': 'vue/dist/vue.esm.js'
+      }
+    }, */
+    filenames: { chunk: () => '[name].js' }, 
+    postcss: null, 
+  
+
+
+},
 }

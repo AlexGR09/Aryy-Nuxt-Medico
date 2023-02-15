@@ -5,7 +5,6 @@
          ref="form"
          v-model="valid"
          lazy-validation
-        
         >
             <v-text-field
                 v-model="email"
@@ -22,17 +21,16 @@
                 :type="show1 ? 'text' : 'password'"
                 label="Contraseña"
                 outlined
-                @click:append="show1 = !show1"
                 dense
+                @click:append="show1 = !show1"
             ></v-text-field>
             <div>
                 <v-btn 
-                    v-on:click="POST_DATA" 
-                    @click="validate"  
-                    class="text-capitalize" 
+                    class="text-capitalize"     
                     color="purple" 
                     dark 
                     block
+                    @click="validate(); POST_DATA(); "
                 >Iniciar sesión</v-btn>
             </div>
         </v-form>
@@ -57,6 +55,7 @@ export default{
             ],
         }
     },
+
     methods: {
         validate(){
             this.$refs.form.validate()
@@ -68,18 +67,17 @@ export default{
                     password:this.password
                 })
                 .then((response) => {
-
-                    const token = response.data.data.access_token
-                    localStorage.setItem('token', response.data.data.access_token)
-                    if(response.data.data.access_token === token){
+                    const token = response.data.access_token
+                    console.log(response)
+                    localStorage.setItem('token', response.data.access_token)
+                    if(response.data.access_token === token){
+                       /* store.commit('SET_TOKEN', token) */
+                       localStorage.getItem('token', response.data.data.access_token)
                         this.$store.commit('SET_AUTHENTICATED', true)
                         this.$router.push('/')
-                    }
+                    } 
                 })
         }
     }
 }
 </script>
-
-
-
