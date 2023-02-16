@@ -1,21 +1,26 @@
 <template>
   <div>
-    <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
-      <v-btn  icon color="black" @click="$router.back()">
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn>
-                  <v-row>
-                    <v-col md="5" lg="5" xl="5"></v-col>
-                    <v-col md="4" lg="4" xl="4"> <v-img class="ml-n8" :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img><p class="mt-n7 prueba">Consultorios</p></v-col>
-                    <v-col ms="3" lg="3" xl="3"></v-col>
-                  </v-row>
-                  </v-app-bar>
-    <v-card color="card" height="100%" flat class="pa-16">
-      <v-card-text class="pa-16">
-        <v-row class="ml-16">
-          <v-form class="ml-16" ref="form" v-model="valid">
-            <v-col md="1" lg="1" xl="1"></v-col>
-            <v-col md="10" lg="10" xl="10">
+    <v-app-bar flat height="150px" color="#ffffff" dense fixed hide-on-scroll>
+      <v-btn icon color="black" @click="$router.back()">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <v-row >  <v-col cols="2" md="4" lg="4" xl="5"></v-col>
+        <v-col md="4" lg="4" xl="4">
+          <v-img
+            :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
+            max-width="150"
+          ></v-img>
+          <p class="consul mt-n13 prueba">Consultorios</p></v-col
+        >
+        <v-col ms="3" lg="3" xl="3"></v-col>
+      </v-row>
+    </v-app-bar>
+    <v-card class="mt-16" color="card" height="100%" flat >
+      <v-card-text >
+        <v-row class="mt-8" >
+          <v-form class="d-flex justify-center mt-16 " ref="form" v-model="valid">
+           
+            <v-col cols="10" md="10" lg="10" xl="9">
               <v-row>
               
                 <v-col md="12" cols="12">
@@ -559,7 +564,7 @@
                 </div>
               </v-row>
             </v-col>
-            <v-col xl="1"></v-col>
+          
           </v-form>
         </v-row>
       </v-card-text>
@@ -993,5 +998,8 @@ span.hour {
 p{
   font-size: 1.7vh !important;
   color: #999999 !important;
+}
+p.consul{
+  font-size: 2.4vh !important;
 }
 </style>
