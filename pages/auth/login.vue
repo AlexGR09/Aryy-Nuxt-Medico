@@ -9,10 +9,8 @@
           <video class="half-screen-video" playsinline loop autoplay>
             <source :src="require('@/assets/videos/introprueba.mp4')" type="video/mp4">
           </video>
-
         </v-responsive>
-
-<!--           <video
+  <!--  <video
           id="video-player" playsinline loop autoplay
           :src="require('@/assets/videos/introprueba.mp4')"
         
@@ -25,7 +23,7 @@
             <h2>Especialista, medicinas y análisis clínicos en un solo lugar</h2>
             <p>Haz una cita, cotiza tus medicamentos y análisis clínicos o lleva control de tu tratamiento con ayuda de aryy.</p>
             <v-toolbar flat>
-              <template v-slot:extension>
+              <template #extension>
                 <v-tabs  v-model="tab" centered >
                   <v-tab v-for="(item, title) in items" :key="title" class="text-capitalize" >
                     {{item.title}}
@@ -82,7 +80,7 @@ import FormRegister from '~/components/auth/form-register.vue'
     }
   }
   .half-screen-video {
-  width: 50vw;
-  height: 50vh;
+  width: 5vw;
+  height: 100vh;
 }
   </style>
