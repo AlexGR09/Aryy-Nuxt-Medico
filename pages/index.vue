@@ -9,7 +9,7 @@
         Aún no ha terminado de configurar su perfil de,
       <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link>
     </div>
-    <v-row>
+<!--     <v-row>
       <v-col cols="12" md="4" sm="8">
         <dashboard-citas />
       </v-col>
@@ -19,7 +19,7 @@
       <v-col cols="12" md="4" sm="8">
         <dashboard-assistant />
       </v-col>
-      <!-- Citas proximas | Luis Reyes -->
+   
       <v-col cols="12" md="6">
         <next-consultation />
       </v-col>
@@ -37,13 +37,26 @@
           </v-row>
         </v-card>
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-row>
 <!--       <v-btn color="primary" class="text-lowercase"  @click="generatePDF">
         Generar pdf
       </v-btn> -->
 
       <icon-home/>
+      <v-col cols="12" md="4" sm="4" xs="3">
+        <v-autocomplete
+          v-model="dbSelect"
+          :items="items"
+          item-text="name"
+          item-value="specialty_id"
+          outlined
+          dense
+          label="Especialidad"
+          no-data-text="No hay resultados"
+          :filter="customFilter"
+        ></v-autocomplete>
+      </v-col>
     </v-row>
   </v-container>
 </v-app>
@@ -51,13 +64,10 @@
 <script>
 import  JsPDF  from "jspdf";
 import AutoTable from 'jspdf-autotable'
-import nextConsultation from '~/components/dashboard/next-consultation.vue'
-import IconHome from '~/components/iconos/icon-home.vue';
+
 
 export default {
   name: 'Default',
-  components: { nextConsultation, IconHome },
-
     middleware: 'authenticated',
 
   data() {
@@ -79,6 +89,9 @@ export default {
         { title:'hola 1', description: 'quien eres'},
 
       ],
+      dbSelect: null,
+      items:[],
+      searchText: '',
       
       picker: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
@@ -86,9 +99,20 @@ export default {
     }
   },
 
+  computed: {
+    filteredItems() {
+      const searchText = this.searchText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036F]/g, '');
+      return this.items.filter(item => {
+        const itemName = item.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036F]/g, '');
+        return itemName.includes(searchText);
+      });
+    } 
+  },
+
   mounted() {
    this.getName() 
     this.GET_RECETA()
+    this.data_speciality()
   },
 
   methods: {
@@ -121,6 +145,34 @@ export default {
         this.frequency = res.data.data.prescription.treatment.frequency
         this.duration = res.data.data.prescription.treatment.duration_days
       })
+    },
+    customFilter(item, queryText) {
+      const itemText = item.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036F]/g, '');
+      const searchText = queryText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036F]/g, '');
+      return itemText.includes(searchText);
+    },
+    /* OBTENER ESPECIALIDADES */
+    data_speciality(){
+      this.$axios
+        .get('/api/v1/catalogue/specialties' , {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((response) => {
+          this.items = response.data.data
+        })
+    },
+
+
+        /* OBTENER ESPECIALIDADES */
+        getspecialty() {
+      this.$axios
+        .get('/api/v1/catalogue/specialties', {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          this.items = res.data.data
+          alert(res.data.data.data)
+        })
     },
 
     generatePDF() {

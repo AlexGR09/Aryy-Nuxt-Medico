@@ -452,7 +452,6 @@ export default {
         })
         .then((res) => {
           this.items = res.data.data
-          alert(res.data.data.data)
         })
     },
 

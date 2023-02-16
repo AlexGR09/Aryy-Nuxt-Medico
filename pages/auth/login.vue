@@ -1,17 +1,26 @@
 <template>
   <v-app>
-     <v-row justify="space-around">
-       <!-- componente video -->
-        <v-col class="ocultar-col" cols="12" md="8" sm="4">
-          <video
+     <v-row justify="space-around" fluid>
+        <v-col 
+          cols="6"
+          class="ocultar-col"
+        >
+        <v-responsive aspect-ratio="16/9">
+          <video class="half-screen-video" playsinline loop autoplay>
+            <source :src="require('@/assets/videos/introprueba.mp4')" type="video/mp4">
+          </video>
+
+        </v-responsive>
+
+<!--           <video
           id="video-player" playsinline loop autoplay
           :src="require('@/assets/videos/introprueba.mp4')"
-          width="1215px"
-          height="1350px"
-        ></video>
+        
+          class="half-screen-image"
+        ></video> -->
         </v-col>
         <!-- componente formulario login -->
-        <v-col cols="12" md="4" sm="8">
+        <v-col cols="6" md="4" sm="8">
           <v-container>
             <h2>Especialista, medicinas y análisis clínicos en un solo lugar</h2>
             <p>Haz una cita, cotiza tus medicamentos y análisis clínicos o lleva control de tu tratamiento con ayuda de aryy.</p>
@@ -32,7 +41,7 @@
               </v-tab-item>
               <v-tab-item>
                 <v-card  flat>
-                 
+                  <form-register/>
                 </v-card>
               </v-tab-item>
             </v-tabs-items>
@@ -44,9 +53,10 @@
   
   <script>
 import formAuth from '~/components/auth/form-auth.vue'
+import FormRegister from '~/components/auth/form-register.vue'
 
   export default{
-  components: { formAuth },
+  components: { formAuth, FormRegister },
 
     layout: 'auth',
     data(){
@@ -71,4 +81,8 @@ import formAuth from '~/components/auth/form-auth.vue'
       display: none;
     }
   }
+  .half-screen-video {
+  width: 50vw;
+  height: 50vh;
+}
   </style>
