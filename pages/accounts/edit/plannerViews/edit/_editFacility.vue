@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
-      <v-btn dark icon color="black" @click="$router.back()">
+      <v-btn  icon color="black" @click="$router.back()">
                     <v-icon>mdi-close</v-icon>
                   </v-btn>
                   <v-row>
@@ -20,7 +20,7 @@
               
                 <v-col md="12" cols="12">
                  
-                  <span>Nombre del consultorio*</span>
+                  <p>Nombre del consultorio*</p>
                   <v-text-field
                     prepend-inner-icon="mdi-magnify"
                     v-model="facility_name"
@@ -31,7 +31,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="6" cols="12">
-                  <span>Teléfono para citas*</span>
+                  <p>Teléfono para citas*</p>
                   <v-text-field
                     v-model="phone_number"
                     color="#9966ff"
@@ -39,53 +39,319 @@
                     placeholder="XXX XXX XXXX"
                     outlined
                   ></v-text-field>
-                  <span >Horario para recepción de llamadas*</span>
-                  
-                  <v-row>
-                    <v-col class="mt-2" cols="6" xl="2">
-                      <p class="mb-4">{{ lunes }}</p>
-                      <p class="mb-4">{{ martes }}</p>
-                      <p class="mb-4">{{ miercoles }}</p>
-                      <p class="mb-4">{{ jueves }}</p>
-                      <p class="mb-4">{{ viernes }}</p>
-                      <p class="mb-4">{{ sabado }}</p>
-                      <p class="mb-4">{{ domingo }}</p>
-                    </v-col>
+                  <p >Horario para recepción de llamadas*</p>
+                  <v-col class="mb-n7" md="11" cols="12">
+        
+        <div>
+        <v-btn-toggle borderless class="botones mb-n1 mt-n14">
+          <v-checkbox
+            v-model="lun"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Lun"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="mar"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Mar"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="mie"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Mie"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="jue"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Jue"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="vie"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Vie"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="sab"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Sab"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="dom"
+            class="checkbox mr-5"
+            color="#7900ff"
+            label="Dom"
+          ></v-checkbox>
+        </v-btn-toggle>
+      <v-col md="6" cols="12"></v-col>
 
-                    <v-col xl="5">
-                      <v-chip v-if="lun" class="ml-3" color="#f4edff" label>{{
-                        timeLun
-                      }}</v-chip
-                      ><br v-if="lun" />
-                      <v-chip v-if="mar" class="ml-3" color="#f4edff" label>{{
-                        timeMar
-                      }}</v-chip
-                      ><br v-if="mar" />
-                      <v-chip v-if="mie" class="ml-3" color="#f4edff" label>{{
-                        timeMie
-                      }}</v-chip
-                      ><br v-if="mie" />
-                      <v-chip v-if="jue" class="ml-3" color="#f4edff" label>{{
-                        timeJue
-                      }}</v-chip
-                      ><br v-if="jue" />
-                      <v-chip v-if="vie" class="ml-3" color="#f4edff" label>{{
-                        timeVie
-                      }}</v-chip
-                      ><br />
-                      <v-chip v-if="sab" class="ml-3" color="#f4edff" label>{{
-                        timeSab
-                      }}</v-chip
-                      ><br v-if="sab" />
-                      <v-chip v-if="dom" class="ml-3" color="#f4edff" label>{{
-                        timeDom
-                      }}</v-chip
-                      ><br v-if="dom" />
-                    </v-col>
-                  </v-row>
+      <!--  inputs para agregar los horarios desde un select | Genesis -->
+      <v-col class="mb-n7 mt-n8" md="11" xl="12" cols="12">
+        <v-row class="ml-0">
+          <p class="mt-8">De</p>
+          <v-col cols="11" sm="3" md="4" lg="4" xl="4">
+            <v-autocomplete
+              v-model="initialhour"
+              class="textfield"
+              color="#9966ff"
+              placeholder="08:00 AM"
+              outlined
+              :items="hours"
+            ></v-autocomplete>
+          </v-col>
+
+          <p class="mt-8">A</p>
+          <v-col cols="11" sm="3" md="4" lg="4" xl="4">
+            <v-autocomplete
+              v-model="endhour"
+              class="textfield"
+              color="#9966ff"
+              placeholder="08:00 PM"
+              outlined
+              :items="hours"
+            ></v-autocomplete>
+          </v-col>
+          <v-btn
+            @click="hour = !hour"
+            class="btn ml-n5 mt-5"
+            color="#9966ff"
+            text
+            ><v-icon class="icon">mdi-plus-circle</v-icon></v-btn
+          >
+        </v-row>
+        <v-row v-if="hour" class="ml-0 mt-n2">
+          <p class="mt-8">De</p>
+          <v-col cols="11" sm="3" xl="4">
+            <v-select
+              v-model="initialhour2"
+              class="textfield"
+              color="#9966ff"
+              placeholder="08:00 AM"
+              outlined
+              :items="hours"
+            ></v-select>
+          </v-col>
+          <span class="mt-8">A</span>
+          <v-col cols="11" sm="3" xl="4">
+            <v-select
+              v-model="endhour2"
+              class="textfield"
+              color="#9966ff"
+              placeholder="08:00 AM"
+              outlined
+              :items="hours"
+            ></v-select>
+          </v-col>
+        </v-row> </v-col
+      ><v-col md="1" lg="1" xl="1" class="mt-4"></v-col>
+      <!-- chips para mostrar los horarios seleccionados | Genesis -->
+      <v-col>
+        <v-row class="mb-n10" v-if="lun">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Lun</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="(!initialhour  && hour)">No registrado</v-chip>
+            <v-chip
+              v-if="lun && initialhour"
+              @click:close="lun = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour }} a {{ endhour }}</span></v-chip
+            >
+            <v-chip
+              v-if="(endhour2 && hour)"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour2 }} a {{ endhour2 }}</span></v-chip
+            >
+            <v-chip label v-if="!endhour2">No registrado</v-chip>
+          </v-col>
+          <!-- <v-col xl="3"  class="ml-n10"><v-chip>09:00 AM A 80:00 PM</v-chip></v-col> -->
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="mar">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Mar</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!initialhour">No registrado</v-chip>
+            <v-chip
+              v-if="initialhour"
+              @click:close="mar = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour }} a {{ endhour }}</span></v-chip
+            >
+            <v-chip
+              v-if="(endhour2  && hour)"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour2 }} a {{ endhour2 }}</span></v-chip
+            >
+            <v-chip label v-if="!endhour2">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="mie">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Mie</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!initialhour">No registrado</v-chip>
+            <v-chip
+              v-if="initialhour"
+              @click:close="mie = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour }} a {{ endhour }}</span></v-chip
+            >
+            <v-chip
+              v-if="(endhour2  && hour)"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour2 }} a {{ endhour2 }}</span></v-chip
+            >
+            <v-chip label v-if="!endhour2">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="jue">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Jue</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!initialhour">No registrado</v-chip>
+            <v-chip
+              v-if="initialhour"
+              @click:close="jue = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour }} a {{ endhour }}</span></v-chip
+            >
+            <v-chip
+              v-if="(endhour2  && hour)"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour2 }} a {{ endhour2 }}</span></v-chip
+            >
+            <v-chip label v-if="!endhour2">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="vie">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Vie</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!initialhour">No registrado</v-chip>
+            <v-chip
+              v-if="initialhour"
+              @click:close="vie = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour }} a {{ endhour }}</span></v-chip
+            >
+            <v-chip
+              v-if="(endhour2  && hour)"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour2 }} a {{ endhour2 }}</span></v-chip
+            >
+            <v-chip label v-if="!endhour2">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row class="mb-n10" v-if="sab">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Sab</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!initialhour">No registrado</v-chip>
+            <v-chip
+              v-if="initialhour"
+              @click:close="sab = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour }} a {{ endhour }}</span></v-chip
+            >
+            <v-chip
+              v-if="(endhour2  && hour)"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour2 }} a {{ endhour2 }}</span></v-chip
+            >
+            <v-chip label v-if="!endhour2">No registrado</v-chip>
+          </v-col>
+          <v-col xl="5"></v-col>
+        </v-row>
+
+        <v-row v-if="dom">
+          <v-col class="mr-n10" xl="2"> <p class="weekday">Dom</p> </v-col>
+          <v-col xl="11" class="mr-n10">
+            <v-chip label v-if="!initialhour">No registrado</v-chip>
+            <v-chip
+              v-if="initialhour"
+              @click:close="dom = false"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour }} a {{ endhour }}</span></v-chip
+            >
+            <v-chip
+              v-if="(endhour2  && hour)"
+              close-icon="mdi-close"
+              style="border: thin solid #7900ff"
+              color="#f4edff"
+              label
+              close
+              ><span class="hour">{{ initialhour2 }} a {{ endhour2 }}</span></v-chip
+            >
+            <v-chip label v-if="!endhour2">No registrado</v-chip></v-col
+          >
+          <v-col xl="5"></v-col>
+        </v-row>
+      </v-col>
+  </div>
+            </v-col>
                 </v-col>
                 <v-col md="6" cols="12">
-                  <span>Extensión</span>
+                  <p>Extensión</p>
                   <v-text-field
                     v-model="extension"
                     color="#9966ff"
@@ -96,7 +362,7 @@
                 </v-col>
                 <!--  <span>Horario para recepción de llamadas*</span> -->
                 <v-col md="4" cols="12">
-                  <span>Código postal*</span>
+                  <p>Código postal*</p>
                   <v-text-field
                     v-model="zip_code"
                     color="#9966ff"
@@ -108,7 +374,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Estado*</span>
+                  <p>Estado*</p>
                   <v-text-field
                     v-model="state"
                     color="#9966ff"
@@ -118,7 +384,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Ciudad o Municipio*</span>
+                  <p>Ciudad o Municipio*</p>
                   <v-text-field
                     v-model="city"
                     color="#9966ff"
@@ -128,7 +394,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Colonia*</span>
+                  <p>Colonia*</p>
                   <v-text-field
                     v-model="suburb"
                     color="#9966ff"
@@ -138,7 +404,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="8" cols="12">
-                  <span>Ubicación*</span>
+                  <p>Ubicación*</p>
                   <v-text-field
                     v-model="address"
                     color="#9966ff"
@@ -148,7 +414,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Número exterior*</span>
+                  <p>Número exterior*</p>
                   <v-text-field
                     v-model="number_ext"
                     color="#9966ff"
@@ -158,7 +424,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Número interior</span>
+                  <p>Número interior</p>
                   <v-text-field
                     v-model="number_int"
                     color="#9966ff"
@@ -168,7 +434,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Referencias*</span>
+                  <p>Referencias*</p>
                   <v-text-field
                     v-model="reference"
                     color="#9966ff"
@@ -280,16 +546,7 @@
                     class="white--text save"
                     color="#7900ff"
                     large
-                    >Guardar cambios</v-btn
-                  >
-                  <v-btn
-                    @click="reset"
-                    height="50px"
-                    class="restore ml-3"
-                    color="#999999"
-                    outlined
-                    large
-                    >Restaurar todo</v-btn
+                    ><span>Guardar cambios</span></v-btn
                   >
                   <v-overlay :value="overlay">
                     <v-alert
@@ -316,6 +573,16 @@ export default {
   },
   data() {
     return {
+      mon:'',
+      tue:'',
+      wed:'',
+      thu:'',
+      fri:'',
+      sat:'',
+      sun:'',
+      
+      attention: '',
+      rest:'',
       timeLun: '',
       timeMar: '',
       timeMie: '',
@@ -358,17 +625,21 @@ export default {
       number_ext: '',
       number_int: '',
       state: '',
+      hour1:'',
+      hour2:'',
       facilities: [],
       phone: '',
       zipcode: '',
       suburb: '',
       reference: '',
+      phone_number:'',
       inputs: [
         {
           name: '',
         },
       ],
       location: [],
+      zip_code:'',
       overlay: false,
       dialog: false,
       selectedItem: 1,
@@ -377,6 +648,16 @@ export default {
       modal2: false,
       valid: '',
       id: '',
+      initialhour: '',
+      endhour: '',
+      hour:false,
+      initialhour2: '',
+      endhour2: '',
+        hours: [
+        '01:00 AM', '01:30 AM', '02:00 AM', '02:30 AM', '03:00 AM', '03:30 AM', '04:00 AM', '04:30 AM', '05:00 AM', '05:30 AM', '06:00 AM', '06:30 AM', '07:00 AM', '07:30 AM', '08:00 AM', '08:30 AM',
+        '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:00 PM', '01:00 PM', '01:30 PM', '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM',
+        '05:00 PM', '05:30 PM', '06:00 PM', '06:30 PM', '07:00 PM', '07:30 PM', '08:00 PM', '08:30 PM', '09:00 PM', '09:30 PM', '10:00 PM', '10:30 PM', '11:00 PM', '11:30 PM', '12:00 AM',
+      ],
     }
   },
   watch: {
@@ -391,6 +672,7 @@ export default {
     console.log('verificando')
     this.getFacility()
     const facilityId = this.$route.params.id;
+    return facilityId
   },
   created(){
    
@@ -424,8 +706,8 @@ export default {
 
            /*  accesibilidad | Genesis */
           this.parking = res.data.data.accessibility_and_others.accessibility.parking_with_access_to_the_establishment
-          this.lift = res.data.data.accessibility_and_others.accessibility.wheelchair_lift_or_ramp
-          this.ramp = res.data.data.accessibility_and_others.accessibility.wheelchair_lift_or_ramp
+          this.lift = res.data.data.accessibility_and_others.accessibility.wheelchair_lift
+          this.ramp = res.data.data.accessibility_and_others.accessibility.wheelchair_ramp
           this.restroom = res.data.data.accessibility_and_others.accessibility.toilets_with_wheelchair_access
           this.area = res.data.data.accessibility_and_others.accessibility.rest_area_with_wheelchair_access
           this.sign = res.data.data.accessibility_and_others.accessibility.staff_trained_in_sign_language
@@ -441,13 +723,31 @@ export default {
           this.unisex = res.data.data.accessibility_and_others.services.unisex_toilets
           this.wifi = res.data.data.accessibility_and_others.services.wifi
 
-       
+          this.type_schedule=res.data.data.type_schedule
+        this.consultation_length=res.data.data.consultation_length
+        this.dates=res.data.data.schedule.free_days
+
+        this.mon=res.data.data.calling_attetion_schedule[0].day      
+        this.tue=res.data.data.calling_attetion_schedule[1].day
+        this.wed=res.data.data.calling_attetion_schedule[2].day
+        this.thu=res.data.data.calling_attetion_schedule[3].day
+        this.fri=res.data.data.calling_attetion_schedule[4].day
+        this.sat=res.data.data.calling_attetion_schedule[5].day
+        this.sun=res.data.data.calling_attetion_schedule[6].day
+
+        this.hour1=res.data.data.calling_attetion_schedule[0].attention_time1
+        this.hour2=res.data.data.calling_attetion_schedule[0].attention_time2
+        this.daysGet()
+       this.splitTime()
         })
     },
     /*    método put para actualizar los datos de establecimiento | Genesis */
     update(){
+      this.addDay()
+      this.days()
       this.$axios
       .post(`api/v1/facilities/full/${this.$route.params.editFacility}`, {
+      
         name: this.facility_name,
         location: 
           {
@@ -461,12 +761,49 @@ export default {
           phone: this.phone_number,
           extension: this.extension,
           zipcode: this.zip_code,
+          calling_attetion_schedule: [
+            {
+              day: this.lunes,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
+            },
+            {
+              day: this.martes,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
+            },
+            {
+              day: this.miercoles,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
+            },
+            {
+              day: this.jueves,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
+            },
+            {
+              day: this.viernes,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
+            },
+            {
+              day: this.sabado,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
+            },
+            {
+              day: this.domingo,
+              attention_time1: this.matutino,
+              attention_time2: this.vespertino
+            },
+          ],
           accessibility_and_others: 
           {
             accessibility:
               {
-                parking_with_access_to_the_establishment: this.parking,
-                wheelchair_lift_or_ramp: this.lift,
+                wheelchair_lift: this.lift,
+                wheelchair_ramp: this.ramp,
                 toilets_with_wheelchair_access: this.restroom,
                 rest_area_with_wheelchair_access: this.area,
                 staff_trained_in_sign_language: this.sign,
@@ -486,14 +823,75 @@ export default {
               },
             
           },
-          clues: 'none',
           city_id: '2',
-          coordinates: "54645",
-      },
+          coordinates: "123456789"
+        },
       {
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),} 
       })
     },
+
+     
+   /* unir los horarios en una sola variable por turno  */
+  addDay() {
+     const rango1 = [this.initialhour, this.endhour]
+     const rango2 = [this.initialhour2, this.endhour2]
+     const turno1 = rango1.join(' a ')
+     const turno2 = rango2.join(' a ')
+     this.matutino=turno1
+     this.vespertino=turno2
+    },
+   /*  mandar los dias en ingles */
+   days(){
+      if(this.lun===true){this.lunes='monday'}
+      else if(this.lun===false){this.lunes='n/a'}
+      if(this.mar===true){this.martes='tuesday'}
+      else if(this.mar===false){this.martes='n/a'}
+      if(this.mie===true){this.miercoles='wednesday'}
+      else if(this.mie===false){this.miercoles='n/a'}
+      if(this.jue===true){this.jueves='thursday'}
+      else if(this.jue===false){this.jueves='n/a'}
+      if(this.vie===true){this.viernes='friday'}
+      else if(this.vie===false){this.viernes='n/a'}
+      if(this.sab===true){this.sabado='saturday'}
+      else if(this.sab===false){this.sabado='n/a'}
+      if(this.dom===true){this.domingo='sunday'}
+      else if(this.dom===false){this.domingo='n/a'}
+    },
+    daysGet(){
+      if(this.mon==='monday'){this.lun=true}
+      else if(this.mon==='n/a'){this.lun=false}
+
+      if(this.tue==='tuesday'){this.mar=true}
+      else if(this.tue==='n/a'){this.mar=false}
+
+      if(this.wed==='wednesday'){this.mie=true}
+      else if(this.wed==='n/a'){this.mie=false}
+
+      if(this.thu==='thursday'){this.jue=true}
+      else if(this.thu==='n/a'){this.jue=false}
+
+      if(this.fri==='friday'){this.vie=true}
+      else if(this.fri==='n/a'){this.vie=false}
+
+      if(this.sat==='saturday'){this.sab=true}
+      else if(this.sat==='n/a'){this.sab=false}
+
+      if(this.sun==='sunday'){this.dom=true}
+      else if(this.sun==='n/a'){this.dom=false}
+    },
+
+    splitTime(){
+      const hora1 = (this.hour1).split('a')
+      this.initialhour=(hora1[0])
+      this.endhour=(hora1[1])
+      const hora2 = (this.hour2).split('a')
+      this.initialhour2=(hora2[0])
+      this.endhour2=(hora2[1])
+
+      if(this.initialhour2){this.hour=true}
+    },
+
 
     save(start, end) {
       this.$refs.dialog[0].save(start, end)
@@ -550,6 +948,7 @@ a {
 .save {
   font-family: Montserrat;
   text-transform: unset !important;
+  font-size: 1.2vh !important;
 }
 .restore {
   font-family: Montserrat;
@@ -559,12 +958,14 @@ a {
   font-family: Montserrat;
   text-transform: unset !important;
   color: #9966ff;
+  border: 0px;
 }
 .textfield {
   height: 50px;
   width: 100%;
   font-size: 0.9rem;
   font-family: Montserrat;
+  margin-top: -1vh !important;
 }
 H1 {
   font-family: MontserratBold;
@@ -583,5 +984,14 @@ span {
   color: #9966ff !important;
   font-family: MontserratMedium;
   font-size: 100%;
+}
+span.hour {
+  font-family: Montserrat;
+  color: #7900ff;
+  font-size: 100%;
+}
+p{
+  font-size: 1.7vh !important;
+  color: #999999 !important;
 }
 </style>

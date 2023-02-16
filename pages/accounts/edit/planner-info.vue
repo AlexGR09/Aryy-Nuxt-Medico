@@ -25,8 +25,8 @@
             <v-col md="6" cols="12"></v-col>
 
             <v-row>
-              <v-col cols="auto">
-                <v-dialog
+              <v-col cols="12">
+                <v-dialog 
                   fullscreen
                   overlay-color="white"
                   transition="dialog-top-transition"
@@ -37,23 +37,21 @@
                     height="150px"
                     color="#ffffff"
                     dense
-                    fixed
                     hide-on-scroll
                   >
-                    <v-row>
-                      <v-col class="mt-3" md="5" lg="5" xl="5"
+                 
+                      <v-col class="mt-n16 " md="5" lg="5" xl="5"
                         ><v-btn @click="back" icon
                           ><v-icon>mdi-close</v-icon></v-btn
-                        ></v-col
-                      >
-                      <v-col md="4" lg="4" xl="4">
+                        ></v-col>
+                      <v-row justify="start">
+                      <v-col cols="9" md="4" lg="4" xl="4">
                         <v-img
                           :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
                           max-width="150"
                         ></v-img>
-                        <p class="mt-n7 prueba">Consultorios</p></v-col
+                        <p class="mt-n12 prueba">Consultorios</p></v-col
                       >
-                      <v-col ms="3" lg="3" xl="3"></v-col>
                     </v-row>
                   </v-app-bar>
                   <template v-slot:activator="{ on, attrs }">

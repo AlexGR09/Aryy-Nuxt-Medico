@@ -1,123 +1,41 @@
    <!-- card para mostrar datos de consultorio | Genesis -->
 <template>
   <div>
-    <p v-if="!facilities[0]"
+    <p class="empty" v-if="!facilities[0]"
       >Todavía no tienes consultorios registrados.</p
     >
-    <v-sheet
-      v-for="facility in facilities"
-      :key="facility"
-      class="mb-5"
-      outlined
-      color="grey"
-      rounded
-    >
-      <v-card color="card" outlined>
+      <v-card flat class="mt-5" v-for="facility in facilities"
+      :key="facility" color="card" >
         <v-row>
-          <v-col xs="1" sm="1" md="1" lg="1" xl="1"
-            ><v-img
-              class="ml-5 mt-2"
-              :src="require('@/assets/icons/icon_inicio.svg')"
-              width="35px"
+       <v-img
+              class="ml-5 mr-2 mt-3"
+              :src="require('@/assets/icons/icon_CitaConsultorio.svg')"
+              max-width="5vh" max-height="5vh"
             ></v-img
-          ></v-col>
-          <v-col xs="11" sm="11" md="3" lg="3" xl="3"
-            ><p id="facility_name" class="mt-4">{{ facility.name }}</p></v-col
           >
-          <v-col xs="12" sm="12" md="4" lg="4" xl="4"
-            ><p id="address" class="mt-4">
+          <v-col cols="9" xs="11" sm="11" md="3" lg="3" xl="3"
+            ><p class="mt-3" id="facility_name">{{ facility.name }}</p></v-col
+          >
+          <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="6"
+            ><p class="mt-3" id="address">
               {{ address }}, {{ number_ext }} {{ number_int }}, {{ state }}
             </p></v-col
           >
-          <v-col xs="1" sm="1" md="1" lg="1" xl="2"></v-col>
-          <v-col>
-            <v-btn-toggle borderless class="botones mt-1">
-              <v-dialog
-                fullscreen
-                overlay-color="white"
-                transition="dialog-top-transition"
-                v-model="dialog"
-              >
-                <v-app-bar
-                  flat
-                  height="150px"
-                  color="#ffffff"
-                  dense
-                  fixed
-                  hide-on-scroll
-                >
-                  
-                  <v-row>
-                    <v-col md="5" lg="5" xl="5">
-                    <!--   <v-btn @click="back" icon
-                          ><v-icon>mdi-close</v-icon></v-btn
-                        > -->
-                    </v-col>
-                    <v-col md="4" lg="4" xl="4">
-                      <v-img
-                        :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
-                        max-width="150"
-                      ></v-img>
-                      <p class="mt-n7 prueba">Consultorios</p></v-col
-                    >
-                    <v-col ms="3" lg="3" xl="3"></v-col>
-                  </v-row>
-                </v-app-bar>
-                <template v-slot:activator="{ on, attrs }">
+       
+          <v-col xl="1">
+            <v-btn-toggle borderless  class="botones  d-flex justify-end">
                   <v-btn
                     :to="'/accounts/edit/plannerviews/' + facility.id"
-                    v-bind="attrs"
-                    v-on="on"
                     v-model="check"
                     class="iconos"
                     icon
                   >
                     <v-img
-                      :src="require('@/assets/icons/icon_verpaciente.svg')"
+                      :src="require('@/assets/icons/icon_watch.svg')"
                       max-width="25"
                     ></v-img>
                   </v-btn>
-                </template>
-                <!-- <watch-facility class="mt-16 ml-13"/> -->
-              </v-dialog>
-
-              <v-dialog v-model="dialog2" persistent max-width="550">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    v-bind="attrs"
-                    v-on="on"
-                    class="iconos ml-n3 mr-n3"
-                    icon
-                  >
-                    <v-img
-                      :src="require('@/assets/icons/icon_borrarpaciente.svg')"
-                      max-width="25"
-                    ></v-img>
-                  </v-btn>
-                </template>
-                <v-card>
-                  <v-card-title class="text-h5 justify-center">
-                    <p class="reset">
-                      ¿Está seguro de eliminar el establecimiento?
-                    </p>
-                  </v-card-title>
-                  <v-card-actions>
-                    <v-btn color="#9966ff" text @click="dialog2 = false">
-                      No
-                    </v-btn>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      color="#9966ff"
-                      text
-                      @click="deleteCard(facility.id)"
-                      v-on:click="dialog2 = false"
-                    >
-                      si
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-
+              
               <v-dialog
                 fullscreen
                 overlay-color="white"
@@ -150,22 +68,58 @@
                     v-bind="attrs"
                     v-on="on"
                     v-model="check"
-                    class="iconos"
+                    class="iconos ml-n3"
                     icon
                   >
                     <v-img
-                      :src="require('@/assets/icons/icon_editpaciente.svg')"
+                      :src="require('@/assets/icons/icon_editlist.svg')"
                       max-width="25"
                     ></v-img>
                   </v-btn>
                 </template>
                 <!-- <watch-facility class="mt-16 ml-13"/> -->
               </v-dialog>
+
+              <v-dialog v-model="dialog2" persistent max-width="550">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-bind="attrs"
+                    v-on="on"
+                    class="iconos ml-n3 mr-n3"
+                    icon
+                  >
+                    <v-img
+                      :src="require('@/assets/icons/icon_delete.svg')"
+                      max-width="25"
+                    ></v-img>
+                  </v-btn>
+                </template>
+                <v-card>
+                  <v-card-title class="text-h5 justify-center">
+                    <p class="reset">
+                      ¿Está seguro de eliminar el establecimiento?
+                    </p>
+                  </v-card-title>
+                  <v-card-actions class="reset">
+                    <v-btn color="#9966ff" text @click="dialog2 = false">
+                      <p class="actions">Cancelar</p>
+                    </v-btn>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="#9966ff"
+                      text
+                      @click="deleteCard(facility.id)"
+                      v-on:click="dialog2 = false"
+                    >
+                      <p class="actions">Confirmar</p>
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
             </v-btn-toggle>
           </v-col>
         </v-row>
       </v-card>
-    </v-sheet>
   </div>
 </template>
 <script>
@@ -233,5 +187,20 @@ export default {
 span {
   font-family: MontserratMedium;
   color: #999999;
+}
+p{
+  text-transform: capitalize !important;
+}
+p.empty{
+  text-transform: none !important;
+}
+p.reset{
+  text-transform: none !important;
+  font-size: 2.3vh !important;
+}
+p.actions{
+  font-family: Montserrat;
+  color: #7900ff !important;
+  font-size: 1.7vh !important;
 }
 </style>

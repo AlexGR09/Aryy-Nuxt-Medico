@@ -158,7 +158,7 @@
                       color="#999999"
                       outlined
                       large
-                      ><span class="restore">Restaurar todo</span></v-btn
+                      ><span class="btnrestore">Restaurar todo</span></v-btn
                     >
                   </template>
                   <v-card>

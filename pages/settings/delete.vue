@@ -9,12 +9,13 @@
       </template>
     </v-breadcrumbs>
     <v-row>
-      <v-row>
-        <v-col cols="12">
+      <v-row v-if="$vuetify.breakpoint.lgAndUp">
+        <v-col  cols="12">
           <menu-settings />
         </v-col>
       </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
+        <menu-settings v-if="$vuetify.breakpoint.smAndDown"/>
         <v-card color="card" min-height="800px" flat class="pa-3 montserrat">
           <v-card-title>ELIMINAR CUENTA</v-card-title>
           <v-card-subtitle
@@ -101,7 +102,7 @@ h1 {
 }
 .v-card__subtitle.delete {
   text-align: center;
-  color: #999999;
+  color: #999999 !important
 }
 .deletebtn {
   font-family: Montserrat;
@@ -117,5 +118,11 @@ h1 {
   font-size: 1.7vh;
   text-transform: none;
   font-family: Montserrat;
+  color: #999999 !important
+}
+
+b {
+  font-family: MontserratMedium;
+  color: #999999 !important
 }
 </style>

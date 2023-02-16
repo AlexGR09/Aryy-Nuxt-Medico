@@ -9,12 +9,13 @@
       </template>
     </v-breadcrumbs>
     <v-row>
-      <v-row>
-        <v-col cols="12">
+      <v-row v-if="$vuetify.breakpoint.lgAndUp">
+        <v-col  cols="12">
           <menu-settings />
         </v-col>
       </v-row>
       <v-col cols="12" md="10" lg="10" xl="11">
+        <menu-settings v-if="$vuetify.breakpoint.smAndDown"/>
         <v-card color="card" height="800px" flat class="pa-3 montserrat">
           <v-card-title> TEMA DE ARYY </v-card-title>
           <v-card-subtitle

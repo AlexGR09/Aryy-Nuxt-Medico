@@ -1,6 +1,8 @@
 <template>
   <div>
     <v-tabs
+    
+      v-if="$vuetify.breakpoint.lgAndUp"
       background-color="card"
       class="list-item mt-8 ml-n3"
       active-class="bg-active"
@@ -22,6 +24,19 @@
         ELIMINAR
       </v-tab>
     </v-tabs>
+    <v-tabs
+    background-color="card"
+      v-if="$vuetify.breakpoint.smAndDown"
+     width="1vh"
+      show-arrows
+      v-model="tabs"
+      color="#7900ff"
+    >
+      <v-tab v-for="tab in tabsItem" :key="tab" :to="tab.to">
+        {{ tab.name }}
+      </v-tab>
+    </v-tabs>
+
     <router-view></router-view>
   </div>
 </template>
@@ -31,6 +46,24 @@ import VueRouter from 'vue-router'
 export default {
   data() {
     return {
+      tabsItem: [
+        {
+          name: 'CUENTA',
+          to: '/settings/account'
+        },
+        {
+          name: 'NOTIFICACIONES',
+          to: '/settings/notifications'
+        },
+        {
+          name: 'TEMA',
+          to: '/settings/theme'
+        },
+        {
+          name: 'ELIMINAR',
+          to: '/settings/delete'
+        },
+      ],
       selectedItem: 1,
     }
   },

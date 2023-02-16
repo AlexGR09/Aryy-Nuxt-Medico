@@ -124,56 +124,7 @@
                     ></v-img> </v-btn
                 ></v-col>
 
-                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
-                  <p>Teléfono personal*</p>
-                  <v-text-field
-                    v-model="phone_number"
-                    color="#9966ff"
-                    :disabled="!phoned"
-                    class="textfield"
-                    placeholder="Selecciona una especialidad"
-                    outlined
-                  ></v-text-field>
-                </v-col>
-                <v-col  cols="1">
-                  <v-btn @click="phoned = !phoned" class="iconos mt-9" icon
-                    ><v-img
-                      :src="require('@/assets/icons/icon_edit.svg')"
-                      max-width="25"
-                    ></v-img> </v-btn
-                ></v-col>
-
-                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
-                  <p>Correo*</p>
-                  <v-text-field
-                    v-model="email"
-                    :disabled="!emaild"
-                    color="#9966ff"
-                    class="textfield"
-                    placeholder="Selecciona una especialidad"
-                    outlined
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="1">
-                  <v-dialog
-                    fullscreen
-                    overlay-color="white"
-                    transition="dialog-top-transition"
-                    v-model="dialogg"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn @click="emaild = !emaild" class="iconos mt-9" icon>
-                        <v-img
-                          v-bind="attrs"
-                          v-on="on"
-                          :src="require('@/assets/icons/icon_edit.svg')"
-                          max-width="25"
-                        ></v-img>
-                      </v-btn>
-                    </template>
-                    <change-email />
-                  </v-dialog>
-                </v-col>
+           
 
                 <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
                   <p>Fecha de nacimiento</p>
@@ -222,6 +173,33 @@
                       max-width="25"
                     ></v-img> </v-btn
                 ></v-col>
+
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
+                  <p>Teléfono personal*</p>
+                  <v-text-field
+                    v-model="phone_number"
+                    color="#9966ff"
+                    :disabled="!phoned"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined
+                  ></v-text-field>
+                </v-col>
+                <v-col xl="1"></v-col>
+
+                <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
+                  <p>Correo*</p>
+                  <v-text-field
+                    v-model="email"
+                    :disabled="!emaild"
+                    color="#9966ff"
+                    class="textfield"
+                    placeholder="Selecciona una especialidad"
+                    outlined
+                  ></v-text-field>
+                </v-col>
+
+              
                 <v-col xs="3" sm="5" md="3" lg="3" xl="3" cols="10">
                   <p>Contraseña*</p>
                   <v-text-field
@@ -233,27 +211,7 @@
                     outlined
                   ></v-text-field>
                 </v-col>
-                <v-col cols="1">
-                  <v-btn
-                    @click="passwordd = !passwordd"
-                    class="iconos mt-9"
-                    icon
-                    ><v-img
-                      :src="require('@/assets/icons/icon_edit.svg')"
-                      max-width="25"
-                    ></v-img> </v-btn
-                ></v-col>
-                <v-col v-if="passwordd" md="3" cols="10">
-                  <span>Confirmar contraseña*</span>
-                  <v-text-field
-                    v-model="password_confirmation"
-                    color="#9966ff"
-                    :disabled="!passwordd"
-                    class="textfield"
-                    placeholder="********"
-                    outlined
-                  ></v-text-field>
-                </v-col>
+              
               </v-row>
               <v-row>
                 <v-col cols="10" xl="2">
@@ -264,7 +222,7 @@
                   v-on:click="update"
                   color="#7900ff"
                   large
-                  >Actualizar datos</v-btn
+                  ><span class="btnsave">Guardar cambios</span></v-btn
                 >
                 <v-overlay v-if="ok" v-model="overlay">
                   <v-alert
@@ -287,7 +245,7 @@
                       color="#999999"
                       outlined
                       large
-                      >Restaurar todo</v-btn
+                      ><span class="btnrestore">Restaurar todo</span></v-btn
                     >
                   </template>
                   <v-card>
@@ -322,13 +280,11 @@
 <script>
 import Account from './account.vue'
 import accountMenu from './accountMenu.vue'
-import changeEmail from './PersonalProfile/changeEmail.vue'
 import menuPersonal from '@/pages/accounts/edit/PersonalProfile/menuPersonal.vue'
 
 export default {
   components: {
     menuPersonal,
-    changeEmail,
     Account,
     accountMenu
   },
@@ -531,6 +487,7 @@ a {
 .restore {
   font-family: Montserrat;
   text-transform: unset !important;
+  border: 2px solid #999999;
 }
 .btn {
   font-family: Montserrat;
@@ -570,6 +527,14 @@ p.cedu {
     font-family: MontserratBold !important;
     font-size: 110% !important;
     color: #4f565f !important;
+  }
+  span.btnrestore{
+    font-size: 1.6vh !important;
+    color: #999999 !important;
+  }
+  span.btnsave{
+    font-size: 1.6vh !important;
+    color: white !important;
   }
 </style>
 

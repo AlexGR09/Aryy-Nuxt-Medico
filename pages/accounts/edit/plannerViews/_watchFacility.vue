@@ -4,25 +4,24 @@
       <v-btn icon color="black" @click="$router.back()">
         <v-icon>mdi-close</v-icon>
       </v-btn>
-      <v-row>
-        <v-col md="5" lg="5" xl="5"></v-col>
+      <v-row >  <v-col md="4" lg="4" xl="5"></v-col>
         <v-col md="4" lg="4" xl="4">
           <v-img
             class="ml-n8"
             :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
             max-width="150"
           ></v-img>
-          <p class="mt-n7 prueba">Consultorios</p></v-col
+          <p class="consul mt-n7 ml-n6 prueba">Consultorios</p></v-col
         >
         <v-col ms="3" lg="3" xl="3"></v-col>
       </v-row>
     </v-app-bar>
-    <v-card color="card" height="100%" flat class="pa-16">
-      <v-card-text class="pa-16">
-        <v-row class="ml-16">
-          <v-form class="ml-16" ref="form" v-model="valid">
-            <v-col md="1" lg="1" xl="1"></v-col>
-            <v-col md="10" lg="10" xl="10">
+    <v-card color="card" height="100%" flat class=" mt-16">
+      <v-card-text class="pa-10">
+        <v-row class="mt-4">
+          <v-form class="d-flex justify-center mt-16 " ref="form" v-model="valid">
+        
+            <v-col md="10" lg="10" xl="9">
               <v-row>
                 <v-col md="12" cols="12">
                   <p>Nombre del consultorio*</p>
@@ -42,56 +41,13 @@
                     disabled
                     v-model="facilities.phone"
                     color="#9966ff"
-                    class="textfield mb-5"
+                    class="textfield"
                     placeholder="XXX XXX XXXX"
                     outlined
                   ></v-text-field>
-                  <p class="mb-3">Horario para recepción de llamadas*</p>
-
-                  <v-row>
-                    <v-col class="mt-2" cols="6" xl="2">
-                      <p class="mb-4">{{ lunes }}</p>
-                      <p class="mb-4">{{ martes }}</p>
-                      <p class="mb-4">{{ miercoles }}</p>
-                      <p class="mb-4">{{ jueves }}</p>
-                      <p class="mb-4">{{ viernes }}</p>
-                      <p class="mb-4">{{ sabado }}</p>
-                      <p class="mb-4">{{ domingo }}</p>
-                    </v-col>
-
-                    <v-col xl="5">
-                      <v-chip v-if="lun" class="ml-3" color="#f4edff" label>{{
-                        timeLun
-                      }}</v-chip
-                      ><br v-if="lun" />
-                      <v-chip v-if="mar" class="ml-3" color="#f4edff" label>{{
-                        timeMar
-                      }}</v-chip
-                      ><br v-if="mar" />
-                      <v-chip v-if="mie" class="ml-3" color="#f4edff" label>{{
-                        timeMie
-                      }}</v-chip
-                      ><br v-if="mie" />
-                      <v-chip v-if="jue" class="ml-3" color="#f4edff" label>{{
-                        timeJue
-                      }}</v-chip
-                      ><br v-if="jue" />
-                      <v-chip v-if="vie" class="ml-3" color="#f4edff" label>{{
-                        timeVie
-                      }}</v-chip
-                      ><br />
-                      <v-chip v-if="sab" class="ml-3" color="#f4edff" label>{{
-                        timeSab
-                      }}</v-chip
-                      ><br v-if="sab" />
-                      <v-chip v-if="dom" class="ml-3" color="#f4edff" label>{{
-                        timeDom
-                      }}</v-chip
-                      ><br v-if="dom" />
-                    </v-col>
-                  </v-row>
-                </v-col>
-                <v-col md="6" cols="12">
+               
+                  </v-col>
+                  <v-col md="6" cols="12">
                   <p>Extensión</p>
                   <v-text-field
                     disabled
@@ -101,8 +57,11 @@
                     placeholder="No. Extensión"
                     outlined
                   ></v-text-field>
+                </v-col> <v-col  cols="12">
+                  <p >Horario para recepción de llamadas*</p>
+               <schedule-chips/>
                 </v-col>
-                <!--  <span>Horario para recepción de llamadas*</span> -->
+              
                 <v-col md="4" cols="12">
                   <p>Código postal*</p>
                   <v-text-field
@@ -194,8 +153,8 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col md="6" lg="6" xl="6">
+              <v-row class="mt-7">
+                <v-col cols="12" md="6" lg="6" xl="6">
                   <H1 class="mb-5">ACCESIBILIDAD</H1>
 
                   <v-checkbox
@@ -265,7 +224,8 @@
                     hide-details
                     label="Espacio seguro para personas transgénero"
                   ></v-checkbox>
-                  <H1 class="mb-5 mt-15">SERVICIOS</H1>
+                  <br/>
+                  <H1 class="mb-5 ">SERVICIOS</H1>
                   <v-checkbox
                     disabled
                     v-model="toilets"
@@ -294,7 +254,7 @@
                 <div class="mt-5 mb-n15"></div>
               </v-row>
             </v-col>
-            <v-col xl="1"></v-col>
+           
           </v-form>
         </v-row>
       </v-card-text>
@@ -307,39 +267,6 @@ export default {
   components: {},
   data() {
     return {
-      lunes: '',
-      martes: '',
-      miercoles: '',
-      jueves: '',
-      viernes: '',
-      sabado: '',
-      domingo: '',
-      timeLun: '',
-      timeMar: '',
-      timeMie: '',
-      timeJue: '',
-      timeVie: '',
-      timeSab: '',
-      timeDom: '',
-
-      timeLun2: '',
-      timeMar2: '',
-      timeMie2: '',
-      timeJue2: '',
-      timeVie2: '',
-      timeSab2: '',
-      timeDom2: '',
-
-      attention_time1: '',
-      lun: '',
-      mar: '',
-      mie: '',
-      jue: '',
-      vie: '',
-      sab: '',
-      dom: '',
-
-      horas: '',
       name: '',
       day: '',
       extension: '',
@@ -359,8 +286,6 @@ export default {
 
       unisex: false,
       wifi: false,
-
-      attention_time: '',
       address: '',
       number_ext: '',
       number_int: '',
@@ -448,139 +373,7 @@ export default {
             res.data.data.accessibility_and_others.services.unisex_toilets
           this.wifi = res.data.data.accessibility_and_others.services.wifi
 
-          /* horario */
-          this.timeLun =
-            res.data.data.calling_attetion_schedule[0].attention_time1
-          this.timeMar =
-            res.data.data.calling_attetion_schedule[0].attention_time1
-          this.timeMie =
-            res.data.data.calling_attetion_schedule[0].attention_time1
-          this.timeJue =
-            res.data.data.calling_attetion_schedule[0].attention_time1
-          this.timeVie =
-            res.data.data.calling_attetion_schedule[0].attention_time1
-          this.timeSab =
-            res.data.data.calling_attetion_schedule[0].attention_time1
-          this.timeDom =
-            res.data.data.calling_attetion_schedule[0].attention_time1
-
-          this.lun = res.data.data.calling_attetion_schedule[0].day
-          this.mar = res.data.data.calling_attetion_schedule[1].day
-          this.mie = res.data.data.calling_attetion_schedule[2].day
-          this.jue = res.data.data.calling_attetion_schedule[3].day
-          this.vie = res.data.data.calling_attetion_schedule[4].day
-          this.sab = res.data.data.calling_attetion_schedule[5].day
-          this.dom = res.data.data.calling_attetion_schedule[6].day
-          this.days()
         })
-    },
-
-    /* cambiar los dias de ingles a español */
-    days() {
-      if (this.lun === 'monday') {
-        this.lunes = 'Lunes'
-      }
-      if (this.mar === 'tuesday') {
-        this.martes = 'Martes'
-      }
-      if (this.mie === 'wednesday') {
-        this.miercoles = 'Miércoles'
-      }
-      if (this.jue === 'thursday') {
-        this.jueves = 'Jueves'
-      }
-      if (this.vie === 'friday') {
-        this.viernes = 'Viernes'
-      }
-      if (this.sab === 'saturday') {
-        this.sabado = 'Sábado'
-      }
-      if (this.dom === 'sunday') {
-        this.domingo = 'Domingo'
-      }
-    },
-
-    /*    método put para actualizar los datos de establecimiento | Genesis */
-    facility() {
-      this.$axios
-        .put('/api/v1/physician/facility', {
-          facility_name: this.facility_name,
-          location: [
-            {
-              address: this.specialty_id,
-              number_ext: this.license,
-              number_int: this.institution,
-              reference: this.certificates,
-            },
-          ],
-          phone_number: this.biography,
-          zip_code: this.biography,
-          schedule: [
-            {
-              day: this.biography,
-              attention_time: this.biography,
-            },
-            {
-              day: this.biography,
-              attention_time: this.biography,
-            },
-          ],
-          type_schedule: this.biography,
-          consultation_length: this.biography,
-          accessibility_and_others: [
-            {
-              accessibility: [
-                {
-                  parking_with_access_to_the_establishment: this.parking,
-                  wheelchair_lift_or_ramp: this.lift,
-                  /* wheelchair_lift_or_ramp: this.ramp, */
-                  toilets_with_wheelchair_access: this.restroom,
-                  rest_area_with_wheelchair_access: this.area,
-                  staff_trained_in_sign_language: this.sign,
-                  braille_signage_for_blind_people: this.braille,
-                },
-              ],
-              usual_audiences: [
-                {
-                  lgtb_friendly: this.lgbt,
-                  safe_space_for_transgender_people: this.trans,
-                },
-              ],
-              services: [
-                {
-                  toilets: this.toilets,
-                  unisex_toilets: this.unisex,
-                  wifi: this.wifi,
-                },
-              ],
-            },
-          ],
-          /* clues: this.biography,
-            city_id: this.biography, */
-        })
-        .then((response) => {
-          console.log(response.data.data)
-          localStorage.setItem('token', response.data.access_token)
-        })
-        .catch((error) => {
-          /*   alert(error.response.data.errors.email) */
-          this.errormail = ''
-          this.errormail = error.response.data.errors.email[0]
-          this.password_error = ''
-          this.password_error = error.response.data.errors.password[0]
-        })
-    },
-    save(start, end) {
-      this.$refs.dialog[0].save(start, end)
-    },
-    add(index) {
-      this.inputs.push({ name: '' })
-    },
-    remove(index) {
-      this.inputs.splice(index, 1)
-    },
-    reset() {
-      this.$refs.form.reset()
     },
   },
 }
@@ -647,9 +440,13 @@ H1 {
 }
 p {
   font-family: Montserrat;
-  font-size: 120%;
+  font-size: 1.7vh ;
   margin-bottom: -1px !important;
   color: #999999 !important;
+}
+span{
+  font-size: 1.3vh !important;
+ 
 }
 .v-input__icon--prepend-inner .v-icon {
   color: #999999;
@@ -664,5 +461,11 @@ p {
 .v-chip {
   margin-bottom: 0.7vh !important;
   border: thin solid #7900ff !important;
+}
+.theme--light.v-input--is-disabled {
+  color: rgba(57, 12, 120, 0.38) !important;
+}
+p.consul{
+  font-size: 2.4vh;
 }
 </style>

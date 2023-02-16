@@ -25,7 +25,7 @@
               order-lg="2"
             >
               <div>
-                <v-btn color="#f4edff" class="btn" block><span>Cambiar fecha</span> </v-btn>
+                <v-btn color="#f4edff" class="btn" block><span class="btn">Cambiar fecha</span> </v-btn>
               </div>
               <div>
                 <v-btn
@@ -75,8 +75,8 @@
   </script>
   <style scoped>
   .btn{
-    color: #7900ff;
-    background: #7900ff;
+    color: #7900ff !important;
+  border: 0px;
     text-transform: none;
     font-family: MontserratMedium;
   }
