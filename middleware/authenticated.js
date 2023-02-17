@@ -11,9 +11,3 @@ export default function({ store, redirect, $axios}) {
         return redirect("/auth/login");
     }
 }
-
-
-
-
-
-
