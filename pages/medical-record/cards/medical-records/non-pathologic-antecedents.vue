@@ -67,8 +67,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log("s-------------------")
-          console.log(res)
           this.diet = res.data.data.diet
           this.other_substances = res.data.data.other_substances
           this.nullVerify()

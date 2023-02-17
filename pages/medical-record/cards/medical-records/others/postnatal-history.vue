@@ -152,7 +152,7 @@ export default {
   methods: {
     postnatalPost() {
       this.$axios
-        .post('api/v1/physician/medical-history/1/postnatal-background',{
+        .post(`api/v1/physician/medical-history/postnatal-background/patient/${this.$route.params.medicalRecord}`,{
           delivery_details: this.delivery_details,
           baby_name: this.baby_name,
           baby_weight: this.baby_weight,
@@ -166,7 +166,7 @@ export default {
     },
     postnatalGet() {
       this.$axios
-        .get(`api/v1/physician/medical-history/${this.$route.params.medicalRecord}/postnatal-background`, {
+        .get( `api/v1/physician/medical-history/postnatal-background/patient/${this.$route.params.medicalRecord}`, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
@@ -179,7 +179,7 @@ export default {
     },
     postnatalPut(){
       this.$axios
-      .put(`api/v1/physician/medical-history/${this.$route.params.medicalRecord}/postnatal-background`,{
+      .put(`api/v1/physician/medical-history/postnatal-background/patient/${this.$route.params.medicalRecord}`,{
         postnatal_background_id:  this.$route.params.medicalRecord,
         delivery_details: this.delivery_detail,
         baby_name: this.baby_name,
@@ -187,11 +187,13 @@ export default {
         type_of_feeding: this.type_of_feeding
       })
     },
-  
+    created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
+  },
     update() {
       this.$axios
         .put(
-          `api/v1/medical-records/physician/allergies/patient/${this.$route.params.medicalRecord}`,
+          'api/v1/medical-records/physician/allergies/patient/'+this.id,
           {
             patient_id: this.$route.params.medicalRecord,
             food_allergy:[
@@ -217,6 +219,7 @@ export default {
   },
   mounted() {
     this.postnatalGet()
+    this.created()
   },
 }
 </script>

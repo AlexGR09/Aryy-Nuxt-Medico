@@ -472,6 +472,7 @@
       <v-col cols="12" xs="12" xl="3">
         <v-btn
           block
+          @click="POST_DATA"
           v-on:click="overlay = !overlay"
           height="50px"
           class="white--text mt-7 btn"
@@ -496,8 +497,6 @@
           >Datos actualizados correctamente.</v-alert
         >
       </v-overlay>
-
-      <v-btn @click="POST_DATA" color="primary">guardar receta</v-btn>
     </v-row>
 
   
@@ -544,9 +543,20 @@ export default {
       duration_days: '',
       laboratory_studies: ' ',
       cabinet_studies: '',
+      idUser:'',
     }
   },
-
+  created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
+  },
+   watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false
+        }, 2000)
+    },
+  },
   methods: {
     addInput() {
       this.inputs.push({
@@ -565,7 +575,7 @@ export default {
     
     POST_DATA() {
       this.$axios.post(
-        '/api/v1/physician/medical-appointments/2/prescriptions',
+        '/api/v1/physician/medical-appointments/'+this.id+'/prescriptions',
         {
           vital_signs:
             {
@@ -618,7 +628,7 @@ export default {
     postnatalGet() {
       this.$axios
         .get(
-          '/api/v1/physician/medical-appointments/patient/1',
+          '/api/v1/physician/medical-appointments/patient/'+this.id,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -629,6 +639,7 @@ export default {
           alert(res.data.data[1].duration_treatment)
           this.delivery_details = res.data.data.delivery_details
           this.duration_treatment = res.data.data[1].duration_treatment
+         
         })
     },
 

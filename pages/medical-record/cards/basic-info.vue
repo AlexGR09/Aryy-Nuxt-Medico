@@ -169,6 +169,8 @@
 export default {
   data() {
     return {
+      id:'',
+      idDate:'',
       date: '',
       modal: false,
       code:'',
@@ -180,11 +182,18 @@ export default {
       height:'',
       gender:'',
       blood: ["A+","A-","B+","B-","AB+","AB-","O+","O-"],
+      idUser:'',
+      idAppointment:'',
+      
     }
   },
+
+  
   mounted() {
     this.basic_info()
     this.data()
+    this.created()
+    this.getID()
   },
   computed:{
    /*  funcion para calcular la edad con el date picker | Genesis */
@@ -199,6 +208,7 @@ export default {
   methods: {
     /* datos de paciente para datos basicos | Genesis */
     basic_info() {
+  
       this.$axios
         .get(
           `api/v1/calendar/appointments/${this.$route.params.medicalRecord}`,
@@ -209,15 +219,39 @@ export default {
           }
         )
         .then((res) => {
+          console.log("--------")
+          console.log(res)
           this.patient = res.data.data.patient.full_name
           this.status = res.data.data.status
           this.code = res.data.data.patient.user_country_code
           this.phone = res.data.data.patient.user_phone_number
-
+          
           const elements = [this.code+this.phone];
           this.phone_number=(elements.join());
         })
     },
+   
+    getID() {
+     
+      this.$axios
+        .get(
+          'api/v1/patient/'+this.id+'/medical-appointment',
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+         
+          this.idAppointment = res.data.data.medical_appointments[0].id
+          console.log(this.idAppointment)
+          this.basic_info()
+        })
+    },
+    created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
+  },
 
     data() {
       this.$axios
@@ -235,6 +269,8 @@ export default {
           this.bloodtype=res.data.data.medical_history.blood_type
           this.height=res.data.data.medical_history.height
           this.gender=res.data.data.patient.gender
+          this.idUser=res.data.data.patient.id
+          console.log(this.idUser)
         })
     },
 

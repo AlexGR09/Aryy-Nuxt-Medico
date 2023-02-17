@@ -181,7 +181,9 @@ export default {
           this.cancer_type = res.data.data.cancer.type
           this.kidney_family = res.data.data.kidney_stones.family
           this.kidney_type = res.data.data.kidney_stones.type
+          console.log("aaaaaaaaaaaaa")
         }).catch((error) => {
+          console.log("bbbbbbbbbbb")
           this.errordata = ''
           this.errordata = error.response.data
         })

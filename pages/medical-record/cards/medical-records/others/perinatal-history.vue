@@ -26,51 +26,25 @@
           <v-row>
             <v-col >
               <p class="mt-n3">Fecha del último ciclo menstrual</p>
-              <v-dialog
-                ref="dialog"
-                v-model="modal"
-                :return-value.sync="date"
-                persistent
-                width="290px"
-              >
-                <template #activator="{ on, attrs }">
-                  <v-text-field
-                    v-model="date"
-                    outlined
-                    placeholder="Selecciona la fecha"
-                    readonly
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    <template #append>
-                      <div style="width: 30px">
-                        <v-img
-                          style="margin: auto 0"
-                          max-width="20"
-                          :src="require('@/assets/icons/iconos_citas.svg')"
-                        />
-                      </div> </template
-                  ></v-text-field>
-                </template>
-                <v-date-picker v-model="date" scrollable>
-                  <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="modal = false">
-                    Cancel
-                  </v-btn>
-                  <v-btn text color="primary" @click="$refs.dialog.save(date)">
-                    OK
-                  </v-btn>
-                </v-date-picker>
-              </v-dialog>
-              <p>Duración del ciclo</p>
               <v-text-field
+                v-model="last_menstrual_cycle"
+                outlined
+                placeholder="2022/08/12"
+              ></v-text-field>
+
+              <p>Duración del ciclo</p>
+              
+              <v-text-field
+                v-model="cycle_time"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
                 placeholder="Escriba aquí"
               ></v-text-field>
+              
               <p>Último método anticonceptivo utilizado</p>
               <v-text-field
+                v-model="contraceptive_method_use"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -80,10 +54,11 @@
               <p class="mt-n4 mb-n2">Concepción asistida</p>
               <v-radio-group v-model="con" row>
                 <v-radio color="#b380ff" label="Si" value="conYes"></v-radio>
-                <v-radio color="#b380ff" label="No" value="conNo"></v-radio>
+                <v-radio v-model="assisted_conception" color="#b380ff" label="No" value="conNo"></v-radio>
               </v-radio-group>
               <v-text-field
                 v-if="con == 'conYes'"
+                v-model="assisted_conception"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -91,42 +66,11 @@
               ></v-text-field>
 
               <p class="mt-n3">FPP Final</p>
-              <v-dialog
-                ref="dialog"
-                v-model="modal"
-                :return-value.sync="date"
-                persistent
-                width="290px"
-              >
-                <template #activator="{ on, attrs }">
-                  <v-text-field
-                    v-model="date"
-                    outlined
-                    placeholder="Selecciona la fecha"
-                    readonly
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    <template #append>
-                      <div style="width: 30px">
-                        <v-img
-                          style="margin: auto 0"
-                          max-width="20"
-                          :src="require('@/assets/icons/iconos_citas.svg')"
-                        />
-                      </div> </template
-                  ></v-text-field>
-                </template>
-                <v-date-picker v-model="date" scrollable>
-                  <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="modal = false">
-                    Cancel
-                  </v-btn>
-                  <v-btn text color="primary" @click="$refs.dialog.save(date)">
-                    OK
-                  </v-btn>
-                </v-date-picker>
-              </v-dialog>
+              <v-text-field
+                v-model="final_ppf"
+                outlined
+                placeholder="2022/08/20"
+              ></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -186,7 +130,7 @@ export default {
       ambientales: '',
       con: '',
       support: '',
-
+id:'',
       /* models to send data */
       patient_id: '',
       last_menstrual_cycle:'',
@@ -199,7 +143,7 @@ export default {
   methods: {
     perinatalPost(){
       this.$axios
-        .post('api/v1/physician/medical-history/perinatal-background',{
+        .post('/api/v1/physician/medical-history/perinatal-background',{
               patient_id: this.patient_id,
               last_menstrual_cycle: this.last_menstrual_cycle,
               cycle_time: this.cycle_time,
@@ -211,10 +155,10 @@ export default {
           headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),}
         })
     },
+    
     perinatalPut(){
       this.$axios
-        .post('api/v1/physician/medical-history/perinatal-background',{
-              patient_id: this.patient_id,
+        .post('api/v1/physician/medical-history/perinatal-background/',{
               last_menstrual_cycle: this.last_menstrual_cycle,
               cycle_time: this.cycle_time,
               contraceptive_method_use: this.contraceptive_method_use,
@@ -227,12 +171,11 @@ export default {
     },
 
     perinatalGet(){
-      this.$axios.get('/api/v1physician/medical-history/perinatal-background/9',
+      this.$axios.get('/api/v1/physician/medical-history/'+this.id+'/perinatal-background/',
       {
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
       })
       .then(res => {
-        console.log(res)
         this.last_menstrual_cycle = res.data.last_menstrual_cycle
         this.cycle_time = res.data.cycle_time
         this.contraceptive_method_use = res.data.contraceptive_method_use
@@ -241,7 +184,9 @@ export default {
       })
     }
   },
-
+  created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
+  },
   mounted() {
     this.perinatalGet()
   },

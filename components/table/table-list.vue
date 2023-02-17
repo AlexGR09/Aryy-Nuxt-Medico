@@ -96,6 +96,7 @@ export default {
       search:'',
       sortBy:'',
       users: '',
+      idDate:'',
       page: 1,
       pageCount: 0,
       itemsPerPage: 10,
@@ -145,7 +146,8 @@ export default {
               phone_number: obj[i].patient.user_info.phone_number,
               last_appointment: obj[i].last_appointment,
               status: obj[i].status,
-              id: obj[i].id,
+              idPatient: obj[i].patient_id,
+              idAppointment: obj[i].id
             }
             this.items.push(objeto)
           }
@@ -154,7 +156,7 @@ export default {
 
   /*   acceder al expediente cachando el id */
     rowClick: function (item, row) {
-      this.users = row.item.id
+      this.users = row.item.idPatient
       this.$router.push('/medical-record/' + this.users)
     },
 
