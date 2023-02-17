@@ -16,7 +16,8 @@
     <!--    seccion historial de vacunación | Genesis -->
     <v-card><vaccination /></v-card>
      <!--    otros antecedentes | Genesis -->
-     <others/>
+     <br/>
+     <v-card><others/></v-card>
   </div>
 </template>
 <script>

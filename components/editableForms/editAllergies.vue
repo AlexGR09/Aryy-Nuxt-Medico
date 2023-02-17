@@ -15,7 +15,6 @@
           <v-card-title class="d-flex justify-space-between flex-wrap">
             <span >ALERGIAS</span>
                   <v-btn
-                    dark
                     icon
                     color="grey"
                     @click="reloadPage"

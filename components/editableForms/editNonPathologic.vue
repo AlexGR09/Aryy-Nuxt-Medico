@@ -23,7 +23,7 @@
               NO PATOLÓGICOS</span
             ><br />
           </div>
-          <v-btn dark icon color="grey" @click="reloadPage">
+          <v-btn icon color="grey" @click="reloadPage">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>

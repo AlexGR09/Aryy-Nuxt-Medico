@@ -349,49 +349,8 @@ export default {
     },
   },
   mounted() {
-    this.datos()
   },
   methods: {
-    /* obtener informacion | Genesis */
-    datos() {
-      this.$axios
-        .get(
-          `api/v1/medical-history/physician/hereditary-background/patient/${this.$route.params.medicalRecord}`,
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        )
-        .then((res) => {
-          this.blood_family=res.data.data.blood_diseases.type
-          this.blood_type=res.data.data.blood_diseases.family
-          this.diabetes_family = res.data.data.diabetes.family
-          this.diabetes_type = res.data.data.diabetes.type
-          this.diseases_family = res.data.data.heart_diseases.family
-          this.diseases_type = res.data.data.heart_diseases.type
-          this.pressure_family = res.data.data.blood_pressure.family
-          this.pressure_type = res.data.data.blood_pressure.type
-          this.thyroid_family = res.data.data.thyroid_diseases.family
-          this.thyroid_type = res.data.data.thyroid_diseases.type
-          this.cancer_family = res.data.data.cancer.family
-          this.cancer_type = res.data.data.cancer.type
-          this.kidney_family = res.data.data.kidney_stones.family
-          this.kidney_type = res.data.data.kidney_stones.type
-          this.null=res.data.data.blood_diseases
-          this.diabetesStatus()
-          this.diseasesStatus()
-          this.pressureStatus()
-          this.thyroidStatus()
-          this.cancerStatus()
-          this.kidneyStatus()
-          this.bloodStatus()
-        }).catch((error) => {
-          this.errordata = ''
-          this.errordata = error.response.data.msg
-        })
-        
-    },
     
    /*  agregar informacion | Genesis */
     add() {

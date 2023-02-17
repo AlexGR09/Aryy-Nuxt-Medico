@@ -6,14 +6,8 @@
   >
   <template 
     #activator="{ on, attrs }">
-    <v-btn
-      color="primary"
-      dark
-      v-bind="attrs"
-      outlined
-      v-on="on"
-    > 
-      <v-icon  left color="#7900ff">mdi-plus</v-icon> 
+    <v-btn block class="justify-start" outlined color="#7900ff" v-bind="attrs" v-on="on">
+       <v-icon color="#7900ff">mdi-plus</v-icon> 
       ANTECEDENTES PERINATALES
     </v-btn>
   </template> 

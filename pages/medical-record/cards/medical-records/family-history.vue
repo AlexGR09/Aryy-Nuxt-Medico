@@ -78,6 +78,7 @@ export default {
         )
         .then((res) => {
           this.null=res.data.data.blood_diseases
+          console.log(res)
         }).catch((error) => {
           this.errordata = ''
           this.errordata = error.response.data.msg

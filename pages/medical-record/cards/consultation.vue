@@ -1,6 +1,7 @@
 <!-- seccion de consulta medica | Genesis -->
 <template>
   <div>
+    <v-container>
     <p>Signos vitales</p>
     <v-row>
       <!-- Signos vitales -->
@@ -499,7 +500,7 @@
       </v-overlay>
     </v-row>
 
-  
+  </v-container>
   </div>
 </template>
 <script>

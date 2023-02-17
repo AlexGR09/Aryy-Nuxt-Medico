@@ -22,7 +22,7 @@
         </v-col>
         <v-col xs="12" sm="12" md="12" lg="12" xl="12">
           <H1 class="title mb-3">CONSULTA MÉDICA</H1>
-          <consultation />
+          <v-card><consultation /></v-card>
         </v-col>
       </v-col>
 

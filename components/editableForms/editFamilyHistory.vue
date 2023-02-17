@@ -21,7 +21,6 @@
             <span >ANTECEDENTES <br/> HEREDOFAMILIARES</span><br/> </div>
             
                   <v-btn
-                    dark
                     icon
                     color="grey"
                     @click="reloadPage"
@@ -376,8 +375,8 @@ methods: {
         }
       )
       .then((res) => {
-        this.blood_family=res.data.data.blood_diseases.type
-        this.blood_type=res.data.data.blood_diseases.family
+        /* this.blood_family=res.data.data.blood_diseases.type
+        this.blood_type=res.data.data.blood_diseases.family */
         this.diabetes_family = res.data.data.diabetes.family
         this.diabetes_type = res.data.data.diabetes.type
         this.diseases_family = res.data.data.heart_diseases.family

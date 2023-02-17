@@ -21,7 +21,6 @@
           <!--    span a mostrar en pantallas xs/sm | Genesis -->
            <span  class="titleCard">ANTECEDENTES <br/> PATOLÓGICOS</span><br/> </div>
                  <v-btn
-                   dark
                    icon
                    color="grey"
                    @click="reloadPage"

@@ -219,8 +219,6 @@ export default {
           }
         )
         .then((res) => {
-          console.log("--------")
-          console.log(res)
           this.patient = res.data.data.patient.full_name
           this.status = res.data.data.status
           this.code = res.data.data.patient.user_country_code

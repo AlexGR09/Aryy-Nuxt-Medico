@@ -2,9 +2,9 @@
 <template>
   <v-dialog scrollable v-model="dialog" max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn class="justify-start" width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
+      <v-btn block class="justify-start" outlined color="#7900ff" v-bind="attrs" v-on="on">
        <v-icon color="#7900ff">mdi-plus</v-icon> 
-        <l>ANTECEDENTES POSTNATALES</l>
+        <l>ANTECEDENTES POSTsNATALES</l>
       </v-btn>
     </template>
     <v-card height="600px">
