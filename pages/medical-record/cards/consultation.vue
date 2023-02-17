@@ -12,7 +12,7 @@
           dense
           outlined
           label="Temperatura"
-          prepend-icon="mdi-map-marker"
+          prepend-icon="mdi-thermometer"
           suffix="°C"
         >
           <template #prepend>
@@ -327,7 +327,7 @@
     </v-col> -->
 
 <!-- AGREGAR MEDICAMENTO -->
-<v-col>
+<v-col cols="12">
     <p>Diagnostico</p>
       <v-text-field
           v-model="diagnosis"
@@ -336,44 +336,43 @@
           placeholder="Escribe aquí el diagnóstico"
       ></v-text-field>
 </v-col>
-    <v-row v-for="input in inputs" :key="input.id" class="ml-n2 mt-n5">
-      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
-        
+    <v-row v-for="input in inputs" :key="input.id" >
+      <v-col cols="12" xs="12" sm="12" md="4" lg="3" xl="3">
         <!-- MARCA -->
         <p>Marca</p>
         <v-text-field
           v-model="brand"
           outlined
           color="#7900ff"
-          placeholder="Medicamento"
+          placeholder="Escribe la marca"
         ></v-text-field>
       </v-col>
       
       <!-- MEDICAMENTO -->
-      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
+      <v-col  cols="12" xs="12" sm="12" md="4" lg="3" xl="3">
         <p>medicamento</p>
         <v-text-field
           v-model="drug_name"
           outlined
           color="#7900ff"
-          placeholder="Medicamento"
+          placeholder="Nombre del medicamento"
         ></v-text-field>
       </v-col>
 
       <!-- presentacion -->
-      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
+      <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
         <p>Presentación</p>
         <v-text-field
           v-model="presentation"
           outlined
           color="#7900ff"
-          placeholder="Medicamento"
+          placeholder="Escribre la presentación"
         ></v-text-field>
       </v-col>
 
       <!-- TOMAR -->
 
-      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
+      <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
         <p>Tomar</p>
         <v-text-field
           v-model="amount"
@@ -385,18 +384,18 @@
 
       <!-- FRECUENCIA -->
 
-      <v-col class="mt-n8" cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
+      <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
         <p>Frecuencia</p>
         <v-text-field
           v-model="frequency"
           outlined
           color="#7900ff"
-          placeholder="Cada 8 horas"
+          placeholder="Frecuencia"
         ></v-text-field>
       </v-col>
       
       <!-- duraction -->
-      <v-col class="mt-n8" cols="10" xs="10" sm="12" md="2" lg="2" xl="2">
+      <v-col  cols="10" xs="10" sm="12" md="2" lg="2" xl="2">
         <p>Duración</p>
         <v-text-field
           v-model="duration_days"
@@ -407,18 +406,18 @@
       </v-col>
 
       <!-- instruciones deñ medicamente -->
-      <v-col class="mt-n8" cols="10" xs="10" sm="12" md="2" lg="2" xl="2">
-        <p>Instrucción del medicamento</p>
+      <v-col cols="10"  sm="8" md="2" >
+        <p>Instrucción</p>
         <v-text-field
           v-model="instruction"
           outlined
           color="#7900ff"
-          placeholder="15 días"
+          placeholder="Instrucción del medicamento"
         ></v-text-field>
       </v-col>
       
-      <v-col class="mt-n8" cols="2" xs="2" sm="1" md="1" lg="1" xl="1">
-        <v-btn @click="deleteInput" class="iconos mt-12" icon>
+      <v-col >
+        <v-btn @click="deleteInput"  icon>
           <v-img
             :src="require('@/assets/icons/icon_borrarpaciente.svg')"
             max-width="25"

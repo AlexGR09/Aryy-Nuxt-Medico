@@ -367,7 +367,7 @@ methods: {
   datos() {
     this.$axios
       .get(
-        `api/v1/medical-history/physician/hereditary-background/patient/${this.$route.params.medicalRecord}`,
+        `/api/v1/medical-history/physician/hereditary-background/patient/${this.$route.params.medicalRecord}`,
         {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token'),
