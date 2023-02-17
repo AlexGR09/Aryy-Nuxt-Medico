@@ -1,20 +1,31 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
+   <account  v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
-      <v-card flat>
-        <menu-med />
-      </v-card>
-      <v-col md="10" lg="10" xl="10">
-        <v-card flat class="pa-3 mt-2">
-          <v-card-subtitle class="pa-3 mt-n2 mb-n10">
-            <H1 class="mb-5">DATOS DE LA SUSCRIPCIÓN</H1>
+       <v-row>
+          <menu-personal  v-if="$vuetify.breakpoint.lgAndUp" />
+        
+        </v-row>
+      <v-col cols="12" md="10" lg="10" xl="11">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
+        <v-card color="card" flat class="pa-3">
+          <v-card-subtitle class="pa-3 mb-n5">
+          DATOS DE LA SUSCRIPCIÓN
           </v-card-subtitle>
           <v-form ref="form" v-model="valid">
             <v-card-text class="pa-3 mt-5">
               <v-row>
                 <!--  CAMPO TIPO DE PLAN| LUIS REYES -->
                 <v-col md="4" cols="12">
-                  <span>Tipo de plan</span>
+                  <p>Tipo de plan</p>
                   <v-text-field
                     v-model="plan"
                     dense
@@ -46,9 +57,9 @@
                   </v-autocomplete>
                 </v-col>
               </v-row>
-              <span class="input mt-5 mb-n4"
+              <p class="input mb-n4"
                 >¿Quieres cancelar tu suscripción? Contacta a Soporte por el
-                chat</span
+                chat</p
               >
               <v-ship  ref="" solo></v-ship>
               <!-- botones | @click="overlay = !overlay" -->
@@ -207,9 +218,7 @@ export default {
   },
 }
 </script>
-    
-    
-      <style>
+<style>
 .v-input__icon--prepend .v-icon {
   color: #9966ff;
   backdrop-filter: pa;
@@ -219,6 +228,9 @@ export default {
   color: #9966ff !important;
   font-family: MontserratMedium;
   font-size: 15px;
+}
+p.input::first-letter {
+  text-transform: uppercase !important;
 }
 .bgactive {
   background: #7900ff;
@@ -258,7 +270,12 @@ a {
 }
 .btn {
   font-family: Montserrat;
-  text-transform: unset !important;
+  text-transform: lowercase !important;
+  color: #9966ff;
+  border: 0px;
+}
+span.btn::first-letter {
+  text-transform: uppercase !important;
   color: #9966ff;
 }
 .textfield {
@@ -275,8 +292,27 @@ h1 {
 span {
   color: #999999;
   font-family: Montserrat;
-  font-size: 120%;
+  font-size: 110%;
+  text-transform: lowercase !important;
 }
+p {
+  color: #999999 !important;
+  font-family: Montserrat;
+  font-size: 110%;
+  text-transform: lowercase !important;
+}
+
+p::first-letter {
+  text-transform: uppercase !important;
+}
+
+.payment {
+  color: #999999 !important;
+  font-family: Montserrat;
+  font-size: 110%;
+  text-transform: lowercase !important;
+}
+
 p {
   font-family: MontserratMedium;
   color: gray;
@@ -291,4 +327,9 @@ p.cedu {
   font-size: 50px;
   color: #999999;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+    color: #4f565f !important;
+  }
 </style>

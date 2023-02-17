@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card color="card" flat>
     <div class="margen">
       <v-img
         :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
@@ -43,7 +43,7 @@
         <v-tab-item> <!--  ----Iniciar sesión |Génesis---- --> </v-tab-item>
         <!--  ----Tab de registro |Génesis---- -->
         <v-tab-item>
-          <v-card flat>
+          <v-card color="card" flat>
             <h2>Crea tu perfil gratuito como paciente</h2>
             <router-link
               style="text-decoration: none; color: inherit"

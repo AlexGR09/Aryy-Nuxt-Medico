@@ -1,17 +1,29 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
+    <account v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
-      <v-card flat> </v-card>
-      <v-col md="10" lg="9" xl="10">
-        <v-card flat height="100%" class="pa-3 mt-2">
-          <v-card-subtitle class="pa-3 mt-n2 mb-n10"
-            ><H1 class="mb-5">IDENTIDAD MÉDICA</H1></v-card-subtitle
+       <v-row>
+          <menu-med v-if="$vuetify.breakpoint.lgAndUp"/>
+        </v-row>
+      <v-col cols="12" md="10" lg="10" xl="11">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
+        <v-card color="card" flat height="100%" class="pa-3 mt-2">
+          <v-card-subtitle class="pa-3 mt-n2 "
+            >IDENTIDAD MÉDICA</v-card-subtitle
           >
-          <v-card-text class="pa-3 mt-5">
+          <v-card-text class="pa-3 ">
             <v-form ref="form" v-model="valid">
               <v-row>
                 <v-col xl="6">
-                  <span>Logotipo propio*</span>
+                  <p>Logotipo propio*</p>
                   <v-file-input
                     chips
                     color="#9966ff"
@@ -26,7 +38,7 @@
                 </v-col>
               </v-row>
               <H1 class="mb-5 mt-5">FOTOGRAFÍAS</H1>
-              <span>Fotografías del especialista</span>
+              <p>Fotografías del especialista</p>
               <VueFileAgent
                 :multiple="true"
                 :deletable="true"
@@ -56,7 +68,7 @@
                 </v-tooltip>
               </div>
               <div class="mt-5">
-                <span>Fotografías del especialista</span>
+                <p>Fotografías del especialista</p>
                 <VueFileAgent
                   :multiple="true"
                   :deletable="true"
@@ -82,23 +94,20 @@
                   </v-tooltip>
                 </div>
               </div>
+              <v-card-actions>
+              <v-row class="mt-7">
+                <v-col xl="2" cols="12">
               <v-btn
+              block
+              v-on:click="postMedicalinfo"
                 @click="overlay = !overlay"
                 height="50px"
-                class="white--text save mt-7"
+                class="white--text save "
                 color="#7900ff"
                 large
                 >Guardar cambios</v-btn
-              >
-              <v-btn
-                @click="reset"
-                height="50px"
-                class="restore ml-3 mt-7"
-                color="#999999"
-                outlined
-                large
-                >Restaurar todo</v-btn
-              >
+              ></v-col>
+             
               <v-overlay :value="overlay">
                 <v-alert
                   class="rounded-xl"
@@ -107,6 +116,8 @@
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
+            </v-row>
+            </v-card-actions>
             </v-form>
           </v-card-text>
         </v-card>
@@ -119,10 +130,13 @@
 import Vue from 'vue'
 import VueFileAgent from 'vue-file-agent'
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css'
+import Account from '../account.vue';
+import accountMenu from '../accountMenu.vue';
+import MenuMed from './menuMed.vue';
 Vue.use(VueFileAgent)
 Vue.use(VueFileAgentStyles)
 export default {
-  components: {},
+  components: {Account, MenuMed,accountMenu},
   data() {
     return {
       overlay: false,
@@ -132,6 +146,23 @@ export default {
       hover: false,
       hover2: false,
       selectedItem: 1,
+      breadcrumbs: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Perfil médico',
+          disabled: false,
+          href: '/accounts/edit/medicalProfile-info',
+        },
+        {
+          text: 'Identidad médica',
+          disabled: true,
+          href: '/accounts/edit/medicalProfileViews/idMed',
+        },
+      ],
     }
   },
   created() {
@@ -224,13 +255,18 @@ h1 {
   font-size: 120%;
   color: #4f565f;
 }
-span {
+p::first-letter {
   font-family: Montserrat;
   font-size: 120%;
+  text-transform: uppercase;
 }
 p {
-  font-family: MontserratMedium;
+  font-family: Montserrat;
   color: gray;
-  font-size: 110%;
+  font-size: 120%;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+  }
 </style>

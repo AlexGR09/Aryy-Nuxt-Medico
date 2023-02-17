@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card color="card" flat>
     <div class="margen mt-16">
       <v-img
         :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
@@ -55,7 +55,7 @@
         <v-tab-item> <!--  ----Iniciar sesión |Génesis---- --> </v-tab-item>
         <!--  ----Tab de registro |Génesis---- -->
         <v-tab-item>
-          <v-card flat>
+          <v-card color="card" flat>
             <v-card-text>
               <v-row>
                 <v-col xs="11" sm="11" md="11" lg="11" xl="9">

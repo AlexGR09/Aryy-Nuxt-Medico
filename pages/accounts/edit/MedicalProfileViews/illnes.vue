@@ -1,15 +1,25 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
+        <account v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
-      <v-card flat>
-        <menu-med />
-      </v-card>
-      <v-col md="10" lg="9" xl="10">
-        <v-card flat height="800px" class="pa-3 mt-2">
-          <v-card-subtitle class="pa-3 mt-n2 mb-n10"
-            ><H1 class="mb-5">ENFERMEDADES QUE TRATA</H1></v-card-subtitle
+       <v-row>
+          <menu-med v-if="$vuetify.breakpoint.lgAndUp"/>
+        </v-row>
+      <v-col cols="12" md="10" lg="10" xl="11">
+        <account-menu v-if="$vuetify.breakpoint.smAndDown"/>
+        <v-card color="card" flat height="800px" class="pa-3 mt-2">
+          <v-card-subtitle class="pa-3 mt-n2"
+            >ENFERMEDADES QUE TRATA</v-card-subtitle
           >
-          <v-card-text class="pa-3">
+          <v-card-text class="pa-3 mt-n5">
             <v-form ref="form" v-model="valid">
               <v-row>
                 <v-col v-for="(prueba, i) in pruebas" :key="i" xl="6">
@@ -32,45 +42,46 @@
                 text
                 ><v-icon class="icon">mdi-plus-circle</v-icon>Añadir otro</v-btn
               >
-              <div class="mt-5">
-                <v-btn
-                  @click="overlay = !overlay"
-                  height="50px"
-                  class="white--text save"
-                  color="#7900ff"
-                  large
-                  >Guardar cambios</v-btn
-                >
-                <v-btn
-                  @click="reset"
-                  height="50px"
-                  class="restore ml-3"
-                  color="#999999"
-                  outlined
-                  large
-                  >Restaurar todo</v-btn
-                >
-                <v-overlay :value="overlay">
-                  <v-alert
-                    class="rounded-xl"
-                    icon="mdi-check-circle"
-                    color="green"
-                    >Datos actualizados correctamente.</v-alert
-                  >
-                </v-overlay>
-              </div>
+            
             </v-form>
           </v-card-text>
+          <v-card-actions>
+              <v-row class="mt-7">
+                <v-col xl="2" cols="12">
+              <v-btn
+              block
+              v-on:click="postMedicalinfo"
+                @click="overlay = !overlay"
+                height="50px"
+                class="white--text save "
+                color="#7900ff"
+                large
+                >Guardar cambios</v-btn
+              ></v-col>
+             
+              <v-overlay :value="overlay">
+                <v-alert
+                  class="rounded-xl"
+                  icon="mdi-check-circle"
+                  color="green"
+                  >Datos actualizados correctamente.</v-alert
+                >
+              </v-overlay>
+            </v-row>
+            </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
   </div>
 </template>
   <script>
+  import Account from '../account.vue';
+  import accountMenu from '../accountMenu.vue';
 import MenuMed from './menuMed.vue'
+
 export default {
   components: {
-    MenuMed,
+    MenuMed,Account,accountMenu
   },
   data() {
     return {
@@ -87,6 +98,23 @@ export default {
         { name: 'Eyaculación precoz' },
         { name: 'Hiperplasia prostática' },
         { name: 'Enfermedades de Transmisión sexual (ETS)' },
+      ],
+      breadcrumbs: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Perfil médico',
+          disabled: false,
+          href: '/accounts/edit/medicalProfile-info',
+        },
+        {
+          text: 'Enfermedades',
+          disabled: true,
+          href: '/accounts/edit/medicalProfileViews/illnes',
+        },
       ],
     }
   },
@@ -170,4 +198,9 @@ p {
   color: gray;
   font-size: 110%;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+    color: #4f565f !important;
+  }
 </style>

@@ -1,5 +1,14 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
+    <account v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
       <v-card flat>
         <menu-med />
@@ -184,11 +193,13 @@ a {
 }
 .save {
   font-family: Montserrat;
-  text-transform: unset !important;
+  text-transform: capitalize !important;
+  font-size: 1.7vh !important;
 }
 .restore {
   font-family: Montserrat;
-  text-transform: unset !important;
+  text-transform: capitalize !important;
+  font-size: 1.7vh !important;
 }
 .btn {
   font-family: Montserrat;
@@ -206,15 +217,14 @@ h1 {
   font-size: 120%;
   color: #4f565f;
 }
-span {
-  color: #999999;
+p {
+  color: #999999 !important;
   font-family: Montserrat;
   font-size: 120%;
+  text-transform: lowercase !important;
 }
-p {
-  font-family: MontserratMedium;
-  color: gray;
-  font-size: 110%;
+p::first-letter {
+  text-transform: uppercase !important;
 }
 p.cedu {
   font-family: Montserrat;
@@ -225,4 +235,9 @@ p.cedu {
   font-size: 50px;
   color: #999999;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+    color: #4f565f !important;
+  }
 </style>

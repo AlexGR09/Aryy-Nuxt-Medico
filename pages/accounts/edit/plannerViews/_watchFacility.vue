@@ -1,26 +1,30 @@
 <template>
   <div>
-    <v-app-bar flat height="150px" color="white" dense fixed hide-on-scroll>
-      <v-btn dark icon color="black" @click="$router.back()">
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn>
-                  <v-row>
-                    <v-col md="5" lg="5" xl="5"></v-col>
-                    <v-col md="4" lg="4" xl="4"> <v-img class="ml-n8" :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')" max-width="150"></v-img><p class="mt-n7 prueba">Consultorios</p></v-col>
-                    <v-col ms="3" lg="3" xl="3"></v-col>
-                  </v-row>
-                  </v-app-bar>
-    <v-card height="100%" flat class="pa-16">
-      <v-card-text class="pa-16">
-        <v-row class="ml-16">
-          <v-form class="ml-16" ref="form" v-model="valid">
-            <v-col md="1" lg="1" xl="1"></v-col>
-            <v-col md="10" lg="10" xl="10">
+    <v-app-bar flat height="150px" color="#ffffff" dense fixed hide-on-scroll>
+      <v-btn icon color="black" @click="$router.back()">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <v-row >  <v-col md="4" lg="4" xl="5"></v-col>
+        <v-col md="4" lg="4" xl="4">
+          <v-img
+            class="ml-n8"
+            :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
+            max-width="150"
+          ></v-img>
+          <p class="consul mt-n7 ml-n6 prueba">Consultorios</p></v-col
+        >
+        <v-col ms="3" lg="3" xl="3"></v-col>
+      </v-row>
+    </v-app-bar>
+    <v-card color="card" height="100%" flat class=" mt-16">
+      <v-card-text class="pa-10">
+        <v-row class="mt-4">
+          <v-form class="d-flex justify-center mt-16 " ref="form" v-model="valid">
+        
+            <v-col md="10" lg="10" xl="9">
               <v-row>
-              
                 <v-col md="12" cols="12">
-                 
-                  <span>Nombre del consultorio*</span>
+                  <p>Nombre del consultorio*</p>
                   <v-text-field
                     disabled
                     prepend-inner-icon="mdi-magnify"
@@ -32,99 +36,19 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="6" cols="12">
-                  <span>Teléfono para citas*</span>
+                  <p>Teléfono para citas*</p>
                   <v-text-field
                     disabled
                     v-model="facilities.phone"
                     color="#9966ff"
-                    class="textfield mb-5"
+                    class="textfield"
                     placeholder="XXX XXX XXXX"
                     outlined
                   ></v-text-field>
-                  <span >Horario para recepción de llamadas*</span>
-                  <div
-                    class="form-group mb-9"
-                    v-for="(input, k) in inputs"
-                    :key="k"
-                  >
-                    <v-row class="mt-2 mb-n15">
-                      <v-col xl="12">
-                        <p class="weekday">
-                          {{ lun }}
-                          <v-chip
-                            class="ml-5"
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            >{{ timeLun }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="mar">
-                          {{ mar }}
-                          <v-chip
-                            class="ml-3"
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            >{{ timeMar }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="mie">
-                          {{ mie }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="mie"
-                            >{{ timeMie }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="jue">
-                          {{ jue }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="jue"
-                            >{{ timeJue }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="vie">
-                          {{ vie }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="vie"
-                            >{{ timeVie }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="sab">
-                          {{ sab }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="sab"
-                            >{{ timeSab }}</v-chip
-                          >
-                        </p>
-                        <p class="weekday" v-if="dom">
-                          {{ dom }}
-                          <v-chip
-                            style="border: thin solid #7900ff"
-                            color="#f4edff"
-                            label
-                            v-if="dom"
-                            >{{ timeDom }}</v-chip
-                          >
-                        </p>
-                      </v-col>
-                    </v-row>
-                  </div>
-                </v-col>
-                <v-col md="6" cols="12">
-                  <span>Extensión</span>
+               
+                  </v-col>
+                  <v-col md="6" cols="12">
+                  <p>Extensión</p>
                   <v-text-field
                     disabled
                     v-model="extension"
@@ -133,10 +57,13 @@
                     placeholder="No. Extensión"
                     outlined
                   ></v-text-field>
+                </v-col> <v-col  cols="12">
+                  <p >Horario para recepción de llamadas*</p>
+               <schedule-chips/>
                 </v-col>
-                <!--  <span>Horario para recepción de llamadas*</span> -->
+              
                 <v-col md="4" cols="12">
-                  <span>Código postal*</span>
+                  <p>Código postal*</p>
                   <v-text-field
                     disabled
                     v-model="zipcode"
@@ -149,7 +76,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Estado*</span>
+                  <p>Estado*</p>
                   <v-text-field
                     disabled
                     v-model="state"
@@ -160,7 +87,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Ciudad o Municipio*</span>
+                  <p>Ciudad o Municipio*</p>
                   <v-text-field
                     disabled
                     v-model="city"
@@ -171,7 +98,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Colonia*</span>
+                  <p>Colonia*</p>
                   <v-text-field
                     disabled
                     v-model="suburb"
@@ -182,7 +109,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="8" cols="12">
-                  <span>Ubicación*</span>
+                  <p>Ubicación*</p>
                   <v-text-field
                     disabled
                     v-model="address"
@@ -193,7 +120,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Número exterior*</span>
+                  <p>Número exterior*</p>
                   <v-text-field
                     disabled
                     v-model="number_ext"
@@ -204,7 +131,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Número interior</span>
+                  <p>Número interior</p>
                   <v-text-field
                     disabled
                     v-model="number_int"
@@ -215,7 +142,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col md="4" cols="12">
-                  <span>Referencias*</span>
+                  <p>Referencias*</p>
                   <v-text-field
                     disabled
                     v-model="reference"
@@ -226,17 +153,10 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col md="6" lg="6" xl="6">
+              <v-row class="mt-7">
+                <v-col cols="12" md="6" lg="6" xl="6">
                   <H1 class="mb-5">ACCESIBILIDAD</H1>
-                  <v-checkbox
-                    disabled
-                    v-model="parking"
-                    class="vcheckbox"
-                    color="#7900ff"
-                    hide-details
-                    label="Estacionamiento con acceso al establecimiento"
-                  ></v-checkbox>
+
                   <v-checkbox
                     disabled
                     v-model="lift"
@@ -246,7 +166,7 @@
                     label="Ascensor con acceso para silla de ruedas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="ramp"
                     class="vcheckbox"
                     color="#7900ff"
@@ -254,7 +174,7 @@
                     label="Rampa con acceso para silla de ruedas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="restroom"
                     class="vcheckbox"
                     color="#7900ff"
@@ -262,7 +182,7 @@
                     label="Sanitarios con accesos para silla de ruedas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="area"
                     class="vcheckbox"
                     color="#7900ff"
@@ -270,7 +190,7 @@
                     label="Área de descanso con acceso para silla de ruedas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="sign"
                     class="vcheckbox"
                     color="#7900ff"
@@ -278,7 +198,7 @@
                     label="Personal capacitado en lengua de señas"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="braille"
                     class="vcheckbox"
                     color="#7900ff"
@@ -289,7 +209,7 @@
                 <v-col md="6" lg="6" xl="6">
                   <H1 class="mb-5">PÚBLICOS USUALES</H1>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="lgbt"
                     class="vcheckbox"
                     color="#7900ff"
@@ -297,16 +217,17 @@
                     label="Amigable con la comunidad LGBTQ+"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="trans"
                     class="vcheckbox"
                     color="#7900ff"
                     hide-details
                     label="Espacio seguro para personas transgénero"
                   ></v-checkbox>
-                  <H1 class="mb-5 mt-15">SERVICIOS</H1>
+                  <br/>
+                  <H1 class="mb-5 ">SERVICIOS</H1>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="toilets"
                     class="vcheckbox"
                     color="#7900ff"
@@ -314,7 +235,7 @@
                     label="Sanitarios"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="unisex"
                     class="vcheckbox"
                     color="#7900ff"
@@ -322,7 +243,7 @@
                     label="Sanitario unisex"
                   ></v-checkbox>
                   <v-checkbox
-                  disabled
+                    disabled
                     v-model="wifi"
                     class="vcheckbox"
                     color="#7900ff"
@@ -330,11 +251,10 @@
                     label="Wi-Fi"
                   ></v-checkbox>
                 </v-col>
-                <div class="mt-5 mb-n15">
-                </div>
+                <div class="mt-5 mb-n15"></div>
               </v-row>
             </v-col>
-            <v-col xl="1"></v-col>
+           
           </v-form>
         </v-row>
       </v-card-text>
@@ -344,36 +264,19 @@
   <script>
 export default {
   layout: 'auth',
-  components: {
-  },
+  components: {},
   data() {
     return {
-      timeLun: '',
-      timeMar: '',
-      timeMie: '',
-      timeJue: '',
-      timeVie: '',
-      timeSab: '',
-      timeDom: '',
-      lun: '',
-      mar: '',
-      mie: '',
-      jue: '',
-      vie: '',
-      sab: '',
-      dom: '',
-
-      horas: '',
       name: '',
       day: '',
       extension: '',
       city: '',
-      
+
       parking: false,
       lift: false,
       ramp: false,
       restroom: false,
-      area:false,
+      area: false,
       sign: false,
       braille: false,
 
@@ -383,8 +286,6 @@ export default {
 
       unisex: false,
       wifi: false,
-      
-      attention_time: '',
       address: '',
       number_ext: '',
       number_int: '',
@@ -418,122 +319,61 @@ export default {
     },
   },
   mounted() {
-    console.log('verificando')
     this.getFacility()
   },
-  created(){
-    const facilityId = this.$route.params.id;
-    console.log(facilityId)
+  created() {
+    const facilityId = this.$route.params.id
+    return facilityId
   },
   methods: {
     /*  metodo get para recibir datos de establecimiento | Genesis */
     getFacility() {
-      console.log('creando petición GET')
       this.$axios
-      .get(`api/v1/facilities/${this.$route.params.watchFacility}`, {
+        .get(`api/v1/facilities/${this.$route.params.watchFacility}`, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((res) => {
           console.log(res)
-          console.log('exito en GET')
           this.id = res.data.data.id
           this.facilities = res.data.data
           this.consultorios = res.data.data.length
-         
+          this.zipcode = res.data.data.zipcode
+          this.state = res.data.data.location.state
+          this.city = res.data.data.city_id
+          this.extension = res.data.data.extension
+          this.suburb = res.data.data.location.suburb
+          this.address = res.data.data.location.address
+          this.number_ext = res.data.data.location.number_ext
+          this.number_int = res.data.data.location.number_int
+          this.reference = res.data.data.location.reference
 
+          /*  accesibilidad */
+          this.restroom =
+            res.data.data.accessibility_and_others.accessibility.toilets_with_wheelchair_access
+          this.area =
+            res.data.data.accessibility_and_others.accessibility.rest_area_with_wheelchair_access
+          this.sign =
+            res.data.data.accessibility_and_others.accessibility.staff_trained_in_sign_language
+          this.braille =
+            res.data.data.accessibility_and_others.accessibility.braille_signage_for_blind_people
+          this.lift =
+            res.data.data.accessibility_and_others.accessibility.wheelchair_ramp
+          this.ramp =
+            res.data.data.accessibility_and_others.accessibility.wheelchair_lift
 
-          /*  accesibilidad | Genesis */
-       
-        })
+          /*  publicos usuales */
+          this.lgbt =
+            res.data.data.accessibility_and_others.usual_audiences.lgtb_friendly
+          this.safe_space_for_transgender_people =
+            res.data.data.accessibility_and_others.usual_audiences.lgtb_friendly
 
-        /*  servicios | Genesis */
+          /*  servicios */
+          this.toilets = res.data.data.accessibility_and_others.services.toilets
+          this.unisex =
+            res.data.data.accessibility_and_others.services.unisex_toilets
+          this.wifi = res.data.data.accessibility_and_others.services.wifi
 
-        .catch(
-          /* console.log(e); */
-          console.log('error en GET')
-        )
-    },
-    /*    método put para actualizar los datos de establecimiento | Genesis */
-    facility() {
-      this.$axios
-        .put('/api/v1/physician/facility', {
-          facility_name: this.facility_name,
-          location: [
-            {
-              address: this.specialty_id,
-              number_ext: this.license,
-              number_int: this.institution,
-              reference: this.certificates,
-            },
-          ],
-          phone_number: this.biography,
-          zip_code: this.biography,
-          schedule: [
-            {
-              day: this.biography,
-              attention_time: this.biography,
-            },
-            {
-              day: this.biography,
-              attention_time: this.biography,
-            },
-          ],
-          type_schedule: this.biography,
-          consultation_length: this.biography,
-          accessibility_and_others: [
-            {
-              accessibility: [
-                {
-                  parking_with_access_to_the_establishment: this.parking,
-                  wheelchair_lift_or_ramp: this.lift,
-                  /* wheelchair_lift_or_ramp: this.ramp, */
-                  toilets_with_wheelchair_access: this.restroom,
-                  rest_area_with_wheelchair_access: this.area,
-                  staff_trained_in_sign_language: this.sign,
-                  braille_signage_for_blind_people: this.braille,
-                },
-              ],
-              usual_audiences: [
-                {
-                  lgtb_friendly: this.lgbt,
-                  safe_space_for_transgender_people: this.trans,
-                },
-              ],
-              services: [
-                {
-                  toilets: this.toilets,
-                  unisex_toilets: this.unisex,
-                  wifi: this.wifi,
-                },
-              ],
-            },
-          ],
-          /* clues: this.biography,
-            city_id: this.biography, */
         })
-        .then((response) => {
-          console.log(response.data.data)
-          localStorage.setItem('token', response.data.access_token)
-        })
-        .catch((error) => {
-          /*   alert(error.response.data.errors.email) */
-          this.errormail = ''
-          this.errormail = error.response.data.errors.email[0]
-          this.password_error = ''
-          this.password_error = error.response.data.errors.password[0]
-        })
-    },
-    save(start, end) {
-      this.$refs.dialog[0].save(start, end)
-    },
-    add(index) {
-      this.inputs.push({ name: '' })
-    },
-    remove(index) {
-      this.inputs.splice(index, 1)
-    },
-    reset() {
-      this.$refs.form.reset()
     },
   },
 }
@@ -598,9 +438,15 @@ H1 {
   font-family: MontserratBold;
   font-size: 120%;
 }
-span {
+p {
   font-family: Montserrat;
-  font-size: 120%;
+  font-size: 1.7vh ;
+  margin-bottom: -1px !important;
+  color: #999999 !important;
+}
+span{
+  font-size: 1.3vh !important;
+ 
 }
 .v-input__icon--prepend-inner .v-icon {
   color: #999999;
@@ -611,5 +457,15 @@ span {
   color: #9966ff !important;
   font-family: MontserratMedium;
   font-size: 100%;
+}
+.v-chip {
+  margin-bottom: 0.7vh !important;
+  border: thin solid #7900ff !important;
+}
+.theme--light.v-input--is-disabled {
+  color: rgba(57, 12, 120, 0.38) !important;
+}
+p.consul{
+  font-size: 2.4vh;
 }
 </style>

@@ -1,20 +1,21 @@
 <template>
-  <div>
-    <hour-picker/>
+  <div>k
+   <chips-schedule/>
   </div>
 </template>
 
 <script>
-
-import hourPicker from '~/components/hourPicker.vue'
-
 export default {
-  components: { hourPicker },
-  data ()  {
-   return{
-    
-   }
+  components:{},
+  data() {
+    return {}
   },
-  
+  computed: {},
+  methods: {},
 }
 </script>
+<style >
+.v-chip {
+  margin-bottom: 0.7vh !important;
+}
+</style>

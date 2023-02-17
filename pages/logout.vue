@@ -3,7 +3,7 @@
     <v-row no-gutters>
       <template >
         <v-col >
-          <v-card class="pa-2" outlined tile> 
+          <v-card color="card" class="pa-2" outlined tile> 
           </v-card>
         </v-col>
         <v-responsive>

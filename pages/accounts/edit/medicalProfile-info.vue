@@ -1,5 +1,14 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs ml-n7" :items="breadcrumbs">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
+    <account v-if="$vuetify.breakpoint.lgAndUp"/>
     <v-row>
       <v-col md="10" lg="10" xl="10">
         <v-card flat class="pa-3 mt-2">
@@ -109,6 +118,7 @@
                 <v-col xl="12">
                   <span>Sobre mi(opcional)</span>
                   <v-textarea
+                  v-model="biography"
                     color="#9966ff"
                     v-model="aboutme"
                     maxlength="400"
@@ -288,7 +298,7 @@
               <v-btn
                 @click="overlay = !overlay"
                 height="50px"
-                class="white--text save mt-7"
+                class="white--text save "
                 color="#7900ff"
                 large
               >
@@ -310,7 +320,8 @@
                   >Datos actualizados correctamente.</v-alert
                 >
               </v-overlay>
-            </v-card-text>
+            </v-row>
+            </v-card-actions>
           </v-form>
         </v-card>
       </v-col>
@@ -609,8 +620,24 @@ a {
 }
 .btn {
   font-family: Montserrat;
-  text-transform: unset !important;
+  text-transform: capitalize !important;
   color: #9966ff;
+  border: solid 0px;
+}
+.btnsocial {
+  border: solid 1px #999999;
+}
+.span.social::first-letter {
+  font-family: Montserrat;
+  text-transform: uppercase !important;
+  color: #999999;
+  border: solid 1px #999999;
+}
+.social {
+  font-family: Montserrat;
+  text-transform: lowercase !important;
+  color: #999999;
+   font-size: 1.7vh;
 }
 .textfield {
   height: 50px;
@@ -627,11 +654,12 @@ span {
   color: #999999;
   font-family: Montserrat;
   font-size: 120%;
+  text-transform: capitalize;
 }
 p {
-  font-family: MontserratMedium;
-  color: gray;
-  font-size: 110%;
+  font-family: Montserrat !important;
+  color: #999999 !important;
+  font-size: 120%;
 }
 p.cedu {
   font-family: Montserrat;
@@ -642,4 +670,8 @@ p.cedu {
   font-size: 50px;
   color: #999999;
 }
+.v-card__subtitle{
+    font-family: MontserratBold !important;
+    font-size: 110% !important;
+  }
 </style>

@@ -1,228 +1,326 @@
+
 <template>
-  <v-row class="mt-n3">
-    <!-- Calendario vista dia |Genesis -->
-    <v-col>
-      <v-card>
-        <v-sheet height="84">
-          <v-toolbar flat>
-            <v-btn
-              width="150px"
-              outlined
-              color="white"
-              class="mr-4 today mt-7"
-              @click="setToday"
-            >
-              <l class="today">hoy</l>
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn
-              class="mt-7 ml-10"
-              fab
-              text
-              small
-              color="grey darken-2"
-              @click="prev"
-            >
-              <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
-            </v-btn>
-            <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
-              {{ $refs.calendar.title }}
-            </v-toolbar-title>
-            <v-btn
-              class="mt-7"
-              fab
-              text
-              small
-              color="grey darken-2"
-              @click="next"
-            >
-              <v-icon color="#9966ff" x-large> mdi-chevron-right </v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-menu bottom left>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  width="150px"
-                  class="list white--text mr-5 ml-n5 mt-7"
-                  outlined
-                  v-on="on"
-                >
-                  <span background="#5a09ff">{{ typeToLabel[type] }}</span>
-                  <v-icon right>mdi-menu-down</v-icon>
-                </v-btn>
+  <div>
+    <v-row class="mt-n3">
+      <v-card color="card" v-show="!$vuetify.breakpoint.xs" flat class="mr-6">
+        <date-picker @getData="getData" /><today
+      /></v-card>
+      <!-- Calendario vista dia |Genesis -->
+      <v-col>
+        <v-breadcrumbs class="breadcrumbs" :items="items">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              <v-icon size="22" color="#7900ff">{{ item.icon }}</v-icon>
+              <span class="breadcrumbs">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
+        <v-card>
+          <v-sheet height="84">
+            <v-toolbar flat>
+              <v-btn
+                width="10%"
+                outlined
+                color="white"
+                class="mr-4 today mt-7 rounded-lg"
+                @click="setToday"
+              >
+                <span class="today">hoy</span>
+              </v-btn>
+
+              <v-spacer class="mr-16"></v-spacer>
+              <v-btn
+                class="mt-7 ml-5"
+                fab
+                text
+                small
+                color="grey darken-2"
+                @click="prev"
+              >
+                <v-icon x-large color="#9966ff"> mdi-chevron-left </v-icon>
+              </v-btn>
+              <v-toolbar-title class="calendar mt-7" v-if="$refs.calendar">
+          <l v-if="this.type === 'day'">{{
+            this.$refs.calendar.$data.lastStart.day
+          }}</l>
+          {{ $refs.calendar.title }}
+        </v-toolbar-title>
+              <v-btn
+                class="mt-7"
+                fab
+                text
+                small
+                color="grey darken-2"
+                @click="next"
+              >
+                <v-icon color="#9966ff" x-large> mdi-chevron-right </v-icon>
+              </v-btn>
+              <v-spacer></v-spacer>
+              <v-menu bottom left>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    width="10%"
+                    class="list white--text mt-7 ml-5 rounded-lg"
+                    outlined
+                    v-on="on"
+                  >
+                    <span background="#5a09ff">{{ typeToLabel[type] }}</span>
+                    <v-icon right>mdi-menu-down</v-icon>
+                  </v-btn>
+                </template>
+                <v-list style="font-family: Montserrat">
+                  <v-list-item @click="type = 'day'" to="/calendario/dayView">
+                    <v-list-item-title>Día</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="type = 'week'" to="/calendario/week">
+                    <v-list-item-title>Semana</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="type = 'month'" to="/calendario/month">
+                    <v-list-item-title>Mes</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-toolbar>
+          </v-sheet>
+          <v-sheet height="800">
+            <v-calendar
+              class="calend"
+              locale="mx-es"
+              ref="calendar"
+              :type="type"
+              v-model="focus"
+              color="#9966ff"
+              interval-height="80px"
+              :short-intervals="false"
+              interval-width="80px"
+              @click="addEvent"
+              event-start="appointment_start"
+              event-end="appointment_start_end"
+              event-name="patient_full_name"
+              event-color="#1abc9c"
+              :events="evento"
+              :event-height="50"
+              @click:event="showEvent"
+              @click:time="addEvent"
+              ><!-- event-color="#1abc9c" -->
+              <template v-slot:day-body="{ date, week }">
+                <div
+                  class="v-current-time"
+                  :class="{ first: date === week[0].date }"
+                  :style="{ top: nowY }"
+                ></div>
               </template>
-              <v-list>
-                <v-list-item @click="type = 'day'" to="/calendario/dayView">
-                  <v-list-item-title>Día</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="type = 'week'" to="/calendario/week">
-                  <v-list-item-title>Semana</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="type = 'month'" to="/calendario/month">
-                  <v-list-item-title>Mes</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </v-toolbar>
-        </v-sheet>
-        <v-sheet height="700">
-          <v-calendar
-            class="calend"
-            locale="mx-es"
-            ref="calendar"
-            type="day"
-            v-model="focus"
-            color="#7900ff"
-            interval-height="80px"
-            interval-count="48"
-            :short-intervals="false"
-            interval-width="80px"
-            :events="events"
-            :event-color="getEventColor"
-            @click:event="showEvent"
-            @click:more="viewDay"
-            @click:date="viewDay"
-          >
-            <template v-slot:day-body="{ date, week }">
-              <div
-                class="v-current-time"
-                :class="{ first: date === week[0].date }"
-                :style="{ top: nowY }"
-              ></div>
-            </template>
-          </v-calendar>
-          <v-dialog
-            width="640px"
-            v-model="selectedOpen"
-            offset-x
-            :close-on-content-click="false"
-            :activator="selectedElement"
-          >
-            <v-card color="white" min-width="350px" flat>
-              <v-card-text>
-                <br />
-                <v-row>
-                  <v-col>
-                    <h1 class="eventName" v-html="selectedEvent.name"></h1>
-                    <p class="eventPhone mt-5">No. 123</p>
-                    <p
-                      class="eventPhone mt-n3"
-                      v-html="selectedEvent.phone"
-                    ></p>
-                  </v-col>
-                  <v-col xl="4"
-                    ><v-btn large color="#999999" outlined>
-                      <l class="titleAction">Reagendar cita</l>
-                    </v-btn>
-                    <v-btn
-                      large
-                      width="192px"
-                      class="mt-2 mb-3"
-                      color="red"
-                      outlined
-                    >
-                      <l class="titleAction2" color="red">cancelar cita</l>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-                <v-divider></v-divider>
-                <div class="mt-5">
-                  <p class="infor">
-                    <v-icon color="#9966ff">mdi-calendar</v-icon>sfsfs
+              <template v-slot:event="{ event }">
+                <div class="ma-3 mt-0">
+                  <p class="event">
+                    {{ event.patient_full_name }} <!-- ({{ event.status }}) 
+                    ({{color}}) -->
                   </p>
-                  <p class="infor">
-                    <v-icon color="#9966ff">mdi-account</v-icon>Paciente nuevo
-                  </p>
-                  <p class="infor">
-                    <v-icon color="#9966ff">mdi-map-marker-circle</v-icon
-                    >Consultorio Principal
-                  </p>
+                 
+                  <p class="mt-n4">
+                    {{ event.appointment_time }} -
+                    {{ event.appointment_time_end }}
+                  </p>  
                 </div>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn
-                  class="eventAction"
-                  outlined
-                  color="green"
-                  @click="selectedOpen = false"
-                  ><v-icon>mdi-eye</v-icon>
-                  <l class="eventAction ml-3">ASISTIÓ</l>
-                </v-btn>
-                <v-btn
-                  class="eventAction"
-                  outlined
-                  color="red"
-                  @click="selectedOpen = false"
-                >
-                  <v-icon>mdi-eye-off</v-icon>
-                  <l class="eventAction ml-3">NO ASISTIÓ</l>
-                </v-btn>
-              </v-card-actions>
-              <br />
-            </v-card>
-          </v-dialog>
-        </v-sheet>
-      </v-card>
-    </v-col>
-  </v-row>
+              </template>
+            </v-calendar>
+            <v-dialog
+              width="1040px"
+              v-model="newDate"
+              offset-x
+              :close-on-content-click="false"
+            >
+              <new-appointment />
+            </v-dialog>
+            <v-dialog
+              width="640px"
+              v-model="selectedOpen"
+              offset-x
+              :close-on-content-click="false"
+              :activator="selectedElement"
+            >
+              <v-card color="card" min-width="350px" flat>
+                <div class="d-flex justify-end">
+                  <v-btn
+                    class="mb-n5"
+                    dark
+                    icon
+                    color="grey"
+                    @click="selectedOpen = false"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                </div>
+                <div>
+                <v-card-text>
+                  <br />
+                  <v-row>
+                    <v-col>
+                      <h1 class="eventName">
+                        {{ selectedEvent.patient_full_name }}
+                      </h1>
+                      <p class="eventPhone mt-5">
+                        No. {{ selectedEvent.id_appointment }}
+                      </p>
+                      <p class="eventPhone mt-n3">{{ number }}</p>
+                    </v-col>
+                    <v-col xl="4"
+                      ><v-btn large width="192px" color="#999999" outlined>
+                        <span class="titleAction">Reagendar cita</span>
+                      </v-btn>
+                      <v-dialog v-model="dialog" persistent max-width="450">
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            v-bind="attrs"
+                            v-on="on"
+                            large
+                            width="192px"
+                            class="mt-2 mb-3"
+                            color="red"
+                            outlined
+                          >
+                            <span class="titleAction2" color="red"
+                              >cancelar cita</span
+                            >
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title class="text-h5 justify-center">
+                            <p class="reset">
+                              ¿Está seguro de cancelar la cita?
+                            </p>
+                          </v-card-title>
+                          <v-card-actions>
+                            <v-btn color="#9966ff" text @click="dialog = false">
+                              <p class="confirm">No</p>
+                            </v-btn>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="#9966ff"
+                              text
+                              v-on:click="cancelAppointment"
+                              @click="dialog = false"
+                            >
+                              <p class="confirm">Si</p>
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                    </v-col>
+                  </v-row>
+                  <v-divider></v-divider>
+                  <div class="mt-5">
+                    <v-row>
+                      <v-col cols="2" xs="2" sm="1" md="1" lg="1" xl="1"
+                        ><v-img
+                          :src="require('@/assets/icons/Iconos_CITAS.svg')"
+                          max-width="23"
+                        ></v-img
+                      ></v-col>
+                      <v-col>
+                        <p class="infor">
+                          {{ date }}
+                        </p>
+                        <p class="infor mt-n3">
+                          {{ selectedEvent.appointment_time }} -
+                          {{ selectedEvent.appointment_time_end }} hrs
+                        </p>
+                        <p class="type mt-n3">
+                          {{ selectedEvent.appointment_type }}
+                        </p>
+                      </v-col>
+                    </v-row>
+                    <v-row class="mt-n6">
+                      <v-col cols="2" xs="2" sm="1" md="1" lg="1" xl="1">
+                        <v-img
+                          :src="require('@/assets/icons/icon_ubi.svg')"
+                          max-width="23"
+                        ></v-img>
+                      </v-col>
+                      <v-col>
+                        <p class="infor">
+                          {{ selectedEvent.facility_name }}
+                        </p></v-col
+                      >
+                    </v-row>
+                  </div>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn
+                    class="eventAction"
+                    outlined
+                    color="green"
+                    @click="selectedOpen = false"
+                    ><v-icon color="green">mdi-eye</v-icon>
+                    <span class="eventAction ml-3">ASISTIÓ</span>
+                  </v-btn>
+                  <v-btn
+                    class="eventAction"
+                    outlined
+                    color="red"
+                    @click="selectedOpen = false"
+                  >
+                    <v-icon color="red">mdi-eye-off</v-icon>
+                    <span class="eventAction ml-3">NO ASISTIÓ</span>
+                  </v-btn>
+                </v-card-actions>
+                <br />
+              </div>
+              </v-card>
+            </v-dialog>
+          </v-sheet>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 <script>
 export default {
-  data: () => ({
-    value: '',
-    ready: false,
-    focus: '',
-    type: 'month',
-    typeToLabel: {
-      month: 'Mes',
-      week: 'Semana',
-      day: 'Dia',
-      '4day': '4 Dias',
-    },
-    selectedEvent: {},
-    selectedElement: null,
-    selectedOpen: false,
-    events: [
-      {
-        name: 'Fulanito Detal',
-        phone: '9615897456',
-        start: '2022-11-08T10:00:00',
-        intervalo: '10:00 - 10:30',
-        end: '2022-11-08T10:30:00',
-        timed: true,
-        color: '#1abc9c',
+  data() {
+    return {
+      date: '',
+      color: '',
+      dialog: false,
+      number: '',
+      value: '',
+      prueba: '',
+      newDate: false,
+      show: false,
+      ready: false,
+      focus: '',
+      type: 'day',
+      typeToLabel: {
+        month: 'Mes',
+        week: 'Semana',
+        day: 'Dia',
+        '4day': '4 Dias',
       },
-      {
-        name: 'Zutanito Filipondio',
-        phone: '9611115823',
-        intervalo: '10:30 - 11:00',
-        start: '2022-11-08T10:30:00',
-        end: '2022-11-08T11:00:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-      {
-        name: 'Merengano Taltipo',
-        phone: '9610218998',
-        start: '2022-12-08T11:00:00',
-        end: '2022-12-08T11:30:00',
-        intervalo: '11:00 - 11:30',
-        timed: true,
-        color: '#3498db',
-      },
-      {
-        name: 'Perengago Gilberto',
-        phone: '9610277896',
-        start: '2022-12-08T11:30:00',
-        end: '2022-12-08T12:00:00',
-        intervalo: '11:30 - 12:00',
-        timed: true,
-        color: '#1abc9c',
-      },
-    ],
-    colors: ['#1abc9c', '#3498db'],
-    names: ['Meeting', 'Holiday', 'Travel'],
-  }),
+      selectedEvent: {},
+      selectedElement: null,
+      start: null,
+      end: null,
+      selectedOpen: false,
+      evento: [],
+      items: [
+        {
+          icon: 'mdi-home-outline',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'Calendario',
+          disabled: false,
+          href: '/calendario/month',
+        },
+        {
+          text: 'Dia',
+          disabled: true,
+          href: '/calendario/dayView',
+        },
+      ],
+      colors: ['#1abc9c', '#3498db'],
+    }
+  },
   computed: {
     cal() {
       return this.ready ? this.$refs.calendar : null
@@ -236,8 +334,75 @@ export default {
     this.ready = true
     this.scrollToTime()
     this.updateTime()
+    this.citas()
   },
   methods: {
+    /*  metodo para traer todas las citas registradas en el servidor | Genesis */
+    citas() {
+      this.$axios
+        .get('api/v1/calendar/appointments', {
+          params: {
+            type: 'all',
+          },
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          this.evento = res.data.data
+          console.log(res)
+        })
+    },
+    /* obtener datos de cita por ID | Genesis */
+    citaId() {
+      this.$axios
+        .get(
+          'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          this.cita = res.data.data
+          this.number = res.data.data.patient.user_phone_number
+          this.date = res.data.data.appointment_date
+          console.log(res)
+        })
+    },
+    /* cancelar cita | Genesis */
+    cancelAppointment() {
+      this.$axios.put(
+        'api/v1/calendar/appointments/' + this.selectedEvent.id_appointment,
+        {},
+        {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        }
+      )
+    },
+    /* mostrar datos de evento seleccionado | Genesis */
+    showEvent({ nativeEvent, event }) {
+      const open = () => {
+        this.selectedEvent = event
+        this.selectedElement = nativeEvent.target
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => (this.selectedOpen = true))
+        )
+      }
+      if (this.selectedOpen) {
+        this.selectedOpen = false
+        requestAnimationFrame(() => requestAnimationFrame(() => open()))
+      } else {
+        open()
+      }
+      nativeEvent.stopPropagation()
+      this.citaId()
+    },
+
+    addEvent() {
+      this.newDate = true
+    },
     getCurrentTime() {
       return this.cal
         ? this.cal.times.now.hour * 60 + this.cal.times.now.minute
@@ -267,46 +432,12 @@ export default {
     next() {
       this.$refs.calendar.next()
     },
-    showEvent({ nativeEvent, event }) {
-      const open = () => {
-        this.selectedEvent = event
-        this.selectedElement = nativeEvent.target
-        requestAnimationFrame(() =>
-          requestAnimationFrame(() => (this.selectedOpen = true))
-        )
-      }
-      if (this.selectedOpen) {
-        this.selectedOpen = false
-        requestAnimationFrame(() => requestAnimationFrame(() => open()))
-      } else {
-        open()
-      }
-      nativeEvent.stopPropagation()
-    },
-    updateRange({ start, end }) {
-      const events = []
-      const min = new Date(`${start.date}T10:00:00`)
-      const max = new Date(`${end.date}T11:00:00`)
-      const days = (max.getTime() - min.getTime()) / 86400000
-      const eventCount = this.rnd(days, days + 5)
-      for (let i = 0; i < eventCount; i++) {
-        const allDay = this.rnd(0, 3) === 0
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime())
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000))
-        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
-        const second = new Date(first.getTime() + secondTimestamp)
-        events.push({
-          name: this.names[this.rnd(0, this.names.length - 1)],
-          start: first,
-          end: second,
-          color: this.colors[this.rnd(0, this.colors.length - 1)],
-          timed: !allDay,
-        })
-      }
-      this.events = events
-    },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
+    },
+    /* recibir datos de componente date picker | Genesis */
+    getData(data) {
+      this.focus = data;
     },
   },
 }
@@ -315,7 +446,6 @@ export default {
 <style lang="scss" scoped>
 @import '~assets/scss/variables';
 </style>
-
 <style lang="scss">
 /* estilos de puntero de hora actual  | Genesis */
 .v-current-time {
@@ -325,7 +455,6 @@ export default {
   left: -1px;
   right: 0;
   pointer-events: none;
-
   &.first::before {
     content: '';
     position: absolute;
@@ -337,8 +466,11 @@ export default {
     margin-left: -6.5px;
   }
 }
+.theme--light.v-btn {
+  color: #999999;
+}
 h1.eventName {
-  font-size: 230%;
+  font-size: 220%;
   color: #7900ff;
   font-family: Montserrat;
 }
@@ -347,12 +479,21 @@ p.eventPhone {
   color: gray;
   font-family: Montserrat;
 }
+p.confirm {
+  font-family: Montserrat;
+  text-transform: capitalize;
+  margin-top: 15px;
+}
+p.event {
+  font-family: MontserratBold;
+}
 h4 {
   font-family: Montserrat;
 }
+/* texto del evento | Genesis */
 span {
-  font-size: 1rem;
-  font-family: MontserratMedium;
+  font-size: 0.85rem;
+  font-family: Montserrat;
   align-items: start;
   color: white;
   text-transform: lowercase;
@@ -384,6 +525,8 @@ span::first-letter {
 }
 .calendar {
   text-transform: capitalize;
+  font-family: MontserratBold;
+  font-size: 120%;
 }
 .eventAction {
   color: black;
@@ -410,6 +553,10 @@ p.infor {
   font-family: MontserratBold;
   font-size: 110%;
 }
+p.type {
+  font-family: Montserrat;
+  font-size: 110%;
+}
 .titleAction {
   text-transform: uppercase;
   font-size: 90%;
@@ -419,5 +566,49 @@ p.infor {
   text-transform: uppercase;
   font-size: 90%;
   color: red;
+}
+.v-calendar-daily__interval-text {
+  display: block;
+  position: relative;
+  top: -6px;
+  font-size: 15px;
+  padding-right: 4px;
+}
+.v-calendar-daily_head-weekday {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  padding: 3px 0px 0px 0px;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.v-btn__content {
+  align-items: center;
+  color: black;
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: inherit;
+  line-height: normal;
+  position: relative;
+  transition: inherit;
+  transition-property: inherit;
+  transition-property: opacity;
+}
+.theme--light.v-time-picker-clock {
+  background: #cccccc;
+}
+.btn {
+  color: red;
+}
+.v-breadcrumbs {
+  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+  list-style-type: none;
+  margin: 0;
+  padding: 8px 12px;
+    padding-left: 12px;
 }
 </style>
