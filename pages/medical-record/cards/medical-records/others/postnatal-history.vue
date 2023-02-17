@@ -4,10 +4,10 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn class="justify-start" width="360px" outlined color="#7900ff" v-bind="attrs" v-on="on">
        <v-icon color="#7900ff">mdi-plus</v-icon> 
-        <span class="l">ANTECEDENTES POSTNATALES</span>
+        <l>ANTECEDENTES POSTNATALES</l>
       </v-btn>
     </template>
-    <v-card color="card" height="600px">
+    <v-card height="600px">
       <v-card-title>
         <span>ANTECEDENTES POSTNATALES</span>
       </v-card-title>
@@ -17,6 +17,7 @@
             <v-col cols="12" sm="6" md="4" xl="12">
               <p>Detalles del parto</p>
               <v-text-field
+                v-model="delivery_details"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -25,6 +26,7 @@
 
               <p class="mt-n3">Nombre del bebé</p>
               <v-text-field
+                v-model="baby_name"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -33,6 +35,7 @@
 
               <p class="mt-n3">Peso al nacer</p>
               <v-text-field
+                v-model="baby_weight"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -41,6 +44,7 @@
 
               <p class="mt-n3">Salud del bebé</p>
               <v-text-field
+                v-model="baby_health"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -50,6 +54,7 @@
               <p class="mt-n3 mb-n2">Tipo de alimentación</p>
               <v-radio-group style="font-family: Montserrat" v-model="alim" row>
                 <v-radio
+  
                   color="#b380ff"
                   label="Solo pecho"
                   value="alim1"
@@ -65,15 +70,9 @@
                   value="Alim3"
                 ></v-radio>
               </v-radio-group>
-              <v-text-field
-                class="mt-n3"
-                style="font-family: Montserrat"
-                outlined
-                placeholder="Escriba aquí"
-              ></v-text-field>
-
               <p class="mt-n3">Estado emocional</p>
               <v-text-field
+                v-model="emotonial_state"
                 class="mt-n3"
                 style="font-family: Montserrat"
                 outlined
@@ -83,22 +82,27 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <v-card-actions class="mt-n10 ml-5 mr-5">
+      <v-col class="ml-6">
         <v-btn
-          block
-          @click="overlay = !overlay"
           height="50px"
           class="white--text save mb-5"
+          v-on:click="update"
           color="#7900ff"
           large
+          @click="postnatalPost"
           >Guardar cambios</v-btn
         >
-        <v-overlay :value="overlay">
-          <v-alert class="rounded-xl" icon="mdi-check-circle" color="green"
-            >Datos actualizados correctamente.</v-alert
-          >
-        </v-overlay>
-      </v-card-actions>
+        <v-btn
+          v-bind="attrs"
+          v-on="on"
+          height="50px"
+          class="restore ml-3 mb-5"
+          color="#999999"
+          outlined
+          large
+          >Restaurar todo</v-btn
+        >
+      </v-col>
     </v-card>
   </v-dialog>
 </template>
@@ -109,8 +113,6 @@ export default {
   components: {},
   data() {
     return {
-      alim: '',
-      overlay: false,
       modal: false,
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
@@ -137,15 +139,84 @@ export default {
       ambientales: '',
       cons: '',
       support: '',
+      delivery_detail:'',
+      baby_name: '',
+      baby_weight: '',
+      baby_health: '',
+      type_of_feeding:'', 
+      emotonial_state: ''
+
     }
   },
-  watch: {
-    overlay(val) {
-      val &&
-        setTimeout(() => {
-          this.overlay = false
-        }, 2000)
+
+  methods: {
+    postnatalPost() {
+      this.$axios
+        .post('api/v1/physician/medical-history/1/postnatal-background',{
+          delivery_details: this.delivery_details,
+          baby_name: this.baby_name,
+          baby_weight: this.baby_weight,
+          baby_health: this.baby_health ,
+          type_of_feeding: this.type_of_feeding,
+          emotonial_state: this.emotonial_state
+        },
+        {
+          headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),}
+        })
     },
+    postnatalGet() {
+      this.$axios
+        .get(`api/v1/physician/medical-history/${this.$route.params.medicalRecord}/postnatal-background`, {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+        })
+        .then((res) => {
+          this.delivery_details = res.data.data.delivery_details
+          this.baby_name = res.data.data.baby_name
+          this.baby_weight = res.data.data.baby_weight
+          this.type_of_feeding = res.data.data.type_of_feeding
+          this.emotonial_state = res.data.data.emotonial_state
+        })
+    },
+    postnatalPut(){
+      this.$axios
+      .put(`api/v1/physician/medical-history/${this.$route.params.medicalRecord}/postnatal-background`,{
+        postnatal_background_id:  this.$route.params.medicalRecord,
+        delivery_details: this.delivery_detail,
+        baby_name: this.baby_name,
+        baby_wight: this.bay_wight,
+        type_of_feeding: this.type_of_feeding
+      })
+    },
+  
+    update() {
+      this.$axios
+        .put(
+          `api/v1/medical-records/physician/allergies/patient/${this.$route.params.medicalRecord}`,
+          {
+            patient_id: this.$route.params.medicalRecord,
+            food_allergy:[
+              this.food,
+            ],
+            drug_allergy:[
+              this.drugss,
+            ],
+            environmental_allergy:[
+              this.environmental,
+            ]
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )  .then((res) => {
+         this.alergiasalimentarias()
+       
+        })
+    },
+  },
+  mounted() {
+    this.postnatalGet()
   },
 }
 </script>
@@ -167,9 +238,8 @@ span {
   color: #4f565f;
   font-family: MontserratBold;
 }
-.l{
+l{
   font-size: 90%;
-  color: #7900ff;
   font-family: MontserratBold;
 }
 .save {

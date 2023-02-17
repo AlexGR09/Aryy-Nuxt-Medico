@@ -1,27 +1,31 @@
 <!-- seccion de "antecedentes gineco-obstreticos" dentro de la seccion "otros" de medical record | Genesis  -->
 <template>
-  <v-dialog scrollable v-model="dialog" max-width="700px">
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        class="justify-start"
-        width="360px"
-        outlined
-        color="#7900ff"
-        v-bind="attrs"
-        v-on="on"
+  <v-dialog 
+    scrollable 
+    v-model="dialog" 
+    max-width="700px"
+  >
+   
+    <template #activator="{ on, attrs }">
+    <v-btn
+      color="primary"
+      dark
+      v-bind="attrs"
+      outlined
+      v-on="on"
       >
-        <v-icon color="#7900ff">mdi-plus</v-icon>
-        <span class="l">ANTECEDENTES GINECO-OBSTÉTRICOS</span>
-      </v-btn>
-    </template>
-    <v-card color="card" height="600px">
+      <v-icon  left color="#7900ff">mdi-plus</v-icon> 
+      ANTECEDENTES GINECO-OBSTÉTRICOS
+    </v-btn>
+  </template> 
+    <v-card height="600px">
       <v-card-title>
         <span>ANTECEDENTES GINECO-OBSTÉTRICOS</span>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
-            <v-col cols="12" sm="6" md="4" xl="12">
+            <v-col cols="12">
               <p>Fecha de la primera menstruación</p>
               <v-dialog
                 ref="dialog"
@@ -200,7 +204,6 @@
                   value="atipico"
                 ></v-radio>
               </v-radio-group>
-
               <p class="mb-n2">Sexo</p>
               <v-radio-group style="font-family: Montserrat" v-model="cons" row>
                 <v-radio
@@ -430,7 +433,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <v-card-actions class="mt-n10 ml-5 mr-5">
+      <v-card-actions >
         <v-btn
           block
           @click="overlay = !overlay"
@@ -489,7 +492,49 @@ export default {
       ambientales: '',
       cons: '',
       support: '',
+
+      /* data entry fields */
+      first_menstruation:"",
+      last_menstruation: "",
+      bleeding: "",
+      pain: "",
+      intimate_hygiene:"", 
+      cervical_discharge: "",
+      sex: "",
+      pregnancies: "",
+      cervical_cancer: "",
+      breast_cancer:"", 
+      sexually_active: "",
+      family_planning: "",
+      hormone_replacement_therapy: "",
+      last_pap_smear: "",
+      last_mammography: "",
     }
+  },
+  methods: {
+    gynecologialPost(){
+      this.$axios
+        .post('/api/v1/physician/medical-history/gynecological-history/4',{
+          first_menstruation: this.first_menstruation,
+          last_menstruation: this.last_menstruation,
+          bleeding: this.bleeding,
+          pain: this.pain,
+          intimate_hygiene: this.intimate_hygiene,
+          cervical_discharge: this.cervical_discharge,
+          sex: this.sex,
+          pregnancies: this.pregnancies,
+          cervical_cancer: this.cervical_cancer,
+          breast_cancer: this.breast_cancer,
+          sexually_active: this.sexually_active,
+          family_planning: this.family_planning,
+          hormone_replacement_therapy: this.hormone_replacement_therapy,
+          last_pap_smear: this.last_pap_smear,
+          last_mammography: this.last_mammography
+        },
+        {
+          headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),}
+        })
+    },
   },
   watch: {
     overlay(val) {
