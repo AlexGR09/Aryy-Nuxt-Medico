@@ -9,7 +9,7 @@
         Aún no ha terminado de configurar su perfil de,
       <nuxt-link to="/accounts/edit/account/">click aqui</nuxt-link>
     </div>
-<!--     <v-row>
+   <v-row>
       <v-col cols="12" md="4" sm="8">
         <dashboard-citas />
       </v-col>
@@ -37,11 +37,11 @@
           </v-row>
         </v-card>
       </v-col>
-    </v-row> -->
+    </v-row> 
     <v-row>
-<!--       <v-btn color="primary" class="text-lowercase"  @click="generatePDF">
+       <v-btn color="primary" class="text-lowercase"  @click="generatePDF">
         Generar pdf
-      </v-btn> -->
+      </v-btn> 
 
       <icon-home/>
       <v-col cols="12" md="4" sm="4" xs="3">
@@ -176,57 +176,24 @@ export default {
     },
 
     generatePDF() {
-      /*       const vm = 
-      const columns = [
-        {title: "Title", dataKey: "title"},
-        {title: "Description", dataKey: "description"}
-      ];
-      const doc = new JsPDF();
-      doc.text('To Do List', 40, 40);
-      doc.autoTable(columns, vm.todos, {
-        margin: {top: 100},
-      });
-      doc.save('receta.pdf'); */
+  
+      const doc = new JsPDF()
 
+// It can parse html:
+// <table id="my-table"><!-- ... --></table>
+AutoTable(doc, { html: '#my-table' })
 
-      
+// Or use javascript directly:
+AutoTable(doc, {
+  head: [['Name', 'Email', 'Country']],
+  body: [
+    ['David', 'david@example.com', 'Sweden'],
+    ['Castille', 'castille@example.com', 'Spain'],
+    // ...
+  ],
+})
 
-      /*   
-
-      doc.setTextColor("blue");
-      doc.setFont("helvetica", "bold");
-      doc.text('Tratamiento', 10, 50)
-      doc.line(10, 52, 50, 52);
-
-      doc.text(this.drug_name, 10, 60)
-      doc.text(this.presentation, 30, 60)
-      doc.text(this.amount,50,60)
-      doc.text(this.frequency, 70, 60) */
-
-      /*  autoTable(doc, { html: '#my-table' })
-      autoTable(doc, { 
-        theme: 'plain',
-        margin: { top: 100 },
-        heading: "Sample PDF Generator",
-        head: [['Medicamento', 'Marca', 'Presentación','Cantidad','Frecuencia','Duración']],
-        body: [
-          [this.drug_name, this.brand , this.presentation , this.amount , this.frequency],
-          // ...
-        ],
-      })  */
-      const vm = this
-      const columns = [
-        {title: "Title", dataKey: "title"},
-        {title: "Description", dataKey: "description"}
-      ];
-      const doc = new JsPDF('p', 'pt');
-      const table = new AutoTable
-      doc.text('To Do List', 40, 40);
-      table.autoTable(columns, vm.todos, {
-        margin: {top: 60},
-      });
-
-      doc.save('receta.pdf')
+doc.save('table.pdf')
     },
   },
 }
