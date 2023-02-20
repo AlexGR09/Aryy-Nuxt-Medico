@@ -1,164 +1,213 @@
+<!-- card para seccion de informacion basica | Genesis -->
 <template>
-  <div>
-    <div v-if="!this.errordata">
-      <v-list-item
-      v-if="this.diabetes_family!='No'"
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n1 lista"
-        two-line
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Diabetes</v-list-item-title>
-          <v-list-item-subtitle
-            >{{ diabetes_family }} • {{ diabetes_type }}</v-list-item-subtitle
+  <v-card color="card" background="grey-lighten-4">
+    <v-card-text>
+      <v-row>
+        <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
+          <v-text-field
+          v-model="patient"
+            dense
+            placeholder="Nombre completo"
+            hide-details
+            color="#7900ff"
+            type="text"
           >
-        </v-list-item-content>
-      </v-list-item>
+            <template #prepend>
+              <img
+                width="24"
+                height="24"
+                :src="require('@/assets/icons/icon_user.svg')"
+              />
+            </template>
+          </v-text-field>
+        </v-col>
 
-      <v-list-item
-      v-if="this.diseases_family!='No'"
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n1 lista"
-        two-line
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Cardiopatías</v-list-item-title>
-          <v-list-item-subtitle
-            >{{ diseases_family }} • {{ diseases_type }}</v-list-item-subtitle
+        <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
+          <v-text-field
+          v-model="phone_number"
+            dense
+            hide-details
+            color="#7900ff"
+            placeholder="Número de teléfono"
           >
-        </v-list-item-content>
-      </v-list-item>
+            <template #prepend>
+              <img
+                width="24"
+                height="24"
+                :src="require('@/assets/icons/icon_phone.svg')"
+              />
+            </template>
+          </v-text-field>
+        </v-col>
 
-      <v-list-item
-      v-if="this.pressure_family!='No'"
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n1 lista"
-        two-line
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Presión arterial alta o baja</v-list-item-title>
-          <v-list-item-subtitle
-            >{{ pressure_family }} • {{ pressure_type }}</v-list-item-subtitle
+
+        <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
+          <v-dialog
+          ref="dialog"
+          v-model="modal"
+          :return-value.sync="date"
+          persistent
+          width="290px"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+            hide-details
+            placeholder="Fecha de nacimiento"
+            dense
+            color="#7900ff"
+              v-model="date"
+              v-bind="attrs"
+              v-on="on"
+            >   <template #prepend>
+              <img
+                width="24"
+                height="24"
+                :src="require('@/assets/icons/icon_birthday.svg')"
+              />
+            </template>
+            <template #append>
+              ({{ calculateAge }} años)
+            </template></v-text-field>
+          </template>
+          <v-date-picker
+          color="#9966ff"
+          locale="MX-ES"
+            v-model="date"
+            scrollable
           >
-        </v-list-item-content>
-      </v-list-item>
+            <v-spacer></v-spacer>
+            <v-btn
+              text
+              color="#7900ff"
+              @click="modal = false"
+            >
+              Cancel
+            </v-btn>
+            <v-btn
+              text
+              color="#7900ff"
+              @click="$refs.dialog.save(date)"
+            >
+              OK
+            </v-btn>
+           
+          </v-date-picker>
+        </v-dialog>
+    
+        </v-col>
 
-      <v-list-item
-      v-if="this.thyroid_family!='No'"
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n1 lista"
-        two-line
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Enfermedades tiroideas</v-list-item-title>
-          <v-list-item-subtitle
-            >{{ thyroid_family }} • {{ thyroid_type }}</v-list-item-subtitle
+        <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
+          <v-autocomplete
+          style="font-family: Montserrat !important"
+          v-model="bloodtype"
+          item-color="purple darken-4"
+          :items="blood"
+          class="mt-n5"
+          placeholder="Tipo de sangre"
+            dense
+            color="#7900ff"
+            type="text"
           >
-        </v-list-item-content>
-      </v-list-item>
+            <template #prepend>
+              <img
+                width="24"
+                height="24"
+                :src="require('@/assets/icons/icon_bloodtype.svg')"
+              />
+            </template>
+          </v-autocomplete>
+        </v-col>
 
-      <v-list-item
-      v-if="this.blood_family!='No'"
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n1 lista"
-        two-line
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Enfermedades de la sangre</v-list-item-title>
-          <v-list-item-subtitle>{{blood_family}} • {{blood_type}}</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-list-item
-      v-if="this.cancer_family!='No'"
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n1 lista"
-        two-line
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Cáncer</v-list-item-title>
-          <v-list-item-subtitle
-            >{{ cancer_family }} • {{ cancer_type }}</v-list-item-subtitle
+        <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
+          <v-text-field
+          v-model="height"
+          placeholder="Estatura"
+            class="mt-n5"
+            dense
+            color="#7900ff"
+            type="text"
           >
-        </v-list-item-content>
-      </v-list-item>
+            <template #prepend>
+              <img
+                width="24"
+                height="24"
+                :src="require('@/assets/icons/icon_height.svg')"
+              />
+            </template>
 
-      <v-list-item
-      v-if="this.kidney_family!='No'"
-        style="font-family: Montserrat"
-        class="ml-n7 mt-n1 lista"
-        two-lin
-      >
-        <v-list-item-avatar class="mr-n1">
-          <v-icon v-if="$route.name!='medical-record-view-patient'" color="green">mdi-check-circle</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>Cálculos renales</v-list-item-title>
-          <v-list-item-subtitle
-            >{{ kidney_family }} • {{ kidney_type }}</v-list-item-subtitle
+            <template #append>
+             mts
+            </template>
+          </v-text-field>
+        </v-col>
+
+        <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
+          <v-text-field
+          v-model="gender"
+            class="mt-n5"
+            placeholder="Genero"
+            dense
+            color="#7900ff"
+            type="text"
           >
-        </v-list-item-content>
-      </v-list-item>
-    </div>
-    <p class="no-data" v-else>Sin datos registrados</p>
-  </div>
+            <template #prepend>
+              <img
+                width="24"
+                height="24"
+                :src="require('@/assets/icons/icon_gender.svg')"
+              />
+            </template>
+          </v-text-field>
+        </v-col>
+      </v-row>
+    </v-card-text>
+  <v-btn @click="update" color="#7900ff" text>Guardar</v-btn>
+  </v-card>
 </template>
 <script>
 export default {
   data() {
     return {
-      diabetes_family: '',
-      diabetes_type: '',
-      diseases_family: '',
-      diseases_type: '',
-      pressure_family: '',
-      pressure_type: '',
-      thyroid_family: '',
-      thyroid_type: '',
-      cancer_family: '',
-      cancer_type: '',
-      blood_diseases: '',
-      kidney_family: '',
-      kidney_type: '',
-      blood_family:'',
-      blood_type: '',
-      null:'',
-      errordata:'',
       id:'',
+      idDate:'',
+      date: '',
+      modal: false,
+      code:'',
+      phone:'',
+      phone_number:'',
+      patient:'',
+      birthday:'',
+      bloodtype:'',
+      height:'',
+      gender:'',
+      blood: ["A+","A-","B+","B-","AB+","AB-","O+","O-"],
+      idUser:'',
+      idAppointment:'',
       
     }
   },
-  created(){
-    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
-  },
+
+  
   mounted() {
-    this.datos()
+    this.created()
+    this.getID()
   },
+  computed:{
+   /*  funcion para calcular la edad con el date picker | Genesis */
+        calculateAge: function() {
+          const currentDate = new Date();
+          const birthDate = new Date(this.date);
+          const difference = currentDate - birthDate;
+          const age = Math.floor(difference/31557600000);
+          return age
+        },
+      },
   methods: {
-    /* obtener informacion | Genesis */
-    datos() {
-      
+    /* datos de paciente para datos basicos | Genesis */
+    basic_info() {
       this.$axios
         .get(
-          `api/v1/medical-history/physician/hereditary-background/patient/${this.$route.params.medicalRecord}`,
+          'api/v1/calendar/appointments/'+this.idAppointment,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -166,27 +215,97 @@ export default {
           }
         )
         .then((res) => {
-       /*    this.blood_family=res.data.data.blood_diseases.type
-          this.blood_type=res.data.data.blood_diseases.family */
-          this.diabetes_family = res.data.data.diabetes.family
-          this.diabetes_type = res.data.data.diabetes.type
-          this.diseases_family = res.data.data.heart_diseases.family
-          this.diseases_type = res.data.data.heart_diseases.type
-          this.pressure_family = res.data.data.blood_pressure.family
-          this.pressure_type = res.data.data.blood_pressure.type
-          this.thyroid_family = res.data.data.thyroid_diseases.family
-          this.thyroid_type = res.data.data.thyroid_diseases.type
-          this.cancer_family = res.data.data.cancer.family
-          this.cancer_type = res.data.data.cancer.type
-          this.kidney_family = res.data.data.kidney_stones.family
-          this.kidney_type = res.data.data.kidney_stones.type
-          console.log("aaaaaaaaaaaaa")
-        }).catch((error) => {
-          console.log("bbbbbbbbbbb")
-          this.errordata = ''
-          this.errordata = error.response.data
+          console.log(res)
+          this.patient = res.data.data.patient.full_name
+          this.status = res.data.data.status
+          this.code = res.data.data.patient.user_country_code
+          this.phone = res.data.data.patient.user_phone_number
+          
+          const elements = [this.code+this.phone];
+          this.phone_number=(elements.join());
         })
+    },
+   
+    getID() {
+     
+      this.$axios
+        .get(
+          'api/v1/patient/'+this.id+'/medical-appointment',
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          this.idAppointment = res.data.data.medical_appointments[0].id
+          this.basic_info()
+          this.data()
+        })
+    },
+    created(){
+    this.id=((this.$route.params.medicalRecord)||this.$route.params.patient)
+  },
+
+    data() {
+      this.$axios
+        .get(
+          `api/v1/basic-information/patient/${this.$route.params.medicalRecord}/medical-apointment/${this.idAppointment}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+          this.date=res.data.data.patient.birthday
+          this.bloodtype=res.data.data.medical_history.blood_type
+          this.height=res.data.data.medical_history.height
+          this.gender=res.data.data.patient.gender
+          this.idUser=res.data.data.patient.id
+          console.log(this.idUser)
+        })
+    },
+
+    update() {
+      this.$axios
+        .put(
+          `api/v1/basic-information/patient/${this.$route.params.medicalRecord}`,
+          {
+            phone_number: this.phone,
+            full_name: this.patient,
+            birthday: this.date,
+            blood_type: this.bloodtype,
+            height: this.height,
+            gender: this.gender
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
     },
   },
 }
 </script>
+
+<style scoped>
+.v-text-field {
+  font-family: Montserrat;
+}
+.title {
+  font-family: MontserratBold !important;
+  color: #4f565f;
+  font-size: 100% !important;
+}
+.subtitle {
+  font-family: Montserrat !important;
+  color: #4f565f;
+  font-size: 80% !important;
+}
+.v-text-field--outlined >>> fieldset {
+  border-color: transparent !important;
+}
+</style>

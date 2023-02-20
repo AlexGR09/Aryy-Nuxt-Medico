@@ -3,7 +3,6 @@
   <v-card color="card" background="grey-lighten-4">
     <v-card-text>
       <v-row>
-
         <v-col cols="4" xs="4" sm="4" md="4" lg="4" xl="4">
           <v-text-field
           v-model="patient"
@@ -190,8 +189,6 @@ export default {
 
   
   mounted() {
-    this.basic_info()
-    this.data()
     this.created()
     this.getID()
   },
@@ -208,10 +205,9 @@ export default {
   methods: {
     /* datos de paciente para datos basicos | Genesis */
     basic_info() {
-  
       this.$axios
         .get(
-          `api/v1/calendar/appointments/${this.$route.params.medicalRecord}`,
+          'api/v1/calendar/appointments/'+this.idAppointment,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -219,6 +215,7 @@ export default {
           }
         )
         .then((res) => {
+          console.log(res)
           this.patient = res.data.data.patient.full_name
           this.status = res.data.data.status
           this.code = res.data.data.patient.user_country_code
@@ -241,10 +238,9 @@ export default {
           }
         )
         .then((res) => {
-         
           this.idAppointment = res.data.data.medical_appointments[0].id
-          console.log(this.idAppointment)
           this.basic_info()
+          this.data()
         })
     },
     created(){
@@ -254,7 +250,7 @@ export default {
     data() {
       this.$axios
         .get(
-          `api/v1/basic-information/patient/${this.$route.params.medicalRecord}/medical-apointment/${this.$route.params.medicalRecord}`,
+          `api/v1/basic-information/patient/${this.$route.params.medicalRecord}/medical-apointment/${this.idAppointment}`,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
