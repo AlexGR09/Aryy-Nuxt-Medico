@@ -158,7 +158,7 @@ export default {
       
       this.$axios
         .get(
-          'api/v1/medical-history/physician/hereditary-background/patient/'+this.id,
+          `api/v1/medical-history/physician/hereditary-background/patient/${this.$route.params.medicalRecord}`,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -166,9 +166,9 @@ export default {
           }
         )
         .then((res) => {
-          this.null=res.data.data.blood_diseases
+          /* this.null=res.data.data.blood_diseases
           this.blood_family=res.data.data.blood_diseases.type
-          this.blood_type=res.data.data.blood_diseases.family
+          this.blood_type=res.data.data.blood_diseases.family */
           this.diabetes_family = res.data.data.diabetes.family
           this.diabetes_type = res.data.data.diabetes.type
           this.diseases_family = res.data.data.heart_diseases.family
@@ -181,11 +181,10 @@ export default {
           this.cancer_type = res.data.data.cancer.type
           this.kidney_family = res.data.data.kidney_stones.family
           this.kidney_type = res.data.data.kidney_stones.type
-          console.log("aaaaaaaaaaaaa")
         }).catch((error) => {
-          console.log("bbbbbbbbbbb")
           this.errordata = ''
           this.errordata = error.response.data
+          
         })
     },
   },
