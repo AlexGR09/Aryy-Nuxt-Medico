@@ -36,7 +36,7 @@
             <span>{{ todo.appointment_type }}</span>
           </v-list-item-title>
           <v-list-item-subtitle class="montserratMedium">
-            {{todo.appointment_time}}
+            {{ ((todo.appointment_start).split('T')[1]).slice(0, -3)}} - {{ ((todo.appointment_end).split('T')[1]).slice(0, -3)}}
           </v-list-item-subtitle>
         </v-list-item-content>
 

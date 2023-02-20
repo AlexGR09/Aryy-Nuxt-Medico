@@ -35,53 +35,39 @@
         <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
           <p>Teléfono*</p>
           <v-row>
-            <v-col cols="3" xs="2" sm="1" md="2" lg="2" xl="2">
+            <v-col cols="12">
              <!--  libreria para select de codigo de paises | Genesis -->
-              <vue-country-code
-                style="height: 56px"
-                enabled-country-code
-                :preferred-countries="['MX', 'us', 'gb']"
-                default-country="mx"
-                @onSelect="onSelect"
-              >
-              </vue-country-code>
-            </v-col>
-            <v-col cols="9" xs="9" sm="11" md="10" lg="10" xl="10">
-              <v-text-field
-                v-model="phone"
-                color="#7900ff"
-                class="ml-5"
-                hide-details
-                outlined
-                placeholder="XXX XXX XXXX"
-              >
-              </v-text-field>
+             <v-text-field v-model="phone" hide-details outlined>
+              <template #prepend-inner>
+                <vue-country-code
+                  enabled-country-code
+                  style="border: 0px; font-family: Montserrat; color: black"
+                  :preferred-countries="['MX', 'us', 'gb']"
+                  default-country="mx"
+                  @onSelect="onSelect"
+                >
+                </vue-country-code
+              ></template>
+            </v-text-field>
             </v-col>
           </v-row>
         </v-col>
         <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
-          <p>Teléfono de emergencia*</p>
+          <p>Teléfono de emergencia</p>
           <v-row>
-            <v-col cols="3" xs="2" sm="1" md="2" lg="2" xl="2">
-              <vue-country-code
-                style="height: 56px"
-                enabled-country-code
-                default-country="mx"
-                :preferred-countries="['MX', 'us', 'gb']"
-                @onSelect="onSelect"
-              >
-              </vue-country-code>
-            </v-col>
-            <v-col cols="9" xs="9" sm="11" md="10" lg="10" xl="10">
-              <v-text-field
-                v-model="emergency_phone"
-                color="#7900ff"
-                class="ml-5"
-                hide-details
-                outlined
-                placeholder="XXX XXX XXXX"
-              >
-              </v-text-field>
+            <v-col cols="12">
+              <v-text-field v-model="emergency_phone" hide-details outlined>
+              <template #prepend-inner>
+                <vue-country-code
+                  enabled-country-code
+                  style="border: 0px; font-family: Montserrat"
+                  :preferred-countries="['MX', 'us', 'gb']"
+                  default-country="mx"
+                  @onSelect="onSelect"
+                >
+                </vue-country-code
+              ></template>
+            </v-text-field>
             </v-col>
           </v-row>
         </v-col>

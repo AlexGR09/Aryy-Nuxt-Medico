@@ -113,13 +113,12 @@
               <template v-slot:event="{ event }">
                 <div class="ma-3 mt-0">
                   <p class="event">
-                    {{ event.patient_full_name }} <!-- ({{ event.status }}) 
-                    ({{color}}) -->
+                    {{ event.patient_full_name }}
                   </p>
                  
-                  <p class="mt-n4">
-                    {{ event.appointment_time }} -
-                    {{ event.appointment_time_end }}
+                  <p class="infor mt-n4">
+                    {{ ((event.appointment_start).split('T')[1]).slice(0, -3)}} -
+                    {{ ((event.appointment_end).split('T')[1]).slice(0, -3)}}
                   </p>  
                 </div>
               </template>
@@ -335,8 +334,11 @@ export default {
     this.scrollToTime()
     this.updateTime()
     this.citas()
+    console.log(this.$refs.calendar)
+   
   },
   methods: {
+
     /*  metodo para traer todas las citas registradas en el servidor | Genesis */
     citas() {
       this.$axios
@@ -348,6 +350,7 @@ export default {
         })
         .then((res) => {
           this.evento = res.data.data
+          
           console.log(res)
         })
     },
@@ -486,6 +489,11 @@ p.confirm {
 }
 p.event {
   font-family: MontserratBold;
+  color: white !important;
+}
+p.infor {
+  font-family: Montserrat !important;
+  color: white !important;
 }
 h4 {
   font-family: Montserrat;
@@ -610,5 +618,8 @@ p.type {
   margin: 0;
   padding: 8px 12px;
     padding-left: 12px;
+}
+span.breadcrumbs{
+  color: #7900ff !important;
 }
 </style>

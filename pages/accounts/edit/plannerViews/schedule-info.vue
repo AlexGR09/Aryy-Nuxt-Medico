@@ -34,7 +34,7 @@
                 class="textfield mt-n3"
                 placeholder="Seleccione el consultorio"
                 outlined
-              ></v-autocomplete>  <!-- | {{ userId.id }} | -->
+              ></v-autocomplete>  
             </v-col>
             <v-col md="5" lg="6" xl="6" cols="12"></v-col>
             <v-col md="7" lg="6" xl="6" cols="12">

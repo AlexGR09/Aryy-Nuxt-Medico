@@ -28,11 +28,14 @@
       <v-col cols="12" md="6">
         <dashboard-assistant />
       </v-col>
-      <!-- Citas proximas | Luis Reyes -->
+      
+    
       <v-col cols="12" md="6">
+        <p class="new">CONSULTAS PRÓXIMAS</p>
         <next-consultation />
       </v-col>
       <v-col cols="12" md="6">
+        <p class="new">CITAS NUEVAS</p>
         <v-card color="card" class="pa-10" max-height="700">
           <calendar />
         </v-card>
@@ -68,7 +71,7 @@ export default {
       this.$axios
         .get('api/v1/calendar/appointments', {
           params: {
-            type: 'all',
+            type: 'today',
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
@@ -104,5 +107,9 @@ b {
 }
 .v-card__subtitle{
   font-family: MontserratBold;
+  color: #4f565f !important;
 }
+p.new{
+    font-size: 1.78vh !important;
+  }
 </style>

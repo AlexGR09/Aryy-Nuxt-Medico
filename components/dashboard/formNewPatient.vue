@@ -5,9 +5,9 @@
       <v-card-title v-if="parentValue === 0"> Paciente nuevo </v-card-title>
       <v-card-text>
         <v-row>
-          <v-col cols="12" xl="4">
+          <v-col cols="12" md="4" lg="4" xl="4">
             <p class="formPatient">Teléfono*</p>
-            <v-text-field hide-details outlined>
+            <v-text-field v-model="phone" hide-details outlined>
               <template #prepend-inner>
                 <vue-country-code
                   enabled-country-code
@@ -21,9 +21,10 @@
             </v-text-field>
           </v-col>
 
-          <v-col cols="12" xl="4">
+          <v-col cols="12" md="4" lg="4" xl="4">
             <p class="formPatient">Paciente*</p>
             <v-text-field
+            v-model="patient"
               placeholder="Escribe el nombre del paciente"
               outlined
               hide-details
@@ -31,9 +32,9 @@
             </v-text-field>
           </v-col>
 
-          <v-col cols="12" xl="4">
-            <p class="formPatient">Teléfono de emergencia*</p>
-            <v-text-field hide-details outlined>
+          <v-col cols="12" md="4" lg="4" xl="4">
+            <p class="formPatient">Teléfono de emergencia</p>
+            <v-text-field v-model="emergency_phone" hide-details outlined>
               <template #prepend-inner>
                 <vue-country-code
                   enabled-country-code
@@ -47,9 +48,14 @@
             </v-text-field>
           </v-col>
 
-          <v-col v-if="parentValue === 1" cols="12" xl="4">
-            <p class="formPatient">Consultorio*</p>
+          <v-col v-if="parentValue === 1" cols="12" md="4" lg="4" xl="4">
+            <p class="formPatient">Consultorio* </p>
             <v-autocomplete
+            v-model="idfacility"
+            item-text="name"
+            item-value="id"
+            return-object
+            :items="facilityName"
               placeholder="Seleccione el consultorio"
               outlined
               hide-details
@@ -57,7 +63,7 @@
             </v-autocomplete>
           </v-col>
 
-          <v-col v-if="parentValue === 1" cols="12" xl="4">
+          <v-col v-if="parentValue === 1" cols="12" md="4" lg="4" xl="4">
             <p class="formPatient">Fecha de la cita*</p>
             <v-dialog
               transition="slide-y-transition"
@@ -89,7 +95,7 @@
             </v-dialog>
           </v-col>
 
-          <v-col v-if="parentValue === 1" cols="12" xl="4">
+          <v-col v-if="parentValue === 1" cols="12" md="4" lg="4" xl="4">
             <p class="formPatient">Horario*</p>
             <v-dialog
               transition="slide-y-transition"
@@ -122,7 +128,7 @@
             </v-dialog>
           </v-col>
 
-          <v-col cols="12" xl="4">
+          <v-col cols="12" md="4" lg="4" xl="4">
             <p class="formPatient">Servicio*</p>
             <v-autocomplete
               :items="type"
@@ -133,7 +139,7 @@
             </v-autocomplete>
           </v-col>
 
-          <v-col cols="12" xl="4">
+          <v-col cols="12" md="4" lg="4" xl="4">
             <p class="formPatient">¿De dónde nos conoce?*</p>
             <v-autocomplete
               :items="where"
@@ -148,12 +154,12 @@
       <v-card-actions>
         <v-row class="ml-n1 mr-n1">
           <v-col cols="12" xl="6">
-            <v-btn v-if="parentValue===1" block x-large color="primary" @click="dialog = false">
+            <v-btn v-if="parentValue===1" block x-large color="primary" @click="agendarNuevo">
               <span>Guardar y agendar</span>
             </v-btn>
 
-            <v-btn v-if="parentValue===0" block x-large color="primary" @click="dialog = false">
-              <span>Iniciar consulta</span>
+            <v-btn v-if="parentValue===0" block x-large color="primary"   @click="agendarNuevo">
+              <span>Registrar e iniciar consulta</span>
             </v-btn>
           </v-col>
 
@@ -178,7 +184,8 @@
 <script>
 import Vue from 'vue'
 import VueCountryCode from 'vue-country-code'
-
+import moment from 'moment'
+Vue.use(moment);
 Vue.use(VueCountryCode)
 
 export default {
@@ -186,6 +193,16 @@ export default {
   components: {},
   data() {
     return {
+      facilityName:'',
+      idfacility:'',
+      today: new Date(),
+      time: new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds(),
+      phone: '',
+      patient: '',
+      emergency_phone: '',
+      facilitie: '',
+      facility:'',
+      service: '',
         dialog: false,
       selectedCountry: '',
       modal: false,
@@ -193,7 +210,6 @@ export default {
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
-      time: '',
       type: ['Primera consulta', 'Consulta subsecuente'],
       where: [
         'Por un amigo/conocido',
@@ -204,7 +220,56 @@ export default {
       ],
     }
   },
+  computed: {
+      formattedDate() {
+        return moment().format('LT');
+      }
+    },
+    mounted(){
+    this.getFacility()
+    },
   methods: {
+    getFacility() {
+      this.$axios
+      .get('/api/v1/facilities',{
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")}
+      })
+      .then(res => {
+        this.facilityName= res.data.data
+      })
+    },
+
+    agendarNuevo() {
+      this.$axios
+        .post(
+          'api/v1/calendar/appointments',
+          {
+            phone_number: this.phone,
+            country_code: this.selectedCountry.dialCode,
+            full_name: this.patient,
+            emergency_number: this.emergency_phone,
+            facility_id: this.idfacility.id,
+            appointment_date: this.date,
+            appointment_type: this.service,
+            appointment_time: this.time,
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        )
+        .then((response) => {
+          location.reload()
+          console.log(this.idfacility.id)
+        })
+        .catch((error) => {
+          console.log(this.idfacility.id)
+          this.error = 'error'
+          this.errordate = error.response.message
+        })
+    },
+
     onSelect(data) {
       this.selectedCountry = data
     },

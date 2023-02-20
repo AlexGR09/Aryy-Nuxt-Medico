@@ -16,25 +16,25 @@
             <div class="me-2 mb-2">
               <v-card-title color="#7900ff" class="nombre pt-0 px-0"> {{evento.patient_full_name}} </v-card-title>
               <v-card-subtitle class="text-xs pa-0">
-                {{evento.appointment_date}}  {{evento.appointment_time}}
+                {{evento.appointment_date}} • {{ ((evento.appointment_start).split('T')[1]).slice(0, -3)}}
+
+                
               </v-card-subtitle>
             </div>
             <v-col
-              cols="4"
-              order="1"
-              order-lg="2"
+              cols="3"
             >
-              <div>
+             
                 <v-btn color="#f4edff" class="btn" block><span class="btn">Cambiar fecha</span> </v-btn>
-              </div>
-              <div>
+             
+            
                 <v-btn
                 @click="$router.push('/medical-record/' + evento.id_appointment)"
-                class="btn_detail white--text mt-2" 
-                block   
+                class="btn_detail  white--text mt-2" 
+               block
                 color="#7900ff"
                 ><span>Iniciar consulta</span> </v-btn>
-            </div>
+          
             </v-col>
           </div>
         </v-card-text>
@@ -43,6 +43,8 @@
     </div>
   </template>
   <script>
+  import moment from 'moment';
+moment().format();
   export default {
     data() {
       return {
@@ -57,7 +59,7 @@
       this.$axios
         .get('api/v1/calendar/appointments', {
           params: {
-            type: 'all',
+            type: 'today',
           },
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
@@ -79,19 +81,26 @@
   border: 0px;
     text-transform: none;
     font-family: MontserratMedium;
+    font-size: 1.6vh;
   }
   .btn_detail{
       text-transform: capitalize ;
       text-transform: none;
     font-family: MontserratMedium;
+    font-size: 1.6vh;
   }
   .v-card__title{
     font-family: MontserratBold;
     font-size: 125%;
+    color: #9966ff !important;
+    text-transform: capitalize;
   }
   .v-card__subtitle{
     font-family: MontserratMedium;
     font-size: 120%;
-    color: #999999;
+    color: #999999 !important;
+  }
+  p{
+    font-size: 1.75vh !important;
   }
   </style>

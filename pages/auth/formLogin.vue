@@ -1,6 +1,7 @@
 <template>
   <v-card color="card" flat>
     <div class="margen mt-16">
+      <v-col xl="8">
       <v-img
         :src="require('@/assets/logotipos/ISOLOGO_ARYY.svg')"
         max-width="150"
@@ -9,14 +10,16 @@
         Especialistas, medicinas y <br />
         análisis clínicos en un solo lugar
       </h1>
+     
       <p>
-        Haz una cita, cotiza tus medicamentos y análisis <br />
-        clínicos o lleva control de tu tratamiento con <br />
+        Haz una cita, cotiza tus medicamentos y análisis 
+        clínicos o lleva control de tu tratamiento con 
         ayuda de aryy.
-      </p>
+      </p></v-col>
       <!-- ---- Sección de vista iniciar sesión y registrar| Genesis ---- -->
-      <v-tabs class="tabs" color="#7900ff" v-model="tabs">
-        <v-tab class="tabs">Iniciar sesión</v-tab>
+    
+      <v-tabs  class="tabs mb-4 ml-5 " color="#7900ff" v-model="tabs">
+        <v-tab class="tabs "><span>Iniciar sesión</span></v-tab>
         <v-tab class="tabs">
           <!--    menu para mostrar el tipo de registro segun tipo de usuario | Genesis -->
           <v-menu offset-y>
@@ -28,8 +31,12 @@
                 text
                 class="tabs boton gray--text"
               >
-                <span>Registrarse</span>
-                <v-icon>mdi-menu-down</v-icon>
+                <span>Registrarme</span>
+                <v-img
+              :src="require('@/assets/icons/icon_arrowDown.svg')"
+              width="15%"
+            ></v-img
+          >
               </v-btn>
             </template>
 
@@ -37,7 +44,7 @@
               <!-- recibir contenido de la lista desde script | Genesis -->
               <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
                 <v-list-item-title
-                  ><p class="item">{{ item.title }}</p></v-list-item-title
+                  ><p class="item mt-4">{{ item.title }}</p></v-list-item-title
                 >
               </v-list-item>
             </v-list>
@@ -66,7 +73,7 @@
                     v-model="password"
                     height="25"
                     outlined
-                    class="textfield mb-8"
+                    class="textfield mb-5"
                     color="#b380ff"
                     placeholder="Contraseña"
                     :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -78,10 +85,10 @@
                   <v-btn
                     v-on:click="login"
                     class="btnnn"
-                    color="#7900ff"
+                    color="#9966ff"
                     height="50"
                   >
-                    Iniciar sesión
+                    <span class="login">Iniciar sesión</span>
                   </v-btn>
 
                   <p class="accede mt-5 mb-5">O accede usando</p>
@@ -92,7 +99,8 @@
                       :src="require('@/assets/icons/icon_facebook.svg')"
                       max-width="35"
                     ></v-img>
-                    Iniciar sesión con Facebook
+                    <span class="login"> Iniciar sesión con Facebook</span>
+                   
                   </v-btn>
                   <v-btn
                     class="margen4 btn"
@@ -105,7 +113,8 @@
                       :src="require('@/assets/icons/icon_google.svg')"
                       max-width="30"
                     ></v-img>
-                    Iniciar sesión con Google
+                    <span class="login">Iniciar sesión con Google</span>
+                    
                   </v-btn>
                 </v-row>
               </v-card-text>
@@ -183,6 +192,7 @@ export default {
 <style>
 a{
   text-decoration: none;
+  color: #9966ff !important;
 }
 .split-btn {
   display: inline-block;
@@ -201,7 +211,7 @@ a{
 }
 /*estilos para tipos de letra | Genesis*/
 h1 {
-  font-family: 'Montserrat';
+  font-family: 'MontserratMedium';
   font-size: 155%;
   margin-top: -30px;
   margin-bottom: 10px;
@@ -228,6 +238,7 @@ a.pass {
 }
 p.item {
   font-family: MontserratMedium;
+  color: #4f565f !important;
 }
 p {
   font-family: 'MontserratMedium';
@@ -235,8 +246,9 @@ p {
   font-size: 16px;
 }
 p.accede {
+  color: #999999 !important;
   font-size: 15px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MontserratMedium', sans-serif;
 }
 p.label {
   font-family: 'MontserratLight';
@@ -246,10 +258,16 @@ p.label {
   margin-left: 1px;
   margin-bottom: 15px;
 }
+span{
+  font-size: 1.6vh;
+}
 a.accede {
   margin-top: 16px;
   font-size: 15px;
   font-family: 'MontserratBold';
+}
+p{
+  color: #999999 !important;
 }
 p.checkbox {
   font-family: Montserrat;
@@ -261,11 +279,16 @@ r {
   font-family: MontserratMedium;
   color: #7900ff;
 }
-/*     estilos para elementos vuetify | Genesis */
+/*     estilos para elementos | Genesis */
 .boton {
   width: 155px;
   margin-left: -15px;
   margin-right: -15px;
+}
+span.login{
+  font-size: 1.6vh;
+  font-family: MontserratMedium !important;
+  text-transform: none;
 }
 .listitem {
   font-family: Montserrat;
