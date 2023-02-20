@@ -4,10 +4,10 @@ export default function({ store, redirect, $axios}) {
 /*     const token = 'token'  */
     console.log('conectando ')
     if (!store.state.authenticated) {
-/*         if(process.client){
+      if(process.client){
             localStorage.getItem('token');
             return redirect("/auth/login");
-        } */
+        } 
         return redirect("/auth/login");
     }
 }

@@ -36,7 +36,6 @@
         </v-form>
     </v-container>
 </template>
-
 <script>
 export default{
     data(){
