@@ -30,13 +30,15 @@
                     color="purple" 
                     dark 
                     block
-                    @click="validate(); POST_DATA(); "
+                    @click="validate(); login();"
                 >Iniciar sesión</v-btn>
             </div>
         </v-form>
     </v-container>
 </template>
 <script>
+
+import {api, setAuthToken } from '~/plugins/api'
 export default{
     data(){
         return{
@@ -59,22 +61,18 @@ export default{
         validate(){
             this.$refs.form.validate()
         },
-        POST_DATA(){
-            this.$axios
-                .post('api/v1/login',{
+        async login(){
+            try {
+                const response = await api.post('api/v1/login',{
                     email: this.email,
                     password:this.password
                 })
-                .then((response) => {
                     const token = response.data.access_token
-                    localStorage.setItem('token', token)
-                    if(response.data.access_token === token){
-                       /* store.commit('SET_TOKEN', token) */
-                        this.$store.commit('setToken', token);
-                        this.$store.commit('SET_AUTHENTICATED', true)
-                        this.$router.push('/')
-                    } 
-                })
+                    setAuthToken(token)    
+                    this.$router.push('/')
+            }catch (error) {
+                console.error('error');
+            }
         }
     }
 }

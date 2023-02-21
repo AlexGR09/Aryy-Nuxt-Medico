@@ -34,6 +34,7 @@
             <v-tabs-items v-model="tab">
               <v-tab-item>
                 <v-card  flat>
+                  hide-delimiters
                    <form-auth/>
                 </v-card>
               </v-tab-item>
@@ -73,13 +74,13 @@ import FormRegister from '~/components/auth/form-register.vue'
   }
   </script>
   
-  <style>
-  @media screen and (max-width: 1200px) {
-    .ocultar-col{
-      display: none;
-    }
+<style>
+@media screen and (max-width: 1200px) {
+  .ocultar-col{
+    display: none;
   }
-  .half-screen-video {
+}
+.half-screen-video {
   width: 5vw;
   height: 100vh;
 }
